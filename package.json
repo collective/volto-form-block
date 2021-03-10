@@ -1,0 +1,17 @@
+{
+  "name": "volto-form-block",
+  "version": "0.1.0",
+  "description": "Volto block to build a form",
+  "main": "src/index.js",
+  "repository": "https://github.com/collective/volto-form-block",
+  "bugs": "https://github.com/collective/volto-form-block/issues",
+  "author": "Nicola Zambello",
+  "homepage": "https://github.com/collective/volto-rss-block#readme",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react"
+  ]
+}
