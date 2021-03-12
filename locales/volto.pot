@@ -1,0 +1,175 @@
+msgid ""
+ msgstr ""
+ "Project-Id-Version: Plone\n"
+ "POT-Creation-Date: 2021-03-11T22:12:00.351Z\n"
+ "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+ "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+ "Language-Code: en\n"
+ "Language-Name: English\n"
+ "Preferred-Encodings: utf-8\n"
+ "Domain: volto\n"
+
+ #: components/Edit
+# defaultMessage: Aggiungi un campo
+msgid "Add field"
+msgstr ""
+
+#: components/FormView
+# defaultMessage: Email inviata correttamente
+msgid "Email Success"
+msgstr ""
+
+#: components/Form
+# defaultMessage: La tua mail è stata inviata correttamente
+msgid "Email sent"
+msgstr ""
+
+#: components/FormView
+# defaultMessage: Errore
+msgid "Error"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Form
+msgid "Form"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Mittente di default
+msgid "form_default_from"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Questo indirizzo verrà utilizzato come mittente della mail con i dati del form
+msgid "form_default_from_description"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Oggetto della mail
+msgid "form_default_subject"
+msgstr ""
+
+#: components/Edit
+#: components/FormView
+# defaultMessage: Invia
+msgid "form_default_submit_label"
+msgstr ""
+
+#: components/Edit
+# defaultMessage: Attenzione!
+msgid "form_edit_warning"
+msgstr ""
+
+#: components/Edit
+# defaultMessage: Inserire un campo di tipo "E-mail mittente". Se non è presente, oppure è presente ma non viene compilato dall'utente, l'indirizzo del mittente della mail sarà quello configurato dalla sidebar di destra.
+msgid "form_edit_warning_from"
+msgstr ""
+
+#: components/FormView
+# defaultMessage: Compila i campi richiesti
+msgid "form_empty_values_validation"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Descrizione
+msgid "form_field_description"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Valori possibili
+msgid "form_field_input_values"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Etichetta
+msgid "form_field_label"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Nome
+msgid "form_field_name"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Il nome deve contenere spazi, e può contenere solo caratteri alfanumerici oltre ai caratteri "-" e "_". Il nome coincide con il nome del parametro.
+msgid "form_field_name_description"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Obbligatorio
+msgid "form_field_required"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Tipo di campo
+msgid "form_field_type"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Allegato
+msgid "form_field_type_attachment"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Scelta multipla
+msgid "form_field_type_checkbox"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Data
+msgid "form_field_type_date"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: E-mail
+msgid "form_field_type_from"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Scelta singola
+msgid "form_field_type_radio"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Lista
+msgid "form_field_type_select"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Testo
+msgid "form_field_type_text"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Area di testo
+msgid "form_field_type_textarea"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Salva i dati compilati
+msgid "form_save_persistent_data"
+msgstr ""
+
+#: components/Field
+# defaultMessage: Select a value
+msgid "form_select_a_value"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Invia email al destinatario
+msgid "form_send_email"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Testo sul bottone di invio
+msgid "form_submit_label"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Destinatari
+msgid "form_to"
+msgstr ""
