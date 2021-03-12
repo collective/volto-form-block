@@ -55,6 +55,7 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
+          value={value}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -67,6 +68,7 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
+          value={value}
           rows={10}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -80,9 +82,8 @@ const Field = ({
           description={description}
           getVocabulary={() => {}}
           getVocabularyTokenTitle={() => {}}
-          choices={[
-            ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
-          ]}
+          choices={[...(input_values?.map((v) => [v, v]) ?? [])]}
+          value={value}
           onChange={onChange}
           placeholder={intl.formatMessage(messages.select_a_value)}
           aria-label={intl.formatMessage(messages.select_a_value)}
@@ -101,6 +102,7 @@ const Field = ({
           valueList={[
             ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
           ]}
+          value={value}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -114,6 +116,7 @@ const Field = ({
           required={required}
           onChange={onChange}
           invalid={isInvalid().toString()}
+          value={value}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
@@ -125,7 +128,9 @@ const Field = ({
           description={description}
           dateOnly={true}
           noPastDates={false}
+          resettable={false}
           onChange={onChange}
+          value={value}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -134,10 +139,10 @@ const Field = ({
         <FileWidget
           id={name}
           name={name}
-          label={getLabel()}
+          title={getLabel()}
+          description={description}
           type="file"
           required={required}
-          infoText={description}
           invalid={isInvalid().toString()}
           onChange={onChange}
           onEdit={isOnEdit}
@@ -152,6 +157,7 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
+          value={value}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />

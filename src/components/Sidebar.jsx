@@ -261,9 +261,7 @@ const Sidebar = ({
                       value={subblock.field_type || ''}
                       onChange={(name, value) => {
                         var update_values = {};
-                        if (
-                          ['select', 'radio', 'checkbox'].indexOf(value) < 0
-                        ) {
+                        if (['select', 'radio'].indexOf(value) < 0) {
                           update_values.input_values = null;
                         }
                         onChangeSubBlock(index, {
@@ -299,9 +297,7 @@ const Sidebar = ({
                       ]}
                     />
 
-                    {['select', 'radio', 'checkbox'].indexOf(
-                      subblock.field_type,
-                    ) >= 0 && (
+                    {['select', 'radio'].indexOf(subblock.field_type) >= 0 && (
                       <ArrayWidget
                         id="input_values"
                         title={intl.formatMessage(messages.field_input_values)}

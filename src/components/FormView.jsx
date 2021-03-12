@@ -62,7 +62,7 @@ const FormView = ({
   return (
     <div className="block form">
       <div className="public-ui">
-        <Segment>
+        <Segment style={{ margin: '2rem 0' }} padded>
           {formState.error ? (
             <Message error role="alert">
               <Message.Header as="h4">
@@ -121,7 +121,7 @@ const FormView = ({
                   </Message>
                 )}
 
-                <Grid.Row centered>
+                <Grid.Row centered style={{ paddingTop: '3rem' }}>
                   <Grid.Column textAlign="center">
                     <Button
                       primary

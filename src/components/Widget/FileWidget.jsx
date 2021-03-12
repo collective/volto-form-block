@@ -83,16 +83,16 @@ const FileWidget = (props) => {
               disabled={props.isDisabled}
               {...getInputProps({
                 type: 'file',
-                style: { display: 'none' },
+                style: { display: 'block' },
               })}
               onChange={({ target }) => {
                 const file = target.files[0];
                 onUpload(file);
               }}
             />
-            <div className="field-file-name">
-              {value && value.filename}
-              {value && (
+            {value && (
+              <div className="field-file-name">
+                {value.filename}
                 <Button
                   icon
                   basic
@@ -106,8 +106,8 @@ const FileWidget = (props) => {
                 >
                   <Icon name={deleteSVG} size="20px" />
                 </Button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </Dropzone>
