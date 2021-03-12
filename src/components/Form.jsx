@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { sendActionForm } from '../actions';
+import { submitForm } from '../actions';
 import { getFieldName } from './utils';
 import FormView from './FormView';
 
@@ -107,7 +107,7 @@ const Form = ({ data, id, path }) => {
       });
 
       dispatch(
-        sendActionForm(
+        submitForm(
           path,
           id,
           Object.keys(formData).map((name) => ({

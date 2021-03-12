@@ -1,24 +1,24 @@
 /**
- * emailNotification actions.
- * @module actions/emailNotification/emailNotification
+ * submitForm actions.
+ * @module actions/submitForm
  */
 
-export const EMAIL_SEND_ACTION_FORM = 'EMAIL_SEND_ACTION_FORM';
+export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
 
 /**
- * Email send function
- * @function sendActionForm
+ * submitForm function
+ * @function submitForm
  * @param {string} pat
  * @param {string} block_id
  * @param {Object} data
  * @returns {Object} attachments
  */
-export function sendActionForm(path = '', block_id, data, attachments) {
+export function submitForm(path = '', block_id, data, attachments) {
   return {
-    type: EMAIL_SEND_ACTION_FORM,
+    type: SUBMIT_FORM_ACTION,
     request: {
       op: 'post',
-      path: path + '/@send-action-form',
+      path: path + '/@submit-form',
       data: {
         block_id,
         data,
