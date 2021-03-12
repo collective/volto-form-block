@@ -16,5 +16,12 @@
   ],
   "scripts": {
     "i18n": "NODE_ENV=production node src/i18n.js"
+  },
+  "addons": [
+    "volto-subblocks"
+  ],
+  "dependencies": {
+    "react-google-recaptcha-v3": "^1.8.0",
+    "volto-subblocks": "collective/volto-subblocks#v1.0.1"
   }
 }
