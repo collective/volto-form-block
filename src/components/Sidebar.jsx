@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Accordion, Form } from 'semantic-ui-react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  Segment,
+  Accordion,
+  Form,
+  Button,
+  Grid,
+  Confirm,
+  Dimmer,
+  Loader,
+} from 'semantic-ui-react';
 import {
   defineMessages,
   useIntl,
@@ -18,6 +28,14 @@ import {
 
 import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
+import downloadSVG from '@plone/volto/icons/download.svg';
+import deleteSVG from '@plone/volto/icons/delete.svg';
+
+import {
+  getFormData,
+  exportCsvFormData,
+  clearFormData,
+} from 'volto-form-block/actions';
 
 const messages = defineMessages({
   default_to: {
@@ -102,18 +120,31 @@ const messages = defineMessages({
     defaultMessage:
       'Questo indirizzo verrà utilizzato come mittente della mail con i dati del form',
   },
-  save_persistent_data: {
+  store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Salva i dati compilati',
   },
-  send_email: {
+  send: {
     id: 'form_send_email',
     defaultMessage: 'Invia email al destinatario',
+  },
+  exportCsv: {
+    id: 'form_edit_exportCsv',
+    defaultMessage: 'Export data',
+  },
+  clearData: {
+    id: 'form_clear_data',
+    defaultMessage: 'Clear data',
+  },
+  formDataCount: {
+    id: 'form_formDataCount',
+    defaultMessage: '{formDataCount} item(s) stored',
   },
 });
 
 const Sidebar = ({
   data,
+  properties,
   block,
   onChangeBlock,
   onChangeSubBlock,
@@ -122,12 +153,28 @@ const Sidebar = ({
   openObjectBrowser,
 }) => {
   const intl = useIntl();
+  const dispatch = useDispatch();
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const formData = useSelector((state) => state.formData);
+  const clearFormDataState = useSelector(
+    (state) => state.clearFormData?.loaded,
+  );
+  useEffect(() => {
+    if (properties?.['@id']) dispatch(getFormData(properties['@id']));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearFormDataState]);
 
   if (data.send_email === undefined) data.send_email = true;
 
+  data.subblocks &&
+    data.subblocks.forEach((subblock) => {
+      subblock.field_id = subblock.id;
+    });
+
   return (
     <Form>
-      <Segment.Group raised form>
+      <Segment.Group raised>
         <header className="header pulled">
           <h2>
             <FormattedMessage id="Form" defaultMessage="Form" />
@@ -186,10 +233,10 @@ const Sidebar = ({
           />
 
           <CheckboxWidget
-            id="save_persistent_data"
-            title={intl.formatMessage(messages.save_persistent_data)}
+            id="store"
+            title={intl.formatMessage(messages.store)}
             required={false}
-            value={data.save_persistent_data ?? false}
+            value={data.store ?? false}
             onChange={(name, value) => {
               onChangeBlock(block, {
                 ...data,
@@ -198,10 +245,10 @@ const Sidebar = ({
             }}
           />
           <CheckboxWidget
-            id="send_email"
-            title={intl.formatMessage(messages.send_email)}
+            id="send"
+            title={intl.formatMessage(messages.send)}
             required={false}
-            value={data.send_email ?? false}
+            value={data.send ?? false}
             onChange={(name, value) => {
               onChangeBlock(block, {
                 ...data,
@@ -209,6 +256,67 @@ const Sidebar = ({
               });
             }}
           />
+
+          {properties?.['@components']?.form_data && (
+            <Form.Field inline>
+              <Grid>
+                <Grid.Row stretched centered style={{ padding: '1rem 0' }}>
+                  <Dimmer active={formData?.loading}>
+                    <Loader size="tiny" />
+                  </Dimmer>
+                  <p>
+                    {intl.formatMessage(messages.formDataCount, {
+                      formDataCount: formData?.result?.items_total ?? 0,
+                    })}
+                  </p>
+                </Grid.Row>
+                <Grid.Row
+                  stretched
+                  centered
+                  columns={2}
+                  style={{ marginBottom: '0.5rem' }}
+                >
+                  <Grid.Column>
+                    <Button
+                      compact
+                      onClick={() =>
+                        dispatch(
+                          exportCsvFormData(
+                            properties['@id'],
+                            `export-${properties.id ?? 'form'}.csv`,
+                          ),
+                        )
+                      }
+                      size="tiny"
+                      style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                      <Icon name={downloadSVG} size="1.5rem" />{' '}
+                      {intl.formatMessage(messages.exportCsv)}
+                    </Button>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Button
+                      compact
+                      onClick={() => setConfirmOpen(true)}
+                      size="tiny"
+                      style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                      <Icon name={deleteSVG} size="1.5rem" />{' '}
+                      {intl.formatMessage(messages.clearData)}
+                    </Button>
+                    <Confirm
+                      open={confirmOpen}
+                      onCancel={() => setConfirmOpen(false)}
+                      onConfirm={() => {
+                        dispatch(clearFormData(properties['@id']));
+                        setConfirmOpen(false);
+                      }}
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Form.Field>
+          )}
         </Segment>
         <Accordion fluid styled className="form">
           {data.subblocks &&

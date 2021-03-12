@@ -9,8 +9,8 @@ import {
   Progress,
   Button,
 } from 'semantic-ui-react';
-import { getFieldName } from './utils';
-import Field from './Field';
+import { getFieldName } from 'volto-form-block/components/utils';
+import Field from 'volto-form-block/components/Field';
 
 const messages = defineMessages({
   default_submit_label: {
@@ -94,7 +94,12 @@ const FormView = ({
                           {...subblock}
                           name={name}
                           onChange={(field, value) =>
-                            onChangeFormData(field, value, subblock.label)
+                            onChangeFormData(
+                              subblock.id,
+                              field,
+                              value,
+                              subblock.label,
+                            )
                           }
                           value={formData[name]?.value}
                           valid={isValidField(name)}

@@ -8,7 +8,7 @@ import { compose } from 'redux';
 
 import { DNDSubblocks, SubblockEdit, Subblock } from 'volto-subblocks';
 
-import Field from './Field';
+import Field from 'volto-form-block/components/Field';
 import { getFieldName } from './utils';
 
 /**
@@ -52,6 +52,7 @@ class EditBlock extends SubblockEdit {
             key={this.props.data.index}
             isOnEdit={true}
             id={id}
+            field_id={id}
             index={this.props.data.index}
             onChange={() => {}}
           />

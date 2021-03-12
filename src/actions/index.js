@@ -27,3 +27,51 @@ export function submitForm(path = '', block_id, data, attachments) {
     },
   };
 }
+
+/**
+ * exportCsvFormData action
+ * @modulee actions/exportCsvFormData
+ */
+export const EXPORT_CSV_FORMDATA = 'EXPORT_CSV_FORMDATA';
+
+export function exportCsvFormData(path = '') {
+  return {
+    type: EXPORT_CSV_FORMDATA,
+    request: {
+      op: 'get',
+      path: path + '/@form-data-export',
+    },
+  };
+}
+
+/**
+ * getFormData action
+ * @modulee actions/getFormData
+ */
+export const GET_FORM_DATA = 'GET_FORMDATA';
+
+export function getFormData(path = '') {
+  return {
+    type: GET_FORM_DATA,
+    request: {
+      op: 'get',
+      path: path + '/@form-data',
+    },
+  };
+}
+
+/**
+ * clearFormData action
+ * @modulee actions/getFormData
+ */
+export const CLEAR_FORM_DATA = 'CLEAR_FORM_DATA';
+
+export function clearFormData(path = '') {
+  return {
+    type: CLEAR_FORM_DATA,
+    request: {
+      op: 'get',
+      path: path + '/@form-data-clear',
+    },
+  };
+}

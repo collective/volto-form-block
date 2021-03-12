@@ -8,8 +8,8 @@ import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
 import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
-import RadioWidget from './Widget/RadioWidget';
-import FileWidget from './Widget/FileWidget';
+import RadioWidget from 'volto-form-block/components/Widget/RadioWidget';
+import FileWidget from 'volto-form-block/components/Widget/FileWidget';
 
 const messages = defineMessages({
   select_a_value: {

@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import Form from './Form';
+import Form from 'volto-form-block/components/Form';
 
 /**
  * View blocks class.

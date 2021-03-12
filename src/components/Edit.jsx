@@ -1,15 +1,14 @@
 import React from 'react';
-import EditBlock from './EditBlock';
-
 import { Segment, Grid, Form, Button } from 'semantic-ui-react';
 import {
   withDNDContext,
   SubblocksEdit,
   SubblocksWrapper,
 } from 'volto-subblocks';
-
 import { SidebarPortal } from '@plone/volto/components';
-import Sidebar from './Sidebar.jsx';
+
+import EditBlock from 'volto-form-block/components/EditBlock';
+import Sidebar from 'volto-form-block/components/Sidebar';
 
 import { defineMessages } from 'react-intl';
 

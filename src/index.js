@@ -1,6 +1,12 @@
 import formSVG from '@plone/volto/icons/form.svg';
 import FormView from './components/View';
 import FormEdit from './components/Edit';
+import {
+  submitForm,
+  getFormData,
+  exportCsvFormData,
+  clearFormData,
+} from './reducers';
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
@@ -20,6 +26,14 @@ const applyConfig = (config) => {
       },
       sidebarTab: 1,
     },
+  };
+
+  config.addonReducers = {
+    ...config.addonReducers,
+    submitForm,
+    formData: getFormData,
+    exportCsvFormData,
+    clearFormData,
   };
 
   return config;

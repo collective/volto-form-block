@@ -2,9 +2,9 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from '../actions';
-import { getFieldName } from './utils';
-import FormView from './FormView';
+import { submitForm } from 'volto-form-block/actions';
+import { getFieldName } from 'volto-form-block/components/utils';
+import FormView from 'volto-form-block/components/FormView';
 
 const messages = defineMessages({
   messageSent: {
@@ -60,10 +60,10 @@ const Form = ({ data, id, path }) => {
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
-  const submitResults = useSelector((state) => state.sendActionForm);
+  const submitResults = useSelector((state) => state.submitForm);
 
-  const onChangeFormData = (field, value, label) => {
-    setFormData({ field: field, value: { value: value, label: label } });
+  const onChangeFormData = (field_id, field, value, label) => {
+    setFormData({ field, value: { field_id, value, label } });
   };
 
   useEffect(() => {
@@ -98,6 +98,7 @@ const Form = ({ data, id, path }) => {
       data.subblocks.forEach((subblock, index) => {
         let name = getFieldName(subblock.label);
         if (formData[name]?.value) {
+          formData[name].field_id = subblock.field_id;
           const isAttachment = subblock.field_type === 'attachment';
 
           if (isAttachment) {
@@ -111,7 +112,7 @@ const Form = ({ data, id, path }) => {
           path,
           id,
           Object.keys(formData).map((name) => ({
-            id: name,
+            field_id: formData[name].field_id,
             label: formData[name].label,
             value: formData[name].value,
           })),

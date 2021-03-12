@@ -21,6 +21,7 @@
     "volto-subblocks"
   ],
   "dependencies": {
+    "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
     "volto-subblocks": "collective/volto-subblocks#v1.0.1"
   }
