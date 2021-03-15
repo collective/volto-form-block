@@ -15,7 +15,6 @@ import {
   defineMessages,
   useIntl,
   FormattedMessage,
-  injectIntl,
 } from 'react-intl';
 
 import {
@@ -40,64 +39,64 @@ import {
 const messages = defineMessages({
   default_to: {
     id: 'form_to',
-    defaultMessage: 'Destinatari',
+    defaultMessage: 'Recipients',
   },
   submit_label: {
     id: 'form_submit_label',
-    defaultMessage: 'Testo sul bottone di invio',
+    defaultMessage: 'Submit button label',
   },
   field_label: {
     id: 'form_field_label',
-    defaultMessage: 'Etichetta',
+    defaultMessage: 'Label',
   },
   field_description: {
     id: 'form_field_description',
-    defaultMessage: 'Descrizione',
+    defaultMessage: 'Description',
   },
   field_name: {
     id: 'form_field_name',
-    defaultMessage: 'Nome',
+    defaultMessage: 'Name',
   },
   field_name_description: {
     id: 'form_field_name_description',
     defaultMessage:
-      'Il nome deve contenere spazi, e può contenere solo caratteri alfanumerici oltre ai caratteri "-" e "_". Il nome coincide con il nome del parametro.',
+      'The name must contain spaces, and can only contain alphanumeric characters in addition to the "-" and "_" characters. The name is the same as the name of the parameter.',
   },
   field_required: {
     id: 'form_field_required',
-    defaultMessage: 'Obbligatorio',
+    defaultMessage: 'Required',
   },
   field_type: {
     id: 'form_field_type',
-    defaultMessage: 'Tipo di campo',
+    defaultMessage: 'Field type',
   },
   field_type_text: {
     id: 'form_field_type_text',
-    defaultMessage: 'Testo',
+    defaultMessage: 'Text',
   },
   field_type_textarea: {
     id: 'form_field_type_textarea',
-    defaultMessage: 'Area di testo',
+    defaultMessage: 'Textarea',
   },
   field_type_select: {
     id: 'form_field_type_select',
-    defaultMessage: 'Lista',
+    defaultMessage: 'List',
   },
   field_type_radio: {
     id: 'form_field_type_radio',
-    defaultMessage: 'Scelta singola',
+    defaultMessage: 'Single choice',
   },
   field_type_checkbox: {
     id: 'form_field_type_checkbox',
-    defaultMessage: 'Scelta multipla',
+    defaultMessage: 'Multiple choice',
   },
   field_type_date: {
     id: 'form_field_type_date',
-    defaultMessage: 'Data',
+    defaultMessage: 'Date',
   },
   field_type_attachment: {
     id: 'form_field_type_attachment',
-    defaultMessage: 'Allegato',
+    defaultMessage: 'Attachment',
   },
   field_type_from: {
     id: 'form_field_type_from',
@@ -105,28 +104,28 @@ const messages = defineMessages({
   },
   field_input_values: {
     id: 'form_field_input_values',
-    defaultMessage: 'Valori possibili',
+    defaultMessage: 'Possible values',
   },
   default_subject: {
     id: 'form_default_subject',
-    defaultMessage: 'Oggetto della mail',
+    defaultMessage: 'Mail subject',
   },
   default_from: {
     id: 'form_default_from',
-    defaultMessage: 'Mittente di default',
+    defaultMessage: 'Default sender',
   },
   default_from_description: {
     id: 'form_default_from_description',
     defaultMessage:
-      'Questo indirizzo verrà utilizzato come mittente della mail con i dati del form',
+      'This address will be used as the sender of the email with the form data',
   },
   store: {
     id: 'form_save_persistent_data',
-    defaultMessage: 'Salva i dati compilati',
+    defaultMessage: 'Store compiled data',
   },
   send: {
     id: 'form_send_email',
-    defaultMessage: 'Invia email al destinatario',
+    defaultMessage: 'Send email to recipient',
   },
   exportCsv: {
     id: 'form_edit_exportCsv',
@@ -449,4 +448,4 @@ Sidebar.propTypes = {
   setSelected: PropTypes.func,
 };
 
-export default injectIntl(Sidebar);
+export default Sidebar;

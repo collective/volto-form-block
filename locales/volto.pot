@@ -1,7 +1,7 @@
 msgid ""
  msgstr ""
  "Project-Id-Version: Plone\n"
- "POT-Creation-Date: 2021-03-11T22:12:00.351Z\n"
+ "POT-Creation-Date: 2021-03-15T10:14:14.988Z\n"
  "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -19,17 +19,17 @@ msgid "Add field"
 msgstr ""
 
 #: components/FormView
-# defaultMessage: Email inviata correttamente
+# defaultMessage: Email correctly sent
 msgid "Email Success"
 msgstr ""
 
 #: components/Form
-# defaultMessage: La tua mail è stata inviata correttamente
+# defaultMessage: Your email has been sent successfully
 msgid "Email sent"
 msgstr ""
 
 #: components/FormView
-# defaultMessage: Errore
+# defaultMessage: Error
 msgid "Error"
 msgstr ""
 
@@ -39,17 +39,22 @@ msgid "Form"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Mittente di default
+# defaultMessage: Clear data
+msgid "form_clear_data"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Default sender
 msgid "form_default_from"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Questo indirizzo verrà utilizzato come mittente della mail con i dati del form
+# defaultMessage: This address will be used as the sender of the email with the form data
 msgid "form_default_from_description"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Oggetto della mail
+# defaultMessage: Mail subject
 msgid "form_default_subject"
 msgstr ""
 
@@ -59,68 +64,73 @@ msgstr ""
 msgid "form_default_submit_label"
 msgstr ""
 
+#: components/Sidebar
+# defaultMessage: Export data
+msgid "form_edit_exportCsv"
+msgstr ""
+
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
 msgstr ""
 
 #: components/Edit
-# defaultMessage: Inserire un campo di tipo "E-mail mittente". Se non è presente, oppure è presente ma non viene compilato dall'utente, l'indirizzo del mittente della mail sarà quello configurato dalla sidebar di destra.
+# defaultMessage: Enter a field of type "Sender E-mail". If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
 msgstr ""
 
 #: components/FormView
-# defaultMessage: Compila i campi richiesti
+# defaultMessage: Fill in the required fields
 msgid "form_empty_values_validation"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Descrizione
+# defaultMessage: Description
 msgid "form_field_description"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Valori possibili
+# defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Etichetta
+# defaultMessage: Label
 msgid "form_field_label"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Nome
+# defaultMessage: Name
 msgid "form_field_name"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Il nome deve contenere spazi, e può contenere solo caratteri alfanumerici oltre ai caratteri "-" e "_". Il nome coincide con il nome del parametro.
+# defaultMessage: The name must contain spaces, and can only contain alphanumeric characters in addition to the "-" and "_" characters. The name is the same as the name of the parameter.
 msgid "form_field_name_description"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Obbligatorio
+# defaultMessage: Required
 msgid "form_field_required"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Tipo di campo
+# defaultMessage: Field type
 msgid "form_field_type"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Allegato
+# defaultMessage: Attachment
 msgid "form_field_type_attachment"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Scelta multipla
+# defaultMessage: Multiple choice
 msgid "form_field_type_checkbox"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Data
+# defaultMessage: Date
 msgid "form_field_type_date"
 msgstr ""
 
@@ -130,46 +140,51 @@ msgid "form_field_type_from"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Scelta singola
+# defaultMessage: Single choice
 msgid "form_field_type_radio"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Lista
+# defaultMessage: List
 msgid "form_field_type_select"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Testo
+# defaultMessage: Text
 msgid "form_field_type_text"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Area di testo
+# defaultMessage: Textarea
 msgid "form_field_type_textarea"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Salva i dati compilati
+# defaultMessage: {formDataCount} item(s) stored
+msgid "form_formDataCount"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
 msgstr ""
 
 #: components/Field
-# defaultMessage: Select a value
+# defaultMessage: Seleziona un valore
 msgid "form_select_a_value"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Invia email al destinatario
+# defaultMessage: Send email to recipient
 msgid "form_send_email"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Testo sul bottone di invio
+# defaultMessage: Submit button label
 msgid "form_submit_label"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Destinatari
+# defaultMessage: Recipients
 msgid "form_to"
 msgstr ""

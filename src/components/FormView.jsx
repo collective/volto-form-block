@@ -15,19 +15,19 @@ import Field from 'volto-form-block/components/Field';
 const messages = defineMessages({
   default_submit_label: {
     id: 'form_default_submit_label',
-    defaultMessage: 'Invia',
+    defaultMessage: 'Submit',
   },
   error: {
     id: 'Error',
-    defaultMessage: 'Errore',
+    defaultMessage: 'Error',
   },
   success: {
     id: 'Email Success',
-    defaultMessage: 'Email inviata correttamente',
+    defaultMessage: 'Email correctly sent',
   },
   empty_values: {
     id: 'form_empty_values_validation',
-    defaultMessage: 'Compila i campi richiesti',
+    defaultMessage: 'Fill in the required fields',
   },
 });
 

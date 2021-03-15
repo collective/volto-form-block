@@ -14,7 +14,7 @@ import FileWidget from 'volto-form-block/components/Widget/FileWidget';
 const messages = defineMessages({
   select_a_value: {
     id: 'form_select_a_value',
-    defaultMessage: 'Select a value',
+    defaultMessage: 'Seleziona un valore',
   },
 });
 

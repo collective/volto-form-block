@@ -9,7 +9,7 @@ import FormView from 'volto-form-block/components/FormView';
 const messages = defineMessages({
   messageSent: {
     id: 'Email sent',
-    defaultMessage: 'La tua mail è stata inviata correttamente',
+    defaultMessage: 'Your email has been sent successfully',
   },
 });
 
