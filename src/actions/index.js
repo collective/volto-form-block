@@ -1,5 +1,5 @@
 /**
- * submitForm actions.
+ * exportCsvFormData action
  * @module actions/submitForm
  */
 
@@ -8,7 +8,7 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
 /**
  * submitForm function
  * @function submitForm
- * @param {string} pat
+ * @param {string} path
  * @param {string} block_id
  * @param {Object} data
  * @returns {Object} attachments
@@ -30,7 +30,7 @@ export function submitForm(path = '', block_id, data, attachments) {
 
 /**
  * exportCsvFormData action
- * @modulee actions/exportCsvFormData
+ * @module actions/exportCsvFormData
  */
 export const EXPORT_CSV_FORMDATA = 'EXPORT_CSV_FORMDATA';
 
@@ -46,7 +46,7 @@ export function exportCsvFormData(path = '') {
 
 /**
  * getFormData action
- * @modulee actions/getFormData
+ * @module actions/getFormData
  */
 export const GET_FORM_DATA = 'GET_FORMDATA';
 
@@ -62,7 +62,7 @@ export function getFormData(path = '') {
 
 /**
  * clearFormData action
- * @modulee actions/getFormData
+ * @module actions/getFormData
  */
 export const CLEAR_FORM_DATA = 'CLEAR_FORM_DATA';
 
