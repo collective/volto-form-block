@@ -1,7 +1,7 @@
 msgid ""
  msgstr ""
  "Project-Id-Version: Plone\n"
- "POT-Creation-Date: 2021-03-15T10:14:14.988Z\n"
+ "POT-Creation-Date: 2021-03-15T11:30:24.054Z\n"
  "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -41,6 +41,11 @@ msgstr ""
 #: components/Sidebar
 # defaultMessage: Clear data
 msgid "form_clear_data"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Are you sure you want to delete all saved items?
+msgid "form_confirmClearData"
 msgstr ""
 
 #: components/Sidebar

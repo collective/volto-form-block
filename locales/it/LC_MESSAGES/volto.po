@@ -36,6 +36,10 @@ msgid "form_clear_data"
 msgstr "Pulisci dati"
 
 #: components/Sidebar
+msgid "form_confirmClearData"
+msgstr "Confermi di voler eliminare tutti i dati salvati?"
+
+#: components/Sidebar
 msgid "form_default_from"
 msgstr "Mittente di default"
 

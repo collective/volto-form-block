@@ -36,6 +36,10 @@ msgid "form_clear_data"
 msgstr "Clear data"
 
 #: components/Sidebar
+msgid "form_confirmClearData"
+msgstr "Are you sure you want to delete all saved items?"
+
+#: components/Sidebar
 msgid "form_default_from"
 msgstr "Default sender"
 

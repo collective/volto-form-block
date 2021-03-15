@@ -139,6 +139,10 @@ const messages = defineMessages({
     id: 'form_formDataCount',
     defaultMessage: '{formDataCount} item(s) stored',
   },
+  confirmClearData: {
+    id: 'form_confirmClearData',
+    defaultMessage: 'Are you sure you want to delete all saved items?',
+  },
 });
 
 const Sidebar = ({
@@ -305,6 +309,7 @@ const Sidebar = ({
                     </Button>
                     <Confirm
                       open={confirmOpen}
+                      content={intl.formatMessage(messages.confirmClearData)}
                       onCancel={() => setConfirmOpen(false)}
                       onConfirm={() => {
                         dispatch(clearFormData(properties['@id']));
