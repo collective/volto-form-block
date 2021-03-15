@@ -37,10 +37,6 @@ const Field = ({
 }) => {
   const intl = useIntl();
 
-  const getLabel = () => {
-    return required ? label + ' *' : label;
-  };
-
   const isInvalid = () => {
     return !isOnEdit && !valid;
   };
@@ -51,7 +47,7 @@ const Field = ({
         <TextWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           required={required}
           onChange={onChange}
@@ -64,7 +60,7 @@ const Field = ({
         <TextareaWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           required={required}
           onChange={onChange}
@@ -78,7 +74,7 @@ const Field = ({
         <SelectWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           getVocabulary={() => {}}
           getVocabularyTokenTitle={() => {}}
@@ -95,7 +91,7 @@ const Field = ({
       {field_type === 'radio' && (
         <RadioWidget
           id={name}
-          title={getLabel()}
+          title={label}
           description={description}
           required={required}
           onChange={onChange}
@@ -111,7 +107,7 @@ const Field = ({
         <CheckboxWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           required={required}
           onChange={onChange}
@@ -124,7 +120,7 @@ const Field = ({
         <DatetimeWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           dateOnly={true}
           noPastDates={false}
@@ -139,7 +135,7 @@ const Field = ({
         <FileWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           type="file"
           required={required}
@@ -153,7 +149,7 @@ const Field = ({
         <EmailWidget
           id={name}
           name={name}
-          title={getLabel()}
+          title={label}
           description={description}
           required={required}
           onChange={onChange}
