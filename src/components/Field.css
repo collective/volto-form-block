@@ -1,0 +1,21 @@
+.block.form .field-file-name .ui.basic.icon.button.delete-button {
+  position: static;
+}
+
+.block.form .volto-subblocks-wrapper .single-block .dragsubblock {
+  top: calc(50% - 10px);
+  left: -10px;
+}
+
+.block.form
+  .volto-subblocks-wrapper
+  .single-block.subblock-draggable
+  .ui.basic.button.delete-button {
+  top: 1.5rem;
+  right: 25px;
+  left: auto;
+}
+
+.block.form .ui.form .field .wrapper > label {
+  margin-bottom: 0;
+}

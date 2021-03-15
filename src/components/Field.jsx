@@ -6,10 +6,12 @@ import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidge
 import SelectWidget from '@plone/volto/components/manage/Widgets/SelectWidget';
 import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
 import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
+import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
 import RadioWidget from 'volto-form-block/components/Widget/RadioWidget';
-import FileWidget from 'volto-form-block/components/Widget/FileWidget';
+
+import './Field.css';
 
 const messages = defineMessages({
   select_a_value: {
@@ -141,7 +143,6 @@ const Field = ({
           required={required}
           invalid={isInvalid().toString()}
           onChange={onChange}
-          onEdit={isOnEdit}
           value={value}
         />
       )}
