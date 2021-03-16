@@ -7,9 +7,9 @@ import { getFieldName } from 'volto-form-block/components/utils';
 import FormView from 'volto-form-block/components/FormView';
 
 const messages = defineMessages({
-  messageSent: {
-    id: 'Email sent',
-    defaultMessage: 'Your email has been sent successfully',
+  formSubmitted: {
+    id: 'formSubmitted',
+    defaultMessage: 'Form successfully submitted',
   },
 });
 
@@ -141,7 +141,7 @@ const Form = ({ data, id, path }) => {
     if (submitResults?.loaded) {
       setFormState({
         type: FORM_STATES.success,
-        result: intl.formatMessage(messages.messageSent),
+        result: intl.formatMessage(messages.formSubmitted),
       });
     } else if (submitResults?.error) {
       let errorDescription = `${submitResults.error.status} ${

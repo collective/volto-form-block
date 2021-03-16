@@ -16,20 +16,16 @@ msgid "Add field"
 msgstr "Aggiungi campo"
 
 #: components/FormView
-msgid "Email Success"
-msgstr "Email inviata correttamente"
-
-#: components/Form
-msgid "Email sent"
-msgstr "La tua mail è stata inviata correttamente"
-
-#: components/FormView
 msgid "Error"
 msgstr "Errore"
 
 #: components/Sidebar
 msgid "Form"
 msgstr "Form"
+
+#: components/Form
+msgid "formSubmitted"
+msgstr "Form invato correttamente"
 
 #: components/Sidebar
 msgid "form_clear_data"
@@ -151,6 +147,10 @@ msgstr "Invia email al destinatario"
 #: components/Sidebar
 msgid "form_submit_label"
 msgstr "Testo sul bottone di invio"
+
+#: components/FormView
+msgid "form_submit_success"
+msgstr "Inviato!"
 
 #: components/Sidebar
 msgid "form_to"

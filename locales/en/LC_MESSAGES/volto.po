@@ -16,20 +16,16 @@ msgid "Add field"
 msgstr "Add field"
 
 #: components/FormView
-msgid "Email Success"
-msgstr "Email correctly sentEmail correctly sent"
-
-#: components/Form
-msgid "Email sent"
-msgstr "Your email has been sent successfully"
-
-#: components/FormView
 msgid "Error"
 msgstr "Errore"
 
 #: components/Sidebar
 msgid "Form"
 msgstr "Form"
+
+#: components/Form
+msgid "formSubmitted"
+msgstr "Form successfully submitted"
 
 #: components/Sidebar
 msgid "form_clear_data"
@@ -151,6 +147,10 @@ msgstr "Send email to recipient"
 #: components/Sidebar
 msgid "form_submit_label"
 msgstr "Submit button label"
+
+#: components/FormView
+msgid "form_submit_success"
+msgstr "Sent!"
 
 #: components/Sidebar
 msgid "form_to"

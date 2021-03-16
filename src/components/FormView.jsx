@@ -22,8 +22,8 @@ const messages = defineMessages({
     defaultMessage: 'Error',
   },
   success: {
-    id: 'Email Success',
-    defaultMessage: 'Email correctly sent',
+    id: 'form_submit_success',
+    defaultMessage: 'Sent!',
   },
   empty_values: {
     id: 'form_empty_values_validation',
