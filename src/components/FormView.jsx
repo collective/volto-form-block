@@ -85,6 +85,7 @@ const FormView = ({
                     <Grid.Column>
                       <Field
                         {...field}
+                        field_type={field.field_type || 'text'}
                         name={field.label}
                         value={field.value}
                         onChange={() => {}}
