@@ -78,14 +78,23 @@ const FormView = ({
               <p>{formState.result}</p>
             </Message>
           ) : (
-            <Form
-              loading={formState.loading}
-              onSubmit={onSubmit}
-              noValidate
-              method="post"
-            >
+            <Form loading={formState.loading} onSubmit={onSubmit} method="post">
               <Grid columns={1} padded="vertically">
-                {data.subblocks.map((subblock, index) => {
+                {data.static_fields?.map((field) => (
+                  <Grid.Row key={field.field_id}>
+                    <Grid.Column>
+                      <Field
+                        {...field}
+                        name={field.label}
+                        value={field.value}
+                        onChange={() => {}}
+                        disabled
+                        valid
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                ))}
+                {data.subblocks?.map((subblock, index) => {
                   let name = getFieldName(subblock.label);
                   return (
                     <Grid.Row key={'row' + index}>

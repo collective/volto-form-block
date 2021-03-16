@@ -36,6 +36,7 @@ const Field = ({
   onChange,
   isOnEdit,
   valid,
+  disabled = false,
 }) => {
   const intl = useIntl();
 
@@ -54,6 +55,7 @@ const Field = ({
           required={required}
           onChange={onChange}
           value={value}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -68,6 +70,7 @@ const Field = ({
           onChange={onChange}
           value={value}
           rows={10}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -86,6 +89,7 @@ const Field = ({
           placeholder={intl.formatMessage(messages.select_a_value)}
           aria-label={intl.formatMessage(messages.select_a_value)}
           classNamePrefix="react-select"
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -101,6 +105,7 @@ const Field = ({
             ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
           ]}
           value={value}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -113,6 +118,7 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           value={value}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -129,6 +135,7 @@ const Field = ({
           resettable={false}
           onChange={onChange}
           value={value}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
@@ -142,6 +149,7 @@ const Field = ({
           type="file"
           required={required}
           invalid={isInvalid().toString()}
+          isDisabled={disabled}
           onChange={onChange}
           value={value}
         />
@@ -155,6 +163,7 @@ const Field = ({
           required={required}
           onChange={onChange}
           value={value}
+          isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
