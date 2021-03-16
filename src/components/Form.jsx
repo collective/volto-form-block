@@ -53,10 +53,22 @@ const formStateReducer = (state, action) => {
 const Form = ({ data, id, path }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
+  const { static_fields = [] } = data;
 
-  const [formData, setFormData] = useReducer((state, action) => {
-    return { ...state, [action.field]: action.value };
-  }, {});
+  const [formData, setFormData] = useReducer(
+    (state, action) => {
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    },
+    {
+      ...static_fields.reduce(
+        (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
+        {},
+      ),
+    },
+  );
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);

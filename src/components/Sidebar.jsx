@@ -11,11 +11,7 @@ import {
   Dimmer,
   Loader,
 } from 'semantic-ui-react';
-import {
-  defineMessages,
-  useIntl,
-  FormattedMessage,
-} from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import {
   Icon,
