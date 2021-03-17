@@ -9,7 +9,7 @@ import {
   Progress,
   Button,
 } from 'semantic-ui-react';
-import { getFieldName } from 'volto-form-block/components/utils';
+import { getFieldName } from './utils';
 import Field from 'volto-form-block/components/Field';
 
 const messages = defineMessages({

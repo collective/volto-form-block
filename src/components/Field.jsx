@@ -9,7 +9,7 @@ import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidge
 import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
-import RadioWidget from 'volto-form-block/components/Widget/RadioWidget';
+import RadioWidget from './Widget/RadioWidget';
 
 import './Field.css';
 

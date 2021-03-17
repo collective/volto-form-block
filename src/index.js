@@ -1,12 +1,18 @@
 import formSVG from '@plone/volto/icons/form.svg';
-import FormView from './components/View';
-import FormEdit from './components/Edit';
+import View from './components/View';
+import Edit from './components/Edit';
+import FormView from './components/FormView';
+import Sidebar from './components/Sidebar';
+import EditBlock from './components/EditBlock';
+import Field from './components/Field';
+import { downloadFile, getFieldName } from './components/utils';
 import {
   submitForm,
   getFormData,
   exportCsvFormData,
   clearFormData,
 } from './reducers';
+export { submitForm, getFormData, exportCsvFormData } from './actions';
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
@@ -16,8 +22,8 @@ const applyConfig = (config) => {
       title: 'Form',
       icon: formSVG,
       group: 'text',
-      view: FormView,
-      edit: FormEdit,
+      view: View,
+      edit: Edit,
       restricted: false,
       mostUsed: true,
       security: {
@@ -40,3 +46,13 @@ const applyConfig = (config) => {
 };
 
 export default applyConfig;
+export {
+  View,
+  Edit,
+  Sidebar,
+  FormView,
+  EditBlock,
+  Field,
+  downloadFile,
+  getFieldName,
+};

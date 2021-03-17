@@ -2,8 +2,8 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from 'volto-form-block/actions';
-import { getFieldName } from 'volto-form-block/components/utils';
+import { submitForm } from '../actions';
+import { getFieldName } from './utils';
 import FormView from 'volto-form-block/components/FormView';
 
 const messages = defineMessages({
