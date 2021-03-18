@@ -89,7 +89,12 @@ const FormView = ({
               </Button>
             </Message>
           ) : (
-            <Form loading={formState.loading} onSubmit={onSubmit} method="post">
+            <Form
+              loading={formState.loading}
+              onSubmit={onSubmit}
+              autoComplete="off"
+              method="post"
+            >
               <Grid columns={1} padded="vertically">
                 {data.static_fields?.map((field) => (
                   <Grid.Row key={field.field_id}>
