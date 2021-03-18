@@ -115,6 +115,7 @@ const Form = ({ data, id, path }) => {
 
           if (isAttachment) {
             attachments[name] = formData[name].value;
+            delete formData[name];
           }
         }
       });
@@ -135,6 +136,17 @@ const Form = ({ data, id, path }) => {
     } else {
       setFormState({ type: FORM_STATES.error });
     }
+  };
+
+  const resetFormState = () => {
+    setFormData({
+      ...static_fields.reduce(
+        (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
+        {},
+      ),
+    });
+    console.log('reset state');
+    setFormState({ type: FORM_STATES.normal });
   };
 
   useEffect(() => {
@@ -161,6 +173,7 @@ const Form = ({ data, id, path }) => {
       onChangeFormData={onChangeFormData}
       data={data}
       onSubmit={submit}
+      resetFormState={resetFormState}
     />
   );
 };

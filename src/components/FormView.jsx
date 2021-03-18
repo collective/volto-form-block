@@ -29,6 +29,10 @@ const messages = defineMessages({
     id: 'form_empty_values_validation',
     defaultMessage: 'Fill in the required fields',
   },
+  reset: {
+    id: 'form_reset',
+    defaultMessage: 'Clear',
+  },
 });
 
 const FormView = ({
@@ -38,6 +42,7 @@ const FormView = ({
   onChangeFormData,
   data,
   onSubmit,
+  resetFormState,
 }) => {
   const intl = useIntl();
 
@@ -69,6 +74,9 @@ const FormView = ({
                 {intl.formatMessage(messages.error)}
               </Message.Header>
               <p>{formState.error}</p>
+              <Button secondary type="clear" onClick={resetFormState}>
+                {intl.formatMessage(messages.reset)}
+              </Button>
             </Message>
           ) : formState.result ? (
             <Message positive role="alert">
@@ -76,6 +84,9 @@ const FormView = ({
                 {intl.formatMessage(messages.success)}
               </Message.Header>
               <p>{formState.result}</p>
+              <Button secondary type="clear" onClick={resetFormState}>
+                {intl.formatMessage(messages.reset)}
+              </Button>
             </Message>
           ) : (
             <Form loading={formState.loading} onSubmit={onSubmit} method="post">
