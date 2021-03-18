@@ -5,10 +5,10 @@ import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidget';
 import SelectWidget from '@plone/volto/components/manage/Widgets/SelectWidget';
 import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
-import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
 import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
+import CheckboxWidget from './Widget/CheckboxWidget';
 import RadioWidget from './Widget/RadioWidget';
 
 import './Field.css';
@@ -118,9 +118,12 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
+          valueList={[
+            ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
+          ]}
+          value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          value={value}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
@@ -152,6 +155,7 @@ const Field = ({
           isDisabled={disabled}
           onChange={onChange}
           value={value}
+          multiple={false}
         />
       )}
       {(field_type === 'from' || field_type === 'email') && (
