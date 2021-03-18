@@ -45,6 +45,13 @@ const formStateReducer = (state, action) => {
   }
 };
 
+const getInitialData = (data) => ({
+  ...data.reduce(
+    (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
+    {},
+  ),
+});
+
 /**
  * Form
  * @class Form
@@ -55,20 +62,16 @@ const Form = ({ data, id, path }) => {
   const dispatch = useDispatch();
   const { static_fields = [] } = data;
 
-  const [formData, setFormData] = useReducer(
-    (state, action) => {
-      return {
-        ...state,
-        [action.field]: action.value,
-      };
-    },
-    {
-      ...static_fields.reduce(
-        (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
-        {},
-      ),
-    },
-  );
+  const [formData, setFormData] = useReducer((state, action) => {
+    if (action.reset) {
+      return getInitialData(static_fields);
+    }
+
+    return {
+      ...state,
+      [action.field]: action.value,
+    };
+  }, getInitialData(static_fields));
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
@@ -139,13 +142,7 @@ const Form = ({ data, id, path }) => {
   };
 
   const resetFormState = () => {
-    setFormData({
-      ...static_fields.reduce(
-        (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
-        {},
-      ),
-    });
-    console.log('reset state');
+    setFormData({ reset: true });
     setFormState({ type: FORM_STATES.normal });
   };
 
