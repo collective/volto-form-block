@@ -28,7 +28,7 @@ const messages = defineMessages({
   warning_from: {
     id: 'form_edit_warning_from',
     defaultMessage:
-      'Enter a field of type "Sender E-mail". If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.',
+      "Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.",
   },
 });
 

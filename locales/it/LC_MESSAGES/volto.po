@@ -132,6 +132,10 @@ msgstr "Area di testo"
 msgid "form_formDataCount"
 msgstr "{formDataCount} elementi salvati"
 
+#: components/FormView
+msgid "form_reset"
+msgstr "Ricomincia"
+
 #: components/Sidebar
 msgid "form_save_persistent_data"
 msgstr "Salva i dati compilati"
