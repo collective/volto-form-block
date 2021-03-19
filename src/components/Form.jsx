@@ -155,7 +155,7 @@ const Form = ({ data, id, path }) => {
     } else if (submitResults?.error) {
       let errorDescription = `${submitResults.error.status} ${
         submitResults.error.message
-      }- ${JSON.parse(submitResults.error.response?.text ?? {})?.message}`;
+      } - ${JSON.parse(submitResults.error.response?.text ?? '{}')?.message}`;
 
       setFormState({ type: FORM_STATES.error, error: errorDescription });
     }
