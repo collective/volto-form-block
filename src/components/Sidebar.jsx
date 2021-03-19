@@ -19,6 +19,7 @@ import {
   CheckboxWidget,
   SelectWidget,
   ArrayWidget,
+  FormFieldWrapper,
 } from '@plone/volto/components';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
@@ -138,6 +139,10 @@ const messages = defineMessages({
   cancel: {
     id: 'Cancel',
     defaultMessage: 'Cancel',
+  },
+  attachmentInfoText: {
+    id: 'form_attachment_info_text',
+    defaultMessage: 'Attached file will be sent via email, but not stored',
   },
 });
 
@@ -406,6 +411,16 @@ const Sidebar = ({
                         ['from', intl.formatMessage(messages.field_type_from)],
                       ]}
                     />
+
+                    {subblock.field_type === 'attachment' && (
+                      <FormFieldWrapper id="attachment-info" columns={1}>
+                        <div className="wrapper">
+                          <p>
+                            {intl.formatMessage(messages.attachmentInfoText)}
+                          </p>
+                        </div>
+                      </FormFieldWrapper>
+                    )}
 
                     {['select', 'radio', 'checkbox'].indexOf(
                       subblock.field_type,
