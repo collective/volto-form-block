@@ -162,6 +162,11 @@ const Form = ({ data, id, path }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitResults]);
 
+  useEffect(() => {
+    console.log('reset');
+    resetFormState();
+  }, []);
+
   return (
     <FormView
       formState={formState}
