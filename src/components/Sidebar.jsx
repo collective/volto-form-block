@@ -247,6 +247,18 @@ const Sidebar = ({
               });
             }}
           />
+          <Form.Field inline className="help">
+            <Grid>
+              <Grid.Row stretched>
+                <Grid.Column stretched width="12">
+                  <p className="help">
+                    {intl.formatMessage(messages.attachmentInfoText)}
+                  </p>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Form.Field>
+
           <CheckboxWidget
             id="send"
             title={intl.formatMessage(messages.send)}
