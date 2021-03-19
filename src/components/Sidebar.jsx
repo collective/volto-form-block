@@ -415,9 +415,9 @@ const Sidebar = ({
                     {subblock.field_type === 'attachment' && (
                       <FormFieldWrapper id="attachment-info" columns={1}>
                         <div className="wrapper">
-                          <p>
+                          <small>
                             {intl.formatMessage(messages.attachmentInfoText)}
-                          </p>
+                          </small>
                         </div>
                       </FormFieldWrapper>
                     )}
