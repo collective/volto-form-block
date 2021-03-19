@@ -78,7 +78,7 @@ msgstr "Descrizione"
 
 #: components/Sidebar
 msgid "form_field_input_values"
-msgstr "Valori posspossible valuesibili"
+msgstr "Valori possibili"
 
 #: components/Sidebar
 msgid "form_field_label"
