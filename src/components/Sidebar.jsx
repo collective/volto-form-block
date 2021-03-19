@@ -251,7 +251,10 @@ const Sidebar = ({
             <Grid>
               <Grid.Row stretched>
                 <Grid.Column stretched width="12">
-                  <p className="help">
+                  <p
+                    className="help"
+                    style={{ marginTop: '-1rem', background: '#fff' }}
+                  >
                     {intl.formatMessage(messages.attachmentInfoText)}
                   </p>
                 </Grid.Column>

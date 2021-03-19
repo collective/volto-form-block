@@ -33,7 +33,7 @@ msgstr "Form invato correttamente"
 
 #: components/Sidebar
 msgid "form_attachment_info_text"
-msgstr "Il file allegato sarà inviato per email, ma non salvato."
+msgstr "I file allegati saranno inviati per email, ma non verranno salvati."
 
 #: components/Sidebar
 msgid "form_clear_data"
