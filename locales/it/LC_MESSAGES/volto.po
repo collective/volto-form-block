@@ -17,7 +17,7 @@ msgstr "Aggiungi campo"
 
 #: components/Sidebar
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: components/FormView
 msgid "Error"
