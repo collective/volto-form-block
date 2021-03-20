@@ -40,11 +40,11 @@ In Edit, you can export and clear stored data from the sidebar.
 
 In backend integration, you can add in block data an object called `static_fields` and the form block will show those in form view as readonly and will aggregate those with user compiled data.
 
-I.e.: aggregated data from user federated authentication:
+i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
 
-### YouTube demos
+### Video demos
 
 - [Form usage](https://youtu.be/v5KtjEACRmI)
 - [Form editing](https://youtu.be/wmTpzYBtNCQ)
