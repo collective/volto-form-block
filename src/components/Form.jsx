@@ -163,7 +163,6 @@ const Form = ({ data, id, path }) => {
   }, [submitResults]);
 
   useEffect(() => {
-    console.log('reset');
     resetFormState();
   }, []);
 
