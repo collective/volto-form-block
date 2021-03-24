@@ -110,7 +110,7 @@ function potHeader() {
  "Preferred-Encodings: utf-8\\n"
  "Domain: volto\\n"
 
- `;
+`;
 }
 
 /**

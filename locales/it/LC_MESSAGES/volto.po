@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
- #: components/Edit
+#: components/Edit
 msgid "Add field"
 msgstr "Aggiungi campo"
 
