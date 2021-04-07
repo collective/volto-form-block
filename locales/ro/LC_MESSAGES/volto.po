@@ -167,3 +167,11 @@ msgstr ""
 #: components/Sidebar
 msgid "form_to"
 msgstr ""
+
+#: components/Sidebar
+msgid "form_useAsReplyTo"
+msgstr ""
+
+#: components/Sidebar
+msgid "form_useAsReplyTo_description"
+msgstr ""

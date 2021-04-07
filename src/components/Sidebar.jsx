@@ -144,6 +144,15 @@ const messages = defineMessages({
     id: 'form_attachment_info_text',
     defaultMessage: 'Attached file will be sent via email, but not stored',
   },
+  useAsReplyTo: {
+    id: 'form_useAsReplyTo',
+    defineMessages: "Use as 'reply to'",
+  },
+  useAsReplyTo_description: {
+    id: 'form_useAsReplyTo_description',
+    defineMessages:
+      'If selected, this will be the address the receiver can use to reply.',
+  },
 });
 
 const Sidebar = ({
@@ -451,6 +460,25 @@ const Sidebar = ({
                         }}
                         required={true}
                         value={subblock.input_values}
+                      />
+                    )}
+
+                    {subblock.field_type === 'from' && (
+                      <CheckboxWidget
+                        id="useAsReplyTo"
+                        title={intl.formatMessage(messages.useAsReplyTo)}
+                        description={intl.formatMessage(
+                          messages.useAsReplyTo_description,
+                        )}
+                        value={
+                          subblock.useAsReplyTo ? subblock.useAsReplyTo : false
+                        }
+                        onChange={(name, value) => {
+                          onChangeSubBlock(index, {
+                            ...subblock,
+                            [name]: value,
+                          });
+                        }}
                       />
                     )}
 
