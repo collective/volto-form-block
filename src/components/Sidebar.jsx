@@ -465,13 +465,15 @@ const Sidebar = ({
 
                     {subblock.field_type === 'from' && (
                       <CheckboxWidget
-                        id="useAsReplyTo"
+                        id="use_as_reply_to"
                         title={intl.formatMessage(messages.useAsReplyTo)}
                         description={intl.formatMessage(
                           messages.useAsReplyTo_description,
                         )}
                         value={
-                          subblock.useAsReplyTo ? subblock.useAsReplyTo : false
+                          subblock.use_as_reply_to
+                            ? subblock.use_as_reply_to
+                            : false
                         }
                         onChange={(name, value) => {
                           onChangeSubBlock(index, {
