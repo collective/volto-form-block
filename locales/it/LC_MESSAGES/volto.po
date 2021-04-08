@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: components/Edit
+ #: components/Edit
 msgid "Add field"
 msgstr "Aggiungi campo"
 
@@ -167,3 +167,11 @@ msgstr "Inviato!"
 #: components/Sidebar
 msgid "form_to"
 msgstr "Destinatari"
+
+#: components/Sidebar
+msgid "form_useAsReplyTo"
+msgstr "Usa come 'reply to'"
+
+#: components/Sidebar
+msgid "form_useAsReplyTo_description"
+msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà rispondere."

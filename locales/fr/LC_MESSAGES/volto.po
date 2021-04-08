@@ -167,3 +167,11 @@ msgstr "Expédié!"
 #: components/Sidebar
 msgid "form_to"
 msgstr "Bénéficiaires"
+
+#: components/Sidebar
+msgid "form_useAsReplyTo"
+msgstr ""
+
+#: components/Sidebar
+msgid "form_useAsReplyTo_description"
+msgstr ""
