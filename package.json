@@ -20,9 +20,21 @@
   "addons": [
     "volto-subblocks"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
     "volto-subblocks": "collective/volto-subblocks#v1.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@release-it/conventional-changelog": "^2.0.1",
+    "husky": "^6.0.0"
   }
 }
