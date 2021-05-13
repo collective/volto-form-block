@@ -1,3 +1,10 @@
+### [1.5.2](https://github.com/collective/volto-form-block/compare/v1.5.1...v1.5.2) (2021-05-13)
+
+
+### Maintenance
+
+* add release-it config, commitlint ([52deb93](https://github.com/collective/volto-form-block/commit/52deb939721b83b5369738e143757bf0c7ea0cb3))
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
