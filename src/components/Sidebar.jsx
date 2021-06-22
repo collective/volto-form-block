@@ -20,6 +20,7 @@ import {
   SelectWidget,
   ArrayWidget,
   FormFieldWrapper,
+  TextareaWidget,
 } from '@plone/volto/components';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
@@ -30,6 +31,14 @@ import deleteSVG from '@plone/volto/icons/delete.svg';
 import { getFormData, exportCsvFormData, clearFormData } from '../actions';
 
 const messages = defineMessages({
+  title: {
+    id: 'title',
+    defaultMessage: 'Title',
+  },
+  description: {
+    id: 'description',
+    defaultMessage: 'Description',
+  },
   default_to: {
     id: 'form_to',
     defaultMessage: 'Recipients',
@@ -193,6 +202,30 @@ const Sidebar = ({
           </h2>
         </header>
         <Segment>
+          <TextWidget
+            id="title"
+            title={intl.formatMessage(messages.title)}
+            required={false}
+            value={data.title}
+            onChange={(name, value) => {
+              onChangeBlock(block, {
+                ...data,
+                [name]: value,
+              });
+            }}
+          />
+          <TextareaWidget
+            id="description"
+            title={intl.formatMessage(messages.description)}
+            required={false}
+            value={data.description}
+            onChange={(name, value) => {
+              onChangeBlock(block, {
+                ...data,
+                [name]: value,
+              });
+            }}
+          />
           <TextWidget
             id="default_to"
             title={intl.formatMessage(messages.default_to)}

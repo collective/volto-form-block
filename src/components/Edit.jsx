@@ -64,6 +64,11 @@ class Edit extends SubblocksEdit {
     return (
       <div className="public-ui">
         <Segment>
+          {this.props.data.title && <h2>{this.props.data.title}</h2>}
+          {this.props.data.description && (
+            <p className="description">{this.props.data.description}</p>
+          )}
+
           <SubblocksWrapper node={this.node}>
             {this.state.subblocks.map((subblock, subindex) => (
               <Form.Field key={subindex}>

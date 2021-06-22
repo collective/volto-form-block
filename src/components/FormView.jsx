@@ -68,6 +68,10 @@ const FormView = ({
     <div className="block form">
       <div className="public-ui">
         <Segment style={{ margin: '2rem 0' }} padded>
+          {data.title && <h2>{data.title}</h2>}
+          {data.description && (
+            <p className="description">{data.description}</p>
+          )}
           {formState.error ? (
             <Message error role="alert">
               <Message.Header as="h4">
