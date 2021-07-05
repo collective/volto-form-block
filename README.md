@@ -3,7 +3,7 @@
 Volto addon which adds a customizable form using a block.  
 Intended to be used with [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport).
 
-Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizing/add-ons/) or with:
+Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizing/add-ons/)) or with:
 
 ```bash
 yarn add volto-form-block
