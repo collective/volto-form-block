@@ -1,3 +1,15 @@
+## [1.6.0](https://github.com/collective/volto-form-block/compare/v1.5.2...v1.6.0) (2021-07-05)
+
+
+### Features
+
+* add title and description ([0b7be9f](https://github.com/collective/volto-form-block/commit/0b7be9f4372c617dbcc0bcf38e8233c0662d7526))
+
+
+### Bug Fixes
+
+* typo in readme ([29119b4](https://github.com/collective/volto-form-block/commit/29119b4db4cd4109fc728c8e548a5d85800f187c))
+
 ### [1.5.2](https://github.com/collective/volto-form-block/compare/v1.5.1...v1.5.2) (2021-05-13)
 
 
