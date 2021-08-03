@@ -1,6 +1,6 @@
 # volto-block-form
 
-Volto addon which adds a customizable form using a block.  
+Volto addon which adds a customizable form using a block.
 Intended to be used with [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport).
 
 Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizing/add-ons/)) or with:
@@ -52,13 +52,24 @@ config.blocks.blocksConfig.form.additionalFields.push({
     intl.formatMessage(messages.customFieldLabel) ||
     'Label for field type select, translation obj or string',
   component: MyCustomWidget,
+  isValid: (formData) => true,
 });
 ```
 
-The widget should have the following firm:
+The widget component should have the following firm:
 
 ```js
-({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
+({
+  id,
+  name,
+  title,
+  description,
+  required,
+  onChange,
+  value,
+  isDisabled,
+  invalid,
+}) => ReactElement;
 ```
 
 ## Static fields

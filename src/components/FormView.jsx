@@ -111,6 +111,7 @@ const FormView = ({
                         onChange={() => {}}
                         disabled
                         valid
+                        formHasErrors={formErrors.length > 0}
                       />
                     </Grid.Column>
                   </Grid.Row>
