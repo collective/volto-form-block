@@ -55,6 +55,12 @@ config.blocks.blocksConfig.form.additionalFields.push({
 });
 ```
 
+The widget should have the following firm:
+
+```js
+({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
+```
+
 ## Static fields
 
 In backend integration, you can add in block data an object called `static_fields` and the form block will show those in form view as readonly and will aggregate those with user compiled data.

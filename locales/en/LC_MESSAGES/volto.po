@@ -29,7 +29,7 @@ msgstr "Form"
 
 #: components/Sidebar
 msgid "description"
-msgstr ""
+msgstr "Description"
 
 #: components/Form
 msgid "formSubmitted"
@@ -182,4 +182,4 @@ msgstr "If selected, this will be the address the receiver can use to reply."
 
 #: components/Sidebar
 msgid "title"
-msgstr ""
+msgstr "Title"

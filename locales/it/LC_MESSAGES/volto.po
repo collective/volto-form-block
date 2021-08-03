@@ -29,7 +29,7 @@ msgstr "Form"
 
 #: components/Sidebar
 msgid "description"
-msgstr ""
+msgstr "Descrizione"
 
 #: components/Form
 msgid "formSubmitted"
@@ -182,4 +182,4 @@ msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà ri
 
 #: components/Sidebar
 msgid "title"
-msgstr ""
+msgstr "Titolo"
