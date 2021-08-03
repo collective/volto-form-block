@@ -27,6 +27,10 @@ msgstr ""
 msgid "Form"
 msgstr ""
 
+#: components/Sidebar
+msgid "description"
+msgstr ""
+
 #: components/Form
 msgid "formSubmitted"
 msgstr ""
@@ -174,4 +178,8 @@ msgstr ""
 
 #: components/Sidebar
 msgid "form_useAsReplyTo_description"
+msgstr ""
+
+#: components/Sidebar
+msgid "title"
 msgstr ""

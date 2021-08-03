@@ -40,6 +40,21 @@ In Edit, you can export and clear stored data from the sidebar.
 
 <img alt="Form export" src="./docs/store-export-data.png" width="400" />
 
+## Additional fields
+
+In addition to the fields described above, you can add any field you want.
+If you need a field that is not supported, PRs are always welcome, but if you have to use a custom field tailored on your project needs, then you can add additional custom fields.
+
+```jsx
+config.blocks.blocksConfig.form.additionalFields.push({
+  id: 'field type id',
+  label:
+    intl.formatMessage(messages.customFieldLabel) ||
+    'Label for field type select, translation obj or string',
+  component: MyCustomWidget,
+});
+```
+
 ## Static fields
 
 In backend integration, you can add in block data an object called `static_fields` and the form block will show those in form view as readonly and will aggregate those with user compiled data.
