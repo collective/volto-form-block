@@ -6,6 +6,8 @@ import { submitForm } from '../actions';
 import { getFieldName } from './utils';
 import FormView from 'volto-form-block/components/FormView';
 
+import config from '@plone/volto/registry';
+
 const messages = defineMessages({
   formSubmitted: {
     id: 'formSubmitted',
@@ -92,9 +94,22 @@ const Form = ({ data, id, path }) => {
     let v = [];
     data.subblocks.forEach((subblock, index) => {
       let name = getFieldName(subblock.label);
+      let fieldType = subblock.field_type;
+      let additionalField =
+        config.blocks.blocksConfig.form.additionalFields?.filter(
+          (f) => f.id === fieldType && f.isValid !== undefined,
+        )?.[0] ?? null;
       if (
         subblock.required &&
-        (!formData[name] || formData[name]?.length === 0)
+        additionalField &&
+        !additionalField?.isValid(formData, name)
+      )
+        v.push(name);
+      else if (
+        subblock.required &&
+        (!formData[name] ||
+          formData[name]?.value?.length === 0 ||
+          JSON.stringify(formData[name]?.value ?? {}) === '{}')
       ) {
         v.push(name);
       }

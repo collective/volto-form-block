@@ -24,6 +24,7 @@ const applyConfig = (config) => {
       group: 'text',
       view: View,
       edit: Edit,
+      additionalFields: [],
       restricted: false,
       mostUsed: true,
       security: {

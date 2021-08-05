@@ -30,6 +30,8 @@ import deleteSVG from '@plone/volto/icons/delete.svg';
 
 import { getFormData, exportCsvFormData, clearFormData } from '../actions';
 
+import config from '@plone/volto/registry';
+
 const messages = defineMessages({
   title: {
     id: 'title',
@@ -466,6 +468,9 @@ const Sidebar = ({
                           intl.formatMessage(messages.field_type_attachment),
                         ],
                         ['from', intl.formatMessage(messages.field_type_from)],
+                        ...(config.blocks.blocksConfig.form.additionalFields?.map(
+                          (fieldType) => [fieldType.id, fieldType.label],
+                        ) ?? []),
                       ]}
                     />
 

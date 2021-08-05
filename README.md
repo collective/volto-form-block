@@ -1,6 +1,6 @@
 # volto-block-form
 
-Volto addon which adds a customizable form using a block.  
+Volto addon which adds a customizable form using a block.
 Intended to be used with [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport).
 
 Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizing/add-ons/)) or with:
@@ -39,6 +39,37 @@ With backend support, you can store data submitted from the form.
 In Edit, you can export and clear stored data from the sidebar.
 
 <img alt="Form export" src="./docs/store-export-data.png" width="400" />
+
+## Additional fields
+
+In addition to the fields described above, you can add any field you want.
+If you need a field that is not supported, PRs are always welcome, but if you have to use a custom field tailored on your project needs, then you can add additional custom fields.
+
+```jsx
+config.blocks.blocksConfig.form.additionalFields.push({
+  id: 'field type id',
+  label:
+    intl.formatMessage(messages.customFieldLabel) ||
+    'Label for field type select, translation obj or string',
+  component: MyCustomWidget,
+  isValid: (formData, name) => true,
+});
+```
+
+The widget component should have the following firm:
+
+```js
+({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
+```
+
+You should also pass a function to validate your field's data.
+The `isValid` function accepts `formData` (the whole form data) and the name of the field, thus you can access to your fields' data as `formData[name]` but you also have access to other fields.
+
+`isValid` has the firm:
+
+```js
+(formData, name) => boolean;
+```
 
 ## Static fields
 

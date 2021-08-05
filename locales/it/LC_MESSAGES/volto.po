@@ -27,6 +27,10 @@ msgstr "Errore"
 msgid "Form"
 msgstr "Form"
 
+#: components/Sidebar
+msgid "description"
+msgstr "Descrizione"
+
 #: components/Form
 msgid "formSubmitted"
 msgstr "Form invato correttamente"
@@ -175,3 +179,7 @@ msgstr "Usa come 'reply to'"
 #: components/Sidebar
 msgid "form_useAsReplyTo_description"
 msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà rispondere."
+
+#: components/Sidebar
+msgid "title"
+msgstr "Titolo"

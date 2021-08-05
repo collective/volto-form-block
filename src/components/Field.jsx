@@ -13,6 +13,8 @@ import RadioWidget from './Widget/RadioWidget';
 
 import './Field.css';
 
+import config from '@plone/volto/registry';
+
 const messages = defineMessages({
   select_a_value: {
     id: 'form_select_a_value',
@@ -37,6 +39,7 @@ const Field = ({
   isOnEdit,
   valid,
   disabled = false,
+  formHasErrors = false,
 }) => {
   const intl = useIntl();
 
@@ -172,6 +175,27 @@ const Field = ({
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
+      {config.blocks.blocksConfig.form.additionalFields?.reduce((acc, val) => {
+        if (val.id === field_type)
+          return [
+            ...acc,
+            <val.component
+              id={name}
+              name={name}
+              title={label}
+              description={description}
+              required={required}
+              onChange={onChange}
+              value={value}
+              isDisabled={disabled}
+              formHasErrors={formHasErrors}
+              invalid={isInvalid().toString()}
+              {...(isInvalid() ? { className: 'is-invalid' } : {})}
+            />,
+          ];
+
+        return acc;
+      }, []) ?? []}
     </div>
   );
 };
@@ -189,6 +213,7 @@ Field.propTypes = {
   field_type: PropTypes.string,
   input_values: PropTypes.any,
   value: PropTypes.any,
+  formHasErrors: PropTypes.bool,
   onChange: PropTypes.func,
 };
 

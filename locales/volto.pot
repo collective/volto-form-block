@@ -1,7 +1,7 @@
 msgid ""
  msgstr ""
  "Project-Id-Version: Plone\n"
- "POT-Creation-Date: 2021-04-07T13:07:21.178Z\n"
+ "POT-Creation-Date: 2021-08-03T07:34:46.833Z\n"
  "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgstr ""
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Description
+msgid "description"
 msgstr ""
 
 #: components/Form
@@ -217,4 +222,9 @@ msgstr ""
 #: components/Sidebar
 # defaultMessage: undefined
 msgid "form_useAsReplyTo_description"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Title
+msgid "title"
 msgstr ""
