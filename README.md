@@ -52,7 +52,7 @@ config.blocks.blocksConfig.form.additionalFields.push({
     intl.formatMessage(messages.customFieldLabel) ||
     'Label for field type select, translation obj or string',
   component: MyCustomWidget,
-  isValid: (formData) => true,
+  isValid: (formData, name) => true,
 });
 ```
 
@@ -60,6 +60,15 @@ The widget component should have the following firm:
 
 ```js
 ({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
+```
+
+You should also pass a function to validate your field's data.
+The `isValid` function accepts `formData` (the whole form data) and the name of the field, thus you can access to your fields' data as `formData[name]` but you also have access to other fields.
+
+`isValid` has the firm:
+
+```js
+(formData, name) => boolean;
 ```
 
 ## Static fields
