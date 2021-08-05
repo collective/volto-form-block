@@ -1,3 +1,21 @@
+## [1.7.0](https://github.com/collective/volto-form-block/compare/v1.6.0...v1.7.0) (2021-08-05)
+
+
+### Features
+
+* add validation fn for additionalFields ([61409f0](https://github.com/collective/volto-form-block/commit/61409f0b72c77dd7f93fd5a71c5d8ed1633f8bda))
+* additionalFields from config ([29cacb1](https://github.com/collective/volto-form-block/commit/29cacb115c499654a7e79343a971ccd4fc5a0e48))
+
+
+### Bug Fixes
+
+* additionalFields validation + static field className ([0d3e2b8](https://github.com/collective/volto-form-block/commit/0d3e2b81dfdbe48d06cc3e21504cfbe71c760c05))
+
+
+### Changes
+
+* update readme + translations ([62b25c2](https://github.com/collective/volto-form-block/commit/62b25c21c0705b17ae000ce2ea5364a186d89d9c))
+
 ## [1.6.0](https://github.com/collective/volto-form-block/compare/v1.5.2...v1.6.0) (2021-07-05)
 
 
