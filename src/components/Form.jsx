@@ -94,14 +94,15 @@ const Form = ({ data, id, path }) => {
     let v = [];
     data.subblocks.forEach((subblock, index) => {
       let name = getFieldName(subblock.label);
+      let fieldType = subblock.field_type;
       let additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
-          (f) => f.id === name && f.isValid !== undefined,
+          (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
       if (
         subblock.required &&
         additionalField &&
-        !additionalField.isValid(formData, name)
+        !additionalField?.isValid(formData, name)
       )
         v.push(name);
       else if (

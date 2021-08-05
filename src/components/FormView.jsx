@@ -101,7 +101,7 @@ const FormView = ({
             >
               <Grid columns={1} padded="vertically">
                 {data.static_fields?.map((field) => (
-                  <Grid.Row key={field.field_id}>
+                  <Grid.Row key={field.field_id} className="static-field">
                     <Grid.Column>
                       <Field
                         {...field}
