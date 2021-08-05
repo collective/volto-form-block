@@ -59,17 +59,7 @@ config.blocks.blocksConfig.form.additionalFields.push({
 The widget component should have the following firm:
 
 ```js
-({
-  id,
-  name,
-  title,
-  description,
-  required,
-  onChange,
-  value,
-  isDisabled,
-  invalid,
-}) => ReactElement;
+({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
 ```
 
 ## Static fields
