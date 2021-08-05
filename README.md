@@ -71,6 +71,8 @@ The `isValid` function accepts `formData` (the whole form data) and the name of 
 (formData, name) => boolean;
 ```
 
+Example custom field [here](https://gist.github.com/nzambello/30949078616328e6ee0293e5b302bb40).
+
 ## Static fields
 
 In backend integration, you can add in block data an object called `static_fields` and the form block will show those in form view as readonly and will aggregate those with user compiled data.
