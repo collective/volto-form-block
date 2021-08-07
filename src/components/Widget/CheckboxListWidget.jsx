@@ -8,14 +8,14 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'semantic-ui-react';
 import { FormFieldWrapper } from '@plone/volto/components';
 
-import './CheckboxWidget.css';
+import './CheckboxListWidget.css';
 
 /**
- * CheckboxWidget component class.
+ * CheckboxListWidget component class.
  * @function CheckboxWidget
  * @returns {string} Markup of the component.
  */
-const CheckboxWidget = ({
+const CheckboxListWidget = ({
   id,
   title,
   required,
@@ -46,7 +46,7 @@ const CheckboxWidget = ({
       fieldSet={fieldSet}
       wrapped={wrapped}
     >
-      <div className="checkbox-widget">
+      <div className="checkbox-list-widget">
         {valueList?.map((opt) => (
           <div className="checkbox-item" key={opt.value}>
             <Checkbox
@@ -72,7 +72,7 @@ const CheckboxWidget = ({
  * @property {Object} propTypes Property types.
  * @static
  */
-CheckboxWidget.propTypes = {
+CheckboxListWidget.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -86,7 +86,7 @@ CheckboxWidget.propTypes = {
  * @property {Object} defaultProps Default properties.
  * @static
  */
-CheckboxWidget.defaultProps = {
+CheckboxListWidget.defaultProps = {
   description: null,
   required: false,
   error: [],
@@ -96,4 +96,4 @@ CheckboxWidget.defaultProps = {
   onDelete: null,
 };
 
-export default CheckboxWidget;
+export default CheckboxListWidget;

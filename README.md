@@ -24,8 +24,9 @@ For each field, you can select the field type from:
 - Text
 - Textarea
 - Select
-- Radio buttons
-- Checkbox buttons
+- Single choice (radio buttons)
+- Multiple choice (checkbox buttons)
+- Checkbox
 - Date picker
 - File upload with DnD
 - E-mail

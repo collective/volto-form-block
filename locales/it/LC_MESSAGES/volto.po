@@ -114,7 +114,7 @@ msgstr "Allegato"
 
 #: components/Sidebar
 msgid "form_field_type_checkbox"
-msgstr "Scelta multpla"
+msgstr "Checkbox"
 
 #: components/Sidebar
 msgid "form_field_type_date"
@@ -125,12 +125,16 @@ msgid "form_field_type_from"
 msgstr "E-mail"
 
 #: components/Sidebar
-msgid "form_field_type_radio"
-msgstr "Scelta singola"
+msgid "form_field_type_multiple_choice"
+msgstr "Scelta multipla"
 
 #: components/Sidebar
 msgid "form_field_type_select"
 msgstr "Lista"
+
+#: components/Sidebar
+msgid "form_field_type_single_choice"
+msgstr "Scelta singola"
 
 #: components/Sidebar
 msgid "form_field_type_text"

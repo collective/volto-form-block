@@ -1,7 +1,7 @@
 msgid ""
  msgstr ""
  "Project-Id-Version: Plone\n"
- "POT-Creation-Date: 2021-08-03T07:34:46.833Z\n"
+ "POT-Creation-Date: 2021-08-07T16:04:30.439Z\n"
  "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgid "form_field_type_attachment"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Multiple choice
+# defaultMessage: Checkbox
 msgid "form_field_type_checkbox"
 msgstr ""
 
@@ -155,13 +155,18 @@ msgid "form_field_type_from"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Single choice
-msgid "form_field_type_radio"
+# defaultMessage: Multiple choice
+msgid "form_field_type_multiple_choice"
 msgstr ""
 
 #: components/Sidebar
 # defaultMessage: List
 msgid "form_field_type_select"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Single choice
+msgid "form_field_type_single_choice"
 msgstr ""
 
 #: components/Sidebar
