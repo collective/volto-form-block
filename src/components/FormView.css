@@ -1,0 +1,5 @@
+.block.form .ui.form .ui.message {
+  display: flex;
+  width: 80%;
+  margin: 3rem auto 0;
+}

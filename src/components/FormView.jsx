@@ -12,6 +12,7 @@ import {
 } from 'semantic-ui-react';
 import { getFieldName } from './utils';
 import Field from 'volto-form-block/components/Field';
+import './FormView.css';
 
 const messages = defineMessages({
   default_submit_label: {
