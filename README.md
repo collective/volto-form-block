@@ -33,6 +33,11 @@ For each field, you can select the field type from:
 For every field you can set a label and a help text.
 For select, radio and checkbox fields, you can select a list of values.
 
+## Captcha verification
+
+This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptch](https://www.google.com/recaptcha/) to prevent spam.
+In order to make one of these integrations work, you need to add an enviroment variable with the key `RAZZLE_RECAPTCHA_KEY` or `RAZZLE_HCAPTCHA_KEY` and the value of the key in your `.env` file.
+
 ## Export
 
 With backend support, you can store data submitted from the form.
@@ -59,7 +64,17 @@ config.blocks.blocksConfig.form.additionalFields.push({
 The widget component should have the following firm:
 
 ```js
-({ id, name, title, description, required, onChange, value, isDisabled, invalid }) => ReactElement;
+({
+  id,
+  name,
+  title,
+  description,
+  required,
+  onChange,
+  value,
+  isDisabled,
+  invalid,
+}) => ReactElement;
 ```
 
 You should also pass a function to validate your field's data.

@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import {
   Segment,
@@ -46,19 +47,20 @@ const FormView = ({
 }) => {
   const intl = useIntl();
 
-  const [loadedRecaptcha, setLoadedRecaptcha] = useState(null);
+  const [loadedCaptcha, setLoadedCaptcha] = useState(null);
   let validToken = '';
   const onVerifyCaptcha = useCallback(
     (token) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
+      console.log(token);
       validToken = token;
     },
     [validToken],
   );
 
   useEffect(() => {
-    setLoadedRecaptcha(true);
-  }, [loadedRecaptcha]);
+    setLoadedCaptcha(true);
+  }, [loadedCaptcha]);
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -148,6 +150,18 @@ const FormView = ({
                   </Grid.Row>
                 )}
 
+                {process.env.RAZZLE_HCAPTCHA_KEY && (
+                  <Grid.Row>
+                    <Grid.Column>
+                      <HCaptcha
+                        sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
+                        onVerify={onVerifyCaptcha}
+                        size="invisible"
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                )}
+
                 {formErrors.length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">
@@ -163,8 +177,9 @@ const FormView = ({
                       primary
                       type="submit"
                       disabled={
-                        (!loadedRecaptcha &&
-                          process.env.RAZZLE_RECAPTCHA_KEY) ||
+                        (!loadedCaptcha &&
+                          (process.env.RAZZLE_RECAPTCHA_KEY ||
+                            process.env.RAZZLE_HCAPTCHA_KEY)) ||
                         formState.loading
                       }
                     >
