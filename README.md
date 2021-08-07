@@ -35,7 +35,7 @@ For select, radio and checkbox fields, you can select a list of values.
 
 ## Captcha verification
 
-This form addon is configured to work with [HCaptch](https://www.hcaptcha.com) and [ReCaptch](https://www.google.com/recaptcha/) to prevent spam.
+This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptch](https://www.google.com/recaptcha/) to prevent spam.
 In order to make one of these integrations work, you need to add an enviroment variable with the key `RAZZLE_RECAPTCHA_KEY` or `RAZZLE_HCAPTCHA_KEY` and the value of the key in your `.env` file.
 
 ## Export
