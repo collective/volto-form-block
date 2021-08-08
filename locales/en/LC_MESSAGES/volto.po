@@ -181,5 +181,13 @@ msgid "form_useAsReplyTo_description"
 msgstr "If selected, this will be the address the receiver can use to reply."
 
 #: components/Sidebar
+msgid "invisible_hcaptcha"
+msgstr "Invisible captcha"
+
+#: components/Sidebar
+msgid "invisible_hcaptcha_desc"
+msgstr "See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
+
+#: components/Sidebar
 msgid "title"
 msgstr "Title"
