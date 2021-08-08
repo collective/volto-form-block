@@ -38,6 +38,10 @@ For select, radio and checkbox fields, you can select a list of values.
 This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptcha](https://www.google.com/recaptcha/) to prevent spam.
 In order to make one of these integrations work, you need to add an enviroment variable with the key `RAZZLE_HCAPTCHA_KEY` or `RAZZLE_RECAPTCHA_KEY` and the value of the key in your `.env` file.
 
+### HCaptcha
+
+With HCaptcha integration, you also get an additional option in the sidebar to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
+
 ## Export
 
 With backend support, you can store data submitted from the form.
