@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -49,12 +49,10 @@ const FormView = ({
   const intl = useIntl();
 
   const [loadedCaptcha, setLoadedCaptcha] = useState(null);
-  let validToken = '';
+  let validToken = useRef('');
   const onVerifyCaptcha = useCallback(
     (token) => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      console.log(token);
-      validToken = token;
+      validToken.current = token;
     },
     [validToken],
   );
@@ -179,8 +177,8 @@ const FormView = ({
                       type="submit"
                       disabled={
                         (!loadedCaptcha &&
-                          (process.env.RAZZLE_RECAPTCHA_KEY ||
-                            process.env.RAZZLE_HCAPTCHA_KEY)) ||
+                          (!!process.env.RAZZLE_RECAPTCHA_KEY ||
+                            !!process.env.RAZZLE_HCAPTCHA_KEY)) ||
                         formState.loading
                       }
                     >
