@@ -159,7 +159,7 @@ const FormView = ({
                       <HCaptcha
                         sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
                         onVerify={onVerifyCaptcha}
-                        size="invisible"
+                        size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
                       />
                     </Grid.Column>
                   </Grid.Row>
