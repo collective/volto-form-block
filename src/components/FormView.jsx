@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
-import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+import loadable from '@loadable/component';
 import {
   Segment,
   Message,
@@ -13,6 +12,11 @@ import {
 import { getFieldName } from './utils';
 import Field from 'volto-form-block/components/Field';
 import './FormView.css';
+
+const HCaptcha = loadable(() => import('@hcaptcha/react-hcaptcha'));
+const { GoogleReCaptcha } = loadable.lib(() =>
+  import('react-google-recaptcha-v3'),
+);
 
 const messages = defineMessages({
   default_submit_label: {
