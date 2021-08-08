@@ -402,8 +402,8 @@ const Sidebar = ({
                     {selected === index ? (
                       <Icon name={upSVG} size="20px" />
                     ) : (
-                        <Icon name={downSVG} size="20px" />
-                      )}
+                      <Icon name={downSVG} size="20px" />
+                    )}
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
                     <TextWidget
@@ -438,7 +438,11 @@ const Sidebar = ({
                       onChange={(name, value) => {
                         var update_values = {};
                         if (
-                          ['select', 'single_choice', 'multiple_choice'].indexOf(value) < 0
+                          [
+                            'select',
+                            'single_choice',
+                            'multiple_choice',
+                          ].indexOf(value) < 0
                         ) {
                           update_values.input_values = null;
                         }
@@ -464,7 +468,9 @@ const Sidebar = ({
                         ],
                         [
                           'multiple_choice',
-                          intl.formatMessage(messages.field_type_multiple_choice),
+                          intl.formatMessage(
+                            messages.field_type_multiple_choice,
+                          ),
                         ],
                         [
                           'checkbox',
@@ -495,19 +501,19 @@ const Sidebar = ({
                     {['select', 'single_choice', 'multiple_choice'].indexOf(
                       subblock.field_type,
                     ) >= 0 && (
-                        <ArrayWidget
-                          id="input_values"
-                          title={intl.formatMessage(messages.field_input_values)}
-                          onChange={(name, value) => {
-                            onChangeSubBlock(index, {
-                              ...subblock,
-                              [name]: value,
-                            });
-                          }}
-                          required={true}
-                          value={subblock.input_values}
-                        />
-                      )}
+                      <ArrayWidget
+                        id="input_values"
+                        title={intl.formatMessage(messages.field_input_values)}
+                        onChange={(name, value) => {
+                          onChangeSubBlock(index, {
+                            ...subblock,
+                            [name]: value,
+                          });
+                        }}
+                        required={true}
+                        value={subblock.input_values}
+                      />
+                    )}
 
                     {subblock.field_type === 'from' && (
                       <CheckboxWidget

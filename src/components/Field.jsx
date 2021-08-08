@@ -85,8 +85,8 @@ const Field = ({
           name={name}
           title={label}
           description={description}
-          getVocabulary={() => { }}
-          getVocabularyTokenTitle={() => { }}
+          getVocabulary={() => {}}
+          getVocabularyTokenTitle={() => {}}
           choices={[...(input_values?.map((v) => [v, v]) ?? [])]}
           value={value}
           onChange={onChange}
