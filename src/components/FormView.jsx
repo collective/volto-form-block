@@ -130,7 +130,7 @@ const FormView = ({
                           onChange={(field, value) =>
                             onChangeFormData(
                               subblock.id,
-                              field,
+                              name,
                               value,
                               subblock.label,
                             )

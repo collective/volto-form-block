@@ -80,7 +80,7 @@ const Form = ({ data, id, path }) => {
   const submitResults = useSelector((state) => state.submitForm);
 
   const onChangeFormData = (field_id, field, value, label) => {
-    setFormData({ field, value: { field_id, value, label } });
+    setFormData({ field, value: { field_id, field, value, label } });
   };
 
   useEffect(() => {
@@ -128,7 +128,8 @@ const Form = ({ data, id, path }) => {
       data.subblocks.forEach((subblock, index) => {
         let name = getFieldName(subblock.label);
         if (formData[name]?.value) {
-          formData[name].field_id = subblock.field_id;
+          formData[name].field_id = name;
+          formData[name].id = subblock.field_id;
           const isAttachment = subblock.field_type === 'attachment';
 
           if (isAttachment) {
@@ -143,6 +144,7 @@ const Form = ({ data, id, path }) => {
           path,
           id,
           Object.keys(formData).map((name) => ({
+            id: formData[name].id,
             field_id: formData[name].field_id,
             label: formData[name].label,
             value: formData[name].value,
