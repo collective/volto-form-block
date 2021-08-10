@@ -1,3 +1,10 @@
+### [1.8.1](https://github.com/collective/volto-form-block/compare/v1.8.0...v1.8.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* form validation prop ([6a1c96b](https://github.com/collective/volto-form-block/commit/6a1c96b6b95abf05b4184ac952488e548a2b7dfb))
+
 ## [1.8.0](https://github.com/collective/volto-form-block/compare/v1.7.0...v1.8.0) (2021-08-09)
 
 
