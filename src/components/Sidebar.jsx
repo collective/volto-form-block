@@ -106,6 +106,10 @@ const messages = defineMessages({
     id: 'form_field_type_from',
     defaultMessage: 'E-mail',
   },
+  field_type_static_text: {
+    id: 'form_field_type_static_text',
+    defaultMessage: 'Static text',
+  },
   field_input_values: {
     id: 'form_field_input_values',
     defaultMessage: 'Possible values',
@@ -468,6 +472,10 @@ const Sidebar = ({
                           intl.formatMessage(messages.field_type_attachment),
                         ],
                         ['from', intl.formatMessage(messages.field_type_from)],
+                        [
+                          'static_text',
+                          intl.formatMessage(messages.field_type_static_text),
+                        ],
                         ...(config.blocks.blocksConfig.form.additionalFields?.map(
                           (fieldType) => [fieldType.id, fieldType.label],
                         ) ?? []),
