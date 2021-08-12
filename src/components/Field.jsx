@@ -189,18 +189,13 @@ const Field = ({
             onChange={onChange}
             value={value}
           />
+        ) : value?.data ? (
+          <div
+            className="static-text"
+            dangerouslySetInnerHTML={{ __html: value.data }}
+          />
         ) : (
-          <div className="static-text">
-            {value ? (
-              redraft(
-                value,
-                config.settings.ToHTMLRenderers,
-                config.settings.ToHTMLOptions,
-              )
-            ) : (
-              <br />
-            )}
-          </div>
+          <br />
         ))}
       {config.blocks.blocksConfig.form.additionalFields?.reduce((acc, val) => {
         if (val.id === field_type)
