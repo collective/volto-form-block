@@ -134,7 +134,7 @@ msgstr "List"
 
 #: components/Sidebar
 msgid "form_field_type_static_text"
-msgstr ""
+msgstr "Static text"
 
 #: components/Sidebar
 msgid "form_field_type_text"
