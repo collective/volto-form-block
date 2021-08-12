@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import redraft from 'redraft';
 
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidget';

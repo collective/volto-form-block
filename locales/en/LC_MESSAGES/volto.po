@@ -133,6 +133,10 @@ msgid "form_field_type_select"
 msgstr "List"
 
 #: components/Sidebar
+msgid "form_field_type_static_text"
+msgstr ""
+
+#: components/Sidebar
 msgid "form_field_type_text"
 msgstr "Text"
 
