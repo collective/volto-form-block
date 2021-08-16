@@ -29,6 +29,7 @@ For each field, you can select the field type from:
 - Date picker
 - File upload with DnD
 - E-mail
+- Static rich text (not a fillable field, just text to display between other fields)
 
 For every field you can set a label and a help text.
 For select, radio and checkbox fields, you can select a list of values.
