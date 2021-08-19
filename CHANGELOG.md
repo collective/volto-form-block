@@ -1,3 +1,23 @@
+### [1.8.1](https://github.com/collective/volto-form-block/compare/v1.8.0...v1.8.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* form validation prop ([6a1c96b](https://github.com/collective/volto-form-block/commit/6a1c96b6b95abf05b4184ac952488e548a2b7dfb))
+
+## [1.8.0](https://github.com/collective/volto-form-block/compare/v1.7.0...v1.8.0) (2021-08-09)
+
+
+### Features
+
+* add hcaptcha integration ([3ae4599](https://github.com/collective/volto-form-block/commit/3ae45995bef9ef11819d76b2ca1d7316eb79e24e))
+
+
+### Maintenance
+
+* **i18n:** fix italian translation ([b027874](https://github.com/collective/volto-form-block/commit/b027874f26b30e81c7df0810fa3d13c0a5dd206a))
+* update package.json tags ([9f94c72](https://github.com/collective/volto-form-block/commit/9f94c722b2db0cdb7dae24e88f0750ff02fce678))
+
 ## [1.7.0](https://github.com/collective/volto-form-block/compare/v1.6.0...v1.7.0) (2021-08-05)
 
 

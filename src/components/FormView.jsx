@@ -116,7 +116,7 @@ const FormView = ({
                         onChange={() => {}}
                         disabled
                         valid
-                        formHasErrors={formErrors.length > 0}
+                        formHasErrors={formErrors?.length > 0}
                       />
                     </Grid.Column>
                   </Grid.Row>
@@ -137,8 +137,13 @@ const FormView = ({
                               subblock.label,
                             )
                           }
-                          value={formData[name]?.value}
+                          value={
+                            subblock.field_type === 'static_text'
+                              ? subblock.value
+                              : formData[name]?.value
+                          }
                           valid={isValidField(name)}
+                          formHasErrors={formErrors?.length > 0}
                         />
                       </Grid.Column>
                     </Grid.Row>
