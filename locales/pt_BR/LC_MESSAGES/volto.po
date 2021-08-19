@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-27T19:30:59.079Z\n"
-"PO-Revision-Date: 2021-05-11 19:03-0300\n"
+"PO-Revision-Date: 2021-08-19 20:14+0200\n"
 "Last-Translator: Érico Andrei <ericof@plone.org>, 2021\n"
 "Language: pt_BR\n"
 "Language-Team: Portuguese (https://www.transifex.com/plone/teams/14552/pt/)\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Language-Name: Português do Brasil\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
- #: components/Edit
+#: components/Edit
 msgid "Add field"
 msgstr "Adicionar campo"
 
@@ -35,11 +35,11 @@ msgstr "Formulário"
 
 #: components/Sidebar
 msgid "description"
-msgstr ""
+msgstr "descrição"
 
 #: components/Form
 msgid "formSubmitted"
-msgstr " Formulário enviado com sucesso"
+msgstr "Formulário enviado com sucesso"
 
 #: components/Sidebar
 msgid "form_attachment_info_text"
@@ -65,8 +65,7 @@ msgstr "Este endereço será utilizado como o remetente do e-mail com os dados d
 msgid "form_default_subject"
 msgstr "Assunto do e-mail"
 
-#: components/Edit
-#: components/FormView
+#: components/Edit components/FormView
 msgid "form_default_submit_label"
 msgstr "Enviar"
 
@@ -104,7 +103,7 @@ msgstr "Nome"
 
 #: components/Sidebar
 msgid "form_field_name_description"
-msgstr "O nome deve conter espaços e só pode conter caracteres alfanuméricos além dos caracteres "-" e "_". O nome é igual ao nome do parâmetro."
+msgstr "O nome deve conter espaços e só pode conter caracteres alfanuméricos além dos caracteres '-' e '_'. O nome é igual ao nome do parâmetro."
 
 #: components/Sidebar
 msgid "form_field_required"
@@ -132,7 +131,7 @@ msgstr "E-mail"
 
 #: components/Sidebar
 msgid "form_field_type_multiple_choice"
-msgstr ""
+msgstr "Múltipla escolha"
 
 #: components/Sidebar
 msgid "form_field_type_select"
@@ -140,11 +139,11 @@ msgstr "Opções"
 
 #: components/Sidebar
 msgid "form_field_type_single_choice"
-msgstr ""
+msgstr "Escolha única"
 
 #: components/Sidebar
 msgid "form_field_type_static_text"
-msgstr ""
+msgstr "Texto estático"
 
 #: components/Sidebar
 msgid "form_field_type_text"
@@ -192,16 +191,16 @@ msgstr "Utilizar como 'responder para'"
 
 #: components/Sidebar
 msgid "form_useAsReplyTo_description"
-msgstr "Usar este campo como valor do cabeçalho de "responder para""
+msgstr "Usar este campo como valor do cabeçalho de 'responder para'"
 
 #: components/Sidebar
 msgid "invisible_hcaptcha"
-msgstr ""
+msgstr "Captcha invisível"
 
 #: components/Sidebar
 msgid "invisible_hcaptcha_desc"
-msgstr ""
+msgstr "Leia mais em https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
 
 #: components/Sidebar
 msgid "title"
-msgstr ""
+msgstr "título"
