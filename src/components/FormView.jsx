@@ -151,7 +151,7 @@ const FormView = ({
                 })}
 
                 {process.env.RAZZLE_RECAPTCHA_KEY && (
-                  <Grid.Row centered style={{ paddingTop: '3rem' }}>
+                  <Grid.Row centered className="row-padded-top">
                     <Grid.Column textAlign="center">
                       <GoogleReCaptcha onVerify={onVerifyCaptcha} />
                     </Grid.Column>
@@ -159,7 +159,7 @@ const FormView = ({
                 )}
 
                 {process.env.RAZZLE_HCAPTCHA_KEY && (
-                  <Grid.Row centered style={{ paddingTop: '3rem' }}>
+                  <Grid.Row centered className="row-padded-top">
                     <Grid.Column textAlign="center">
                       <HCaptcha
                         sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
@@ -179,7 +179,7 @@ const FormView = ({
                   </Message>
                 )}
 
-                <Grid.Row centered style={{ paddingTop: '3rem' }}>
+                <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
                     <Button
                       primary
