@@ -131,12 +131,16 @@ msgid "form_field_type_from"
 msgstr "E-mail"
 
 #: components/Sidebar
-msgid "form_field_type_radio"
-msgstr "Escolha única"
+msgid "form_field_type_multiple_choice"
+msgstr ""
 
 #: components/Sidebar
 msgid "form_field_type_select"
 msgstr "Opções"
+
+#: components/Sidebar
+msgid "form_field_type_single_choice"
+msgstr ""
 
 #: components/Sidebar
 msgid "form_field_type_static_text"

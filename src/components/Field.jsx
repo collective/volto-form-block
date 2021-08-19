@@ -7,10 +7,11 @@ import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidge
 import SelectWidget from '@plone/volto/components/manage/Widgets/SelectWidget';
 import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
 import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
+import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
 import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
-import CheckboxWidget from './Widget/CheckboxWidget';
+import CheckboxListWidget from './Widget/CheckboxListWidget';
 import RadioWidget from './Widget/RadioWidget';
 
 import './Field.css';
@@ -99,9 +100,26 @@ const Field = ({
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
-      {field_type === 'radio' && (
+      {field_type === 'single_choice' && (
         <RadioWidget
           id={name}
+          title={label}
+          description={description}
+          required={required}
+          onChange={onChange}
+          valueList={[
+            ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
+          ]}
+          value={value}
+          isDisabled={disabled}
+          invalid={isInvalid().toString()}
+          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+        />
+      )}
+      {field_type === 'multiple_choice' && (
+        <CheckboxListWidget
+          id={name}
+          name={name}
           title={label}
           description={description}
           required={required}
@@ -123,10 +141,7 @@ const Field = ({
           description={description}
           required={required}
           onChange={onChange}
-          valueList={[
-            ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
-          ]}
-          value={value}
+          value={!!value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
