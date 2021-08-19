@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
- #: components/Edit
+#: components/Edit
 msgid "Add field"
 msgstr ""
 
@@ -134,6 +134,10 @@ msgstr ""
 
 #: components/Sidebar
 msgid "form_field_type_single_choice"
+msgstr ""
+
+#: components/Sidebar
+msgid "form_field_type_static_text"
 msgstr ""
 
 #: components/Sidebar

@@ -19,3 +19,7 @@
 .block.form .ui.form .field .wrapper > label {
   margin-bottom: 0;
 }
+
+.block.form .ui.form .field .static-text {
+  margin: 2rem 0;
+}

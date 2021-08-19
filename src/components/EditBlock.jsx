@@ -54,7 +54,16 @@ class EditBlock extends SubblockEdit {
             id={id}
             field_id={id}
             index={this.props.data.index}
-            onChange={() => {}}
+            value={
+              this.props.data.field_type === 'static_text'
+                ? this.props.data.value
+                : null
+            }
+            onChange={
+              this.props.data.field_type === 'static_text'
+                ? (_id, value) => this.onChange({ value })
+                : () => {}
+            }
           />
         </div>
       </Subblock>

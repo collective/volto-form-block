@@ -1,6 +1,6 @@
 {
   "name": "volto-form-block",
-  "version": "1.7.0",
+  "version": "1.8.1",
   "description": "Volto block to build a form",
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-form-block",
@@ -12,7 +12,9 @@
     "volto-addon",
     "volto",
     "plone",
-    "react"
+    "react",
+    "block",
+    "form"
   ],
   "scripts": {
     "i18n": "NODE_ENV=production node src/i18n.js"

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
+
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidget';
 import SelectWidget from '@plone/volto/components/manage/Widgets/SelectWidget';
 import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
 import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
 import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
+import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
 import { DatetimeWidget } from '@plone/volto/components';
 
 import CheckboxListWidget from './Widget/CheckboxListWidget';
@@ -19,7 +21,7 @@ import config from '@plone/volto/registry';
 const messages = defineMessages({
   select_a_value: {
     id: 'form_select_a_value',
-    defaultMessage: 'Seleziona un valore',
+    defaultMessage: 'Select a value',
   },
 });
 
@@ -190,6 +192,25 @@ const Field = ({
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
+      {field_type === 'static_text' &&
+        (isOnEdit ? (
+          <WysiwygWidget
+            wrapped={false}
+            id={name}
+            name={name}
+            title={label}
+            description={description}
+            onChange={onChange}
+            value={value}
+          />
+        ) : value?.data ? (
+          <div
+            className="static-text"
+            dangerouslySetInnerHTML={{ __html: value.data }}
+          />
+        ) : (
+          <br />
+        ))}
       {config.blocks.blocksConfig.form.additionalFields?.reduce((acc, val) => {
         if (val.id === field_type)
           return [

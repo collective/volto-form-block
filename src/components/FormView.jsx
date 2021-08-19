@@ -53,7 +53,6 @@ const FormView = ({
   const onVerifyCaptcha = useCallback(
     (token) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      console.log(token);
       validToken = token;
     },
     [validToken],
@@ -114,7 +113,7 @@ const FormView = ({
                         onChange={() => {}}
                         disabled
                         valid
-                        formHasErrors={formErrors.length > 0}
+                        formHasErrors={formErrors?.length > 0}
                       />
                     </Grid.Column>
                   </Grid.Row>
@@ -135,8 +134,13 @@ const FormView = ({
                               subblock.label,
                             )
                           }
-                          value={formData[name]?.value}
+                          value={
+                            subblock.field_type === 'static_text'
+                              ? subblock.value
+                              : formData[name]?.value
+                          }
                           valid={isValidField(name)}
+                          formHasErrors={formErrors?.length > 0}
                         />
                       </Grid.Column>
                     </Grid.Row>

@@ -1,7 +1,7 @@
 msgid ""
  msgstr ""
  "Project-Id-Version: Plone\n"
- "POT-Creation-Date: 2021-08-07T16:04:30.439Z\n"
+ "POT-Creation-Date: 2021-08-12T09:36:37.243Z\n"
  "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -170,6 +170,11 @@ msgid "form_field_type_single_choice"
 msgstr ""
 
 #: components/Sidebar
+# defaultMessage: Static text
+msgid "form_field_type_static_text"
+msgstr ""
+
+#: components/Sidebar
 # defaultMessage: Text
 msgid "form_field_type_text"
 msgstr ""
@@ -195,7 +200,7 @@ msgid "form_save_persistent_data"
 msgstr ""
 
 #: components/Field
-# defaultMessage: Seleziona un valore
+# defaultMessage: Select a value
 msgid "form_select_a_value"
 msgstr ""
 

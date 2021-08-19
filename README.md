@@ -9,6 +9,8 @@ Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizi
 yarn add volto-form-block
 ```
 
+> **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
+
 ## Features
 
 This addon will add in your project the Form block and the needed reducers.
@@ -30,6 +32,7 @@ For each field, you can select the field type from:
 - Date picker
 - File upload with DnD
 - E-mail
+- Static rich text (not a fillable field, just text to display between other fields)
 
 For every field you can set a label and a help text.
 For select, radio and checkbox fields, you can select a list of values.
