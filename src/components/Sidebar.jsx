@@ -95,13 +95,17 @@ const messages = defineMessages({
     id: 'form_field_type_select',
     defaultMessage: 'List',
   },
-  field_type_radio: {
-    id: 'form_field_type_radio',
+  field_type_single_choice: {
+    id: 'form_field_type_single_choice',
     defaultMessage: 'Single choice',
+  },
+  field_type_multiple_choice: {
+    id: 'form_field_type_multiple_choice',
+    defaultMessage: 'Multiple choice',
   },
   field_type_checkbox: {
     id: 'form_field_type_checkbox',
-    defaultMessage: 'Multiple choice',
+    defaultMessage: 'Checkbox',
   },
   field_type_date: {
     id: 'form_field_type_date',
@@ -465,7 +469,11 @@ const Sidebar = ({
                       onChange={(name, value) => {
                         var update_values = {};
                         if (
-                          ['select', 'radio', 'checkbox'].indexOf(value) < 0
+                          [
+                            'select',
+                            'single_choice',
+                            'multiple_choice',
+                          ].indexOf(value) < 0
                         ) {
                           update_values.input_values = null;
                         }
@@ -486,8 +494,14 @@ const Sidebar = ({
                           intl.formatMessage(messages.field_type_select),
                         ],
                         [
-                          'radio',
-                          intl.formatMessage(messages.field_type_radio),
+                          'single_choice',
+                          intl.formatMessage(messages.field_type_single_choice),
+                        ],
+                        [
+                          'multiple_choice',
+                          intl.formatMessage(
+                            messages.field_type_multiple_choice,
+                          ),
                         ],
                         [
                           'checkbox',
@@ -519,7 +533,7 @@ const Sidebar = ({
                       </FormFieldWrapper>
                     )}
 
-                    {['select', 'radio', 'checkbox'].indexOf(
+                    {['select', 'single_choice', 'multiple_choice'].indexOf(
                       subblock.field_type,
                     ) >= 0 && (
                       <ArrayWidget

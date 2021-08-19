@@ -140,7 +140,7 @@ msgid "form_field_type_attachment"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Multiple choice
+# defaultMessage: Checkbox
 msgid "form_field_type_checkbox"
 msgstr ""
 
@@ -155,13 +155,18 @@ msgid "form_field_type_from"
 msgstr ""
 
 #: components/Sidebar
-# defaultMessage: Single choice
-msgid "form_field_type_radio"
+# defaultMessage: Multiple choice
+msgid "form_field_type_multiple_choice"
 msgstr ""
 
 #: components/Sidebar
 # defaultMessage: List
 msgid "form_field_type_select"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: Single choice
+msgid "form_field_type_single_choice"
 msgstr ""
 
 #: components/Sidebar
