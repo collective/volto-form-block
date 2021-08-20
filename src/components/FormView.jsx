@@ -48,9 +48,9 @@ const FormView = ({
 }) => {
   const intl = useIntl();
 
-  const captcha = process.env.RAZZLE_HCAPTCHA_KEY
+  const captcha = !!process.env.RAZZLE_HCAPTCHA_KEY
     ? 'HCaptcha'
-    : process.env.RAZZLE_RECAPTCHA_KEY
+    : !!process.env.RAZZLE_RECAPTCHA_KEY
     ? 'GoogleReCaptcha'
     : null;
 
@@ -174,10 +174,7 @@ const FormView = ({
                       primary
                       type="submit"
                       disabled={
-                        (!validToken?.current &&
-                          (!!process.env.RAZZLE_RECAPTCHA_KEY ||
-                            !!process.env.RAZZLE_HCAPTCHA_KEY)) ||
-                        formState.loading
+                        (captcha && !validToken?.current) || formState.loading
                       }
                     >
                       {data.submit_label ||
