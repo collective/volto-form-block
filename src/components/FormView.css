@@ -1,5 +1,9 @@
 .block.form .ui.form .ui.message {
-  display: flex;
-  width: 80%;
-  margin: 3rem auto 0;
+    display: flex;
+    width: 80%;
+    margin: 3rem auto 0;
+}
+
+.block.form .ui.form .row.row-padded-top {
+    padding-top: 3rem;
 }

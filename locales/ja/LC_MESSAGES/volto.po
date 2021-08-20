@@ -189,5 +189,13 @@ msgid "form_useAsReplyTo_description"
 msgstr ""
 
 #: components/Sidebar
+msgid "invisible_hcaptcha"
+msgstr ""
+
+#: components/Sidebar
+msgid "invisible_hcaptcha_desc"
+msgstr ""
+
+#: components/Sidebar
 msgid "title"
 msgstr ""

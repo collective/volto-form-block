@@ -1,3 +1,4 @@
+import loadable from '@loadable/component';
 import formSVG from '@plone/volto/icons/form.svg';
 import View from './components/View';
 import Edit from './components/Edit';
@@ -42,6 +43,13 @@ const applyConfig = (config) => {
     exportCsvFormData,
     clearFormData,
   };
+
+  config.settings.loadables['HCaptcha'] = loadable(() =>
+    import('@hcaptcha/react-hcaptcha'),
+  );
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
+    import('react-google-recaptcha-v3'),
+  );
 
   return config;
 };

@@ -235,6 +235,16 @@ msgid "form_useAsReplyTo_description"
 msgstr ""
 
 #: components/Sidebar
+# defaultMessage: Invisible captcha
+msgid "invisible_hcaptcha"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode
+msgid "invisible_hcaptcha_desc"
+msgstr ""
+
+#: components/Sidebar
 # defaultMessage: Title
 msgid "title"
 msgstr ""

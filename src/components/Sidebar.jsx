@@ -49,6 +49,15 @@ const messages = defineMessages({
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
   },
+  invisibleHCaptcha: {
+    id: 'invisible_hcaptcha',
+    defaultMessage: 'Invisible captcha',
+  },
+  invisibleHCaptchaDescription: {
+    id: 'invisible_hcaptcha_desc',
+    defaultMessage:
+      'See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode',
+  },
   field_label: {
     id: 'form_field_label',
     defaultMessage: 'Label',
@@ -286,6 +295,24 @@ const Sidebar = ({
               });
             }}
           />
+
+          {process.env.RAZZLE_HCAPTCHA_KEY && (
+            <CheckboxWidget
+              id="invisibleHCaptcha"
+              title={intl.formatMessage(messages.invisibleHCaptcha)}
+              description={intl.formatMessage(
+                messages.invisibleHCaptchaDescription,
+              )}
+              required={false}
+              value={data.invisibleHCaptcha ?? false}
+              onChange={(name, value) => {
+                onChangeBlock(block, {
+                  ...data,
+                  [name]: value,
+                });
+              }}
+            />
+          )}
 
           <CheckboxWidget
             id="store"

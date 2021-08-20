@@ -1,7 +1,5 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
-import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import {
   Segment,
   Message,
@@ -12,6 +10,8 @@ import {
 } from 'semantic-ui-react';
 import { getFieldName } from './utils';
 import Field from 'volto-form-block/components/Field';
+import GoogleReCaptchaWidget from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
+import HCaptchaWidget from 'volto-form-block/components/Widget/HCaptchaWidget';
 import './FormView.css';
 
 const messages = defineMessages({
@@ -48,19 +48,19 @@ const FormView = ({
 }) => {
   const intl = useIntl();
 
-  const [loadedCaptcha, setLoadedCaptcha] = useState(null);
-  let validToken = '';
+  const captcha = process.env.RAZZLE_HCAPTCHA_KEY
+    ? 'HCaptcha'
+    : process.env.RAZZLE_RECAPTCHA_KEY
+    ? 'GoogleReCaptcha'
+    : null;
+
+  let validToken = useRef('');
   const onVerifyCaptcha = useCallback(
     (token) => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      validToken = token;
+      validToken.current = token;
     },
     [validToken],
   );
-
-  useEffect(() => {
-    setLoadedCaptcha(true);
-  }, [loadedCaptcha]);
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -147,24 +147,16 @@ const FormView = ({
                   );
                 })}
 
-                {process.env.RAZZLE_RECAPTCHA_KEY && (
-                  <Grid.Row>
-                    <Grid.Column>
-                      <GoogleReCaptcha onVerify={onVerifyCaptcha} />
-                    </Grid.Column>
-                  </Grid.Row>
+                {captcha === 'GoogleReCaptcha' && (
+                  <GoogleReCaptchaWidget onVerify={onVerifyCaptcha} />
                 )}
 
-                {process.env.RAZZLE_HCAPTCHA_KEY && (
-                  <Grid.Row>
-                    <Grid.Column>
-                      <HCaptcha
-                        sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
-                        onVerify={onVerifyCaptcha}
-                        size="invisible"
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
+                {captcha === 'HCaptcha' && (
+                  <HCaptchaWidget
+                    sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
+                    onVerify={onVerifyCaptcha}
+                    size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
+                  />
                 )}
 
                 {formErrors.length > 0 && (
@@ -176,15 +168,15 @@ const FormView = ({
                   </Message>
                 )}
 
-                <Grid.Row centered style={{ paddingTop: '3rem' }}>
+                <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
                     <Button
                       primary
                       type="submit"
                       disabled={
-                        (!loadedCaptcha &&
-                          (process.env.RAZZLE_RECAPTCHA_KEY ||
-                            process.env.RAZZLE_HCAPTCHA_KEY)) ||
+                        (!validToken?.current &&
+                          (!!process.env.RAZZLE_RECAPTCHA_KEY ||
+                            !!process.env.RAZZLE_HCAPTCHA_KEY)) ||
                         formState.loading
                       }
                     >
