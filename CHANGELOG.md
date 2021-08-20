@@ -1,3 +1,41 @@
+## [2.0.0](https://github.com/collective/volto-form-block/compare/v1.8.1...v2.0.0) (2021-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* add checkbox field, rename old checkbox and radio
+
+### Features
+
+* add checkbox field, rename old checkbox and radio ([669e88b](https://github.com/collective/volto-form-block/commit/669e88bd7a9dbc3b1e13b6f0581effbdda413ce9))
+* add static rich text field ([b5e127d](https://github.com/collective/volto-form-block/commit/b5e127d37dd573c9f99912154db8969e2945782f))
+* sidebar option for invisible hcaptcha ([e793acc](https://github.com/collective/volto-form-block/commit/e793accb985a3b06bef61c097f965d2c70d79309))
+
+
+### Bug Fixes
+
+* static text field styles ([6296dcb](https://github.com/collective/volto-form-block/commit/6296dcb665fe8aa66ccd3637756eddf6bbbad15d))
+
+
+### Changes
+
+* captcha components with loadable ([83d504b](https://github.com/collective/volto-form-block/commit/83d504b2cffd690b8db4f45b3e702108e457c582))
+* captcha token usage, button disabled condition ([4e7556c](https://github.com/collective/volto-form-block/commit/4e7556c2ab1bb584bd3cc434784aa21bbce6302d))
+* captcha widgets with loadable, form -> view ([0b0b13f](https://github.com/collective/volto-form-block/commit/0b0b13f639643f436bc0de51e87d1569cd364e21))
+* disable button logic and env vars ([d09dcce](https://github.com/collective/volto-form-block/commit/d09dcce9eb09257c65385758f2a851947c931d03))
+* row padded top ([940a3ec](https://github.com/collective/volto-form-block/commit/940a3ec9ff3da22e82c7533e929533a67aec1185))
+
+
+### Maintenance
+
+* add editorConfig ([470101d](https://github.com/collective/volto-form-block/commit/470101d8b82aa119e793a3355a8e7d9a5933134c))
+* add release-it dev ([485efc4](https://github.com/collective/volto-form-block/commit/485efc4ed132bc662d94da778ad9a3651a602449))
+* added exports ([4072c78](https://github.com/collective/volto-form-block/commit/4072c7842d4061b1cd2f631ee4e2a744f49a889d))
+* **i18n:** update translations ([060403c](https://github.com/collective/volto-form-block/commit/060403c0b952baeb85bc1ef6a1d64cc296161779))
+* remove redraft unused import ([66bbc7d](https://github.com/collective/volto-form-block/commit/66bbc7d41c7824538c2ad1a9cac0ffaed1a72929))
+* update editorConfig ([0783f63](https://github.com/collective/volto-form-block/commit/0783f6343ee122910688c91c048ee4b837a2e590))
+* update locales ([c60cf68](https://github.com/collective/volto-form-block/commit/c60cf6863be10be416f8a52f851c29104fd2622b))
+
 ### [1.8.1](https://github.com/collective/volto-form-block/compare/v1.8.0...v1.8.1) (2021-08-10)
 
 
