@@ -102,9 +102,15 @@ const View = ({ data, id, path }) => {
         subblock.required &&
         additionalField &&
         !additionalField?.isValid(formData, name)
-      )
+      ) {
         v.push(name);
-      else if (
+      } else if (
+        subblock.required &&
+        fieldType === 'checkbox' &&
+        !formData[name]?.value
+      ) {
+        v.push(name);
+      } else if (
         subblock.required &&
         (!formData[name] ||
           formData[name]?.value?.length === 0 ||
