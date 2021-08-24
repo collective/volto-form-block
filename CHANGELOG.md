@@ -1,3 +1,10 @@
+### [2.0.1](https://github.com/collective/volto-form-block/compare/v2.0.0...v2.0.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* checkbox field validation ([532caae](https://github.com/collective/volto-form-block/commit/532caae1e0a1df6c2b84cf640f4aae55a9e15f91))
+
 ## [2.0.0](https://github.com/collective/volto-form-block/compare/v1.8.1...v2.0.0) (2021-08-20)
 
 
