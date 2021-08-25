@@ -42,13 +42,14 @@ class EditBlock extends SubblockEdit {
     if (__SERVER__) {
       return <div />;
     }
-    const id = new Date().getTime();
+    const id = this.props.data?.id || new Date().getTime();
+
     return (
       <Subblock subblock={this} className="subblock-edit">
         <div key={this.props.data.index}>
           <Field
             {...this.props.data}
-            name={getFieldName(this.props.data.label)}
+            name={getFieldName(this.props.data.label, id)}
             key={this.props.data.index}
             isOnEdit={true}
             id={id}

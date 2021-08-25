@@ -119,7 +119,8 @@ const FormView = ({
                   </Grid.Row>
                 ))}
                 {data.subblocks?.map((subblock, index) => {
-                  let name = getFieldName(subblock.label);
+                  let name = getFieldName(subblock.label, subblock.id);
+
                   return (
                     <Grid.Row key={'row' + index}>
                       <Grid.Column>
