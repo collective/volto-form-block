@@ -49,7 +49,7 @@ const formStateReducer = (state, action) => {
 
 const getInitialData = (data) => ({
   ...data.reduce(
-    (acc, field) => ({ ...acc, [getFieldName(field.label)]: field }),
+    (acc, field) => ({ ...acc, [getFieldName(field.label, field.id)]: field }),
     {},
   ),
 });
@@ -92,7 +92,7 @@ const View = ({ data, id, path }) => {
   const isValidForm = () => {
     let v = [];
     data.subblocks.forEach((subblock, index) => {
-      let name = getFieldName(subblock.label);
+      let name = getFieldName(subblock.label, subblock.id);
       let fieldType = subblock.field_type;
       let additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
@@ -131,7 +131,7 @@ const View = ({ data, id, path }) => {
       let attachments = {};
 
       data.subblocks.forEach((subblock, index) => {
-        let name = getFieldName(subblock.label);
+        let name = getFieldName(subblock.label, subblock.id);
         if (formData[name]?.value) {
           formData[name].field_id = subblock.field_id;
           const isAttachment = subblock.field_type === 'attachment';
