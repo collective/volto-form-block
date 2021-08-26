@@ -79,6 +79,14 @@ const messages = defineMessages({
     id: 'form_field_required',
     defaultMessage: 'Required',
   },
+  field_custom_id: {
+    id: 'field_custom_id',
+    defaultMessage: 'Custom id',
+  },
+  field_custom_id_description: {
+    id: 'field_custom_id_description',
+    defaultMessage: 'Custom id to identify the field in the backend',
+  },
   field_type: {
     id: 'form_field_type',
     defaultMessage: 'Field type',
@@ -536,19 +544,19 @@ const Sidebar = ({
                     {['select', 'single_choice', 'multiple_choice'].indexOf(
                       subblock.field_type,
                     ) >= 0 && (
-                      <ArrayWidget
-                        id="input_values"
-                        title={intl.formatMessage(messages.field_input_values)}
-                        onChange={(name, value) => {
-                          onChangeSubBlock(index, {
-                            ...subblock,
-                            [name]: value,
-                          });
-                        }}
-                        required={true}
-                        value={subblock.input_values}
-                      />
-                    )}
+                        <ArrayWidget
+                          id="input_values"
+                          title={intl.formatMessage(messages.field_input_values)}
+                          onChange={(name, value) => {
+                            onChangeSubBlock(index, {
+                              ...subblock,
+                              [name]: value,
+                            });
+                          }}
+                          required={true}
+                          value={subblock.input_values}
+                        />
+                      )}
 
                     {subblock.field_type === 'from' && (
                       <CheckboxWidget
@@ -575,6 +583,18 @@ const Sidebar = ({
                       id="required"
                       title={intl.formatMessage(messages.field_required)}
                       value={subblock.required ? subblock.required : false}
+                      onChange={(name, value) => {
+                        onChangeSubBlock(index, {
+                          ...subblock,
+                          [name]: value,
+                        });
+                      }}
+                    />
+                    <TextWidget
+                      id="field_custom_id"
+                      title={intl.formatMessage(messages.field_custom_id)}
+                      description={intl.formatMessage(messages.field_custom_id_description)}
+                      value={subblock.customid}
                       onChange={(name, value) => {
                         onChangeSubBlock(index, {
                           ...subblock,

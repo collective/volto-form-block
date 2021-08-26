@@ -134,6 +134,7 @@ const View = ({ data, id, path }) => {
         let name = getFieldName(subblock.label, subblock.id);
         if (formData[name]?.value) {
           formData[name].field_id = subblock.field_id;
+          formData[name].field_custom_id = subblock.field_custom_id;
           const isAttachment = subblock.field_type === 'attachment';
 
           if (isAttachment) {
@@ -151,6 +152,7 @@ const View = ({ data, id, path }) => {
             field_id: formData[name].field_id,
             label: formData[name].label,
             value: formData[name].value,
+            field_custom_id: formData[name].field_custom_id,
           })),
           attachments,
         ),
@@ -173,9 +175,8 @@ const View = ({ data, id, path }) => {
         result: intl.formatMessage(messages.formSubmitted),
       });
     } else if (submitResults?.error) {
-      let errorDescription = `${submitResults.error.status} ${
-        submitResults.error.message
-      } - ${JSON.parse(submitResults.error.response?.text ?? '{}')?.message}`;
+      let errorDescription = `${submitResults.error.status} ${submitResults.error.message
+        } - ${JSON.parse(submitResults.error.response?.text ?? '{}')?.message}`;
 
       setFormState({ type: FORM_STATES.error, error: errorDescription });
     }
