@@ -594,7 +594,7 @@ const Sidebar = ({
                       id="field_custom_id"
                       title={intl.formatMessage(messages.field_custom_id)}
                       description={intl.formatMessage(messages.field_custom_id_description)}
-                      value={subblock.customid}
+                      value={subblock.field_custom_id}
                       onChange={(name, value) => {
                         onChangeSubBlock(index, {
                           ...subblock,
