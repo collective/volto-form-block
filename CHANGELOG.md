@@ -1,3 +1,10 @@
+### [2.0.3](https://github.com/collective/volto-form-block/compare/v2.0.2...v2.0.3) (2021-10-19)
+
+
+### Bug Fixes
+
+* fixed field name if label is duplicate ([734f7e6](https://github.com/collective/volto-form-block/commit/734f7e6b518756256ff0b8b3044e451100e6f9be))
+
 ### [2.0.2](https://github.com/collective/volto-form-block/compare/v2.0.1...v2.0.2) (2021-08-25)
 
 
