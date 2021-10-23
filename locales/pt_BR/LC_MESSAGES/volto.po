@@ -18,189 +18,237 @@ msgstr ""
 "X-Generator: Poedit 3.0\n"
 
 #: components/Edit
+# defaultMessage: Aggiungi un campo
 msgid "Add field"
 msgstr "Adicionar campo"
 
 #: components/Sidebar
+# defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: components/FormView
+# defaultMessage: Error
 msgid "Error"
 msgstr "Erro"
 
 #: components/Sidebar
+# defaultMessage: Form
 msgid "Form"
 msgstr "Formulário"
 
 #: components/Sidebar
+# defaultMessage: Description
 msgid "description"
 msgstr "descrição"
 
-#: components/Form
+#: components/View
+# defaultMessage: Form successfully submitted
 msgid "formSubmitted"
 msgstr "Formulário enviado com sucesso"
 
 #: components/Sidebar
+# defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_info_text"
 msgstr "O arquivo anexado será enviado por e-mail, mas não armazenado"
 
 #: components/Sidebar
+# defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Limpar dados"
 
 #: components/Sidebar
+# defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Você tem certeza que deseja apagar todos as respostas salvas?"
 
 #: components/Sidebar
+# defaultMessage: Default sender
 msgid "form_default_from"
 msgstr "Remetente padrão"
 
 #: components/Sidebar
+# defaultMessage: This address will be used as the sender of the email with the form data
 msgid "form_default_from_description"
 msgstr "Este endereço será utilizado como o remetente do e-mail com os dados do formulário"
 
 #: components/Sidebar
+# defaultMessage: Mail subject
 msgid "form_default_subject"
 msgstr "Assunto do e-mail"
 
-#: components/Edit components/FormView
+#: components/Edit
+#: components/FormView
+# defaultMessage: Invia
 msgid "form_default_submit_label"
 msgstr "Enviar"
 
 #: components/Sidebar
+# defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Exportar dados"
 
 #: components/Edit
+# defaultMessage: Attenzione!
 msgid "form_edit_warning"
 msgstr "Atenção"
 
 #: components/Edit
+# defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
 msgstr "Digite um campo do tipo 'E-mail do remetente'. Se não estiver presente, ou estiver presente mas não for preenchido pelo usuário, o endereço do remetente do e-mail será o configurado na barra lateral direita."
 
 #: components/FormView
+# defaultMessage: Fill in the required fields
 msgid "form_empty_values_validation"
 msgstr "Por favor preencha os campos obrigatórios"
 
 #: components/Sidebar
+# defaultMessage: Description
 msgid "form_field_description"
 msgstr "Descrição"
 
 #: components/Sidebar
+# defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr "Valores possíveis"
 
 #: components/Sidebar
+# defaultMessage: Label
 msgid "form_field_label"
 msgstr "Etiqueta"
 
 #: components/Sidebar
+# defaultMessage: Name
 msgid "form_field_name"
 msgstr "Nome"
 
 #: components/Sidebar
+# defaultMessage: The name must contain spaces, and can only contain alphanumeric characters in addition to the "-" and "_" characters. The name is the same as the name of the parameter.
 msgid "form_field_name_description"
 msgstr "O nome deve conter espaços e só pode conter caracteres alfanuméricos além dos caracteres '-' e '_'. O nome é igual ao nome do parâmetro."
 
 #: components/Sidebar
+# defaultMessage: Required
 msgid "form_field_required"
 msgstr "Obrigatório"
 
 #: components/Sidebar
+# defaultMessage: Field type
 msgid "form_field_type"
 msgstr "Tipo de campo"
 
 #: components/Sidebar
+# defaultMessage: Attachment
 msgid "form_field_type_attachment"
 msgstr "Anexo"
 
 #: components/Sidebar
+# defaultMessage: Checkbox
 msgid "form_field_type_checkbox"
 msgstr "Múltipla escolha"
 
 #: components/Sidebar
+# defaultMessage: Date
 msgid "form_field_type_date"
 msgstr "Data"
 
 #: components/Sidebar
+# defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "E-mail"
 
 #: components/Sidebar
+# defaultMessage: Multiple choice
 msgid "form_field_type_multiple_choice"
 msgstr "Múltipla escolha"
 
 #: components/Sidebar
+# defaultMessage: List
 msgid "form_field_type_select"
 msgstr "Opções"
 
 #: components/Sidebar
+# defaultMessage: Single choice
 msgid "form_field_type_single_choice"
 msgstr "Escolha única"
 
 #: components/Sidebar
+# defaultMessage: Static text
 msgid "form_field_type_static_text"
 msgstr "Texto estático"
 
 #: components/Sidebar
+# defaultMessage: Text
 msgid "form_field_type_text"
 msgstr "Texto"
 
 #: components/Sidebar
+# defaultMessage: Textarea
 msgid "form_field_type_textarea"
 msgstr "Área de texto"
 
 #: components/Sidebar
+# defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} item(ns) armazenados"
 
 #: components/FormView
+# defaultMessage: Clear
 msgid "form_reset"
 msgstr "Limpar"
 
 #: components/Sidebar
+# defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
 msgstr "Armazenar dados"
 
 #: components/Field
+# defaultMessage: Select a value
 msgid "form_select_a_value"
 msgstr "Selecione um valor"
 
 #: components/Sidebar
+# defaultMessage: Send email to recipient
 msgid "form_send_email"
 msgstr "Enviar e-mail para o destinatário"
 
 #: components/Sidebar
+# defaultMessage: Submit button label
 msgid "form_submit_label"
 msgstr "Texto do botão de enviar"
 
 #: components/FormView
+# defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Enviado!"
 
 #: components/Sidebar
+# defaultMessage: Recipients
 msgid "form_to"
 msgstr "Destinatários"
 
 #: components/Sidebar
+# defaultMessage: undefined
 msgid "form_useAsReplyTo"
 msgstr "Utilizar como 'responder para'"
 
 #: components/Sidebar
+# defaultMessage: undefined
 msgid "form_useAsReplyTo_description"
 msgstr "Usar este campo como valor do cabeçalho de 'responder para'"
 
 #: components/Sidebar
+# defaultMessage: Invisible captcha
 msgid "invisible_hcaptcha"
 msgstr "Captcha invisível"
 
 #: components/Sidebar
+# defaultMessage: See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode
 msgid "invisible_hcaptcha_desc"
 msgstr "Leia mais em https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
 
 #: components/Sidebar
+# defaultMessage: Title
 msgid "title"
 msgstr "título"
