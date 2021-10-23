@@ -1,4 +1,4 @@
-# volto-block-form
+# volto-form-block
 
 Volto addon which adds a customizable form using a block.
 Intended to be used with [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport).
