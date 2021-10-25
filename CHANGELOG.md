@@ -1,3 +1,15 @@
+## [2.1.0](https://github.com/collective/volto-form-block/compare/v2.0.3...v2.1.0) (2021-10-25)
+
+
+### Bug Fixes
+
+* readme title ([2d56ace](https://github.com/collective/volto-form-block/commit/2d56aced8a7ebd1bfbbbde1054694948f6b17396))
+
+
+### Maintenance
+
+* upgrade to volto 14, use @plone/script i18n ([3069217](https://github.com/collective/volto-form-block/commit/30692170860ebe50df5677d6992b209a8995fc10))
+
 ### [2.0.3](https://github.com/collective/volto-form-block/compare/v2.0.2...v2.0.3) (2021-10-19)
 
 
