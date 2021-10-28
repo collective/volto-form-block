@@ -181,6 +181,11 @@ const messages = defineMessages({
     defineMessages:
       'If selected, this will be the address the receiver can use to reply.',
   },
+  custom_endpoint: {
+    id: 'form_custom_endpoint',
+    defineMessages:
+      'You can define a custom endpoint where the form data will be sent',
+  },
 });
 
 const Sidebar = ({
@@ -288,6 +293,19 @@ const Sidebar = ({
             title={intl.formatMessage(messages.submit_label)}
             required={false}
             value={data.submit_label}
+            onChange={(name, value) => {
+              onChangeBlock(block, {
+                ...data,
+                [name]: value,
+              });
+            }}
+          />
+
+          <TextWidget
+            id="custom_endpoint"
+            title={intl.formatMessage(messages.custom_endpoint)}
+            required={false}
+            value={data.custom_endpoint}
             onChange={(name, value) => {
               onChangeBlock(block, {
                 ...data,

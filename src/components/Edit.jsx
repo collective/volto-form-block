@@ -45,6 +45,7 @@ class Edit extends SubblocksEdit {
       this.props.onChangeBlock(this.props.block, {
         ...this.props.data,
         default_from: 'noreply@plone.org',
+        custom_endpoint: '/@submit-form',
         lastChange: new Date().getTime(),
       });
     }
