@@ -5,244 +5,246 @@ msgstr ""
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language: \n"
+"Language: eu\n"
 "Language-Team: \n"
-"Content-Type: \n"
-"Content-Transfer-Encoding: \n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 2.3\n"
 
 #: components/Edit
 # defaultMessage: Aggiungi un campo
 msgid "Add field"
-msgstr ""
+msgstr "Gehitu eremua"
 
 #: components/Sidebar
 # defaultMessage: Cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #: components/FormView
 # defaultMessage: Error
 msgid "Error"
-msgstr ""
+msgstr "Errorea"
 
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"
-msgstr ""
+msgstr "Formularioa"
 
 #: components/Sidebar
 # defaultMessage: Description
 msgid "description"
-msgstr ""
+msgstr "Deskribapena"
 
 #: components/View
 # defaultMessage: Form successfully submitted
 msgid "formSubmitted"
-msgstr ""
+msgstr "Formularioa ondo bidali da"
 
 #: components/Sidebar
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_info_text"
-msgstr ""
+msgstr "Atxikitutako fitxategia posta elektronikoz bidaliko da baina ez da inon gordeko"
 
 #: components/Sidebar
 # defaultMessage: Clear data
 msgid "form_clear_data"
-msgstr ""
+msgstr "Garbitu datuak"
 
 #: components/Sidebar
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
-msgstr ""
+msgstr "Ziur zaude mezu guztiak ezabatu nahi dituzula?"
 
 #: components/Sidebar
 # defaultMessage: Default sender
 msgid "form_default_from"
-msgstr ""
+msgstr "Defektuzko bidaltzailea"
 
 #: components/Sidebar
 # defaultMessage: This address will be used as the sender of the email with the form data
 msgid "form_default_from_description"
-msgstr ""
+msgstr "Helbide hau formularioaren datuak dituen posta elektronikoaren bidaltzaile gisa erabiliko da"
 
 #: components/Sidebar
 # defaultMessage: Mail subject
 msgid "form_default_subject"
-msgstr ""
+msgstr "Mezuaren gaia"
 
 #: components/Edit
 #: components/FormView
 # defaultMessage: Invia
 msgid "form_default_submit_label"
-msgstr ""
+msgstr "Bidali"
 
 #: components/Sidebar
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
-msgstr ""
+msgstr "Esportatu datuak"
 
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
-msgstr ""
+msgstr "Adi!"
 
 #: components/Edit
 # defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
-msgstr ""
+msgstr "'Bidaltzailearen posta elektronikoa' motako eremu bat gehitu. Ez baduzu hori egiten edo gehitzen baduzu baina erabiltzaileak ez badu betetzen, mezuaren bidaltzailea formularioaren konfigurazioan ezarritakoa izango da."
 
 #: components/FormView
 # defaultMessage: Fill in the required fields
 msgid "form_empty_values_validation"
-msgstr ""
+msgstr "Bete derrigorrezko eremuak"
 
 #: components/Sidebar
 # defaultMessage: Description
 msgid "form_field_description"
-msgstr ""
+msgstr "Deskribapena"
 
 #: components/Sidebar
 # defaultMessage: Possible values
 msgid "form_field_input_values"
-msgstr ""
+msgstr "Balio posibleak"
 
 #: components/Sidebar
 # defaultMessage: Label
 msgid "form_field_label"
-msgstr ""
+msgstr "Etiketa"
 
 #: components/Sidebar
 # defaultMessage: Name
 msgid "form_field_name"
-msgstr ""
+msgstr "Izena"
 
 #: components/Sidebar
 # defaultMessage: The name must contain spaces, and can only contain alphanumeric characters in addition to the "-" and "_" characters. The name is the same as the name of the parameter.
 msgid "form_field_name_description"
-msgstr ""
+msgstr "Izenak espazioak izan behar ditu eta karaktere alfabetikoak, "-" eta "_" onartzen ditu bakarrik. Izena parametroaren izena ezartzeko erabiliko da."
 
 #: components/Sidebar
 # defaultMessage: Required
 msgid "form_field_required"
-msgstr ""
+msgstr "Beharrezkoa"
 
 #: components/Sidebar
 # defaultMessage: Field type
 msgid "form_field_type"
-msgstr ""
+msgstr "Eremu-mota"
 
 #: components/Sidebar
 # defaultMessage: Attachment
 msgid "form_field_type_attachment"
-msgstr ""
+msgstr "Fitxategia"
 
 #: components/Sidebar
 # defaultMessage: Checkbox
 msgid "form_field_type_checkbox"
-msgstr ""
+msgstr "Aukeraketa-kutxa"
 
 #: components/Sidebar
 # defaultMessage: Date
 msgid "form_field_type_date"
-msgstr ""
+msgstr "Data"
 
 #: components/Sidebar
 # defaultMessage: E-mail
 msgid "form_field_type_from"
-msgstr ""
+msgstr "Posta elektronikoa"
 
 #: components/Sidebar
 # defaultMessage: Multiple choice
 msgid "form_field_type_multiple_choice"
-msgstr ""
+msgstr "Aukeraketa anitza"
 
 #: components/Sidebar
 # defaultMessage: List
 msgid "form_field_type_select"
-msgstr ""
+msgstr "Zerrenda"
 
 #: components/Sidebar
 # defaultMessage: Single choice
 msgid "form_field_type_single_choice"
-msgstr ""
+msgstr "Aukeraketa bakarreko kutxa"
 
 #: components/Sidebar
 # defaultMessage: Static text
 msgid "form_field_type_static_text"
-msgstr ""
+msgstr "Testu estatikoa"
 
 #: components/Sidebar
 # defaultMessage: Text
 msgid "form_field_type_text"
-msgstr ""
+msgstr "Testua"
 
 #: components/Sidebar
 # defaultMessage: Textarea
 msgid "form_field_type_textarea"
-msgstr ""
+msgstr "Testua"
 
 #: components/Sidebar
 # defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
-msgstr ""
+msgstr "Gordetako elementu kopurua: {formDataCount}"
 
 #: components/FormView
 # defaultMessage: Clear
 msgid "form_reset"
-msgstr ""
+msgstr "Garbitu"
 
 #: components/Sidebar
 # defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
-msgstr ""
+msgstr "Gorde jasotako datuak"
 
 #: components/Field
 # defaultMessage: Select a value
 msgid "form_select_a_value"
-msgstr ""
+msgstr "Aukeratu balio bat"
 
 #: components/Sidebar
 # defaultMessage: Send email to recipient
 msgid "form_send_email"
-msgstr ""
+msgstr "Bidali posta elektronikoa jasotzaileari"
 
 #: components/Sidebar
 # defaultMessage: Submit button label
 msgid "form_submit_label"
-msgstr ""
+msgstr "Bidalketa botoiaren etiketa"
 
 #: components/FormView
 # defaultMessage: Sent!
 msgid "form_submit_success"
-msgstr ""
+msgstr "Bidalita!"
 
 #: components/Sidebar
 # defaultMessage: Recipients
 msgid "form_to"
-msgstr ""
+msgstr "Jasotzaileak"
 
 #: components/Sidebar
 # defaultMessage: undefined
 msgid "form_useAsReplyTo"
-msgstr ""
+msgstr "Nori erantzun gisa erabili"
 
 #: components/Sidebar
 # defaultMessage: undefined
 msgid "form_useAsReplyTo_description"
-msgstr ""
+msgstr "Aukeratuz gero jasotako posta elektronikoari "Erantzun" eginez gero eremu honetan adierazitako helbidera joango da erantzuna"
 
 #: components/Sidebar
 # defaultMessage: Invisible captcha
 msgid "invisible_hcaptcha"
-msgstr ""
+msgstr "Captcha ikustezina"
 
 #: components/Sidebar
 # defaultMessage: See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode
 msgid "invisible_hcaptcha_desc"
-msgstr ""
+msgstr "Ikusi https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
 
 #: components/Sidebar
 # defaultMessage: Title
 msgid "title"
-msgstr ""
+msgstr "Izenburua"
