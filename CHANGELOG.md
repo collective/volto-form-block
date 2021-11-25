@@ -1,3 +1,11 @@
+### [2.1.1](https://github.com/collective/volto-form-block/compare/v2.1.0...v2.1.1) (2021-11-25)
+
+
+### Maintenance
+
+* **i18n:** add es translation ([86ebaba](https://github.com/collective/volto-form-block/commit/86ebaba68e6bc0de0866e43f8ee80135422f948c))
+* **i18n:** add eu translation ([c1ee795](https://github.com/collective/volto-form-block/commit/c1ee795dd92fe23c07ff6e13039b291e6497924e))
+
 ## [2.1.0](https://github.com/collective/volto-form-block/compare/v2.0.3...v2.1.0) (2021-10-25)
 
 
