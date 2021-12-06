@@ -3,6 +3,8 @@
  * @module actions/submitForm
  */
 
+import { flattenToAppURL } from '@plone/volto/helpers';
+
 export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
 
 /**
@@ -18,7 +20,7 @@ export function submitForm(path = '', block_id, data, attachments) {
     type: SUBMIT_FORM_ACTION,
     request: {
       op: 'post',
-      path: path + '/@submit-form',
+      path: flattenToAppURL(path + '/@submit-form'),
       data: {
         block_id,
         data,
@@ -39,7 +41,7 @@ export function exportCsvFormData(path = '') {
     type: EXPORT_CSV_FORMDATA,
     request: {
       op: 'get',
-      path: path + '/@form-data-export',
+      path: flattenToAppURL(path + '/@form-data-export'),
     },
   };
 }
@@ -55,7 +57,7 @@ export function getFormData(path = '') {
     type: GET_FORM_DATA,
     request: {
       op: 'get',
-      path: path + '/@form-data',
+      path: flattenToAppURL(path + '/@form-data'),
     },
   };
 }
@@ -71,7 +73,7 @@ export function clearFormData(path = '') {
     type: CLEAR_FORM_DATA,
     request: {
       op: 'get',
-      path: path + '/@form-data-clear',
+      path: flattenToAppURL(path + '/@form-data-clear'),
     },
   };
 }
