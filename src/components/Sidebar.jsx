@@ -546,7 +546,8 @@ const Sidebar = ({
                           });
                         }}
                         required={true}
-                        value={subblock.input_values}
+                        value={subblock.input_values ?? []}
+                        creatable={true}
                       />
                     )}
 
