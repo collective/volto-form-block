@@ -1,3 +1,10 @@
+### [2.1.2](https://github.com/collective/volto-form-block/compare/v2.1.1...v2.1.2) (2022-01-04)
+
+
+### Bug Fixes
+
+* fixed ArrayWidget in sidebar ([ad43bbd](https://github.com/collective/volto-form-block/commit/ad43bbded5e061d7f595db5e0fda7eba54756c0d))
+
 ### [2.1.1](https://github.com/collective/volto-form-block/compare/v2.1.0...v2.1.1) (2021-11-25)
 
 
