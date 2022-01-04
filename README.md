@@ -10,6 +10,7 @@ yarn add volto-form-block
 ```
 
 > **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
+> **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
 
 ## Features
 
