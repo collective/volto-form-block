@@ -122,6 +122,7 @@ export default (props) => {
     properties: {
       label: {
         title: intl.formatMessage(messages.field_label),
+        send_to_backend: true,
       },
       description: {
         title: intl.formatMessage(messages.field_description),
