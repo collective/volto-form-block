@@ -15,6 +15,8 @@ import {
   exportCsvFormData,
   clearFormData,
 } from './reducers';
+import FormSchema from './formSchema';
+import FieldSchema from './fieldSchema';
 export { submitForm, getFormData, exportCsvFormData } from './actions';
 
 const applyConfig = (config) => {
@@ -27,6 +29,8 @@ const applyConfig = (config) => {
       group: 'text',
       view: View,
       edit: Edit,
+      formSchema: FormSchema,
+      fieldSchema: FieldSchema,
       additionalFields: [],
       restricted: false,
       mostUsed: true,
