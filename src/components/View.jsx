@@ -78,8 +78,8 @@ const View = ({ data, id, path }) => {
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
 
-  const onChangeFormData = (field_id, field, value, label) => {
-    setFormData({ field, value: { field_id, value, label } });
+  const onChangeFormData = (field_id, field, value, extras) => {
+    setFormData({ field, value: { field_id, value, ...extras } });
   };
 
   useEffect(() => {
