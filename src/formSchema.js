@@ -43,8 +43,8 @@ const messages = defineMessages({
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
   },
-  attachmentInfoText: {
-    id: 'form_attachment_info_text',
+  attachmentSendEmail: {
+    id: 'form_attachment_send_email_info_text',
     defaultMessage: 'Attached file will be sent via email, but not stored',
   },
   send: {
@@ -105,7 +105,7 @@ export default () => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
-        description: intl.formatMessage(messages.attachmentInfoText),
+        description: intl.formatMessage(messages.attachmentSendEmail),
       },
       send: {
         type: 'boolean',

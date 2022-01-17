@@ -185,15 +185,7 @@ const Sidebar = ({
                       schema={FieldSchema(subblock)}
                       onChangeField={(name, value) => {
                         var update_values = {};
-                        if (
-                          [
-                            'select',
-                            'single_choice',
-                            'multiple_choice',
-                          ].indexOf(value) < 0
-                        ) {
-                          update_values.input_values = null;
-                        }
+
                         onChangeSubBlock(index, {
                           ...subblock,
                           [name]: value,

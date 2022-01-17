@@ -51,6 +51,10 @@ const messages = defineMessages({
     id: 'form_field_type_attachment',
     defaultMessage: 'Attachment',
   },
+  field_type_attachment_info_text: {
+    id: 'form_field_type_attachment_info_text',
+    defaultMessage: 'Any attachments can be emailed, but will not be saved.',
+  },
   field_type_from: {
     id: 'form_field_type_from',
     defaultMessage: 'E-mail',
@@ -93,7 +97,11 @@ export default (props) => {
   ];
   var attachmentDescription =
     props?.field_type === 'attachment'
-      ? { description: intl.formatMessage(messages.attachmentInfoText) }
+      ? {
+          description: intl.formatMessage(
+            messages.field_type_attachment_info_text,
+          ),
+        }
       : {};
   var fieldTypeChoices = [
     'select',
