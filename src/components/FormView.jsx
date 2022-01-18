@@ -71,7 +71,7 @@ const FormView = ({
   var fieldSchemaProperties = FieldSchema()?.properties;
   var fields_to_send = [];
   for (var key in fieldSchemaProperties) {
-    if (fieldSchemaProperties[key].send_to_backend ?? true) {
+    if (fieldSchemaProperties[key].send_to_backend) {
       //send by default
       fields_to_send.push(key);
     }
@@ -135,7 +135,6 @@ const FormView = ({
                     ...fields_to_send.map((field) => {
                       return {
                         [field]: subblock[field],
-                        label: subblock.label,
                       };
                     }),
                   );
