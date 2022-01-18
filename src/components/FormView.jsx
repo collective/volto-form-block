@@ -72,7 +72,6 @@ const FormView = ({
   var fields_to_send = [];
   for (var key in fieldSchemaProperties) {
     if (fieldSchemaProperties[key].send_to_backend) {
-      //send by default
       fields_to_send.push(key);
     }
   }
