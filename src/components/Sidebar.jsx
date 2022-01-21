@@ -13,15 +13,7 @@ import {
 } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import {
-  Icon,
-  TextWidget,
-  CheckboxWidget,
-  SelectWidget,
-  ArrayWidget,
-  FormFieldWrapper,
-  TextareaWidget,
-} from '@plone/volto/components';
+import { Icon } from '@plone/volto/components';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
@@ -32,122 +24,9 @@ import { getFormData, exportCsvFormData, clearFormData } from '../actions';
 
 import config from '@plone/volto/registry';
 
+import { BlockDataForm } from '@plone/volto/components';
+
 const messages = defineMessages({
-  title: {
-    id: 'title',
-    defaultMessage: 'Title',
-  },
-  description: {
-    id: 'description',
-    defaultMessage: 'Description',
-  },
-  default_to: {
-    id: 'form_to',
-    defaultMessage: 'Recipients',
-  },
-  submit_label: {
-    id: 'form_submit_label',
-    defaultMessage: 'Submit button label',
-  },
-  invisibleHCaptcha: {
-    id: 'invisible_hcaptcha',
-    defaultMessage: 'Invisible captcha',
-  },
-  invisibleHCaptchaDescription: {
-    id: 'invisible_hcaptcha_desc',
-    defaultMessage:
-      'See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode',
-  },
-  field_label: {
-    id: 'form_field_label',
-    defaultMessage: 'Label',
-  },
-  field_description: {
-    id: 'form_field_description',
-    defaultMessage: 'Description',
-  },
-  field_name: {
-    id: 'form_field_name',
-    defaultMessage: 'Name',
-  },
-  field_name_description: {
-    id: 'form_field_name_description',
-    defaultMessage:
-      'The name must contain spaces, and can only contain alphanumeric characters in addition to the "-" and "_" characters. The name is the same as the name of the parameter.',
-  },
-  field_required: {
-    id: 'form_field_required',
-    defaultMessage: 'Required',
-  },
-  field_type: {
-    id: 'form_field_type',
-    defaultMessage: 'Field type',
-  },
-  field_type_text: {
-    id: 'form_field_type_text',
-    defaultMessage: 'Text',
-  },
-  field_type_textarea: {
-    id: 'form_field_type_textarea',
-    defaultMessage: 'Textarea',
-  },
-  field_type_select: {
-    id: 'form_field_type_select',
-    defaultMessage: 'List',
-  },
-  field_type_single_choice: {
-    id: 'form_field_type_single_choice',
-    defaultMessage: 'Single choice',
-  },
-  field_type_multiple_choice: {
-    id: 'form_field_type_multiple_choice',
-    defaultMessage: 'Multiple choice',
-  },
-  field_type_checkbox: {
-    id: 'form_field_type_checkbox',
-    defaultMessage: 'Checkbox',
-  },
-  field_type_date: {
-    id: 'form_field_type_date',
-    defaultMessage: 'Date',
-  },
-  field_type_attachment: {
-    id: 'form_field_type_attachment',
-    defaultMessage: 'Attachment',
-  },
-  field_type_from: {
-    id: 'form_field_type_from',
-    defaultMessage: 'E-mail',
-  },
-  field_type_static_text: {
-    id: 'form_field_type_static_text',
-    defaultMessage: 'Static text',
-  },
-  field_input_values: {
-    id: 'form_field_input_values',
-    defaultMessage: 'Possible values',
-  },
-  default_subject: {
-    id: 'form_default_subject',
-    defaultMessage: 'Mail subject',
-  },
-  default_from: {
-    id: 'form_default_from',
-    defaultMessage: 'Default sender',
-  },
-  default_from_description: {
-    id: 'form_default_from_description',
-    defaultMessage:
-      'This address will be used as the sender of the email with the form data',
-  },
-  store: {
-    id: 'form_save_persistent_data',
-    defaultMessage: 'Store compiled data',
-  },
-  send: {
-    id: 'form_send_email',
-    defaultMessage: 'Send email to recipient',
-  },
   exportCsv: {
     id: 'form_edit_exportCsv',
     defaultMessage: 'Export data',
@@ -167,19 +46,6 @@ const messages = defineMessages({
   cancel: {
     id: 'Cancel',
     defaultMessage: 'Cancel',
-  },
-  attachmentInfoText: {
-    id: 'form_attachment_info_text',
-    defaultMessage: 'Attached file will be sent via email, but not stored',
-  },
-  useAsReplyTo: {
-    id: 'form_useAsReplyTo',
-    defineMessages: "Use as 'reply to'",
-  },
-  useAsReplyTo_description: {
-    id: 'form_useAsReplyTo_description',
-    defineMessages:
-      'If selected, this will be the address the receiver can use to reply.',
   },
 });
 
@@ -211,7 +77,8 @@ const Sidebar = ({
     data.subblocks.forEach((subblock) => {
       subblock.field_id = subblock.id;
     });
-
+  var FormSchema = config.blocks.blocksConfig.form.formSchema;
+  var FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
   return (
     <Form>
       <Segment.Group raised>
@@ -221,139 +88,16 @@ const Sidebar = ({
           </h2>
         </header>
         <Segment>
-          <TextWidget
-            id="title"
-            title={intl.formatMessage(messages.title)}
-            required={false}
-            value={data.title}
-            onChange={(name, value) => {
+          <BlockDataForm
+            schema={FormSchema(data)}
+            onChangeField={(id, value) => {
               onChangeBlock(block, {
                 ...data,
-                [name]: value,
+                [id]: value,
               });
             }}
+            formData={data}
           />
-          <TextareaWidget
-            id="description"
-            title={intl.formatMessage(messages.description)}
-            required={false}
-            value={data.description}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-          <TextWidget
-            id="default_to"
-            title={intl.formatMessage(messages.default_to)}
-            required={true}
-            value={data.default_to}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-          <TextWidget
-            id="default_from"
-            title={intl.formatMessage(messages.default_from)}
-            description={intl.formatMessage(messages.default_from_description)}
-            required={true}
-            value={data.default_from}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-
-          <TextWidget
-            id="default_subject"
-            title={intl.formatMessage(messages.default_subject)}
-            required={true}
-            value={data.default_subject}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-          <TextWidget
-            id="submit_label"
-            title={intl.formatMessage(messages.submit_label)}
-            required={false}
-            value={data.submit_label}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-
-          {process.env.RAZZLE_HCAPTCHA_KEY && (
-            <CheckboxWidget
-              id="invisibleHCaptcha"
-              title={intl.formatMessage(messages.invisibleHCaptcha)}
-              description={intl.formatMessage(
-                messages.invisibleHCaptchaDescription,
-              )}
-              required={false}
-              value={data.invisibleHCaptcha ?? false}
-              onChange={(name, value) => {
-                onChangeBlock(block, {
-                  ...data,
-                  [name]: value,
-                });
-              }}
-            />
-          )}
-
-          <CheckboxWidget
-            id="store"
-            title={intl.formatMessage(messages.store)}
-            required={false}
-            value={data.store ?? false}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-          <Form.Field inline className="help">
-            <Grid>
-              <Grid.Row stretched>
-                <Grid.Column stretched width="12">
-                  <p
-                    className="help"
-                    style={{ marginTop: '-1rem', background: '#fff' }}
-                  >
-                    {intl.formatMessage(messages.attachmentInfoText)}
-                  </p>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Form.Field>
-
-          <CheckboxWidget
-            id="send"
-            title={intl.formatMessage(messages.send)}
-            required={false}
-            value={data.send ?? false}
-            onChange={(name, value) => {
-              onChangeBlock(block, {
-                ...data,
-                [name]: value,
-              });
-            }}
-          />
-
           {properties?.['@components']?.form_data && (
             <Form.Field inline>
               <Grid>
@@ -437,151 +181,18 @@ const Sidebar = ({
                     )}
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
-                    <TextWidget
-                      id="label"
-                      title={intl.formatMessage(messages.field_label)}
-                      required={true}
-                      value={subblock.label}
-                      onChange={(name, value) => {
-                        onChangeSubBlock(index, {
-                          ...subblock,
-                          [name]: value,
-                        });
-                      }}
-                    />
-                    <TextWidget
-                      id="description"
-                      title={intl.formatMessage(messages.field_description)}
-                      value={subblock.description}
-                      onChange={(name, value) => {
-                        onChangeSubBlock(index, {
-                          ...subblock,
-                          [name]: value,
-                        });
-                      }}
-                    />
-
-                    <SelectWidget
-                      id="field_type"
-                      title={intl.formatMessage(messages.field_type)}
-                      required={true}
-                      value={subblock.field_type || ''}
-                      onChange={(name, value) => {
+                    <BlockDataForm
+                      schema={FieldSchema(subblock)}
+                      onChangeField={(name, value) => {
                         var update_values = {};
-                        if (
-                          [
-                            'select',
-                            'single_choice',
-                            'multiple_choice',
-                          ].indexOf(value) < 0
-                        ) {
-                          update_values.input_values = null;
-                        }
+
                         onChangeSubBlock(index, {
                           ...subblock,
                           [name]: value,
                           ...update_values,
                         });
                       }}
-                      choices={[
-                        ['text', intl.formatMessage(messages.field_type_text)],
-                        [
-                          'textarea',
-                          intl.formatMessage(messages.field_type_textarea),
-                        ],
-                        [
-                          'select',
-                          intl.formatMessage(messages.field_type_select),
-                        ],
-                        [
-                          'single_choice',
-                          intl.formatMessage(messages.field_type_single_choice),
-                        ],
-                        [
-                          'multiple_choice',
-                          intl.formatMessage(
-                            messages.field_type_multiple_choice,
-                          ),
-                        ],
-                        [
-                          'checkbox',
-                          intl.formatMessage(messages.field_type_checkbox),
-                        ],
-                        ['date', intl.formatMessage(messages.field_type_date)],
-                        [
-                          'attachment',
-                          intl.formatMessage(messages.field_type_attachment),
-                        ],
-                        ['from', intl.formatMessage(messages.field_type_from)],
-                        [
-                          'static_text',
-                          intl.formatMessage(messages.field_type_static_text),
-                        ],
-                        ...(config.blocks.blocksConfig.form.additionalFields?.map(
-                          (fieldType) => [fieldType.id, fieldType.label],
-                        ) ?? []),
-                      ]}
-                    />
-
-                    {subblock.field_type === 'attachment' && (
-                      <FormFieldWrapper id="attachment-info" columns={1}>
-                        <div className="wrapper">
-                          <small>
-                            {intl.formatMessage(messages.attachmentInfoText)}
-                          </small>
-                        </div>
-                      </FormFieldWrapper>
-                    )}
-
-                    {['select', 'single_choice', 'multiple_choice'].indexOf(
-                      subblock.field_type,
-                    ) >= 0 && (
-                      <ArrayWidget
-                        id="input_values"
-                        title={intl.formatMessage(messages.field_input_values)}
-                        onChange={(name, value) => {
-                          onChangeSubBlock(index, {
-                            ...subblock,
-                            [name]: value,
-                          });
-                        }}
-                        required={true}
-                        value={subblock.input_values ?? []}
-                        creatable={true}
-                      />
-                    )}
-
-                    {subblock.field_type === 'from' && (
-                      <CheckboxWidget
-                        id="use_as_reply_to"
-                        title={intl.formatMessage(messages.useAsReplyTo)}
-                        description={intl.formatMessage(
-                          messages.useAsReplyTo_description,
-                        )}
-                        value={
-                          subblock.use_as_reply_to
-                            ? subblock.use_as_reply_to
-                            : false
-                        }
-                        onChange={(name, value) => {
-                          onChangeSubBlock(index, {
-                            ...subblock,
-                            [name]: value,
-                          });
-                        }}
-                      />
-                    )}
-
-                    <CheckboxWidget
-                      id="required"
-                      title={intl.formatMessage(messages.field_required)}
-                      value={subblock.required ? subblock.required : false}
-                      onChange={(name, value) => {
-                        onChangeSubBlock(index, {
-                          ...subblock,
-                          [name]: value,
-                        });
-                      }}
+                      formData={subblock}
                     />
                   </Accordion.Content>
                 </div>
