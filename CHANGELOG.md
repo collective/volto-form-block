@@ -1,3 +1,16 @@
+### [2.2.1](https://github.com/collective/volto-form-block/compare/v2.1.2...v2.2.1) (2022-01-21)
+
+
+### Bug Fixes
+
+* fix package.json ([b2d556d](https://github.com/collective/volto-form-block/commit/b2d556d5b4f8a7de2df5732c39394e081022141d))
+
+
+### Maintenance
+
+* removed comment ([4e3aa08](https://github.com/collective/volto-form-block/commit/4e3aa088f458d6b7417c7ee04ce15b7d3923a11d))
+* revert some fixes ([2107bee](https://github.com/collective/volto-form-block/commit/2107bee7f9d9ec34e24c2787b543bdd382da6b56))
+
 ### [2.1.2](https://github.com/collective/volto-form-block/compare/v2.1.1...v2.1.2) (2022-01-04)
 
 
