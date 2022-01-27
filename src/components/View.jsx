@@ -148,9 +148,7 @@ const View = ({ data, id, path }) => {
           path,
           id,
           Object.keys(formData).map((name) => ({
-            field_id: formData[name].field_id,
-            label: formData[name].label,
-            value: formData[name].value,
+            ...formData[name]
           })),
           attachments,
         ),
