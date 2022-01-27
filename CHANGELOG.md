@@ -1,3 +1,5 @@
+### [2.2.2](https://github.com/collective/volto-form-block/compare/v2.2.1...v2.2.2) (2022-01-27)
+
 ### [2.2.1](https://github.com/collective/volto-form-block/compare/v2.1.2...v2.2.1) (2022-01-21)
 
 
