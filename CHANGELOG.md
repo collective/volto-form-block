@@ -1,5 +1,10 @@
 ### [2.2.3](https://github.com/collective/volto-form-block/compare/v2.2.2...v2.2.3) (2022-01-28)
 
+### Maintenance
+
+* **i18n:** add german translations ([c9d7c98](https://github.com/collective/volto-form-block/pull/21/commits/c9d7c98b548137de4139a7f06bf187af228c0cfb))
+
+
 ### [2.2.2](https://github.com/collective/volto-form-block/compare/v2.2.1...v2.2.2) (2022-01-27)
 
 ### [2.2.1](https://github.com/collective/volto-form-block/compare/v2.1.2...v2.2.1) (2022-01-21)
