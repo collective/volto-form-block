@@ -44,6 +44,7 @@ const Field = ({
   disabled = false,
   formHasErrors = false,
   id,
+  labelsAsPlaceholders,
 }) => {
   const intl = useIntl();
 
@@ -57,13 +58,15 @@ const Field = ({
         <TextWidget
           id={name}
           name={name}
-          title={label}
+          title={labelsAsPlaceholders ? '' : label}
+          placeholder={labelsAsPlaceholders ? label : ''}
           description={description}
           required={required}
           onChange={onChange}
           value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
+          columns={labelsAsPlaceholders ? 1 : undefined}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
@@ -71,7 +74,8 @@ const Field = ({
         <TextareaWidget
           id={name}
           name={name}
-          title={label}
+          title={labelsAsPlaceholders ? '' : label}
+          placeholder={labelsAsPlaceholders ? label : ''}
           description={description}
           required={required}
           onChange={onChange}
@@ -86,7 +90,7 @@ const Field = ({
         <SelectWidget
           id={name}
           name={name}
-          title={label}
+          title={labelsAsPlaceholders ? '' : label}
           description={description}
           getVocabulary={() => {}}
           getVocabularyTokenTitle={() => {}}
@@ -183,7 +187,8 @@ const Field = ({
         <EmailWidget
           id={name}
           name={name}
-          title={label}
+          title={labelsAsPlaceholders ? '' : label}
+          placeholder={labelsAsPlaceholders ? label : ''}
           description={description}
           required={required}
           onChange={onChange}

@@ -123,6 +123,7 @@ const FormView = ({
                         disabled
                         valid
                         formHasErrors={formErrors?.length > 0}
+                        labelsAsPlaceholders={data.labelsAsPlaceholders}
                       />
                     </Grid.Column>
                   </Grid.Row>
@@ -159,6 +160,7 @@ const FormView = ({
                           }
                           valid={isValidField(name)}
                           formHasErrors={formErrors?.length > 0}
+                          labelsAsPlaceholders={data.labelsAsPlaceholders}
                         />
                       </Grid.Column>
                     </Grid.Row>

@@ -74,6 +74,7 @@ export default () => {
           ...invisibleHCaptcha,
           'store',
           'send',
+          'labelsAsPlaceholders',
         ],
       },
     ],
@@ -110,6 +111,10 @@ export default () => {
       send: {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
+      },
+      labelsAsPlaceholders: {
+        type: 'boolean',
+        title: 'Use labels as placeholders',
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
