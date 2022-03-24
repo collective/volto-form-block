@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2022-01-17T15:37:37.006Z\n"
+"POT-Creation-Date: 2022-03-24T09:14:19.679Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -220,12 +220,22 @@ msgid "form_to"
 msgstr ""
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: Send an email copy to this address
+msgid "form_useAsBCC"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: If selected, a copy of email will be sent to this address.
+msgid "form_useAsBCC_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr ""
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr ""
 

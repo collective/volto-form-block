@@ -39,7 +39,7 @@ msgstr "Descrizione"
 #: formSchema
 # defaultMessage: Form
 msgid "form"
-msgstr ""
+msgstr "Form"
 
 #: components/View
 # defaultMessage: Form successfully submitted
@@ -49,7 +49,7 @@ msgstr "Form invato correttamente"
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
-msgstr ""
+msgstr "Il file allegato sarà inviato via email, ma non verrà salvato"
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -218,12 +218,22 @@ msgid "form_to"
 msgstr "Destinatari"
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: Send an email copy to this address
+msgid "form_useAsBCC"
+msgstr "Invia una copia dell'email a questo indirizzo"
+
+#: fieldSchema
+# defaultMessage: If selected, a copy of email will be sent to this address.
+msgid "form_useAsBCC_description"
+msgstr "Se selezionato, una copia dell'email verrà inviata anche a questo indirizzo."
+
+#: fieldSchema
+# defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr "Usa come 'reply to'"
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà rispondere."
 
