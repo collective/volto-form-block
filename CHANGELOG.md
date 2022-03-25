@@ -1,3 +1,10 @@
+## [2.3.0](https://github.com/collective/volto-form-block/compare/v2.2.3...v2.3.0) (2022-03-25)
+
+
+### Features
+
+* added use_as_bcc for 'email' field ([b46b1fa](https://github.com/collective/volto-form-block/commit/b46b1fa9c421fba9631151e66bdecdae61fcd423))
+
 ### [2.2.3](https://github.com/collective/volto-form-block/compare/v2.2.2...v2.2.3) (2022-01-28)
 
 ### Maintenance
