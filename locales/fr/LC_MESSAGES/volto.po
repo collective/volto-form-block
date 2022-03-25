@@ -218,12 +218,22 @@ msgid "form_to"
 msgstr "Bénéficiaires"
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: Send an email copy to this address
+msgid "form_useAsBCC"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: If selected, a copy of email will be sent to this address.
+msgid "form_useAsBCC_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr ""
 
 #: fieldSchema
-# defaultMessage: undefined
+# defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr ""
 
