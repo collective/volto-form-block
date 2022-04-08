@@ -58,7 +58,7 @@ const FormView = ({
 
   const onVerifyCaptcha = useCallback(
     (token) => {
-      captcha.current = { captcha_provider, token };
+      captcha.current = { provider: captcha_provider, token };
     },
     [captcha],
   );
