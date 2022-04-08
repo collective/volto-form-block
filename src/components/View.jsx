@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
@@ -77,6 +77,7 @@ const View = ({ data, id, path }) => {
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
+  const captcha = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({ field, value: { field_id, value, ...extras } });
@@ -151,6 +152,7 @@ const View = ({ data, id, path }) => {
             ...formData[name]
           })),
           attachments,
+          captcha.current,
         ),
       );
       setFormState({ type: FORM_STATES.loading });
@@ -189,6 +191,7 @@ const View = ({ data, id, path }) => {
       formState={formState}
       formErrors={formErrors}
       formData={formData}
+      captcha={captcha}
       onChangeFormData={onChangeFormData}
       data={data}
       onSubmit={submit}

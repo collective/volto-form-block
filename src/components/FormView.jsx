@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import {
   Segment,
@@ -46,21 +46,21 @@ const FormView = ({
   data,
   onSubmit,
   resetFormState,
+  captcha,
 }) => {
   const intl = useIntl();
 
-  const captcha = !!process.env.RAZZLE_HCAPTCHA_KEY
+  const captcha_provider = !!process.env.RAZZLE_HCAPTCHA_KEY
     ? 'HCaptcha'
     : !!process.env.RAZZLE_RECAPTCHA_KEY
     ? 'GoogleReCaptcha'
     : null;
 
-  let validToken = useRef('');
   const onVerifyCaptcha = useCallback(
     (token) => {
-      validToken.current = token;
+      captcha.current = { captcha_provider, token };
     },
-    [validToken],
+    [captcha],
   );
 
   const isValidField = (field) => {
@@ -165,11 +165,11 @@ const FormView = ({
                   );
                 })}
 
-                {captcha === 'GoogleReCaptcha' && (
+                {captcha_provider === 'GoogleReCaptcha' && (
                   <GoogleReCaptchaWidget onVerify={onVerifyCaptcha} />
                 )}
 
-                {captcha === 'HCaptcha' && (
+                {captcha_provider === 'HCaptcha' && (
                   <HCaptchaWidget
                     sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
                     onVerify={onVerifyCaptcha}
@@ -192,7 +192,7 @@ const FormView = ({
                       primary
                       type="submit"
                       disabled={
-                        (captcha && !validToken?.current) || formState.loading
+                        (captcha_provider && !captcha?.current?.token) || formState.loading
                       }
                     >
                       {data.submit_label ||
