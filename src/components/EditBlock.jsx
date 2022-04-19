@@ -8,7 +8,7 @@ import { compose } from 'redux';
 
 import { DNDSubblocks, SubblockEdit, Subblock } from 'volto-subblocks';
 
-import Field from 'volto-form-block/components/Field';
+import Field from './Field';
 import { getFieldName } from './utils';
 
 /**

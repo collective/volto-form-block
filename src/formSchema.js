@@ -30,6 +30,10 @@ const messages = defineMessages({
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
   },
+  captcha: {
+    id: 'captcha',
+    defaultMessage: 'Captcha provider',
+  },
   invisibleHCaptcha: {
     id: 'invisible_hcaptcha',
     defaultMessage: 'Invisible captcha',
@@ -71,6 +75,7 @@ export default () => {
           'default_from',
           'default_subject',
           'submit_label',
+          'captcha',
           ...invisibleHCaptcha,
           'store',
           'send',
@@ -96,6 +101,13 @@ export default () => {
       },
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
+      },
+      captcha: {
+        title: intl.formatMessage(messages.captcha),
+        choices: [
+          ['recaptcha', 'Google reCaptcha'],
+          ['hcaptcha', 'HCaptcha'],
+        ],
       },
       invisibleHCaptcha: {
         type: 'boolean',

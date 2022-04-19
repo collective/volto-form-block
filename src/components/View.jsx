@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
 import { submitForm } from '../actions';
 import { getFieldName } from './utils';
-import FormView from 'volto-form-block/components/FormView';
+import FormView from './FormView';
 
 import config from '@plone/volto/registry';
 
@@ -77,7 +77,7 @@ const View = ({ data, id, path }) => {
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
-  const captcha = useRef();
+  const captchaToken = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({ field, value: { field_id, value, ...extras } });
@@ -130,6 +130,10 @@ const View = ({ data, id, path }) => {
 
     if (isValidForm()) {
       let attachments = {};
+      const captcha = {
+        provider: data.captcha,
+        token: captchaToken.current,
+      };
 
       data.subblocks.forEach((subblock, index) => {
         let name = getFieldName(subblock.label, subblock.id);
@@ -149,10 +153,10 @@ const View = ({ data, id, path }) => {
           path,
           id,
           Object.keys(formData).map((name) => ({
-            ...formData[name]
+            ...formData[name],
           })),
           attachments,
-          captcha.current,
+          captcha,
         ),
       );
       setFormState({ type: FORM_STATES.loading });
@@ -191,7 +195,7 @@ const View = ({ data, id, path }) => {
       formState={formState}
       formErrors={formErrors}
       formData={formData}
-      captcha={captcha}
+      captchaToken={captchaToken}
       onChangeFormData={onChangeFormData}
       data={data}
       onSubmit={submit}

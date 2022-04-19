@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { Grid } from 'semantic-ui-react';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 
-const GoogleReCaptchaWidget = ({ onVerify, GoogleReCaptcha }) => {
+const GoogleReCaptchaWidget = ({ sitekey, onVerify, GoogleReCaptcha }) => {
   const intl = useIntl();
   const {
     GoogleReCaptcha: ReCaptcha,
@@ -12,7 +12,7 @@ const GoogleReCaptchaWidget = ({ onVerify, GoogleReCaptcha }) => {
 
   return (
     <GoogleReCaptchaProvider
-      reCaptchaKey={process.env.RAZZLE_RECAPTCHA_KEY}
+      reCaptchaKey={sitekey}
       language={intl.locale ?? 'en'}
     >
       <Grid.Row centered className="row-padded-top">

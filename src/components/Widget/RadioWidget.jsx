@@ -47,4 +47,3 @@ const RadioWidget = ({
 };
 
 export default RadioWidget;
-

@@ -9,9 +9,9 @@ import {
   Button,
 } from 'semantic-ui-react';
 import { getFieldName } from './utils';
-import Field from 'volto-form-block/components/Field';
-import GoogleReCaptchaWidget from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
-import HCaptchaWidget from 'volto-form-block/components/Widget/HCaptchaWidget';
+import Field from './Field';
+import GoogleReCaptchaWidget from './Widget/GoogleReCaptchaWidget';
+import HCaptchaWidget from './Widget/HCaptchaWidget';
 import './FormView.css';
 import config from '@plone/volto/registry';
 
@@ -46,21 +46,15 @@ const FormView = ({
   data,
   onSubmit,
   resetFormState,
-  captcha,
+  captchaToken,
 }) => {
   const intl = useIntl();
 
-  const captcha_provider = !!process.env.RAZZLE_HCAPTCHA_KEY
-    ? 'HCaptcha'
-    : !!process.env.RAZZLE_RECAPTCHA_KEY
-    ? 'GoogleReCaptcha'
-    : null;
-
   const onVerifyCaptcha = useCallback(
     (token) => {
-      captcha.current = { provider: captcha_provider, token };
+      captchaToken.current = token;
     },
-    [captcha],
+    [captchaToken],
   );
 
   const isValidField = (field) => {
@@ -165,13 +159,16 @@ const FormView = ({
                   );
                 })}
 
-                {captcha_provider === 'GoogleReCaptcha' && (
-                  <GoogleReCaptchaWidget onVerify={onVerifyCaptcha} />
+                {data.captcha === 'recaptcha' && (
+                  <GoogleReCaptchaWidget
+                    sitekey={data.captcha_props?.public_key}
+                    onVerify={onVerifyCaptcha}
+                  />
                 )}
 
-                {captcha_provider === 'HCaptcha' && (
+                {data.captcha === 'hcaptcha' && (
                   <HCaptchaWidget
-                    sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
+                    sitekey={data.captcha_props?.public_key}
                     onVerify={onVerifyCaptcha}
                     size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
                   />
@@ -192,7 +189,8 @@ const FormView = ({
                       primary
                       type="submit"
                       disabled={
-                        (captcha_provider && !captcha?.current?.token) || formState.loading
+                        (data.captcha?.provider && !captchaToken?.current) ||
+                        formState.loading
                       }
                     >
                       {data.submit_label ||
