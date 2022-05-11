@@ -1,3 +1,10 @@
+### [2.3.1](https://github.com/collective/volto-form-block/compare/v2.3.0...v2.3.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* fixed date format in send email ([758a64a](https://github.com/collective/volto-form-block/commit/758a64a41a283e0cbd01b4461f3eae0f36221058))
+
 ## [2.3.0](https://github.com/collective/volto-form-block/compare/v2.2.3...v2.3.0) (2022-03-25)
 
 
