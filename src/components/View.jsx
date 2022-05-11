@@ -5,7 +5,7 @@ import { useIntl, defineMessages } from 'react-intl';
 import { submitForm } from '../actions';
 import { getFieldName } from './utils';
 import FormView from 'volto-form-block/components/FormView';
-
+import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
 
 const messages = defineMessages({
@@ -129,16 +129,25 @@ const View = ({ data, id, path }) => {
 
     if (isValidForm()) {
       let attachments = {};
-
+      let formattedFormData = { ...formData };
       data.subblocks.forEach((subblock, index) => {
         let name = getFieldName(subblock.label, subblock.id);
-        if (formData[name]?.value) {
-          formData[name].field_id = subblock.field_id;
+        if (formattedFormData[name]?.value) {
+          formattedFormData[name].field_id = subblock.field_id;
           const isAttachment = subblock.field_type === 'attachment';
+          const isDate = subblock.field_type === 'date';
 
           if (isAttachment) {
-            attachments[name] = formData[name].value;
-            delete formData[name];
+            attachments[name] = formattedFormData[name].value;
+            delete formattedFormData[name];
+          }
+
+          if (isDate) {
+            formattedFormData[name].value = formatDate({
+              date: formattedFormData[name].value,
+              format: 'DD-MM-YYYY',
+              locale: intl.locale,
+            });
           }
         }
       });
@@ -147,8 +156,8 @@ const View = ({ data, id, path }) => {
         submitForm(
           path,
           id,
-          Object.keys(formData).map((name) => ({
-            ...formData[name]
+          Object.keys(formattedFormData).map((name) => ({
+            ...formattedFormData[name],
           })),
           attachments,
         ),
