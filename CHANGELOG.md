@@ -1,3 +1,10 @@
+### [2.3.2](https://github.com/collective/volto-form-block/compare/v2.3.1...v2.3.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* fixed name for static fields! ([8e4452f](https://github.com/collective/volto-form-block/commit/8e4452f9e2fff4008ad22663a181aa1e4c58ac70))
+
 ### [2.3.1](https://github.com/collective/volto-form-block/compare/v2.3.0...v2.3.1) (2022-05-11)
 
 
