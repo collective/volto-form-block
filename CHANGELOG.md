@@ -1,3 +1,19 @@
+### [2.3.3](https://github.com/collective/volto-form-block/compare/v2.3.2...v2.3.3) (2022-05-17)
+
+### [2.3.2](https://github.com/collective/volto-form-block/compare/v2.3.1...v2.3.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* fixed name for static fields! ([8e4452f](https://github.com/collective/volto-form-block/commit/8e4452f9e2fff4008ad22663a181aa1e4c58ac70))
+
+### [2.3.1](https://github.com/collective/volto-form-block/compare/v2.3.0...v2.3.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* fixed date format in send email ([758a64a](https://github.com/collective/volto-form-block/commit/758a64a41a283e0cbd01b4461f3eae0f36221058))
+
 ## [2.3.0](https://github.com/collective/volto-form-block/compare/v2.2.3...v2.3.0) (2022-03-25)
 
 
