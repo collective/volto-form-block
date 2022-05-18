@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
 import { submitForm } from '../actions';
 import { getFieldName } from './utils';
-import FormView from 'volto-form-block/components/FormView';
+import FormView from './FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
 

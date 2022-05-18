@@ -193,7 +193,8 @@ const FormView = ({
                       primary
                       type="submit"
                       disabled={
-                        (data.captcha?.provider && !captchaToken?.current) ||
+                        (data.captcha_props?.provider &&
+                          !captchaToken?.current) ||
                         formState.loading
                       }
                     >
