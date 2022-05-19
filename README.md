@@ -42,7 +42,7 @@ For select, radio and checkbox fields, you can select a list of values.
 ## Captcha verification
 
 This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptcha](https://www.google.com/recaptcha/) to prevent spam.
-In order to make one of these integrations work, you need to add https://github.com/plone/plone.formwidget.hcaptcha Plone addon or https://github.com/plone/plone.formwidget.recaptcha Plone addon (or both) and configure public and private keys in controlpanels.
+In order to make one of these integrations work, you need to add [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) Plone addon or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) Plone addon (or both) and configure public and private keys in controlpanels.
 
 ### HCaptcha
 
@@ -105,6 +105,14 @@ In backend integration, you can add in block data an object called `static_field
 i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
+
+## Upgrade guide:
+
+To upgrade to version 2.4.0 you need to:
+
+- remove the env vars
+- install [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) or both in Plone.
+- insert private and public keys in Plone HCaptcha controlpanel or/end Plone ReCaptcha controlpanel.
 
 ## Video demos
 
