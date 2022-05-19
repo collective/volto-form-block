@@ -112,7 +112,7 @@ To upgrade to version 2.4.0 you need to:
 
 - remove the env vars
 - install [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) or both in Plone.
-- insert private and public keys in Plone HCaptcha controlpanel or/end Plone ReCaptcha controlpanel.
+- insert private and public keys in Plone HCaptcha controlpanel or/and Plone ReCaptcha controlpanel.
 
 ## Video demos
 
