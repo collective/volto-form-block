@@ -10,7 +10,7 @@ yarn add volto-form-block
 ```
 
 > **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
-> 
+>
 > **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
 
 ## Features
@@ -42,11 +42,11 @@ For select, radio and checkbox fields, you can select a list of values.
 ## Captcha verification
 
 This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptcha](https://www.google.com/recaptcha/) to prevent spam.
-In order to make one of these integrations work, you need to add an enviroment variable with the key `RAZZLE_HCAPTCHA_KEY` or `RAZZLE_RECAPTCHA_KEY` and the value of the key in your `.env` file.
+In order to make one of these integrations work, you need to add https://github.com/plone/plone.formwidget.hcaptcha Plone addon or https://github.com/plone/plone.formwidget.recaptcha Plone addon (or both) and configure public and private keys in controlpanels.
 
 ### HCaptcha
 
-With HCaptcha integration, you also get an additional option in the sidebar to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
+With HCaptcha integration, you also have an additional option in the sidebar in 'Captcha provider' to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
 
 ## Export
 

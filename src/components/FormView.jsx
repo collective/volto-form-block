@@ -163,21 +163,23 @@ const FormView = ({
                   );
                 })}
 
-                {data.captcha === 'recaptcha' && (
+                {data.captcha?.indexOf('recaptcha') >= 0 && (
                   <GoogleReCaptchaWidget
                     sitekey={data.captcha_props?.public_key}
                     onVerify={onVerifyCaptcha}
                   />
                 )}
-
-                {data.captcha === 'hcaptcha' && (
+                {data.captcha?.indexOf('hcaptcha') >= 0 && (
                   <HCaptchaWidget
                     sitekey={data.captcha_props?.public_key}
                     onVerify={onVerifyCaptcha}
-                    size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
+                    size={
+                      data.captcha.indexOf('invisible') >= 0
+                        ? 'invisible'
+                        : 'normal'
+                    }
                   />
                 )}
-
                 {formErrors.length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">

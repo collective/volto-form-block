@@ -34,15 +34,7 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-  invisibleHCaptcha: {
-    id: 'invisible_hcaptcha',
-    defaultMessage: 'Invisible captcha',
-  },
-  invisibleHCaptchaDescription: {
-    id: 'invisible_hcaptcha_desc',
-    defaultMessage:
-      'See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode',
-  },
+
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
@@ -59,9 +51,7 @@ const messages = defineMessages({
 
 export default () => {
   var intl = useIntl();
-  var invisibleHCaptcha = process.env.RAZZLE_HCAPTCHA_KEY
-    ? ['invisibleHCaptcha']
-    : [];
+
   return {
     title: intl.formatMessage(messages.form),
     fieldsets: [
@@ -76,7 +66,6 @@ export default () => {
           'default_subject',
           'submit_label',
           'captcha',
-          ...invisibleHCaptcha,
           'store',
           'send',
         ],
@@ -104,15 +93,10 @@ export default () => {
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        choices: [
-          ['recaptcha', 'Google reCaptcha'],
-          ['hcaptcha', 'HCaptcha'],
-        ],
-      },
-      invisibleHCaptcha: {
-        type: 'boolean',
-        title: intl.formatMessage(messages.invisibleHCaptcha),
-        description: intl.formatMessage(messages.invisibleHCaptchaDescription),
+        type: 'array',
+        vocabulary: {
+          '@id': 'collective.volto.formsupport.captcha.providers',
+        },
       },
       store: {
         type: 'boolean',
@@ -124,6 +108,6 @@ export default () => {
         title: intl.formatMessage(messages.send),
       },
     },
-    required: ['default_to', 'default_from', 'default_subject'],
+    required: ['default_to', 'default_from', 'default_subject', 'captcha'],
   };
 };
