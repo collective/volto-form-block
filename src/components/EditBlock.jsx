@@ -6,7 +6,7 @@
 import React from 'react';
 import { compose } from 'redux';
 
-import { DNDSubblocks, SubblockEdit, Subblock } from 'volto-subblocks';
+import { injectDNDSubblocks, SubblockEdit, Subblock } from 'volto-subblocks';
 
 import Field from 'volto-form-block/components/Field';
 import { getFieldName } from './utils';
@@ -72,4 +72,4 @@ class EditBlock extends SubblockEdit {
   }
 }
 
-export default React.memo(compose(...DNDSubblocks)(EditBlock));
+export default compose(injectDNDSubblocks)(EditBlock);
