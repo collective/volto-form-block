@@ -1,3 +1,10 @@
+### [2.3.4](https://github.com/collective/volto-form-block/compare/v2.3.3...v2.3.4) (2022-05-23)
+
+
+### Maintenance
+
+* updated volto-subblocks for lazyloading libraries ([b817efd](https://github.com/collective/volto-form-block/commit/b817efd917add700260824b7ba1d4d11f8b873d5))
+
 ### [2.3.3](https://github.com/collective/volto-form-block/compare/v2.3.2...v2.3.3) (2022-05-17)
 
 ### [2.3.2](https://github.com/collective/volto-form-block/compare/v2.3.1...v2.3.2) (2022-05-13)
