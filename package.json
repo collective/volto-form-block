@@ -1,6 +1,6 @@
 {
   "name": "volto-form-block",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Volto block to build a form",
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-form-block",
