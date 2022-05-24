@@ -33,7 +33,7 @@
     "@plone/scripts": "^1.0.3",
     "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
-    "volto-subblocks": "collective/volto-subblocks#v1.2.1"
+    "volto-subblocks": "collective/volto-subblocks#v1.2.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
