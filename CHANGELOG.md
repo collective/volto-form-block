@@ -1,3 +1,10 @@
+### [2.3.6](https://github.com/collective/volto-form-block/compare/v2.3.5...v2.3.6) (2022-05-27)
+
+
+### Maintenance
+
+* updated volto-subblocks ([c8d7095](https://github.com/collective/volto-form-block/commit/c8d7095c35d83b99723a9ff11edda6170edbfd74))
+
 ### [2.3.5](https://github.com/collective/volto-form-block/compare/v2.3.4...v2.3.5) (2022-05-24)
 
 
