@@ -12,6 +12,7 @@ import { getFieldName } from './utils';
 import Field from './Field';
 import GoogleReCaptchaWidget from './Widget/GoogleReCaptchaWidget';
 import HCaptchaWidget from './Widget/HCaptchaWidget';
+import NoRobotsCaptchaWidget from './Widget/NoRobotsCaptchaWidget';
 import './FormView.css';
 import config from '@plone/volto/registry';
 
@@ -69,6 +70,12 @@ const FormView = ({
       fields_to_send.push(key);
     }
   }
+  if (data.captcha?.indexOf('norobots-captcha') >= 0) {
+    fields_to_send.push('captcha');
+  }
+
+  let fields_to_send_with_value = '';
+
   return (
     <div className="block form">
       <div className="public-ui">
@@ -127,7 +134,7 @@ const FormView = ({
                 ))}
                 {data.subblocks?.map((subblock, index) => {
                   let name = getFieldName(subblock.label, subblock.id);
-                  var fields_to_send_with_value = Object.assign(
+                  fields_to_send_with_value = Object.assign(
                     {},
                     ...fields_to_send.map((field) => {
                       return {
@@ -180,6 +187,25 @@ const FormView = ({
                     }
                   />
                 )}
+
+                {data.captcha?.indexOf('norobots-captcha') >= 0 && (
+                  <NoRobotsCaptchaWidget
+                    id={data.captcha_props.id}
+                    id_check={data.captcha_props.id_check}
+                    title={data.captcha_props.title}
+                    onVerify={onVerifyCaptcha}
+                    onChange={(field, value) => {
+                      onChangeFormData(
+                        'captcha',
+                        field,
+                        value,
+                        fields_to_send_with_value,
+                      );
+                    }}
+                    value={formData.captcha?.value}
+                  />
+                )}
+
                 {formErrors.length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">
