@@ -59,22 +59,28 @@ const CheckboxListWidget = ({
       wrapped={wrapped}
     >
       <div className="checkbox-list-widget">
-        {valueList?.map((opt) => (
-          <div className="checkbox-item" key={opt.value}>
-            <Checkbox
-              name={`field-${id}-${opt.value}`}
-              checked={value?.includes(opt.value)}
-              disabled={isDisabled}
-              onChange={(_event, { checked }) =>
-                updateValueList(opt.value, checked)
-              }
-              label={
-                <label htmlFor={`field-${id}-${opt.value}`}>{opt.label}</label>
-              }
-              {...attributes}
-            />
-          </div>
-        ))}
+        <fieldset class="checkbox-group">
+          <legend aria-hidden="false">{title}</legend>
+          {valueList?.map((opt) => (
+            <div className="checkbox-item" key={opt.value}>
+              <Checkbox
+                id={`field-${id}-${opt.value}`}
+                name={`field-${id}-${opt.value}`}
+                checked={value?.includes(opt.value)}
+                disabled={isDisabled}
+                onChange={(_event, { checked }) =>
+                  updateValueList(opt.value, checked)
+                }
+                label={
+                  <label htmlFor={`field-${id}-${opt.value}`}>
+                    {opt.label}
+                  </label>
+                }
+                {...attributes}
+              />
+            </div>
+          ))}
+        </fieldset>
       </div>
     </FormFieldWrapper>
   );

@@ -43,6 +43,7 @@ const CheckboxWidget = (props) => {
     <FormFieldWrapper {...props} columns={1}>
       <div className="wrapper">
         <Checkbox
+          id={`field-${id}`}
           name={`field-${id}`}
           checked={value || false}
           disabled={isDisabled}
