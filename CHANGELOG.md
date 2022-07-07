@@ -1,3 +1,10 @@
+### [2.4.1](https://github.com/collective/volto-form-block/compare/v2.4.0...v2.4.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* a11y screen reader for checkbox and radio grooups ([9433cc1](https://github.com/collective/volto-form-block/commit/9433cc1b36fc4019f25fed25ca8209e62dc9e511))
+
 ## [2.4.0](https://github.com/collective/volto-form-block/compare/v2.3.6...v2.4.0) (2022-07-07)
 
 
