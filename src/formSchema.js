@@ -108,6 +108,6 @@ export default () => {
         title: intl.formatMessage(messages.send),
       },
     },
-    required: ['default_to', 'default_from', 'default_subject', 'captcha'],
+    required: ['default_to', 'default_from', 'default_subject'],
   };
 };

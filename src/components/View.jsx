@@ -7,6 +7,7 @@ import { getFieldName } from './utils';
 import FormView from './FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
+import Captcha from './Widget/Captcha';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -55,7 +56,7 @@ const getInitialData = (data) => ({
 });
 
 /**
- * Form viiew
+ * Form view
  * @class View
  */
 const View = ({ data, id, path }) => {
@@ -91,11 +92,11 @@ const View = ({ data, id, path }) => {
   }, [formData]);
 
   const isValidForm = () => {
-    let v = [];
+    const v = [];
     data.subblocks.forEach((subblock, index) => {
-      let name = getFieldName(subblock.label, subblock.id);
-      let fieldType = subblock.field_type;
-      let additionalField =
+      const name = getFieldName(subblock.label, subblock.id);
+      const fieldType = subblock.field_type;
+      const additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
@@ -121,13 +122,18 @@ const View = ({ data, id, path }) => {
       }
     });
 
+    if (data.captcha && !captchaToken.current) {
+      v.push('captcha');
+    }
+
     setFormErrors(v);
     return v.length === 0;
   };
 
   const submit = (e) => {
     e.preventDefault();
-
+    // TODO: double check for sync/async behaviors
+    captcha.execute();
     if (isValidForm()) {
       let attachments = {};
       const captcha = {
@@ -180,12 +186,19 @@ const View = ({ data, id, path }) => {
     setFormState({ type: FORM_STATES.normal });
   };
 
+  const captcha = new Captcha({
+    captchaToken,
+    captcha: data.captcha,
+    captcha_props: data.captcha_props,
+  });
+
   useEffect(() => {
     if (submitResults?.loaded) {
       setFormState({
         type: FORM_STATES.success,
         result: intl.formatMessage(messages.formSubmitted),
       });
+      // captcha.reset();
     } else if (submitResults?.error) {
       let errorDescription = `${submitResults.error.status} ${
         submitResults.error.message
@@ -205,7 +218,7 @@ const View = ({ data, id, path }) => {
       formState={formState}
       formErrors={formErrors}
       formData={formData}
-      captchaToken={captchaToken}
+      captcha={captcha}
       onChangeFormData={onChangeFormData}
       data={data}
       onSubmit={submit}
