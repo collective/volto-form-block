@@ -1,3 +1,10 @@
+## [2.4.0](https://github.com/collective/volto-form-block/compare/v2.3.6...v2.4.0) (2022-07-07)
+
+
+### Features
+
+* added a11y support for fields ([bce0433](https://github.com/collective/volto-form-block/commit/bce0433ed074a2108a594de3372929ee98954448))
+
 ### [2.3.6](https://github.com/collective/volto-form-block/compare/v2.3.5...v2.3.6) (2022-05-27)
 
 
