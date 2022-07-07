@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
 
-import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
-import TextareaWidget from '@plone/volto/components/manage/Widgets/TextareaWidget';
-import SelectWidget from '@plone/volto/components/manage/Widgets/SelectWidget';
-import EmailWidget from '@plone/volto/components/manage/Widgets/EmailWidget';
-import FileWidget from '@plone/volto/components/manage/Widgets/FileWidget';
-import CheckboxWidget from '@plone/volto/components/manage/Widgets/CheckboxWidget';
 import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
-import { DatetimeWidget } from '@plone/volto/components';
 
+import EmailWidget from './Widget/EmailWidget';
+import FileWidget from './Widget/FileWidget';
+import DatetimeWidget from './Widget/DatetimeWidget';
+import CheckboxWidget from './Widget/CheckboxWidget';
+import SelectWidget from './Widget/SelectWidget';
+import TextWidget from './Widget/TextWidget';
+import TextareaWidget from './Widget/TextareaWidget';
 import CheckboxListWidget from './Widget/CheckboxListWidget';
 import RadioWidget from './Widget/RadioWidget';
 
@@ -98,6 +98,7 @@ const Field = ({
           classNamePrefix="react-select"
           isDisabled={disabled}
           invalid={isInvalid().toString()}
+          required={required}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
@@ -160,6 +161,7 @@ const Field = ({
           onChange={onChange}
           value={value}
           isDisabled={disabled}
+          required={required}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />

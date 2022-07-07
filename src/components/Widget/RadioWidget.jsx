@@ -16,7 +16,19 @@ const RadioWidget = ({
   intl,
   fieldSet,
   wrapped,
+  invalid,
 }) => {
+  let attributes = {};
+  if (required) {
+    attributes.required = true;
+    attributes['aria-required'] = true;
+  }
+
+  const isInvalid = invalid === true || invalid === 'true';
+  if (isInvalid) {
+    attributes['aria-invalid'] = true;
+  }
+
   return (
     <FormFieldWrapper
       id={id}
@@ -37,6 +49,7 @@ const RadioWidget = ({
               value={opt.value}
               checked={opt.value === value}
               onChange={(e) => onChange(id, e.target.value)}
+              {...attributes}
             />
             <label htmlFor={id + opt.value}>{opt.label}</label>
           </div>
@@ -47,4 +60,3 @@ const RadioWidget = ({
 };
 
 export default RadioWidget;
-
