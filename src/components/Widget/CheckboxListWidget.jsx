@@ -27,6 +27,7 @@ const CheckboxListWidget = ({
   fieldSet,
   isDisabled,
   wrapped,
+  invalid,
 }) => {
   const updateValueList = (val, checked) => {
     let newValue = new Set([...(value || [])]);
@@ -35,6 +36,17 @@ const CheckboxListWidget = ({
 
     onChange(id, [...newValue]);
   };
+
+  let attributes = {};
+  if (required) {
+    attributes.required = true;
+    attributes['aria-required'] = true;
+  }
+
+  const isInvalid = invalid === true || invalid === 'true';
+  if (isInvalid) {
+    attributes['aria-invalid'] = true;
+  }
 
   return (
     <FormFieldWrapper
@@ -59,6 +71,7 @@ const CheckboxListWidget = ({
               label={
                 <label htmlFor={`field-${id}-${opt.value}`}>{opt.label}</label>
               }
+              {...attributes}
             />
           </div>
         ))}
