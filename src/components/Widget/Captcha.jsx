@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import GoogleReCaptchaWidget from './GoogleReCaptchaWidget';
 import HCaptchaWidget from './HCaptchaWidget';
-
+import NoRobotsCaptchaWidget from './NoRobotsCaptchaWidget';
 
 class Captcha extends React.Component {
   constructor(props) {
@@ -11,29 +11,31 @@ class Captcha extends React.Component {
   }
 
   reset() {
-    const { captcha } = this.props;
+    const { captcha, captchaToken } = this.props;
     const captchaRef = this.captchaRef;
     if (captcha === 'recaptcha') {
       // TODO?
-    } else if (captcha === 'hcaptcha') {
-      captchaRef.current.resetCaptcha();
-    } else if (captcha === 'hcaptcha_invisible') {
-      captchaRef.current.resetCaptcha();
-    } else {
+    } else if (captcha === 'hcaptcha' || captcha === 'hcaptcha_invisible') {
+      captchaRef.current && captchaRef.current.resetCaptcha();
+      captchaToken.current = null;
     }
   }
 
-  execute() {
-    const { captcha } = this.props;
+  verify() {
+    const { captcha, captchaToken } = this.props;
     const captchaRef = this.captchaRef;
     if (captcha === 'recaptcha') {
       // TODO
     } else if (captcha === 'hcaptcha') {
-      captchaRef.current.execute();
+      if (!captchaToken.current)
+        return captchaRef.current.execute({ async: true });
     } else if (captcha === 'hcaptcha_invisible') {
-      captchaRef.current.execute();
-    } else {
+      if (!captchaToken.current)
+        return captchaRef.current.execute({ async: true });
     }
+    return new Promise((resolve) => {
+      resolve();
+    });
   }
 
   render() {
@@ -64,6 +66,16 @@ class Captcha extends React.Component {
           size="invisible"
           captchaRef={captchaRef}
         ></HCaptchaWidget>
+      );
+    } else if (captcha === 'norobots-captcha') {
+      return (
+        <NoRobotsCaptchaWidget
+          id={captcha_props.id}
+          id_check={captcha_props.id_check}
+          title={captcha_props.title}
+          captchaRef={captchaRef}
+          captchaToken={captchaToken}
+        ></NoRobotsCaptchaWidget>
       );
     } else {
       return null;
