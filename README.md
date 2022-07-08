@@ -41,8 +41,14 @@ For select, radio and checkbox fields, you can select a list of values.
 
 ## Captcha verification
 
-This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptcha](https://www.google.com/recaptcha/) to prevent spam.
-In order to make one of these integrations work, you need to add [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) Plone addon or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) Plone addon (or both) and configure public and private keys in controlpanels.
+This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com), [ReCaptcha](https://www.google.com/recaptcha/) and
+[NoRobot](https://github.com/collective/collective.z3cform.norobots) to prevent spam.
+
+In order to make one of these integrations work, you need to add
+[https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) and/or
+[https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) and/or
+[https://github.com/collective/collective.z3cform.norobots](https://github.com/collective/collective.z3cform.norobots)
+Plone addon and configure public and private keys in controlpanels.
 
 ### HCaptcha
 
