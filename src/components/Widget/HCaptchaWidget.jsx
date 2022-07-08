@@ -33,7 +33,6 @@ const HCaptchaWidget = ({
   return (
     <Grid.Row centered className="row-padded-top">
       <Grid.Column textAlign="center">
-        <h1>HCAPTCHA</h1>
         <HCaptchaComponent
           ref={captchaRef}
           sitekey={sitekey}
