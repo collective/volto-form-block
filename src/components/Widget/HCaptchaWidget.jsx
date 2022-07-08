@@ -12,29 +12,14 @@ const HCaptchaWidget = ({
   const HCaptchaComponent = hcaptchalib.default;
 
   const onVerify = (token) => {
-    console.log('onverify ', token);
     captchaToken.current = token;
   };
-
-  const onSubmit = (token) => {
-    console.log('onsubmit ', token);
-    // captchaToken.current = token;
-  };
-
-  // React.useEffect(() => {
-  //   console.log('hcaptcha execute');
-  //   captchaRef.current.execute();
-  // }, [captchaRef]);
 
   const onExpire = () => {
     captchaToken.current = null;
   };
 
   const onLoad = () => {
-    // this reaches out to the hCaptcha JS API and runs the
-    // execute function on it. you can use other functions as
-    // documented here:
-    // https://docs.hcaptcha.com/configuration#jsapi
     captchaRef.current.execute();
   };
 
@@ -66,7 +51,6 @@ const HCaptchaWidget = ({
             sitekey={sitekey}
             onLoad={onLoad}
             onVerify={onVerify}
-            onSubmit={onSubmit}
             size={size}
           />
         </Grid.Column>
