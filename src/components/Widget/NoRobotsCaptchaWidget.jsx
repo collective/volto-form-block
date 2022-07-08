@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { defineMessages } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 import { Grid } from 'semantic-ui-react';
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
-import { useSelector } from 'react-redux';
 
 const messages = defineMessages({
   resolveCaptcha: {
@@ -20,7 +19,7 @@ const NoRobotsCaptchaWidget = ({ id, id_check, title, captchaToken }) => {
     };
     return JSON.stringify(token);
   };
-  const intl = useSelector((state) => state.intl);
+  const intl = useIntl();
   const [value, setValue] = useState();
 
   return (
