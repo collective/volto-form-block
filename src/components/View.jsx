@@ -132,52 +132,57 @@ const View = ({ data, id, path }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    captcha.verify().then(() => {
-      if (isValidForm()) {
-        let attachments = {};
-        const captcha = {
-          provider: data.captcha,
-          token: captchaToken.current,
-        };
+    captcha
+      .verify()
+      .then(() => {
+        if (isValidForm()) {
+          let attachments = {};
+          const captcha = {
+            provider: data.captcha,
+            token: captchaToken.current,
+          };
 
-        let formattedFormData = { ...formData };
-        data.subblocks.forEach((subblock, index) => {
-          let name = getFieldName(subblock.label, subblock.id);
-          if (formattedFormData[name]?.value) {
-            formattedFormData[name].field_id = subblock.field_id;
-            const isAttachment = subblock.field_type === 'attachment';
-            const isDate = subblock.field_type === 'date';
+          let formattedFormData = { ...formData };
+          data.subblocks.forEach((subblock) => {
+            let name = getFieldName(subblock.label, subblock.id);
+            if (formattedFormData[name]?.value) {
+              formattedFormData[name].field_id = subblock.field_id;
+              const isAttachment = subblock.field_type === 'attachment';
+              const isDate = subblock.field_type === 'date';
 
-            if (isAttachment) {
-              attachments[name] = formattedFormData[name].value;
-              delete formattedFormData[name];
+              if (isAttachment) {
+                attachments[name] = formattedFormData[name].value;
+                delete formattedFormData[name];
+              }
+
+              if (isDate) {
+                formattedFormData[name].value = formatDate({
+                  date: formattedFormData[name].value,
+                  format: 'DD-MM-YYYY',
+                  locale: intl.locale,
+                });
+              }
             }
-
-            if (isDate) {
-              formattedFormData[name].value = formatDate({
-                date: formattedFormData[name].value,
-                format: 'DD-MM-YYYY',
-                locale: intl.locale,
-              });
-            }
-          }
-        });
-        dispatch(
-          submitForm(
-            path,
-            id,
-            Object.keys(formattedFormData).map((name) => ({
-              ...formattedFormData[name],
-            })),
-            attachments,
-            captcha,
-          ),
-        );
-        setFormState({ type: FORM_STATES.loading });
-      } else {
+          });
+          dispatch(
+            submitForm(
+              path,
+              id,
+              Object.keys(formattedFormData).map((name) => ({
+                ...formattedFormData[name],
+              })),
+              attachments,
+              captcha,
+            ),
+          );
+          setFormState({ type: FORM_STATES.loading });
+        } else {
+          setFormState({ type: FORM_STATES.error });
+        }
+      })
+      .catch(() => {
         setFormState({ type: FORM_STATES.error });
-      }
-    });
+      });
   };
 
   const resetFormState = () => {

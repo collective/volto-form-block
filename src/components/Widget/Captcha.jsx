@@ -25,7 +25,7 @@ class Captcha extends React.Component {
     const { captcha, captchaToken } = this.props;
     const captchaRef = this.captchaRef;
     if (captcha === 'recaptcha') {
-      // TODO
+      return captchaRef.current.verify();
     } else if (captcha === 'hcaptcha') {
       if (!captchaToken.current)
         return captchaRef.current.execute({ async: true });
@@ -46,7 +46,7 @@ class Captcha extends React.Component {
         <GoogleReCaptchaWidget
           captchaToken={captchaToken}
           sitekey={captcha_props?.public_key}
-          ref={captchaRef}
+          captchaRef={captchaRef}
         ></GoogleReCaptchaWidget>
       );
     } else if (captcha === 'hcaptcha') {

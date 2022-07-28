@@ -1,29 +1,29 @@
 import React, { useEffect, useCallback } from 'react';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
-import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 
 const GoogleReCaptchaWidget = ({
-  action,
-  sitekey,
+  captchaRef,
   captchaToken,
+  sitekey,
   GoogleReCaptcha: recaptchalib,
 }) => {
   const { GoogleReCaptchaProvider, useGoogleReCaptcha } = recaptchalib;
-  const intl = useSelector((state) => state.intl);
-
-  const ReCaptchaComponent = ({ action }) => {
+  const intl = useIntl();
+  const ReCaptchaComponent = () => {
     const { executeRecaptcha } = useGoogleReCaptcha();
     const handleReCaptchaVerify = useCallback(async () => {
       if (!executeRecaptcha) {
         return;
       }
-      const token = await executeRecaptcha(action);
+      const token = await executeRecaptcha();
       captchaToken.current = token;
-    }, [executeRecaptcha, action]);
+    }, [executeRecaptcha]);
 
     useEffect(() => {
-      handleReCaptchaVerify();
-    }, [handleReCaptchaVerify, action]);
+      captchaRef.current = { verify: handleReCaptchaVerify };
+      // handleReCaptchaVerify();
+    }, []);
     return null;
   };
 
@@ -31,9 +31,9 @@ const GoogleReCaptchaWidget = ({
     <GoogleReCaptchaProvider
       reCaptchaKey={sitekey}
       language={intl.locale ?? 'en'}
+
     >
-      {action}
-      <ReCaptchaComponent action={action} />
+      <ReCaptchaComponent />
     </GoogleReCaptchaProvider>
   );
 };
