@@ -1,3 +1,61 @@
+### [2.4.1](https://github.com/collective/volto-form-block/compare/v2.4.0...v2.4.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* a11y screen reader for checkbox and radio grooups ([9433cc1](https://github.com/collective/volto-form-block/commit/9433cc1b36fc4019f25fed25ca8209e62dc9e511))
+
+## [2.4.0](https://github.com/collective/volto-form-block/compare/v2.3.6...v2.4.0) (2022-07-07)
+
+
+### Features
+
+* added a11y support for fields ([bce0433](https://github.com/collective/volto-form-block/commit/bce0433ed074a2108a594de3372929ee98954448))
+
+### [2.3.6](https://github.com/collective/volto-form-block/compare/v2.3.5...v2.3.6) (2022-05-27)
+
+
+### Maintenance
+
+* updated volto-subblocks ([c8d7095](https://github.com/collective/volto-form-block/commit/c8d7095c35d83b99723a9ff11edda6170edbfd74))
+
+### [2.3.5](https://github.com/collective/volto-form-block/compare/v2.3.4...v2.3.5) (2022-05-24)
+
+
+### Maintenance
+
+* updated volto-subblocks for lazyloding libraries ([311f29e](https://github.com/collective/volto-form-block/commit/311f29e070164869e16c0eda3fa77273468c050d))
+
+### [2.3.4](https://github.com/collective/volto-form-block/compare/v2.3.3...v2.3.4) (2022-05-23)
+
+
+### Maintenance
+
+* updated volto-subblocks for lazyloading libraries ([b817efd](https://github.com/collective/volto-form-block/commit/b817efd917add700260824b7ba1d4d11f8b873d5))
+
+### [2.3.3](https://github.com/collective/volto-form-block/compare/v2.3.2...v2.3.3) (2022-05-17)
+
+### [2.3.2](https://github.com/collective/volto-form-block/compare/v2.3.1...v2.3.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* fixed name for static fields! ([8e4452f](https://github.com/collective/volto-form-block/commit/8e4452f9e2fff4008ad22663a181aa1e4c58ac70))
+
+### [2.3.1](https://github.com/collective/volto-form-block/compare/v2.3.0...v2.3.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* fixed date format in send email ([758a64a](https://github.com/collective/volto-form-block/commit/758a64a41a283e0cbd01b4461f3eae0f36221058))
+
+## [2.3.0](https://github.com/collective/volto-form-block/compare/v2.2.3...v2.3.0) (2022-03-25)
+
+
+### Features
+
+* added use_as_bcc for 'email' field ([b46b1fa](https://github.com/collective/volto-form-block/commit/b46b1fa9c421fba9631151e66bdecdae61fcd423))
+
 ### [2.2.3](https://github.com/collective/volto-form-block/compare/v2.2.2...v2.2.3) (2022-01-28)
 
 ### Maintenance

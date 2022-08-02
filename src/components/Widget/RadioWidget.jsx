@@ -16,7 +16,19 @@ const RadioWidget = ({
   intl,
   fieldSet,
   wrapped,
+  invalid,
 }) => {
+  let attributes = {};
+  if (required) {
+    attributes.required = true;
+    attributes['aria-required'] = true;
+  }
+
+  const isInvalid = invalid === true || invalid === 'true';
+  if (isInvalid) {
+    attributes['aria-invalid'] = true;
+  }
+
   return (
     <FormFieldWrapper
       id={id}
@@ -28,23 +40,26 @@ const RadioWidget = ({
       wrapped={wrapped}
     >
       <div className="radio-widget">
-        {valueList.map((opt) => (
-          <div className="radio-button" key={opt.value}>
-            <input
-              type="radio"
-              name={id}
-              id={id + opt.value}
-              value={opt.value}
-              checked={opt.value === value}
-              onChange={(e) => onChange(id, e.target.value)}
-            />
-            <label htmlFor={id + opt.value}>{opt.label}</label>
-          </div>
-        ))}
+        <fieldset class="radio-group">
+          <legend aria-hidden="false">{title}</legend>
+          {valueList.map((opt) => (
+            <div className="radio-button" key={opt.value}>
+              <input
+                type="radio"
+                name={id}
+                id={id + opt.value}
+                value={opt.value}
+                checked={opt.value === value}
+                onChange={(e) => onChange(id, e.target.value)}
+                {...attributes}
+              />
+              <label htmlFor={id + opt.value}>{opt.label}</label>
+            </div>
+          ))}
+        </fieldset>
       </div>
     </FormFieldWrapper>
   );
 };
 
 export default RadioWidget;
-

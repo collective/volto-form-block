@@ -117,7 +117,11 @@ const FormView = ({
                       <Field
                         {...field}
                         field_type={field.field_type || 'text'}
-                        name={field.label}
+                        name={
+                          'static_field_' +
+                          (field.field_id ??
+                            field.name?.toLowerCase()?.replace(' ', ''))
+                        }
                         value={field.value}
                         onChange={() => {}}
                         disabled

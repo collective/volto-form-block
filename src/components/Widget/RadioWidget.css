@@ -5,3 +5,12 @@
 .radio-widget .radio-button label {
   padding: 0.25rem;
 }
+
+.radio-widget fieldset.radio-group {
+    border: none;
+}
+
+.radio-widget fieldset.radio-group legend{
+    display: none;
+    line-height: 0;
+}

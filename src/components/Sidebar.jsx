@@ -25,6 +25,7 @@ import { getFormData, exportCsvFormData, clearFormData } from '../actions';
 import config from '@plone/volto/registry';
 
 import { BlockDataForm } from '@plone/volto/components';
+import { flattenToAppURL } from '@plone/volto/helpers';
 
 const messages = defineMessages({
   exportCsv: {
@@ -67,7 +68,8 @@ const Sidebar = ({
     (state) => state.clearFormData?.loaded,
   );
   useEffect(() => {
-    if (properties?.['@id']) dispatch(getFormData(properties['@id']));
+    if (properties?.['@id'])
+      dispatch(getFormData(flattenToAppURL(properties['@id'])));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clearFormDataState]);
 
@@ -123,7 +125,7 @@ const Sidebar = ({
                       onClick={() =>
                         dispatch(
                           exportCsvFormData(
-                            properties['@id'],
+                            flattenToAppURL(properties['@id']),
                             `export-${properties.id ?? 'form'}.csv`,
                           ),
                         )
@@ -151,7 +153,9 @@ const Sidebar = ({
                       cancelButton={intl.formatMessage(messages.cancel)}
                       onCancel={() => setConfirmOpen(false)}
                       onConfirm={() => {
-                        dispatch(clearFormData(properties['@id']));
+                        dispatch(
+                          clearFormData(flattenToAppURL(properties['@id'])),
+                        );
                         setConfirmOpen(false);
                       }}
                     />
