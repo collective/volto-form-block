@@ -55,13 +55,10 @@ const FormView = ({
     ? 'GoogleReCaptcha'
     : null;
 
-  let validToken = useRef('');
-  const onVerifyCaptcha = useCallback(
-    (token) => {
-      validToken.current = token;
-    },
-    [validToken],
-  );
+  let [validToken, setValidToken] = React.useState();
+  const onVerifyCaptcha = useCallback((token) => {
+    setValidToken(token);
+  }, []);
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -195,9 +192,7 @@ const FormView = ({
                     <Button
                       primary
                       type="submit"
-                      disabled={
-                        (captcha && !validToken?.current) || formState.loading
-                      }
+                      disabled={(captcha && !validToken) || formState.loading}
                     >
                       {data.submit_label ||
                         intl.formatMessage(messages.default_submit_label)}
