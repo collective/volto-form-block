@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import {
   Segment,
@@ -8,12 +8,16 @@ import {
   Progress,
   Button,
 } from 'semantic-ui-react';
-import { getFieldName } from './utils';
+
 import Field from 'volto-form-block/components/Field';
 import GoogleReCaptchaWidget from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
 import HCaptchaWidget from 'volto-form-block/components/Widget/HCaptchaWidget';
-import './FormView.css';
+
 import config from '@plone/volto/registry';
+
+import { getFieldName } from './utils';
+
+import './FormView.css';
 
 const messages = defineMessages({
   default_submit_label: {
@@ -36,6 +40,10 @@ const messages = defineMessages({
     id: 'form_reset',
     defaultMessage: 'Clear',
   },
+  captchaInvalid: {
+    id: 'captchaInvalid',
+    defaultMessage: 'Waiting for captcha',
+  },
 });
 
 const FormView = ({
@@ -55,13 +63,10 @@ const FormView = ({
     ? 'GoogleReCaptcha'
     : null;
 
-  let validToken = useRef('');
-  const onVerifyCaptcha = useCallback(
-    (token) => {
-      validToken.current = token;
-    },
-    [validToken],
-  );
+  let [validToken, setValidToken] = React.useState();
+  const onVerifyCaptcha = useCallback((token) => {
+    setValidToken(token);
+  }, []);
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -197,12 +202,12 @@ const FormView = ({
                     <Button
                       primary
                       type="submit"
-                      disabled={
-                        (captcha && !validToken?.current) || formState.loading
-                      }
+                      disabled={(captcha && !validToken) || formState.loading}
                     >
-                      {data.submit_label ||
-                        intl.formatMessage(messages.default_submit_label)}
+                      {captcha && !validToken
+                        ? intl.formatMessage(messages.captchaInvalid)
+                        : data.submit_label ||
+                          intl.formatMessage(messages.default_submit_label)}
 
                       {formState.loading && (
                         <Progress

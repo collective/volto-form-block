@@ -17,6 +17,10 @@ import {
 } from './reducers';
 import FormSchema from './formSchema';
 import FieldSchema from './fieldSchema';
+import {
+  SelectionSchemaExtender,
+  FromSchemaExtender,
+} from './components/FieldTypeSchemaExtenders';
 export { submitForm, getFormData, exportCsvFormData } from './actions';
 
 const applyConfig = (config) => {
@@ -32,6 +36,12 @@ const applyConfig = (config) => {
       formSchema: FormSchema,
       fieldSchema: FieldSchema,
       additionalFields: [],
+      fieldTypeSchemaExtenders: {
+        select: SelectionSchemaExtender,
+        single_choice: SelectionSchemaExtender,
+        multiple_choice: SelectionSchemaExtender,
+        from: FromSchemaExtender,
+      },
       restricted: false,
       mostUsed: true,
       security: {
