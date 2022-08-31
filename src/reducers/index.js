@@ -1,5 +1,3 @@
-import { saveAs } from 'file-saver';
-
 /**
  * submitForm reducer.
  * @module reducers/submitForm
