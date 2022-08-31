@@ -1,27 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useIntl, defineMessages } from 'react-intl';
+import React from "react";
+import PropTypes from "prop-types";
+import { useIntl, defineMessages } from "react-intl";
 
-import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
+import WysiwygWidget from "@plone/volto/components/manage/Widgets/WysiwygWidget";
 
-import EmailWidget from './Widget/EmailWidget';
-import FileWidget from './Widget/FileWidget';
-import DatetimeWidget from './Widget/DatetimeWidget';
-import CheckboxWidget from './Widget/CheckboxWidget';
-import SelectWidget from './Widget/SelectWidget';
-import TextWidget from './Widget/TextWidget';
-import TextareaWidget from './Widget/TextareaWidget';
-import CheckboxListWidget from './Widget/CheckboxListWidget';
-import RadioWidget from './Widget/RadioWidget';
+import EmailWidget from "./Widget/EmailWidget";
+import FileWidget from "./Widget/FileWidget";
+import DatetimeWidget from "./Widget/DatetimeWidget";
+import CheckboxWidget from "./Widget/CheckboxWidget";
+import SelectWidget from "./Widget/SelectWidget";
+import TextWidget from "./Widget/TextWidget";
+import TextareaWidget from "./Widget/TextareaWidget";
+import CheckboxListWidget from "./Widget/CheckboxListWidget";
+import RadioWidget from "./Widget/RadioWidget";
 
-import './Field.css';
+import "./Field.css";
 
-import config from '@plone/volto/registry';
+import config from "@plone/volto/registry";
 
 const messages = defineMessages({
   select_a_value: {
-    id: 'form_select_a_value',
-    defaultMessage: 'Select a value',
+    id: "form_select_a_value",
+    defaultMessage: "Select a value",
   },
 });
 
@@ -44,6 +44,7 @@ const Field = ({
   disabled = false,
   formHasErrors = false,
   id,
+  ...rest
 }) => {
   const intl = useIntl();
 
@@ -53,7 +54,7 @@ const Field = ({
 
   return (
     <div className="field">
-      {field_type === 'text' && (
+      {field_type === "text" && (
         <TextWidget
           id={name}
           name={name}
@@ -64,10 +65,10 @@ const Field = ({
           value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'textarea' && (
+      {field_type === "textarea" && (
         <TextareaWidget
           id={name}
           name={name}
@@ -79,10 +80,10 @@ const Field = ({
           rows={10}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'select' && (
+      {field_type === "select" && (
         <SelectWidget
           id={name}
           name={name}
@@ -99,10 +100,10 @@ const Field = ({
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           required={required}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'single_choice' && (
+      {field_type === "single_choice" && (
         <RadioWidget
           id={name}
           title={label}
@@ -115,10 +116,10 @@ const Field = ({
           value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'multiple_choice' && (
+      {field_type === "multiple_choice" && (
         <CheckboxListWidget
           id={name}
           name={name}
@@ -132,10 +133,10 @@ const Field = ({
           value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'checkbox' && (
+      {field_type === "checkbox" && (
         <CheckboxWidget
           id={name}
           name={name}
@@ -146,10 +147,10 @@ const Field = ({
           value={!!value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'date' && (
+      {field_type === "date" && (
         <DatetimeWidget
           id={name}
           name={name}
@@ -163,10 +164,10 @@ const Field = ({
           isDisabled={disabled}
           required={required}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'attachment' && (
+      {field_type === "attachment" && (
         <FileWidget
           id={name}
           name={name}
@@ -181,7 +182,7 @@ const Field = ({
           multiple={false}
         />
       )}
-      {(field_type === 'from' || field_type === 'email') && (
+      {(field_type === "from" || field_type === "email") && (
         <EmailWidget
           id={name}
           name={name}
@@ -192,10 +193,10 @@ const Field = ({
           value={value}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
-          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          {...(isInvalid() ? { className: "is-invalid" } : {})}
         />
       )}
-      {field_type === 'static_text' &&
+      {field_type === "static_text" &&
         (isOnEdit ? (
           <WysiwygWidget
             wrapped={false}
@@ -229,7 +230,8 @@ const Field = ({
               isDisabled={disabled}
               formHasErrors={formHasErrors}
               invalid={isInvalid().toString()}
-              {...(isInvalid() ? { className: 'is-invalid' } : {})}
+              {...(isInvalid() ? { className: "is-invalid" } : {})}
+              {...rest}
             />,
           ];
 
