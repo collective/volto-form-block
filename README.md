@@ -70,10 +70,10 @@ If you need a field that is not supported, PRs are always welcome, but if you ha
 
 ```jsx
 config.blocks.blocksConfig.form.additionalFields.push({
-  id: 'field type id',
+  id: "field type id",
   label:
     intl.formatMessage(messages.customFieldLabel) ||
-    'Label for field type select, translation obj or string',
+    "Label for field type select, translation obj or string",
   component: MyCustomWidget,
   isValid: (formData, name) => true,
 });
@@ -127,3 +127,7 @@ To upgrade to version 2.4.0 you need to:
 - [Form usage](https://youtu.be/v5KtjEACRmI)
 - [Form editing](https://youtu.be/wmTpzYBtNCQ)
 - [Export stored data](https://youtu.be/3zVUaGaaVOg)
+
+## VERSIONS:
+
+With volto-form-block@2.5.0 you need to upgrade collective.volto.formsupport to version 2.4.0
