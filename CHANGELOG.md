@@ -1,3 +1,23 @@
+## [2.5.0](https://github.com/collective/volto-form-block/compare/v2.4.2...v2.5.0) (2022-09-05)
+
+
+### Features
+
+* handled collective.volto.formsupport.captcha.providers vocabulary ([12060e7](https://github.com/collective/volto-form-block/commit/12060e77eaa863a5b8792ad2c604f034546f7e06))
+
+
+### Bug Fixes
+
+* fixed disabled submit button ([e1026bc](https://github.com/collective/volto-form-block/commit/e1026bcff8b36cf69b8dd648cff6b6b00cdf02e8))
+* send captcha to backend to make it effective ([15b4a4f](https://github.com/collective/volto-form-block/commit/15b4a4f9701baa5427d3048f53f55226f5bcde18))
+* send captcha to backend to make it effective ([a9f422b](https://github.com/collective/volto-form-block/commit/a9f422bc4f9f5d13f6b923d0eb26b785cd4308c1))
+
+
+### Maintenance
+
+* updated README ([1d76435](https://github.com/collective/volto-form-block/commit/1d764354a4332ba21509b9aceba133da6dcaa062))
+* updated README ([3dd04ca](https://github.com/collective/volto-form-block/commit/3dd04ca2a924ed07de6aef960990b2544c370dd3))
+
 ### [2.4.2](https://github.com/collective/volto-form-block/compare/v2.4.1...v2.4.2) (2022-08-05)
 
 ### [2.4.1](https://github.com/collective/volto-form-block/compare/v2.4.0...v2.4.1) (2022-07-07)
