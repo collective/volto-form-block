@@ -1,25 +1,39 @@
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { Grid } from 'semantic-ui-react';
+import React, { useEffect, useCallback } from 'react';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
+import { useIntl } from 'react-intl';
 
-const GoogleReCaptchaWidget = ({ onVerify, GoogleReCaptcha }) => {
+const GoogleReCaptchaWidget = ({
+  captchaRef,
+  captchaToken,
+  sitekey,
+  GoogleReCaptcha: recaptchalib,
+}) => {
+  const { GoogleReCaptchaProvider, useGoogleReCaptcha } = recaptchalib;
   const intl = useIntl();
-  const {
-    GoogleReCaptcha: ReCaptcha,
-    GoogleReCaptchaProvider,
-  } = GoogleReCaptcha;
+  const ReCaptchaComponent = () => {
+    const { executeRecaptcha } = useGoogleReCaptcha();
+    const handleReCaptchaVerify = useCallback(async () => {
+      if (!executeRecaptcha) {
+        return;
+      }
+      const token = await executeRecaptcha();
+      captchaToken.current = token;
+    }, [executeRecaptcha]);
+
+    useEffect(() => {
+      captchaRef.current = { verify: handleReCaptchaVerify };
+      // handleReCaptchaVerify();
+    }, []);
+    return null;
+  };
 
   return (
     <GoogleReCaptchaProvider
-      reCaptchaKey={process.env.RAZZLE_RECAPTCHA_KEY}
+      reCaptchaKey={sitekey}
       language={intl.locale ?? 'en'}
+
     >
-      <Grid.Row centered className="row-padded-top">
-        <Grid.Column textAlign="center">
-          <ReCaptcha onVerify={onVerify} />
-        </Grid.Column>
-      </Grid.Row>
+      <ReCaptchaComponent />
     </GoogleReCaptchaProvider>
   );
 };

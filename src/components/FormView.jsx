@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import {
   Segment,
@@ -9,9 +9,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 import { getFieldName } from './utils';
-import Field from 'volto-form-block/components/Field';
-import GoogleReCaptchaWidget from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
-import HCaptchaWidget from 'volto-form-block/components/Widget/HCaptchaWidget';
+import Field from './Field';
 import './FormView.css';
 import config from '@plone/volto/registry';
 
@@ -46,22 +44,9 @@ const FormView = ({
   data,
   onSubmit,
   resetFormState,
+  captcha,
 }) => {
   const intl = useIntl();
-
-  const captcha = !!process.env.RAZZLE_HCAPTCHA_KEY
-    ? 'HCaptcha'
-    : !!process.env.RAZZLE_RECAPTCHA_KEY
-    ? 'GoogleReCaptcha'
-    : null;
-
-  let validToken = useRef('');
-  const onVerifyCaptcha = useCallback(
-    (token) => {
-      validToken.current = token;
-    },
-    [validToken],
-  );
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -168,19 +153,7 @@ const FormView = ({
                     </Grid.Row>
                   );
                 })}
-
-                {captcha === 'GoogleReCaptcha' && (
-                  <GoogleReCaptchaWidget onVerify={onVerifyCaptcha} />
-                )}
-
-                {captcha === 'HCaptcha' && (
-                  <HCaptchaWidget
-                    sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
-                    onVerify={onVerifyCaptcha}
-                    size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
-                  />
-                )}
-
+                {captcha.render()}
                 {formErrors.length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">
@@ -189,16 +162,9 @@ const FormView = ({
                     <p>{intl.formatMessage(messages.empty_values)}</p>
                   </Message>
                 )}
-
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
-                    <Button
-                      primary
-                      type="submit"
-                      disabled={
-                        (captcha && !validToken?.current) || formState.loading
-                      }
-                    >
+                    <Button primary type="submit" disabled={formState.loading}>
                       {data.submit_label ||
                         intl.formatMessage(messages.default_submit_label)}
 
