@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import GoogleReCaptchaWidget from './GoogleReCaptchaWidget';
 import HCaptchaWidget from './HCaptchaWidget';
 import NoRobotsCaptchaWidget from './NoRobotsCaptchaWidget';
+import HoneypotCaptchaWidget from './HoneypotCaptchaWidget';
 
 class Captcha extends React.Component {
   constructor(props) {
@@ -76,6 +77,16 @@ class Captcha extends React.Component {
           captchaRef={captchaRef}
           captchaToken={captchaToken}
         ></NoRobotsCaptchaWidget>
+      );
+    } else if (captcha === 'honeypot') {
+      return (
+        <HoneypotCaptchaWidget
+          id={captcha_props.id}
+          id_check={captcha_props.id_check}
+          title={captcha_props.title}
+          captchaRef={captchaRef}
+          captchaToken={captchaToken}
+        />
       );
     } else {
       return null;

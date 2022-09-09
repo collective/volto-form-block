@@ -12,7 +12,6 @@ import TextWidget from './Widget/TextWidget';
 import TextareaWidget from './Widget/TextareaWidget';
 import CheckboxListWidget from './Widget/CheckboxListWidget';
 import RadioWidget from './Widget/RadioWidget';
-import HoneypotWidget from './Widget/HoneypotWidget';
 
 import './Field.css';
 
@@ -214,17 +213,6 @@ const Field = ({
         ) : (
           <br />
         ))}
-
-      {field_type === 'honeypot' && (
-        <HoneypotWidget
-          id={name}
-          name={name}
-          title={label}
-          description={description}
-          onChange={onChange}
-          value={value}
-        />
-      )}
       {config.blocks.blocksConfig.form.additionalFields?.reduce((acc, val) => {
         if (val.id === field_type)
           return [
