@@ -47,8 +47,6 @@ HoneypotWidget.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  required: PropTypes.bool,
-  error: PropTypes.arrayOf(PropTypes.string),
   wrapped: PropTypes.bool,
 };
 
@@ -59,8 +57,6 @@ HoneypotWidget.propTypes = {
  */
 HoneypotWidget.defaultProps = {
   description: null,
-  required: false,
-  error: [],
   value: [],
   onChange: null,
   onEdit: null,
