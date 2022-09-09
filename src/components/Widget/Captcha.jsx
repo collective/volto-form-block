@@ -82,8 +82,7 @@ class Captcha extends React.Component {
       return (
         <HoneypotCaptchaWidget
           id={captcha_props.id}
-          id_check={captcha_props.id_check}
-          title={captcha_props.title}
+          title={captcha_props.id}
           captchaRef={captchaRef}
           captchaToken={captchaToken}
         />

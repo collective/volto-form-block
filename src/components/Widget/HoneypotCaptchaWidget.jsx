@@ -13,11 +13,10 @@ import './HoneypotCaptchaWidget.css';
  * @function HoneypotCaptchaWidget
  * @returns {string} Markup of the component.
  */
-const HoneypotCaptchaWidget = ({ id, id_check, title, captchaToken }) => {
-  const createToken = (id, id_check, value) => {
+const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
+  const createToken = (id, value) => {
     const token = {
       id: id,
-      id_check: id_check,
       value: value,
     };
     return JSON.stringify(token);
@@ -31,7 +30,7 @@ const HoneypotCaptchaWidget = ({ id, id_check, title, captchaToken }) => {
         label={title}
         title={title}
         onChange={(field, value) => {
-          captchaToken.current = createToken(id, id_check, value);
+          captchaToken.current = createToken(id, value);
           setValue(value);
         }}
         value={value}
