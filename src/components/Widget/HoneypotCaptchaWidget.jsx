@@ -3,7 +3,7 @@
  * @module components/manage/Widgets/HoneypotCaptchaWidget
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 import './HoneypotCaptchaWidget.css';
@@ -13,6 +13,9 @@ import './HoneypotCaptchaWidget.css';
  * @function HoneypotCaptchaWidget
  * @returns {string} Markup of the component.
  */
+
+/*By default, captcha token is setted, and becames empty if user/bot fills the field.
+ */
 const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
   const createToken = (id, value) => {
     const token = {
@@ -21,6 +24,11 @@ const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
     };
     return JSON.stringify(token);
   };
+
+  useEffect(() => {
+    captchaToken.current = createToken(id, new Date().toString());
+  }, [captchaToken, id]);
+
   const [value, setValue] = useState();
   return (
     <div className="honey-wrapper" key={'honeypot-captcha'}>
@@ -30,7 +38,8 @@ const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
         label={title}
         title={title}
         onChange={(field, value) => {
-          captchaToken.current = createToken(id, value);
+          //captchaToken.current = createToken(id, value);
+          captchaToken.current = undefined;
           setValue(value);
         }}
         value={value}
