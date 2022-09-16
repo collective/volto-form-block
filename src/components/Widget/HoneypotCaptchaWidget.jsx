@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
+import { Grid } from 'semantic-ui-react';
 import './HoneypotCaptchaWidget.css';
 
 /**
@@ -40,7 +41,7 @@ const HoneypotCaptchaWidget = ({
 
   const [value, setValue] = useState();
   return (
-    <div className="honey-wrapper" key={'honeypot-captcha'}>
+    <Grid.Row className="honey-wrapper" key={'honeypot-captcha'}>
       <TextWidget
         id={id}
         name={id}
@@ -54,7 +55,7 @@ const HoneypotCaptchaWidget = ({
         }}
         value={value}
       />
-    </div>
+    </Grid.Row>
   );
 };
 
