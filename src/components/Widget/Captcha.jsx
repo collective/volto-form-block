@@ -40,7 +40,13 @@ class Captcha extends React.Component {
   }
 
   render() {
-    const { captchaToken, captcha, captcha_props } = this.props;
+    const {
+      captchaToken,
+      captcha,
+      captcha_props,
+      onChangeFormData,
+    } = this.props;
+
     const captchaRef = this.captchaRef;
     if (captcha === 'recaptcha') {
       return (
@@ -85,6 +91,7 @@ class Captcha extends React.Component {
           title={captcha_props.id}
           captchaRef={captchaRef}
           captchaToken={captchaToken}
+          onChangeFormData={onChangeFormData}
         />
       );
     } else {

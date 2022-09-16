@@ -16,7 +16,12 @@ import './HoneypotCaptchaWidget.css';
 
 /*By default, captcha token is setted, and becames empty if user/bot fills the field.
  */
-const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
+const HoneypotCaptchaWidget = ({
+  id,
+  title,
+  captchaToken,
+  onChangeFormData,
+}) => {
   const createToken = (id, value) => {
     const token = {
       id: id,
@@ -28,6 +33,10 @@ const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
   useEffect(() => {
     captchaToken.current = createToken(id, new Date().toString());
   }, [captchaToken, id]);
+
+  useEffect(() => {
+    onChangeFormData(id, id, '', { label: id });
+  }, []);
 
   const [value, setValue] = useState();
   return (
@@ -41,6 +50,7 @@ const HoneypotCaptchaWidget = ({ id, title, captchaToken }) => {
           //captchaToken.current = createToken(id, value);
           captchaToken.current = undefined;
           setValue(value);
+          onChangeFormData(id, field, value, {});
         }}
         value={value}
       />

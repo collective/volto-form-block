@@ -137,10 +137,13 @@ const View = ({ data, id, path }) => {
       .then(() => {
         if (isValidForm()) {
           let attachments = {};
-          const captcha = {
+          let captcha = {
             provider: data.captcha,
             token: captchaToken.current,
           };
+          if (data.captcha === 'honeypot') {
+            captcha.value = formData[data.captcha_props.id]?.value ?? '';
+          }
 
           let formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
@@ -194,6 +197,7 @@ const View = ({ data, id, path }) => {
     captchaToken,
     captcha: data.captcha,
     captcha_props: data.captcha_props,
+    onChangeFormData,
   });
 
   useEffect(() => {
