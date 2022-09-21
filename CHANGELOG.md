@@ -1,3 +1,25 @@
+## [2.6.0](https://github.com/collective/volto-form-block/compare/v2.5.0...v2.6.0) (2022-09-21)
+
+
+### Features
+
+* added honeypot field type ([272e3c3](https://github.com/collective/volto-form-block/commit/272e3c3093c0dbc253f2a2406125cc497354cd01))
+* added honeypot widget captcha ([2723f52](https://github.com/collective/volto-form-block/commit/2723f5281fb918f2baf30940a746a956b85cc49c))
+
+
+### Bug Fixes
+
+* fix captcha widget ([b4d990c](https://github.com/collective/volto-form-block/commit/b4d990ca822d0c42e263194e3e91221fc7715dd2))
+* fix captcha widget manage token ([1a3c19b](https://github.com/collective/volto-form-block/commit/1a3c19bfa644147024347bc543f3cb8cc73e7f6d))
+* fix HoneypotWidget props ([cd294c4](https://github.com/collective/volto-form-block/commit/cd294c45b54920c6f0d0f15c70a9b33469bfa6a0))
+* fixed const variables and added row class ([300d6c9](https://github.com/collective/volto-form-block/commit/300d6c9c560163e2fec455c9e23bc8af4552fddc))
+
+
+### Maintenance
+
+* added captcha value of submit request ([1946a08](https://github.com/collective/volto-form-block/commit/1946a0839cda2e19693c21cc64c48c79395b32e7))
+* updated yarn.lock ([f49b32f](https://github.com/collective/volto-form-block/commit/f49b32fd7dec1942efdd4ed84dbe2d5ac2feeebd))
+
 ## [2.5.0](https://github.com/collective/volto-form-block/compare/v2.4.2...v2.5.0) (2022-09-05)
 
 
