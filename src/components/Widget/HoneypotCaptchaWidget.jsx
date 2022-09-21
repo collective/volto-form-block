@@ -3,11 +3,10 @@
  * @module components/manage/Widgets/HoneypotCaptchaWidget
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
-import { Grid } from 'semantic-ui-react';
-import './HoneypotCaptchaWidget.css';
+import TextWidget from "@plone/volto/components/manage/Widgets/TextWidget";
+import "./HoneypotCaptchaWidget.css";
 
 /**
  * HoneypotCaptchaWidget component class.
@@ -36,12 +35,12 @@ const HoneypotCaptchaWidget = ({
   }, [captchaToken, id]);
 
   useEffect(() => {
-    onChangeFormData(id, id, '', { label: id });
+    onChangeFormData(id, id, "", { label: id });
   }, []);
 
   const [value, setValue] = useState();
   return (
-    <Grid.Row className="honey-wrapper" key={'honeypot-captcha'}>
+    <div className="honey-wrapper" key={"honeypot-captcha"}>
       <TextWidget
         id={id}
         name={id}
@@ -55,7 +54,7 @@ const HoneypotCaptchaWidget = ({
         }}
         value={value}
       />
-    </Grid.Row>
+    </div>
   );
 };
 
