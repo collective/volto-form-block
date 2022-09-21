@@ -1,3 +1,10 @@
+### [2.6.1](https://github.com/collective/volto-form-block/compare/v2.6.0...v2.6.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* removed semantic-ui grid class ([f8c5b65](https://github.com/collective/volto-form-block/commit/f8c5b65de964fc15ed2ded7939c710b277907e06))
+
 ## [2.6.0](https://github.com/collective/volto-form-block/compare/v2.5.0...v2.6.0) (2022-09-21)
 
 
