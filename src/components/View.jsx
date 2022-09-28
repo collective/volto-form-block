@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
 import { submitForm } from '../actions';
 import { getFieldName } from './utils';
-import FormView from 'volto-form-block/components/FormView';
+import FormView from './FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
+import Captcha from './Widget/Captcha';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -55,7 +56,7 @@ const getInitialData = (data) => ({
 });
 
 /**
- * Form viiew
+ * Form view
  * @class View
  */
 const View = ({ data, id, path }) => {
@@ -77,6 +78,7 @@ const View = ({ data, id, path }) => {
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
+  const captchaToken = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({ field, value: { field_id, value, ...extras } });
@@ -90,11 +92,11 @@ const View = ({ data, id, path }) => {
   }, [formData]);
 
   const isValidForm = () => {
-    let v = [];
+    const v = [];
     data.subblocks.forEach((subblock, index) => {
-      let name = getFieldName(subblock.label, subblock.id);
-      let fieldType = subblock.field_type;
-      let additionalField =
+      const name = getFieldName(subblock.label, subblock.id);
+      const fieldType = subblock.field_type;
+      const additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
@@ -120,52 +122,70 @@ const View = ({ data, id, path }) => {
       }
     });
 
+    if (data.captcha && !captchaToken.current) {
+      v.push('captcha');
+    }
+
     setFormErrors(v);
     return v.length === 0;
   };
 
   const submit = (e) => {
     e.preventDefault();
-
-    if (isValidForm()) {
-      let attachments = {};
-      let formattedFormData = { ...formData };
-      data.subblocks.forEach((subblock, index) => {
-        let name = getFieldName(subblock.label, subblock.id);
-        if (formattedFormData[name]?.value) {
-          formattedFormData[name].field_id = subblock.field_id;
-          const isAttachment = subblock.field_type === 'attachment';
-          const isDate = subblock.field_type === 'date';
-
-          if (isAttachment) {
-            attachments[name] = formattedFormData[name].value;
-            delete formattedFormData[name];
+    captcha
+      .verify()
+      .then(() => {
+        if (isValidForm()) {
+          let attachments = {};
+          let captcha = {
+            provider: data.captcha,
+            token: captchaToken.current,
+          };
+          if (data.captcha === 'honeypot') {
+            captcha.value = formData[data.captcha_props.id]?.value ?? '';
           }
 
-          if (isDate) {
-            formattedFormData[name].value = formatDate({
-              date: formattedFormData[name].value,
-              format: 'DD-MM-YYYY',
-              locale: intl.locale,
-            });
-          }
+          let formattedFormData = { ...formData };
+          data.subblocks.forEach((subblock) => {
+            let name = getFieldName(subblock.label, subblock.id);
+            if (formattedFormData[name]?.value) {
+              formattedFormData[name].field_id = subblock.field_id;
+              const isAttachment = subblock.field_type === 'attachment';
+              const isDate = subblock.field_type === 'date';
+
+              if (isAttachment) {
+                attachments[name] = formattedFormData[name].value;
+                delete formattedFormData[name];
+              }
+
+              if (isDate) {
+                formattedFormData[name].value = formatDate({
+                  date: formattedFormData[name].value,
+                  format: 'DD-MM-YYYY',
+                  locale: intl.locale,
+                });
+              }
+            }
+          });
+          dispatch(
+            submitForm(
+              path,
+              id,
+              Object.keys(formattedFormData).map((name) => ({
+                ...formattedFormData[name],
+              })),
+              attachments,
+              captcha,
+            ),
+          );
+          setFormState({ type: FORM_STATES.loading });
+        } else {
+          setFormState({ type: FORM_STATES.error });
         }
+      })
+      .catch(() => {
+        setFormState({ type: FORM_STATES.error });
       });
-
-      dispatch(
-        submitForm(
-          path,
-          id,
-          Object.keys(formattedFormData).map((name) => ({
-            ...formattedFormData[name],
-          })),
-          attachments,
-        ),
-      );
-      setFormState({ type: FORM_STATES.loading });
-    } else {
-      setFormState({ type: FORM_STATES.error });
-    }
   };
 
   const resetFormState = () => {
@@ -173,12 +193,20 @@ const View = ({ data, id, path }) => {
     setFormState({ type: FORM_STATES.normal });
   };
 
+  const captcha = new Captcha({
+    captchaToken,
+    captcha: data.captcha,
+    captcha_props: data.captcha_props,
+    onChangeFormData,
+  });
+
   useEffect(() => {
     if (submitResults?.loaded) {
       setFormState({
         type: FORM_STATES.success,
         result: intl.formatMessage(messages.formSubmitted),
       });
+      captcha.reset();
     } else if (submitResults?.error) {
       let errorDescription = `${submitResults.error.status} ${
         submitResults.error.message
@@ -198,6 +226,7 @@ const View = ({ data, id, path }) => {
       formState={formState}
       formErrors={formErrors}
       formData={formData}
+      captcha={captcha}
       onChangeFormData={onChangeFormData}
       data={data}
       onSubmit={submit}

@@ -6,8 +6,6 @@ import FormView from './components/FormView';
 import Sidebar from './components/Sidebar';
 import EditBlock from './components/EditBlock';
 import Field from './components/Field';
-import GoogleReCaptchaWidget from './components/Widget/GoogleReCaptchaWidget';
-import HCaptchaWidget from './components/Widget/HCaptchaWidget';
 import { downloadFile, getFieldName } from './components/utils';
 import {
   submitForm,
@@ -78,8 +76,6 @@ export {
   FormView,
   EditBlock,
   Field,
-  GoogleReCaptchaWidget,
-  HCaptchaWidget,
   downloadFile,
   getFieldName,
 };

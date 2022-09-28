@@ -24,47 +24,47 @@ msgstr "Abbrechen"
 #: components/Widget/SelectWidget
 # defaultMessage: Choices
 msgid "Choices"
-msgstr ""
+msgstr "Auswahlfeld"
 
 #: components/Widget/FileWidget
 # defaultMessage: Choose a file
 msgid "Choose a file"
-msgstr ""
+msgstr "Datei auswählen"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Default
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
 msgid "Drop file here to replace the existing file"
-msgstr ""
+msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to upload a new file
 msgid "Drop file here to upload a new file"
-msgstr ""
+msgstr "Datei hier ablegen um eine neue Datei hochzuladen"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop files here ...
 msgid "Drop files here ..."
-msgstr ""
+msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 
 #: components/FormView
 # defaultMessage: Error
@@ -79,152 +79,152 @@ msgstr "Formular"
 #: components/Widget/SelectWidget
 # defaultMessage: No options
 msgid "No options"
-msgstr ""
+msgstr "Keine Option"
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
-msgstr ""
+msgstr "Kein Wert"
 
 #: components/Widget/FileWidget
 # defaultMessage: Replace existing file
 msgid "Replace existing file"
-msgstr ""
+msgstr "Bestehende Datei ersetzen"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Required
 msgid "Required"
-msgstr ""
+msgstr "Notwendig"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
+msgstr "Wähle…"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Short Name
 msgid "Short Name"
-msgstr ""
+msgstr "Kurzname"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Time
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Title
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
-msgstr ""
+msgstr "Wir für den programmierten Zugriff auf das Fieldset verwendet."
 
 #: helpers/react-select
 # defaultMessage: Usa le frecce Su e Giu per scegliere un'opzione
 msgid "ay11_Use Up and Down to choose options"
-msgstr ""
+msgstr "Verwenden Sie die Aufwärts- und Abwärtspfeile, um eine Option auszuwählen"
 
 #: helpers/react-select
 # defaultMessage: disponibile
 msgid "ay11_select available"
-msgstr ""
+msgstr "verfügbar"
 
 #: helpers/react-select
 # defaultMessage: disponibili
 msgid "ay11_select availables"
-msgstr ""
+msgstr "verfügbar"
 
 #: helpers/react-select
 # defaultMessage: deselezionata
 msgid "ay11_select deselected"
-msgstr ""
+msgstr "abgewählt"
 
 #: helpers/react-select
 # defaultMessage: disabilitato
 msgid "ay11_select disabled"
-msgstr ""
+msgstr "deaktiviert"
 
 #: helpers/react-select
 # defaultMessage: evidenziato
 msgid "ay11_select focused"
-msgstr ""
+msgstr "hervorgehoben"
 
 #: helpers/react-select
 # defaultMessage: per la ricerca
 msgid "ay11_select for search term"
-msgstr ""
+msgstr "für die Forschung"
 
 #: helpers/react-select
 # defaultMessage: è disabilitata. Seleziona un'altra opzione
 msgid "ay11_select is disabled. Select another option."
-msgstr ""
+msgstr "ist behindert. Bitte wählen Sie eine andere Option"
 
 #: helpers/react-select
 # defaultMessage: opzione
 msgid "ay11_select option"
-msgstr ""
+msgstr "Möglichkeit"
 
 #: helpers/react-select
 # defaultMessage: risultato
 msgid "ay11_select result"
-msgstr ""
+msgstr "Ergebnis"
 
 #: helpers/react-select
 # defaultMessage: risultati
 msgid "ay11_select results"
-msgstr ""
+msgstr "Ergebnisse"
 
 #: helpers/react-select
 # defaultMessage: selezionata
 msgid "ay11_select selected"
-msgstr ""
+msgstr "ausgewählt"
 
 #: helpers/react-select
 # defaultMessage: valore
 msgid "ay11_select value"
-msgstr ""
+msgstr "Wert"
 
 #: helpers/react-select
 # defaultMessage: Usa le frecce destra e sinistra per attivare o disattivare i valori evidenziati, premi Backspace per rimuovere il valore corrente evidenziato
 msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
-msgstr ""
+msgstr "Verwenden Sie die Links- und Rechtspfeile, um die hervorgehobenen Werte ein- oder auszuschalten, drücken Sie die Rücktaste, um den aktuell hervorgehobenen Wert zu entfernen"
 
 #: helpers/react-select
 # defaultMessage: premi Tab per selezionare l'opzione e uscire dal menu
 msgid "ay11_select__press Tab to select the option and exit the menu"
-msgstr ""
+msgstr "Tab, um die Option auszuwählen und das Menü zu verlassen"
 
 #: helpers/react-select
 # defaultMessage: digita per filtrare la lista
 msgid "ay11_select__type to refine list"
-msgstr ""
+msgstr "eingeben, um die Liste zu filtern"
 
 #: helpers/react-select
 # defaultMessage: è selezionato
 msgid "ay11_select_is_focused"
-msgstr ""
+msgstr "ist ausgewählt"
 
 #: helpers/react-select
 # defaultMessage: premi freccia giu per aprire il menu, premi Backspace per rimuovere il valore selezionato
 msgid "ay11_select_press Down to open the menu"
-msgstr ""
+msgstr "Drücken Sie den Pfeil nach unten, um das Menü zu öffnen, drücken Sie die Rücktaste, um den ausgewählten Wert zu entfernen"
 
 #: helpers/react-select
 # defaultMessage: premi Invio per selezionare l'opzione corrente
 msgid "ay11_select_press Enter to select the currently focused option"
-msgstr ""
+msgstr "Drücken Sie die Eingabetaste, um die aktuelle Option auszuwählen"
 
 #: helpers/react-select
 # defaultMessage: premi Esc per uscire dal menu
 msgid "ay11_select_press Escape to exit the menu"
-msgstr ""
+msgstr "Drücken Sie Esc, um das Menü zu verlassen"
 
 #: helpers/react-select
 # defaultMessage: premi la freccia a sinistra per evidenziare i valori selezionati
 msgid "ay11_select_press left to focus selected values"
-msgstr ""
+msgstr "Drücken Sie die linke Pfeiltaste, um die ausgewählten Werte hervorzuheben"
 
 #: formSchema
 # defaultMessage: Description
@@ -285,7 +285,7 @@ msgstr "Achtung!"
 #: components/Edit
 # defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
-msgstr "Geben Sie ein Feld vom Typ "Absender-E-Mail" ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
+msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
 
 #: components/FormView
 # defaultMessage: Fill in the required fields
@@ -415,12 +415,12 @@ msgstr "Empfänger"
 #: fieldSchema
 # defaultMessage: Send an email copy to this address
 msgid "form_useAsBCC"
-msgstr ""
+msgstr "Senden Sie eine E-Mail-Kopie an diese Adresse"
 
 #: fieldSchema
 # defaultMessage: If selected, a copy of email will alse be sent to this address.
 msgid "form_useAsBCC_description"
-msgstr ""
+msgstr "Wenn ausgewählt, wird auch eine Kopie der E-Mail an diese Adresse gesendet."
 
 #: fieldSchema
 # defaultMessage: Use as 'reply to'
@@ -445,17 +445,17 @@ msgstr "Siehe https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the
 #: helpers/react-select
 # defaultMessage: Nessuna opzione
 msgid "select_noOptionsMessage"
-msgstr ""
+msgstr "Keine Option"
 
 #: helpers/react-select
 # defaultMessage: risultati
 msgid "select_risultati"
-msgstr ""
+msgstr "Ergebnisse"
 
 #: helpers/react-select
 # defaultMessage: risultato
 msgid "select_risultato"
-msgstr ""
+msgstr "Ergebnis"
 
 #: formSchema
 # defaultMessage: Title

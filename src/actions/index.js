@@ -13,7 +13,7 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
  * @param {Object} data
  * @returns {Object} attachments
  */
-export function submitForm(path = '', block_id, data, attachments) {
+export function submitForm(path = '', block_id, data, attachments, captcha) {
   return {
     type: SUBMIT_FORM_ACTION,
     request: {
@@ -23,6 +23,7 @@ export function submitForm(path = '', block_id, data, attachments) {
         block_id,
         data,
         attachments,
+        captcha,
       },
     },
   };

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
 
 import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
-
 import EmailWidget from './Widget/EmailWidget';
 import FileWidget from './Widget/FileWidget';
 import DatetimeWidget from './Widget/DatetimeWidget';

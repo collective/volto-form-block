@@ -1,3 +1,52 @@
+### [2.6.1](https://github.com/collective/volto-form-block/compare/v2.6.0...v2.6.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* removed semantic-ui grid class ([f8c5b65](https://github.com/collective/volto-form-block/commit/f8c5b65de964fc15ed2ded7939c710b277907e06))
+
+## [2.6.0](https://github.com/collective/volto-form-block/compare/v2.5.0...v2.6.0) (2022-09-21)
+
+
+### Features
+
+* added honeypot field type ([272e3c3](https://github.com/collective/volto-form-block/commit/272e3c3093c0dbc253f2a2406125cc497354cd01))
+* added honeypot widget captcha ([2723f52](https://github.com/collective/volto-form-block/commit/2723f5281fb918f2baf30940a746a956b85cc49c))
+
+
+### Bug Fixes
+
+* fix captcha widget ([b4d990c](https://github.com/collective/volto-form-block/commit/b4d990ca822d0c42e263194e3e91221fc7715dd2))
+* fix captcha widget manage token ([1a3c19b](https://github.com/collective/volto-form-block/commit/1a3c19bfa644147024347bc543f3cb8cc73e7f6d))
+* fix HoneypotWidget props ([cd294c4](https://github.com/collective/volto-form-block/commit/cd294c45b54920c6f0d0f15c70a9b33469bfa6a0))
+* fixed const variables and added row class ([300d6c9](https://github.com/collective/volto-form-block/commit/300d6c9c560163e2fec455c9e23bc8af4552fddc))
+
+
+### Maintenance
+
+* added captcha value of submit request ([1946a08](https://github.com/collective/volto-form-block/commit/1946a0839cda2e19693c21cc64c48c79395b32e7))
+* updated yarn.lock ([f49b32f](https://github.com/collective/volto-form-block/commit/f49b32fd7dec1942efdd4ed84dbe2d5ac2feeebd))
+
+## [2.5.0](https://github.com/collective/volto-form-block/compare/v2.4.2...v2.5.0) (2022-09-05)
+
+
+### Features
+
+* handled collective.volto.formsupport.captcha.providers vocabulary ([12060e7](https://github.com/collective/volto-form-block/commit/12060e77eaa863a5b8792ad2c604f034546f7e06))
+
+
+### Bug Fixes
+
+* fixed disabled submit button ([e1026bc](https://github.com/collective/volto-form-block/commit/e1026bcff8b36cf69b8dd648cff6b6b00cdf02e8))
+* send captcha to backend to make it effective ([15b4a4f](https://github.com/collective/volto-form-block/commit/15b4a4f9701baa5427d3048f53f55226f5bcde18))
+* send captcha to backend to make it effective ([a9f422b](https://github.com/collective/volto-form-block/commit/a9f422bc4f9f5d13f6b923d0eb26b785cd4308c1))
+
+
+### Maintenance
+
+* updated README ([1d76435](https://github.com/collective/volto-form-block/commit/1d764354a4332ba21509b9aceba133da6dcaa062))
+* updated README ([3dd04ca](https://github.com/collective/volto-form-block/commit/3dd04ca2a924ed07de6aef960990b2544c370dd3))
+
 ### [2.4.2](https://github.com/collective/volto-form-block/compare/v2.4.1...v2.4.2) (2022-08-05)
 
 ### [2.4.1](https://github.com/collective/volto-form-block/compare/v2.4.0...v2.4.1) (2022-07-07)

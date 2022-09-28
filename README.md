@@ -10,7 +10,7 @@ yarn add volto-form-block
 ```
 
 > **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
-> 
+>
 > **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
 
 ## Features
@@ -41,12 +41,20 @@ For select, radio and checkbox fields, you can select a list of values.
 
 ## Captcha verification
 
-This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com) and [ReCaptcha](https://www.google.com/recaptcha/) to prevent spam.
-In order to make one of these integrations work, you need to add an enviroment variable with the key `RAZZLE_HCAPTCHA_KEY` or `RAZZLE_RECAPTCHA_KEY` and the value of the key in your `.env` file.
+This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com), [ReCaptcha](https://www.google.com/recaptcha/) and
+[NoRobot](https://github.com/collective/collective.z3cform.norobots) to prevent spam.
+
+In order to make one of these integrations work, you need to add
+[https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) and/or
+[https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) and/or
+[https://github.com/collective/collective.z3cform.norobots](https://github.com/collective/collective.z3cform.norobots)
+Plone addon and configure public and private keys in controlpanels.
 
 ### HCaptcha
 
-With HCaptcha integration, you also get an additional option in the sidebar to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
+With HCaptcha integration, you also have an additional option in the sidebar in 'Captcha provider' to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
+
+In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
 
 ## Export
 
@@ -62,10 +70,10 @@ If you need a field that is not supported, PRs are always welcome, but if you ha
 
 ```jsx
 config.blocks.blocksConfig.form.additionalFields.push({
-  id: 'field type id',
+  id: "field type id",
   label:
     intl.formatMessage(messages.customFieldLabel) ||
-    'Label for field type select, translation obj or string',
+    "Label for field type select, translation obj or string",
   component: MyCustomWidget,
   isValid: (formData, name) => true,
 });
@@ -106,8 +114,20 @@ i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
 
+## Upgrade guide:
+
+To upgrade to version 2.4.0 you need to:
+
+- remove the env vars
+- install [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) or both in Plone.
+- insert private and public keys in Plone HCaptcha controlpanel or/and Plone ReCaptcha controlpanel.
+
 ## Video demos
 
 - [Form usage](https://youtu.be/v5KtjEACRmI)
 - [Form editing](https://youtu.be/wmTpzYBtNCQ)
 - [Export stored data](https://youtu.be/3zVUaGaaVOg)
+
+## VERSIONS:
+
+With volto-form-block@2.5.0 you need to upgrade collective.volto.formsupport to version 2.4.0

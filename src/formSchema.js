@@ -30,15 +30,11 @@ const messages = defineMessages({
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
   },
-  invisibleHCaptcha: {
-    id: 'invisible_hcaptcha',
-    defaultMessage: 'Invisible captcha',
+  captcha: {
+    id: 'captcha',
+    defaultMessage: 'Captcha provider',
   },
-  invisibleHCaptchaDescription: {
-    id: 'invisible_hcaptcha_desc',
-    defaultMessage:
-      'See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode',
-  },
+
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
@@ -55,9 +51,7 @@ const messages = defineMessages({
 
 export default () => {
   var intl = useIntl();
-  var invisibleHCaptcha = process.env.RAZZLE_HCAPTCHA_KEY
-    ? ['invisibleHCaptcha']
-    : [];
+
   return {
     title: intl.formatMessage(messages.form),
     fieldsets: [
@@ -71,7 +65,7 @@ export default () => {
           'default_from',
           'default_subject',
           'submit_label',
-          ...invisibleHCaptcha,
+          'captcha',
           'store',
           'send',
           'labelsAsPlaceholders',
@@ -98,10 +92,12 @@ export default () => {
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
       },
-      invisibleHCaptcha: {
-        type: 'boolean',
-        title: intl.formatMessage(messages.invisibleHCaptcha),
-        description: intl.formatMessage(messages.invisibleHCaptchaDescription),
+      captcha: {
+        title: intl.formatMessage(messages.captcha),
+        type: 'array',
+        vocabulary: {
+          '@id': 'collective.volto.formsupport.captcha.providers',
+        },
       },
       store: {
         type: 'boolean',

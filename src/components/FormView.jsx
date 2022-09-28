@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import {
   Segment,
@@ -8,16 +8,10 @@ import {
   Progress,
   Button,
 } from 'semantic-ui-react';
-
-import Field from 'volto-form-block/components/Field';
-import GoogleReCaptchaWidget from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
-import HCaptchaWidget from 'volto-form-block/components/Widget/HCaptchaWidget';
-
-import config from '@plone/volto/registry';
-
 import { getFieldName } from './utils';
-
+import Field from './Field';
 import './FormView.css';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   default_submit_label: {
@@ -40,10 +34,6 @@ const messages = defineMessages({
     id: 'form_reset',
     defaultMessage: 'Clear',
   },
-  captchaInvalid: {
-    id: 'captchaInvalid',
-    defaultMessage: 'Waiting for captcha',
-  },
 });
 
 const FormView = ({
@@ -54,19 +44,9 @@ const FormView = ({
   data,
   onSubmit,
   resetFormState,
+  captcha,
 }) => {
   const intl = useIntl();
-
-  const captcha = !!process.env.RAZZLE_HCAPTCHA_KEY
-    ? 'HCaptcha'
-    : !!process.env.RAZZLE_RECAPTCHA_KEY
-    ? 'GoogleReCaptcha'
-    : null;
-
-  let [validToken, setValidToken] = React.useState();
-  const onVerifyCaptcha = useCallback((token) => {
-    setValidToken(token);
-  }, []);
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
@@ -175,19 +155,7 @@ const FormView = ({
                     </Grid.Row>
                   );
                 })}
-
-                {captcha === 'GoogleReCaptcha' && (
-                  <GoogleReCaptchaWidget onVerify={onVerifyCaptcha} />
-                )}
-
-                {captcha === 'HCaptcha' && (
-                  <HCaptchaWidget
-                    sitekey={process.env.RAZZLE_HCAPTCHA_KEY}
-                    onVerify={onVerifyCaptcha}
-                    size={data.invisibleHCaptcha ? 'invisible' : 'normal'}
-                  />
-                )}
-
+                {captcha.render()}
                 {formErrors.length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">
@@ -196,18 +164,11 @@ const FormView = ({
                     <p>{intl.formatMessage(messages.empty_values)}</p>
                   </Message>
                 )}
-
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
-                    <Button
-                      primary
-                      type="submit"
-                      disabled={(captcha && !validToken) || formState.loading}
-                    >
-                      {captcha && !validToken
-                        ? intl.formatMessage(messages.captchaInvalid)
-                        : data.submit_label ||
-                          intl.formatMessage(messages.default_submit_label)}
+                    <Button primary type="submit" disabled={formState.loading}>
+                      {data.submit_label ||
+                        intl.formatMessage(messages.default_submit_label)}
 
                       {formState.loading && (
                         <Progress
