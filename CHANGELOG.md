@@ -1,3 +1,10 @@
+### [2.7.1](https://github.com/collective/volto-form-block/compare/v2.7.0...v2.7.1) (2022-09-30)
+
+
+### Bug Fixes
+
+* show only the error message and not the http error code ([d328505](https://github.com/collective/volto-form-block/commit/d3285057b40fa25b869edb76a4e64c9177291390))
+
 ## [2.7.0](https://github.com/collective/volto-form-block/compare/v2.6.1...v2.7.0) (2022-09-30)
 
 
