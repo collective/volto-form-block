@@ -193,6 +193,10 @@ const View = ({ data, id, path }) => {
     setFormState({ type: FORM_STATES.normal });
   };
 
+  const resetFormOnError = () => {
+    setFormState({ type: FORM_STATES.normal });
+  };
+
   const captcha = new Captcha({
     captchaToken,
     captcha: data.captcha,
@@ -231,6 +235,7 @@ const View = ({ data, id, path }) => {
       data={data}
       onSubmit={submit}
       resetFormState={resetFormState}
+      resetFormOnError={resetFormOnError}
     />
   );
 };

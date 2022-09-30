@@ -44,6 +44,7 @@ const FormView = ({
   data,
   onSubmit,
   resetFormState,
+  resetFormOnError,
   captcha,
 }) => {
   const intl = useIntl();
@@ -74,7 +75,7 @@ const FormView = ({
                 {intl.formatMessage(messages.error)}
               </Message.Header>
               <p>{formState.error}</p>
-              <Button secondary type="clear" onClick={resetFormState}>
+              <Button secondary type="clear" onClick={resetFormOnError}>
                 {intl.formatMessage(messages.reset)}
               </Button>
             </Message>
