@@ -1,3 +1,10 @@
+## [2.7.0](https://github.com/collective/volto-form-block/compare/v2.6.1...v2.7.0) (2022-09-30)
+
+
+### Features
+
+* do not reset the form when a backend error happens ([ff33951](https://github.com/collective/volto-form-block/commit/ff33951fa44951420341f25cdaddd625b3db5bac))
+
 ### [2.6.1](https://github.com/collective/volto-form-block/compare/v2.6.0...v2.6.1) (2022-09-21)
 
 
