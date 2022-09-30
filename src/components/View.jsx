@@ -208,9 +208,9 @@ const View = ({ data, id, path }) => {
       });
       captcha.reset();
     } else if (submitResults?.error) {
-      let errorDescription = `${submitResults.error.status} ${
-        submitResults.error.message
-      } - ${JSON.parse(submitResults.error.response?.text ?? '{}')?.message}`;
+      let errorDescription = `${
+        JSON.parse(submitResults.error.response?.text ?? '{}')?.message
+      }`;
 
       setFormState({ type: FORM_STATES.error, error: errorDescription });
     }
