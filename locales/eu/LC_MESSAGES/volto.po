@@ -26,32 +26,32 @@ msgstr "Utzi"
 #: components/Widget/SelectWidget
 # defaultMessage: Choices
 msgid "Choices"
-msgstr ""
+msgstr "Aukerak"
 
 #: components/Widget/FileWidget
 # defaultMessage: Choose a file
 msgid "Choose a file"
-msgstr ""
+msgstr "Aukeratu fitxategia"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
-msgstr ""
+msgstr "Itxi"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Default
 msgid "Default"
-msgstr ""
+msgstr "Defektuzkoa"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
+msgstr "Deskribapena"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
@@ -61,12 +61,12 @@ msgstr ""
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to upload a new file
 msgid "Drop file here to upload a new file"
-msgstr ""
+msgstr "Arrastatu fitxategia hona orain dagoena ordezkatzeko"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop files here ...
 msgid "Drop files here ..."
-msgstr ""
+msgstr "Arrastatu fitxategiak hona..."
 
 #: components/FormView
 # defaultMessage: Error
@@ -81,152 +81,152 @@ msgstr "Formularioa"
 #: components/Widget/SelectWidget
 # defaultMessage: No options
 msgid "No options"
-msgstr ""
+msgstr "Ez du aukerarik"
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
-msgstr ""
+msgstr "Ez du baliorik"
 
 #: components/Widget/FileWidget
 # defaultMessage: Replace existing file
 msgid "Replace existing file"
-msgstr ""
+msgstr "Ordezkatu fitxategia"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Required
 msgid "Required"
-msgstr ""
+msgstr "Beharrezkoa"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
+msgstr "Aukeratu..."
 
 #: components/Widget/SelectWidget
 # defaultMessage: Short Name
 msgid "Short Name"
-msgstr ""
+msgstr "Izen-laburra"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Time
 msgid "Time"
-msgstr ""
+msgstr "Ordua"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Title
 msgid "Title"
-msgstr ""
+msgstr "Titulua"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
-msgstr ""
+msgstr "Eremu-multzoa programaziotik atzitzeko izena"
 
 #: helpers/react-select
 # defaultMessage: Usa le frecce Su e Giu per scegliere un'opzione
 msgid "ay11_Use Up and Down to choose options"
-msgstr ""
+msgstr "Erabili gora eta beherako geziak aukeratzeko"
 
 #: helpers/react-select
 # defaultMessage: disponibile
 msgid "ay11_select available"
-msgstr ""
+msgstr "erabilgarri"
 
 #: helpers/react-select
 # defaultMessage: disponibili
 msgid "ay11_select availables"
-msgstr ""
+msgstr "erabilgarriak"
 
 #: helpers/react-select
 # defaultMessage: deselezionata
 msgid "ay11_select deselected"
-msgstr ""
+msgstr "desautatuta"
 
 #: helpers/react-select
 # defaultMessage: disabilitato
 msgid "ay11_select disabled"
-msgstr ""
+msgstr "desgaituta"
 
 #: helpers/react-select
 # defaultMessage: evidenziato
 msgid "ay11_select focused"
-msgstr ""
+msgstr "fokua hartuta"
 
 #: helpers/react-select
 # defaultMessage: per la ricerca
 msgid "ay11_select for search term"
-msgstr ""
+msgstr "bilaketarako terminoa"
 
 #: helpers/react-select
 # defaultMessage: è disabilitata. Seleziona un'altra opzione
 msgid "ay11_select is disabled. Select another option."
-msgstr ""
+msgstr "desgaituta dago. Aukeratu beste bat."
 
 #: helpers/react-select
 # defaultMessage: opzione
 msgid "ay11_select option"
-msgstr ""
+msgstr "aukera"
 
 #: helpers/react-select
 # defaultMessage: risultato
 msgid "ay11_select result"
-msgstr ""
+msgstr "emaitza"
 
 #: helpers/react-select
 # defaultMessage: risultati
 msgid "ay11_select results"
-msgstr ""
+msgstr "emaitzak"
 
 #: helpers/react-select
 # defaultMessage: selezionata
 msgid "ay11_select selected"
-msgstr ""
+msgstr "aukeratuta"
 
 #: helpers/react-select
 # defaultMessage: valore
 msgid "ay11_select value"
-msgstr ""
+msgstr "balioa"
 
 #: helpers/react-select
 # defaultMessage: Usa le frecce destra e sinistra per attivare o disattivare i valori evidenziati, premi Backspace per rimuovere il valore corrente evidenziato
 msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
-msgstr ""
+msgstr "Erabili ezker eta eskuin geziak fokua duten balioen artean aldatzeko, sakatu Atzera (Backspace) fokua dagoen balioa ezabatzeko"
 
 #: helpers/react-select
 # defaultMessage: premi Tab per selezionare l'opzione e uscire dal menu
 msgid "ay11_select__press Tab to select the option and exit the menu"
-msgstr ""
+msgstr "sakatu Tab aukeratu eta menutik irteteko"
 
 #: helpers/react-select
 # defaultMessage: digita per filtrare la lista
 msgid "ay11_select__type to refine list"
-msgstr ""
+msgstr "idatzi zerrenda iragazteko"
 
 #: helpers/react-select
 # defaultMessage: è selezionato
 msgid "ay11_select_is_focused"
-msgstr ""
+msgstr "aukeratuta dago"
 
 #: helpers/react-select
 # defaultMessage: premi freccia giu per aprire il menu, premi Backspace per rimuovere il valore selezionato
 msgid "ay11_select_press Down to open the menu"
-msgstr ""
+msgstr "sakatu behera gezia menua irekitzeko"
 
 #: helpers/react-select
 # defaultMessage: premi Invio per selezionare l'opzione corrente
 msgid "ay11_select_press Enter to select the currently focused option"
-msgstr ""
+msgstr "sakatu Intro unekoa aukeratzeko"
 
 #: helpers/react-select
 # defaultMessage: premi Esc per uscire dal menu
 msgid "ay11_select_press Escape to exit the menu"
-msgstr ""
+msgstr "sakatu Escape menutik irteteko"
 
 #: helpers/react-select
 # defaultMessage: premi la freccia a sinistra per evidenziare i valori selezionati
 msgid "ay11_select_press left to focus selected values"
-msgstr ""
+msgstr "sakatu ezkerrera aukeratutako balioetan fokua jartzeko"
 
 #: formSchema
 # defaultMessage: Description
@@ -236,7 +236,7 @@ msgstr "Deskribapena"
 #: formSchema
 # defaultMessage: Form
 msgid "form"
-msgstr ""
+msgstr "Formularioa"
 
 #: components/View
 # defaultMessage: Form successfully submitted
@@ -246,7 +246,7 @@ msgstr "Formularioa ondo bidali da"
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
-msgstr ""
+msgstr "Erantsitako fitxategia email bidez bidaliko da, baina ez da gordeko"
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -327,7 +327,7 @@ msgstr "Fitxategia"
 #: fieldSchema
 # defaultMessage: Any attachments can be emailed, but will not be saved.
 msgid "form_field_type_attachment_info_text"
-msgstr ""
+msgstr "Erantsitako edozein fitxategi eposta bidez bidaliko dira, baina ez dira gordeko."
 
 #: fieldSchema
 # defaultMessage: Checkbox
@@ -417,12 +417,12 @@ msgstr "Jasotzaileak"
 #: fieldSchema
 # defaultMessage: Send an email copy to this address
 msgid "form_useAsBCC"
-msgstr ""
+msgstr "Bidali kopia bat eposta honetara"
 
 #: fieldSchema
 # defaultMessage: If selected, a copy of email will alse be sent to this address.
 msgid "form_useAsBCC_description"
-msgstr ""
+msgstr "Aukeratzen bada, emailaren kopia bat bidaliko da helbide honetara."
 
 #: fieldSchema
 # defaultMessage: Use as 'reply to'
@@ -432,7 +432,7 @@ msgstr "Nori erantzun gisa erabili"
 #: fieldSchema
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
-msgstr "Aukeratuz gero jasotako posta elektronikoari "Erantzun" eginez gero eremu honetan adierazitako helbidera joango da erantzuna"
+msgstr "Aukeratuz gero jasotako posta elektronikoari 'Erantzun' eginez gero eremu honetan adierazitako helbidera joango da erantzuna"
 
 #: formSchema
 # defaultMessage: Invisible captcha
@@ -447,17 +447,17 @@ msgstr "Ikusi https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the
 #: helpers/react-select
 # defaultMessage: Nessuna opzione
 msgid "select_noOptionsMessage"
-msgstr ""
+msgstr "Aukerarik gabe"
 
 #: helpers/react-select
 # defaultMessage: risultati
 msgid "select_risultati"
-msgstr ""
+msgstr "emaitzak"
 
 #: helpers/react-select
 # defaultMessage: risultato
 msgid "select_risultato"
-msgstr ""
+msgstr "emaitza"
 
 #: formSchema
 # defaultMessage: Title
