@@ -48,19 +48,12 @@ const FormView = ({
   captcha,
 }) => {
   const intl = useIntl();
+  const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;
   };
 
-  var FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
-  var fieldSchemaProperties = FieldSchema()?.properties;
-  var fields_to_send = [];
-  for (var key in fieldSchemaProperties) {
-    if (fieldSchemaProperties[key].send_to_backend) {
-      fields_to_send.push(key);
-    }
-  }
   return (
     <div className="block form">
       <div className="public-ui">
@@ -119,6 +112,15 @@ const FormView = ({
                 ))}
                 {data.subblocks?.map((subblock, index) => {
                   let name = getFieldName(subblock.label, subblock.id);
+
+                  var fields_to_send = [];
+                  var fieldSchemaProperties = FieldSchema(subblock)?.properties;
+                  for (var key in fieldSchemaProperties) {
+                    if (fieldSchemaProperties[key].send_to_backend) {
+                      fields_to_send.push(key);
+                    }
+                  }
+
                   var fields_to_send_with_value = Object.assign(
                     {},
                     ...fields_to_send.map((field) => {
