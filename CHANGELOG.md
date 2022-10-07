@@ -1,3 +1,15 @@
+## [2.8.0](https://github.com/collective/volto-form-block/compare/v2.7.1...v2.8.0) (2022-10-07)
+
+
+### Features
+
+* scroll the window to the top of the form after submitting it succesfully ([#43](https://github.com/collective/volto-form-block/issues/43)) ([3c26486](https://github.com/collective/volto-form-block/commit/3c26486ae305ed173e86025f9d3b36e5fc6ad1c0))
+
+
+### Bug Fixes
+
+* set norobots captcha as required ([9d73566](https://github.com/collective/volto-form-block/commit/9d73566df9b234e0c8da08b5dcc3240cc9f9670d))
+
 ### [2.7.1](https://github.com/collective/volto-form-block/compare/v2.7.0...v2.7.1) (2022-09-30)
 
 
