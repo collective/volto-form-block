@@ -214,12 +214,15 @@ const View = ({ data, id, path }) => {
       });
       captcha.reset();
       const formItem = document.getElementById(formid);
-      const formItemPosition = formItem.getBoundingClientRect();
-      window.scrollTo({
-        top: formItemPosition.x,
-        left: formItemPosition.y,
-        behavior: 'smooth',
-      });
+      if (formItem !== null) {
+        const formItemPosition = formItem.getBoundingClientRect();
+        formItemPosition !== null &&
+          window.scrollTo({
+            top: formItemPosition.x,
+            left: formItemPosition.y,
+            behavior: 'smooth',
+          });
+      }
     } else if (submitResults?.error) {
       let errorDescription = `${
         JSON.parse(submitResults.error.response?.text ?? '{}')?.message
