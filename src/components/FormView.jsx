@@ -46,6 +46,7 @@ const FormView = ({
   resetFormState,
   resetFormOnError,
   captcha,
+  id,
 }) => {
   const intl = useIntl();
 
@@ -91,6 +92,7 @@ const FormView = ({
             </Message>
           ) : (
             <Form
+              id={id}
               loading={formState.loading}
               onSubmit={onSubmit}
               autoComplete="off"
