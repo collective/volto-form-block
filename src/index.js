@@ -1,25 +1,29 @@
 import loadable from '@loadable/component';
 import formSVG from '@plone/volto/icons/form.svg';
-import View from './components/View';
-import Edit from './components/Edit';
-import FormView from './components/FormView';
-import Sidebar from './components/Sidebar';
-import EditBlock from './components/EditBlock';
-import Field from './components/Field';
-import { downloadFile, getFieldName } from './components/utils';
+import View from 'volto-form-block/components/View';
+import Edit from 'volto-form-block/components/Edit';
+import FormView from 'volto-form-block/components/FormView';
+import Sidebar from 'volto-form-block/components/Sidebar';
+import EditBlock from 'volto-form-block/components/EditBlock';
+import Field from 'volto-form-block/components/Field';
+import { downloadFile, getFieldName } from 'volto-form-block/components/utils';
 import {
   submitForm,
   getFormData,
   exportCsvFormData,
   clearFormData,
-} from './reducers';
-import FormSchema from './formSchema';
-import FieldSchema from './fieldSchema';
+} from 'volto-form-block/reducers';
+import FormSchema from 'volto-form-block/formSchema';
+import FieldSchema from 'volto-form-block/fieldSchema';
 import {
   SelectionSchemaExtender,
   FromSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
-export { submitForm, getFormData, exportCsvFormData } from './actions';
+export {
+  submitForm,
+  getFormData,
+  exportCsvFormData,
+} from 'volto-form-block/actions';
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {

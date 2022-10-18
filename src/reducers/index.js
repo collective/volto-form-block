@@ -7,7 +7,7 @@ import {
   EXPORT_CSV_FORMDATA,
   GET_FORM_DATA,
   CLEAR_FORM_DATA,
-} from '../actions';
+} from 'volto-form-block/actions';
 
 function download(filename, text) {
   var element = document.createElement('a');

@@ -1,12 +1,12 @@
 .checkbox-list-widget .checkbox-item {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 
 .checkbox-list-widget fieldset.checkbox-group {
     border: none;
 }
 
-.checkbox-list-widget fieldset.checkbox-group legend{
+.checkbox-list-widget fieldset.checkbox-group legend {
     display: none;
     line-height: 0;
 }

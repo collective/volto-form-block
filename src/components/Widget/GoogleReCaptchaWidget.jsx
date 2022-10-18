@@ -23,6 +23,7 @@ const GoogleReCaptchaWidget = ({
     useEffect(() => {
       captchaRef.current = { verify: handleReCaptchaVerify };
       // handleReCaptchaVerify();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return null;
   };
@@ -31,7 +32,6 @@ const GoogleReCaptchaWidget = ({
     <GoogleReCaptchaProvider
       reCaptchaKey={sitekey}
       language={intl.locale ?? 'en'}
-
     >
       <ReCaptchaComponent />
     </GoogleReCaptchaProvider>

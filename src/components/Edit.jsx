@@ -7,8 +7,8 @@ import {
 } from 'volto-subblocks';
 import { SidebarPortal } from '@plone/volto/components';
 
-import EditBlock from './EditBlock';
-import Sidebar from './Sidebar';
+import EditBlock from 'volto-form-block/components/EditBlock';
+import Sidebar from 'volto-form-block/components/Sidebar';
 
 import { defineMessages } from 'react-intl';
 

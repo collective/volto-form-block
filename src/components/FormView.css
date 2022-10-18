@@ -7,3 +7,7 @@
 .block.form .ui.form .row.row-padded-top {
     padding-top: 3rem;
 }
+
+.block.form .ui.button.add-element:hover {
+    color: white;
+}
