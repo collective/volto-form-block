@@ -3,10 +3,11 @@
  * @module components/manage/Widgets/HoneypotCaptchaWidget
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 
-import TextWidget from "@plone/volto/components/manage/Widgets/TextWidget";
-import "./HoneypotCaptchaWidget.css";
+/* Style */
+import 'volto-form-block/components/Widget/HoneypotCaptchaWidget.css';
 
 /**
  * HoneypotCaptchaWidget component class.
@@ -14,8 +15,7 @@ import "./HoneypotCaptchaWidget.css";
  * @returns {string} Markup of the component.
  */
 
-/*By default, captcha token is setted, and becames empty if user/bot fills the field.
- */
+/* By default, captcha token is setted, and becames empty if user/bot fills the field. */
 const HoneypotCaptchaWidget = ({
   id,
   title,
@@ -35,12 +35,13 @@ const HoneypotCaptchaWidget = ({
   }, [captchaToken, id]);
 
   useEffect(() => {
-    onChangeFormData(id, id, "", { label: id });
+    onChangeFormData(id, id, '', { label: id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [value, setValue] = useState();
   return (
-    <div className="honey-wrapper" key={"honeypot-captcha"}>
+    <div className="honey-wrapper" key={'honeypot-captcha'}>
       <TextWidget
         id={id}
         name={id}

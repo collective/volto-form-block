@@ -8,10 +8,12 @@ import {
   Progress,
   Button,
 } from 'semantic-ui-react';
-import { getFieldName } from './utils';
-import Field from './Field';
-import './FormView.css';
+import { getFieldName } from 'volto-form-block/components/utils';
+import Field from 'volto-form-block/components/Field';
 import config from '@plone/volto/registry';
+
+/* Style */
+import 'volto-form-block/components/FormView.css';
 
 const messages = defineMessages({
   default_submit_label: {

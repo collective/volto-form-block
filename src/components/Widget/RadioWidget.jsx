@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormFieldWrapper } from '@plone/volto/components';
-import './RadioWidget.css';
+
+/* Style */
+import 'volto-form-block/components/Widget/RadioWidget.css';
 
 const RadioWidget = ({
   id,
@@ -40,7 +42,7 @@ const RadioWidget = ({
       wrapped={wrapped}
     >
       <div className="radio-widget">
-        <fieldset class="radio-group">
+        <fieldset className="radio-group">
           <legend aria-hidden="false">{title}</legend>
           {valueList.map((opt) => (
             <div className="radio-button" key={opt.value}>

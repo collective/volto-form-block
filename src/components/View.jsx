@@ -2,12 +2,12 @@ import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from '../actions';
-import { getFieldName } from './utils';
-import FormView from './FormView';
+import { submitForm } from 'volto-form-block/actions';
+import { getFieldName } from 'volto-form-block/components/utils';
+import FormView from 'volto-form-block/components/FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
-import Captcha from './Widget/Captcha';
+import { Captcha } from 'volto-form-block/components/Widget';
 
 const messages = defineMessages({
   formSubmitted: {

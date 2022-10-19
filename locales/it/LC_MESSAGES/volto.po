@@ -24,22 +24,22 @@ msgstr "Annulla"
 #: components/Widget/SelectWidget
 # defaultMessage: Choices
 msgid "Choices"
-msgstr ""
+msgstr "Scelte"
 
 #: components/Widget/FileWidget
 # defaultMessage: Choose a file
 msgid "Choose a file"
-msgstr ""
+msgstr "Scegli un file"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Default
@@ -49,22 +49,22 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
 msgid "Drop file here to replace the existing file"
-msgstr ""
+msgstr "Trascina il file qui per sostituire il file esistente"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to upload a new file
 msgid "Drop file here to upload a new file"
-msgstr ""
+msgstr "Trascina il file qui per caricare un nuovo file"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop files here ...
 msgid "Drop files here ..."
-msgstr ""
+msgstr "Trascina i file qui"
 
 #: components/FormView
 # defaultMessage: Error
@@ -76,6 +76,11 @@ msgstr "Errore"
 msgid "Form"
 msgstr "Form"
 
+#: components/Widget/HCaptchaWidget
+# defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
+msgid "HCaptchaInvisibleInfo"
+msgstr ""
+
 #: components/Widget/SelectWidget
 # defaultMessage: No options
 msgid "No options"
@@ -84,22 +89,22 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
-msgstr ""
+msgstr "Nessun valore"
 
 #: components/Widget/FileWidget
 # defaultMessage: Replace existing file
 msgid "Replace existing file"
-msgstr ""
+msgstr "Sostituisci il file esistente"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Required
 msgid "Required"
-msgstr ""
+msgstr "Obbligatorio"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
+msgstr "Selezionare…"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Short Name
@@ -114,117 +119,122 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Title
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
-msgstr ""
+msgstr "Utilizzato per l'accesso programmatico al fieldset."
 
 #: helpers/react-select
-# defaultMessage: Usa le frecce Su e Giu per scegliere un'opzione
+# defaultMessage: Use Up and Down to choose options
 msgid "ay11_Use Up and Down to choose options"
 msgstr "Usa le frecce Su e Giu per scegliere un'opzione"
 
 #: helpers/react-select
-# defaultMessage: disponibile
+# defaultMessage: available
 msgid "ay11_select available"
 msgstr "disponibile"
 
 #: helpers/react-select
-# defaultMessage: disponibili
+# defaultMessage: availables
 msgid "ay11_select availables"
 msgstr "disponibili"
 
 #: helpers/react-select
-# defaultMessage: deselezionata
+# defaultMessage: deselected
 msgid "ay11_select deselected"
 msgstr "deselezionata"
 
 #: helpers/react-select
-# defaultMessage: disabilitato
+# defaultMessage: disabled
 msgid "ay11_select disabled"
 msgstr "disabilitato"
 
 #: helpers/react-select
-# defaultMessage: evidenziato
+# defaultMessage: focused
 msgid "ay11_select focused"
 msgstr "evidenziato"
 
 #: helpers/react-select
-# defaultMessage: per la ricerca
+# defaultMessage: for search term
 msgid "ay11_select for search term"
 msgstr "per la ricerca"
 
 #: helpers/react-select
-# defaultMessage: è disabilitata. Seleziona un'altra opzione
+# defaultMessage: is disabled. Select another option.
 msgid "ay11_select is disabled. Select another option."
 msgstr "è disabilitata. Seleziona un'altra opzione"
 
 #: helpers/react-select
-# defaultMessage: opzione
+# defaultMessage: option
 msgid "ay11_select option"
 msgstr "opzione"
 
 #: helpers/react-select
-# defaultMessage: risultato
+# defaultMessage: result
 msgid "ay11_select result"
 msgstr "risultato"
 
 #: helpers/react-select
-# defaultMessage: risultati
+# defaultMessage: results
 msgid "ay11_select results"
 msgstr "risultati"
 
 #: helpers/react-select
-# defaultMessage: selezionata
+# defaultMessage: selected
 msgid "ay11_select selected"
 msgstr "selezionata"
 
 #: helpers/react-select
-# defaultMessage: valore
+# defaultMessage: value
 msgid "ay11_select value"
 msgstr "valore"
 
 #: helpers/react-select
-# defaultMessage: Usa le frecce destra e sinistra per attivare o disattivare i valori evidenziati, premi Backspace per rimuovere il valore corrente evidenziato
+# defaultMessage: Use left and right to toggle between focused values, press Backspace to remove the currently focused value
 msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
 msgstr "Usa le frecce destra e sinistra per attivare o disattivare i valori evidenziati, premi Backspace per rimuovere il valore corrente evidenziato"
 
 #: helpers/react-select
-# defaultMessage: premi Tab per selezionare l'opzione e uscire dal menu
+# defaultMessage: press Tab to select the option and exit the menu
 msgid "ay11_select__press Tab to select the option and exit the menu"
 msgstr "premi Tab per selezionare l'opzione e uscire dal menu"
 
 #: helpers/react-select
-# defaultMessage: digita per filtrare la lista
+# defaultMessage: type to refine list
 msgid "ay11_select__type to refine list"
 msgstr "digita per filtrare la lista"
 
 #: helpers/react-select
-# defaultMessage: è selezionato
+# defaultMessage: is_focused
 msgid "ay11_select_is_focused"
 msgstr "è selezionato"
 
 #: helpers/react-select
-# defaultMessage: premi freccia giu per aprire il menu, premi Backspace per rimuovere il valore selezionato
+# defaultMessage: press Down to open the menu
 msgid "ay11_select_press Down to open the menu"
 msgstr "premi freccia giu per aprire il menu, premi Backspace per rimuovere il valore selezionato"
 
 #: helpers/react-select
-# defaultMessage: premi Invio per selezionare l'opzione corrente
+# defaultMessage: press Enter to select the currently focused option
 msgid "ay11_select_press Enter to select the currently focused option"
 msgstr "premi Invio per selezionare l'opzione corrente"
 
 #: helpers/react-select
-# defaultMessage: premi Esc per uscire dal menu
+# defaultMessage: press Escape to exit the menu
 msgid "ay11_select_press Escape to exit the menu"
 msgstr "premi Esc per uscire dal menu"
 
 #: helpers/react-select
-# defaultMessage: premi la freccia a sinistra per evidenziare i valori selezionati
+# defaultMessage: press left to focus selected values
 msgid "ay11_select_press left to focus selected values"
 msgstr "premi la freccia a sinistra per evidenziare i valori selezionati"
+
+#: formSchema
+# defaultMessage: Captcha provider
+msgid "captcha"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Description
@@ -297,7 +307,8 @@ msgstr "Compila i campi richiesti"
 msgid "form_field_description"
 msgstr "Descrizione"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+#: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr "Valori possibili"
@@ -412,48 +423,43 @@ msgstr "Inviato!"
 msgid "form_to"
 msgstr "Destinatari"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Send an email copy to this address
 msgid "form_useAsBCC"
 msgstr "Invia una copia dell'email a questo indirizzo"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, a copy of email will alse be sent to this address.
 msgid "form_useAsBCC_description"
 msgstr "Se selezionato, una copia dell'email verrà inviata anche a questo indirizzo."
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr "Usa come 'reply to'"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà rispondere."
 
-#: formSchema
-# defaultMessage: Invisible captcha
-msgid "invisible_hcaptcha"
-msgstr "Captcha invisibile"
-
-#: formSchema
-# defaultMessage: See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode
-msgid "invisible_hcaptcha_desc"
-msgstr "Leggi https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
+#: components/Widget/NoRobotsCaptchaWidget
+# defaultMessage: Answer the question to prove that you are human
+msgid "resolveCaptcha"
+msgstr ""
 
 #: helpers/react-select
-# defaultMessage: Nessuna opzione
+# defaultMessage: No options
 msgid "select_noOptionsMessage"
 msgstr "Nessuna opzione"
 
 #: helpers/react-select
-# defaultMessage: risultati
+# defaultMessage: results
 msgid "select_risultati"
 msgstr "risultati"
 
 #: helpers/react-select
-# defaultMessage: risultato
+# defaultMessage: result
 msgid "select_risultato"
 msgstr "risultato"
 
