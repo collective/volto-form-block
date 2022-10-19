@@ -1,3 +1,11 @@
+### [2.8.1](https://github.com/collective/volto-form-block/compare/v2.8.0...v2.8.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* fixed imports and codereview ([e6863eb](https://github.com/collective/volto-form-block/commit/e6863ebfc61b8afe6fb98e102b616983536509f4))
+* updated it translations ([4d683f3](https://github.com/collective/volto-form-block/commit/4d683f3d43fe29a9779dbbb770411b3834117e7c))
+
 ## [2.8.0](https://github.com/collective/volto-form-block/compare/v2.7.1...v2.8.0) (2022-10-07)
 
 
