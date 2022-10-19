@@ -24,22 +24,22 @@ msgstr "Annulla"
 #: components/Widget/SelectWidget
 # defaultMessage: Choices
 msgid "Choices"
-msgstr ""
+msgstr "Scelte"
 
 #: components/Widget/FileWidget
 # defaultMessage: Choose a file
 msgid "Choose a file"
-msgstr ""
+msgstr "Scegli un file"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Default
@@ -49,22 +49,22 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
 msgid "Drop file here to replace the existing file"
-msgstr ""
+msgstr "Trascina il file qui per sostituire il file esistente"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to upload a new file
 msgid "Drop file here to upload a new file"
-msgstr ""
+msgstr "Trascina il file qui per caricare un nuovo file"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop files here ...
 msgid "Drop files here ..."
-msgstr ""
+msgstr "Trascina i file qui"
 
 #: components/FormView
 # defaultMessage: Error
@@ -89,22 +89,22 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
-msgstr ""
+msgstr "Nessun valore"
 
 #: components/Widget/FileWidget
 # defaultMessage: Replace existing file
 msgid "Replace existing file"
-msgstr ""
+msgstr "Sostituisci il file esistente"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Required
 msgid "Required"
-msgstr ""
+msgstr "Obbligatorio"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
+msgstr "Selezionare…"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Short Name
@@ -119,12 +119,12 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Title
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
-msgstr ""
+msgstr "Utilizzato per l'accesso programmatico al fieldset."
 
 #: helpers/react-select
 # defaultMessage: Use Up and Down to choose options
