@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.6",
-    "@plone/scripts": "^1.0.3",
     "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
     "volto-subblocks": "collective/volto-subblocks#v1.2.3"
@@ -38,8 +37,12 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@plone/scripts": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.1",
     "husky": "^6.0.0",
     "release-it": "^14.11.5"
+  },
+  "peerDependencies": {
+    "@plone/volto": ">=16.0.0-alpha.38"
   }
 }

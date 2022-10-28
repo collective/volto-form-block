@@ -12,6 +12,8 @@ yarn add volto-form-block
 > **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
 >
 > **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
+>
+> **Note**: Since version v3.0.0 of this addon, it's required Volto >= 16.0.0-alpha.38
 
 ## Features
 
@@ -70,10 +72,10 @@ If you need a field that is not supported, PRs are always welcome, but if you ha
 
 ```jsx
 config.blocks.blocksConfig.form.additionalFields.push({
-  id: "field type id",
+  id: 'field type id',
   label:
     intl.formatMessage(messages.customFieldLabel) ||
-    "Label for field type select, translation obj or string",
+    'Label for field type select, translation obj or string',
   component: MyCustomWidget,
   isValid: (formData, name) => true,
 });
@@ -114,7 +116,7 @@ i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
 
-## Upgrade guide:
+## Upgrade guide
 
 To upgrade to version 2.4.0 you need to:
 
@@ -128,6 +130,6 @@ To upgrade to version 2.4.0 you need to:
 - [Form editing](https://youtu.be/wmTpzYBtNCQ)
 - [Export stored data](https://youtu.be/3zVUaGaaVOg)
 
-## VERSIONS:
+## VERSIONS
 
 With volto-form-block@2.5.0 you need to upgrade collective.volto.formsupport to version 2.4.0
