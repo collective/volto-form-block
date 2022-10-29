@@ -249,7 +249,7 @@ msgstr "Formular"
 #: components/View
 # defaultMessage: Form successfully submitted
 msgid "formSubmitted"
-msgstr "Form successfully submitted"
+msgstr "Formularul a fost trimis cu succes"
 
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
@@ -391,7 +391,7 @@ msgstr "{formDataCount} articole stocate"
 #: components/FormView
 # defaultMessage: Clear
 msgid "form_reset"
-msgstr "Resetează"
+msgstr "Înapoi"
 
 #: formSchema
 # defaultMessage: Store compiled data
