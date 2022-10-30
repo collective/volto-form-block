@@ -1,3 +1,10 @@
+## [3.0.0](https://github.com/collective/volto-form-block/compare/v2.8.1...v3.0.0) (2022-10-30)
+
+
+### Changes
+
+* upgraded dependencies and babel config for volto 16 ([#47](https://github.com/collective/volto-form-block/issues/47)) ([5ec2bb6](https://github.com/collective/volto-form-block/commit/5ec2bb6201b59aaa424c6d83a57c97f254267007))
+
 ### [2.8.1](https://github.com/collective/volto-form-block/compare/v2.8.0...v2.8.1) (2022-10-19)
 
 
