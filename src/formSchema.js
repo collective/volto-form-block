@@ -55,26 +55,35 @@ const messages = defineMessages({
 export default (formData) => {
   var intl = useIntl();
 
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'captcha',
+        'store',
+        'send',
+      ],
+    },
+  ];
+
+  if (formData.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['attachXml'],
+    });
+  }
+
   return {
     title: intl.formatMessage(messages.form),
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'title',
-          'description',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'submit_label',
-          'captcha',
-          'store',
-          'send',
-          ...[formData.send ? 'attachXml' : null],
-        ],
-      },
-    ],
+    fieldsets: fieldsets,
     properties: {
       title: {
         title: intl.formatMessage(messages.title),
