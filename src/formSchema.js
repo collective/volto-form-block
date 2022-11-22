@@ -1,5 +1,4 @@
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   form: {
@@ -47,9 +46,13 @@ const messages = defineMessages({
     id: 'form_send_email',
     defaultMessage: 'Send email to recipient',
   },
+  attachXml: {
+    id: 'form_attach_xml',
+    defaultMessage: 'Attach XML to email',
+  },
 });
 
-export default () => {
+export default (formData) => {
   var intl = useIntl();
 
   return {
@@ -68,6 +71,7 @@ export default () => {
           'captcha',
           'store',
           'send',
+          ...[formData.send ? 'attachXml' : null],
         ],
       },
     ],
@@ -106,6 +110,10 @@ export default () => {
       send: {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
+      },
+      attachXml: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.attachXml),
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
