@@ -87,7 +87,7 @@ export default (formData) => {
 
   if (formData.send || formData.store) {
     fieldsets.push({
-      id: 'sendingOptions',
+      id: 'storedDataIds',
       title: intl.formatMessage(messages.storedDataIds),
       fields: formData.subblocks.map((subblock) => subblock.field_id),
     });
