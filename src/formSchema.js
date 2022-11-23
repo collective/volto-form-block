@@ -50,6 +50,10 @@ const messages = defineMessages({
     id: 'form_attach_xml',
     defaultMessage: 'Attach XML to email',
   },
+  storedDataIds: {
+    id: 'form_stored_data_ids',
+    defaultMessage: 'Data ID mapping',
+  },
 });
 
 export default (formData) => {
@@ -78,6 +82,14 @@ export default (formData) => {
       id: 'sendingOptions',
       title: 'Sending options',
       fields: ['attachXml'],
+    });
+  }
+
+  if (formData.send || formData.store) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: intl.formatMessage(messages.storedDataIds),
+      fields: formData.subblocks.map((subblock) => `mapping-${subblock.label}`),
     });
   }
 
@@ -124,6 +136,12 @@ export default (formData) => {
         type: 'boolean',
         title: intl.formatMessage(messages.attachXml),
       },
+      ...Object.assign(
+        {},
+        ...formData.subblocks.map((subblock) => {
+          return { [`mapping-${subblock.label}`]: { title: subblock.label } };
+        }),
+      ),
     },
     required: ['default_to', 'default_from', 'default_subject'],
   };
