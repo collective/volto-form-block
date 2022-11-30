@@ -19,6 +19,7 @@ import {
   SelectionSchemaExtender,
   FromSchemaExtender,
   HiddenSchemaExtender,
+  YesNoSchemaExtender
 } from './components/FieldTypeSchemaExtenders';
 export {
   submitForm,
@@ -45,6 +46,7 @@ const applyConfig = (config) => {
         multiple_choice: SelectionSchemaExtender,
         from: FromSchemaExtender,
         hidden: HiddenSchemaExtender,
+        yes_no: YesNoSchemaExtender,
       },
       restricted: false,
       mostUsed: true,
