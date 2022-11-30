@@ -25,31 +25,60 @@ const messages = defineMessages({
   },
 });
 
+const widgetMapping = {
+  single_choice: RadioWidget,
+  checkbox: CheckboxWidget,
+};
+
 /**
  * Field class.
  * @class View
  * @extends Component
  */
-const Field = ({
-  label,
-  description,
-  name,
-  field_type,
-  required,
-  input_values,
-  value,
-  onChange,
-  isOnEdit,
-  valid,
-  disabled = false,
-  formHasErrors = false,
-  id,
-}) => {
+const Field = (props) => {
+  const {
+    label,
+    description,
+    name,
+    field_type,
+    required,
+    input_values,
+    value,
+    onChange,
+    isOnEdit,
+    valid,
+    disabled = false,
+    formHasErrors = false,
+    id,
+    widget,
+  } = props;
   const intl = useIntl();
 
   const isInvalid = () => {
     return !isOnEdit && !valid;
   };
+
+  if (widget) {
+    const Widget = widgetMapping[widget];
+    const valueList =
+      field_type === 'yes_no'
+        ? [
+            { value: true, label: 'Yes' },
+            { value: false, label: 'No' },
+          ]
+        : [...(input_values?.map((v) => ({ value: v, label: v })) ?? [])];
+
+    return (
+      <Widget
+        {...props}
+        id={name}
+        title={label}
+        valueList={valueList}
+        invalid={isInvalid().toString()}
+        {...(isInvalid() ? { className: 'is-invalid' } : {})}
+      />
+    );
+  }
 
   return (
     <div className="field">
@@ -135,7 +164,7 @@ const Field = ({
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
       )}
-      {field_type === 'checkbox' && (
+      {(field_type === 'yes_no' || field_type === 'checkbox') && (
         <CheckboxWidget
           id={name}
           name={name}
