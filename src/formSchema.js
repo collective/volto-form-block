@@ -1,5 +1,4 @@
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   form: {
@@ -47,30 +46,56 @@ const messages = defineMessages({
     id: 'form_send_email',
     defaultMessage: 'Send email to recipient',
   },
+  attachXml: {
+    id: 'form_attach_xml',
+    defaultMessage: 'Attach XML to email',
+  },
+  storedDataIds: {
+    id: 'form_stored_data_ids',
+    defaultMessage: 'Data ID mapping',
+  },
 });
 
-export default () => {
+export default (formData) => {
   var intl = useIntl();
+
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'captcha',
+        'store',
+        'send',
+      ],
+    },
+  ];
+
+  if (formData.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['attachXml'],
+    });
+  }
+
+  if (formData.send || formData.store) {
+    fieldsets.push({
+      id: 'storedDataIds',
+      title: intl.formatMessage(messages.storedDataIds),
+      fields: formData.subblocks.map((subblock) => subblock.field_id),
+    });
+  }
 
   return {
     title: intl.formatMessage(messages.form),
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'title',
-          'description',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'submit_label',
-          'captcha',
-          'store',
-          'send',
-        ],
-      },
-    ],
+    fieldsets: fieldsets,
     properties: {
       title: {
         title: intl.formatMessage(messages.title),
@@ -107,6 +132,16 @@ export default () => {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
       },
+      attachXml: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.attachXml),
+      },
+      ...Object.assign(
+        {},
+        ...formData.subblocks.map((subblock) => {
+          return { [subblock.field_id]: { title: subblock.label } };
+        }),
+      ),
     },
     required: ['default_to', 'default_from', 'default_subject'],
   };
