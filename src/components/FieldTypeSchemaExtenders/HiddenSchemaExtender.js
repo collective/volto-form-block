@@ -8,13 +8,13 @@ const messages = defineMessages({
 
 export const HiddenSchemaExtender = (intl) => {
   return {
-    fields: ['input_value'],
+    fields: ['value'],
     properties: {
-      input_value: {
+      value: {
         title: intl.formatMessage(messages.field_input_value),
         type: 'text',
       },
     },
-    required: ['input_value'],
+    required: ['value'],
   };
 };

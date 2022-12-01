@@ -57,7 +57,10 @@ const getInitialData = (data) => {
         field.field_type === 'hidden'
           ? {
               ...acc,
-              [getFieldName(field.label, field.id)]: field,
+              [getFieldName(field.label, field.id)]: {
+                ...field,
+                ...(data[field.id] && { custom_field_id: data[field.id] }),
+              },
             }
           : acc,
       {},
