@@ -136,12 +136,14 @@ export default (formData) => {
         type: 'boolean',
         title: intl.formatMessage(messages.attachXml),
       },
-      ...Object.assign(
-        {},
-        ...formData.subblocks.map((subblock) => {
-          return { [subblock.field_id]: { title: subblock.label } };
-        }),
-      ),
+      ...(formData.subblocks
+        ? Object.assign(
+            {},
+            ...formData.subblocks.map((subblock) => {
+              return { [subblock.field_id]: { title: subblock.label } };
+            }),
+          )
+        : {}),
     },
     required: ['default_to', 'default_from', 'default_subject'],
   };
