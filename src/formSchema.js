@@ -136,6 +136,7 @@ export default (formData) => {
         type: 'boolean',
         title: intl.formatMessage(messages.attachXml),
       },
+      // Add properties for each of the fields for use in the data mapping
       ...(formData.subblocks
         ? Object.assign(
             {},
