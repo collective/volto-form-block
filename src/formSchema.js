@@ -45,12 +45,17 @@ const messages = defineMessages({
   },
   send: {
     id: 'form_send_email',
-    defaultMessage: 'Send email to recipient',
+    defaultMessage: 'Send email to',
   },
 });
 
-export default () => {
+export default (formData) => {
   var intl = useIntl();
+  const emailFields = formData.subblocks.reduce((acc, field) => {
+    return ['from', 'email'].includes(field.field_type)
+      ? [...acc, [field.id, field.label]]
+      : acc;
+  }, []);
 
   return {
     title: intl.formatMessage(messages.form),
@@ -68,6 +73,9 @@ export default () => {
           'captcha',
           'store',
           'send',
+          ...(formData.send.includes('acknowledgement')
+            ? ['acknowledgementFields', 'acknowledgementMessage']
+            : []),
         ],
       },
     ],
@@ -104,8 +112,28 @@ export default () => {
         description: intl.formatMessage(messages.attachmentSendEmail),
       },
       send: {
-        type: 'boolean',
         title: intl.formatMessage(messages.send),
+        isMulti: 'true',
+        default: 'recipient',
+        choices: [
+          ['recipient', 'Recipient'],
+          ['acknowledgement', 'Acknowledgement'],
+        ],
+      },
+      acknowledgementMessage: {
+        // TODO: i18n
+        title: 'Acknowledgement message',
+        widget: 'richtext',
+      },
+      acknowledgementFields: {
+        // TODO: i18n
+        title: 'Acknowledgement field',
+        decription:
+          'Select which fields will contain an email address to send an acknowledgement to.',
+        isMulti: false,
+        noValueOption: false,
+        choices: formData.subblocks ? emailFields : [],
+        ...(emailFields.length === 1 && { default: emailFields[0][0] }),
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
