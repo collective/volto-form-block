@@ -51,11 +51,12 @@ const messages = defineMessages({
 
 export default (formData) => {
   var intl = useIntl();
-  const emailFields = formData.subblocks.reduce((acc, field) => {
-    return ['from', 'email'].includes(field.field_type)
-      ? [...acc, [field.id, field.label]]
-      : acc;
-  }, []);
+  const emailFields =
+    formData.subblocks?.reduce((acc, field) => {
+      return ['from', 'email'].includes(field.field_type)
+        ? [...acc, [field.id, field.label]]
+        : acc;
+    }, []) ?? [];
 
   return {
     title: intl.formatMessage(messages.form),
