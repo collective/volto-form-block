@@ -85,11 +85,11 @@ export default (formData) => {
     });
   }
 
-  if (formData.send || formData.store) {
+  if (formData?.send || formData?.store) {
     fieldsets.push({
       id: 'storedDataIds',
       title: intl.formatMessage(messages.storedDataIds),
-      fields: formData.subblocks.map((subblock) => subblock.field_id),
+      fields: formData?.subblocks.map((subblock) => subblock.field_id),
     });
   }
 
@@ -137,10 +137,10 @@ export default (formData) => {
         title: intl.formatMessage(messages.attachXml),
       },
       // Add properties for each of the fields for use in the data mapping
-      ...(formData.subblocks
+      ...(formData?.subblocks
         ? Object.assign(
             {},
-            ...formData.subblocks.map((subblock) => {
+            ...formData?.subblocks.map((subblock) => {
               return { [subblock.field_id]: { title: subblock.label } };
             }),
           )
