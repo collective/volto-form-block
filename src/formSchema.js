@@ -52,7 +52,7 @@ const messages = defineMessages({
 export default (formData) => {
   var intl = useIntl();
   const emailFields =
-    formData.subblocks?.reduce((acc, field) => {
+    formData?.subblocks?.reduce((acc, field) => {
       return ['from', 'email'].includes(field.field_type)
         ? [...acc, [field.id, field.label]]
         : acc;
@@ -74,7 +74,7 @@ export default (formData) => {
           'captcha',
           'store',
           'send',
-          ...(formData.send?.includes('acknowledgement')
+          ...(formData?.send?.includes('acknowledgement')
             ? ['acknowledgementFields', 'acknowledgementMessage']
             : []),
         ],
@@ -133,7 +133,7 @@ export default (formData) => {
           'Select which fields will contain an email address to send an acknowledgement to.',
         isMulti: false,
         noValueOption: false,
-        choices: formData.subblocks ? emailFields : [],
+        choices: formData?.subblocks ? emailFields : [],
         ...(emailFields.length === 1 && { default: emailFields[0][0] }),
       },
     },
