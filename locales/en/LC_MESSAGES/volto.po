@@ -69,7 +69,7 @@ msgstr ""
 #: components/FormView
 # defaultMessage: Error
 msgid "Error"
-msgstr "Errore"
+msgstr "Error"
 
 #: components/Sidebar
 # defaultMessage: Form
