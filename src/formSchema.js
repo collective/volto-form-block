@@ -79,7 +79,9 @@ export default (formData) => {
         'captcha',
         'store',
         'send',
-        ...(formData?.send?.includes('acknowledgement')
+        ...(formData?.send &&
+        Array.isArray(formData.send) &&
+        formData.send.includes('acknowledgement')
           ? ['acknowledgementFields', 'acknowledgementMessage']
           : []),
       ],
