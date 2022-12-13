@@ -1,5 +1,4 @@
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   form: {
@@ -74,7 +73,9 @@ export default (formData) => {
           'captcha',
           'store',
           'send',
-          ...(formData?.send?.includes('acknowledgement')
+          ...(formData?.send &&
+          Array.isArray(formData.send) &&
+          formData.send.includes('acknowledgement')
             ? ['acknowledgementFields', 'acknowledgementMessage']
             : []),
         ],
