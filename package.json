@@ -31,7 +31,8 @@
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.6",
     "file-saver": "^2.0.5",
-    "react-google-recaptcha-v3": "^1.8.0"
+    "react-google-recaptcha-v3": "^1.8.0",
+    "react-dates": "21.8.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
