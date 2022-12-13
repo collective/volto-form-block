@@ -88,7 +88,7 @@ export default (formData) => {
     },
   ];
 
-  if (formData.send) {
+  if (formData?.send) {
     fieldsets.push({
       id: 'sendingOptions',
       title: 'Sending options',
