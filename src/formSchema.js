@@ -89,7 +89,7 @@ export default (formData) => {
     fieldsets.push({
       id: 'storedDataIds',
       title: intl.formatMessage(messages.storedDataIds),
-      fields: formData?.subblocks.map((subblock) => subblock.field_id),
+      fields: formData?.subblocks?.map((subblock) => subblock.field_id),
     });
   }
 
@@ -140,7 +140,7 @@ export default (formData) => {
       ...(formData?.subblocks
         ? Object.assign(
             {},
-            ...formData?.subblocks.map((subblock) => {
+            ...formData?.subblocks?.map((subblock) => {
               return { [subblock.field_id]: { title: subblock.label } };
             }),
           )
