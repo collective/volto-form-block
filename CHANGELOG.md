@@ -1,3 +1,11 @@
+### [3.0.1](https://github.com/collective/volto-form-block/compare/v3.0.0...v3.0.1) (2023-02-06)
+
+
+### Bug Fixes
+
+* add missing dep on volto-subblocks ([#49](https://github.com/collective/volto-form-block/issues/49)) ([90f605b](https://github.com/collective/volto-form-block/commit/90f605b9a2c7389e75bc9a4345a6b8c4d4cb7247))
+* field extenders should be applied in FormView ([#44](https://github.com/collective/volto-form-block/issues/44)) ([4d063c6](https://github.com/collective/volto-form-block/commit/4d063c6247fd504116c18efb42e47320265f6987))
+
 ## [3.0.0](https://github.com/collective/volto-form-block/compare/v2.8.1...v3.0.0) (2022-10-30)
 
 
