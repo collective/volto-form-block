@@ -1,6 +1,6 @@
 {
   "name": "volto-form-block",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Volto block to build a form",
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-form-block",
@@ -33,6 +33,7 @@
     "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
     "react-dates": "21.8.0"
+    "volto-subblocks": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
