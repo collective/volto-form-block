@@ -33,7 +33,14 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-
+  headers: {
+    id: 'Headers',
+    defaultMessage: 'Headers',
+  },
+  headersDescription: {
+    id: 'Headers Description',
+    defaultMessage: "These headers aren't included in the sent email by default. Use this dropdown to include them in the sent email",
+  },
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
@@ -92,7 +99,7 @@ export default (formData) => {
     fieldsets.push({
       id: 'sendingOptions',
       title: 'Sending options',
-      fields: ['attachXml'],
+      fields: ['attachXml', 'httpHeaders'],
     });
   }
 
@@ -176,6 +183,24 @@ export default (formData) => {
             }),
           )
         : {}),
+      httpHeaders: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.headers),
+        description: intl.formatMessage(messages.headersDescription),
+        type: 'string',
+        factory: 'Choice',
+        default: '',
+        isMulti: true,
+        noValueOption: false,
+        choices: [
+          ['HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED_FOR'],
+          ['HTTP_X_FORWARDED_PORT','HTTP_X_FORWARDED_PORT'],
+          ['REMOTE_ADDR','REMOTE_ADDR'],
+          ['PATH_INFO','PATH_INFO'],
+          ['HTTP_USER_AGENT','HTTP_USER_AGENT'],
+          ['HTTP_REFERER','HTTP_REFERER'],
+        ],
+      },
     },
     required: ['default_to', 'default_from', 'default_subject'],
   };
