@@ -38,6 +38,10 @@ const messages = defineMessages({
     id: 'Headers',
     defaultMessage: 'Headers',
   },
+  headersDescription: {
+    id: 'Headers Description',
+    defaultMessage: "These headers aren't included in the sent email by default. Use this dropdown to include them in the sent email",
+  },
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
@@ -123,6 +127,7 @@ export default (formData) => {
       httpHeaders: {
         type: 'boolean',
         title: intl.formatMessage(messages.headers),
+        description: intl.formatMessage(messages.headersDescription),
         type: 'string',
         factory: 'Choice',
         default: '',
