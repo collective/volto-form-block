@@ -2,12 +2,12 @@ import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from '../actions';
-import { getFieldName } from './utils';
-import FormView from './FormView';
+import { submitForm } from 'volto-form-block/actions';
+import { getFieldName } from 'volto-form-block/components/utils';
+import FormView from 'volto-form-block/components/FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
-import Captcha from './Widget/Captcha';
+import { Captcha } from 'volto-form-block/components/Widget';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -204,6 +204,8 @@ const View = ({ data, id, path }) => {
     onChangeFormData,
   });
 
+  const formid = `form-${id}`;
+
   useEffect(() => {
     if (submitResults?.loaded) {
       setFormState({
@@ -211,6 +213,16 @@ const View = ({ data, id, path }) => {
         result: intl.formatMessage(messages.formSubmitted),
       });
       captcha.reset();
+      const formItem = document.getElementById(formid);
+      if (formItem !== null) {
+        const formItemPosition = formItem.getBoundingClientRect();
+        formItemPosition !== null &&
+          window.scrollTo({
+            top: formItemPosition.x,
+            left: formItemPosition.y,
+            behavior: 'smooth',
+          });
+      }
     } else if (submitResults?.error) {
       let errorDescription = `${
         JSON.parse(submitResults.error.response?.text ?? '{}')?.message
@@ -227,6 +239,7 @@ const View = ({ data, id, path }) => {
 
   return (
     <FormView
+      id={formid}
       formState={formState}
       formErrors={formErrors}
       formData={formData}

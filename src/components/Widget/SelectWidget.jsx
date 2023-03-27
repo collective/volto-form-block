@@ -31,7 +31,8 @@ import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import {
   getReactSelectAriaLiveMessages,
   getReactSelectScreenReaderStatus,
-} from '../../helpers/react-select';
+} from 'volto-form-block/helpers/react-select';
+
 const messages = defineMessages({
   default: {
     id: 'Default',

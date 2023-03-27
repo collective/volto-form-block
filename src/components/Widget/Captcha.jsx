@@ -1,8 +1,10 @@
 import React, { createRef } from 'react';
-import GoogleReCaptchaWidget from './GoogleReCaptchaWidget';
-import HCaptchaWidget from './HCaptchaWidget';
-import NoRobotsCaptchaWidget from './NoRobotsCaptchaWidget';
-import HoneypotCaptchaWidget from './HoneypotCaptchaWidget';
+import {
+  GoogleReCaptchaWidget,
+  HCaptchaWidget,
+  NoRobotsCaptchaWidget,
+  HoneypotCaptchaWidget,
+} from 'volto-form-block/components/Widget';
 
 class Captcha extends React.Component {
   constructor(props) {

@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-
 import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget';
-import EmailWidget from './Widget/EmailWidget';
-import FileWidget from './Widget/FileWidget';
-import DatetimeWidget from './Widget/DatetimeWidget';
-import CheckboxWidget from './Widget/CheckboxWidget';
-import SelectWidget from './Widget/SelectWidget';
-import TextWidget from './Widget/TextWidget';
-import TextareaWidget from './Widget/TextareaWidget';
-import CheckboxListWidget from './Widget/CheckboxListWidget';
-import RadioWidget from './Widget/RadioWidget';
-
-import './Field.css';
-
+import {
+  EmailWidget,
+  FileWidget,
+  DatetimeWidget,
+  CheckboxWidget,
+  SelectWidget,
+  TextWidget,
+  TextareaWidget,
+  CheckboxListWidget,
+  RadioWidget,
+} from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
+
+/* Style */
+import 'volto-form-block/components/Field.css';
 
 const messages = defineMessages({
   select_a_value: {

@@ -35,7 +35,7 @@ const NoRobotsCaptchaWidget = ({ id, id_check, title, captchaToken }) => {
             captchaToken.current = createToken(id, id_check, value);
             setValue(value);
           }}
-          // required={true}
+          required={true}
           value={value}
         />
       </Grid.Column>

@@ -8,8 +8,8 @@ import { compose } from 'redux';
 
 import { injectDNDSubblocks, SubblockEdit, Subblock } from 'volto-subblocks';
 
-import Field from './Field';
-import { getFieldName } from './utils';
+import Field from 'volto-form-block/components/Field';
+import { getFieldName } from 'volto-form-block/components/utils';
 
 /**
  * Edit text block class.

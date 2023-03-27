@@ -1,16 +1,16 @@
 .radio-widget .radio-button {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 
 .radio-widget .radio-button label {
-  padding: 0.25rem;
+    padding: 0.25rem;
 }
 
 .radio-widget fieldset.radio-group {
     border: none;
 }
 
-.radio-widget fieldset.radio-group legend{
+.radio-widget fieldset.radio-group legend {
     display: none;
     line-height: 0;
 }

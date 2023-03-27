@@ -1,3 +1,38 @@
+### [3.0.1](https://github.com/collective/volto-form-block/compare/v3.0.0...v3.0.1) (2023-02-06)
+
+
+### Bug Fixes
+
+* add missing dep on volto-subblocks ([#49](https://github.com/collective/volto-form-block/issues/49)) ([90f605b](https://github.com/collective/volto-form-block/commit/90f605b9a2c7389e75bc9a4345a6b8c4d4cb7247))
+* field extenders should be applied in FormView ([#44](https://github.com/collective/volto-form-block/issues/44)) ([4d063c6](https://github.com/collective/volto-form-block/commit/4d063c6247fd504116c18efb42e47320265f6987))
+
+## [3.0.0](https://github.com/collective/volto-form-block/compare/v2.8.1...v3.0.0) (2022-10-30)
+
+
+### Changes
+
+* upgraded dependencies and babel config for volto 16 ([#47](https://github.com/collective/volto-form-block/issues/47)) ([5ec2bb6](https://github.com/collective/volto-form-block/commit/5ec2bb6201b59aaa424c6d83a57c97f254267007))
+
+### [2.8.1](https://github.com/collective/volto-form-block/compare/v2.8.0...v2.8.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* fixed imports and codereview ([e6863eb](https://github.com/collective/volto-form-block/commit/e6863ebfc61b8afe6fb98e102b616983536509f4))
+* updated it translations ([4d683f3](https://github.com/collective/volto-form-block/commit/4d683f3d43fe29a9779dbbb770411b3834117e7c))
+
+## [2.8.0](https://github.com/collective/volto-form-block/compare/v2.7.1...v2.8.0) (2022-10-07)
+
+
+### Features
+
+* scroll the window to the top of the form after submitting it succesfully ([#43](https://github.com/collective/volto-form-block/issues/43)) ([3c26486](https://github.com/collective/volto-form-block/commit/3c26486ae305ed173e86025f9d3b36e5fc6ad1c0))
+
+
+### Bug Fixes
+
+* set norobots captcha as required ([9d73566](https://github.com/collective/volto-form-block/commit/9d73566df9b234e0c8da08b5dcc3240cc9f9670d))
+
 ### [2.7.1](https://github.com/collective/volto-form-block/compare/v2.7.0...v2.7.1) (2022-09-30)
 
 

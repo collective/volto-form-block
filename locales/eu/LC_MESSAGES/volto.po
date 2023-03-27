@@ -78,6 +78,11 @@ msgstr "Errorea"
 msgid "Form"
 msgstr "Formularioa"
 
+#: components/Widget/HCaptchaWidget
+# defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
+msgid "HCaptchaInvisibleInfo"
+msgstr ""
+
 #: components/Widget/SelectWidget
 # defaultMessage: No options
 msgid "No options"
@@ -124,109 +129,114 @@ msgid "Used for programmatic access to the fieldset."
 msgstr "Eremu-multzoa programaziotik atzitzeko izena"
 
 #: helpers/react-select
-# defaultMessage: Usa le frecce Su e Giu per scegliere un'opzione
+# defaultMessage: Use Up and Down to choose options
 msgid "ay11_Use Up and Down to choose options"
 msgstr "Erabili gora eta beherako geziak aukeratzeko"
 
 #: helpers/react-select
-# defaultMessage: disponibile
+# defaultMessage: available
 msgid "ay11_select available"
 msgstr "erabilgarri"
 
 #: helpers/react-select
-# defaultMessage: disponibili
+# defaultMessage: availables
 msgid "ay11_select availables"
 msgstr "erabilgarriak"
 
 #: helpers/react-select
-# defaultMessage: deselezionata
+# defaultMessage: deselected
 msgid "ay11_select deselected"
 msgstr "desautatuta"
 
 #: helpers/react-select
-# defaultMessage: disabilitato
+# defaultMessage: disabled
 msgid "ay11_select disabled"
 msgstr "desgaituta"
 
 #: helpers/react-select
-# defaultMessage: evidenziato
+# defaultMessage: focused
 msgid "ay11_select focused"
 msgstr "fokua hartuta"
 
 #: helpers/react-select
-# defaultMessage: per la ricerca
+# defaultMessage: for search term
 msgid "ay11_select for search term"
 msgstr "bilaketarako terminoa"
 
 #: helpers/react-select
-# defaultMessage: è disabilitata. Seleziona un'altra opzione
+# defaultMessage: is disabled. Select another option.
 msgid "ay11_select is disabled. Select another option."
 msgstr "desgaituta dago. Aukeratu beste bat."
 
 #: helpers/react-select
-# defaultMessage: opzione
+# defaultMessage: option
 msgid "ay11_select option"
 msgstr "aukera"
 
 #: helpers/react-select
-# defaultMessage: risultato
+# defaultMessage: result
 msgid "ay11_select result"
 msgstr "emaitza"
 
 #: helpers/react-select
-# defaultMessage: risultati
+# defaultMessage: results
 msgid "ay11_select results"
 msgstr "emaitzak"
 
 #: helpers/react-select
-# defaultMessage: selezionata
+# defaultMessage: selected
 msgid "ay11_select selected"
 msgstr "aukeratuta"
 
 #: helpers/react-select
-# defaultMessage: valore
+# defaultMessage: value
 msgid "ay11_select value"
 msgstr "balioa"
 
 #: helpers/react-select
-# defaultMessage: Usa le frecce destra e sinistra per attivare o disattivare i valori evidenziati, premi Backspace per rimuovere il valore corrente evidenziato
+# defaultMessage: Use left and right to toggle between focused values, press Backspace to remove the currently focused value
 msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
 msgstr "Erabili ezker eta eskuin geziak fokua duten balioen artean aldatzeko, sakatu Atzera (Backspace) fokua dagoen balioa ezabatzeko"
 
 #: helpers/react-select
-# defaultMessage: premi Tab per selezionare l'opzione e uscire dal menu
+# defaultMessage: press Tab to select the option and exit the menu
 msgid "ay11_select__press Tab to select the option and exit the menu"
 msgstr "sakatu Tab aukeratu eta menutik irteteko"
 
 #: helpers/react-select
-# defaultMessage: digita per filtrare la lista
+# defaultMessage: type to refine list
 msgid "ay11_select__type to refine list"
 msgstr "idatzi zerrenda iragazteko"
 
 #: helpers/react-select
-# defaultMessage: è selezionato
+# defaultMessage: is_focused
 msgid "ay11_select_is_focused"
 msgstr "aukeratuta dago"
 
 #: helpers/react-select
-# defaultMessage: premi freccia giu per aprire il menu, premi Backspace per rimuovere il valore selezionato
+# defaultMessage: press Down to open the menu
 msgid "ay11_select_press Down to open the menu"
 msgstr "sakatu behera gezia menua irekitzeko"
 
 #: helpers/react-select
-# defaultMessage: premi Invio per selezionare l'opzione corrente
+# defaultMessage: press Enter to select the currently focused option
 msgid "ay11_select_press Enter to select the currently focused option"
 msgstr "sakatu Intro unekoa aukeratzeko"
 
 #: helpers/react-select
-# defaultMessage: premi Esc per uscire dal menu
+# defaultMessage: press Escape to exit the menu
 msgid "ay11_select_press Escape to exit the menu"
 msgstr "sakatu Escape menutik irteteko"
 
 #: helpers/react-select
-# defaultMessage: premi la freccia a sinistra per evidenziare i valori selezionati
+# defaultMessage: press left to focus selected values
 msgid "ay11_select_press left to focus selected values"
 msgstr "sakatu ezkerrera aukeratutako balioetan fokua jartzeko"
+
+#: formSchema
+# defaultMessage: Captcha provider
+msgid "captcha"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Description
@@ -299,7 +309,8 @@ msgstr "Bete derrigorrezko eremuak"
 msgid "form_field_description"
 msgstr "Deskribapena"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+#: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr "Balio posibleak"
@@ -414,48 +425,43 @@ msgstr "Bidalita!"
 msgid "form_to"
 msgstr "Jasotzaileak"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Send an email copy to this address
 msgid "form_useAsBCC"
 msgstr "Bidali kopia bat eposta honetara"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, a copy of email will alse be sent to this address.
 msgid "form_useAsBCC_description"
 msgstr "Aukeratzen bada, emailaren kopia bat bidaliko da helbide honetara."
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr "Nori erantzun gisa erabili"
 
-#: fieldSchema
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Aukeratuz gero jasotako posta elektronikoari 'Erantzun' eginez gero eremu honetan adierazitako helbidera joango da erantzuna"
 
-#: formSchema
-# defaultMessage: Invisible captcha
-msgid "invisible_hcaptcha"
-msgstr "Captcha ikustezina"
-
-#: formSchema
-# defaultMessage: See https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode
-msgid "invisible_hcaptcha_desc"
-msgstr "Ikusi https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode"
+#: components/Widget/NoRobotsCaptchaWidget
+# defaultMessage: Answer the question to prove that you are human
+msgid "resolveCaptcha"
+msgstr ""
 
 #: helpers/react-select
-# defaultMessage: Nessuna opzione
+# defaultMessage: No options
 msgid "select_noOptionsMessage"
 msgstr "Aukerarik gabe"
 
 #: helpers/react-select
-# defaultMessage: risultati
+# defaultMessage: results
 msgid "select_risultati"
 msgstr "emaitzak"
 
 #: helpers/react-select
-# defaultMessage: risultato
+# defaultMessage: result
 msgid "select_risultato"
 msgstr "emaitza"
 

@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'semantic-ui-react';
 import { FormFieldWrapper } from '@plone/volto/components';
 
-import './CheckboxListWidget.css';
+/* Style */
+import 'volto-form-block/components/Widget/CheckboxListWidget.css';
 
 /**
  * CheckboxListWidget component class.
@@ -59,7 +60,7 @@ const CheckboxListWidget = ({
       wrapped={wrapped}
     >
       <div className="checkbox-list-widget">
-        <fieldset class="checkbox-group">
+        <fieldset className="checkbox-group">
           <legend aria-hidden="false">{title}</legend>
           {valueList?.map((opt) => (
             <div className="checkbox-item" key={opt.value}>

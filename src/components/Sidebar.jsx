@@ -20,7 +20,11 @@ import downSVG from '@plone/volto/icons/down-key.svg';
 import downloadSVG from '@plone/volto/icons/download.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
 
-import { getFormData, exportCsvFormData, clearFormData } from '../actions';
+import {
+  getFormData,
+  exportCsvFormData,
+  clearFormData,
+} from 'volto-form-block/actions';
 
 import config from '@plone/volto/registry';
 
