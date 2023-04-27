@@ -44,8 +44,11 @@ const Field = ({
   disabled = false,
   formHasErrors = false,
   id,
+  ...rest
 }) => {
   const intl = useIntl();
+
+  console.log('rest', rest);
 
   const isInvalid = () => {
     return !isOnEdit && !valid;
