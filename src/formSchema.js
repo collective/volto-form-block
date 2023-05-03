@@ -61,6 +61,10 @@ const messages = defineMessages({
     id: 'form_stored_data_ids',
     defaultMessage: 'Data ID mapping',
   },
+  email_format: {
+    id: 'form_email_format',
+    defaultMessage: 'Email format',
+  },
 });
 
 export default (formData) => {
@@ -108,6 +112,32 @@ export default (formData) => {
       id: 'storedDataIds',
       title: intl.formatMessage(messages.storedDataIds),
       fields: formData?.subblocks?.map((subblock) => subblock.field_id),
+    });
+  }
+
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'captcha',
+        'store',
+        'send',
+      ],
+    },
+  ];
+
+  if (formData?.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['email_format'],
     });
   }
 
@@ -200,6 +230,15 @@ export default (formData) => {
           ['HTTP_USER_AGENT','HTTP_USER_AGENT'],
           ['HTTP_REFERER','HTTP_REFERER'],
         ],
+      },
+      email_format: {
+        title: intl.formatMessage(messages.email_format),
+        type: 'string',
+        choices: [
+          ['list', 'List'],
+          ['table', 'Table'],
+        ],
+        noValueOption: false,
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
