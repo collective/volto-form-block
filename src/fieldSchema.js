@@ -1,7 +1,6 @@
 import config from '@plone/volto/registry';
 import { defineMessages } from 'react-intl';
 import { useIntl } from 'react-intl';
-import { getFieldName } from 'volto-form-block/components/utils';
 
 const messages = defineMessages({
   field_label: {
@@ -74,11 +73,11 @@ const messages = defineMessages({
   },
   field_show_when_option_value_is: {
     id: 'form_field_show_when_option_value_is',
-    defaultMessage: 'Value is',
+    defaultMessage: 'value is',
   },
   field_show_when_option_value_is_not: {
     id: 'form_field_show_when_option_value_is_not',
-    defaultMessage: 'Value is not',
+    defaultMessage: 'value is not',
   },
 });
 
@@ -127,8 +126,14 @@ export default (props) => {
           ...schemaExtenderValues.fields,
           'required',
           'show_when',
-          ...((props.show_when === 'value_is' || props.show_when === 'value_is_not') ? ['target_field'] : []),
-          ...((props.show_when === 'value_is' || props.show_when === 'value_is_not') ? ['target_value'] : []),
+          ...(props.show_when === 'value_is' ||
+          props.show_when === 'value_is_not'
+            ? ['target_field']
+            : []),
+          ...(props.show_when === 'value_is' ||
+          props.show_when === 'value_is_not'
+            ? ['target_value']
+            : []),
         ],
       },
     ],
@@ -186,10 +191,7 @@ export default (props) => {
             ? props.formData.subblocks.map((subblock) => {
                 // Using getFieldName as it is what is used for the formData later. Saves
                 //   performing `getFieldName` for every block every render.
-                return [
-                  getFieldName(subblock.label, subblock.field_id),
-                  subblock.label,
-                ];
+                return [subblock.field_id, subblock.label];
               })
             : []),
         ],
