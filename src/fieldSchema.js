@@ -63,9 +63,21 @@ const messages = defineMessages({
     id: 'form_field_type_static_text',
     defaultMessage: 'Static text',
   },
-  field_show_when: {
+  field_type_hidden: {
+    id: 'form_field_type_hidden',
+    defaultMessage: 'Hidden',
+  },
+  field_show_when_when: {
     id: 'form_field_show_when',
-    defaultMessage: 'Show when',
+    defaultMessage: 'When',
+  },
+  field_show_when_is: {
+    id: 'form_field_show_is',
+    defaultMessage: 'Is',
+  },
+  field_show_when_to: {
+    id: 'form_field_show_to',
+    defaultMessage: 'To',
   },
   field_show_when_option_always: {
     id: 'form_field_show_when_option_',
@@ -73,11 +85,11 @@ const messages = defineMessages({
   },
   field_show_when_option_value_is: {
     id: 'form_field_show_when_option_value_is',
-    defaultMessage: 'value is',
+    defaultMessage: 'equal',
   },
   field_show_when_option_value_is_not: {
     id: 'form_field_show_when_option_value_is_not',
-    defaultMessage: 'value is not',
+    defaultMessage: 'not equal',
   },
 });
 
@@ -125,14 +137,12 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
-          'show_when',
-          ...(props.show_when === 'value_is' ||
-          props.show_when === 'value_is_not'
-            ? ['target_field']
+          'show_when_when',
+          ...(props.show_when_when && props.show_when_when !== 'always'
+            ? ['show_when_is']
             : []),
-          ...(props.show_when === 'value_is' ||
-          props.show_when === 'value_is_not'
-            ? ['target_value']
+          ...(props.show_when_when && props.show_when_when !== 'always'
+            ? ['show_when_to']
             : []),
         ],
       },
@@ -162,14 +172,28 @@ export default (props) => {
         type: 'boolean',
         default: false,
       },
-      show_when: {
-        title: intl.formatMessage(messages.field_show_when),
+      show_when_when: {
+        title: intl.formatMessage(messages.field_show_when_when),
         type: 'string',
         choices: [
           [
             'always',
             intl.formatMessage(messages.field_show_when_option_always),
           ],
+          ...(props?.formData?.subblocks
+            ? props.formData.subblocks.map((subblock) => {
+                // Using getFieldName as it is what is used for the formData later. Saves
+                //   performing `getFieldName` for every block every render.
+                return [subblock.field_id, subblock.label];
+              })
+            : []),
+        ],
+        default: 'always',
+      },
+      show_when_is: {
+        title: intl.formatMessage(messages.field_show_when_is),
+        type: 'string',
+        choices: [
           [
             'value_is',
             intl.formatMessage(messages.field_show_when_option_value_is),
@@ -181,25 +205,8 @@ export default (props) => {
         ],
         noValueOption: false,
       },
-      // TODO: i18n
-      target_field: {
-        title: 'Target field',
-        type: 'string',
-        choices: [
-          // Add properties for each of the fields for use in the data mapping
-          ...(props?.formData?.subblocks
-            ? props.formData.subblocks.map((subblock) => {
-                // Using getFieldName as it is what is used for the formData later. Saves
-                //   performing `getFieldName` for every block every render.
-                return [subblock.field_id, subblock.label];
-              })
-            : []),
-        ],
-        noValueOption: false,
-      },
-      // TODO: i18n
-      target_value: {
-        title: 'Target value',
+      show_when_to: {
+        title: intl.formatMessage(messages.field_show_when_to),
         type: 'string',
       },
       ...schemaExtenderValues.properties,
