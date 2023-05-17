@@ -115,23 +115,6 @@ export default (formData) => {
     });
   }
 
-  const fieldsets = [
-    {
-      id: 'default',
-      title: 'Default',
-      fields: [
-        'title',
-        'description',
-        'default_to',
-        'default_from',
-        'default_subject',
-        'submit_label',
-        'captcha',
-        'store',
-        'send',
-      ],
-    },
-  ];
 
   if (formData?.send) {
     fieldsets.push({
