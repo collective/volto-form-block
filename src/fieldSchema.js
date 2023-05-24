@@ -1,6 +1,6 @@
 import config from '@plone/volto/registry';
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
+import { validations } from 'volto-form-block/helpers/validators';
 
 const messages = defineMessages({
   field_label: {
@@ -67,6 +67,18 @@ const messages = defineMessages({
     id: 'form_field_type_hidden',
     defaultMessage: 'Hidden',
   },
+  field_validation_title: {
+    id: 'form_field_validations',
+    defaultMessage: 'Validations',
+  },
+  field_validation_item: {
+    id: 'form_field_validation',
+    defaultMessage: 'Validation',
+  },
+  field_validation_type: {
+    id: 'form_field_validation',
+    defaultMessage: 'Validation',
+  },
   field_show_when_when: {
     id: 'form_field_show_when',
     defaultMessage: 'When',
@@ -92,6 +104,45 @@ const messages = defineMessages({
     defaultMessage: 'not equal',
   },
 });
+
+
+
+function validationsSchema({ intl, value }) {
+  return {
+    title: intl.formatMessage(messages.field_validation_item),
+    required: ['dropdownValueFirst', 'dropdownValueSecond', 'url'],
+    fieldsets: [
+      {
+        id: 'default',
+        title: 'Default',
+        fields: [
+          'validation_type',
+          ...(value
+            ? Array.isArray(value)
+              ? validations[value[0].validation_type]?.fields
+              : validations[value.validation_type]?.fields
+            : []),
+        ],
+      },
+    ],
+    properties: {
+      validation_type: {
+        title: intl.formatMessage(messages.field_validation_type),
+        type: 'string',
+        choices: [
+          ['minLength', 'Min length'],
+          ['maxLength', 'Max length'],
+        ],
+        noValueOption: false,
+      },
+      ...(value
+        ? Array.isArray(value)
+          ? validations[value[0].validation_type]?.properties
+          : validations[value.validation_type]?.properties
+        : []),
+    },
+  };
+}
 
 export default (props) => {
   var intl = useIntl();
@@ -126,6 +177,8 @@ export default (props) => {
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
 
+    // debugger;
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -138,6 +191,7 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
+          'validations',
           'show_when_when',
           ...(props.show_when_when && props.show_when_when !== 'always'
             ? ['show_when_is']
@@ -172,6 +226,11 @@ export default (props) => {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
+      },
+      validations: {
+        title: intl.formatMessage(messages.field_validation_title),
+        widget: 'object_list',
+        schema: validationsSchema,
       },
       show_when_when: {
         title: intl.formatMessage(messages.field_show_when_when),
