@@ -181,11 +181,22 @@ export default (props) => {
             intl.formatMessage(messages.field_show_when_option_always),
           ],
           ...(props?.formData?.subblocks
-            ? props.formData.subblocks.map((subblock) => {
-                // Using getFieldName as it is what is used for the formData later. Saves
-                //   performing `getFieldName` for every block every render.
-                return [subblock.field_id, subblock.label];
-              })
+            ? props.formData.subblocks.reduce((choices, subblock, index) => {
+                const currentFieldIndex = props.formData.subblocks.findIndex(
+                  (field) => field.field_id === props.field_id,
+                );
+                if (index > currentFieldIndex) {
+                  if (props.show_when_when === subblock.field_id) {
+                    choices.push([subblock.field_id, subblock.label]);
+                  }
+                  return choices;
+                }
+                if (subblock.field_id === props.field_id) {
+                  return choices;
+                }
+                choices.push([subblock.field_id, subblock.label]);
+                return choices;
+              }, [])
             : []),
         ],
         default: 'always',
@@ -204,10 +215,12 @@ export default (props) => {
           ],
         ],
         noValueOption: false,
+        required: true,
       },
       show_when_to: {
         title: intl.formatMessage(messages.field_show_when_to),
         type: 'string',
+        required: true,
       },
       ...schemaExtenderValues.properties,
     },
