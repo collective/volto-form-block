@@ -228,6 +228,9 @@ export default (props) => {
       'label',
       'field_type',
       'input_values',
+      ...(props.show_when_when && props.show_when_when !== 'always'
+        ? ['show_when_is', 'show_when_to']
+        : []),
       ...schemaExtenderValues.required,
     ],
   };
