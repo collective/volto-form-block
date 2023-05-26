@@ -69,7 +69,7 @@ const messages = defineMessages({
   },
   field_show_when_when: {
     id: 'form_field_show_when',
-    defaultMessage: 'When',
+    defaultMessage: 'Show when',
   },
   field_show_when_is: {
     id: 'form_field_show_is',
