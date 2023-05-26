@@ -93,6 +93,8 @@ const messages = defineMessages({
   },
 });
 
+const choiceTypes = ['select', 'single_choice', 'multiple_choice'];
+
 export default (props) => {
   var intl = useIntl();
   const baseFieldTypeChoices = [
@@ -124,6 +126,13 @@ export default (props) => {
   const schemaExtenderValues = schemaExtender
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
+
+  const show_when_when_field =
+    props.show_when_when && props.show_when_when
+      ? props.formData?.subblocks?.find(
+          (field) => field.field_id === props.show_when_when,
+        )
+      : undefined;
 
   return {
     title: props?.label || '',
@@ -221,6 +230,19 @@ export default (props) => {
         title: intl.formatMessage(messages.field_show_when_to),
         type: 'array',
         required: true,
+        creatable: true,
+        noValueOption: false,
+        ...(show_when_when_field &&
+          choiceTypes.includes(show_when_when_field.field_type) && {
+            choices: show_when_when_field.input_values,
+          }),
+        ...(show_when_when_field &&
+          show_when_when_field.field_type === 'yes_no' && {
+            choices: [
+              [true, 'Yes'],
+              [false, 'No'],
+            ],
+          }),
       },
       ...schemaExtenderValues.properties,
     },
