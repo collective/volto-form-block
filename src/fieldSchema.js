@@ -219,7 +219,7 @@ export default (props) => {
       },
       show_when_to: {
         title: intl.formatMessage(messages.field_show_when_to),
-        type: 'string',
+        type: 'array',
         required: true,
       },
       ...schemaExtenderValues.properties,
