@@ -191,7 +191,7 @@ const Sidebar = ({
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
                     <BlockDataForm
-                      schema={FieldSchema(subblock)}
+                      schema={FieldSchema({ ...subblock, formData: data })}
                       onChangeField={(name, value) => {
                         var update_values = {};
 

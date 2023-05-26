@@ -63,7 +63,37 @@ const messages = defineMessages({
     id: 'form_field_type_static_text',
     defaultMessage: 'Static text',
   },
+  field_type_hidden: {
+    id: 'form_field_type_hidden',
+    defaultMessage: 'Hidden',
+  },
+  field_show_when_when: {
+    id: 'form_field_show_when',
+    defaultMessage: 'Show when',
+  },
+  field_show_when_is: {
+    id: 'form_field_show_is',
+    defaultMessage: 'Is',
+  },
+  field_show_when_to: {
+    id: 'form_field_show_to',
+    defaultMessage: 'To',
+  },
+  field_show_when_option_always: {
+    id: 'form_field_show_when_option_',
+    defaultMessage: 'Always',
+  },
+  field_show_when_option_value_is: {
+    id: 'form_field_show_when_option_value_is',
+    defaultMessage: 'equal',
+  },
+  field_show_when_option_value_is_not: {
+    id: 'form_field_show_when_option_value_is_not',
+    defaultMessage: 'not equal',
+  },
 });
+
+const choiceTypes = ['select', 'single_choice', 'multiple_choice'];
 
 export default (props) => {
   var intl = useIntl();
@@ -96,6 +126,14 @@ export default (props) => {
   const schemaExtenderValues = schemaExtender
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
+
+  const show_when_when_field =
+    props.show_when_when && props.show_when_when
+      ? props.formData?.subblocks?.find(
+          (field) => field.field_id === props.show_when_when,
+        )
+      : undefined;
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -108,6 +146,13 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
+          'show_when_when',
+          ...(props.show_when_when && props.show_when_when !== 'always'
+            ? ['show_when_is']
+            : []),
+          ...(props.show_when_when && props.show_when_when !== 'always'
+            ? ['show_when_to']
+            : []),
         ],
       },
     ],
@@ -122,7 +167,7 @@ export default (props) => {
       },
       field_type: {
         title: intl.formatMessage(messages.field_type),
-        type: 'array',
+        type: 'string',
         choices: [
           ...baseFieldTypeChoices,
           ...(config.blocks.blocksConfig.form.additionalFields?.map(
@@ -136,12 +181,78 @@ export default (props) => {
         type: 'boolean',
         default: false,
       },
+      show_when_when: {
+        title: intl.formatMessage(messages.field_show_when_when),
+        type: 'string',
+        choices: [
+          [
+            'always',
+            intl.formatMessage(messages.field_show_when_option_always),
+          ],
+          ...(props?.formData?.subblocks
+            ? props.formData.subblocks.reduce((choices, subblock, index) => {
+                const currentFieldIndex = props.formData.subblocks.findIndex(
+                  (field) => field.field_id === props.field_id,
+                );
+                if (index > currentFieldIndex) {
+                  if (props.show_when_when === subblock.field_id) {
+                    choices.push([subblock.field_id, subblock.label]);
+                  }
+                  return choices;
+                }
+                if (subblock.field_id === props.field_id) {
+                  return choices;
+                }
+                choices.push([subblock.field_id, subblock.label]);
+                return choices;
+              }, [])
+            : []),
+        ],
+        default: 'always',
+      },
+      show_when_is: {
+        title: intl.formatMessage(messages.field_show_when_is),
+        type: 'string',
+        choices: [
+          [
+            'value_is',
+            intl.formatMessage(messages.field_show_when_option_value_is),
+          ],
+          [
+            'value_is_not',
+            intl.formatMessage(messages.field_show_when_option_value_is_not),
+          ],
+        ],
+        noValueOption: false,
+        required: true,
+      },
+      show_when_to: {
+        title: intl.formatMessage(messages.field_show_when_to),
+        type: 'array',
+        required: true,
+        creatable: true,
+        noValueOption: false,
+        ...(show_when_when_field &&
+          choiceTypes.includes(show_when_when_field.field_type) && {
+            choices: show_when_when_field.input_values,
+          }),
+        ...(show_when_when_field &&
+          show_when_when_field.field_type === 'yes_no' && {
+            choices: [
+              [true, 'Yes'],
+              [false, 'No'],
+            ],
+          }),
+      },
       ...schemaExtenderValues.properties,
     },
     required: [
       'label',
       'field_type',
       'input_values',
+      ...(props.show_when_when && props.show_when_when !== 'always'
+        ? ['show_when_is', 'show_when_to']
+        : []),
       ...schemaExtenderValues.required,
     ],
   };
