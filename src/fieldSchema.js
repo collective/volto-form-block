@@ -39,9 +39,9 @@ const messages = defineMessages({
     id: 'form_field_type_multiple_choice',
     defaultMessage: 'Multiple choice',
   },
-  field_type_checkbox: {
-    id: 'form_field_type_checkbox',
-    defaultMessage: 'Checkbox',
+  field_type_yes_no: {
+    id: 'field_type_yes_no',
+    defaultMessage: 'Yes/ No',
   },
   field_type_date: {
     id: 'form_field_type_date',
@@ -76,7 +76,7 @@ export default (props) => {
       'multiple_choice',
       intl.formatMessage(messages.field_type_multiple_choice),
     ],
-    ['checkbox', intl.formatMessage(messages.field_type_checkbox)],
+    ['yes_no', intl.formatMessage(messages.field_type_yes_no)],
     ['date', intl.formatMessage(messages.field_type_date)],
     ['attachment', intl.formatMessage(messages.field_type_attachment)],
     ['from', intl.formatMessage(messages.field_type_from)],
