@@ -12,6 +12,7 @@ import {
   TextareaWidget,
   CheckboxListWidget,
   RadioWidget,
+  HiddenWidget,
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 
@@ -194,6 +195,9 @@ const Field = ({
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
+      )}
+      {field_type === 'hidden' && (
+        <HiddenWidget id={name} value={value} isOnEdit={isOnEdit} />
       )}
       {field_type === 'static_text' &&
         (isOnEdit ? (

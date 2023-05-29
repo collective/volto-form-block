@@ -63,6 +63,10 @@ const messages = defineMessages({
     id: 'form_field_type_static_text',
     defaultMessage: 'Static text',
   },
+  field_type_hidden: {
+    id: 'form_field_type_hidden',
+    defaultMessage: 'Hidden',
+  },
 });
 
 export default (props) => {
@@ -81,6 +85,7 @@ export default (props) => {
     ['attachment', intl.formatMessage(messages.field_type_attachment)],
     ['from', intl.formatMessage(messages.field_type_from)],
     ['static_text', intl.formatMessage(messages.field_type_static_text)],
+    ['hidden', intl.formatMessage(messages.field_type_hidden)],
   ];
   var attachmentDescription =
     props?.field_type === 'attachment'
