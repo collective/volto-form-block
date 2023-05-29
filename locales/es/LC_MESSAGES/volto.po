@@ -1,17 +1,24 @@
+# Translation of volto.pot to Spanish
+# Mikel Larreategi <mlarreategi@codesyntax.com>, 2022.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Plone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-10-18T16:54:30.102Z\n"
+"PO-Revision-Date: 2023-05-17 13:48-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language: es\n"
-"Language-Team: \n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: ES <LL@li.org>\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Preferred-Encodings: utf-8\n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.3\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Domain: volto\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
 #: components/Edit
 # defaultMessage: Aggiungi un campo
@@ -81,7 +88,7 @@ msgstr "Formulario"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr ""
+msgstr "Este sitio está protegido por hCaptcha y su <a href=\"https://www.hcaptcha.com/privacy\">Política de privacidad</a> y <a href=\"https://www.hcaptcha.com/terms\">Términos de servicio</a> se aplican."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No options
@@ -106,7 +113,7 @@ msgstr "Obligatorio"
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr "Seleccionar…"
+msgstr "Seleccionar..."
 
 #: components/Widget/SelectWidget
 # defaultMessage: Short Name
@@ -141,7 +148,7 @@ msgstr "Disponible"
 #: helpers/react-select
 # defaultMessage: availables
 msgid "ay11_select availables"
-msgstr "Disponible"
+msgstr "Disponibles"
 
 #: helpers/react-select
 # defaultMessage: deselected
@@ -166,7 +173,7 @@ msgstr "para la búsqueda"
 #: helpers/react-select
 # defaultMessage: is disabled. Select another option.
 msgid "ay11_select is disabled. Select another option."
-msgstr "está desactivado. Seleccione otra opción"
+msgstr "está desactivado. Seleccione otra opción."
 
 #: helpers/react-select
 # defaultMessage: option
@@ -236,7 +243,7 @@ msgstr "Pulse la flecha hacia la izquierda para enfocar los valores seleccionado
 #: formSchema
 # defaultMessage: Captcha provider
 msgid "captcha"
-msgstr ""
+msgstr "Proveedor de captchas"
 
 #: formSchema
 # defaultMessage: Description
@@ -292,7 +299,7 @@ msgstr "Exportar datos"
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
-msgstr "Atención:"
+msgstr "¡Atención!"
 
 #: components/Edit
 # defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
@@ -448,7 +455,7 @@ msgstr "Si está seleccionado el valor de este campo se utilizará como cabecera
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
-msgstr ""
+msgstr "Responde la pregunta para demostrar que eres humano"
 
 #: helpers/react-select
 # defaultMessage: No options
