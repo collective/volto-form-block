@@ -309,6 +309,11 @@ msgstr "Bete derrigorrezko eremuak"
 msgid "form_field_description"
 msgstr "Deskribapena"
 
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr ""
+
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
@@ -354,6 +359,11 @@ msgstr "Data"
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "Posta elektronikoa"
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Multiple choice

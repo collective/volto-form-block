@@ -88,7 +88,7 @@ msgstr "Formulario"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr "Este sitio está protegido por hCaptcha y su <a href=\"https://www.hcaptcha.com/privacy\">Política de privacidad</a> y <a href=\"https://www.hcaptcha.com/terms\">Términos de servicio</a> se aplican."
+msgstr "Este sitio está protegido por hCaptcha y su <a href="https://www.hcaptcha.com/privacy">Política de privacidad</a> y <a href="https://www.hcaptcha.com/terms">Términos de servicio</a> se aplican."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No options
@@ -316,6 +316,11 @@ msgstr "Rellene todos los campos requeridos"
 msgid "form_field_description"
 msgstr "Descripción"
 
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr ""
+
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
@@ -361,6 +366,11 @@ msgstr "Fecha"
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "Correo electrónico"
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Multiple choice

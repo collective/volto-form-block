@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2022-10-18T16:54:30.102Z\n"
+"POT-Creation-Date: 2023-05-29T11:05:12.094Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -309,6 +309,11 @@ msgstr ""
 msgid "form_field_description"
 msgstr ""
 
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr ""
+
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
@@ -353,6 +358,11 @@ msgstr ""
 #: fieldSchema
 # defaultMessage: E-mail
 msgid "form_field_type_from"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
 msgstr ""
 
 #: fieldSchema

@@ -307,6 +307,11 @@ msgstr "Compila i campi richiesti"
 msgid "form_field_description"
 msgstr "Descrizione"
 
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr "Valore del campo"
+
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
@@ -352,6 +357,11 @@ msgstr "Data"
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "E-mail"
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
+msgstr "Nascosto"
 
 #: fieldSchema
 # defaultMessage: Multiple choice
