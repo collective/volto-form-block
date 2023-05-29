@@ -44,6 +44,7 @@ const applyConfig = (config) => {
         multiple_choice: SelectionSchemaExtender,
         from: FromSchemaExtender,
       },
+      attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
       security: {
