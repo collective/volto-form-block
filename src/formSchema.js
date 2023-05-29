@@ -93,7 +93,7 @@ export default () => {
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        type: 'array',
+        type: 'string',
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
