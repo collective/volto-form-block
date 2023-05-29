@@ -122,7 +122,7 @@ export default (props) => {
       },
       field_type: {
         title: intl.formatMessage(messages.field_type),
-        type: 'array',
+        type: 'string',
         choices: [
           ...baseFieldTypeChoices,
           ...(config.blocks.blocksConfig.form.additionalFields?.map(

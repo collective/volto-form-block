@@ -28,6 +28,10 @@
       "pre-commit": "lint-staged"
     }
   },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.6",
     "file-saver": "^2.0.5",
