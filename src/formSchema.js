@@ -34,7 +34,14 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-
+  headers: {
+    id: 'Headers',
+    defaultMessage: 'Headers',
+  },
+  headersDescription: {
+    id: 'Headers Description',
+    defaultMessage: "These headers aren't included in the sent email by default. Use this dropdown to include them in the sent email",
+  },
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
@@ -49,28 +56,38 @@ const messages = defineMessages({
   },
 });
 
-export default () => {
+export default (formData) => {
   var intl = useIntl();
+
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'captcha',
+        'store',
+        'send',
+      ],
+    },
+  ];
+
+  if (formData?.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['httpHeaders'],
+    });
+  }
 
   return {
     title: intl.formatMessage(messages.form),
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'title',
-          'description',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'submit_label',
-          'captcha',
-          'store',
-          'send',
-        ],
-      },
-    ],
+    fieldsets: fieldsets,
     properties: {
       title: {
         title: intl.formatMessage(messages.title),
@@ -106,6 +123,24 @@ export default () => {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
         description: intl.formatMessage(messages.attachmentSendEmail),
+      },
+      httpHeaders: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.headers),
+        description: intl.formatMessage(messages.headersDescription),
+        type: 'string',
+        factory: 'Choice',
+        default: '',
+        isMulti: true,
+        noValueOption: false,
+        choices: [
+          ['HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED_FOR'],
+          ['HTTP_X_FORWARDED_PORT','HTTP_X_FORWARDED_PORT'],
+          ['REMOTE_ADDR','REMOTE_ADDR'],
+          ['PATH_INFO','PATH_INFO'],
+          ['HTTP_USER_AGENT','HTTP_USER_AGENT'],
+          ['HTTP_REFERER','HTTP_REFERER'],
+        ],
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
