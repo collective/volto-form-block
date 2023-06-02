@@ -68,6 +68,7 @@ export default () => {
           'captcha',
           'store',
           'send',
+          'labelsAsPlaceholders',
         ],
       },
     ],
@@ -106,6 +107,10 @@ export default () => {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
         description: intl.formatMessage(messages.attachmentSendEmail),
+      },
+      labelsAsPlaceholders: {
+        type: 'boolean',
+        title: 'Use labels as placeholders',
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
