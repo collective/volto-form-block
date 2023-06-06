@@ -6,7 +6,7 @@ Intended to be used with [collective.volto.formsupport](https://github.com/colle
 Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizing/add-ons/)) or with:
 
 ```bash
-yarn add volto-form-block
+yarn add volto-form-block volto-subblocks
 ```
 
 > **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).

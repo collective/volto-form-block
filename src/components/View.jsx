@@ -48,12 +48,32 @@ const formStateReducer = (state, action) => {
   }
 };
 
-const getInitialData = (data) => ({
-  ...data.reduce(
-    (acc, field) => ({ ...acc, [getFieldName(field.label, field.id)]: field }),
-    {},
-  ),
-});
+const getInitialData = (data) => {
+  const { static_fields = [], subblocks = [] } = data;
+
+  return {
+    ...subblocks.reduce(
+      (acc, field) =>
+        field.field_type === 'hidden'
+          ? {
+              ...acc,
+              [getFieldName(field.label, field.id)]: {
+                ...field,
+                ...(data[field.id] && { custom_field_id: data[field.id] }),
+              },
+            }
+          : acc,
+      {},
+    ),
+    ...static_fields.reduce(
+      (acc, field) => ({
+        ...acc,
+        [getFieldName(field.label, field.id)]: field,
+      }),
+      {},
+    ),
+  };
+};
 
 /**
  * Form view
@@ -62,18 +82,17 @@ const getInitialData = (data) => ({
 const View = ({ data, id, path }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const { static_fields = [] } = data;
 
   const [formData, setFormData] = useReducer((state, action) => {
     if (action.reset) {
-      return getInitialData(static_fields);
+      return getInitialData(data);
     }
 
     return {
       ...state,
       [action.field]: action.value,
     };
-  }, getInitialData(static_fields));
+  }, getInitialData(data));
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
@@ -150,7 +169,9 @@ const View = ({ data, id, path }) => {
             let name = getFieldName(subblock.label, subblock.id);
             if (formattedFormData[name]?.value) {
               formattedFormData[name].field_id = subblock.field_id;
-              const isAttachment = subblock.field_type === 'attachment';
+              const isAttachment = config.blocks.blocksConfig.form.attachment_fields.includes(
+                subblock.field_type,
+              );
               const isDate = subblock.field_type === 'date';
 
               if (isAttachment) {

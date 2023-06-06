@@ -307,6 +307,11 @@ msgstr ""
 msgid "form_field_description"
 msgstr ""
 
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr ""
+
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
@@ -351,6 +356,11 @@ msgstr ""
 #: fieldSchema
 # defaultMessage: E-mail
 msgid "form_field_type_from"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
 msgstr ""
 
 #: fieldSchema

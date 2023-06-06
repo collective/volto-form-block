@@ -93,7 +93,7 @@ export default () => {
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        type: 'array',
+        type: 'string',
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
@@ -101,11 +101,11 @@ export default () => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
-        description: intl.formatMessage(messages.attachmentSendEmail),
       },
       send: {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
+        description: intl.formatMessage(messages.attachmentSendEmail),
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
