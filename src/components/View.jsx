@@ -172,7 +172,18 @@ const View = ({ data, id, path }) => {
             captcha.value = formData[data.captcha_props.id]?.value ?? '';
           }
 
-          let formattedFormData = { ...formData };
+          let formattedFormData = data.subblocks.reduce(
+            (returnValue, field) => {
+              const fieldName = getFieldName(field.label, field.id);
+              const dataToAdd = formData[fieldName] ?? {
+                field_id: field.id,
+                label: field.label,
+                value: null,
+              };
+              return { ...returnValue, [fieldName]: dataToAdd };
+            },
+            {},
+          );
           data.subblocks.forEach((subblock) => {
             let name = getFieldName(subblock.label, subblock.id);
             if (formattedFormData[name]?.value) {
