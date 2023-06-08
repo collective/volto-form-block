@@ -103,7 +103,7 @@ export default (formData) => {
     fieldsets.push({
       id: 'sendingOptions',
       title: 'Sending options',
-      fields: ['attachXml', 'httpHeaders'],
+      fields: ['attachXml', 'httpHeaders', 'email_format'],
     });
   }
 
@@ -112,15 +112,6 @@ export default (formData) => {
       id: 'storedDataIds',
       title: intl.formatMessage(messages.storedDataIds),
       fields: formData?.subblocks?.map((subblock) => subblock.field_id),
-    });
-  }
-
-
-  if (formData?.send) {
-    fieldsets.push({
-      id: 'sendingOptions',
-      title: 'Sending options',
-      fields: ['email_format'],
     });
   }
 
@@ -149,7 +140,7 @@ export default (formData) => {
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        type: 'array',
+        type: 'string',
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
@@ -157,7 +148,6 @@ export default (formData) => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
-        description: intl.formatMessage(messages.attachmentSendEmail),
       },
       send: {
         title: intl.formatMessage(messages.send),
