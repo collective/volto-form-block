@@ -174,6 +174,9 @@ const View = ({ data, id, path }) => {
 
           let formattedFormData = data.subblocks.reduce(
             (returnValue, field) => {
+              if (field.field_type === 'static_text') {
+                return returnValue;
+              }
               const fieldName = getFieldName(field.label, field.id);
               const dataToAdd = formData[fieldName] ?? {
                 field_id: field.id,
