@@ -1,3 +1,7 @@
+function hasValue(value) {
+  return !value === null || !value === undefined;
+}
+
 export const validations = {
   minLength: {
     fields: ['validation_value'],
@@ -7,8 +11,12 @@ export const validations = {
         type: 'number',
       },
     },
-    validator: ({ value, validation_value }) =>
-      value?.toString().length >= validation_value,
+    validator: function ({ value, validation_value }) {
+      if (!hasValue(value)) {
+        return true;
+      }
+      return value.toString().length >= validation_value;
+    },
   },
   maxLength: {
     fields: ['validation_value'],
@@ -18,7 +26,12 @@ export const validations = {
         type: 'number',
       },
     },
-    validator: ({ value, validation_value }) =>
-      value?.toString().length < validation_value,
+    validator: function ({ value, validation_value }) {
+      if (!hasValue(value)) {
+        return true;
+      }
+      debugger;
+      return value.toString().length < validation_value;
+    },
   },
 };
