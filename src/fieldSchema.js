@@ -107,7 +107,10 @@ const messages = defineMessages({
 
 
 
-function validationsSchema({ intl, value }) {
+function validationsSchema({ intl, value, ...rest }) {
+  const validationType = Array.isArray(value)
+    ? value[0]?.validation_type
+    : value?.validation_type;
   return {
     title: intl.formatMessage(messages.field_validation_item),
     required: ['dropdownValueFirst', 'dropdownValueSecond', 'url'],
@@ -117,10 +120,8 @@ function validationsSchema({ intl, value }) {
         title: 'Default',
         fields: [
           'validation_type',
-          ...(value
-            ? Array.isArray(value)
-              ? validations[value[0].validation_type]?.fields
-              : validations[value.validation_type]?.fields
+          ...(value && validationType
+            ? validations[validationType]?.fields
             : []),
         ],
       },
@@ -135,10 +136,8 @@ function validationsSchema({ intl, value }) {
         ],
         noValueOption: false,
       },
-      ...(value
-        ? Array.isArray(value)
-          ? validations[value[0].validation_type]?.properties
-          : validations[value.validation_type]?.properties
+      ...(value && validationType
+        ? validations[validationType]?.properties
         : []),
     },
   };
