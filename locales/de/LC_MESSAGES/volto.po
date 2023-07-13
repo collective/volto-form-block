@@ -269,7 +269,7 @@ msgstr "Gespeicherte Elemente wirklich löschen?"
 #: formSchema
 # defaultMessage: Default sender
 msgid "form_default_from"
-msgstr "Standart Absender"
+msgstr "Standard Absender"
 
 #: formSchema
 # defaultMessage: Mail subject
