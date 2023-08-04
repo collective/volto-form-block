@@ -254,7 +254,7 @@ msgstr "Formular erfolgreich eingereicht"
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
-msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versended. "
+msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versendet."
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -269,7 +269,7 @@ msgstr "Gespeicherte Elemente wirklich löschen?"
 #: formSchema
 # defaultMessage: Default sender
 msgid "form_default_from"
-msgstr "Standart Absender"
+msgstr "Standard Absender"
 
 #: formSchema
 # defaultMessage: Mail subject
@@ -446,12 +446,12 @@ msgstr "Wenn ausgewählt, wird auch eine Kopie der E-Mail an diese Adresse gesen
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
-msgstr "undefiniert"
+msgstr "Als Antwortadresse nutzen"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
-msgstr "undefiniert"
+msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
 
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
