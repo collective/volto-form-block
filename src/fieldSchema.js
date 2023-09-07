@@ -125,7 +125,7 @@ export default (props) => {
   var schemaExtender =
     config.blocks.blocksConfig.form.fieldTypeSchemaExtenders[props?.field_type];
   const schemaExtenderValues = schemaExtender
-    ? schemaExtender(intl)
+    ? schemaExtender({ intl, ...props })
     : { properties: [], fields: [], required: [] };
 
   const show_when_when_field =

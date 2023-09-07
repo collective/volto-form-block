@@ -6,18 +6,50 @@ const messages = defineMessages({
   },
 });
 
-export const YesNoSchemaExtender = (intl) => {
+function InternalValueSchema() {
   return {
-    fields: ['widget'],
+    title: 'Test',
+    fieldsets: [
+      {
+        id: 'default',
+        title: 'Default',
+        fields: ['yes', 'no'],
+      },
+    ],
+    properties: {
+      no: {
+        title: 'no',
+        default: 'Definitely no',
+      },
+      yes: {
+        title: 'yes',
+        default: 'Definitely yes',
+      },
+    },
+  };
+}
+
+export const YesNoSchemaExtender = ({ intl, formData, ...props }) => {
+  return {
+    fields:
+      props.widget === 'single_choice'
+        ? ['widget', 'internal_value']
+        : ['widget'],
     properties: {
       widget: {
         title: intl.formatMessage(messages.field_widget),
-        type: 'array',
+        type: 'string',
         choices: [
           ['checkbox', 'Checkbox'],
           ['single_choice', 'Radio'],
         ],
         default: 'checkbox',
+      },
+      internal_value: {
+        title: 'Internal value',
+        widget: 'object',
+        schema: InternalValueSchema(),
+        collapsible: true,
       },
     },
     required: ['widget'],
