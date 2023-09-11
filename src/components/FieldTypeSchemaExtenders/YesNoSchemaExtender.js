@@ -17,13 +17,11 @@ function InternalValueSchema() {
       },
     ],
     properties: {
-      no: {
-        title: 'no',
-        default: 'Definitely no',
-      },
       yes: {
-        title: 'yes',
-        default: 'Definitely yes',
+        title: 'True',
+      },
+      no: {
+        title: 'False',
       },
     },
   };
