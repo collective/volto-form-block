@@ -4,6 +4,14 @@ const messages = defineMessages({
     id: 'form_field_input_values',
     defaultMessage: 'Possible values',
   },
+  useAsFrom: {
+    id: 'form_useAsFrom',
+    defaultMessage: "Use as 'from'",
+  },
+  useAsFrom_description: {
+    id: 'useAsFrom_description',
+    defaultMessage: 'If selected, this will override the default sender.',
+  },
   useAsReplyTo: {
     id: 'form_useAsReplyTo',
     defaultMessage: "Use as 'reply to'",
@@ -26,8 +34,14 @@ const messages = defineMessages({
 
 export const FromSchemaExtender = (intl) => {
   return {
-    fields: ['use_as_reply_to', 'use_as_bcc'],
+    fields: ['use_as_from', 'use_as_reply_to', 'use_as_bcc'],
     properties: {
+      use_as_from: {
+        title: intl.formatMessage(messages.useAsFrom),
+        description: intl.formatMessage(messages.useAsFrom_description),
+        type: 'boolean',
+        default: false,
+      },
       use_as_reply_to: {
         title: intl.formatMessage(messages.useAsReplyTo),
         description: intl.formatMessage(messages.useAsReplyTo_description),

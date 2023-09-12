@@ -444,6 +444,11 @@ msgid "form_useAsBCC_description"
 msgstr "Se selezionato, una copia dell'email verrà inviata anche a questo indirizzo."
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Use as 'from'
+msgid "form_useAsFrom"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr "Usa come 'reply to'"
@@ -477,3 +482,8 @@ msgstr "risultato"
 # defaultMessage: Title
 msgid "title"
 msgstr "Titolo"
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected, this will override the default sender.
+msgid "useAsFrom_description"
+msgstr ""
