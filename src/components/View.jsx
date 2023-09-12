@@ -188,6 +188,20 @@ const View = ({ data, id, path }) => {
               }
             }
           });
+
+          // if there is an email field which should be used as sender,
+          // we want to set from value regarding this field
+          let from = null;
+          const fromField = data.subblocks.find(
+            (b) => ['email', 'from'].includes(b.field_type) && b.use_as_from,
+          );
+          if (fromField) {
+            const fromFieldId = `email_${fromField.field_id}`;
+            if (formData.hasOwnProperty(fromFieldId)) {
+              from = formData[fromFieldId].value;
+            }
+          }
+
           dispatch(
             submitForm(
               path,
@@ -197,6 +211,7 @@ const View = ({ data, id, path }) => {
               })),
               attachments,
               captcha,
+              from,
             ),
           );
           setFormState({ type: FORM_STATES.loading });
