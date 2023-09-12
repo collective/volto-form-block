@@ -444,6 +444,11 @@ msgid "form_useAsBCC_description"
 msgstr ""
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Use as 'from'
+msgid "form_useAsFrom"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr ""
@@ -476,4 +481,9 @@ msgstr ""
 #: formSchema
 # defaultMessage: Title
 msgid "title"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected, this will override the default sender.
+msgid "useAsFrom_description"
 msgstr ""

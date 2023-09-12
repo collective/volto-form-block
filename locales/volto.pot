@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-05-29T11:05:12.094Z\n"
+"POT-Creation-Date: 2023-09-12T08:29:55.978Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -446,6 +446,11 @@ msgid "form_useAsBCC_description"
 msgstr ""
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Use as 'from'
+msgid "form_useAsFrom"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr ""
@@ -478,4 +483,9 @@ msgstr ""
 #: formSchema
 # defaultMessage: Title
 msgid "title"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected, this will override the default sender.
+msgid "useAsFrom_description"
 msgstr ""
