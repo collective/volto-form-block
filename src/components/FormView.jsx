@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
+import { useSelector, useDispatch } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 import {
   Segment,
   Message,
@@ -10,6 +12,7 @@ import {
 } from 'semantic-ui-react';
 import { getFieldName } from 'volto-form-block/components/utils';
 import Field from 'volto-form-block/components/Field';
+import { getUser } from '@plone/volto/actions';
 import config from '@plone/volto/registry';
 
 /* Style */
@@ -52,6 +55,31 @@ const FormView = ({
 }) => {
   const intl = useIntl();
   const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
+
+  const userId = useSelector((state) =>
+    state.userSession.token ? jwtDecode(state.userSession.token).sub : '',
+  );
+  const curUserEmail = useSelector(
+    (state) => state.users?.user?.email || false,
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userId?.length > 0 && curUserEmail === false) dispatch(getUser(userId));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  if (curUserEmail?.length > 0) {
+    data.subblocks.forEach((subblock) => {
+      if (
+        ['email', 'from'].includes(subblock.field_type) &&
+        subblock.user_email_as_default === true
+      ) {
+        const name = getFieldName(subblock.label, subblock.id);
+        if (!formData.hasOwnProperty(name))
+          formData[name] = { value: curUserEmail };
+      }
+    });
+  }
 
   const isValidField = (field) => {
     return formErrors?.indexOf(field) < 0;

@@ -22,11 +22,20 @@ const messages = defineMessages({
     defaultMessage:
       'If selected, a copy of email will alse be sent to this address.',
   },
+  userEmailAsDefault: {
+    id: 'userEmailAsDefault',
+    defaultMessage: 'Use email of logged in user as default',
+  },
+  userEmailAsDefault_description: {
+    id: 'userEmailAsDefault_description',
+    defaultMessage:
+      'If selected and user is logged in, his/her email address will be set as default value.',
+  },
 });
 
 export const FromSchemaExtender = (intl) => {
   return {
-    fields: ['use_as_reply_to', 'use_as_bcc'],
+    fields: ['use_as_reply_to', 'use_as_bcc', 'user_email_as_default'],
     properties: {
       use_as_reply_to: {
         title: intl.formatMessage(messages.useAsReplyTo),
@@ -37,6 +46,14 @@ export const FromSchemaExtender = (intl) => {
       use_as_bcc: {
         title: intl.formatMessage(messages.useAsBCC),
         description: intl.formatMessage(messages.useAsBCC_description),
+        type: 'boolean',
+        default: false,
+      },
+      user_email_as_default: {
+        title: intl.formatMessage(messages.userEmailAsDefault),
+        description: intl.formatMessage(
+          messages.userEmailAsDefault_description,
+        ),
         type: 'boolean',
         default: false,
       },
