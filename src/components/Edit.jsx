@@ -115,6 +115,11 @@ class Edit extends SubblocksEdit {
             selected={this.state.subIndexSelected}
             setSelected={this.onSubblockChangeFocus}
             openObjectBrowser={this.props.openObjectBrowser}
+            properties={
+              this.props.metadata?.['@id']
+                ? this.props.metadata
+                : this.props.properties
+            }
           />
         </SidebarPortal>
       </div>
