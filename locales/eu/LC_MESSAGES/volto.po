@@ -479,3 +479,13 @@ msgstr "emaitza"
 # defaultMessage: Title
 msgid "title"
 msgstr "Izenburua"
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Use email of logged in user as default
+msgid "userEmailAsDefault"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected and user is logged in, his/her email address will be set as default value.
+msgid "userEmailAsDefault_description"
+msgstr ""
