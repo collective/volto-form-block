@@ -6,7 +6,7 @@ const messages = defineMessages({
   },
 });
 
-export const HiddenSchemaExtender = (intl) => {
+export const HiddenSchemaExtender = ({ intl }) => {
   return {
     fields: ['value'],
     properties: {

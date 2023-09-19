@@ -24,7 +24,7 @@ const messages = defineMessages({
   },
 });
 
-export const FromSchemaExtender = (intl) => {
+export const FromSchemaExtender = ({ intl }) => {
   return {
     fields: ['use_as_reply_to', 'use_as_bcc'],
     properties: {
