@@ -4,6 +4,15 @@ const messages = defineMessages({
     id: 'form_field_widget',
     defaultMessage: 'Widget',
   },
+  display_values_title: {
+    id: 'form_field_display_values_title',
+    defaultMessage: 'Display values as',
+  },
+  display_values_description: {
+    id: 'form_field_display_values_description',
+    defaultMessage:
+      'Change how values appear in forms and emails. Data stores and sent, such as CSV exports and XML attachments, will remain unchanged.',
+  },
 });
 
 function InternalValueSchema() {
@@ -19,20 +28,19 @@ function InternalValueSchema() {
     properties: {
       yes: {
         title: 'True',
+        placeholder: 'Yes',
       },
       no: {
         title: 'False',
+        placeholder: 'No',
       },
     },
   };
 }
 
-export const YesNoSchemaExtender = ({ intl, formData, ...props }) => {
+export const YesNoSchemaExtender = ({ intl, formData }) => {
   return {
-    fields:
-      props.widget === 'single_choice'
-        ? ['widget', 'internal_value']
-        : ['widget'],
+    fields: ['widget', 'display_values'],
     properties: {
       widget: {
         title: intl.formatMessage(messages.field_widget),
@@ -43,8 +51,9 @@ export const YesNoSchemaExtender = ({ intl, formData, ...props }) => {
         ],
         default: 'checkbox',
       },
-      internal_value: {
-        title: 'Internal value',
+      display_values: {
+        title: 'Display values as',
+        description: '',
         widget: 'object',
         schema: InternalValueSchema(),
         collapsible: true,
