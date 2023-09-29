@@ -1,6 +1,5 @@
 import config from '@plone/volto/registry';
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   field_label: {
@@ -14,6 +13,10 @@ const messages = defineMessages({
   field_required: {
     id: 'form_field_required',
     defaultMessage: 'Required',
+  },
+  field_default: {
+    id: 'form_field_default',
+    defaultMessage: 'Default value',
   },
   field_type: {
     id: 'form_field_type',
@@ -95,6 +98,13 @@ const messages = defineMessages({
 
 const choiceTypes = ['select', 'single_choice', 'multiple_choice'];
 
+// TODO: Anyway to inrospect this?
+const fieldTypeDefaultValueTypeMapping = {
+  yes_no: 'boolean',
+  multiple_choice: 'array',
+  date: 'date',
+};
+
 export default (props) => {
   var intl = useIntl();
   const baseFieldTypeChoices = [
@@ -147,6 +157,7 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
+          'default_value',
           'show_when_when',
           ...(props.show_when_when && props.show_when_when !== 'always'
             ? ['show_when_is']
@@ -181,6 +192,20 @@ export default (props) => {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
+      },
+      default_value: {
+        title: intl.formatMessage(messages.field_default),
+        type: fieldTypeDefaultValueTypeMapping[props?.field_type]
+          ? fieldTypeDefaultValueTypeMapping[props?.field_type]
+          : 'string',
+        ...(['select', 'single_choice', 'multiple_choice'].includes(
+          props?.field_type,
+        ) && {
+          choices: props?.formData?.subblocks
+            .filter((block) => block.field_id === props.field_id)?.[0]
+            ?.input_values?.map((input_value) => input_value),
+          noValueOption: false,
+        }),
       },
       show_when_when: {
         title: intl.formatMessage(messages.field_show_when_when),
