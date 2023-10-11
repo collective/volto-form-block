@@ -181,7 +181,7 @@ const View = ({ data, id, path }) => {
               const dataToAdd = formData[fieldName] ?? {
                 field_id: field.id,
                 label: field.label,
-                value: null,
+                value: field.default_value,
                 ...(data[field.id] && { custom_field_id: data[field.id] }), // Conditionally add the key. Nicer to work with than having a key with a null value
               };
               return { ...returnValue, [fieldName]: dataToAdd };

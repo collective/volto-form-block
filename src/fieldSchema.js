@@ -198,12 +198,21 @@ export default (props) => {
         type: fieldTypeDefaultValueTypeMapping[props?.field_type]
           ? fieldTypeDefaultValueTypeMapping[props?.field_type]
           : 'string',
+        ...(props?.field_type === 'yes_no' && {
+          choices: [
+            [true, 'Yes'],
+            [false, 'No'],
+          ],
+          noValueOption: false,
+        }),
         ...(['select', 'single_choice', 'multiple_choice'].includes(
           props?.field_type,
         ) && {
           choices: props?.formData?.subblocks
             .filter((block) => block.field_id === props.field_id)?.[0]
-            ?.input_values?.map((input_value) => input_value),
+            ?.input_values?.map((input_value) => {
+              return [input_value, input_value];
+            }),
           noValueOption: false,
         }),
       },
