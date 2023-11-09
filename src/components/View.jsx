@@ -98,6 +98,7 @@ const View = ({ data, id, path }) => {
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
   const captchaToken = useRef();
+  const formid = `form-${id}`;
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({
@@ -215,6 +216,10 @@ const View = ({ data, id, path }) => {
           );
           setFormState({ type: FORM_STATES.loading });
         } else {
+          const errorBox = document.getElementById(`${formid}-errors`);
+          if (errorBox) {
+            errorBox.scrollIntoView({ behavior: 'smooth' });
+          }
           setFormState({ type: FORM_STATES.error });
         }
       })
@@ -238,8 +243,6 @@ const View = ({ data, id, path }) => {
     captcha_props: data.captcha_props,
     onChangeFormData,
   });
-
-  const formid = `form-${id}`;
 
   useEffect(() => {
     if (submitResults?.loaded) {
