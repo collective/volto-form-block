@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from 'volto-form-block/actions';
-import { getFieldName } from 'volto-form-block/components/utils';
-import FormView from 'volto-form-block/components/FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
+import PropTypes from 'prop-types';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
+import { defineMessages, useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitForm } from 'volto-form-block/actions';
+import FormView from 'volto-form-block/components/FormView';
 import { Captcha } from 'volto-form-block/components/Widget';
+import { getFieldName } from 'volto-form-block/components/utils';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -128,25 +128,25 @@ const View = ({ data, id, path }) => {
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
-      if (
-        subblock.required &&
-        additionalField &&
-        !additionalField?.isValid(formData, name)
-      ) {
-        v.push(name);
-      } else if (
-        subblock.required &&
-        fieldType === 'checkbox' &&
-        !formData[name]?.value
-      ) {
-        v.push(name);
-      } else if (
-        subblock.required &&
-        (!formData[name] ||
+      if (subblock.required) {
+        let fieldIsValid = true;
+        if (additionalField && !additionalField?.isValid(formData, name)) {
+          fieldIsValid = false;
+        } else if (fieldType === 'checkbox' && !formData[name]?.value) {
+          fieldIsValid = false;
+        } else if (
+          !formData[name] ||
           formData[name]?.value?.length === 0 ||
-          JSON.stringify(formData[name]?.value ?? {}) === '{}')
-      ) {
-        v.push(name);
+          JSON.stringify(formData[name]?.value ?? {}) === '{}'
+        ) {
+          fieldIsValid = false;
+        }
+        if (Boolean(!formData[name] && subblock.default_value)) {
+          fieldIsValid = true;
+        }
+        if (!fieldIsValid) {
+          v.push(name);
+        }
       }
     });
 
