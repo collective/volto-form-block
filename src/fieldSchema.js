@@ -157,7 +157,11 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
-          'default_value',
+          ...(!['attachment', 'static_text', 'hidden'].includes(
+            props.field_type,
+          )
+            ? ['default_value']
+            : []),
           'show_when_when',
           ...(props.show_when_when && props.show_when_when !== 'always'
             ? ['show_when_is']
