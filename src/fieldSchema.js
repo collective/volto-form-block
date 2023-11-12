@@ -16,7 +16,7 @@ const messages = defineMessages({
   },
   field_default: {
     id: 'form_field_default',
-    defaultMessage: 'Default value',
+    defaultMessage: 'Default',
   },
   field_type: {
     id: 'form_field_type',
