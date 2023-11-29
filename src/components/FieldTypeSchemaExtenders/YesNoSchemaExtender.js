@@ -29,10 +29,12 @@ function InternalValueSchema() {
       yes: {
         title: 'True',
         placeholder: 'Yes',
+        default: 'Yes',
       },
       no: {
         title: 'False',
         placeholder: 'No',
+        default: 'No',
       },
     },
   };
