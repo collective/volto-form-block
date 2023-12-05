@@ -10,6 +10,7 @@ import {
   Confirm,
   Dimmer,
   Loader,
+  Divider,
 } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -30,6 +31,7 @@ import config from '@plone/volto/registry';
 
 import { BlockDataForm } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
+import { getFieldName } from 'volto-form-block/components/utils';
 
 const messages = defineMessages({
   exportCsv: {
@@ -51,6 +53,10 @@ const messages = defineMessages({
   cancel: {
     id: 'Cancel',
     defaultMessage: 'Cancel',
+  },
+  fieldId: {
+    id: 'fieldId',
+    defaultMessage: 'Field ID',
   },
 });
 
@@ -190,6 +196,33 @@ const Sidebar = ({
                     )}
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
+                    {/* Field ID info */}
+                    {(subblock.field_type === 'text' ||
+                      subblock.field_type === 'from' ||
+                      subblock.field_type === 'textarea' ||
+                      subblock.field_type === 'date') && (
+                      <>
+                        <Form.Field inline>
+                          <Grid>
+                            <Grid.Row columns={2} style={{ margin: '1rem 0' }}>
+                              <Grid.Column width="4">
+                                {intl.formatMessage(messages.fieldId)}
+                              </Grid.Column>
+
+                              <Grid.Column width="8" style={{ opacity: '0.6' }}>
+                                <p>
+                                  {getFieldName(
+                                    subblock.label,
+                                    subblock.field_id,
+                                  )}
+                                </p>
+                                <Divider fitted />
+                              </Grid.Column>
+                            </Grid.Row>
+                          </Grid>
+                        </Form.Field>
+                      </>
+                    )}
                     <BlockDataForm
                       schema={FieldSchema(subblock)}
                       onChangeField={(name, value) => {

@@ -20,6 +20,10 @@ const messages = defineMessages({
     id: 'form_default_submit_label',
     defaultMessage: 'Submit',
   },
+  default_cancel_label: {
+    id: 'form_default_cancel_label',
+    defaultMessage: 'Cancel',
+  },
   error: {
     id: 'Error',
     defaultMessage: 'Error',
@@ -57,6 +61,23 @@ const FormView = ({
     return formErrors?.indexOf(field) < 0;
   };
 
+  /* Function that replaces variables from the user customized message  */
+  const replaceMessage = (text) => {
+    let i = 0;
+    while (i < data.subblocks.length) {
+      let idField = getFieldName(
+        data.subblocks[i].label,
+        data.subblocks[i].field_id,
+      );
+      text = text.replaceAll(
+        '${' + idField + '}',
+        formData[idField]?.value || '',
+      );
+      i++;
+    }
+    return text;
+  };
+
   return (
     <div className="block form">
       <div className="public-ui">
@@ -77,10 +98,23 @@ const FormView = ({
             </Message>
           ) : formState.result ? (
             <Message positive role="alert">
-              <Message.Header as="h4">
-                {intl.formatMessage(messages.success)}
-              </Message.Header>
-              <p>{formState.result}</p>
+              {/* Custom message */}
+              {data.send_message ? (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: replaceMessage(data.send_message),
+                  }}
+                />
+              ) : (
+                <>
+                  {/* Default message */}
+                  <Message.Header as="h4">
+                    {intl.formatMessage(messages.success)}
+                  </Message.Header>
+                  <p>{formState.result}</p>
+                </>
+              )}
+              {/* Back button */}
               <Button secondary type="clear" onClick={resetFormState}>
                 {intl.formatMessage(messages.reset)}
               </Button>
@@ -171,6 +205,12 @@ const FormView = ({
                 )}
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
+                    {data?.show_cancel && (
+                      <Button secondary type="clear" onClick={resetFormState}>
+                        {data.cancel_label ||
+                          intl.formatMessage(messages.default_cancel_label)}
+                      </Button>
+                    )}
                     <Button primary type="submit" disabled={formState.loading}>
                       {data.submit_label ||
                         intl.formatMessage(messages.default_submit_label)}

@@ -241,6 +241,11 @@ msgstr ""
 msgid "description"
 msgstr "Descrizione"
 
+#: components/Sidebar
+# defaultMessage: Field ID
+msgid "fieldId"
+msgstr "Identificativo"
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -249,12 +254,17 @@ msgstr "Form"
 #: components/View
 # defaultMessage: Form successfully submitted
 msgid "formSubmitted"
-msgstr "Form invato correttamente"
+msgstr "Form inviato correttamente"
 
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
 msgstr "Il file allegato sarà inviato via email, ma non verrà salvato"
+
+#: formSchema
+# defaultMessage: Cancel button label
+msgid "form_cancel_label"
+msgstr "Testo sul bottone annulla"
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -265,6 +275,12 @@ msgstr "Pulisci dati"
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Confermi di voler eliminare tutti i dati salvati?"
+
+#: components/Edit
+#: components/FormView
+# defaultMessage: Annulla
+msgid "form_default_cancel_label"
+msgstr "Annulla"
 
 #: formSchema
 # defaultMessage: Default sender
@@ -417,6 +433,21 @@ msgstr "Seleziona un valore"
 # defaultMessage: Send email to recipient
 msgid "form_send_email"
 msgstr "Invia email al destinatario"
+
+#: formSchema
+# defaultMessage: Message of sending confirmed
+msgid "form_send_message"
+msgstr "Messaggio di conferma invio"
+
+#: formSchema
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id_xxx}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
+msgid "form_send_message_helptext"
+msgstr "Si può aggiungere il valore di un campo compilato nella form inserendo il suo identificativo tra parentesi graffe preceduto da $, esempio: ${identificativo_xxx}; inoltre si possono aggiungere elementi html come link, <a..></a>, nuova linea <br />, formattazioni in bold <b> e italic <i>."
+
+#: formSchema
+# defaultMessage: Show cancel button
+msgid "form_show_cancel"
+msgstr "Mostra il bottone annulla"
 
 #: formSchema
 # defaultMessage: Submit button label
