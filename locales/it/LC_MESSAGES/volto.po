@@ -440,9 +440,9 @@ msgid "form_send_message"
 msgstr "Messaggio di conferma invio"
 
 #: formSchema
-# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id_xxx}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
 msgid "form_send_message_helptext"
-msgstr "Si può aggiungere il valore di un campo compilato nella form inserendo il suo identificativo tra parentesi graffe preceduto da $, esempio: ${identificativo_xxx}; inoltre si possono aggiungere elementi html come link, <a..></a>, nuova linea <br />, formattazioni in bold <b> e italic <i>."
+msgstr "Si può aggiungere il valore di un campo compilato nella form inserendo il suo identificativo tra parentesi graffe preceduto da $, esempio: ${identificativo}; inoltre si possono aggiungere elementi html come link, <a..></a>, nuova linea <br />, formattazioni in bold <b> e italic <i>."
 
 #: formSchema
 # defaultMessage: Show cancel button

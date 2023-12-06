@@ -201,27 +201,12 @@ const Sidebar = ({
                       subblock.field_type === 'from' ||
                       subblock.field_type === 'textarea' ||
                       subblock.field_type === 'date') && (
-                      <>
-                        <Form.Field inline>
-                          <Grid>
-                            <Grid.Row columns={2} style={{ margin: '1rem 0' }}>
-                              <Grid.Column width="4">
-                                {intl.formatMessage(messages.fieldId)}
-                              </Grid.Column>
-
-                              <Grid.Column width="8" style={{ opacity: '0.6' }}>
-                                <p>
-                                  {getFieldName(
-                                    subblock.label,
-                                    subblock.field_id,
-                                  )}
-                                </p>
-                                <Divider fitted />
-                              </Grid.Column>
-                            </Grid.Row>
-                          </Grid>
-                        </Form.Field>
-                      </>
+                      <Segment tertiary>
+                        {intl.formatMessage(messages.fieldId)}:{' '}
+                        <strong>
+                          {getFieldName(subblock.label, subblock.field_id)}
+                        </strong>
+                      </Segment>
                     )}
                     <BlockDataForm
                       schema={FieldSchema(subblock)}

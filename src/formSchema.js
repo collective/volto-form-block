@@ -62,7 +62,7 @@ const messages = defineMessages({
   send_message_helptext: {
     id: 'form_send_message_helptext',
     defaultMessage:
-      'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id_xxx}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
+      'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
   },
 });
 
