@@ -1,3 +1,10 @@
+## [3.2.0](https://github.com/collective/volto-form-block/compare/v3.1.0...v3.2.0) (2023-12-11)
+
+
+### Features
+
+* added form reset button and an user customizable submit confirm message ([#75](https://github.com/collective/volto-form-block/issues/75)) ([0c83317](https://github.com/collective/volto-form-block/commit/0c833175e5e57e6c6a758fc04c4a09ff39142e98))
+
 ## [3.1.0](https://github.com/collective/volto-form-block/compare/v3.0.1...v3.1.0) (2023-05-29)
 
 
