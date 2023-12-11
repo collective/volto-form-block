@@ -15,6 +15,10 @@ const messages = defineMessages({
     id: 'form_field_required',
     defaultMessage: 'Required',
   },
+  field_default: {
+    id: 'form_field_default',
+    defaultMessage: 'Default',
+  },
   field_type: {
     id: 'form_field_type',
     defaultMessage: 'Field type',
@@ -81,7 +85,7 @@ const messages = defineMessages({
   },
   field_show_when_when: {
     id: 'form_field_show_when',
-    defaultMessage: 'When',
+    defaultMessage: 'Show when',
   },
   field_show_when_is: {
     id: 'form_field_show_is',
@@ -104,7 +108,6 @@ const messages = defineMessages({
     defaultMessage: 'not equal',
   },
 });
-
 
 
 function validationsSchema({ intl, value, ...rest }) {
@@ -142,6 +145,14 @@ function validationsSchema({ intl, value, ...rest }) {
     },
   };
 }
+const choiceTypes = ['select', 'single_choice', 'multiple_choice'];
+
+// TODO: Anyway to inrospect this?
+const fieldTypeDefaultValueTypeMapping = {
+  yes_no: 'boolean',
+  multiple_choice: 'array',
+  date: 'date',
+};
 
 export default (props) => {
   var intl = useIntl();
@@ -173,10 +184,15 @@ export default (props) => {
   var schemaExtender =
     config.blocks.blocksConfig.form.fieldTypeSchemaExtenders[props?.field_type];
   const schemaExtenderValues = schemaExtender
-    ? schemaExtender(intl)
+    ? schemaExtender({ intl, ...props })
     : { properties: [], fields: [], required: [] };
 
-    // debugger;
+  const show_when_when_field =
+    props.show_when_when && props.show_when_when
+      ? props.formData?.subblocks?.find(
+          (field) => field.field_id === props.show_when_when,
+        )
+      : undefined;
 
   return {
     title: props?.label || '',
@@ -191,6 +207,11 @@ export default (props) => {
           ...schemaExtenderValues.fields,
           'required',
           'validations',
+          ...(!['attachment', 'static_text', 'hidden'].includes(
+            props.field_type,
+          )
+            ? ['default_value']
+            : []),
           'show_when_when',
           ...(props.show_when_when && props.show_when_when !== 'always'
             ? ['show_when_is']
@@ -231,6 +252,29 @@ export default (props) => {
         widget: 'object_list',
         schema: validationsSchema,
       },
+      default_value: {
+        title: intl.formatMessage(messages.field_default),
+        type: fieldTypeDefaultValueTypeMapping[props?.field_type]
+          ? fieldTypeDefaultValueTypeMapping[props?.field_type]
+          : 'string',
+        ...(props?.field_type === 'yes_no' && {
+          choices: [
+            [true, 'Yes'],
+            [false, 'No'],
+          ],
+          noValueOption: false,
+        }),
+        ...(['select', 'single_choice', 'multiple_choice'].includes(
+          props?.field_type,
+        ) && {
+          choices: props?.formData?.subblocks
+            .filter((block) => block.field_id === props.field_id)?.[0]
+            ?.input_values?.map((input_value) => {
+              return [input_value, input_value];
+            }),
+          noValueOption: false,
+        }),
+      },
       show_when_when: {
         title: intl.formatMessage(messages.field_show_when_when),
         type: 'string',
@@ -240,11 +284,22 @@ export default (props) => {
             intl.formatMessage(messages.field_show_when_option_always),
           ],
           ...(props?.formData?.subblocks
-            ? props.formData.subblocks.map((subblock) => {
-                // Using getFieldName as it is what is used for the formData later. Saves
-                //   performing `getFieldName` for every block every render.
-                return [subblock.field_id, subblock.label];
-              })
+            ? props.formData.subblocks.reduce((choices, subblock, index) => {
+                const currentFieldIndex = props.formData.subblocks.findIndex(
+                  (field) => field.field_id === props.field_id,
+                );
+                if (index > currentFieldIndex) {
+                  if (props.show_when_when === subblock.field_id) {
+                    choices.push([subblock.field_id, subblock.label]);
+                  }
+                  return choices;
+                }
+                if (subblock.field_id === props.field_id) {
+                  return choices;
+                }
+                choices.push([subblock.field_id, subblock.label]);
+                return choices;
+              }, [])
             : []),
         ],
         default: 'always',
@@ -263,10 +318,25 @@ export default (props) => {
           ],
         ],
         noValueOption: false,
+        required: true,
       },
       show_when_to: {
         title: intl.formatMessage(messages.field_show_when_to),
-        type: 'string',
+        type: 'array',
+        required: true,
+        creatable: true,
+        noValueOption: false,
+        ...(show_when_when_field &&
+          choiceTypes.includes(show_when_when_field.field_type) && {
+            choices: show_when_when_field.input_values,
+          }),
+        ...(show_when_when_field &&
+          show_when_when_field.field_type === 'yes_no' && {
+            choices: [
+              [true, 'Yes'],
+              [false, 'No'],
+            ],
+          }),
       },
       ...schemaExtenderValues.properties,
     },
@@ -274,6 +344,9 @@ export default (props) => {
       'label',
       'field_type',
       'input_values',
+      ...(props.show_when_when && props.show_when_when !== 'always'
+        ? ['show_when_is', 'show_when_to']
+        : []),
       ...schemaExtenderValues.required,
     ],
   };

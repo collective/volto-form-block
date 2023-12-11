@@ -6,7 +6,7 @@ const messages = defineMessages({
   },
 });
 
-export const SelectionSchemaExtender = (intl) => {
+export const SelectionSchemaExtender = ({ intl }) => {
   return {
     fields: ['input_values'],
     properties: {

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from 'volto-form-block/actions';
-import { getFieldName } from 'volto-form-block/components/utils';
-import FormView from 'volto-form-block/components/FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
+import PropTypes from 'prop-types';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
+import { defineMessages, useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitForm } from 'volto-form-block/actions';
+import FormView from 'volto-form-block/components/FormView';
 import { Captcha } from 'volto-form-block/components/Widget';
+import { getFieldName } from 'volto-form-block/components/utils';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -98,6 +98,7 @@ const View = ({ data, id, path }) => {
   const [formErrors, setFormErrors] = useState([]);
   const submitResults = useSelector((state) => state.submitForm);
   const captchaToken = useRef();
+  const formid = `form-${id}`;
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({
@@ -127,25 +128,25 @@ const View = ({ data, id, path }) => {
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
-      if (
-        subblock.required &&
-        additionalField &&
-        !additionalField?.isValid(formData, name)
-      ) {
-        v.push(name);
-      } else if (
-        subblock.required &&
-        fieldType === 'checkbox' &&
-        !formData[name]?.value
-      ) {
-        v.push(name);
-      } else if (
-        subblock.required &&
-        (!formData[name] ||
+      if (subblock.required) {
+        let fieldIsValid = true;
+        if (additionalField && !additionalField?.isValid(formData, name)) {
+          fieldIsValid = false;
+        } else if (fieldType === 'checkbox' && !formData[name]?.value) {
+          fieldIsValid = false;
+        } else if (
+          !formData[name] ||
           formData[name]?.value?.length === 0 ||
-          JSON.stringify(formData[name]?.value ?? {}) === '{}')
-      ) {
-        v.push(name);
+          JSON.stringify(formData[name]?.value ?? {}) === '{}'
+        ) {
+          fieldIsValid = false;
+        }
+        if (Boolean(!formData[name] && subblock.default_value)) {
+          fieldIsValid = true;
+        }
+        if (!fieldIsValid) {
+          v.push(name);
+        }
       }
     });
 
@@ -172,25 +173,33 @@ const View = ({ data, id, path }) => {
             captcha.value = formData[data.captcha_props.id]?.value ?? '';
           }
 
-          let formattedFormData = { ...formData };
+          let formattedFormData = data.subblocks.reduce(
+            (returnValue, field) => {
+              if (field.field_type === 'static_text') {
+                return returnValue;
+              }
+              const fieldName = getFieldName(field.label, field.id);
+              const dataToAdd = formData[fieldName] ?? {
+                field_id: field.id,
+                label: field.label,
+                value: field.default_value,
+                ...(data[field.id] && { custom_field_id: data[field.id] }), // Conditionally add the key. Nicer to work with than having a key with a null value
+              };
+              return { ...returnValue, [fieldName]: dataToAdd };
+            },
+            {},
+          );
           data.subblocks.forEach((subblock) => {
             let name = getFieldName(subblock.label, subblock.id);
             if (formattedFormData[name]?.value) {
               formattedFormData[name].field_id = subblock.field_id;
-              const isAttachment = subblock.field_type === 'attachment';
-              const isDate = subblock.field_type === 'date';
+              const isAttachment = config.blocks.blocksConfig.form.attachment_fields.includes(
+                subblock.field_type,
+              );
 
               if (isAttachment) {
                 attachments[name] = formattedFormData[name].value;
                 delete formattedFormData[name];
-              }
-
-              if (isDate) {
-                formattedFormData[name].value = formatDate({
-                  date: formattedFormData[name].value,
-                  format: 'DD-MM-YYYY',
-                  locale: intl.locale,
-                });
               }
             }
           });
@@ -207,6 +216,10 @@ const View = ({ data, id, path }) => {
           );
           setFormState({ type: FORM_STATES.loading });
         } else {
+          const errorBox = document.getElementById(`${formid}-errors`);
+          if (errorBox) {
+            errorBox.scrollIntoView({ behavior: 'smooth' });
+          }
           setFormState({ type: FORM_STATES.error });
         }
       })
@@ -230,8 +243,6 @@ const View = ({ data, id, path }) => {
     captcha_props: data.captcha_props,
     onChangeFormData,
   });
-
-  const formid = `form-${id}`;
 
   useEffect(() => {
     if (submitResults?.loaded) {

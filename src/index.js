@@ -19,7 +19,7 @@ import {
   SelectionSchemaExtender,
   FromSchemaExtender,
   HiddenSchemaExtender,
-  YesNoSchemaExtender
+  YesNoSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
 export {
   submitForm,
@@ -48,6 +48,7 @@ const applyConfig = (config) => {
         hidden: HiddenSchemaExtender,
         yes_no: YesNoSchemaExtender,
       },
+      attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
       security: {
