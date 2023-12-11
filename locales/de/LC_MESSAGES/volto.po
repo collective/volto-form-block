@@ -241,6 +241,11 @@ msgstr ""
 msgid "description"
 msgstr "Beschreibung"
 
+#: components/Sidebar
+# defaultMessage: Field ID
+msgid "fieldId"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -256,6 +261,11 @@ msgstr "Formular erfolgreich eingereicht"
 msgid "form_attachment_send_email_info_text"
 msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versendet."
 
+#: formSchema
+# defaultMessage: Cancel button label
+msgid "form_cancel_label"
+msgstr ""
+
 #: components/Sidebar
 # defaultMessage: Clear data
 msgid "form_clear_data"
@@ -265,6 +275,12 @@ msgstr "Daten löschen"
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Gespeicherte Elemente wirklich löschen?"
+
+#: components/Edit
+#: components/FormView
+# defaultMessage: Annulla
+msgid "form_default_cancel_label"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Default sender
@@ -417,6 +433,21 @@ msgstr "Wählen Sie einen Wert"
 # defaultMessage: Send email to recipient
 msgid "form_send_email"
 msgstr "E-Mail an Empfänger senden"
+
+#: formSchema
+# defaultMessage: Message of sending confirmed
+msgid "form_send_message"
+msgstr ""
+
+#: formSchema
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
+msgid "form_send_message_helptext"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Show cancel button
+msgid "form_show_cancel"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Submit button label
