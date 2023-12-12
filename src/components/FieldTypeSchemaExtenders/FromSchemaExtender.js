@@ -29,7 +29,7 @@ const messages = defineMessages({
   userEmailAsDefault_description: {
     id: 'userEmailAsDefault_description',
     defaultMessage:
-      'If selected and user is logged in, his/her email address will be set as default value.',
+      'If selected and user is logged in, their email address will be set as default value.',
   },
 });
 
