@@ -41,6 +41,29 @@ const messages = defineMessages({
   },
 });
 
+const getFieldsToSendWithValue = (subblock) => {
+  const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
+
+  var fields_to_send = [];
+  var fieldSchemaProperties = FieldSchema(subblock)?.properties;
+  for (var key in fieldSchemaProperties) {
+    if (fieldSchemaProperties[key].send_to_backend) {
+      fields_to_send.push(key);
+    }
+  }
+
+  var fields_to_send_with_value = Object.assign(
+    {},
+    ...fields_to_send.map((field) => {
+      return {
+        [field]: subblock[field],
+      };
+    }),
+  );
+
+  return fields_to_send_with_value;
+};
+
 const FormView = ({
   formState,
   formErrors,
@@ -54,8 +77,6 @@ const FormView = ({
   id,
 }) => {
   const intl = useIntl();
-  const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
-
   const userId = useSelector((state) =>
     state.userSession.token ? jwtDecode(state.userSession.token).sub : '',
   );
@@ -75,8 +96,15 @@ const FormView = ({
         subblock.user_email_as_default
       ) {
         const name = getFieldName(subblock.label, subblock.id);
-        if (!formData.hasOwnProperty(name))
-          formData[name] = { value: curUserEmail };
+        if (!formData.hasOwnProperty(name)) {
+          const fields_to_send_with_value = getFieldsToSendWithValue(subblock);
+          onChangeFormData(
+            subblock.id,
+            name,
+            curUserEmail,
+            fields_to_send_with_value,
+          );
+        }
       }
     });
   }
@@ -144,24 +172,8 @@ const FormView = ({
                 ))}
                 {data.subblocks?.map((subblock, index) => {
                   let name = getFieldName(subblock.label, subblock.id);
-
-                  var fields_to_send = [];
-                  var fieldSchemaProperties = FieldSchema(subblock)?.properties;
-                  for (var key in fieldSchemaProperties) {
-                    if (fieldSchemaProperties[key].send_to_backend) {
-                      fields_to_send.push(key);
-                    }
-                  }
-
-                  var fields_to_send_with_value = Object.assign(
-                    {},
-                    ...fields_to_send.map((field) => {
-                      return {
-                        [field]: subblock[field],
-                      };
-                    }),
-                  );
-
+                  const fields_to_send_with_value =
+                    getFieldsToSendWithValue(subblock);
                   return (
                     <Grid.Row key={'row' + index}>
                       <Grid.Column>
