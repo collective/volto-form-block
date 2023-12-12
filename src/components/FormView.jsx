@@ -80,12 +80,13 @@ const FormView = ({
   const userId = useSelector((state) =>
     state.userSession.token ? jwtDecode(state.userSession.token).sub : '',
   );
+  const isUserLoaded = useSelector((state) => state.users?.get?.loaded);
   const curUserEmail = useSelector(
     (state) => state.users?.user?.email || false,
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    if (userId?.length > 0 && curUserEmail === false) dispatch(getUser(userId));
+    if (userId?.length > 0 && !isUserLoaded) dispatch(getUser(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
