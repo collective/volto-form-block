@@ -261,12 +261,40 @@ const View = ({ data, id, path }) => {
             behavior: 'smooth',
           });
       }
-    } else if (submitResults?.error) {
-      let errorDescription = `${
-        JSON.parse(submitResults.error.response?.text ?? '{}')?.message
-      }`;
+    }
+    // TODO: The general form state handling is a mess and needs refactoring.
+    else if (submitResults?.error) {
+      const errorType = submitResults.error.type;
+      if (errorType === 'response') {
+        let errorDescription = `${
+          JSON.parse(submitResults.error.error ?? '{}')?.message
+        }`;
+        setFormState({ type: FORM_STATES.error, error: errorDescription });
+      } else if (errorType === 'validation') {
+        setFormState({ type: FORM_STATES.normal });
 
-      setFormState({ type: FORM_STATES.error, error: errorDescription });
+        const errors = submitResults.error?.error ?? {};
+        const erroredFieldIds = Object.keys(errors);
+        const fieldNames = data.subblocks.reduce((fieldNames, field) => {
+          if (erroredFieldIds.includes(field.id)) {
+            const name = getFieldName(field.label, field.id);
+            fieldNames.push(name);
+          }
+          return fieldNames;
+        }, []);
+
+        setFormErrors(fieldNames);
+      } else {
+        let errorMessage = 'Unknown error';
+        // Handle an edge case where the reducer state is still the old-style without the error type in it
+        if (submitResults.error.error) {
+          errorMessage = `${
+            JSON.parse(submitResults.error.error ?? '{}')?.message
+          }`;
+        }
+        // TODO: i18n for unknown error type
+        setFormState({ type: FORM_STATES.error, error: errorMessage });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitResults]);

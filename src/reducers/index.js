@@ -56,9 +56,13 @@ export const submitForm = (state = initialState, action = {}) => {
         loading: false,
       };
     case `${SUBMIT_FORM_ACTION}_FAIL`:
+      const responseBody = action?.error?.response?.body;
+      const isValidationError = responseBody.error?.type === 'Invalid';
       return {
         ...state,
-        error: action.error,
+        error: isValidationError
+          ? { type: 'validation', error: responseBody.error.errors }
+          : { type: 'response', error: action.error },
         loaded: false,
         loading: false,
       };

@@ -109,7 +109,6 @@ const messages = defineMessages({
   },
 });
 
-
 function validationsSchema({ intl, value, ...rest }) {
   const validationType = Array.isArray(value)
     ? value[0]?.validation_type
@@ -249,8 +248,10 @@ export default (props) => {
       },
       validations: {
         title: intl.formatMessage(messages.field_validation_title),
-        widget: 'object_list',
-        schema: validationsSchema,
+        isMulti: true,
+        vocabulary: {
+          '@id': 'collective.volto.formsupport.Validators',
+        },
       },
       default_value: {
         title: intl.formatMessage(messages.field_default),
