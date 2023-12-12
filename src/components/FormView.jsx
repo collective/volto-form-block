@@ -72,7 +72,7 @@ const FormView = ({
     data.subblocks.forEach((subblock) => {
       if (
         ['email', 'from'].includes(subblock.field_type) &&
-        subblock.user_email_as_default === true
+        subblock.user_email_as_default
       ) {
         const name = getFieldName(subblock.label, subblock.id);
         if (!formData.hasOwnProperty(name))
