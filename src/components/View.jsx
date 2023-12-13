@@ -14,6 +14,14 @@ const messages = defineMessages({
     id: 'formSubmitted',
     defaultMessage: 'Form successfully submitted',
   },
+  field_is_required: {
+    id: 'field_is_required',
+    defaultMessage: '{fieldLabel} is required',
+  },
+  error: {
+    id: 'There is a problem submitting your form',
+    defaultMessage: 'There is a problem submitting your form',
+  },
 });
 
 const initialState = {
@@ -95,7 +103,7 @@ const View = ({ data, id, path }) => {
   }, getInitialData(data));
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
-  const [formErrors, setFormErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const submitResults = useSelector((state) => state.submitForm);
   const captchaToken = useRef();
   const formid = `form-${id}`;
@@ -113,14 +121,15 @@ const View = ({ data, id, path }) => {
   };
 
   useEffect(() => {
-    if (formErrors.length > 0) {
+    // We have a form state updater already going on, why do we need to separately update the state again?
+    if (Object.keys(formErrors).length > 0) {
       isValidForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const isValidForm = () => {
-    const v = [];
+    const v = {};
     data.subblocks.forEach((subblock, index) => {
       const name = getFieldName(subblock.label, subblock.id);
       const fieldType = subblock.field_type;
@@ -145,17 +154,21 @@ const View = ({ data, id, path }) => {
           fieldIsValid = true;
         }
         if (!fieldIsValid) {
-          v.push(name);
+          v[name] = intl.formatMessage(messages.field_is_required, {
+            fieldLabel: subblock.label,
+          });
         }
       }
     });
 
     if (data.captcha && !captchaToken.current) {
-      v.push('captcha');
+      v['captcha'] = intl.formatMessage(messages.field_is_required, {
+        fieldLabel: 'Captcha',
+      });
     }
 
-    setFormErrors(v);
-    return v.length === 0;
+    setFormErrors({ ...formErrors, ...v });
+    return Object.keys(v).length === 0;
   };
 
   const submit = (e) => {
@@ -278,10 +291,10 @@ const View = ({ data, id, path }) => {
         const fieldNames = data.subblocks.reduce((fieldNames, field) => {
           if (erroredFieldIds.includes(field.id)) {
             const name = getFieldName(field.label, field.id);
-            fieldNames.push(name);
+            fieldNames[name] = errors[field.id];
           }
           return fieldNames;
-        }, []);
+        }, {});
 
         setFormErrors(fieldNames);
       } else {
