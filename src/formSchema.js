@@ -48,7 +48,8 @@ const messages = defineMessages({
   },
   send_acknowledgement_field_description: {
     id: 'form_send_acknowledgement_field_description',
-    defaultMessage: 'Send 'Select which fields will contain an email address to send an acknowledgement to.' to',
+    defaultMessage:
+      'Select which fields will contain an email address to send an acknowledgement to.',
   },
 });
 
