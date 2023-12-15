@@ -130,7 +130,7 @@ export default (formData) => {
       acknowledgementFields: {
         // TODO: i18n
         title: 'Acknowledgement field',
-        decription:
+        description:
           'Select which fields will contain an email address to send an acknowledgement to.',
         isMulti: false,
         noValueOption: false,
