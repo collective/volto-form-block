@@ -46,6 +46,10 @@ const messages = defineMessages({
     id: 'form_send_email',
     defaultMessage: 'Send email to',
   },
+  send_acknowledgement_field_description: {
+    id: 'form_send_acknowledgement_field_description',
+    defaultMessage: 'Send 'Select which fields will contain an email address to send an acknowledgement to.' to',
+  },
 });
 
 export default (formData) => {
@@ -130,8 +134,7 @@ export default (formData) => {
       acknowledgementFields: {
         // TODO: i18n
         title: 'Acknowledgement field',
-        description:
-          'Select which fields will contain an email address to send an acknowledgement to.',
+        description: intl.formatMessage(messages.send_acknowledgement_field_description),
         isMulti: false,
         noValueOption: false,
         choices: formData?.subblocks ? emailFields : [],
