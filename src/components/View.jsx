@@ -138,25 +138,29 @@ const View = ({ data, id, path }) => {
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
       if (subblock.required) {
-        let fieldIsValid = true;
+        let fieldIsRequired = true;
         if (additionalField && !additionalField?.isValid(formData, name)) {
-          fieldIsValid = false;
+          fieldIsRequired = false;
         } else if (fieldType === 'checkbox' && !formData[name]?.value) {
-          fieldIsValid = false;
+          fieldIsRequired = false;
         } else if (
           !formData[name] ||
           formData[name]?.value?.length === 0 ||
           JSON.stringify(formData[name]?.value ?? {}) === '{}'
         ) {
-          fieldIsValid = false;
+          fieldIsRequired = false;
         }
         if (Boolean(!formData[name] && subblock.default_value)) {
-          fieldIsValid = true;
+          fieldIsRequired = true;
         }
-        if (!fieldIsValid) {
-          v[name] = intl.formatMessage(messages.field_is_required, {
-            fieldLabel: subblock.label,
-          });
+        if (!fieldIsRequired) {
+          const errors = v[name] ?? [];
+          errors.push(
+            intl.formatMessage(messages.field_is_required, {
+              fieldLabel: subblock.label,
+            }),
+          );
+          v[name] = errors;
         }
       }
     });
