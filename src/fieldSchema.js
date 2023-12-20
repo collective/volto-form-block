@@ -1,6 +1,5 @@
 import config from '@plone/volto/registry';
 import { defineMessages, useIntl } from 'react-intl';
-import { validations } from 'volto-form-block/helpers/validators';
 
 const messages = defineMessages({
   field_label: {
@@ -109,41 +108,6 @@ const messages = defineMessages({
   },
 });
 
-function validationsSchema({ intl, value, ...rest }) {
-  const validationType = Array.isArray(value)
-    ? value[0]?.validation_type
-    : value?.validation_type;
-  return {
-    title: intl.formatMessage(messages.field_validation_item),
-    required: ['dropdownValueFirst', 'dropdownValueSecond', 'url'],
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'validation_type',
-          ...(value && validationType
-            ? validations[validationType]?.fields
-            : []),
-        ],
-      },
-    ],
-    properties: {
-      validation_type: {
-        title: intl.formatMessage(messages.field_validation_type),
-        type: 'string',
-        choices: [
-          ['minLength', 'Min length'],
-          ['maxLength', 'Max length'],
-        ],
-        noValueOption: false,
-      },
-      ...(value && validationType
-        ? validations[validationType]?.properties
-        : []),
-    },
-  };
-}
 const choiceTypes = ['select', 'single_choice', 'multiple_choice'];
 
 // TODO: Anyway to inrospect this?
@@ -193,6 +157,12 @@ export default (props) => {
         )
       : undefined;
 
+  const fieldSchemaFields = Object.keys(props);
+  const validationFields =
+    props.validations?.filter((validationId) =>
+      fieldSchemaFields.includes(validationId),
+    ) || [];
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -206,6 +176,7 @@ export default (props) => {
           ...schemaExtenderValues.fields,
           'required',
           'validations',
+          'validationSettings',
           ...(!['attachment', 'static_text', 'hidden'].includes(
             props.field_type,
           )
@@ -338,6 +309,33 @@ export default (props) => {
               [false, 'No'],
             ],
           }),
+      },
+      validationSettings: {
+        title: 'Validation settings',
+        widget: 'object',
+        collapsible: true,
+        schema: {
+          title: 'Validations result',
+          fieldsets: validationFields.map((validationId) => {
+            return {
+              id: validationId,
+              title: validationId,
+              fields: [...Object.keys(props[validationId])],
+            };
+          }),
+          properties: validationFields.reduce((properties, validationId) => {
+            const validationSettings = props[validationId];
+            Object.entries(validationSettings).forEach(([settingId, value]) => {
+              properties[settingId] = {
+                title: settingId,
+                value: value,
+              };
+            });
+
+            return properties;
+          }, {}),
+          required: [],
+        },
       },
       ...schemaExtenderValues.properties,
     },
