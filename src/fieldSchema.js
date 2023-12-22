@@ -176,7 +176,7 @@ export default (props) => {
           ...schemaExtenderValues.fields,
           'required',
           'validations',
-          'validationSettings',
+          ...(validationFields.length > 0 ? ['validationSettings'] : []),
           ...(!['attachment', 'static_text', 'hidden'].includes(
             props.field_type,
           )
@@ -316,13 +316,17 @@ export default (props) => {
         collapsible: true,
         schema: {
           title: 'Validations result',
-          fieldsets: validationFields.map((validationId) => {
-            return {
-              id: validationId,
-              title: validationId,
-              fields: [...Object.keys(props[validationId])],
-            };
-          }),
+          fieldsets: validationFields
+            .filter(
+              (validationId) => Object.keys(props[validationId]).length > 0,
+            )
+            .map((validationId) => {
+              return {
+                id: validationId,
+                title: validationId,
+                fields: [...Object.keys(props[validationId])],
+              };
+            }),
           properties: validationFields.reduce((properties, validationId) => {
             const validationSettings = props[validationId];
             Object.entries(validationSettings).forEach(([settingId, value]) => {
