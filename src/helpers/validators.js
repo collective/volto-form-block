@@ -30,7 +30,6 @@ export const validations = {
       if (!hasValue(value)) {
         return true;
       }
-      debugger;
       return value.toString().length < validation_value;
     },
   },

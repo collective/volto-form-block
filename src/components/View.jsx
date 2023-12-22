@@ -192,6 +192,7 @@ const View = ({ data, id, path }) => {
             }),
           );
         }
+
         if (errors.length > 0) {
           v[name] = errors;
         }
