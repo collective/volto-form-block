@@ -57,7 +57,7 @@ build-live: ## Build Addon live
 .PHONY: build-addon
 build-addon: ## Build Addon dev
 	@echo "$(GREEN)==> Build Addon development container $(RESET)"
-	${DEV_COMPOSE} build addon-dev
+	${DEV_COMPOSE} build --no-cache addon-dev
 
 .PHONY: start-dev
 start-dev: ## Starts Dev container
