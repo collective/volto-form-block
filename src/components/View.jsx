@@ -137,6 +137,7 @@ const View = ({ data, id, path }) => {
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
+      // TODO: Abstract all of this into a single 'field' definition where each fields defines it's own rules.
       if (subblock.required) {
         let fieldIsRequired = true;
         // Required field has a value
@@ -166,12 +167,19 @@ const View = ({ data, id, path }) => {
         // Required yes/ no fields with a radio widget should still be able to select "No" as the value, unlike single-checkbox widgets
         else if (
           fieldType === 'yes_no' &&
-          subblock.widget === 'single_choice'
+          subblock.widget === 'single_choice' &&
+          !formData[name]
         ) {
-          fieldIsRequired = false;
+          fieldIsRequired = true;
         }
-        // Default value handling
-        if (Boolean(!formData[name] && subblock.default_value)) {
+        // Default value handling. Boolean check is for Yes/ no fields
+        if (
+          Boolean(
+            !formData[name] &&
+              (subblock.default_value ||
+                typeof subblock.default_value === 'boolean'),
+          )
+        ) {
           fieldIsRequired = false;
         }
 
