@@ -139,27 +139,52 @@ const View = ({ data, id, path }) => {
         )?.[0] ?? null;
       if (subblock.required) {
         let fieldIsRequired = true;
-        if (additionalField && !additionalField?.isValid(formData, name)) {
+        // Required field has a value
+        if (formData[name]) {
           fieldIsRequired = false;
-        } else if (fieldType === 'checkbox' && !formData[name]?.value) {
+        }
+        // Some field types can't be required. TODO: Make these field types use `isValid`
+        else if (fieldType === 'static_text' || fieldType === 'hidden') {
           fieldIsRequired = false;
-        } else if (
-          !formData[name] ||
-          formData[name]?.value?.length === 0 ||
-          JSON.stringify(formData[name]?.value ?? {}) === '{}'
+        }
+        // Additional fields have their own validation
+        else if (additionalField && !additionalField?.isValid(formData, name)) {
+          fieldIsRequired = false;
+        }
+        // Checkboxes have their value stored slightly differently
+        else if (fieldType === 'checkbox' && !formData[name]?.value) {
+          fieldIsRequired = false;
+        }
+        // List/ multi-option handling
+        else if (
+          (formData[name]?.value && formData[name].value.length === 0) ||
+          (typeof formData[name]?.value === 'object' &&
+            JSON.stringify(formData[name]?.value) === '{}')
         ) {
           fieldIsRequired = false;
         }
-        if (Boolean(!formData[name] && subblock.default_value)) {
-          fieldIsRequired = true;
+        // Required yes/ no fields with a radio widget should still be able to select "No" as the value, unlike single-checkbox widgets
+        else if (
+          fieldType === 'yes_no' &&
+          subblock.widget === 'single_choice'
+        ) {
+          fieldIsRequired = false;
         }
-        if (!fieldIsRequired) {
-          const errors = v[name] ?? [];
+        // Default value handling
+        if (Boolean(!formData[name] && subblock.default_value)) {
+          fieldIsRequired = false;
+        }
+
+        const errors = v[name] ?? [];
+
+        if (fieldIsRequired) {
           errors.push(
             intl.formatMessage(messages.field_is_required, {
               fieldLabel: subblock.label,
             }),
           );
+        }
+        if (errors.length > 0) {
           v[name] = errors;
         }
       }
@@ -171,7 +196,7 @@ const View = ({ data, id, path }) => {
       });
     }
 
-    setFormErrors({ ...formErrors, ...v });
+    setFormErrors(v);
     return Object.keys(v).length === 0;
   };
 
