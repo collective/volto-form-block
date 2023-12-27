@@ -21,6 +21,7 @@ dist
 # yarn 3
 .pnp.*
 .yarn/*
+acceptance/.yarn
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases

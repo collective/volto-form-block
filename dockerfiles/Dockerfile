@@ -12,6 +12,7 @@ COPY --chown=node:node ./ /app/src/addons/${ADDON_PATH}/
 RUN <<EOT
     set -e
     /setupAddon
+    rm yarn.lock
     yarn install --network-timeout 1000000
     yarn build
     rm -rf cache omelette .yarn/cache
