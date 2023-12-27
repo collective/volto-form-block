@@ -22,7 +22,7 @@ RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
 PLONE_VERSION=6
-VOLTO_VERSION=17.0.0
+VOLTO_VERSION=16.30.0
 
 ADDON_NAME='volto-form-block'
 ADDON_PATH='volto-form-block'

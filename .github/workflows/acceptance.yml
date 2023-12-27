@@ -2,12 +2,11 @@ name: Acceptance tests
 on: [push]
 
 env:
-  ADDON_NAME: "volto-form-block"
-  ADDON_PATH: "volto-form-block"
-  VOLTO_VERSION: "16.30.0"
+  ADDON_NAME: 'volto-form-block'
+  ADDON_PATH: 'volto-form-block'
+  VOLTO_VERSION: '16.30.0'
 
 jobs:
-
   acceptance:
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +21,7 @@ jobs:
           cd acceptance
           yarn
 
-      - name: "Cypress: Acceptance tests"
+      - name: 'Cypress: Acceptance tests'
         uses: cypress-io/github-action@v6
         env:
           BABEL_ENV: production
