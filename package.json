@@ -47,7 +47,6 @@
     "volto-subblocks": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.22.15",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@plone/scripts": "^3.0.0",
