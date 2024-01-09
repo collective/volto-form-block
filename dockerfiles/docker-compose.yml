@@ -50,6 +50,7 @@ services:
     environment:
       SITE: Plone
       CORS_: true
+      ADDONS: "collective.volto.formsupport"
     ports:
       - 8080:8080
     profiles:

@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1
+ARG PLONE_VERSION
+# FROM plone/server-acceptance:${PLONE_VERSION:-6}
+FROM plone/plone-backend:${PLONE_VERSION:-6}
+
+# ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
+# ENTRYPOINT ["/bin/sh", "-c" , "/app/docker-entrypoint.sh && /app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+# CMD ["/bin/bash", "-c" , "/app/docker-entrypoint.sh create-volto && /app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+# CMD ["/bin/bash", "-c" , "/app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+CMD ["/bin/bash"]
+# CMD ["/app/bin/robot-server", "plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+
+
+# ARG EXTRA_PACKAGES
+# RUN /app/bin/pip install ${EXTRA_PACKAGES}
+# TODO: Contribute extra-packages support to core image

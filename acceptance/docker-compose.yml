@@ -11,7 +11,7 @@ services:
         ADDON_PATH: "${ADDON_PATH}"
         VOLTO_VERSION: ${VOLTO_VERSION}
     volumes:
-      - ${CURRENT_DIR}:/app/src/addons/${ADDON_PATH}/
+      - .:/app/src/addons/${ADDON_PATH}/
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend-acceptance:55001/plone
       RAZZLE_API_PATH: http://localhost:55001/plone
@@ -45,9 +45,22 @@ services:
       - prod
 
   backend-acceptance:
-    image: plone/server-acceptance:${PLONE_VERSION:-6}
+    build:
+      context: ../
+      dockerfile: ./dockerfiles/Dockerfile.acceptance-backend
+    environment:
+      ZSERVER_HOST: "0.0.0.0"
+      ZSERVER_PORT: "55001"
+      LISTEN_PORT: "55001"
+      SITE: plone
+      # APPLY_PROFILES: "plone.app.contenttypes:plone-content,plone.restapi:default,plone.volto:default-homepage,collective.volto.formsupport:default"
+      PROFILES: "plone.volto:default-homepage,collective.volto.formsupport:default"
+      APPLY_PROFILES: "plone.volto:default-homepage,collective.volto.formsupport:default"
+      # CONFIGURE_PACKAGES: "plone.app.contenttypes,plone.restapi,plone.volto,collective.volto.formsupport"
+      ADDONS: "plone.app.robotframework plone.volto collective.volto.formsupport"
     ports:
       - 55001:55001
+      - 8080:8080
     profiles:
       - dev
       - prod
