@@ -45,19 +45,15 @@ services:
       - prod
 
   backend-acceptance:
-    build:
-      context: ../
-      dockerfile: ./dockerfiles/Dockerfile.acceptance-backend
+    image: plone/plone-backend:6.0.7
+    command: ["/app/bin/robot-server", "plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
     environment:
       ZSERVER_HOST: "0.0.0.0"
       ZSERVER_PORT: "55001"
       LISTEN_PORT: "55001"
-      SITE: plone
-      # APPLY_PROFILES: "plone.app.contenttypes:plone-content,plone.restapi:default,plone.volto:default-homepage,collective.volto.formsupport:default"
-      PROFILES: "plone.volto:default-homepage,collective.volto.formsupport:default"
-      APPLY_PROFILES: "plone.volto:default-homepage,collective.volto.formsupport:default"
-      # CONFIGURE_PACKAGES: "plone.app.contenttypes,plone.restapi,plone.volto,collective.volto.formsupport"
-      ADDONS: "plone.app.robotframework plone.volto collective.volto.formsupport"
+      CONFIGURE_PACKAGES: "plone.restapi,plone.volto"
+      APPLY_PROFILES: "plone.volto:default-homepage"
+      ADDONS: "plone.app.robotframework plone.volto"
     ports:
       - 55001:55001
       - 8080:8080

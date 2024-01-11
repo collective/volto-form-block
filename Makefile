@@ -151,11 +151,11 @@ release:  ## Release a version of the add-on
 	yarn release
 
 
-.PHONY: temp-build
-temp-build: ## Stop acceptance server (for use it while finished developing)
-	${ACCEPTANCE} --profile dev build --no-cache backend-acceptance
+# .PHONY: temp-build
+# temp-build: ## Stop acceptance server (for use it while finished developing)
+# 	${ACCEPTANCE} --profile dev build --no-cache backend-acceptance
 
-.PHONY: temp
 # ${ACCEPTANCE} --profile dev up --no-recreate backend-acceptance
+.PHONY: temp
 temp: ## Stop acceptance server (for use it while finished developing)
-	${ACCEPTANCE} up --no-recreate --no-attach backend-acceptance
+	${ACCEPTANCE} up --no-cache backend-acceptance

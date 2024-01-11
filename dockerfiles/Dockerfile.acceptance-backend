@@ -7,8 +7,11 @@ FROM plone/plone-backend:${PLONE_VERSION:-6}
 # ENTRYPOINT ["/bin/sh", "-c" , "/app/docker-entrypoint.sh && /app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
 # CMD ["/bin/bash", "-c" , "/app/docker-entrypoint.sh create-volto && /app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
 # CMD ["/bin/bash", "-c" , "/app/bin/robot-server plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
-CMD ["/bin/bash"]
-# CMD ["/app/bin/robot-server", "plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+
+# ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
+CMD ["/app/bin/robot-server", "plone.app.robotframework.testing.PLONE_ROBOT_TESTING"]
+
 
 
 # ARG EXTRA_PACKAGES
