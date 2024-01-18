@@ -117,6 +117,17 @@ const fieldTypeDefaultValueTypeMapping = {
   date: 'date',
 };
 
+function getTypeForValidationSetting(setting) {
+  console.log('setting', setting);
+  if (Array.isArray(setting)) {
+    return 'array';
+  }
+
+  console.log('setting', setting);
+  // Volto widgets mostly match this result
+  return typeof setting;
+}
+
 export default (props) => {
   var intl = useIntl();
   const baseFieldTypeChoices = [
@@ -157,11 +168,11 @@ export default (props) => {
         )
       : undefined;
 
-  const fieldSchemaFields = Object.keys(props);
-  const validationFields =
-    props.validations?.filter((validationId) =>
-      fieldSchemaFields.includes(validationId),
-    ) || [];
+  const validationIds = props.validations ?? [];
+  const validationsWithSettings = validationIds.filter((validationId) => {
+    const settings = props.validationSettings[validationId] ?? {};
+    return settings && Object.keys(settings).length > 0;
+  });
 
   return {
     title: props?.label || '',
@@ -176,7 +187,7 @@ export default (props) => {
           ...schemaExtenderValues.fields,
           'required',
           'validations',
-          ...(validationFields.length > 0 ? ['validationSettings'] : []),
+          ...(validationIds.length > 0 ? ['validationSettings'] : []),
           ...(!['attachment', 'static_text', 'hidden'].includes(
             props.field_type,
           )
@@ -315,29 +326,33 @@ export default (props) => {
         widget: 'object',
         collapsible: true,
         schema: {
-          title: 'Validations result',
-          fieldsets: validationFields
-            .filter(
-              (validationId) => Object.keys(props[validationId]).length > 0,
-            )
-            .map((validationId) => {
-              return {
-                id: validationId,
-                title: validationId,
-                fields: [...Object.keys(props[validationId])],
-              };
-            }),
-          properties: validationFields.reduce((properties, validationId) => {
-            const validationSettings = props[validationId];
-            Object.entries(validationSettings).forEach(([settingId, value]) => {
-              properties[settingId] = {
-                title: settingId,
-                value: value,
-              };
-            });
+          fieldsets: validationsWithSettings.map((validationId) => {
+            return {
+              id: validationId,
+              title: validationId,
+              fields: Object.keys(props.validationSettings).filter((key) => {
+                return key.startsWith(`${validationId}-`);
+              }),
+            };
+          }),
+          properties: validationsWithSettings.reduce(
+            (properties, validationId) => {
+              Object.entries(props.validationSettings)
+                .filter(([key, value]) => {
+                  return key.startsWith(`${validationId}-`);
+                })
+                .forEach(([settingId, value]) => {
+                  properties[settingId] = {
+                    title: settingId.split('-')[1],
+                    value: value,
+                    type: getTypeForValidationSetting(value),
+                  };
+                });
 
-            return properties;
-          }, {}),
+              return properties;
+            },
+            {},
+          ),
           required: [],
         },
       },
