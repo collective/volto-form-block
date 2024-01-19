@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-12-06T09:16:14.589Z\n"
+"POT-Creation-Date: 2024-01-19T14:42:35.562Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -414,6 +414,16 @@ msgstr ""
 #: components/Sidebar
 # defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
 msgstr ""
 
 #: components/FormView

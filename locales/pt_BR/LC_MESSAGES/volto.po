@@ -420,6 +420,16 @@ msgstr "Área de texto"
 msgid "form_formDataCount"
 msgstr "{formDataCount} item(ns) armazenados"
 
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
+msgstr ""
+
 #: components/FormView
 # defaultMessage: Clear
 msgid "form_reset"
