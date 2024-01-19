@@ -42,10 +42,17 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
+  },
+  remove_data_after_days: {
+    id: 'form_remove_data_after_days',
+    defaultMessage: 'Data wipe',
+  },
+  remove_data_after_days_helptext: {
+    id: 'form_remove_data_after_days_helptext',
+    defaultMessage: 'Number of days after which, the data should be deleted',
   },
   attachmentSendEmail: {
     id: 'form_attachment_send_email_info_text',
@@ -86,6 +93,7 @@ export default (data) => {
           ...(data?.show_cancel ? ['cancel_label'] : []),
           'captcha',
           'store',
+          'remove_data_after_days',
           'send',
           'send_message',
         ],
@@ -129,6 +137,12 @@ export default (data) => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
+      },
+      remove_data_after_days: {
+        type: 'integer',
+        title: intl.formatMessage(messages.remove_data_after_days),
+        description: intl.formatMessage(messages.remove_data_after_days_helptext),
+        default: -1,
       },
       send: {
         type: 'boolean',
