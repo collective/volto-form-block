@@ -30,6 +30,14 @@ const messages = defineMessages({
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
   },
+  show_cancel: {
+    id: 'form_show_cancel',
+    defaultMessage: 'Show cancel button',
+  },
+  cancel_label: {
+    id: 'form_cancel_label',
+    defaultMessage: 'Cancel button label',
+  },
   captcha: {
     id: 'captcha',
     defaultMessage: 'Captcha provider',
@@ -51,9 +59,18 @@ const messages = defineMessages({
     id: 'form_email_format',
     defaultMessage: 'Email format',
   },
+  send_message: {
+    id: 'form_send_message',
+    defaultMessage: 'Message of sending confirmed',
+  },
+  send_message_helptext: {
+    id: 'form_send_message_helptext',
+    defaultMessage:
+      'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
+  },
 });
 
-export default (formData) => {
+export default (data) => {
   var intl = useIntl();
 
   const fieldsets = [
@@ -67,14 +84,17 @@ export default (formData) => {
         'default_from',
         'default_subject',
         'submit_label',
+        'show_cancel',
+        ...(data?.show_cancel ? ['cancel_label'] : []),
         'captcha',
         'store',
         'send',
+        'send_message',
       ],
     },
   ];
 
-  if (formData?.send) {
+  if (data?.send) {
     fieldsets.push({
       id: 'sendingOptions',
       title: 'Sending options',
@@ -105,9 +125,17 @@ export default (formData) => {
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
       },
+      show_cancel: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.show_cancel),
+        default: false,
+      },
+      cancel_label: {
+        title: intl.formatMessage(messages.cancel_label),
+      },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        type: 'array',
+        type: 'string',
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
@@ -115,11 +143,16 @@ export default (formData) => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
-        description: intl.formatMessage(messages.attachmentSendEmail),
       },
       send: {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
+        description: intl.formatMessage(messages.attachmentSendEmail),
+      },
+      send_message: {
+        title: intl.formatMessage(messages.send_message),
+        type: 'textarea',
+        description: intl.formatMessage(messages.send_message_helptext),
       },
       email_format: {
         title: intl.formatMessage(messages.email_format),

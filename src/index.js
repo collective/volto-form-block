@@ -18,6 +18,7 @@ import FieldSchema from 'volto-form-block/fieldSchema';
 import {
   SelectionSchemaExtender,
   FromSchemaExtender,
+  HiddenSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
 export {
   submitForm,
@@ -43,7 +44,9 @@ const applyConfig = (config) => {
         single_choice: SelectionSchemaExtender,
         multiple_choice: SelectionSchemaExtender,
         from: FromSchemaExtender,
+        hidden: HiddenSchemaExtender,
       },
+      attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
       security: {

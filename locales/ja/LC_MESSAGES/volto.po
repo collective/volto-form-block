@@ -241,6 +241,11 @@ msgstr ""
 msgid "description"
 msgstr ""
 
+#: components/Sidebar
+# defaultMessage: Field ID
+msgid "fieldId"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -256,6 +261,11 @@ msgstr ""
 msgid "form_attachment_send_email_info_text"
 msgstr ""
 
+#: formSchema
+# defaultMessage: Cancel button label
+msgid "form_cancel_label"
+msgstr ""
+
 #: components/Sidebar
 # defaultMessage: Clear data
 msgid "form_clear_data"
@@ -264,6 +274,12 @@ msgstr ""
 #: components/Sidebar
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
+msgstr ""
+
+#: components/Edit
+#: components/FormView
+# defaultMessage: Annulla
+msgid "form_default_cancel_label"
 msgstr ""
 
 #: formSchema
@@ -305,6 +321,11 @@ msgstr ""
 #: fieldSchema
 # defaultMessage: Description
 msgid "form_field_description"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
 msgstr ""
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
@@ -351,6 +372,11 @@ msgstr ""
 #: fieldSchema
 # defaultMessage: E-mail
 msgid "form_field_type_from"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
 msgstr ""
 
 #: fieldSchema
@@ -406,6 +432,21 @@ msgstr ""
 #: formSchema
 # defaultMessage: Send email to recipient
 msgid "form_send_email"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Message of sending confirmed
+msgid "form_send_message"
+msgstr ""
+
+#: formSchema
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
+msgid "form_send_message_helptext"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Show cancel button
+msgid "form_show_cancel"
 msgstr ""
 
 #: formSchema

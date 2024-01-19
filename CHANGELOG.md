@@ -1,3 +1,26 @@
+## [3.2.0](https://github.com/collective/volto-form-block/compare/v3.1.0...v3.2.0) (2023-12-11)
+
+
+### Features
+
+* added form reset button and an user customizable submit confirm message ([#75](https://github.com/collective/volto-form-block/issues/75)) ([0c83317](https://github.com/collective/volto-form-block/commit/0c833175e5e57e6c6a758fc04c4a09ff39142e98))
+
+## [3.1.0](https://github.com/collective/volto-form-block/compare/v3.0.1...v3.1.0) (2023-05-29)
+
+
+### Features
+
+* added hidden field type ([#53](https://github.com/collective/volto-form-block/issues/53)) ([5650ee5](https://github.com/collective/volto-form-block/commit/5650ee557a2fc6cbbf6a70bcf7df469a281b974a))
+* make attachment type field list configurable in config ([#59](https://github.com/collective/volto-form-block/issues/59)) ([55cfe9d](https://github.com/collective/volto-form-block/commit/55cfe9dcfc38ccafcec0bc9fcbd4aa0bd3b72b3b))
+
+
+### Bug Fixes
+
+* captcha provider selection widget ([ba9ecd2](https://github.com/collective/volto-form-block/commit/ba9ecd2d2ec5843b43c9d9d283faeb14b3d29f1e))
+* i18n ([3d0fd99](https://github.com/collective/volto-form-block/commit/3d0fd991e0e58dd4061ba2d3e08d7d2142cc2afd))
+* swap store / send description ([#66](https://github.com/collective/volto-form-block/issues/66)) ([b76c1ec](https://github.com/collective/volto-form-block/commit/b76c1ec93daf48103e1da4fb31bda91a56b57fba))
+* use string for field_type ([#64](https://github.com/collective/volto-form-block/issues/64)) ([f031914](https://github.com/collective/volto-form-block/commit/f03191430011c3f2554b68635c7cb1639f2aa061))
+
 ### [3.0.1](https://github.com/collective/volto-form-block/compare/v3.0.0...v3.0.1) (2023-02-06)
 
 

@@ -241,6 +241,11 @@ msgstr ""
 msgid "description"
 msgstr "Beschreibung"
 
+#: components/Sidebar
+# defaultMessage: Field ID
+msgid "fieldId"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -254,7 +259,12 @@ msgstr "Formular erfolgreich eingereicht"
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
-msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versended. "
+msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versendet."
+
+#: formSchema
+# defaultMessage: Cancel button label
+msgid "form_cancel_label"
+msgstr ""
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -266,10 +276,16 @@ msgstr "Daten löschen"
 msgid "form_confirmClearData"
 msgstr "Gespeicherte Elemente wirklich löschen?"
 
+#: components/Edit
+#: components/FormView
+# defaultMessage: Annulla
+msgid "form_default_cancel_label"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Default sender
 msgid "form_default_from"
-msgstr "Standart Absender"
+msgstr "Standard Absender"
 
 #: formSchema
 # defaultMessage: Mail subject
@@ -306,6 +322,11 @@ msgstr "Füllen Sie bitte die erforderlichen Felder aus"
 # defaultMessage: Description
 msgid "form_field_description"
 msgstr "Beschreibung"
+
+#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
+msgid "form_field_input_value"
+msgstr ""
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
@@ -352,6 +373,11 @@ msgstr "Datum"
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "E-Mail"
+
+#: fieldSchema
+# defaultMessage: Hidden
+msgid "form_field_type_hidden"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Multiple choice
@@ -409,6 +435,21 @@ msgid "form_send_email"
 msgstr "E-Mail an Empfänger senden"
 
 #: formSchema
+# defaultMessage: Message of sending confirmed
+msgid "form_send_message"
+msgstr ""
+
+#: formSchema
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
+msgid "form_send_message_helptext"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Show cancel button
+msgid "form_show_cancel"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Submit button label
 msgid "form_submit_label"
 msgstr "Beschriftung der Schaltfläche Senden"
@@ -436,12 +477,12 @@ msgstr "Wenn ausgewählt, wird auch eine Kopie der E-Mail an diese Adresse gesen
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
-msgstr "undefiniert"
+msgstr "Als Antwortadresse nutzen"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
-msgstr "undefiniert"
+msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
 
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
