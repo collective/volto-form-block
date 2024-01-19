@@ -55,6 +55,10 @@ const messages = defineMessages({
     id: 'form_send_email',
     defaultMessage: 'Send email to recipient',
   },
+  email_format: {
+    id: 'form_email_format',
+    defaultMessage: 'Email format',
+  },
   send_message: {
     id: 'form_send_message',
     defaultMessage: 'Message of sending confirmed',
@@ -69,28 +73,38 @@ const messages = defineMessages({
 export default (data) => {
   var intl = useIntl();
 
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'show_cancel',
+        ...(data?.show_cancel ? ['cancel_label'] : []),
+        'captcha',
+        'store',
+        'send',
+        'send_message',
+      ],
+    },
+  ];
+
+  if (data?.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['email_format'],
+    });
+  }
+
   return {
     title: intl.formatMessage(messages.form),
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'title',
-          'description',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'submit_label',
-          'show_cancel',
-          ...(data?.show_cancel ? ['cancel_label'] : []),
-          'captcha',
-          'store',
-          'send',
-          'send_message',
-        ],
-      },
-    ],
+    fieldsets: fieldsets,
     properties: {
       title: {
         title: intl.formatMessage(messages.title),
@@ -139,6 +153,15 @@ export default (data) => {
         title: intl.formatMessage(messages.send_message),
         type: 'textarea',
         description: intl.formatMessage(messages.send_message_helptext),
+      },
+      email_format: {
+        title: intl.formatMessage(messages.email_format),
+        type: 'string',
+        choices: [
+          ['list', 'List'],
+          ['table', 'Table'],
+        ],
+        noValueOption: false,
       },
     },
     required: ['default_to', 'default_from', 'default_subject'],
