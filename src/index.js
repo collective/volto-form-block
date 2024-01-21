@@ -71,7 +71,9 @@ const applyConfig = (config) => {
   config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
     import('react-google-recaptcha-v3'),
   );
-
+  config.settings.loadables['ReactTable'] = loadable.lib(() =>
+    import('@tanstack/react-table'),
+  );
   return config;
 };
 

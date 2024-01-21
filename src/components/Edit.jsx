@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Grid, Form, Button } from 'semantic-ui-react';
+import { Segment, Grid, Form, Button, TabPane, Tab } from 'semantic-ui-react';
 import {
   withDNDContext,
   SubblocksEdit,
@@ -9,6 +9,7 @@ import { SidebarPortal } from '@plone/volto/components';
 
 import EditBlock from 'volto-form-block/components/EditBlock';
 import Sidebar from 'volto-form-block/components/Sidebar';
+import DataTable from 'volto-form-block/components/DataTable';
 
 import { defineMessages } from 'react-intl';
 
@@ -74,46 +75,73 @@ class Edit extends SubblocksEdit {
           )}
 
           <SubblocksWrapper node={this.node}>
-            {this.state.subblocks.map((subblock, subindex) => (
-              <Form.Field key={subindex}>
-                <EditBlock
-                  data={subblock}
-                  index={subindex}
-                  selected={this.isSubblockSelected(subindex)}
-                  {...this.subblockProps}
-                  openObjectBrowser={this.props.openObjectBrowser}
-                />
-              </Form.Field>
-            ))}
-
-            {this.props.selected && (
-              <Form.Field>
-                {this.renderAddBlockButton(
-                  this.props.intl.formatMessage(messages.addField),
-                )}
-              </Form.Field>
-            )}
-
-            <Grid columns={1} padded="vertically">
-              <Grid.Row>
-                <Grid.Column textAlign="center">
-                  {this.props.data?.show_cancel && (
-                    <Button secondary>
-                      {this.props.data.cancel_label ||
-                        this.props.intl.formatMessage(
-                          messages.default_cancel_label,
-                        )}
-                    </Button>
-                  )}
-                  <Button primary>
-                    {this.props.data.submit_label ||
-                      this.props.intl.formatMessage(
-                        messages.default_submit_label,
+            {/* <pre>{JSON.stringify(this.props.properties, null, 2)}</pre>             */}
+            <Tab
+              panes={[
+                {
+                  menuItem: 'Form',
+                  render: () => (
+                    <TabPane>
+                      {this.state.subblocks.map((subblock, subindex) => (
+                        <Form.Field key={subindex}>
+                          <EditBlock
+                            data={subblock}
+                            index={subindex}
+                            selected={this.isSubblockSelected(subindex)}
+                            {...this.subblockProps}
+                            openObjectBrowser={this.props.openObjectBrowser}
+                          />
+                        </Form.Field>
+                      ))}
+                      {this.props.selected && (
+                        <Form.Field>
+                          {this.renderAddBlockButton(
+                            this.props.intl.formatMessage(messages.addField),
+                          )}
+                        </Form.Field>
                       )}
-                  </Button>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+                      <Grid columns={1} padded="vertically">
+                        <Grid.Row>
+                          <Grid.Column textAlign="center">
+                            {this.props.data?.show_cancel && (
+                              <Button secondary>
+                                {this.props.data.cancel_label ||
+                                  this.props.intl.formatMessage(
+                                    messages.default_cancel_label,
+                                  )}
+                              </Button>
+                            )}
+                            <Button primary>
+                              {this.props.data.submit_label ||
+                                this.props.intl.formatMessage(
+                                  messages.default_submit_label,
+                                )}
+                            </Button>
+                          </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+                    </TabPane>
+                  ),
+                },
+                {
+                  menuItem: 'Data',
+                  render: () => (
+                    <TabPane>
+                      {this.props.data.store && (
+                        <DataTable
+                          properties={this.props.properties}
+                          fields={this.props.data?.subblocks}
+                          blockId={this.props.block}
+                          removeDataAfterDays={
+                            this.props.data.remove_data_after_days
+                          }
+                        />
+                      )}
+                    </TabPane>
+                  ),
+                },
+              ]}
+            />
           </SubblocksWrapper>
         </Segment>
 
