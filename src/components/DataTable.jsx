@@ -45,19 +45,18 @@ const DataTable = ({
   blockId,
   removeDataAfterDays,
 }) => {
-  const { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } =
-    ReactTable;
+  const {
+    useReactTable,
+    flexRender,
+    getCoreRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+  } = ReactTable;
   const formData = useSelector((state) => state.formData);
   const dispatch = useDispatch();
   const intl = useIntl();
   const [confirmOpen, setConfirmOpen] = useState(false);
-
-  console.log('DataTable', {
-    properties,
-    fields,
-    blockId,
-    removeDataAfterDays,
-  });
+  const [sorting, setSorting] = useState([]);
 
   useEffect(() => {
     dispatch(getFormData(flattenToAppURL(properties['@id'])));
@@ -91,43 +90,59 @@ const DataTable = ({
     [formData],
   );
 
+  // SORT
+  // https://react.semantic-ui.com/collections/table/#variations-sortable
+  // https://tanstack.com/table/v8/docs/examples/react/sorting
+
   const table = useReactTable({
     columns,
     data,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     // getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    //
-    debugTable: true,
+    getSortedRowModel: getSortedRowModel(),
+    // debugTable: true,
   });
   return (
     <>
-      <Table>
+      <Table sortable>
         <Table.Header>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <Table.Row key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <Table.HeaderCell
+                  key={header.id}
+                  sorted={
+                    { asc: 'ascending', desc: 'descending' }[
+                      header.column.getIsSorted()
+                    ]
+                  }
+                  onClick={header.column.getToggleSortingHandler()}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
-                </th>
+                </Table.HeaderCell>
               ))}
-            </tr>
+            </Table.Row>
           ))}
         </Table.Header>
         <Table.Body>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <Table.Row key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <Table.Cell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
+                </Table.Cell>
               ))}
-            </tr>
+            </Table.Row>
           ))}
         </Table.Body>
       </Table>
@@ -180,15 +195,16 @@ const DataTable = ({
         </div>
       )}
 
-      <div class="ui buttons">
-        <p>
-          {intl.formatMessage(messages.formDataCount, {
-            formDataCount: data.length,
-          })}
-        </p>
+      <p>
+        {intl.formatMessage(messages.formDataCount, {
+          formDataCount: data.length,
+        })}
+      </p>
+      <div class="inline">
         <Button
           compact
-          size="tiny"
+          size="small"
+          primary
           onClick={() =>
             dispatch(
               exportCsvFormData(
@@ -202,14 +218,8 @@ const DataTable = ({
           <Icon name={downloadSVG} />
           {intl.formatMessage(messages.exportCsv)}
         </Button>
-
-        <Button
-          compact
-          onClick={() => setConfirmOpen(true)}
-          size="tiny"
-          style={{ display: 'flex', alignItems: 'center' }}
-        >
-          <Icon name={deleteSVG} size="1.5rem" />{' '}
+        <Button compact size="small" onClick={() => setConfirmOpen(true)}>
+          <Icon name={deleteSVG} />
           {intl.formatMessage(messages.clearData)}
         </Button>
         <Confirm

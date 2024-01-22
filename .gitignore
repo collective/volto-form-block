@@ -6,6 +6,7 @@ npm-debug.log*
 .DS_Store
 *.swp
 yarn-error.log
+.yarn/
 
 node_modules
 build
