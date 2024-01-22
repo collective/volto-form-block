@@ -35,6 +35,11 @@ const messages = defineMessages({
     defaultMessage:
       "Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.",
   },
+  warning_enable_save: {
+    id: 'warning_enable_save',
+    defaultMessage:
+      'Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.',
+  },
 });
 
 /**
@@ -127,7 +132,7 @@ class Edit extends SubblocksEdit {
                   menuItem: 'Data',
                   render: () => (
                     <TabPane className="container">
-                      {this.props.data.store && (
+                      {this.props.data.store ? (
                         <DataTable
                           properties={this.props.properties}
                           fields={this.props.data?.subblocks}
@@ -136,6 +141,12 @@ class Edit extends SubblocksEdit {
                             this.props.data.remove_data_after_days
                           }
                         />
+                      ) : (
+                        <p>
+                          {this.props.intl.formatMessage(
+                            messages.warning_enable_save,
+                          )}
+                        </p>
                       )}
                     </TabPane>
                   ),
@@ -144,7 +155,6 @@ class Edit extends SubblocksEdit {
             />
           </SubblocksWrapper>
         </Segment>
-
         <SidebarPortal selected={this.props.selected || false}>
           <Sidebar
             {...this.props}
