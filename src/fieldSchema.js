@@ -118,12 +118,10 @@ const fieldTypeDefaultValueTypeMapping = {
 };
 
 function getTypeForValidationSetting(setting) {
-  console.log('setting', setting);
   if (Array.isArray(setting)) {
     return 'array';
   }
 
-  console.log('setting', setting);
   // Volto widgets mostly match this result
   return typeof setting;
 }
