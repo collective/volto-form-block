@@ -100,6 +100,7 @@ const DataTable = ({
     state: {
       sorting,
     },
+    columnResizeMode: 'onEnd',
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     // getFilteredRowModel: getFilteredRowModel(),
@@ -109,44 +110,54 @@ const DataTable = ({
   });
   return (
     <>
-      <Table sortable>
-        <Table.Header>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <Table.Row key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <Table.HeaderCell
-                  key={header.id}
-                  sorted={
-                    { asc: 'ascending', desc: 'descending' }[
-                      header.column.getIsSorted()
-                    ]
-                  }
-                  onClick={header.column.getToggleSortingHandler()}
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                </Table.HeaderCell>
-              ))}
-            </Table.Row>
-          ))}
-        </Table.Header>
-        <Table.Body>
-          {table.getRowModel().rows.map((row) => (
-            <Table.Row key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <Table.Cell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </Table.Cell>
-              ))}
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-
+      <div style={{ overflowX: 'auto' }}>
+        <Table
+          sortable
+          style={{
+            width: table.getCenterTotalSize(),
+          }}
+        >
+          <Table.Header>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <Table.Row key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <Table.HeaderCell
+                    style={{
+                      width: header.getSize(),
+                      whiteSpace: 'inherit',
+                    }}
+                    key={header.id}
+                    sorted={
+                      { asc: 'ascending', desc: 'descending' }[
+                        header.column.getIsSorted()
+                      ]
+                    }
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </Table.HeaderCell>
+                ))}
+              </Table.Row>
+            ))}
+          </Table.Header>
+          <Table.Body>
+            {table.getRowModel().rows.map((row) => (
+              <Table.Row key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <Table.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Table.Cell>
+                ))}
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
       {table.getPageCount() > 1 && (
         <div className="pagination-wrapper react-table-pagination">
           <Pagination

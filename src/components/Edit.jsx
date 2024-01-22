@@ -126,7 +126,7 @@ class Edit extends SubblocksEdit {
                 {
                   menuItem: 'Data',
                   render: () => (
-                    <TabPane>
+                    <TabPane className="container">
                       {this.props.data.store && (
                         <DataTable
                           properties={this.props.properties}
