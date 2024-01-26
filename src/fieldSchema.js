@@ -167,10 +167,17 @@ export default (props) => {
       : undefined;
 
   const validationIds = props.validations ?? [];
-  const validationsWithSettings = validationIds.filter((validationId) => {
-    const settings = props.validationSettings[validationId] ?? {};
-    return settings && Object.keys(settings).length > 0;
-  });
+  const allValidationSettings = props.formData?.validationSettings || {};
+  const settingsWithValidations = Object.entries(allValidationSettings).reduce(
+    (settings, [validationId, validationSettings]) => {
+      if (!validationIds.includes(validationId.split('-')[0])) {
+        return settings;
+      }
+      settings[validationId] = validationSettings;
+      return settings;
+    },
+    {},
+  );
 
   return {
     title: props?.label || '',
@@ -324,29 +331,29 @@ export default (props) => {
         widget: 'object',
         collapsible: true,
         schema: {
-          fieldsets: validationsWithSettings.map((validationId) => {
-            return {
-              id: validationId,
-              title: validationId,
-              fields: Object.keys(props.validationSettings).filter((key) => {
-                return key.startsWith(`${validationId}-`);
-              }),
-            };
-          }),
-          properties: validationsWithSettings.reduce(
-            (properties, validationId) => {
-              Object.entries(props.validationSettings)
-                .filter(([key, value]) => {
-                  return key.startsWith(`${validationId}-`);
-                })
-                .forEach(([settingId, value]) => {
-                  properties[settingId] = {
-                    title: settingId.split('-')[1],
-                    value: value,
-                    type: getTypeForValidationSetting(value),
-                  };
-                });
-
+          fieldsets: [
+            {
+              id: 'default',
+              title: 'Default',
+              fields: Object.keys(settingsWithValidations),
+            },
+          ],
+          properties: Object.entries(settingsWithValidations).reduce(
+            (properties, [validationAndSettingId, validationSettings]) => {
+              const [validationId, settingId] = validationAndSettingId.split(
+                '-',
+              );
+              //  We shouldn't get any responses with invalid validation-setting mappings from the backend, but you never know...
+              if (!validationId || !settingId) {
+                return properties;
+              }
+              properties[validationAndSettingId] = {
+                title: `${
+                  validationSettings.validation_title ?? validationId
+                }: ${validationSettings.title ?? settingId}`,
+                default: validationSettings.default,
+                type: validationSettings.type || 'string',
+              };
               return properties;
             },
             {},
