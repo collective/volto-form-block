@@ -179,6 +179,10 @@ export default (props) => {
     {},
   );
 
+  const showValidations = ['text', 'textarea', 'from'].includes(
+    props.field_type,
+  );
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -191,8 +195,10 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           'required',
-          'validations',
-          ...(validationIds.length > 0 ? ['validationSettings'] : []),
+          ...(showValidations ? ['validations'] : []),
+          ...(showValidations && validationIds.length > 0
+            ? ['validationSettings']
+            : []),
           ...(!['attachment', 'static_text', 'hidden'].includes(
             props.field_type,
           )
