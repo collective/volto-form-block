@@ -335,7 +335,6 @@ export default (props) => {
       validationSettings: {
         title: 'Validation settings',
         widget: 'object',
-        collapsible: true,
         schema: {
           fieldsets: [
             {
