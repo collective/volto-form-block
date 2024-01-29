@@ -66,6 +66,14 @@ export const submitForm = (state = initialState, action = {}) => {
         loaded: false,
         loading: false,
       };
+    // Needed to handle the case where we change page and need to reset the server-sent errors
+    case '@@router/LOCATION_CHANGE':
+      return {
+        ...state,
+        error: null,
+        loaded: false,
+        loading: false,
+      };
     default:
       return state;
   }
