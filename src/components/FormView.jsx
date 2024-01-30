@@ -55,7 +55,7 @@ const FormView = ({
   const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
 
   const isValidField = (field) => {
-    return formErrors?.indexOf(field) < 0;
+    return !formErrors.hasOwnProperty(field);
   };
 
   return (
@@ -109,8 +109,8 @@ const FormView = ({
                         value={field.value}
                         onChange={() => {}}
                         disabled
-                        valid
-                        formHasErrors={formErrors?.length > 0}
+                        valid={isValidField}
+                        formHasErrors={!!formErrors[field.name]}
                       />
                     </Grid.Column>
                   </Grid.Row>
@@ -175,14 +175,15 @@ const FormView = ({
                           }
                           value={value}
                           valid={isValidField(name)}
-                          formHasErrors={formErrors?.length > 0}
+                          errors={formErrors[name]}
+                          formHasErrors={Object.keys(formErrors).length > 0} // TODO: Deprecate legacy prop
                         />
                       </Grid.Column>
                     </Grid.Row>
                   );
                 })}
                 {captcha.render()}
-                {formErrors.length > 0 && (
+                {Object.keys(formErrors).length > 0 && (
                   <Message error role="alert">
                     <Message.Header as="h4">
                       {intl.formatMessage(messages.error)}
