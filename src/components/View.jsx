@@ -205,7 +205,7 @@ const View = ({ data, id, path }) => {
       });
     }
 
-    setFormErrors(v);
+    setFormErrors({ ...formErrors, ...v });
     return Object.keys(v).length === 0;
   };
 
