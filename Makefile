@@ -158,4 +158,14 @@ release:  ## Release a version of the add-on
 # ${ACCEPTANCE} --profile dev up --no-recreate backend-acceptance
 .PHONY: temp
 temp: ## Stop acceptance server (for use it while finished developing)
-	${ACCEPTANCE} up --no-cache backend-acceptance
+	${ACCEPTANCE} up backend-acceptance
+
+
+
+# Steps for testing:
+#   - Run `make temp` to start the backend server in acceptance mode
+#   - Run `make install-acceptance` to build the frontend image
+#   - Run `make start-test-acceptance-server` to start the frontend image
+#   - Run `test-acceptance` to start the cypress server
+#   - You should be able to visit the site at `localhost:55001` and login with `admin:secret`.
+#   - You should be able to run a cypress test against the site
