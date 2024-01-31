@@ -137,12 +137,20 @@ const View = ({ data, id, path }) => {
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
+      const fieldErrors = v[name] ? { required: v[name] } : {};
       // TODO: Abstract all of this into a single 'field' definition where each fields defines it's own rules.
       if (subblock.required) {
         let fieldIsRequired = true;
+        const fieldData = formData[name];
         // Required field has a value
-        if (formData[name]) {
-          fieldIsRequired = false;
+        if (fieldData) {
+          if (fieldData?.hasOwnProperty('value')) {
+            if (![undefined, null].includes(fieldData.value)) {
+              fieldIsRequired = false;
+            }
+          } else {
+            fieldIsRequired = false;
+          }
         }
         // Some field types can't be required. TODO: Make these field types use `isValid`
         else if (fieldType === 'static_text' || fieldType === 'hidden') {
@@ -153,14 +161,14 @@ const View = ({ data, id, path }) => {
           fieldIsRequired = false;
         }
         // Checkboxes have their value stored slightly differently
-        else if (fieldType === 'checkbox' && !formData[name]?.value) {
+        else if (fieldType === 'checkbox' && !fieldData?.value) {
           fieldIsRequired = false;
         }
         // List/ multi-option handling
         else if (
-          (formData[name]?.value && formData[name].value.length === 0) ||
-          (typeof formData[name]?.value === 'object' &&
-            JSON.stringify(formData[name]?.value) === '{}')
+          (fieldData?.value && fieldData.value.length === 0) ||
+          (typeof fieldData?.value === 'object' &&
+            JSON.stringify(fieldData?.value) === '{}')
         ) {
           fieldIsRequired = false;
         }
@@ -168,14 +176,14 @@ const View = ({ data, id, path }) => {
         else if (
           fieldType === 'yes_no' &&
           subblock.widget === 'single_choice' &&
-          !formData[name]
+          !fieldData
         ) {
           fieldIsRequired = true;
         }
         // Default value handling. Boolean check is for Yes/ no fields
         if (
           Boolean(
-            !formData[name] &&
+            !fieldData &&
               (subblock.default_value ||
                 typeof subblock.default_value === 'boolean'),
           )
@@ -183,19 +191,21 @@ const View = ({ data, id, path }) => {
           fieldIsRequired = false;
         }
 
-        const errors = v[name] ?? [];
-
         if (fieldIsRequired) {
-          errors.push(
-            intl.formatMessage(messages.field_is_required, {
+          fieldErrors['required'] = intl.formatMessage(
+            messages.field_is_required,
+            {
               fieldLabel: subblock.label,
-            }),
+            },
           );
         }
-
-        if (errors.length > 0) {
-          v[name] = errors;
-        }
+      }
+      // Bit messy to look at the error response here, we should really abstract away the client vs server error handling to make it more seamless to work with
+      if (submitResults?.error?.error?.[subblock.id]) {
+        Object.assign(fieldErrors, submitResults?.error?.error?.[subblock.id]);
+      }
+      if (Object.keys(fieldErrors).length > 0) {
+        v[name] = fieldErrors;
       }
     });
 
@@ -205,8 +215,11 @@ const View = ({ data, id, path }) => {
       });
     }
 
-    setFormErrors({ ...formErrors, ...v });
-    return Object.keys(v).length === 0;
+    setFormErrors({ ...v });
+    // TODO: This is hard-coded for required being the only client-side validation
+    return Object.values(v).every((validation) =>
+      [undefined, null].includes(validation.required),
+    );
   };
 
   const submit = (e) => {
