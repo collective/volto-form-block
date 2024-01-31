@@ -326,15 +326,20 @@ const View = ({ data, id, path }) => {
 
         const errors = submitResults.error?.error ?? {};
         const erroredFieldIds = Object.keys(errors);
-        const fieldNames = data.subblocks.reduce((fieldNames, field) => {
+        const errorMapping = {};
+        data.subblocks.forEach((field) => {
+          const name = getFieldName(field.label, field.id);
+          // Adding an errored field
           if (erroredFieldIds.includes(field.id)) {
-            const name = getFieldName(field.label, field.id);
-            fieldNames[name] = errors[field.id];
+            errorMapping[name] = errors[field.id];
           }
-          return fieldNames;
-        }, {});
+          // Keep track of previously-errored fields incase we want to display a message to tell users it passes validation now
+          else if (!!formErrors[name]) {
+            errorMapping[name] = null;
+          }
+        });
 
-        setFormErrors(fieldNames);
+        setFormErrors(errorMapping);
       } else {
         let errorMessage = 'Unknown error';
         // Handle an edge case where the reducer state is still the old-style without the error type in it
