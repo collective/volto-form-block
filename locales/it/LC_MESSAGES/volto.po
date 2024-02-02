@@ -417,12 +417,12 @@ msgstr "{formDataCount} elementi salvati"
 #: formSchema
 # defaultMessage: Data wipe
 msgid "form_remove_data_after_days"
-msgstr ""
+msgstr "Giorni validità"
 
 #: formSchema
 # defaultMessage: Number of days after which, the data should be deleted
 msgid "form_remove_data_after_days_helptext"
-msgstr ""
+msgstr "Numero di giorni dopo i quali, i dati dovrebbero essere cancellati"
 
 #: components/FormView
 # defaultMessage: Clear
