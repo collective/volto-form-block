@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-form-block",
   "bugs": "https://github.com/collective/volto-form-block/issues",
-  "author": "Nicola Zambello",
+  "author": "collective",
   "homepage": "https://github.com/collective/volto-form-block#readme",
   "license": "MIT",
   "keywords": [
