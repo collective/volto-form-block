@@ -17,7 +17,9 @@
     "form"
   ],
   "scripts": {
-    "i18n": "rm -rf build/messages && NODE_ENV=production i18n -a"
+    "prepare": "husky install",
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
+    "lint": "./node_modules/eslint/bin/eslint.js --max-warnings=0 'src/**/*.{js,jsx,ts,tsx,json}'"
   },
   "addons": [
     "volto-subblocks"
@@ -29,8 +31,73 @@
     }
   },
   "prettier": {
+    "trailingComma": "all",
     "singleQuote": true,
-    "trailingComma": "all"
+    "overrides": [
+      {
+        "files": "*.overrides",
+        "options": {
+          "parser": "less"
+        }
+      }
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-idiomatic-order"
+    ],
+    "plugins": [
+      "stylelint-prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.scss"
+        ],
+        "customSyntax": "postcss-scss"
+      },
+      {
+        "files": [
+          "**/*.less"
+        ],
+        "customSyntax": "postcss-less"
+      },
+      {
+        "files": [
+          "**/*.overrides"
+        ],
+        "customSyntax": "postcss-less"
+      }
+    ],
+    "rules": {
+      "prettier/prettier": true,
+      "rule-empty-line-before": [
+        "always-multi-line",
+        {
+          "except": [
+            "first-nested"
+          ],
+          "ignore": [
+            "after-comment"
+          ]
+        }
+      ]
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "npx eslint --max-warnings=0 --fix",
+      "npx prettier --single-quote --write"
+    ],
+    "src/**/*.{css,less}": [
+      "npx stylelint --fix"
+    ],
+    "src/**/*.scss": [
+      "npx stylelint --fix --customSyntax postcss-scss"
+    ],
+    "src/**/*.overrides": [
+      "npx stylelint --fix --syntax less"
+    ]
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.6",
@@ -39,12 +106,31 @@
     "volto-subblocks": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "7.18.10",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@plone/scripts": "^2.0.0",
-    "@release-it/conventional-changelog": "^2.0.1",
-    "husky": "^6.0.0",
-    "release-it": "^14.11.5"
+    "@release-it/conventional-changelog": "^5.1.1",
+    "eslint": "8.54.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-config-react-app": "7.0.1",
+    "eslint-plugin-flowtype": "4.7.0",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-jsx-a11y": "6.8.0",
+    "eslint-plugin-prettier": "5.0.1",
+    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "husky": "8.0.2",
+    "jest-css-modules": "^2.1.0",
+    "lint-staged": "13.0.3",
+    "pofile": "1.0.10",
+    "prettier": "3.1.0",
+    "razzle": "4.2.17",
+    "release-it": "16.1.3",
+    "stylelint": "15.11.0",
+    "stylelint-config-idiomatic-order": "9.0.0",
+    "stylelint-config-prettier": "8.0.1",
+    "stylelint-prettier": "4.0.2"
   },
   "peerDependencies": {
     "@plone/volto": ">=16.0.0-alpha.38",
