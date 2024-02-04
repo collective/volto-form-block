@@ -51,12 +51,12 @@ export function exportCsvFormData(path = '') {
  */
 export const GET_FORM_DATA = 'GET_FORMDATA';
 
-export function getFormData(path = '') {
+export function getFormData({ path, block_id }) {
   return {
     type: GET_FORM_DATA,
     request: {
       op: 'get',
-      path: path + '/@form-data',
+      path: `${path}/@form-data${block_id ? '?block_id=' + block_id : ''}`,
     },
   };
 }
@@ -67,12 +67,17 @@ export function getFormData(path = '') {
  */
 export const CLEAR_FORM_DATA = 'CLEAR_FORM_DATA';
 
-export function clearFormData(path = '') {
+export function clearFormData({ path, block_id, expired = false }) {
+  const payload = {
+    expired,
+    block_id,
+  };
   return {
     type: CLEAR_FORM_DATA,
     request: {
-      op: 'get',
-      path: path + '/@form-data-clear',
+      op: 'del',
+      path: `${path}/@form-data-clear`,
+      data: payload,
     },
   };
 }
