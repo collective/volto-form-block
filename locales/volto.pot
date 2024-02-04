@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-01-19T14:42:35.562Z\n"
+"POT-Creation-Date: 2024-02-04T19:21:24.623Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -84,11 +84,6 @@ msgid "HCaptchaInvisibleInfo"
 msgstr ""
 
 #: components/Widget/SelectWidget
-# defaultMessage: No options
-msgid "No options"
-msgstr ""
-
-#: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
 msgstr ""
@@ -106,11 +101,6 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
-
-#: components/Widget/SelectWidget
-# defaultMessage: Short Name
-msgid "Short Name"
 msgstr ""
 
 #: components/Widget/DatetimeWidget
@@ -496,14 +486,24 @@ msgstr ""
 msgid "form_useAsReplyTo_description"
 msgstr ""
 
+#: components/Sidebar
+# defaultMessage: remove expired data
+msgid "remove_data_button"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
+msgid "remove_data_cron_info"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
+msgid "remove_data_warning"
+msgstr ""
+
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
-msgstr ""
-
-#: helpers/react-select
-# defaultMessage: No options
-msgid "select_noOptionsMessage"
 msgstr ""
 
 #: helpers/react-select
