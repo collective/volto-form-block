@@ -512,4 +512,4 @@ msgstr "Titolo"
 #: components/Edit
 # defaultMessage: Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.
 msgid "warning_enable_save"
-msgstr ""
+msgstr "Selezionare la voce 'Salva i dati compilati' nella barra laterale per abilitare il salvatggio e la visualizzazione dei dati"
