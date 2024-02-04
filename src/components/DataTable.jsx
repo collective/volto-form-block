@@ -53,6 +53,7 @@ const DataTable = ({
     getSortedRowModel,
   } = ReactTable;
   const formData = useSelector((state) => state.formData);
+  const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const dispatch = useDispatch();
   const intl = useIntl();
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -60,7 +61,7 @@ const DataTable = ({
 
   useEffect(() => {
     dispatch(getFormData(flattenToAppURL(properties['@id'])));
-  }, []);
+  }, [clearFormDataSelector.loaded]);
 
   const columns = useMemo(() => {
     // TODO: field_type
@@ -70,6 +71,28 @@ const DataTable = ({
         id: field.id,
         header: field.label,
         accessorFn: (row) => row[field.id]?.value,
+        cell: (props) => {
+          switch (field.field_type) {
+            case 'attachment':
+              const value = props.getValue();
+              // TODO: unused fields:
+              //      value.size -> size in bytes
+              //      value.contentType -> mime type
+              return value ? (
+                <a href={value.url} download>
+                  {value.filename}
+                </a>
+              ) : (
+                ''
+              );
+            case 'textarea':
+              return <pre>{props.getValue() || ''}</pre>;
+            // case 'checkbox':
+            //   return props.getValue() ? 'Yes' : 'No';
+            default:
+              return props.getValue() || '';
+          }
+        },
       })),
       {
         id: 'date',
