@@ -35,12 +35,12 @@ export function submitForm(path = '', block_id, data, attachments, captcha) {
  */
 export const EXPORT_CSV_FORMDATA = 'EXPORT_CSV_FORMDATA';
 
-export function exportCsvFormData(path = '') {
+export function exportCsvFormData(path, blockId) {
   return {
     type: EXPORT_CSV_FORMDATA,
     request: {
       op: 'get',
-      path: path + '/@form-data-export',
+      path: `${path}/@form-data-export?block_id=${blockId}`,
     },
   };
 }
@@ -51,12 +51,12 @@ export function exportCsvFormData(path = '') {
  */
 export const GET_FORM_DATA = 'GET_FORMDATA';
 
-export function getFormData(path = '') {
+export function getFormData(path) {
   return {
     type: GET_FORM_DATA,
     request: {
       op: 'get',
-      path: path + '/@form-data',
+      path: `${path}/@form-data`,
     },
   };
 }
@@ -67,12 +67,12 @@ export function getFormData(path = '') {
  */
 export const CLEAR_FORM_DATA = 'CLEAR_FORM_DATA';
 
-export function clearFormData(path = '') {
+export function clearFormData(path, blockId) {
   return {
     type: CLEAR_FORM_DATA,
     request: {
       op: 'get',
-      path: path + '/@form-data-clear',
+      path: `${path}/@form-data-clear?block_id=${blockId}`,
     },
   };
 }
