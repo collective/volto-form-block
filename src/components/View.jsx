@@ -166,7 +166,7 @@ const View = ({ data, id, path }) => {
 
           const formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
-            let name = getFieldName(subblock.label, subblock.id);
+            const name = getFieldName(subblock.label, subblock.id);
             if (formattedFormData[name]?.value) {
               formattedFormData[name].field_id = subblock.field_id;
               const isAttachment =
@@ -177,7 +177,11 @@ const View = ({ data, id, path }) => {
 
               // XXX: at the end of the day, we should avoid to use `attachments`
               if (isAttachment) {
-                attachments[name] = formattedFormData[name];
+                attachments[name] = {
+                  ...formattedFormData[name].value,
+                  label: formattedFormData[name].label,
+                  field_id: subblock.field_id,
+                };
                 delete formattedFormData[name];
               }
 
