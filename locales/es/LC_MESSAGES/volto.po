@@ -91,11 +91,6 @@ msgid "HCaptchaInvisibleInfo"
 msgstr "Este sitio está protegido por hCaptcha y su <a href="https://www.hcaptcha.com/privacy">Política de privacidad</a> y <a href="https://www.hcaptcha.com/terms">Términos de servicio</a> se aplican."
 
 #: components/Widget/SelectWidget
-# defaultMessage: No options
-msgid "No options"
-msgstr "No hay opciones"
-
-#: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
 msgstr "Sin valor"
@@ -114,11 +109,6 @@ msgstr "Obligatorio"
 # defaultMessage: Select…
 msgid "Select…"
 msgstr "Seleccionar..."
-
-#: components/Widget/SelectWidget
-# defaultMessage: Short Name
-msgid "Short Name"
-msgstr "Nombre Corto"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Time
@@ -423,6 +413,16 @@ msgstr "Campo de texto"
 msgid "form_formDataCount"
 msgstr "{formDataCount} elemento(s) guardados"
 
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
+msgstr ""
+
 #: components/FormView
 # defaultMessage: Clear
 msgid "form_reset"
@@ -493,15 +493,25 @@ msgstr "Utilizar como 'Responder a'"
 msgid "form_useAsReplyTo_description"
 msgstr "Si está seleccionado el valor de este campo se utilizará como cabecera 'Responder A' en el correo electrónico enviado al receptor"
 
+#: components/Sidebar
+# defaultMessage: remove expired data
+msgid "remove_data_button"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
+msgid "remove_data_cron_info"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
+msgid "remove_data_warning"
+msgstr ""
+
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
 msgstr "Responde la pregunta para demostrar que eres humano"
-
-#: helpers/react-select
-# defaultMessage: No options
-msgid "select_noOptionsMessage"
-msgstr "Ninguna opción"
 
 #: helpers/react-select
 # defaultMessage: results

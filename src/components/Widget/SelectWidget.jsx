@@ -38,10 +38,6 @@ const messages = defineMessages({
     id: 'Default',
     defaultMessage: 'Default',
   },
-  idTitle: {
-    id: 'Short Name',
-    defaultMessage: 'Short Name',
-  },
   idDescription: {
     id: 'Used for programmatic access to the fieldset.',
     defaultMessage: 'Used for programmatic access to the fieldset.',
@@ -73,10 +69,6 @@ const messages = defineMessages({
   no_value: {
     id: 'No value',
     defaultMessage: 'No value',
-  },
-  no_options: {
-    id: 'No options',
-    defaultMessage: 'No options',
   },
 });
 

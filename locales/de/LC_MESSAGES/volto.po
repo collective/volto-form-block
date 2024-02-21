@@ -82,11 +82,6 @@ msgid "HCaptchaInvisibleInfo"
 msgstr ""
 
 #: components/Widget/SelectWidget
-# defaultMessage: No options
-msgid "No options"
-msgstr "Keine Option"
-
-#: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
 msgstr "Kein Wert"
@@ -105,11 +100,6 @@ msgstr "Notwendig"
 # defaultMessage: Select…
 msgid "Select…"
 msgstr "Wähle…"
-
-#: components/Widget/SelectWidget
-# defaultMessage: Short Name
-msgid "Short Name"
-msgstr "Kurzname"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Time
@@ -414,6 +404,16 @@ msgstr "Textfeld"
 msgid "form_formDataCount"
 msgstr "{formDataCount} Element(e) gespeichert"
 
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
+msgstr ""
+
 #: components/FormView
 # defaultMessage: Clear
 msgid "form_reset"
@@ -484,15 +484,25 @@ msgstr "Als Antwortadresse nutzen"
 msgid "form_useAsReplyTo_description"
 msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
 
+#: components/Sidebar
+# defaultMessage: remove expired data
+msgid "remove_data_button"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
+msgid "remove_data_cron_info"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
+msgid "remove_data_warning"
+msgstr ""
+
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
 msgstr ""
-
-#: helpers/react-select
-# defaultMessage: No options
-msgid "select_noOptionsMessage"
-msgstr "Keine Option"
 
 #: helpers/react-select
 # defaultMessage: results

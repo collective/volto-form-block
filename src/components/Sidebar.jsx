@@ -20,6 +20,8 @@ import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
 import downloadSVG from '@plone/volto/icons/download.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
+import infoSVG from '@plone/volto/icons/info.svg';
+import warningSVG from '@plone/volto/icons/warning.svg';
 
 import {
   getFormData,
@@ -58,6 +60,20 @@ const messages = defineMessages({
     id: 'fieldId',
     defaultMessage: 'Field ID',
   },
+  remove_data_cron_info: {
+    id: 'remove_data_cron_info',
+    defaultMessage:
+      'To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.',
+  },
+  remove_data_warning: {
+    id: 'remove_data_warning',
+    defaultMessage:
+      'There are {record} record that have exceeded the maximum number of days.',
+  },
+  remove_data_button: {
+    id: 'remove_data_button',
+    defaultMessage: 'remove expired data',
+  },
 });
 
 const Sidebar = ({
@@ -79,7 +95,12 @@ const Sidebar = ({
   );
   useEffect(() => {
     if (properties?.['@id'])
-      dispatch(getFormData(flattenToAppURL(properties['@id'])));
+      dispatch(
+        getFormData({
+          path: flattenToAppURL(properties['@id']),
+          block_id: block,
+        }),
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clearFormDataState]);
 
@@ -165,13 +186,63 @@ const Sidebar = ({
                       onCancel={() => setConfirmOpen(false)}
                       onConfirm={() => {
                         dispatch(
-                          clearFormData(flattenToAppURL(properties['@id'])),
+                          clearFormData({
+                            path: flattenToAppURL(properties['@id']),
+                            block_id: block,
+                          }),
                         );
                         setConfirmOpen(false);
                       }}
                     />
                   </Grid.Column>
                 </Grid.Row>
+                {data.remove_data_after_days > 0 && (
+                  <Grid.Row>
+                    <div class="ui message info tiny">
+                      {formData.loaded &&
+                        formData.result?.expired_total > 0 && (
+                          <>
+                            <p>
+                              <Icon name={warningSVG} size="18px" />
+                              {intl.formatMessage(
+                                messages.remove_data_warning,
+                                {
+                                  record: formData.result.expired_total,
+                                },
+                              )}
+                            </p>
+                            <p>
+                              <Button
+                                onClick={() =>
+                                  dispatch(
+                                    clearFormData({
+                                      path: flattenToAppURL(properties['@id']),
+                                      expired: true,
+                                      block_id: block,
+                                    }),
+                                  )
+                                }
+                                size="tiny"
+                                compact
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                }}
+                              >
+                                <Icon name={deleteSVG} size="1.5rem" />{' '}
+                                {intl.formatMessage(
+                                  messages.remove_data_button,
+                                )}
+                              </Button>
+                            </p>
+                          </>
+                        )}
+                      <p>
+                        {intl.formatMessage(messages.remove_data_cron_info)}
+                      </p>
+                    </div>
+                  </Grid.Row>
+                )}
               </Grid>
             </Form.Field>
           )}
