@@ -8,6 +8,7 @@ import FormView from 'volto-form-block/components/FormView';
 import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
 import { Captcha } from 'volto-form-block/components/Widget';
+import { isValidEmail } from 'volto-form-block/helpers/validators';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -119,6 +120,7 @@ const View = ({ data, id, path }) => {
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
+
       if (
         subblock.required &&
         additionalField &&
@@ -136,6 +138,12 @@ const View = ({ data, id, path }) => {
         (!formData[name] ||
           formData[name]?.value?.length === 0 ||
           JSON.stringify(formData[name]?.value ?? {}) === '{}')
+      ) {
+        v.push(name);
+      } else if (
+        fieldType === 'from' &&
+        formData[name]?.value &&
+        !isValidEmail(formData[name].value)
       ) {
         v.push(name);
       }
@@ -169,9 +177,10 @@ const View = ({ data, id, path }) => {
             let name = getFieldName(subblock.label, subblock.id);
             if (formattedFormData[name]?.value) {
               formattedFormData[name].field_id = subblock.field_id;
-              const isAttachment = config.blocks.blocksConfig.form.attachment_fields.includes(
-                subblock.field_type,
-              );
+              const isAttachment =
+                config.blocks.blocksConfig.form.attachment_fields.includes(
+                  subblock.field_type,
+                );
               const isDate = subblock.field_type === 'date';
 
               if (isAttachment) {
