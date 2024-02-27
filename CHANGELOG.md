@@ -1,3 +1,18 @@
+
+
+## [3.3.0](https://github.com/collective/volto-form-block/compare/v3.2.0...v3.3.0) (2024-02-27)
+
+
+### Features
+
+* validate email field ([6572342](https://github.com/collective/volto-form-block/commit/65723428812859e84a1661181c4f75aa7f0a947c))
+
+
+### Maintenance
+
+* lint/husky ([bb32a2f](https://github.com/collective/volto-form-block/commit/bb32a2fcd7a8350dcecfce3a8cdd07a0767a7c79))
+* updated lockfile ([ec16920](https://github.com/collective/volto-form-block/commit/ec16920763e49ae4691f562a90ba404b665830de))
+
 ## [3.2.0](https://github.com/collective/volto-form-block/compare/v3.1.0...v3.2.0) (2023-12-11)
 
 
