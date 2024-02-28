@@ -78,6 +78,11 @@ const FormView = ({
     return text;
   };
 
+  const submit = (e) => {
+    resetFormOnError();
+    onSubmit(e);
+  };
+
   return (
     <div className="block form">
       <div className="public-ui">
@@ -86,17 +91,7 @@ const FormView = ({
           {data.description && (
             <p className="description">{data.description}</p>
           )}
-          {formState.error ? (
-            <Message error role="alert">
-              <Message.Header as="h4">
-                {intl.formatMessage(messages.error)}
-              </Message.Header>
-              <p>{formState.error}</p>
-              <Button secondary type="clear" onClick={resetFormOnError}>
-                {intl.formatMessage(messages.reset)}
-              </Button>
-            </Message>
-          ) : formState.result ? (
+          {formState.result ? (
             <Message positive role="alert">
               {/* Custom message */}
               {data.send_message ? (
@@ -123,7 +118,7 @@ const FormView = ({
             <Form
               id={id}
               loading={formState.loading}
-              onSubmit={onSubmit}
+              onSubmit={submit}
               autoComplete="off"
               method="post"
             >
@@ -201,6 +196,15 @@ const FormView = ({
                       {intl.formatMessage(messages.error)}
                     </Message.Header>
                     <p>{intl.formatMessage(messages.empty_values)}</p>
+                  </Message>
+                )}
+
+                {formState.error && (
+                  <Message error role="alert">
+                    <Message.Header as="h4">
+                      {intl.formatMessage(messages.error)}
+                    </Message.Header>
+                    <p>{formState.error}</p>
                   </Message>
                 )}
                 <Grid.Row centered className="row-padded-top">
