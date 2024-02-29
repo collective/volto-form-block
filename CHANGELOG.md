@@ -1,3 +1,10 @@
+### [3.3.1](https://github.com/collective/volto-form-block/compare/v3.3.0...v3.3.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* remain in form when there's errors on sending form ([c6fe827](https://github.com/collective/volto-form-block/commit/c6fe82721906dfaac8588164a77ca145b16d0dbd))
+
 
 
 ## [3.3.0](https://github.com/collective/volto-form-block/compare/v3.2.0...v3.3.0) (2024-02-27)
