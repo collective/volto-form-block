@@ -304,9 +304,9 @@ msgid "form_edit_warning_from"
 msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
 
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
-msgstr "Füllen Sie bitte die erforderlichen Felder aus"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Description
@@ -483,6 +483,21 @@ msgstr "Als Antwortadresse nutzen"
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
+
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
+msgstr ""
 
 #: components/Sidebar
 # defaultMessage: remove expired data

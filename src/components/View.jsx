@@ -15,6 +15,18 @@ const messages = defineMessages({
     id: 'formSubmitted',
     defaultMessage: 'Form successfully submitted',
   },
+  defaultInvalidFieldMessage: {
+    id: 'formblock_defaultInvalidFieldMessage',
+    defaultMessage: 'Invalid field value',
+  },
+  requiredFieldMessage: {
+    id: 'formblock_requiredFieldMessage',
+    defaultMessage: 'Fill-in this field',
+  },
+  invalidEmailMessage: {
+    id: 'formblock_invalidEmailMessage',
+    defaultMessage: 'The email is incorrect',
+  },
 });
 
 const initialState = {
@@ -126,31 +138,52 @@ const View = ({ data, id, path }) => {
         additionalField &&
         !additionalField?.isValid(formData, name)
       ) {
-        v.push(name);
+        const validation = additionalField?.isValid(formData, name);
+        if (typeof validation === 'boolean') {
+          //for retro-compatibility with previous formErrors structure
+          v.push({
+            field: name,
+            message: intl.formatMessage(messages.defaultInvalidFieldMessage),
+          });
+        } else if (typeof validation === 'object') {
+          v.push(validation);
+        }
       } else if (
         subblock.required &&
         fieldType === 'checkbox' &&
         !formData[name]?.value
       ) {
-        v.push(name);
+        v.push({
+          field: name,
+          message: intl.formatMessage(messages.requiredFieldMessage),
+        });
       } else if (
         subblock.required &&
         (!formData[name] ||
           formData[name]?.value?.length === 0 ||
           JSON.stringify(formData[name]?.value ?? {}) === '{}')
       ) {
-        v.push(name);
+        v.push({
+          field: name,
+          message: intl.formatMessage(messages.requiredFieldMessage),
+        });
       } else if (
         fieldType === 'from' &&
         formData[name]?.value &&
         !isValidEmail(formData[name].value)
       ) {
-        v.push(name);
+        v.push({
+          field: name,
+          message: intl.formatMessage(messages.invalidEmailMessage),
+        });
       }
     });
 
     if (data.captcha && !captchaToken.current) {
-      v.push('captcha');
+      v.push({
+        field: 'captcha',
+        message: intl.formatMessage(messages.requiredFieldMessage),
+      });
     }
 
     setFormErrors(v);
@@ -227,10 +260,16 @@ const View = ({ data, id, path }) => {
     setFormState({ type: FORM_STATES.normal });
   };
 
+  const getErrorMessage = (field) => {
+    const e = formErrors?.filter((e) => e.field === field);
+    return e.length > 0 ? e[0].message : null;
+  };
+
   const captcha = new Captcha({
     captchaToken,
     captcha: data.captcha,
     captcha_props: data.captcha_props,
+    errorMessage: getErrorMessage('captcha'),
     onChangeFormData,
   });
 
@@ -279,6 +318,7 @@ const View = ({ data, id, path }) => {
       onSubmit={submit}
       resetFormState={resetFormState}
       resetFormOnError={resetFormOnError}
+      getErrorMessage={getErrorMessage}
     />
   );
 };

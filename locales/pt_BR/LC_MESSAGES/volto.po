@@ -310,9 +310,9 @@ msgid "form_edit_warning_from"
 msgstr "Digite um campo do tipo 'E-mail do remetente'. Se não estiver presente, ou estiver presente mas não for preenchido pelo usuário, o endereço do remetente do e-mail será o configurado na barra lateral direita."
 
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
-msgstr "Por favor preencha os campos obrigatórios"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Description
@@ -489,6 +489,21 @@ msgstr "Utilizar como 'responder para'"
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Usar este campo como valor do cabeçalho de 'responder para'"
+
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
+msgstr ""
 
 #: components/Sidebar
 # defaultMessage: remove expired data

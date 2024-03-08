@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-02-04T19:21:24.623Z\n"
+"POT-Creation-Date: 2024-03-08T13:23:55.045Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -306,8 +306,8 @@ msgid "form_edit_warning_from"
 msgstr ""
 
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
 msgstr ""
 
 #: fieldSchema
@@ -484,6 +484,21 @@ msgstr ""
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
+msgstr ""
+
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
 msgstr ""
 
 #: components/Sidebar
