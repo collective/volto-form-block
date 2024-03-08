@@ -9,6 +9,8 @@ import FormView from 'volto-form-block/components/FormView';
 import { Captcha } from 'volto-form-block/components/Widget';
 import { getFieldName } from 'volto-form-block/components/utils';
 
+import { showWhenValidator } from 'volto-form-block/helpers/show_when';
+
 const messages = defineMessages({
   formSubmitted: {
     id: 'formSubmitted',
@@ -138,6 +140,33 @@ const View = ({ data, id, path }) => {
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
       const fieldErrors = v[name] ? { required: v[name] } : {};
+
+      debugger;
+
+      // TODO: Below 'show when' logic copied from `FormView.jsx`. Should wrap this in a single function.
+      const { show_when_when, show_when_is, show_when_to } = subblock;
+      const targetField = data.subblocks.find(
+        (block) => block.id === show_when_when,
+      );
+      const targetFieldName = targetField
+        ? getFieldName(targetField.label, targetField.id)
+        : null;
+      const shouldShowValidator =
+        show_when_when === 'always'
+          ? showWhenValidator['always']
+          : showWhenValidator[show_when_is];
+      const shouldShowTargetValue = formData[targetFieldName]?.value;
+
+      // Only checking for false here to preserve backwards compatibility with blocks that haven't been updated and so have a value of 'undefined' or 'null'
+      const shouldShow = shouldShowValidator
+        ? shouldShowValidator({
+            value: shouldShowTargetValue,
+            target_value: show_when_to,
+          }) !== false
+        : true;
+      const hasDynamicVisibility =
+        shouldShowValidator && targetField && show_when_to;
+
       // TODO: Abstract all of this into a single 'field' definition where each fields defines it's own rules.
       if (subblock.required) {
         let fieldIsRequired = true;
@@ -151,6 +180,8 @@ const View = ({ data, id, path }) => {
           } else {
             fieldIsRequired = false;
           }
+        } else if (hasDynamicVisibility && !shouldShow) {
+          fieldIsRequired = false;
         }
         // Some field types can't be required. TODO: Make these field types use `isValid`
         else if (fieldType === 'static_text' || fieldType === 'hidden') {
