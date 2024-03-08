@@ -32,7 +32,7 @@ const messages = defineMessages({
     id: 'form_submit_success',
     defaultMessage: 'Sent!',
   },
-  formErrors: {
+  form_errors: {
     id: 'form_errors_validation',
     defaultMessage: 'There are some errors in the form.',
   },
