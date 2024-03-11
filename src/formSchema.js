@@ -71,10 +71,20 @@ const messages = defineMessages({
     defaultMessage:
       'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
   },
+  manage_data: {
+    id: 'form_manage_data',
+    defaultMessage: 'Manage data',
+  },
 });
 
-export default (data) => {
+const Schema = (data) => {
   var intl = useIntl();
+
+  let conditional_required = [];
+  if (!data.store && !data.send) {
+    conditional_required.push('store');
+    conditional_required.push('send');
+  }
 
   return {
     title: intl.formatMessage(messages.form),
@@ -92,11 +102,12 @@ export default (data) => {
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
           'captcha',
-          'store',
-          'remove_data_after_days',
-          'send',
-          'send_message',
         ],
+      },
+      {
+        id: 'manage_data',
+        title: intl.formatMessage(messages.manage_data),
+        fields: ['store', 'remove_data_after_days', 'send', 'send_message'],
       },
     ],
     properties: {
@@ -141,7 +152,9 @@ export default (data) => {
       remove_data_after_days: {
         type: 'integer',
         title: intl.formatMessage(messages.remove_data_after_days),
-        description: intl.formatMessage(messages.remove_data_after_days_helptext),
+        description: intl.formatMessage(
+          messages.remove_data_after_days_helptext,
+        ),
         default: -1,
       },
       send: {
@@ -155,6 +168,12 @@ export default (data) => {
         description: intl.formatMessage(messages.send_message_helptext),
       },
     },
-    required: ['default_to', 'default_from', 'default_subject'],
+    required: [
+      'default_to',
+      'default_from',
+      'default_subject',
+      ...conditional_required,
+    ],
   };
 };
+export default Schema;

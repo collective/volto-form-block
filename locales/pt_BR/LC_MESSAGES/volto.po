@@ -299,6 +299,11 @@ msgstr "Enviar"
 msgid "form_edit_exportCsv"
 msgstr "Exportar dados"
 
+#: components/ValidateConfigForm
+# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
+msgid "form_edit_fill_required_configuration_fields"
+msgstr ""
+
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
@@ -409,6 +414,11 @@ msgstr "Área de texto"
 # defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} item(ns) armazenados"
+
+#: formSchema
+# defaultMessage: Manage data
+msgid "form_manage_data"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Data wipe

@@ -10,7 +10,6 @@ import {
   Confirm,
   Dimmer,
   Loader,
-  Divider,
 } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -20,7 +19,7 @@ import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
 import downloadSVG from '@plone/volto/icons/download.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
-import infoSVG from '@plone/volto/icons/info.svg';
+
 import warningSVG from '@plone/volto/icons/warning.svg';
 
 import {
@@ -29,11 +28,12 @@ import {
   clearFormData,
 } from 'volto-form-block/actions';
 
-import config from '@plone/volto/registry';
-
 import { BlockDataForm } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { getFieldName } from 'volto-form-block/components/utils';
+
+import './Sidebar.css';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   exportCsv: {

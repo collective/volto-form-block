@@ -9,6 +9,7 @@ import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
 import { Captcha } from 'volto-form-block/components/Widget';
 import { isValidEmail } from 'volto-form-block/helpers/validators';
+import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -307,19 +308,21 @@ const View = ({ data, id, path }) => {
   }, []);
 
   return (
-    <FormView
-      id={formid}
-      formState={formState}
-      formErrors={formErrors}
-      formData={formData}
-      captcha={captcha}
-      onChangeFormData={onChangeFormData}
-      data={data}
-      onSubmit={submit}
-      resetFormState={resetFormState}
-      resetFormOnError={resetFormOnError}
-      getErrorMessage={getErrorMessage}
-    />
+    <ValidateConfigForm data={data}>
+      <FormView
+        id={formid}
+        formState={formState}
+        formErrors={formErrors}
+        formData={formData}
+        captcha={captcha}
+        onChangeFormData={onChangeFormData}
+        data={data}
+        onSubmit={submit}
+        resetFormState={resetFormState}
+        resetFormOnError={resetFormOnError}
+        getErrorMessage={getErrorMessage}
+      />
+    </ValidateConfigForm>
   );
 };
 
