@@ -111,7 +111,15 @@ const FormView = ({
                 </>
               )}
               {/* Back button */}
-              <Button secondary type="clear" onClick={resetFormState}>
+              <Button
+                secondary
+                type="clear"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  resetFormState();
+                }}
+              >
                 {intl.formatMessage(messages.reset)}
               </Button>
             </Message>
