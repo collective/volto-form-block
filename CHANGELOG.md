@@ -1,3 +1,12 @@
+
+
+## [3.4.0](https://github.com/collective/volto-form-block/compare/v3.3.1...v3.4.0) (2024-03-13)
+
+
+### Features
+
+* view error for each field, validate form config ([#82](https://github.com/collective/volto-form-block/issues/82)) ([23e710c](https://github.com/collective/volto-form-block/commit/23e710c0a74b3bda9a64e9e6d11e16d925847bab))
+
 ### [3.3.1](https://github.com/collective/volto-form-block/compare/v3.3.0...v3.3.1) (2024-02-29)
 
 
