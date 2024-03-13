@@ -1,5 +1,12 @@
 
 
+### [3.4.1](https://github.com/collective/volto-form-block/compare/v3.4.0...v3.4.1) (2024-03-13)
+
+
+### Bug Fixes
+
+* validator for mail ([eded840](https://github.com/collective/volto-form-block/commit/eded840689b891df98316261508cecfbbfbd63e1))
+
 ## [3.4.0](https://github.com/collective/volto-form-block/compare/v3.3.1...v3.4.0) (2024-03-13)
 
 
