@@ -220,7 +220,7 @@ const FormView = ({
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
                     {data?.show_cancel && (
-                      <Button secondary type="clear" onClick={resetFormState}>
+                      <Button secondary type="button" onClick={resetFormState}>
                         {data.cancel_label ||
                           intl.formatMessage(messages.default_cancel_label)}
                       </Button>
