@@ -135,5 +135,6 @@
   "peerDependencies": {
     "@plone/volto": ">=16.0.0-alpha.38",
     "volto-subblocks": "^2.0.0"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
