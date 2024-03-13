@@ -1,0 +1,17 @@
+[id^='blockform-fieldset'] .required.field .ui.checkbox {
+    display: flex;
+}
+[id^='blockform-fieldset'] .required.field .ui.checkbox label {
+    display: inline-block;
+    padding-right: 20px;
+}
+[id^='blockform-fieldset'] .required.field .ui.checkbox::after {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: -15px;
+    margin-top: 2.5px;
+    background-color: #e40166;
+    content: '';
+}

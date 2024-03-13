@@ -32,9 +32,9 @@ const messages = defineMessages({
     id: 'form_submit_success',
     defaultMessage: 'Sent!',
   },
-  empty_values: {
-    id: 'form_empty_values_validation',
-    defaultMessage: 'Fill in the required fields',
+  form_errors: {
+    id: 'form_errors_validation',
+    defaultMessage: 'There are some errors in the form.',
   },
   reset: {
     id: 'form_reset',
@@ -53,12 +53,13 @@ const FormView = ({
   resetFormOnError,
   captcha,
   id,
+  getErrorMessage,
 }) => {
   const intl = useIntl();
   const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
 
   const isValidField = (field) => {
-    return formErrors?.indexOf(field) < 0;
+    return formErrors?.filter((e) => e.field === field).length === 0;
   };
 
   /* Function that replaces variables from the user customized message  */
@@ -110,7 +111,15 @@ const FormView = ({
                 </>
               )}
               {/* Back button */}
-              <Button secondary type="clear" onClick={resetFormState}>
+              <Button
+                secondary
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  resetFormState();
+                }}
+              >
                 {intl.formatMessage(messages.reset)}
               </Button>
             </Message>
@@ -183,6 +192,7 @@ const FormView = ({
                               : formData[name]?.value
                           }
                           valid={isValidField(name)}
+                          errorMessage={getErrorMessage(name)}
                           formHasErrors={formErrors?.length > 0}
                         />
                       </Grid.Column>
@@ -195,7 +205,7 @@ const FormView = ({
                     <Message.Header as="h4">
                       {intl.formatMessage(messages.error)}
                     </Message.Header>
-                    <p>{intl.formatMessage(messages.empty_values)}</p>
+                    <p>{intl.formatMessage(messages.form_errors)}</p>
                   </Message>
                 )}
 
@@ -210,7 +220,7 @@ const FormView = ({
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
                     {data?.show_cancel && (
-                      <Button secondary type="clear" onClick={resetFormState}>
+                      <Button secondary type="button" onClick={resetFormState}>
                         {data.cancel_label ||
                           intl.formatMessage(messages.default_cancel_label)}
                       </Button>

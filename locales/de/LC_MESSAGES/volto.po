@@ -293,6 +293,11 @@ msgstr "Senden"
 msgid "form_edit_exportCsv"
 msgstr "Daten exportieren"
 
+#: components/ValidateConfigForm
+# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
+msgid "form_edit_fill_required_configuration_fields"
+msgstr ""
+
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
@@ -304,9 +309,9 @@ msgid "form_edit_warning_from"
 msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
 
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
-msgstr "Füllen Sie bitte die erforderlichen Felder aus"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Description
@@ -405,6 +410,11 @@ msgid "form_formDataCount"
 msgstr "{formDataCount} Element(e) gespeichert"
 
 #: formSchema
+# defaultMessage: Manage data
+msgid "form_manage_data"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Data wipe
 msgid "form_remove_data_after_days"
 msgstr ""
@@ -483,6 +493,21 @@ msgstr "Als Antwortadresse nutzen"
 # defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
+
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
+msgstr ""
 
 #: components/Sidebar
 # defaultMessage: remove expired data
