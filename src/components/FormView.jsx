@@ -113,7 +113,7 @@ const FormView = ({
               {/* Back button */}
               <Button
                 secondary
-                type="clear"
+                type="button"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
