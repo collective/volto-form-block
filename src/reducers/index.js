@@ -129,7 +129,6 @@ export const exportCsvFormData = (state = initialState, action = {}) => {
         loading: true,
       };
     case `${EXPORT_CSV_FORMDATA}_SUCCESS`:
-      console.log(action);
       download(action.filename ?? `export-form.csv`, action.result);
 
       return {
