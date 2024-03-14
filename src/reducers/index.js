@@ -30,6 +30,7 @@ const initialState = {
   error: null,
   loaded: false,
   loading: false,
+  subrequests: {},
 };
 
 /**
@@ -42,26 +43,69 @@ const initialState = {
 export const submitForm = (state = initialState, action = {}) => {
   switch (action.type) {
     case `${SUBMIT_FORM_ACTION}_PENDING`:
-      return {
-        ...state,
-        error: null,
-        loaded: false,
-        loading: true,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {
+                  items: [],
+                  total: 0,
+                  batching: {},
+                }),
+                error: null,
+                loaded: false,
+                loading: true,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
     case `${SUBMIT_FORM_ACTION}_SUCCESS`:
-      return {
-        ...state,
-        error: null,
-        loaded: true,
-        loading: false,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: null,
+                loaded: true,
+                loading: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loaded: true,
+            loading: false,
+          };
     case `${SUBMIT_FORM_ACTION}_FAIL`:
-      return {
-        ...state,
-        error: action.error,
-        loaded: false,
-        loading: false,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                loading: false,
+                loaded: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: action.error,
+            loading: false,
+            loaded: false,
+          };
+
     default:
       return state;
   }
@@ -85,10 +129,8 @@ export const exportCsvFormData = (state = initialState, action = {}) => {
         loading: true,
       };
     case `${EXPORT_CSV_FORMDATA}_SUCCESS`:
-      download(
-        `export-${state.content?.data?.id ?? 'form'}.csv`,
-        action.result,
-      );
+      console.log(action);
+      download(action.filename ?? `export-form.csv`, action.result);
 
       return {
         ...state,

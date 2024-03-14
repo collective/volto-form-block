@@ -159,6 +159,7 @@ const Sidebar = ({
                           exportCsvFormData(
                             flattenToAppURL(properties['@id']),
                             `export-${properties.id ?? 'form'}.csv`,
+                            block,
                           ),
                         )
                       }

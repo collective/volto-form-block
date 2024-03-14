@@ -110,7 +110,10 @@ const View = ({ data, id, path }) => {
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
-  const submitResults = useSelector((state) => state.submitForm);
+
+  const submitResults = useSelector(
+    (state) => state.submitForm?.subrequests?.[id],
+  );
   const captchaToken = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {

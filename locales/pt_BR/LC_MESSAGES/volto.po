@@ -304,6 +304,11 @@ msgstr "Exportar dados"
 msgid "form_edit_fill_required_configuration_fields"
 msgstr ""
 
+#: components/ValidateConfigForm
+# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
+msgid "form_edit_other_errors"
+msgstr ""
+
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
