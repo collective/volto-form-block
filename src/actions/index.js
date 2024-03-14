@@ -16,6 +16,7 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
 export function submitForm(path = '', block_id, data, attachments, captcha) {
   return {
     type: SUBMIT_FORM_ACTION,
+    subrequest: block_id,
     request: {
       op: 'post',
       path: path + '/@submit-form',
@@ -35,12 +36,15 @@ export function submitForm(path = '', block_id, data, attachments, captcha) {
  */
 export const EXPORT_CSV_FORMDATA = 'EXPORT_CSV_FORMDATA';
 
-export function exportCsvFormData(path = '') {
+export function exportCsvFormData(path = '', filename, block_id) {
   return {
     type: EXPORT_CSV_FORMDATA,
+    filename: filename,
     request: {
       op: 'get',
-      path: path + '/@form-data-export',
+      path: `${path}/@form-data-export${
+        block_id ? '?block_id=' + block_id : ''
+      }`,
     },
   };
 }

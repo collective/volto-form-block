@@ -296,7 +296,12 @@ msgstr "Esporta in CSV"
 #: components/ValidateConfigForm
 # defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
-msgstr "Inserire i campi obbligatori per la configurazione del form nella sidebar di destra. Il form non verrà mostrata sul sito finché i campi obbligatori non saranno configurati."
+msgstr "Inserire i campi obbligatori per la configurazione del form nella sidebar di destra. Il form non verrà mostrato sul sito finché i campi obbligatori non saranno configurati."
+
+#: components/ValidateConfigForm
+# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
+msgid "form_edit_other_errors"
+msgstr "Verifica i seguenti errori di configurazione nella sidebar di destra. Il form non verrà mostrato sul sito finchè questi errori non sono stati sistemati."
 
 #: components/Edit
 # defaultMessage: Attenzione!

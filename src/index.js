@@ -46,6 +46,9 @@ const applyConfig = (config) => {
         from: FromSchemaExtender,
         hidden: HiddenSchemaExtender,
       },
+      schemaValidators: {
+        /*fieldname: validationFN(data)*/
+      },
       attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
@@ -65,11 +68,11 @@ const applyConfig = (config) => {
     clearFormData,
   };
 
-  config.settings.loadables['HCaptcha'] = loadable(() =>
-    import('@hcaptcha/react-hcaptcha'),
+  config.settings.loadables['HCaptcha'] = loadable(
+    () => import('@hcaptcha/react-hcaptcha'),
   );
-  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
-    import('react-google-recaptcha-v3'),
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(
+    () => import('react-google-recaptcha-v3'),
   );
 
   return config;
