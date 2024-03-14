@@ -1,5 +1,12 @@
 
 
+## [3.5.0](https://github.com/collective/volto-form-block/compare/v3.4.1...v3.5.0) (2024-03-14)
+
+
+### Features
+
+* Validate field config and fix multiple form in page ([#83](https://github.com/collective/volto-form-block/issues/83)) ([ca373b6](https://github.com/collective/volto-form-block/commit/ca373b685481988effff667f10461214766c5977))
+
 ### [3.4.1](https://github.com/collective/volto-form-block/compare/v3.4.0...v3.4.1) (2024-03-13)
 
 
