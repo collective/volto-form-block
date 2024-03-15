@@ -63,9 +63,11 @@ const ValidateConfigForm = ({ data = {}, children, onEdit, onChangeBlock }) => {
     }
   }, [data]);
 
+  const valid = data.configValidation?.valid || !data.configValidation; //!data.configValidation is for old configured form that doesn't have configValidation field
+
   return (
     <>
-      {data.configValidation && !data.configValidation?.valid && onEdit && (
+      {!valid && onEdit && (
         <div
           style={{
             padding: '1rem',
@@ -90,7 +92,7 @@ const ValidateConfigForm = ({ data = {}, children, onEdit, onChangeBlock }) => {
           )}
         </div>
       )}
-      {(data.configValidation?.valid || onEdit) && <>{children}</>}
+      {(valid || onEdit) && <>{children}</>}
     </>
   );
 };
