@@ -1,5 +1,12 @@
 
 
+### [3.5.2](https://github.com/collective/volto-form-block/compare/v3.5.1...v3.5.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* view form ([6b389bc](https://github.com/collective/volto-form-block/commit/6b389bc06ed7fd72f8f3287c230e0a7013544e42))
+
 ### [3.5.1](https://github.com/collective/volto-form-block/compare/v3.5.0...v3.5.1) (2024-03-15)
 
 
