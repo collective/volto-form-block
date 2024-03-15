@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import config from '@plone/volto/registry';
 
@@ -15,11 +15,9 @@ const messages = defineMessages({
   },
 });
 
-const ValidateConfigForm = ({ data = {}, children, onEdit }) => {
-  const intl = useIntl();
-  var Schema = config.blocks.blocksConfig.form.formSchema;
+const ValidateConfig = (data, blockSchema) => {
   var SchemaValidators = config.blocks.blocksConfig.form.schemaValidators;
-  var blockSchema = Schema(data);
+
   const required_fields = blockSchema.required;
   const noRequired =
     required_fields.filter(
@@ -46,9 +44,28 @@ const ValidateConfigForm = ({ data = {}, children, onEdit }) => {
 
   const valid = noRequired && noInvalidFields;
 
+  return { valid: valid, required_fields, schema_validation };
+};
+
+const ValidateConfigForm = ({ data = {}, children, onEdit, onChangeBlock }) => {
+  const intl = useIntl();
+  var Schema = config.blocks.blocksConfig.form.formSchema;
+  var blockSchema = Schema(data);
+
+  useEffect(() => {
+    if (onEdit) {
+      const validation = ValidateConfig(data, blockSchema);
+      if (
+        JSON.stringify(validation) !== JSON.stringify(data.configValidation)
+      ) {
+        onChangeBlock({ ...data, configValidation: validation });
+      }
+    }
+  }, [data]);
+
   return (
     <>
-      {!valid && onEdit && (
+      {data.configValidation && !data.configValidation?.valid && onEdit && (
         <div
           style={{
             padding: '1rem',
@@ -58,14 +75,14 @@ const ValidateConfigForm = ({ data = {}, children, onEdit }) => {
             borderRadius: '3px',
           }}
         >
-          {!noRequired && (
+          {data.configValidation.required_fields?.length > 0 && (
             <>{intl.formatMessage(messages.fill_required_config_fields)}</>
           )}
-          {schema_validation?.length > 0 && (
+          {data.configValidation.schema_validation?.length > 0 && (
             <div>
               {intl.formatMessage(messages.other_errors)}
               <ul>
-                {schema_validation.map((v) => (
+                {data.configValidation.schema_validation.map((v) => (
                   <li>{v.message}</li>
                 ))}
               </ul>
@@ -73,7 +90,7 @@ const ValidateConfigForm = ({ data = {}, children, onEdit }) => {
           )}
         </div>
       )}
-      {(valid || onEdit) && <>{children}</>}
+      {(data.configValidation?.valid || onEdit) && <>{children}</>}
     </>
   );
 };

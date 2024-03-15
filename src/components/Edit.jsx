@@ -68,7 +68,13 @@ class Edit extends SubblocksEdit {
 
     return (
       <div className="public-ui">
-        <ValidateConfigForm data={this.props.data} onEdit={true}>
+        <ValidateConfigForm
+          data={this.props.data}
+          onEdit={true}
+          onChangeBlock={(data) => {
+            this.props.onChangeBlock(this.props.block, data);
+          }}
+        >
           <Segment>
             {this.props.data.title && <h2>{this.props.data.title}</h2>}
             {this.props.data.description && (
