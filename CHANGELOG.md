@@ -1,5 +1,22 @@
 
 
+## [3.7.0](https://github.com/collective/volto-form-block/compare/v3.5.2...v3.7.0) (2024-03-18)
+
+
+### Features
+
+* added default validators for field default_from and default_to ([ba41002](https://github.com/collective/volto-form-block/commit/ba410028c45ef8472f6c68a6cefa28b4b1f34d71))
+
+
+### Bug Fixes
+
+* removed 'required' option for field type 'static_text ([32c4ef5](https://github.com/collective/volto-form-block/commit/32c4ef5e8851b29fbfddb95c0db7c86c01de4043))
+
+
+### Maintenance
+
+* removed unused translations ([164bd34](https://github.com/collective/volto-form-block/commit/164bd3422f1fe0493007e789412b5ca908fd6b8b))
+
 ### [3.5.2](https://github.com/collective/volto-form-block/compare/v3.5.1...v3.5.2) (2024-03-15)
 
 
