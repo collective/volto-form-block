@@ -1,5 +1,4 @@
 import loadable from '@loadable/component';
-import { defineMessages } from 'react-intl';
 import formSVG from '@plone/volto/icons/form.svg';
 import View from 'volto-form-block/components/View';
 import Edit from 'volto-form-block/components/Edit';
@@ -33,19 +32,6 @@ export {
   exportCsvFormData,
 } from 'volto-form-block/actions';
 export { isValidEmail };
-
-const messages = defineMessages({
-  invalid_default_from: {
-    id: 'form_edit_invalid_from_email',
-    defaultMessage:
-      "The e-mail entered in the 'From' field must be a valid e-mail address.",
-  },
-  invalid_default_to: {
-    id: 'form_edit_invalid_to_email',
-    defaultMessage:
-      "The e-mail entered in the 'Receipients' field must be a valid e-mail address.",
-  },
-});
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
