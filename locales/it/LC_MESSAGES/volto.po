@@ -298,6 +298,16 @@ msgstr "Esporta in CSV"
 msgid "form_edit_fill_required_configuration_fields"
 msgstr "Inserire i campi obbligatori per la configurazione del form nella sidebar di destra. Il form non verrà mostrato sul sito finché i campi obbligatori non saranno configurati."
 
+#: index
+# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
+msgid "form_edit_invalid_from_email"
+msgstr "L'e-mail inserita nel campo 'Mittente di default' deve essere un indirizzo e-mail valido"
+
+#: index
+# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
+msgid "form_edit_invalid_to_email"
+msgstr "Le e-mail inserite nel campo 'Destinatari' devono essere indirizzi e-mail validi."
+
 #: components/ValidateConfigForm
 # defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 msgid "form_edit_other_errors"

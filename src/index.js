@@ -1,4 +1,5 @@
 import loadable from '@loadable/component';
+import { defineMessages } from 'react-intl';
 import formSVG from '@plone/volto/icons/form.svg';
 import View from 'volto-form-block/components/View';
 import Edit from 'volto-form-block/components/Edit';
@@ -20,11 +21,31 @@ import {
   FromSchemaExtender,
   HiddenSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
+import {
+  isValidEmail,
+  validateDefaultFrom,
+  validateDefaultTo,
+} from 'volto-form-block/helpers/validators';
+
 export {
   submitForm,
   getFormData,
   exportCsvFormData,
 } from 'volto-form-block/actions';
+export { isValidEmail };
+
+const messages = defineMessages({
+  invalid_default_from: {
+    id: 'form_edit_invalid_from_email',
+    defaultMessage:
+      "The e-mail entered in the 'From' field must be a valid e-mail address.",
+  },
+  invalid_default_to: {
+    id: 'form_edit_invalid_to_email',
+    defaultMessage:
+      "The e-mail entered in the 'Receipients' field must be a valid e-mail address.",
+  },
+});
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
@@ -48,6 +69,12 @@ const applyConfig = (config) => {
       },
       schemaValidators: {
         /*fieldname: validationFN(data)*/
+        default_from: (data, intl) => {
+          return validateDefaultFrom(data.default_from, intl);
+        },
+        default_to: (data, intl) => {
+          return validateDefaultTo(data.default_to, intl);
+        },
       },
       attachment_fields: ['attachment'],
       restricted: false,

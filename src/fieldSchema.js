@@ -101,6 +101,7 @@ export default (props) => {
   const schemaExtenderValues = schemaExtender
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
+  console.log(props);
   return {
     title: props?.label || '',
     fieldsets: [

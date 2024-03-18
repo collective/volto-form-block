@@ -15,7 +15,7 @@ const messages = defineMessages({
   },
 });
 
-const ValidateConfig = (data, blockSchema) => {
+const ValidateConfig = (data, blockSchema, intl) => {
   var SchemaValidators = config.blocks.blocksConfig.form.schemaValidators;
 
   const required_fields = blockSchema.required;
@@ -32,7 +32,7 @@ const ValidateConfig = (data, blockSchema) => {
   if (SchemaValidators) {
     Object.keys(SchemaValidators).forEach((fieldName) => {
       const validateFieldFN = SchemaValidators[fieldName];
-      const validation = validateFieldFN(data);
+      const validation = validateFieldFN(data, intl);
 
       if (validation) {
         schema_validation.push({ field: fieldName, message: validation });
@@ -54,7 +54,7 @@ const ValidateConfigForm = ({ data = {}, children, onEdit, onChangeBlock }) => {
 
   useEffect(() => {
     if (onEdit) {
-      const validation = ValidateConfig(data, blockSchema);
+      const validation = ValidateConfig(data, blockSchema, intl);
       if (
         JSON.stringify(validation) !== JSON.stringify(data.configValidation)
       ) {

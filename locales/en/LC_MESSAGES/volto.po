@@ -298,6 +298,16 @@ msgstr "Export in CSV"
 msgid "form_edit_fill_required_configuration_fields"
 msgstr ""
 
+#: index
+# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
+msgid "form_edit_invalid_from_email"
+msgstr ""
+
+#: index
+# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
+msgid "form_edit_invalid_to_email"
+msgstr ""
+
 #: components/ValidateConfigForm
 # defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 msgid "form_edit_other_errors"
