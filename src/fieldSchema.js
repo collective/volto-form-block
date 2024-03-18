@@ -113,7 +113,7 @@ export default (props) => {
           'description',
           'field_type',
           ...schemaExtenderValues.fields,
-          'required',
+          ...(props.field_type === 'static_text' ? [] : ['required']),
         ],
       },
     ],
