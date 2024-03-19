@@ -1,5 +1,17 @@
 
 
+### [3.7.1](https://github.com/collective/volto-form-block/compare/v3.7.0...v3.7.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* empty props ([e03df2e](https://github.com/collective/volto-form-block/commit/e03df2e984d5338c106bf61f83c1428c08ef39dc))
+
+
+### Maintenance
+
+* removed console.log ([3022402](https://github.com/collective/volto-form-block/commit/302240223280c75dbb447697451b846ffb15e212))
+
 ## [3.7.0](https://github.com/collective/volto-form-block/compare/v3.5.2...v3.7.0) (2024-03-18)
 
 
