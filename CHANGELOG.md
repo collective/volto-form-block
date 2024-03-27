@@ -1,5 +1,12 @@
 
 
+### [3.7.2](https://github.com/collective/volto-form-block/compare/v3.7.1...v3.7.2) (2024-03-27)
+
+
+### Bug Fixes
+
+* Fix 'error is null' when adding form block. ([06f8300](https://github.com/collective/volto-form-block/commit/06f830071396aeaa798c58459c068421bd47177e))
+
 ### [3.7.1](https://github.com/collective/volto-form-block/compare/v3.7.0...v3.7.1) (2024-03-19)
 
 
