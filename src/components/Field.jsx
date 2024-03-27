@@ -53,7 +53,7 @@ const Field = ({
     return !isOnEdit && !valid;
   };
 
-  const error = errorMessage ? [errorMessage] : null;
+  const error = errorMessage ? [errorMessage] : [];
 
   return (
     <div className="field">
