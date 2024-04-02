@@ -1,11 +1,21 @@
 import loadable from '@loadable/component';
 import formSVG from '@plone/volto/icons/form.svg';
-import View from 'volto-form-block/components/View';
-import Edit from 'volto-form-block/components/Edit';
-import FormView from 'volto-form-block/components/FormView';
-import Sidebar from 'volto-form-block/components/Sidebar';
-import EditBlock from 'volto-form-block/components/EditBlock';
-import Field from 'volto-form-block/components/Field';
+
+// import View from 'volto-form-block/components/View';
+// import Edit from 'volto-form-block/components/Edit';
+// import FormView from 'volto-form-block/components/FormView';
+// import Sidebar from 'volto-form-block/components/Sidebar';
+// import EditBlock from 'volto-form-block/components/EditBlock';
+// import Field from 'volto-form-block/components/Field';
+import {
+  View,
+  Edit,
+  FormView,
+  Sidebar,
+  EditBlock,
+  Field,
+} from 'volto-form-block/components';
+
 import { downloadFile, getFieldName } from 'volto-form-block/components/utils';
 import {
   submitForm,
@@ -81,11 +91,11 @@ const applyConfig = (config) => {
     clearFormData,
   };
 
-  config.settings.loadables['HCaptcha'] = loadable(
-    () => import('@hcaptcha/react-hcaptcha'),
+  config.settings.loadables['HCaptcha'] = loadable(() =>
+    import('@hcaptcha/react-hcaptcha'),
   );
-  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(
-    () => import('react-google-recaptcha-v3'),
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
+    import('react-google-recaptcha-v3'),
   );
 
   return config;
