@@ -165,7 +165,7 @@ const Schema = (data) => {
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
-        type: 'array',
+        type: 'string',
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
@@ -173,6 +173,14 @@ const Schema = (data) => {
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
+      },
+      remove_data_after_days: {
+        type: 'integer',
+        title: intl.formatMessage(messages.remove_data_after_days),
+        description: intl.formatMessage(
+          messages.remove_data_after_days_helptext,
+        ),
+        default: -1,
       },
       send: {
         type: 'boolean',
@@ -198,7 +206,12 @@ const Schema = (data) => {
           )
         : {}),
     },
-    required: ['default_to', 'default_from', 'default_subject'],
+    required: [
+      'default_to',
+      'default_from',
+      'default_subject',
+      ...conditional_required,
+    ],
   };
 };
 
