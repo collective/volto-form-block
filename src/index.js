@@ -18,12 +18,20 @@ import FieldSchema from 'volto-form-block/fieldSchema';
 import {
   SelectionSchemaExtender,
   FromSchemaExtender,
+  HiddenSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
+import {
+  isValidEmail,
+  validateDefaultFrom,
+  validateDefaultTo,
+} from 'volto-form-block/helpers/validators';
+
 export {
   submitForm,
   getFormData,
   exportCsvFormData,
 } from 'volto-form-block/actions';
+export { isValidEmail };
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
@@ -43,7 +51,18 @@ const applyConfig = (config) => {
         single_choice: SelectionSchemaExtender,
         multiple_choice: SelectionSchemaExtender,
         from: FromSchemaExtender,
+        hidden: HiddenSchemaExtender,
       },
+      schemaValidators: {
+        /*fieldname: validationFN(data)*/
+        default_from: (data, intl) => {
+          return validateDefaultFrom(data.default_from, intl);
+        },
+        default_to: (data, intl) => {
+          return validateDefaultTo(data.default_to, intl);
+        },
+      },
+      attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
       security: {
@@ -62,11 +81,11 @@ const applyConfig = (config) => {
     clearFormData,
   };
 
-  config.settings.loadables['HCaptcha'] = loadable(() =>
-    import('@hcaptcha/react-hcaptcha'),
+  config.settings.loadables['HCaptcha'] = loadable(
+    () => import('@hcaptcha/react-hcaptcha'),
   );
-  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
-    import('react-google-recaptcha-v3'),
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(
+    () => import('react-google-recaptcha-v3'),
   );
 
   return config;

@@ -20,6 +20,10 @@ const messages = defineMessages({
     id: 'form_default_submit_label',
     defaultMessage: 'Submit',
   },
+  default_cancel_label: {
+    id: 'form_default_cancel_label',
+    defaultMessage: 'Cancel',
+  },
   error: {
     id: 'Error',
     defaultMessage: 'Error',
@@ -28,9 +32,9 @@ const messages = defineMessages({
     id: 'form_submit_success',
     defaultMessage: 'Sent!',
   },
-  empty_values: {
-    id: 'form_empty_values_validation',
-    defaultMessage: 'Fill in the required fields',
+  form_errors: {
+    id: 'form_errors_validation',
+    defaultMessage: 'There are some errors in the form.',
   },
   reset: {
     id: 'form_reset',
@@ -49,12 +53,35 @@ const FormView = ({
   resetFormOnError,
   captcha,
   id,
+  getErrorMessage,
 }) => {
   const intl = useIntl();
   const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
 
   const isValidField = (field) => {
-    return formErrors?.indexOf(field) < 0;
+    return formErrors?.filter((e) => e.field === field).length === 0;
+  };
+
+  /* Function that replaces variables from the user customized message  */
+  const replaceMessage = (text) => {
+    let i = 0;
+    while (i < data.subblocks.length) {
+      let idField = getFieldName(
+        data.subblocks[i].label,
+        data.subblocks[i].field_id,
+      );
+      text = text.replaceAll(
+        '${' + idField + '}',
+        formData[idField]?.value || '',
+      );
+      i++;
+    }
+    return text;
+  };
+
+  const submit = (e) => {
+    resetFormOnError();
+    onSubmit(e);
   };
 
   return (
@@ -65,23 +92,34 @@ const FormView = ({
           {data.description && (
             <p className="description">{data.description}</p>
           )}
-          {formState.error ? (
-            <Message error role="alert">
-              <Message.Header as="h4">
-                {intl.formatMessage(messages.error)}
-              </Message.Header>
-              <p>{formState.error}</p>
-              <Button secondary type="clear" onClick={resetFormOnError}>
-                {intl.formatMessage(messages.reset)}
-              </Button>
-            </Message>
-          ) : formState.result ? (
+          {formState.result ? (
             <Message positive role="alert">
-              <Message.Header as="h4">
-                {intl.formatMessage(messages.success)}
-              </Message.Header>
-              <p>{formState.result}</p>
-              <Button secondary type="clear" onClick={resetFormState}>
+              {/* Custom message */}
+              {data.send_message ? (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: replaceMessage(data.send_message),
+                  }}
+                />
+              ) : (
+                <>
+                  {/* Default message */}
+                  <Message.Header as="h4">
+                    {intl.formatMessage(messages.success)}
+                  </Message.Header>
+                  <p>{formState.result}</p>
+                </>
+              )}
+              {/* Back button */}
+              <Button
+                secondary
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  resetFormState();
+                }}
+              >
                 {intl.formatMessage(messages.reset)}
               </Button>
             </Message>
@@ -89,7 +127,7 @@ const FormView = ({
             <Form
               id={id}
               loading={formState.loading}
-              onSubmit={onSubmit}
+              onSubmit={submit}
               autoComplete="off"
               method="post"
             >
@@ -154,6 +192,7 @@ const FormView = ({
                               : formData[name]?.value
                           }
                           valid={isValidField(name)}
+                          errorMessage={getErrorMessage(name)}
                           formHasErrors={formErrors?.length > 0}
                         />
                       </Grid.Column>
@@ -166,11 +205,34 @@ const FormView = ({
                     <Message.Header as="h4">
                       {intl.formatMessage(messages.error)}
                     </Message.Header>
-                    <p>{intl.formatMessage(messages.empty_values)}</p>
+                    <p>{intl.formatMessage(messages.form_errors)}</p>
+                  </Message>
+                )}
+
+                {formState.error && (
+                  <Message error role="alert">
+                    <Message.Header as="h4">
+                      {intl.formatMessage(messages.error)}
+                    </Message.Header>
+                    <p>{formState.error}</p>
                   </Message>
                 )}
                 <Grid.Row centered className="row-padded-top">
                   <Grid.Column textAlign="center">
+                    {data?.show_cancel && (
+                      <Button
+                        secondary
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          resetFormState();
+                        }}
+                      >
+                        {data.cancel_label ||
+                          intl.formatMessage(messages.default_cancel_label)}
+                      </Button>
+                    )}
                     <Button primary type="submit" disabled={formState.loading}>
                       {data.submit_label ||
                         intl.formatMessage(messages.default_submit_label)}

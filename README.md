@@ -116,6 +116,24 @@ i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
 
+## Schema validators
+
+If you want to validate configuration field (for example, testing if 'From email' is an address of a specific domain), you could add your validation functions to block config:
+
+```js
+config.blocks.blocksConfig.form = {
+  ...config.blocks.blocksConfig.form,
+  schemaValidators: {
+    fieldname: yourValidationFN(data),
+  },
+};
+```
+
+`yourValidationFN` have to return:
+
+- null if field is valid
+- a string with the error message if field is invalid.
+
 ## Upgrade guide
 
 To upgrade to version 2.4.0 you need to:

@@ -6,6 +6,7 @@ npm-debug.log*
 .DS_Store
 *.swp
 yarn-error.log
+.yarn/
 
 node_modules
 build
@@ -15,3 +16,12 @@ dist
 .env.test.local
 .env.production.local
 *~
+
+# Yarn 3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -6,6 +6,7 @@ export { default as EmailWidget } from 'volto-form-block/components/Widget/Email
 export { default as FileWidget } from 'volto-form-block/components/Widget/FileWidget';
 export { default as GoogleReCaptchaWidget } from 'volto-form-block/components/Widget/GoogleReCaptchaWidget';
 export { default as HCaptchaWidget } from 'volto-form-block/components/Widget/HCaptchaWidget';
+export { HiddenWidget } from 'volto-form-block/components/Widget/HiddenWidget';
 export { default as HoneypotCaptchaWidget } from 'volto-form-block/components/Widget/HoneypotCaptchaWidget';
 export { default as NoRobotsCaptchaWidget } from 'volto-form-block/components/Widget/NoRobotsCaptchaWidget';
 export { default as RadioWidget } from 'volto-form-block/components/Widget/RadioWidget';
