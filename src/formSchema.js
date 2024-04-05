@@ -210,6 +210,7 @@ const Schema = (data) => {
       'default_to',
       'default_from',
       'default_subject',
+      'captcha',
       ...conditional_required,
     ],
   };
