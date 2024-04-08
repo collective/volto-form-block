@@ -24,12 +24,6 @@
   "addons": [
     "volto-subblocks"
   ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
   "prettier": {
     "trailingComma": "all",
     "singleQuote": true,
