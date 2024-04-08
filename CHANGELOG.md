@@ -1,3 +1,11 @@
+### [3.7.3](https://github.com/collective/volto-form-block/compare/v3.7.2...v3.7.3) (2024-04-08)
+
+
+### Maintenance
+
+* gitignore ([435d0d7](https://github.com/collective/volto-form-block/commit/435d0d793a1ae3a7670221cb4df5fd72254a4af8))
+* lazy loading components to improve bundle size ([#92](https://github.com/collective/volto-form-block/issues/92)) ([e791bf0](https://github.com/collective/volto-form-block/commit/e791bf032255459697b71ac3a06a2d50629c13d8))
+
 
 
 ### [3.7.2](https://github.com/collective/volto-form-block/compare/v3.7.1...v3.7.2) (2024-03-27)
