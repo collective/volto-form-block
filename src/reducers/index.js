@@ -50,9 +50,7 @@ export const submitForm = (state = initialState, action = {}) => {
               ...state.subrequests,
               [action.subrequest]: {
                 ...(state.subrequests[action.subrequest] || {
-                  items: [],
-                  total: 0,
-                  batching: {},
+                  result: null,
                 }),
                 error: null,
                 loaded: false,
@@ -62,6 +60,7 @@ export const submitForm = (state = initialState, action = {}) => {
           }
         : {
             ...state,
+            result: null,
             error: null,
             loading: true,
             loaded: false,
@@ -74,6 +73,7 @@ export const submitForm = (state = initialState, action = {}) => {
               ...state.subrequests,
               [action.subrequest]: {
                 ...(state.subrequests[action.subrequest] || {}),
+                result: action.result,
                 error: null,
                 loaded: true,
                 loading: false,
@@ -82,6 +82,7 @@ export const submitForm = (state = initialState, action = {}) => {
           }
         : {
             ...state,
+            result: action.result,
             error: null,
             loaded: true,
             loading: false,
@@ -94,6 +95,7 @@ export const submitForm = (state = initialState, action = {}) => {
               ...state.subrequests,
               [action.subrequest]: {
                 ...(state.subrequests[action.subrequest] || {}),
+                result: null,
                 loading: false,
                 loaded: false,
               },
@@ -102,6 +104,7 @@ export const submitForm = (state = initialState, action = {}) => {
         : {
             ...state,
             error: action.error,
+            result: null,
             loading: false,
             loaded: false,
           };

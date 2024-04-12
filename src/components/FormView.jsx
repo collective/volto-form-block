@@ -65,15 +65,10 @@ const FormView = ({
   /* Function that replaces variables from the user customized message  */
   const replaceMessage = (text) => {
     let i = 0;
-    while (i < data.subblocks.length) {
-      let idField = getFieldName(
-        data.subblocks[i].label,
-        data.subblocks[i].field_id,
-      );
-      text = text.replaceAll(
-        '${' + idField + '}',
-        formData[idField]?.value || '',
-      );
+    const sent_data = formState.result.data;
+    while (i < sent_data.length) {
+      let idField = sent_data[i].label;
+      text = text.replaceAll('${' + idField + '}', sent_data[i].value ?? '');
       i++;
     }
     return text;
@@ -92,6 +87,7 @@ const FormView = ({
           {data.description && (
             <p className="description">{data.description}</p>
           )}
+
           {formState.result ? (
             <Message positive role="alert">
               {/* Custom message */}
