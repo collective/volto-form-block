@@ -10,6 +10,7 @@ import config from '@plone/volto/registry';
 import { Captcha } from 'volto-form-block/components/Widget';
 import { isValidEmail } from 'volto-form-block/helpers/validators';
 import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
+import { OTP_FIELDNAME_EXTENDER } from 'volto-form-block/components/Widget';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -27,6 +28,10 @@ const messages = defineMessages({
   invalidEmailMessage: {
     id: 'formblock_invalidEmailMessage',
     defaultMessage: 'The email is incorrect',
+  },
+  insertOtp: {
+    id: 'formblock_insertOtp_error',
+    defaultMessage: 'Please, insert the OTP code recived via email.',
   },
 });
 
@@ -132,6 +137,7 @@ const View = ({ data, id, path }) => {
     data.subblocks.forEach((subblock, index) => {
       const name = getFieldName(subblock.label, subblock.id);
       const fieldType = subblock.field_type;
+      const isBCC = subblock.use_as_bcc;
       const additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
@@ -172,14 +178,20 @@ const View = ({ data, id, path }) => {
           message: intl.formatMessage(messages.requiredFieldMessage),
         });
       } else if (
-        fieldType === 'from' &&
-        formData[name]?.value &&
-        !isValidEmail(formData[name].value)
+        (fieldType === 'from' || fieldType === 'email') &&
+        formData[name]?.value
       ) {
-        v.push({
-          field: name,
-          message: intl.formatMessage(messages.invalidEmailMessage),
-        });
+        if (!isValidEmail(formData[name].value)) {
+          v.push({
+            field: name,
+            message: intl.formatMessage(messages.invalidEmailMessage),
+          });
+        } else if (isBCC && !formData[name].otp) {
+          v.push({
+            field: name + OTP_FIELDNAME_EXTENDER,
+            message: intl.formatMessage(messages.insertOtp),
+          });
+        }
       }
     });
 
@@ -324,6 +336,8 @@ const View = ({ data, id, path }) => {
         resetFormState={resetFormState}
         resetFormOnError={resetFormOnError}
         getErrorMessage={getErrorMessage}
+        path={path}
+        block_id={id}
       />
     </ValidateConfigForm>
   );

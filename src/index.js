@@ -16,6 +16,7 @@ import {
   getFormData,
   exportCsvFormData,
   clearFormData,
+  sendOTP,
 } from 'volto-form-block/reducers';
 import FormSchema from 'volto-form-block/formSchema';
 import FieldSchema from 'volto-form-block/fieldSchema';
@@ -34,6 +35,7 @@ export {
   submitForm,
   getFormData,
   exportCsvFormData,
+  sendOTP,
 } from 'volto-form-block/actions';
 export { isValidEmail };
 
@@ -83,13 +85,14 @@ const applyConfig = (config) => {
     formData: getFormData,
     exportCsvFormData,
     clearFormData,
+    sendOTP,
   };
 
-  config.settings.loadables['HCaptcha'] = loadable(() =>
-    import('@hcaptcha/react-hcaptcha'),
+  config.settings.loadables['HCaptcha'] = loadable(
+    () => import('@hcaptcha/react-hcaptcha'),
   );
-  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
-    import('react-google-recaptcha-v3'),
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(
+    () => import('react-google-recaptcha-v3'),
   );
 
   return config;

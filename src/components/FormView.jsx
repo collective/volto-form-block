@@ -1,15 +1,13 @@
 import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
-import {
-  Segment,
-  Message,
-  Grid,
-  Form,
-  Progress,
-  Button,
-} from 'semantic-ui-react';
+import { Segment, Message, Grid, Form, Progress } from 'semantic-ui-react';
 import { getFieldName } from 'volto-form-block/components/utils';
 import Field from 'volto-form-block/components/Field';
+import {
+  OTPWidget,
+  OTP_FIELDNAME_EXTENDER,
+  Button,
+} from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 
 /* Style */
@@ -54,6 +52,8 @@ const FormView = ({
   captcha,
   id,
   getErrorMessage,
+  path,
+  block_id,
 }) => {
   const intl = useIntl();
   const FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
@@ -84,6 +84,25 @@ const FormView = ({
     onSubmit(e);
   };
 
+  const getFieldsToSendWithValue = (subblock) => {
+    var fields_to_send = [];
+    var fieldSchemaProperties = FieldSchema(subblock)?.properties;
+    for (var key in fieldSchemaProperties) {
+      if (fieldSchemaProperties[key].send_to_backend) {
+        fields_to_send.push(key);
+      }
+    }
+
+    var fields_to_send_with_value = Object.assign(
+      {},
+      ...fields_to_send.map((field) => {
+        return {
+          [field]: subblock[field],
+        };
+      }),
+    );
+    return fields_to_send_with_value;
+  };
   return (
     <div className="block form">
       <div className="public-ui">
@@ -155,22 +174,8 @@ const FormView = ({
                 {data.subblocks?.map((subblock, index) => {
                   let name = getFieldName(subblock.label, subblock.id);
 
-                  var fields_to_send = [];
-                  var fieldSchemaProperties = FieldSchema(subblock)?.properties;
-                  for (var key in fieldSchemaProperties) {
-                    if (fieldSchemaProperties[key].send_to_backend) {
-                      fields_to_send.push(key);
-                    }
-                  }
-
-                  var fields_to_send_with_value = Object.assign(
-                    {},
-                    ...fields_to_send.map((field) => {
-                      return {
-                        [field]: subblock[field],
-                      };
-                    }),
-                  );
+                  const fields_to_send_with_value =
+                    getFieldsToSendWithValue(subblock);
 
                   return (
                     <Grid.Row key={'row' + index}>
@@ -199,6 +204,46 @@ const FormView = ({
                     </Grid.Row>
                   );
                 })}
+
+                {/*OTP*/}
+                {data.subblocks
+                  .filter((subblock) => subblock.use_as_bcc)
+                  .map((subblock, index) => {
+                    const fieldName = getFieldName(subblock.label, subblock.id);
+                    const name = fieldName + OTP_FIELDNAME_EXTENDER;
+                    const fieldValue = formData[name]?.value;
+                    const fields_to_send_with_value =
+                      getFieldsToSendWithValue(subblock);
+
+                    return (
+                      <Grid.Row key={'row_otp' + index}>
+                        <Grid.Column>
+                          <OTPWidget
+                            {...subblock}
+                            fieldValue={fieldValue}
+                            onChange={(value) =>
+                              onChangeFormData(
+                                subblock.id,
+                                fieldName,
+                                fieldValue,
+                                {
+                                  ...fields_to_send_with_value,
+                                  otp: value,
+                                },
+                              )
+                            }
+                            value={formData[name]?.otp}
+                            valid={isValidField(name)}
+                            errorMessage={getErrorMessage(name)}
+                            formHasErrors={formErrors?.length > 0}
+                            path={path}
+                            block_id={block_id}
+                          />
+                        </Grid.Column>
+                      </Grid.Row>
+                    );
+                  })}
+
                 {captcha.render()}
                 {formErrors.length > 0 && (
                   <Message error role="alert">
@@ -208,7 +253,6 @@ const FormView = ({
                     <p>{intl.formatMessage(messages.form_errors)}</p>
                   </Message>
                 )}
-
                 {formState.error && (
                   <Message error role="alert">
                     <Message.Header as="h4">

@@ -7,6 +7,7 @@ import {
   EXPORT_CSV_FORMDATA,
   GET_FORM_DATA,
   CLEAR_FORM_DATA,
+  SEND_OTP,
 } from 'volto-form-block/actions';
 
 function download(filename, text) {
@@ -219,6 +220,85 @@ export const clearFormData = (state = initialState, action = {}) => {
         loaded: false,
         loading: false,
       };
+    default:
+      return state;
+  }
+};
+
+/**
+ * sendOTP reducer.
+ * @function sendOTP
+ * @param {Object} state Current state.
+ * @param {Object} action Action to be handled.
+ * @returns {Object} New state.
+ */
+export const sendOTP = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case `${SEND_OTP}_PENDING`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {
+                  items: [],
+                  total: 0,
+                  batching: {},
+                }),
+                error: null,
+                loaded: false,
+                loading: true,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
+    case `${SEND_OTP}_SUCCESS`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: null,
+                loaded: true,
+                loading: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loaded: true,
+            loading: false,
+          };
+    case `${SEND_OTP}_FAIL`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: action.error,
+                loading: false,
+                loaded: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: action.error,
+            loading: false,
+            loaded: false,
+          };
+
     default:
       return state;
   }

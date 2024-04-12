@@ -1,0 +1,28 @@
+.otp-widget .otp-widget-field-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+}
+.otp-widget .otp-widget-field-wrapper .field {
+    flex-grow: 1;
+}
+
+.otp-widget .otp-send-error {
+    color: #d9364f;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #d9364f;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .otp-widget .otp-widget-field-wrapper {
+        flex-direction: column;
+    }
+    .otp-widget .otp-widget-field-wrapper .field,
+    .otp-widget .otp-widget-field-wrapper .button-wrapper,
+    .otp-widget .otp-widget-field-wrapper .button-wrapper button {
+        width: 100%;
+    }
+}

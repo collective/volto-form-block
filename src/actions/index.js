@@ -85,3 +85,24 @@ export function clearFormData({ path, block_id, expired = false }) {
     },
   };
 }
+
+/**
+ * sendOTP action
+ * @module actions/sendOTP
+ */
+export const SEND_OTP = 'SEND_OTP';
+
+export function sendOTP(path, block_id, email) {
+  return {
+    type: SUBMIT_FORM_ACTION,
+    subrequest: block_id + '_' + email,
+    request: {
+      op: 'post',
+      path: path + '/@validate-email-address',
+      data: {
+        email,
+        uid: block_id,
+      },
+    },
+  };
+}

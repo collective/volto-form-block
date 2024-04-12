@@ -13,3 +13,6 @@ export { default as RadioWidget } from 'volto-form-block/components/Widget/Radio
 export { default as SelectWidget } from 'volto-form-block/components/Widget/SelectWidget';
 export { default as TextareaWidget } from 'volto-form-block/components/Widget/TextareaWidget';
 export { default as TextWidget } from 'volto-form-block/components/Widget/TextWidget';
+export { default as OTPWidget } from 'volto-form-block/components/Widget/OTPWidget';
+export { OTP_FIELDNAME_EXTENDER } from 'volto-form-block/components/Widget/OTPWidget';
+export { default as Button } from 'volto-form-block/components/Widget/Button';

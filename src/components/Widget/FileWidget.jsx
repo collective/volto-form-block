@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Image, Dimmer } from 'semantic-ui-react';
+import { Image, Dimmer } from 'semantic-ui-react';
 import { readAsDataURL } from 'promise-file-reader';
 import { injectIntl } from 'react-intl';
 import deleteSVG from '@plone/volto/icons/delete.svg';
@@ -14,6 +14,7 @@ import { Icon, FormFieldWrapper } from '@plone/volto/components';
 import loadable from '@loadable/component';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { defineMessages, useIntl } from 'react-intl';
+import { Button } from 'volto-form-block/components/Widget';
 
 const imageMimetypes = [
   'image/png',
@@ -85,8 +86,8 @@ const FileWidget = (props) => {
   const imgsrc = value?.download
     ? `${flattenToAppURL(value?.download)}?id=${Date.now()}`
     : null || value?.data
-    ? `data:${value['content-type']};${value.encoding},${value.data}`
-    : null;
+      ? `data:${value['content-type']};${value.encoding},${value.data}`
+      : null;
 
   /**
    * Drop handler
