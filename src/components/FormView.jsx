@@ -211,7 +211,8 @@ const FormView = ({
                   .map((subblock, index) => {
                     const fieldName = getFieldName(subblock.label, subblock.id);
                     const name = fieldName + OTP_FIELDNAME_EXTENDER;
-                    const fieldValue = formData[name]?.value;
+                    const fieldValue = formData[fieldName]?.value;
+                    const value = formData[fieldName]?.otp;
                     const fields_to_send_with_value =
                       getFieldsToSendWithValue(subblock);
 
@@ -221,7 +222,7 @@ const FormView = ({
                           <OTPWidget
                             {...subblock}
                             fieldValue={fieldValue}
-                            onChange={(value) =>
+                            onChange={(field, value) =>
                               onChangeFormData(
                                 subblock.id,
                                 fieldName,
@@ -232,7 +233,7 @@ const FormView = ({
                                 },
                               )
                             }
-                            value={formData[name]?.otp}
+                            value={value}
                             valid={isValidField(name)}
                             errorMessage={getErrorMessage(name)}
                             formHasErrors={formErrors?.length > 0}
