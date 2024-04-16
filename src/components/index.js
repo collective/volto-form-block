@@ -13,6 +13,11 @@ export const FormView = loadable(() =>
     /* webpackChunkName: "VoltoFormBlockView" */ 'volto-form-block/components/FormView'
   ),
 );
+export const FormResult = loadable(() =>
+  import(
+    /* webpackChunkName: "VoltoFormBlockView" */ 'volto-form-block/components/FormResult'
+  ),
+);
 export const Field = loadable(() =>
   import(
     /* webpackChunkName: "VoltoFormBlockView" */ 'volto-form-block/components/Field'
