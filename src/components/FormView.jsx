@@ -11,7 +11,7 @@ import {
 import { getFieldName } from 'volto-form-block/components/utils';
 import Field from 'volto-form-block/components/Field';
 import config from '@plone/volto/registry';
-
+import { FormResult } from 'volto-form-block/components';
 /* Style */
 import 'volto-form-block/components/FormView.css';
 
@@ -28,17 +28,9 @@ const messages = defineMessages({
     id: 'Error',
     defaultMessage: 'Error',
   },
-  success: {
-    id: 'form_submit_success',
-    defaultMessage: 'Sent!',
-  },
   form_errors: {
     id: 'form_errors_validation',
     defaultMessage: 'There are some errors in the form.',
-  },
-  reset: {
-    id: 'form_reset',
-    defaultMessage: 'Clear',
   },
 });
 
@@ -62,18 +54,6 @@ const FormView = ({
     return formErrors?.filter((e) => e.field === field).length === 0;
   };
 
-  /* Function that replaces variables from the user customized message  */
-  const replaceMessage = (text) => {
-    let i = 0;
-    const sent_data = formState.result.data;
-    while (i < sent_data.length) {
-      let idField = sent_data[i].label;
-      text = text.replaceAll('${' + idField + '}', sent_data[i].value ?? '');
-      i++;
-    }
-    return text;
-  };
-
   const submit = (e) => {
     resetFormOnError();
     onSubmit(e);
@@ -89,36 +69,11 @@ const FormView = ({
           )}
 
           {formState.result ? (
-            <Message positive role="alert">
-              {/* Custom message */}
-              {data.send_message ? (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: replaceMessage(data.send_message),
-                  }}
-                />
-              ) : (
-                <>
-                  {/* Default message */}
-                  <Message.Header as="h4">
-                    {intl.formatMessage(messages.success)}
-                  </Message.Header>
-                  <p>{formState.result}</p>
-                </>
-              )}
-              {/* Back button */}
-              <Button
-                secondary
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  resetFormState();
-                }}
-              >
-                {intl.formatMessage(messages.reset)}
-              </Button>
-            </Message>
+            <FormResult
+              formState={formState}
+              data={data}
+              resetFormState={resetFormState}
+            />
           ) : (
             <Form
               id={id}
