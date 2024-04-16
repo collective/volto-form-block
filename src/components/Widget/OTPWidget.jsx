@@ -24,6 +24,11 @@ const messages = defineMessages({
     id: 'form_insert_otp',
     defaultMessage: 'Insert here the OTP code received at {email}',
   },
+  otp_sent: {
+    id: 'form_otp_send',
+    defaultMessage:
+      'OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.',
+  },
 });
 
 const OTPWidget = (props) => {
@@ -91,8 +96,14 @@ const OTPWidget = (props) => {
         />
       </div>
 
+      {sendOTPResponse?.loaded && !sendOTPResponse?.loading && (
+        <div className="otp-alert otp-success">
+          {intl.formatMessage(messages.otp_sent, { email: fieldValue })}
+        </div>
+      )}
+
       {sendOTPResponse?.error && (
-        <div className="otp-send-error">
+        <div className="otp-alert otp-error">
           {JSON.stringify(sendOTPResponse.error)}
         </div>
       )}

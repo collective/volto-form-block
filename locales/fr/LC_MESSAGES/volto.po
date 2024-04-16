@@ -434,6 +434,11 @@ msgstr ""
 msgid "form_manage_data"
 msgstr ""
 
+#: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
+msgid "form_otp_send"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Data wipe
 msgid "form_remove_data_after_days"

@@ -94,7 +94,7 @@ export const SEND_OTP = 'SEND_OTP';
 
 export function sendOTP(path, block_id, email) {
   return {
-    type: SUBMIT_FORM_ACTION,
+    type: SEND_OTP,
     subrequest: block_id + '_' + email,
     request: {
       op: 'post',

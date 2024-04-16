@@ -95,6 +95,7 @@ export const submitForm = (state = initialState, action = {}) => {
               ...state.subrequests,
               [action.subrequest]: {
                 ...(state.subrequests[action.subrequest] || {}),
+                error: action.error,
                 loading: false,
                 loaded: false,
               },
