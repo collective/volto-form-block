@@ -1,3 +1,18 @@
+
+
+### [3.7.4](https://github.com/collective/volto-form-block/compare/v3.7.3...v3.7.4) (2024-04-16)
+
+
+### Bug Fixes
+
+* fix field schema form sent_message and added customizable FormResult component ([6dd725b](https://github.com/collective/volto-form-block/commit/6dd725b7aa3d7a218a7426cfa3df9ec72c90b6a1))
+* prevent xss in form block reading sent data from BE response ([b4139d2](https://github.com/collective/volto-form-block/commit/b4139d2284102e6820b892e7e40eee7ffcd1a36d))
+
+
+### Maintenance
+
+* fix husky config ([6a47f33](https://github.com/collective/volto-form-block/commit/6a47f33fa8bd103c0b697336bd3ad59f480599ae))
+
 ### [3.7.3](https://github.com/collective/volto-form-block/compare/v3.7.2...v3.7.3) (2024-04-08)
 
 

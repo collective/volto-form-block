@@ -164,7 +164,7 @@ const Schema = (data) => {
       },
       send_message: {
         title: intl.formatMessage(messages.send_message),
-        type: 'textarea',
+        widget: 'textarea',
         description: intl.formatMessage(messages.send_message_helptext),
       },
     },
