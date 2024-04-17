@@ -116,7 +116,7 @@ const OTPWidget = (props) => {
             <div className="otp-button-message">
               {intl.formatMessage(messages.otp_countdown)}{' '}
               {getCountDownValues(countDown)
-                .filter((v, index) => v > 0 || index === 2)
+                .filter((v, index) => v > 0 || index === 2 || index === 3)
                 .map((v) => (v < 10 ? '0' + v : v))
                 .join(':')}
               .
