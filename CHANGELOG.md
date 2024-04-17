@@ -1,5 +1,12 @@
 
 
+### [3.7.5](https://github.com/collective/volto-form-block/compare/v3.7.4...v3.7.5) (2024-04-17)
+
+
+### Bug Fixes
+
+* replace message ([8982698](https://github.com/collective/volto-form-block/commit/8982698b4ebd191b6f27d6afe2612a80147e7143))
+
 ### [3.7.4](https://github.com/collective/volto-form-block/compare/v3.7.3...v3.7.4) (2024-04-16)
 
 
