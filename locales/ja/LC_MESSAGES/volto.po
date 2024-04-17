@@ -435,6 +435,11 @@ msgid "form_manage_data"
 msgstr ""
 
 #: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr ""
+
+#: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
 msgstr ""
@@ -449,7 +454,7 @@ msgstr ""
 msgid "form_remove_data_after_days_helptext"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr ""
@@ -494,7 +499,7 @@ msgstr ""
 msgid "form_submit_label"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr ""

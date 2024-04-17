@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-04-16T10:30:04.164Z\n"
+"POT-Creation-Date: 2024-04-17T08:56:51.659Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -437,6 +437,11 @@ msgid "form_manage_data"
 msgstr ""
 
 #: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr ""
+
+#: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
 msgstr ""
@@ -451,7 +456,7 @@ msgstr ""
 msgid "form_remove_data_after_days_helptext"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr ""
@@ -496,7 +501,7 @@ msgstr ""
 msgid "form_submit_label"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr ""

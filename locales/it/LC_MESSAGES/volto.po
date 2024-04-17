@@ -435,6 +435,11 @@ msgid "form_manage_data"
 msgstr "Gestione dei dati"
 
 #: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr "Puoi inviare un nuovo codice OTP fra"
+
+#: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
 msgstr "Il codice OTP è stato inviato a {email}. Verifica la tua email e inserisci nel campo sopra il codice OTP ricevuto."
@@ -449,7 +454,7 @@ msgstr "Giorni validità"
 msgid "form_remove_data_after_days_helptext"
 msgstr "Numero di giorni dopo i quali, i dati dovrebbero essere cancellati"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr "Indietro"
@@ -494,7 +499,7 @@ msgstr "Mostra il bottone annulla"
 msgid "form_submit_label"
 msgstr "Testo sul bottone di invio"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Inviato!"

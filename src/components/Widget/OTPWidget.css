@@ -26,6 +26,17 @@
 .otp-widget .otp-alert.otp-success {
     border-left: 8px solid #008055;
 }
+
+.otp-widget .otp-widget-field-wrapper .button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.otp-widget .otp-widget-field-wrapper .button-wrapper .otp-button-message {
+    font-size: 0.8rem;
+    color: #555555;
+    text-align: center;
+}
 @media (max-width: 1024px) {
     .otp-widget .otp-widget-field-wrapper {
         flex-direction: column;

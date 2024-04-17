@@ -4,7 +4,7 @@
  */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl, defineMessages } from 'react-intl';
 import { isValidEmail } from 'volto-form-block/helpers/validators';
@@ -29,9 +29,25 @@ const messages = defineMessages({
     defaultMessage:
       'OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.',
   },
+  otp_countdown: {
+    id: 'form_otp_countdown',
+    defaultMessage: 'You can send a new OTP code in',
+  },
 });
+const getCountDownValues = (countDown) => {
+  // calculate time left
+  const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  );
+  const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+
+  return [days, hours, minutes, seconds];
+};
 
 const OTPWidget = (props) => {
+  const OTP_EXIPIRE_MINUTES = 5;
   const {
     id,
     title,
@@ -52,12 +68,31 @@ const OTPWidget = (props) => {
   const sendOTPResponse = useSelector(
     (state) => state.sendOTP?.subrequests?.[block_id + '_' + fieldValue],
   );
+  const [countDownEnd, setCountDownEnd] = useState(null);
+  const [countDown, setCountDown] = useState(null);
 
   const displayWidget = isValidEmail(fieldValue);
 
   const sendOTPCode = () => {
     dispatch(sendOTP(path, block_id, fieldValue));
   };
+
+  useEffect(() => {
+    if (sendOTPResponse?.loaded) {
+      const end = new Date().getTime() + OTP_EXIPIRE_MINUTES * 60000;
+      setCountDownEnd(end);
+      setCountDown(end - new Date().getTime());
+
+      const interval = setInterval(() => {
+        setCountDown(countDownEnd - new Date().getTime());
+      }, 1000);
+
+      return () => clearInterval(interval);
+    } else {
+      setCountDown(null);
+      setCountDownEnd(null);
+    }
+  }, [sendOTPResponse, countDownEnd]);
 
   return displayWidget ? (
     <div className="otp-widget">
@@ -73,10 +108,22 @@ const OTPWidget = (props) => {
               sendOTPCode();
             }}
             className="send-otp-code"
+            disabled={countDown > 0}
           >
             {intl.formatMessage(messages.send_otp_to, { email: fieldValue })}
           </Button>
+          {countDown > 0 && (
+            <div className="otp-button-message">
+              {intl.formatMessage(messages.otp_countdown)}{' '}
+              {getCountDownValues(countDown)
+                .filter((v, index) => v > 0 || index === 2)
+                .map((v) => (v < 10 ? '0' + v : v))
+                .join(':')}
+              .
+            </div>
+          )}
         </div>
+
         <Field
           label={
             title ??
