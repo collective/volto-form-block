@@ -58,6 +58,10 @@ With HCaptcha integration, you also have an additional option in the sidebar in 
 
 In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
 
+### OTP email validation
+
+To prevent sending spam emails to users via the email address configured as sender, the 'email' fields type flagged as BCC will require the user to enter an OTP code received at the address entered in the field when user fills out the form.
+
 ## Export
 
 With backend support, you can store data submitted from the form.
