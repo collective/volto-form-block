@@ -1,5 +1,12 @@
 
 
+## [3.8.0](https://github.com/collective/volto-form-block/compare/v3.7.5...v3.8.0) (2024-04-18)
+
+
+### Features
+
+* added bcc email validation with otp code ([#93](https://github.com/collective/volto-form-block/issues/93)) ([e2100be](https://github.com/collective/volto-form-block/commit/e2100be25ac307f7fc27a1d70de53a771badc9ea))
+
 ### [3.7.5](https://github.com/collective/volto-form-block/compare/v3.7.4...v3.7.5) (2024-04-17)
 
 
