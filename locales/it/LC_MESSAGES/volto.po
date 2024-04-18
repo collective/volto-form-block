@@ -298,12 +298,12 @@ msgstr "Esporta in CSV"
 msgid "form_edit_fill_required_configuration_fields"
 msgstr "Inserire i campi obbligatori per la configurazione del form nella sidebar di destra. Il form non verrà mostrato sul sito finché i campi obbligatori non saranno configurati."
 
-#: index
+#: helpers/validators
 # defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
 msgstr "L'e-mail inserita nel campo 'Mittente di default' deve essere un indirizzo e-mail valido"
 
-#: index
+#: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
 msgstr "Le e-mail inserite nel campo 'Destinatari' devono essere indirizzi e-mail validi."
@@ -424,10 +424,25 @@ msgstr "Area di testo"
 msgid "form_formDataCount"
 msgstr "{formDataCount} elementi salvati"
 
+#: components/Widget/OTPWidget
+# defaultMessage: Insert here the OTP code received at {email}
+msgid "form_insert_otp"
+msgstr "Inserisci qui il codice OTP ricevuto all'indirizzo {email}"
+
 #: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr "Gestione dei dati"
+
+#: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr "Puoi inviare un nuovo codice OTP fra"
+
+#: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
+msgid "form_otp_send"
+msgstr "Il codice OTP è stato inviato a {email}. Verifica la tua email e inserisci nel campo sopra il codice OTP ricevuto."
 
 #: formSchema
 # defaultMessage: Data wipe
@@ -439,7 +454,7 @@ msgstr "Giorni validità"
 msgid "form_remove_data_after_days_helptext"
 msgstr "Numero di giorni dopo i quali, i dati dovrebbero essere cancellati"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr "Indietro"
@@ -469,6 +484,11 @@ msgstr "Messaggio di conferma invio"
 msgid "form_send_message_helptext"
 msgstr "Si può aggiungere il valore di un campo compilato nella form inserendo il suo identificativo tra parentesi graffe preceduto da $, esempio: ${identificativo}; inoltre si possono aggiungere elementi html come link, <a..></a>, nuova linea <br />, formattazioni in bold <b> e italic <i>."
 
+#: components/Widget/OTPWidget
+# defaultMessage: Send OTP code to {email}
+msgid "form_send_otp_to"
+msgstr "Invia il codice OTP a {email}"
+
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
@@ -479,7 +499,7 @@ msgstr "Mostra il bottone annulla"
 msgid "form_submit_label"
 msgstr "Testo sul bottone di invio"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Inviato!"
@@ -513,6 +533,11 @@ msgstr "Se selezionato, questo sarà l'indirizzo a cui il destinatario potrà ri
 # defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
 msgstr "Il valore inserito non è valido"
+
+#: components/View
+# defaultMessage: Please, insert the OTP code recived via email.
+msgid "formblock_insertOtp_error"
+msgstr "Inserire il codice OTP ricevuto via email."
 
 #: components/View
 # defaultMessage: The email is incorrect

@@ -298,12 +298,12 @@ msgstr "Daten exportieren"
 msgid "form_edit_fill_required_configuration_fields"
 msgstr ""
 
-#: index
+#: helpers/validators
 # defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
 msgstr ""
 
-#: index
+#: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
 msgstr ""
@@ -424,9 +424,24 @@ msgstr "Textfeld"
 msgid "form_formDataCount"
 msgstr "{formDataCount} Element(e) gespeichert"
 
+#: components/Widget/OTPWidget
+# defaultMessage: Insert here the OTP code received at {email}
+msgid "form_insert_otp"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
+msgstr ""
+
+#: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr ""
+
+#: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
+msgid "form_otp_send"
 msgstr ""
 
 #: formSchema
@@ -439,7 +454,7 @@ msgstr ""
 msgid "form_remove_data_after_days_helptext"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr "Löschen"
@@ -469,6 +484,11 @@ msgstr ""
 msgid "form_send_message_helptext"
 msgstr ""
 
+#: components/Widget/OTPWidget
+# defaultMessage: Send OTP code to {email}
+msgid "form_send_otp_to"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
@@ -479,7 +499,7 @@ msgstr ""
 msgid "form_submit_label"
 msgstr "Beschriftung der Schaltfläche Senden"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Gesendet!"
@@ -512,6 +532,11 @@ msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
 #: components/View
 # defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Please, insert the OTP code recived via email.
+msgid "formblock_insertOtp_error"
 msgstr ""
 
 #: components/View
