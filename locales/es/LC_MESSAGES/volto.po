@@ -451,7 +451,7 @@ msgstr "Puedes enviar un nuevo código OTP en"
 #: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
-msgstr "El código OTP se envió a {email}. Revise su correo electrónico e inserte el código OTP recibido en el campo de arriba."
+msgstr "El código OTP se ha enviado a {email}. Revise su correo electrónico e introduzca el código recibido."
 
 #: formSchema
 # defaultMessage: Data wipe
