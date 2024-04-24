@@ -56,7 +56,7 @@ msgstr "Deskribapena"
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
 msgid "Drop file here to replace the existing file"
-msgstr ""
+msgstr "Arrastatu fitxategia hona orain dagoena ordezkatzeko"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to upload a new file
@@ -81,7 +81,7 @@ msgstr "Formularioa"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr ""
+msgstr "Gune hau hCaptcha eta bere <a href="https://www.hcaptcha.com/privacy">Pribatutasun Politikak</a> babestuta dago eta <a href="https://www.hcaptcha.com/terms">Zerbitzu-baldintzak</a> aplikatzen dira."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
@@ -256,7 +256,7 @@ msgstr "Erantsitako fitxategia email bidez bidaliko da, baina ez da gordeko"
 #: formSchema
 # defaultMessage: Cancel button label
 msgid "form_cancel_label"
-msgstr ""
+msgstr "Ezeztatu botoiaren etiketa"
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -272,7 +272,7 @@ msgstr "Ziur zaude mezu guztiak ezabatu nahi dituzula?"
 #: components/FormView
 # defaultMessage: Annulla
 msgid "form_default_cancel_label"
-msgstr ""
+msgstr "Ezeztatu"
 
 #: formSchema
 # defaultMessage: Default sender
@@ -298,22 +298,22 @@ msgstr "Esportatu datuak"
 #: components/ValidateConfigForm
 # defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
-msgstr ""
+msgstr "Mesedez, bete beharrezko eremuak alboko barran. Formularioa ez da bistaratuko beharrezko eremuak bete arte."
 
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
-msgstr ""
+msgstr "'Defektuzko bidaltzailea' eremuan sartutako posta elektronikoak baliozkoa izan behar du."
 
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
-msgstr ""
+msgstr "'Jasotzaileak' eremuan sartutako posta elektronikoak baliozkoa izan behar du."
 
 #: components/ValidateConfigForm
 # defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 msgid "form_edit_other_errors"
-msgstr ""
+msgstr "Mesedez, egiaztatu konfigurazio-erroreak alboko barran. Inprimakia ez da bistaratuko errore-eremuak konpondu ez diren arte."
 
 #: components/Edit
 # defaultMessage: Attenzione!
@@ -328,7 +328,7 @@ msgstr "'Bidaltzailearen posta elektronikoa' motako eremu bat gehitu. Ez baduzu 
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
-msgstr ""
+msgstr "Formularioan akats batzuk daude."
 
 #: fieldSchema
 # defaultMessage: Description
@@ -338,7 +338,7 @@ msgstr "Deskribapena"
 #: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
 # defaultMessage: Value for field
 msgid "form_field_input_value"
-msgstr ""
+msgstr "Eremuaren balioa"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
@@ -429,7 +429,7 @@ msgstr "Gordetako elementu kopurua: {formDataCount}"
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
 msgid "form_insert_otp"
-msgstr ""
+msgstr "Sartu {email} -ean jasoko den OPT kodea"
 
 #: formSchema
 # defaultMessage: Manage data
@@ -439,12 +439,12 @@ msgstr ""
 #: components/Widget/OTPWidget
 # defaultMessage: You can send a new OTP code in
 msgid "form_otp_countdown"
-msgstr ""
+msgstr "OPT kode berria bidali dezakezu"
 
 #: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
-msgstr ""
+msgstr "OPT kodea {email} -era bidali da. Egiaztatu zure posta elektronikoa eta sartu jasotako OTP kodea goiko eremuan"
 
 #: formSchema
 # defaultMessage: Data wipe
@@ -454,7 +454,7 @@ msgstr ""
 #: formSchema
 # defaultMessage: Number of days after which, the data should be deleted
 msgid "form_remove_data_after_days_helptext"
-msgstr ""
+msgstr "Zenbat egun ondoren ezabatu behar dira datuak"
 
 #: components/FormResult
 # defaultMessage: Clear
@@ -479,7 +479,7 @@ msgstr "Bidali posta elektronikoa jasotzaileari"
 #: formSchema
 # defaultMessage: Message of sending confirmed
 msgid "form_send_message"
-msgstr ""
+msgstr "Bidalketa konfirmazio mezua"
 
 #: formSchema
 # defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
@@ -489,12 +489,12 @@ msgstr ""
 #: components/Widget/OTPWidget
 # defaultMessage: Send OTP code to {email}
 msgid "form_send_otp_to"
-msgstr ""
+msgstr "Bidali OPT kodea {email} -era"
 
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
-msgstr ""
+msgstr "Utzi botoia bistaratu"
 
 #: formSchema
 # defaultMessage: Submit button label
@@ -534,27 +534,27 @@ msgstr "Aukeratuz gero jasotako posta elektronikoari 'Erantzun' eginez gero erem
 #: components/View
 # defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
-msgstr ""
+msgstr "Eremuaren balio okerra"
 
 #: components/View
 # defaultMessage: Please, insert the OTP code recived via email.
 msgid "formblock_insertOtp_error"
-msgstr ""
+msgstr "Eposta elektroniko bidez jasoko den OPT kodea sartu"
 
 #: components/View
 # defaultMessage: The email is incorrect
 msgid "formblock_invalidEmailMessage"
-msgstr ""
+msgstr "Posta elektronikoa okerra da"
 
 #: components/View
 # defaultMessage: Fill-in this field
 msgid "formblock_requiredFieldMessage"
-msgstr ""
+msgstr "Bete eremua"
 
 #: components/Sidebar
 # defaultMessage: remove expired data
 msgid "remove_data_button"
-msgstr ""
+msgstr "Ezabatu iraungitako datuak"
 
 #: components/Sidebar
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
@@ -569,7 +569,7 @@ msgstr ""
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
-msgstr ""
+msgstr "Erantzun galderari gizakia zarela frogatzeko"
 
 #: helpers/react-select
 # defaultMessage: results
