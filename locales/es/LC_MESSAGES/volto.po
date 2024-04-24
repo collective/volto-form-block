@@ -446,7 +446,7 @@ msgstr "Administrar datos"
 #: components/Widget/OTPWidget
 # defaultMessage: You can send a new OTP code in
 msgid "form_otp_countdown"
-msgstr "Puedes mandar un nuevo código OTP en"
+msgstr "Puedes enviar un nuevo código OTP en"
 
 #: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
