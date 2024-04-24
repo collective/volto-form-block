@@ -444,7 +444,7 @@ msgstr "OPT kode berria bidali dezakezu"
 #: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
-msgstr "OPT kodea {email} -era bidali da. Egiaztatu zure posta elektronikoa eta sartu jasotako OTP kodea goiko eremuan"
+msgstr "OPT kodea {email} helbidera bidali da. Egiaztatu zure posta elektronikoa eta sartu jasotako OTP kodea goiko eremuan"
 
 #: formSchema
 # defaultMessage: Data wipe
