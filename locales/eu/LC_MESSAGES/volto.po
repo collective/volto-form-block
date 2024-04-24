@@ -489,7 +489,7 @@ msgstr ""
 #: components/Widget/OTPWidget
 # defaultMessage: Send OTP code to {email}
 msgid "form_send_otp_to"
-msgstr "Bidali OPT kodea {email} -era"
+msgstr "Bidali OPT kodea {email} helbidera"
 
 #: formSchema
 # defaultMessage: Show cancel button
