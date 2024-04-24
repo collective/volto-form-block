@@ -496,7 +496,7 @@ msgstr ""
 #: components/Widget/OTPWidget
 # defaultMessage: Send OTP code to {email}
 msgid "form_send_otp_to"
-msgstr "Manda el código OTP a {email}"
+msgstr "Envíe el código OTP a {email}"
 
 #: formSchema
 # defaultMessage: Show cancel button
