@@ -315,7 +315,7 @@ msgstr "El correo electrónico introducido en el campo 'Remitente por defecto' d
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
-msgstr "El correo electrónico ingresado en el campo 'Destinatarios' debe ser una dirección de correo electrónico válida."
+msgstr "El correo electrónico introducido en el campo 'Destinatarios' debe ser una dirección de correo electrónico válida."
 
 #: components/ValidateConfigForm
 # defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
