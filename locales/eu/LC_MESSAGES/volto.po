@@ -534,7 +534,7 @@ msgstr "Aukeratuz gero jasotako posta elektronikoari 'Erantzun' eginez gero erem
 #: components/View
 # defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
-msgstr "Eremuaren balio okerra"
+msgstr "Eremuaren balioa okerra da"
 
 #: components/View
 # defaultMessage: Please, insert the OTP code recived via email.
