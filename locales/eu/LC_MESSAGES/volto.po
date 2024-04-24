@@ -494,7 +494,7 @@ msgstr "Bidali OPT kodea {email} helbidera"
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
-msgstr "Utzi botoia bistaratu"
+msgstr "Bistaratu utzi botoia"
 
 #: formSchema
 # defaultMessage: Submit button label
