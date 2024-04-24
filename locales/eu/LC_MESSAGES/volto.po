@@ -539,7 +539,7 @@ msgstr "Eremuaren balioa okerra da"
 #: components/View
 # defaultMessage: Please, insert the OTP code recived via email.
 msgid "formblock_insertOtp_error"
-msgstr "Eposta elektroniko bidez jasoko den OPT kodea sartu"
+msgstr "Eposta bidez jaso den OTP kodea sartu"
 
 #: components/View
 # defaultMessage: The email is incorrect
