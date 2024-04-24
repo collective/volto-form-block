@@ -310,7 +310,7 @@ msgstr "Por favor, complete los campos de configuración obligatorios en la barr
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
-msgstr "El correo electrónico ingresado en el campo 'Remitente por defecto' debe ser una dirección de correo electrónico válida."
+msgstr "El correo electrónico introducido en el campo 'Remitente por defecto' debe ser una dirección de correo electrónico válida."
 
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
