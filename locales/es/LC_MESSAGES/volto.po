@@ -546,7 +546,7 @@ msgstr "Valor de campo no válido"
 #: components/View
 # defaultMessage: Please, insert the OTP code recived via email.
 msgid "formblock_insertOtp_error"
-msgstr "Por favor, inserte el código OTP recibido por correo electrónico."
+msgstr "Por favor, introduzca el código OTP recibido por correo electrónico."
 
 #: components/View
 # defaultMessage: The email is incorrect
