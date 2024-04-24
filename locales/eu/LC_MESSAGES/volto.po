@@ -429,7 +429,7 @@ msgstr "Gordetako elementu kopurua: {formDataCount}"
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
 msgid "form_insert_otp"
-msgstr "Sartu {email} -ean jasoko den OPT kodea"
+msgstr "Sartu {email} helbidean jasoko den OPT kodea"
 
 #: formSchema
 # defaultMessage: Manage data
