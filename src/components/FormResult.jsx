@@ -1,6 +1,7 @@
 import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import { Message, Button } from 'semantic-ui-react';
+import { getFieldName } from 'volto-form-block/components/utils';
 
 const messages = defineMessages({
   success: {
@@ -21,6 +22,7 @@ const replaceMessage = (text, sent_data) => {
     text = text.replaceAll('${' + idField + '}', sent_data[i].value ?? '');
     i++;
   }
+  text = text.replaceAll(/\$\{[^}]*\}/gm, ''); //replace empty fields with nothing
   text = text.replaceAll('\n', '<br/>');
   return text;
 };
