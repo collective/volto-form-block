@@ -269,7 +269,6 @@ const Sidebar = ({
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
                     {/* Field ID info */}
-                    {subblock.field_type}
                     {(subblock.field_type === 'text' ||
                       subblock.field_type === 'from' ||
                       subblock.field_type === 'textarea' ||
