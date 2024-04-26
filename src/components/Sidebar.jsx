@@ -269,10 +269,16 @@ const Sidebar = ({
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
                     {/* Field ID info */}
+                    {subblock.field_type}
                     {(subblock.field_type === 'text' ||
                       subblock.field_type === 'from' ||
                       subblock.field_type === 'textarea' ||
-                      subblock.field_type === 'date') && (
+                      subblock.field_type === 'date' ||
+                      subblock.field_type === 'single_choice' ||
+                      subblock.field_type === 'multiple_choice' ||
+                      subblock.field_type === 'select' ||
+                      subblock.field_type === 'checkbox' ||
+                      subblock.field_type === 'attachment') && (
                       <Segment tertiary>
                         {intl.formatMessage(messages.fieldId)}:{' '}
                         <strong>
