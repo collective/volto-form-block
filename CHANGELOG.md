@@ -1,5 +1,13 @@
 
 
+### [3.8.1](https://github.com/collective/volto-form-block/compare/v3.8.0...v3.8.1) (2024-04-26)
+
+
+### Bug Fixes
+
+* display field_id for more fields in sidebar ([e15e1ad](https://github.com/collective/volto-form-block/commit/e15e1ad071fedb11422804d3c2208109f3f54b64))
+* replace placeholder of empty fields with nothing in thamkyou message ([8e75c8b](https://github.com/collective/volto-form-block/commit/8e75c8b665476958d0ec9bab803b11d1cfdaff2b))
+
 ## [3.8.0](https://github.com/collective/volto-form-block/compare/v3.7.5...v3.8.0) (2024-04-18)
 
 
