@@ -1,5 +1,12 @@
 
 
+### [3.8.2](https://github.com/collective/volto-form-block/compare/v3.8.1...v3.8.2) (2024-04-26)
+
+
+### Maintenance
+
+* removed print field id ([98278d1](https://github.com/collective/volto-form-block/commit/98278d18d2eb665d4c28e44f63da08c96a74fa9c))
+
 ### [3.8.1](https://github.com/collective/volto-form-block/compare/v3.8.0...v3.8.1) (2024-04-26)
 
 
