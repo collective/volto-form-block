@@ -263,7 +263,7 @@ msgstr "El archivo adjunto se enviará por correo electrónico pero no se almace
 #: formSchema
 # defaultMessage: Cancel button label
 msgid "form_cancel_label"
-msgstr ""
+msgstr "Etiqueta del botón cancelar"
 
 #: components/Sidebar
 # defaultMessage: Clear data
@@ -279,7 +279,7 @@ msgstr "¿Está seguro de que quiere borrar todos los datos guardados?"
 #: components/FormView
 # defaultMessage: Annulla
 msgid "form_default_cancel_label"
-msgstr ""
+msgstr "Cancelar"
 
 #: formSchema
 # defaultMessage: Default sender
@@ -305,22 +305,22 @@ msgstr "Exportar datos"
 #: components/ValidateConfigForm
 # defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
-msgstr ""
+msgstr "Por favor, complete los campos de configuración obligatorios en la barra lateral. El formulario no se mostrará en modo de visualización hasta que se completen los campos obligatorios."
 
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
-msgstr ""
+msgstr "El correo electrónico introducido en el campo 'Remitente por defecto' debe ser una dirección de correo electrónico válida."
 
 #: helpers/validators
 # defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
-msgstr ""
+msgstr "El correo electrónico introducido en el campo 'Destinatarios' debe ser una dirección de correo electrónico válida."
 
 #: components/ValidateConfigForm
 # defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 msgid "form_edit_other_errors"
-msgstr ""
+msgstr "Por favor, verifique los errores de configuración en la barra lateral. El formulario no se mostrará en modo de visualización hasta que estos campos no se corrijan."
 
 #: components/Edit
 # defaultMessage: Attenzione!
@@ -335,7 +335,7 @@ msgstr "Introduzca un campo de tipo 'Correo electrónico del remitente'. Si no e
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
-msgstr ""
+msgstr "Hay algunos errores en el formulario."
 
 #: fieldSchema
 # defaultMessage: Description
@@ -345,7 +345,7 @@ msgstr "Descripción"
 #: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
 # defaultMessage: Value for field
 msgid "form_field_input_value"
-msgstr ""
+msgstr "Valor del campo"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
@@ -436,22 +436,22 @@ msgstr "{formDataCount} elemento(s) guardados"
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
 msgid "form_insert_otp"
-msgstr ""
+msgstr "Inserte el código OTP recibido en {email}"
 
 #: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
-msgstr ""
+msgstr "Administrar datos"
 
 #: components/Widget/OTPWidget
 # defaultMessage: You can send a new OTP code in
 msgid "form_otp_countdown"
-msgstr ""
+msgstr "Puedes enviar un nuevo código OTP en"
 
 #: components/Widget/OTPWidget
 # defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
-msgstr ""
+msgstr "El código OTP se ha enviado a {email}. Revise su correo electrónico e introduzca el código recibido."
 
 #: formSchema
 # defaultMessage: Data wipe
@@ -461,7 +461,7 @@ msgstr ""
 #: formSchema
 # defaultMessage: Number of days after which, the data should be deleted
 msgid "form_remove_data_after_days_helptext"
-msgstr ""
+msgstr "Número de días después de los cuales se deben eliminar los datos"
 
 #: components/FormResult
 # defaultMessage: Clear
@@ -486,7 +486,7 @@ msgstr "Enviar correo electrónico al receptor"
 #: formSchema
 # defaultMessage: Message of sending confirmed
 msgid "form_send_message"
-msgstr ""
+msgstr "Mensaje de envío confirmado"
 
 #: formSchema
 # defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
@@ -496,12 +496,12 @@ msgstr ""
 #: components/Widget/OTPWidget
 # defaultMessage: Send OTP code to {email}
 msgid "form_send_otp_to"
-msgstr ""
+msgstr "Envíe el código OTP a {email}"
 
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
-msgstr ""
+msgstr "Mostrar botón cancelar"
 
 #: formSchema
 # defaultMessage: Submit button label
@@ -516,7 +516,7 @@ msgstr "Enviado"
 #: formSchema
 # defaultMessage: Recipients
 msgid "form_to"
-msgstr "Receptores"
+msgstr "Destinatarios"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Send an email copy to this address
@@ -541,27 +541,27 @@ msgstr "Si está seleccionado el valor de este campo se utilizará como cabecera
 #: components/View
 # defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
-msgstr ""
+msgstr "Valor de campo no válido"
 
 #: components/View
 # defaultMessage: Please, insert the OTP code recived via email.
 msgid "formblock_insertOtp_error"
-msgstr ""
+msgstr "Por favor, introduzca el código OTP recibido por correo electrónico."
 
 #: components/View
 # defaultMessage: The email is incorrect
 msgid "formblock_invalidEmailMessage"
-msgstr ""
+msgstr "El correo electrónico es incorrecto."
 
 #: components/View
 # defaultMessage: Fill-in this field
 msgid "formblock_requiredFieldMessage"
-msgstr ""
+msgstr "Rellena este campo"
 
 #: components/Sidebar
 # defaultMessage: remove expired data
 msgid "remove_data_button"
-msgstr ""
+msgstr "eliminar datos caducados"
 
 #: components/Sidebar
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
