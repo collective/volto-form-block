@@ -14,42 +14,42 @@ msgstr ""
 #: components/Edit
 # defaultMessage: Aggiungi un campo
 msgid "Add field"
-msgstr ""
+msgstr "Voeg veld toe"
 
 #: components/Sidebar
 # defaultMessage: Cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Choices
 msgid "Choices"
-msgstr ""
+msgstr "Keuzes"
 
 #: components/Widget/FileWidget
 # defaultMessage: Choose a file
 msgid "Choose a file"
-msgstr ""
+msgstr "Kies een bestand"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Default
 msgid "Default"
-msgstr ""
+msgstr "Standaard"
 
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #: components/Widget/FileWidget
 # defaultMessage: Drop file here to replace the existing file
@@ -286,7 +286,7 @@ msgstr ""
 #: components/FormView
 # defaultMessage: Invia
 msgid "form_default_submit_label"
-msgstr ""
+msgstr "Versturen"
 
 #: components/Sidebar
 # defaultMessage: Export data
