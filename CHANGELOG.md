@@ -1,5 +1,18 @@
 
 
+### [3.8.3](https://github.com/collective/volto-form-block/compare/v3.8.2...v3.8.3) (2024-05-16)
+
+
+### Bug Fixes
+
+* error on form submit: Objects are not valid as a React child. ([#97](https://github.com/collective/volto-form-block/issues/97)) ([1816c1b](https://github.com/collective/volto-form-block/commit/1816c1b3d51f635f5e24843dc217a8dd33b8b2cc))
+
+
+### Maintenance
+
+* add the first few Dutch translations. ([#98](https://github.com/collective/volto-form-block/issues/98)) ([6132730](https://github.com/collective/volto-form-block/commit/6132730f361c30b346f6276ab90fb7004be10eb2))
+* eu and es translations ([#95](https://github.com/collective/volto-form-block/issues/95)) ([09c248f](https://github.com/collective/volto-form-block/commit/09c248faa9d177e8482d4342f0e1a86e0b3cacf7))
+
 ### [3.8.2](https://github.com/collective/volto-form-block/compare/v3.8.1...v3.8.2) (2024-04-26)
 
 
