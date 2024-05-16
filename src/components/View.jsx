@@ -295,10 +295,10 @@ const View = ({ data, id, path }) => {
     if (submitResults?.loaded) {
       setFormState({
         type: FORM_STATES.success,
-        result: {
-          message: intl.formatMessage(messages.formSubmitted),
-          ...submitResults.result,
-        },
+        result: [
+          intl.formatMessage(messages.formSubmitted),
+          submitResults.result
+        ]
       });
       captcha.reset();
       const formItem = document.getElementById(formid);
