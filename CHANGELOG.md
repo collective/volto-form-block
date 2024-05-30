@@ -1,5 +1,12 @@
 
 
+### [3.8.4](https://github.com/collective/volto-form-block/compare/v3.8.3...v3.8.4) (2024-05-30)
+
+
+### Bug Fixes
+
+* align-items start in CSS - Makes autoprefixer happy :/ ([#100](https://github.com/collective/volto-form-block/issues/100)) ([39ab173](https://github.com/collective/volto-form-block/commit/39ab173e6c561cbc92d0f5fef630b13535d5c9e2))
+
 ### [3.8.3](https://github.com/collective/volto-form-block/compare/v3.8.2...v3.8.3) (2024-05-16)
 
 
