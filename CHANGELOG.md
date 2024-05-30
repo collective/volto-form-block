@@ -1,5 +1,12 @@
 
 
+### [3.8.5](https://github.com/collective/volto-form-block/compare/v3.8.4...v3.8.5) (2024-05-30)
+
+
+### Bug Fixes
+
+* upgrade volto-subblocks to 2.1.0 ([ebc71a3](https://github.com/collective/volto-form-block/commit/ebc71a3aeade96efc33f3e7dcf27a13b2c0c3a5b))
+
 ### [3.8.4](https://github.com/collective/volto-form-block/compare/v3.8.3...v3.8.4) (2024-05-30)
 
 
