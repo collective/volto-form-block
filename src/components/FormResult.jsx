@@ -35,7 +35,7 @@ const FormResult = ({ formState, data, resetFormState }) => {
       {data.send_message ? (
         <p
           dangerouslySetInnerHTML={{
-            __html: replaceMessage(data.send_message, formState.result.data),
+            __html: replaceMessage(data.send_message, formState.result[1].data),
           }}
         />
       ) : (
@@ -44,7 +44,7 @@ const FormResult = ({ formState, data, resetFormState }) => {
           <Message.Header as="h4">
             {intl.formatMessage(messages.success)}
           </Message.Header>
-          <p>{formState.result}</p>
+          <p>{formState.result[0]}</p>
         </>
       )}
       {/* Back button */}
