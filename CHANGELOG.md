@@ -1,5 +1,12 @@
 
 
+### [3.8.6](https://github.com/collective/volto-form-block/compare/v3.8.5...v3.8.6) (2024-06-14)
+
+
+### Bug Fixes
+
+* formState success ([8bbf87e](https://github.com/collective/volto-form-block/commit/8bbf87e28a339aab30ab9603eda06f85c2d51687))
+
 ### [3.8.5](https://github.com/collective/volto-form-block/compare/v3.8.4...v3.8.5) (2024-05-30)
 
 
