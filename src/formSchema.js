@@ -1,5 +1,4 @@
-import { defineMessages } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   form: {
@@ -75,6 +74,14 @@ const messages = defineMessages({
     id: 'form_manage_data',
     defaultMessage: 'Manage data',
   },
+  attachXml: {
+    id: 'form_attach_xml',
+    defaultMessage: 'Attach XML to email',
+  },
+  storedDataIds: {
+    id: 'form_stored_data_ids',
+    defaultMessage: 'Data ID mapping',
+  },
 });
 
 const Schema = (data) => {
@@ -86,30 +93,48 @@ const Schema = (data) => {
     conditional_required.push('send');
   }
 
+  const fieldsets = [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: [
+        'title',
+        'description',
+        'default_to',
+        'default_from',
+        'default_subject',
+        'submit_label',
+        'show_cancel',
+        ...(data?.show_cancel ? ['cancel_label'] : []),
+        'captcha',
+      ],
+    },
+    {
+      id: 'manage_data',
+      title: intl.formatMessage(messages.manage_data),
+      fields: ['store', 'remove_data_after_days', 'send', 'send_message'],
+    },
+  ];
+
+  if (formData?.send) {
+    fieldsets.push({
+      id: 'sendingOptions',
+      title: 'Sending options',
+      fields: ['attachXml'],
+    });
+  }
+
+  if (formData?.send || formData?.store) {
+    fieldsets.push({
+      id: 'storedDataIds',
+      title: intl.formatMessage(messages.storedDataIds),
+      fields: formData?.subblocks?.map((subblock) => subblock.field_id),
+    });
+  }
+
   return {
     title: intl.formatMessage(messages.form),
-    fieldsets: [
-      {
-        id: 'default',
-        title: 'Default',
-        fields: [
-          'title',
-          'description',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'submit_label',
-          'show_cancel',
-          ...(data?.show_cancel ? ['cancel_label'] : []),
-          'captcha',
-        ],
-      },
-      {
-        id: 'manage_data',
-        title: intl.formatMessage(messages.manage_data),
-        fields: ['store', 'remove_data_after_days', 'send', 'send_message'],
-      },
-    ],
+    fieldsets: fieldsets,
     properties: {
       title: {
         title: intl.formatMessage(messages.title),
@@ -167,6 +192,19 @@ const Schema = (data) => {
         widget: 'textarea',
         description: intl.formatMessage(messages.send_message_helptext),
       },
+      attachXml: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.attachXml),
+      },
+      // Add properties for each of the fields for use in the data mapping
+      ...(formData?.subblocks
+        ? Object.assign(
+            {},
+            ...formData?.subblocks?.map((subblock) => {
+              return { [subblock.field_id]: { title: subblock.label } };
+            }),
+          )
+        : {}),
     },
     required: [
       'default_to',
@@ -177,4 +215,5 @@ const Schema = (data) => {
     ],
   };
 };
+
 export default Schema;

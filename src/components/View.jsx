@@ -122,7 +122,15 @@ const View = ({ data, id, path }) => {
   const captchaToken = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {
-    setFormData({ field, value: { field_id, value, ...extras } });
+    setFormData({
+      field,
+      value: {
+        field_id,
+        value,
+        ...(data[field_id] && { custom_field_id: data[field_id] }), // Conditionally add the key. Nicer to work with than having a key with a null value
+        ...extras,
+      },
+    });
   };
 
   useEffect(() => {
