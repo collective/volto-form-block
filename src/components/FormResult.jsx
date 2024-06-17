@@ -44,7 +44,7 @@ const FormResult = ({ formState, data, resetFormState }) => {
           <Message.Header as="h4">
             {intl.formatMessage(messages.success)}
           </Message.Header>
-          <p>{formState.result}</p>
+          <p>{formState.result.message}</p>
         </>
       )}
       {/* Back button */}
