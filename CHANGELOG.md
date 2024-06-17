@@ -1,5 +1,12 @@
 
 
+### [3.8.7](https://github.com/collective/volto-form-block/compare/v3.8.6...v3.8.7) (2024-06-17)
+
+
+### Bug Fixes
+
+* view message response [#96](https://github.com/collective/volto-form-block/issues/96) ([#103](https://github.com/collective/volto-form-block/issues/103)) ([7262025](https://github.com/collective/volto-form-block/commit/726202567e72e6e7540603e7439229042778323f))
+
 ### [3.8.6](https://github.com/collective/volto-form-block/compare/v3.8.5...v3.8.6) (2024-06-14)
 
 
