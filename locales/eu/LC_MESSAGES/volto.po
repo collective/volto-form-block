@@ -551,6 +551,21 @@ msgstr "Posta elektronikoa okerra da"
 msgid "formblock_requiredFieldMessage"
 msgstr "Bete eremua"
 
+#: formSchema
+# defaultMessage: Text at the end of the email
+msgid "mail_footer_label"
+msgstr ""
+
+#: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
+msgid "mail_header_description"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Text at the beginning of the email
+msgid "mail_header_label"
+msgstr ""
+
 #: components/Sidebar
 # defaultMessage: remove expired data
 msgid "remove_data_button"

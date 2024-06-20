@@ -75,6 +75,18 @@ const messages = defineMessages({
     id: 'form_manage_data',
     defaultMessage: 'Manage data',
   },
+  mail_header_label: {
+    id: 'mail_header_label',
+    defaultMessage: 'Text at the beginning of the email',
+  },
+  mail_header_footer_description: {
+    id: 'mail_header_description',
+    defaultMessage: 'If field isn\'t filled in, a default text will be used',
+  },
+  mail_footer_label: {
+    id: 'mail_footer_label',
+    defaultMessage: 'Text at the end of the email',
+  },
 });
 
 const Schema = (data) => {
@@ -101,6 +113,8 @@ const Schema = (data) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
+          'mail_header',
+          'mail_footer',
           'captcha',
         ],
       },
@@ -137,6 +151,16 @@ const Schema = (data) => {
       },
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
+      },
+      mail_header: {
+        title: intl.formatMessage(messages.mail_header_label),
+        widget: 'textarea',
+        description: intl.formatMessage(messages.mail_header_footer_description),
+      },
+      mail_footer: {
+        title: intl.formatMessage(messages.mail_footer_label),
+        widget: 'textarea',
+        description: intl.formatMessage(messages.mail_header_footer_description)
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
