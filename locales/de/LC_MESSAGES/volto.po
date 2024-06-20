@@ -79,7 +79,7 @@ msgstr "Formular"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href=\"https://www.hcaptcha.com/privacy\">Datenschutzbestimmungen</a> und <a href=\"https://www.hcaptcha.com/terms\">Nutzungsbedingungen</a>."
+msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="https://www.hcaptcha.com/privacy">Datenschutzbestimmungen</a> und <a href="https://www.hcaptcha.com/terms">Nutzungsbedingungen</a>."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
@@ -548,6 +548,21 @@ msgstr "Fehlerhafte E-Mail-Adresse"
 # defaultMessage: Fill-in this field
 msgid "formblock_requiredFieldMessage"
 msgstr "Bitte füllen Sie dieses Feld aus"
+
+#: formSchema
+# defaultMessage: Text at the end of the email
+msgid "mail_footer_label"
+msgstr ""
+
+#: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
+msgid "mail_header_description"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Text at the beginning of the email
+msgid "mail_header_label"
+msgstr ""
 
 #: components/Sidebar
 # defaultMessage: remove expired data

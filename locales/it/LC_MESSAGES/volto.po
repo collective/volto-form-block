@@ -549,6 +549,21 @@ msgstr "L'email inserita non è corretta"
 msgid "formblock_requiredFieldMessage"
 msgstr "Compila questo campo"
 
+#: formSchema
+# defaultMessage: Text at the end of the email
+msgid "mail_footer_label"
+msgstr "Testo alla fine dell'email"
+
+#: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
+msgid "mail_header_description"
+msgstr "Se il campo non viene compilato verrà utilizzato un testo di default"
+
+#: formSchema
+# defaultMessage: Text at the beginning of the email
+msgid "mail_header_label"
+msgstr "Testo all'inizio dell'email"
+
 #: components/Sidebar
 # defaultMessage: remove expired data
 msgid "remove_data_button"
