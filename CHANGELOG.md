@@ -1,5 +1,13 @@
 
 
+## [3.9.0](https://github.com/collective/volto-form-block/compare/v3.8.7...v3.9.0) (2024-06-20)
+
+
+### Features
+
+* add missing german translations ([c40b1ea](https://github.com/collective/volto-form-block/commit/c40b1ea895b23990cdde29cc8b56c6de95039fed))
+* added header and footer mail fields ([#105](https://github.com/collective/volto-form-block/issues/105)) ([d74cf6c](https://github.com/collective/volto-form-block/commit/d74cf6c54c59a81d3498b2960dda443c35b7ad47))
+
 ### [3.8.7](https://github.com/collective/volto-form-block/compare/v3.8.6...v3.8.7) (2024-06-17)
 
 
