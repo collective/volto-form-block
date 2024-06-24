@@ -79,7 +79,7 @@ msgstr "Formular"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href=\"https://www.hcaptcha.com/privacy\">Datenschutzbestimmungen</a> und <a href=\"https://www.hcaptcha.com/terms\">Nutzungsbedingungen</a>."
+msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="https://www.hcaptcha.com/privacy">Datenschutzbestimmungen</a> und <a href="https://www.hcaptcha.com/terms">Nutzungsbedingungen</a>."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
@@ -235,6 +235,16 @@ msgstr "Beschreibung"
 # defaultMessage: Field ID
 msgid "fieldId"
 msgstr "Feld-ID"
+
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Form

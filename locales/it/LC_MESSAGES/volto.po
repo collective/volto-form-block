@@ -236,6 +236,16 @@ msgstr "Descrizione"
 msgid "fieldId"
 msgstr "Identificativo"
 
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr "Seleziona questo checkbox se il valore inserito in questo campo può essere utilizzato solo una volta"
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr "Campo univoco"
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"

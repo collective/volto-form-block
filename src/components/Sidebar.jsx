@@ -113,6 +113,8 @@ const Sidebar = ({
   var FormSchema = config.blocks.blocksConfig.form.formSchema;
   var FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
 
+  console.log(data);
+
   return (
     <Form>
       <Segment.Group raised>

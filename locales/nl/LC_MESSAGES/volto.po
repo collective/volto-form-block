@@ -236,6 +236,16 @@ msgstr ""
 msgid "fieldId"
 msgstr ""
 
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"

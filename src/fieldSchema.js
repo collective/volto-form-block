@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import config from '@plone/volto/registry';
 import { defineMessages } from 'react-intl';
 import { useIntl } from 'react-intl';
@@ -67,6 +68,15 @@ const messages = defineMessages({
     id: 'form_field_type_hidden',
     defaultMessage: 'Hidden',
   },
+  field_unique_title: {
+    id: 'field_unique_title',
+    defaultMessage: 'Unique field',
+  },
+  field_unique_description: {
+    id: 'field_unique_description',
+    defaultMessage:
+      'Check this box if the value entered in this field can be used only once.',
+  },
 });
 
 export default (props) => {
@@ -114,6 +124,7 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           ...(props?.field_type === 'static_text' ? [] : ['required']),
+          'unique',
         ],
       },
     ],
@@ -141,6 +152,13 @@ export default (props) => {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
+      },
+      unique: {
+        title: intl.formatMessage(messages.field_unique_title),
+        description: intl.formatMessage(messages.field_unique_description),
+        type: 'boolean',
+        default: false,
+        send_to_backend: true,
       },
       ...schemaExtenderValues.properties,
     },
