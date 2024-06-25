@@ -106,6 +106,9 @@ const Sidebar = ({
 
   if (data.send_email === undefined) data.send_email = true;
 
+  // reset subscription limit to default when set_limit is not active
+  if (data.set_limit === false) data.limit = -1;
+
   data.subblocks &&
     data.subblocks.forEach((subblock) => {
       subblock.field_id = subblock.id;

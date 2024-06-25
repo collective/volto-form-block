@@ -79,7 +79,7 @@ msgstr "Formular"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href=\"https://www.hcaptcha.com/privacy\">Datenschutzbestimmungen</a> und <a href=\"https://www.hcaptcha.com/terms\">Nutzungsbedingungen</a>."
+msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="https://www.hcaptcha.com/privacy">Datenschutzbestimmungen</a> und <a href="https://www.hcaptcha.com/terms">Nutzungsbedingungen</a>."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
@@ -235,6 +235,16 @@ msgstr "Beschreibung"
 # defaultMessage: Field ID
 msgid "fieldId"
 msgstr "Feld-ID"
+
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Form
@@ -430,6 +440,11 @@ msgid "form_insert_otp"
 msgstr "Geben Sie hier den OTP-Code ein, den Sie über {email} erhalten haben."
 
 #: formSchema
+# defaultMessage: Submission limit
+msgid "form_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr "Daten verwalten"
@@ -490,6 +505,11 @@ msgid "form_send_otp_to"
 msgstr "Sende OTP-Code an {email}"
 
 #: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_set_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr "Zeige Schaltfläche Abbrechen"
@@ -503,6 +523,16 @@ msgstr "Beschriftung der Schaltfläche Senden"
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Gesendet!"
+
+#: components/FormResult
+# defaultMessage: You've been added to the waiting list
+msgid "form_submit_success_warning"
+msgstr ""
+
+#: components/FormResult
+# defaultMessage: Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.
+msgid "form_submit_success_warning_description"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Recipients

@@ -236,6 +236,16 @@ msgstr ""
 msgid "fieldId"
 msgstr ""
 
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -430,6 +440,11 @@ msgid "form_insert_otp"
 msgstr ""
 
 #: formSchema
+# defaultMessage: Submission limit
+msgid "form_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr ""
@@ -490,6 +505,11 @@ msgid "form_send_otp_to"
 msgstr ""
 
 #: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_set_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr ""
@@ -503,6 +523,16 @@ msgstr "Soumettre l'étiquette du bouton"
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Expédié!"
+
+#: components/FormResult
+# defaultMessage: You've been added to the waiting list
+msgid "form_submit_success_warning"
+msgstr ""
+
+#: components/FormResult
+# defaultMessage: Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.
+msgid "form_submit_success_warning_description"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Recipients

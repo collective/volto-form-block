@@ -236,6 +236,16 @@ msgstr "Descrizione"
 msgid "fieldId"
 msgstr "Identificativo"
 
+#: fieldSchema
+# defaultMessage: Check this box if the value entered in this field can be used only once.
+msgid "field_unique_description"
+msgstr "Seleziona questo checkbox se il valore inserito in questo campo può essere utilizzato solo una volta"
+
+#: fieldSchema
+# defaultMessage: Unique field
+msgid "field_unique_title"
+msgstr "Campo univoco"
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
@@ -430,6 +440,11 @@ msgid "form_insert_otp"
 msgstr "Inserisci qui il codice OTP ricevuto all'indirizzo {email}"
 
 #: formSchema
+# defaultMessage: Submission limit
+msgid "form_limit"
+msgstr "Limite iscrizioni"
+
+#: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr "Gestione dei dati"
@@ -490,6 +505,11 @@ msgid "form_send_otp_to"
 msgstr "Invia il codice OTP a {email}"
 
 #: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_set_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr "Mostra il bottone annulla"
@@ -503,6 +523,16 @@ msgstr "Testo sul bottone di invio"
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Inviato!"
+
+#: components/FormResult
+# defaultMessage: You've been added to the waiting list
+msgid "form_submit_success_warning"
+msgstr "Sei stato inserito in lista d'attesa"
+
+#: components/FormResult
+# defaultMessage: Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.
+msgid "form_submit_success_warning_description"
+msgstr "I tuoi dati sono stati inviati, ma è già stato raggiunto il limite di iscrizioni, sei stato inserito in lista d'attesa."
 
 #: formSchema
 # defaultMessage: Recipients
