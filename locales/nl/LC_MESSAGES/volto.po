@@ -505,13 +505,13 @@ msgid "form_send_otp_to"
 msgstr ""
 
 #: formSchema
-# defaultMessage: Show cancel button
-msgid "form_show_cancel"
+# defaultMessage: Set a submission limit
+msgid "form_set_limit"
 msgstr ""
 
 #: formSchema
-# defaultMessage: Set a submission limit
-msgid "form_show_limit"
+# defaultMessage: Show cancel button
+msgid "form_show_cancel"
 msgstr ""
 
 #: formSchema
@@ -522,6 +522,16 @@ msgstr ""
 #: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
+msgstr ""
+
+#: components/FormResult
+# defaultMessage: You've been added to the waiting list
+msgid "form_submit_success_warning"
+msgstr ""
+
+#: components/FormResult
+# defaultMessage: Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.
+msgid "form_submit_success_warning_description"
 msgstr ""
 
 #: formSchema

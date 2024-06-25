@@ -514,14 +514,14 @@ msgid "form_send_otp_to"
 msgstr "Envíe el código OTP a {email}"
 
 #: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_set_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr "Mostrar botón cancelar"
-
-#: formSchema
-# defaultMessage: Set a submission limit
-msgid "form_show_limit"
-msgstr ""
 
 #: formSchema
 # defaultMessage: Submit button label
@@ -532,6 +532,16 @@ msgstr "Etiqueta del botón de envío"
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Enviado"
+
+#: components/FormResult
+# defaultMessage: You've been added to the waiting list
+msgid "form_submit_success_warning"
+msgstr ""
+
+#: components/FormResult
+# defaultMessage: Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.
+msgid "form_submit_success_warning_description"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Recipients

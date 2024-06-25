@@ -8,6 +8,15 @@ const messages = defineMessages({
     id: 'form_submit_success',
     defaultMessage: 'Sent!',
   },
+  success_warning: {
+    id: 'form_submit_success_warning',
+    defaultMessage: "You've been added to the waiting list",
+  },
+  success_warning_description: {
+    id: 'form_submit_success_warning_description',
+    defaultMessage:
+      "Your data has been submitted, but the subscription limit has been reached and you've been added to the waiting list.",
+  },
   reset: {
     id: 'form_reset',
     defaultMessage: 'Clear',
@@ -30,7 +39,11 @@ const replaceMessage = (text, sent_data) => {
 const FormResult = ({ formState, data, resetFormState }) => {
   const intl = useIntl();
   return (
-    <Message positive role="alert">
+    <Message
+      positive={!formState.warning}
+      warning={formState.warning}
+      role="alert"
+    >
       {/* Custom message */}
       {data.send_message ? (
         <p
@@ -42,9 +55,15 @@ const FormResult = ({ formState, data, resetFormState }) => {
         <>
           {/* Default message */}
           <Message.Header as="h4">
-            {intl.formatMessage(messages.success)}
+            {!formState.warning
+              ? intl.formatMessage(messages.success)
+              : intl.formatMessage(messages.success_warning)}
           </Message.Header>
-          <p>{formState.result.message}</p>
+          <p>
+            {!formState.warning
+              ? formState.result.message
+              : intl.formatMessage(messages.success_warning_description)}
+          </p>
         </>
       )}
       {/* Back button */}
