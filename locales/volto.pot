@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-06-24T12:52:19.217Z\n"
+"POT-Creation-Date: 2024-06-24T15:41:57.215Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -442,6 +442,11 @@ msgid "form_insert_otp"
 msgstr ""
 
 #: formSchema
+# defaultMessage: Submission limit
+msgid "form_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr ""
@@ -504,6 +509,11 @@ msgstr ""
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_show_limit"
 msgstr ""
 
 #: formSchema

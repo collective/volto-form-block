@@ -449,6 +449,11 @@ msgid "form_insert_otp"
 msgstr "Inserte el código OTP recibido en {email}"
 
 #: formSchema
+# defaultMessage: Submission limit
+msgid "form_limit"
+msgstr ""
+
+#: formSchema
 # defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr "Administrar datos"
@@ -512,6 +517,11 @@ msgstr "Envíe el código OTP a {email}"
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr "Mostrar botón cancelar"
+
+#: formSchema
+# defaultMessage: Set a submission limit
+msgid "form_show_limit"
+msgstr ""
 
 #: formSchema
 # defaultMessage: Submit button label

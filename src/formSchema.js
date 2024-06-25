@@ -34,6 +34,14 @@ const messages = defineMessages({
     id: 'form_show_cancel',
     defaultMessage: 'Show cancel button',
   },
+  show_limit: {
+    id: 'form_show_limit',
+    defaultMessage: 'Set a submission limit',
+  },
+  limit: {
+    id: 'form_limit',
+    defaultMessage: 'Submission limit',
+  },
   cancel_label: {
     id: 'form_cancel_label',
     defaultMessage: 'Cancel button label',
@@ -81,7 +89,7 @@ const messages = defineMessages({
   },
   mail_header_footer_description: {
     id: 'mail_header_description',
-    defaultMessage: 'If field isn\'t filled in, a default text will be used',
+    defaultMessage: "If field isn't filled in, a default text will be used",
   },
   mail_footer_label: {
     id: 'mail_footer_label',
@@ -113,6 +121,8 @@ const Schema = (data) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
+          'show_limit',
+          ...(data?.show_limit ? ['limit'] : []),
           'mail_header',
           'mail_footer',
           'captcha',
@@ -149,18 +159,31 @@ const Schema = (data) => {
         title: intl.formatMessage(messages.show_cancel),
         default: false,
       },
+      show_limit: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.show_limit),
+        default: false,
+      },
+      limit: {
+        title: intl.formatMessage(messages.limit),
+        // default: -1,
+      },
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
       },
       mail_header: {
         title: intl.formatMessage(messages.mail_header_label),
         widget: 'textarea',
-        description: intl.formatMessage(messages.mail_header_footer_description),
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
       },
       mail_footer: {
         title: intl.formatMessage(messages.mail_footer_label),
         widget: 'textarea',
-        description: intl.formatMessage(messages.mail_header_footer_description)
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),

@@ -221,6 +221,8 @@ const View = ({ data, id, path }) => {
             captcha.value = formData[data.captcha_props.id]?.value ?? '';
           }
 
+          console.log(formData);
+
           let formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
             let name = getFieldName(subblock.label, subblock.id);
