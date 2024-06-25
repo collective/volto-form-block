@@ -166,7 +166,7 @@ const Schema = (data) => {
       },
       limit: {
         title: intl.formatMessage(messages.limit),
-        // default: -1,
+        default: -1,
       },
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),

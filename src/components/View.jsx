@@ -39,6 +39,7 @@ const initialState = {
   loading: false,
   error: null,
   result: null,
+  warning: null,
 };
 
 const FORM_STATES = {
@@ -46,6 +47,7 @@ const FORM_STATES = {
   loading: 'loading',
   error: 'error',
   success: 'success',
+  warning: 'warning',
 };
 
 const formStateReducer = (state, action) => {
@@ -54,13 +56,31 @@ const formStateReducer = (state, action) => {
       return initialState;
 
     case FORM_STATES.loading:
-      return { loading: true, error: null, result: null };
+      return { loading: true, error: null, result: null, warning: null };
 
     case FORM_STATES.error:
-      return { loading: false, error: action.error, result: null };
+      return {
+        loading: false,
+        error: action.error,
+        result: null,
+        warning: null,
+      };
+
+    case FORM_STATES.warning:
+      return {
+        loading: false,
+        error: null,
+        result: action.result,
+        warning: true,
+      };
 
     case FORM_STATES.success:
-      return { loading: false, error: null, result: action.result };
+      return {
+        loading: false,
+        error: null,
+        result: action.result,
+        warning: null,
+      };
 
     default:
       return initialState;
@@ -221,8 +241,6 @@ const View = ({ data, id, path }) => {
             captcha.value = formData[data.captcha_props.id]?.value ?? '';
           }
 
-          console.log(formData);
-
           let formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
             let name = getFieldName(subblock.label, subblock.id);
@@ -295,13 +313,22 @@ const View = ({ data, id, path }) => {
 
   useEffect(() => {
     if (submitResults?.loaded) {
-      setFormState({
-        type: FORM_STATES.success,
-        result: {
-          message: intl.formatMessage(messages.formSubmitted),
-          ...submitResults.result,
-        },
-      });
+      if (submitResults?.result?.data?.waiting_list) {
+        setFormState({
+          type: FORM_STATES.warning,
+          result: {
+            ...submitResults.result,
+          },
+        });
+      } else {
+        setFormState({
+          type: FORM_STATES.success,
+          result: {
+            message: intl.formatMessage(messages.formSubmitted),
+            ...submitResults.result,
+          },
+        });
+      }
       captcha.reset();
       const formItem = document.getElementById(formid);
       if (formItem !== null) {

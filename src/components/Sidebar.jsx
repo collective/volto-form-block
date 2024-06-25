@@ -105,6 +105,7 @@ const Sidebar = ({
   }, [clearFormDataState]);
 
   if (data.send_email === undefined) data.send_email = true;
+  if (data.show_limit === false) data.limit = -1;
 
   data.subblocks &&
     data.subblocks.forEach((subblock) => {
@@ -112,8 +113,6 @@ const Sidebar = ({
     });
   var FormSchema = config.blocks.blocksConfig.form.formSchema;
   var FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
-
-  console.log(data);
 
   return (
     <Form>
