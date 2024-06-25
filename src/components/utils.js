@@ -1,8 +1,6 @@
 import { saveAs } from 'file-saver';
 
 export const getFieldName = (label, id) => {
-  console.log(label);
-  console.log(id);
   return label?.length > 0
     ? label?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') + '_' + id
     : id;
