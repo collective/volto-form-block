@@ -34,8 +34,8 @@ const messages = defineMessages({
     id: 'form_show_cancel',
     defaultMessage: 'Show cancel button',
   },
-  show_limit: {
-    id: 'form_show_limit',
+  set_limit: {
+    id: 'form_set_limit',
     defaultMessage: 'Set a submission limit',
   },
   limit: {
@@ -121,8 +121,8 @@ const Schema = (data) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
-          'show_limit',
-          ...(data?.show_limit ? ['limit'] : []),
+          'set_limit',
+          ...(data?.set_limit ? ['limit'] : []),
           'mail_header',
           'mail_footer',
           'captcha',
@@ -159,9 +159,9 @@ const Schema = (data) => {
         title: intl.formatMessage(messages.show_cancel),
         default: false,
       },
-      show_limit: {
+      set_limit: {
         type: 'boolean',
-        title: intl.formatMessage(messages.show_limit),
+        title: intl.formatMessage(messages.set_limit),
         default: false,
       },
       limit: {

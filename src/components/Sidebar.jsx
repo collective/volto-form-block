@@ -105,7 +105,9 @@ const Sidebar = ({
   }, [clearFormDataState]);
 
   if (data.send_email === undefined) data.send_email = true;
-  if (data.show_limit === false) data.limit = -1;
+
+  // reset subscription limit to default when set_limit is not active
+  if (data.set_limit === false) data.limit = -1;
 
   data.subblocks &&
     data.subblocks.forEach((subblock) => {
