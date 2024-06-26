@@ -1,5 +1,12 @@
 
 
+### [3.9.1](https://github.com/collective/volto-form-block/compare/v3.9.0...v3.9.1) (2024-06-26)
+
+
+### Maintenance
+
+* updated header and footer email fields with richtext ([c656644](https://github.com/collective/volto-form-block/commit/c65664461a934f541823be4973e257a3e3190373))
+
 ## [3.9.0](https://github.com/collective/volto-form-block/compare/v3.8.7...v3.9.0) (2024-06-20)
 
 
