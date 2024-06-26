@@ -154,12 +154,14 @@ const Schema = (data) => {
       },
       mail_header: {
         title: intl.formatMessage(messages.mail_header_label),
-        widget: 'textarea',
+        widget: 'richtext',
+        type: 'string',
         description: intl.formatMessage(messages.mail_header_footer_description),
       },
       mail_footer: {
         title: intl.formatMessage(messages.mail_footer_label),
-        widget: 'textarea',
+        widget: 'richtext',
+        type: 'string',
         description: intl.formatMessage(messages.mail_header_footer_description)
       },
       captcha: {
