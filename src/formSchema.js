@@ -26,6 +26,11 @@ const messages = defineMessages({
     id: 'form_default_subject',
     defaultMessage: 'Mail subject',
   },
+  default_subject_description: {
+    id: 'form_default_subject_description',
+    defaultMessage:
+      'Use the ${field_id} syntax to add a form value to the email subject',
+  },
   submit_label: {
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
@@ -81,7 +86,7 @@ const messages = defineMessages({
   },
   mail_header_footer_description: {
     id: 'mail_header_description',
-    defaultMessage: 'If field isn\'t filled in, a default text will be used',
+    defaultMessage: "If field isn't filled in, a default text will be used",
   },
   mail_footer_label: {
     id: 'mail_footer_label',
@@ -140,6 +145,7 @@ const Schema = (data) => {
       },
       default_subject: {
         title: intl.formatMessage(messages.default_subject),
+        description: intl.formatMessage(messages.default_subject_description),
       },
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
@@ -156,13 +162,17 @@ const Schema = (data) => {
         title: intl.formatMessage(messages.mail_header_label),
         widget: 'richtext',
         type: 'string',
-        description: intl.formatMessage(messages.mail_header_footer_description),
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
       },
       mail_footer: {
         title: intl.formatMessage(messages.mail_footer_label),
         widget: 'richtext',
         type: 'string',
-        description: intl.formatMessage(messages.mail_header_footer_description)
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),

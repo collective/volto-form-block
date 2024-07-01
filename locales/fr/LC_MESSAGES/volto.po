@@ -282,6 +282,11 @@ msgstr "Expéditeur par défaut"
 msgid "form_default_subject"
 msgstr "Objet du courrier"
 
+#: formSchema
+# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
+msgid "form_default_subject_description"
+msgstr ""
+
 #: components/Edit
 #: components/FormView
 # defaultMessage: Invia

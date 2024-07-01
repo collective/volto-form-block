@@ -282,6 +282,11 @@ msgstr "Mittente di default"
 msgid "form_default_subject"
 msgstr "Oggetto dell'email"
 
+#: formSchema
+# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
+msgid "form_default_subject_description"
+msgstr "Utilizza la sintassi ${identificativo} per aggiungere un valore della form dentro all'oggetto dell'email"
+
 #: components/Edit
 #: components/FormView
 # defaultMessage: Invia
