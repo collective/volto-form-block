@@ -1,5 +1,12 @@
 
 
+### [3.9.2](https://github.com/collective/volto-form-block/compare/v3.9.1...v3.9.2) (2024-07-01)
+
+
+### Maintenance
+
+* updated subject field with description text ([3080394](https://github.com/collective/volto-form-block/commit/30803949a013161b38ac650c783a45e25ae56b89))
+
 ### [3.9.1](https://github.com/collective/volto-form-block/compare/v3.9.0...v3.9.1) (2024-06-26)
 
 
