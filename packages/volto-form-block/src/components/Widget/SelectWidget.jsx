@@ -169,16 +169,8 @@ class SelectWidget extends Component {
    * @returns {string} Markup for the component.
    */
   render() {
-    const {
-      id,
-      choices,
-      value,
-      intl,
-      onChange,
-      required,
-      invalid,
-      title,
-    } = this.props;
+    const { id, choices, value, intl, onChange, required, invalid, title } =
+      this.props;
     const normalizedValue = normalizeValue(choices, value, intl);
     // Make sure that both disabled and isDisabled (from the DX layout feat work)
     const disabled = this.props.disabled || this.props.isDisabled;

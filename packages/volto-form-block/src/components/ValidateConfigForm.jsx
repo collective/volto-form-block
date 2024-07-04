@@ -61,6 +61,7 @@ const ValidateConfigForm = ({ data = {}, children, onEdit, onChangeBlock }) => {
         onChangeBlock({ ...data, configValidation: validation });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const valid = data.configValidation?.valid || !data.configValidation; //!data.configValidation is for old configured form that doesn't have configValidation field
