@@ -1,45 +1,43 @@
+const fs = require('fs');
+const projectRootPath = __dirname;
+const AddonConfigurationRegistry = require('@plone/registry/src/addon-registry');
+
+let coreLocation;
+if (fs.existsSync(`${projectRootPath}/core`))
+  coreLocation = `${projectRootPath}/core`;
+else if (fs.existsSync(`${projectRootPath}/../../core`))
+  coreLocation = `${projectRootPath}/../../core`;
+
+const registry = new AddonConfigurationRegistry(
+  `${coreLocation}/packages/volto`,
+);
+
+// Extends ESlint configuration for adding the aliases to `src` directories in Volto addons
+const addonAliases = Object.keys(registry.packages).map((o) => [
+  o,
+  registry.packages[o].modulePath,
+]);
+
 module.exports = {
-  extends: ['react-app', 'prettier', 'plugin:jsx-a11y/recommended'],
-  plugins: ['prettier', 'react-hooks', 'jsx-a11y'],
-  env: {
-    es6: true,
-    browser: true,
-    node: true,
-    mocha: true,
-    jasmine: true,
-  },
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
+  extends: `${coreLocation}/packages/volto/.eslintrc`,
   rules: {
-    'import/no-unresolved': 0,
-    'no-alert': 1,
-    'no-console': 1,
-    'no-debugger': 1,
-    'prettier/prettier': ['error', { trailingComma: 'all', singleQuote: true }],
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react/react-in-jsx-scope': 'off',
+    'import/no-unresolved': 1,
   },
-  globals: {
-    root: true,
-    __DEVELOPMENT__: true,
-    __CLIENT__: true,
-    __SERVER__: true,
-    __DISABLE_SSR__: true,
-    __DEVTOOLS__: true,
-    __DEBUG__: true,
-    __SSR__: true,
-    __SENTRY__: true,
-    cy: true,
-    Cypress: true,
-    jest: true,
-    socket: true,
-    webpackIsomorphicTools: true,
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@plone/volto', `${coreLocation}/packages/volto/src`],
+          ['@plone/volto-slate', `${coreLocation}/packages/volto-slate/src`],
+          ['@plone/registry', `${coreLocation}/packages/registry/src`],
+          [
+            'volto-form-block',
+            './packages/volto-form-block/src',
+          ],
+          ...addonAliases,
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
+    },
   },
 };
