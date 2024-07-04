@@ -36,8 +36,7 @@ const messages = defineMessages({
     defaultMessage: 'press left to focus selected values',
   },
   ay11_toggle_values: {
-    id:
-      'ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value',
+    id: 'ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value',
     defaultMessage:
       'Use left and right to toggle between focused values, press Backspace to remove the currently focused value',
   },
@@ -95,13 +94,8 @@ const messages = defineMessages({
 export const getReactSelectAriaLiveMessages = (intl) => {
   return {
     guidance: (props) => {
-      const {
-        isSearchable,
-        isMulti,
-        isDisabled,
-        tabSelectsValue,
-        context,
-      } = props;
+      const { isSearchable, isMulti, isDisabled, tabSelectsValue, context } =
+        props;
       switch (context) {
         case 'menu':
           return `${intl.formatMessage(messages.ay11_up_down)}${
@@ -208,14 +202,16 @@ export const getReactSelectAriaLiveMessages = (intl) => {
   };
 };
 
-export const getReactSelectScreenReaderStatus = (intl) => ({ count }) => {
-  const results =
-    count !== 1
-      ? intl.formatMessage(messages.results)
-      : intl.formatMessage(messages.result);
-  const available =
-    count !== 1
-      ? intl.formatMessage(messages.availables)
-      : intl.formatMessage(messages.available);
-  return `${count} ${results} ${available}`;
-};
+export const getReactSelectScreenReaderStatus =
+  (intl) =>
+  ({ count }) => {
+    const results =
+      count !== 1
+        ? intl.formatMessage(messages.results)
+        : intl.formatMessage(messages.result);
+    const available =
+      count !== 1
+        ? intl.formatMessage(messages.availables)
+        : intl.formatMessage(messages.available);
+    return `${count} ${results} ${available}`;
+  };

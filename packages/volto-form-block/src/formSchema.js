@@ -29,6 +29,7 @@ const messages = defineMessages({
   default_subject_description: {
     id: 'form_default_subject_description',
     defaultMessage:
+      // eslint-disable-next-line no-template-curly-in-string
       'Use the ${field_id} syntax to add a form value to the email subject',
   },
   submit_label: {
@@ -74,6 +75,7 @@ const messages = defineMessages({
   send_message_helptext: {
     id: 'form_send_message_helptext',
     defaultMessage:
+      // eslint-disable-next-line no-template-curly-in-string
       'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
   },
   manage_data: {

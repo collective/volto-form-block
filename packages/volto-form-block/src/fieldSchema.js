@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import config from '@plone/volto/registry';
 import { defineMessages } from 'react-intl';
 import { useIntl } from 'react-intl';
@@ -69,8 +70,9 @@ const messages = defineMessages({
   },
 });
 
+// eslint-disable-next-line prettier/prettier
 export default (props) => {
-  var intl = useIntl();
+  var intl = useIntl(); // This is wrong and has to be fixed
   const baseFieldTypeChoices = [
     ['text', intl.formatMessage(messages.field_type_text)],
     ['textarea', intl.formatMessage(messages.field_type_textarea)],
