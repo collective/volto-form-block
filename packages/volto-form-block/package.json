@@ -1,0 +1,48 @@
+{
+  "name": "volto-form-block",
+  "version": "3.9.2",
+  "description": "Volto block to build a form",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react",
+    "block",
+    "form"
+  ],
+  "author": "Plone Community",
+  "homepage": "https://github.com/collective/volto-form-block#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:collective/volto-form-block.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
+    "dry-release": "release-it --dry-run",
+    "release": "release-it",
+    "release-major-alpha": "release-it major --preRelease=alpha",
+    "release-alpha": "release-it --preRelease=alpha"
+  },
+  "addons": [
+    "volto-subblocks"
+  ],
+  "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^0.3.6",
+    "file-saver": "^2.0.5",
+    "react-google-recaptcha-v3": "^1.8.0",
+    "volto-subblocks": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@plone/scripts": "^3.6.1",
+    "release-it": "^17.1.1"
+  }
+}
