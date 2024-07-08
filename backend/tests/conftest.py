@@ -1,6 +1,6 @@
-from collective.voltoformblock.testing import ACCEPTANCE_TESTING
-from collective.voltoformblock.testing import FUNCTIONAL_TESTING
-from collective.voltoformblock.testing import INTEGRATION_TESTING
+from collective.volto.formsupport.testing import ACCEPTANCE_TESTING
+from collective.volto.formsupport.testing import FUNCTIONAL_TESTING
+from collective.volto.formsupport.testing import INTEGRATION_TESTING
 from pytest_plone import fixtures_factory
 
 

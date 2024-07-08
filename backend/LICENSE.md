@@ -1,4 +1,4 @@
-collective.voltoformblock Copyright 2023, Plone Foundation
+collective.volto.formsupport Copyright 2023, Plone Foundation
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License version 2
