@@ -2,15 +2,22 @@
 #     https://tech.davis-hansson.com/p/make/
 SHELL:=bash
 .ONESHELL:
-.SHELLFLAGS:=-eu -o pipefail -c
+.SHELLFLAGS:=-xeu -o pipefail -O inherit_errexit -c
 .SILENT:
 .DELETE_ON_ERROR:
 MAKEFLAGS+=--warn-undefined-variables
 MAKEFLAGS+=--no-builtin-rules
 
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+GIT_FOLDER=$(CURRENT_DIR)/.git
 
-# Recipe snippets for reuse
+PROJECT_NAME=volto-form-block
+STACK_NAME=volto-form-block-example-com
+
+VOLTO_VERSION = $(shell cat frontend/mrs.developer.json | python -c "import sys, json; print(json.load(sys.stdin)['core']['tag'])")
+PLONE_VERSION=$(shell cat backend/version.txt)
+
+PRE_COMMIT=pipx run --spec 'pre-commit==3.7.1' pre-commit
 
 # We like colors
 # From: https://coderwall.com/p/izxssa/colored-makefile-for-golang-projects
@@ -19,122 +26,188 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
-GIT_FOLDER=$(CURRENT_DIR)/.git
-PRE_COMMIT=pipx run --spec 'pre-commit==3.7.1' pre-commit
+.PHONY: all
+all: install
 
-PLONE_VERSION=6
-DOCKER_IMAGE=plone/server-dev:${PLONE_VERSION}
-DOCKER_IMAGE_ACCEPTANCE=plone/server-acceptance:${PLONE_VERSION}
-
-ADDON_NAME='volto-form-block'
-
+# Add the following 'help' target to your Makefile
+# And add help text after each target name starting with '\#\#'
 .PHONY: help
-help: ## Show this help
-	@echo -e "$$(grep -hE '^\S+:.*##' $(MAKEFILE_LIST) | sed -e 's/:.*##\s*/:/' -e 's/^\(.\+\):\(.*\)/\\x1b[36m\1\\x1b[m:\2/' | column -c2 -t -s :)"
+help: ## This help message
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-# Dev Helpers
+###########################################
+# Frontend
+###########################################
+.PHONY: frontend-install
+frontend-install:  ## Install React Frontend
+	$(MAKE) -C "./frontend/" install
+
+.PHONY: frontend-build
+frontend-build:  ## Build React Frontend
+	$(MAKE) -C "./frontend/" build
+
+.PHONY: frontend-start
+frontend-start:  ## Start React Frontend
+	$(MAKE) -C "./frontend/" start
+
+.PHONY: frontend-test
+frontend-test:  ## Test frontend codebase
+	@echo "Test frontend"
+	$(MAKE) -C "./frontend/" test
+
+###########################################
+# Backend
+###########################################
+.PHONY: backend-install
+backend-install:  ## Create virtualenv and install Plone
+	$(MAKE) -C "./backend/" install
+	$(MAKE) backend-create-site
+
+.PHONY: backend-build
+backend-build:  ## Build Backend
+	$(MAKE) -C "./backend/" install
+
+.PHONY: backend-create-site
+backend-create-site: ## Create a Plone site with default content
+	$(MAKE) -C "./backend/" create-site
+
+.PHONY: backend-update-example-content
+backend-update-example-content: ## Export example content inside package
+	$(MAKE) -C "./backend/" update-example-content
+
+.PHONY: backend-start
+backend-start: ## Start Plone Backend
+	$(MAKE) -C "./backend/" start
+
+.PHONY: backend-test
+backend-test:  ## Test backend codebase
+	@echo "Test backend"
+	$(MAKE) -C "./backend/" test
 
 .PHONY: install
-install: ## Installs the add-on in a development environment
-	@echo "$(GREEN)Install$(RESET)"
+install:  ## Install
+	@echo "Install Backend & Frontend"
 	if [ -d $(GIT_FOLDER) ]; then $(PRE_COMMIT) install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
-	pnpm dlx mrs-developer missdev --no-config --fetch-https
-	pnpm i
-	make build-deps
+	$(MAKE) backend-install
+	$(MAKE) frontend-install
 
 .PHONY: start
-start: ## Starts Volto, allowing reloading of the add-on during development
-	pnpm start
+start:  ## Start
+	@echo "Starting application"
+	$(MAKE) backend-start
+	$(MAKE) frontend-start
 
-.PHONY: build
-build: ## Build a production bundle for distribution of the project with the add-on
-	pnpm build
+.PHONY: clean
+clean:  ## Clean installation
+	@echo "Clean installation"
+	$(MAKE) -C "./backend/" clean
+	$(MAKE) -C "./frontend/" clean
 
-core/packages/registry/dist: core/packages/registry/src
-	pnpm --filter @plone/registry build
-
-core/packages/components/dist: core/packages/components/src
-	pnpm --filter @plone/components build
-
-.PHONY: build-deps
-build-deps: core/packages/registry/dist core/packages/components/dist ## Build dependencies
+.PHONY: check
+check:  ## Lint and Format codebase
+	@echo "Lint and Format codebase"
+	$(PRE_COMMIT) run -a
 
 .PHONY: i18n
-i18n: ## Sync i18n
-	pnpm --filter $(ADDON_NAME) i18n
-
-.PHONY: ci-i18n
-ci-i18n: ## Check if i18n is not synced
-	pnpm --filter $(ADDON_NAME) i18n && git diff -G'^[^\"POT]' --exit-code
-
-.PHONY: format
-format: ## Format codebase
-	pnpm prettier:fix
-	pnpm lint:fix
-	pnpm stylelint:fix
-
-.PHONY: lint
-lint: ## Lint, or catch and remove problems, in code base
-	pnpm lint
-	pnpm prettier
-	pnpm stylelint --allow-empty-input
-
-.PHONY: release
-release: ## Release the add-on on npmjs.org
-	pnpm release
-
-.PHONY: release-dry-run
-release-dry-run: ## Dry-run the release of the add-on on npmjs.org
-	pnpm release
+i18n:  ## Update locales
+	@echo "Update locales"
+	$(MAKE) -C "./backend/" i18n
+	$(MAKE) -C "./frontend/" i18n
 
 .PHONY: test
-test: ## Run unit tests
-	pnpm test
+test:  backend-test frontend-test ## Test codebase
 
-.PHONY: test-ci
-ci-test: ## Run unit tests in CI
-	# Unit Tests need the i18n to be built
-	VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto i18n
-	CI=1 RAZZLE_JEST_CONFIG=$(CURRENT_DIR)/jest-addon.config.js pnpm --filter @plone/volto test -- --passWithNoTests
+.PHONY: build-images
+build-images:  ## Build docker images
+	@echo "Build"
+	$(MAKE) -C "./backend/" build-image
+	$(MAKE) -C "./frontend/" build-image
 
-.PHONY: backend-docker-start
-backend-docker-start:	## Starts a Docker-based backend for development
-	@echo "$(GREEN)==> Start Docker-based Plone Backend$(RESET)"
-	docker run -it --rm --name=backend -p 8080:8080 -e SITE=Plone $(DOCKER_IMAGE)
+## Docker stack
+.PHONY: stack-start
+stack-start:  ## Local Stack: Start Services
+	@echo "Start local Docker stack"
+	VOLTO_VERSION=$(VOLTO_VERSION) PLONE_VERSION=$(PLONE_VERSION) docker compose -f docker-compose.yml up -d --build
+	@echo "Now visit: http://volto-form-block.localhost"
 
-## Storybook
-.PHONY: storybook-start
-storybook-start: ## Start Storybook server on port 6006
-	@echo "$(GREEN)==> Start Storybook$(RESET)"
-	pnpm run storybook
+.PHONY: start-stack
+stack-create-site:  ## Local Stack: Create a new site
+	@echo "Create a new site in the local Docker stack"
+	@docker compose -f docker-compose.yml exec backend ./docker-entrypoint.sh create-site
 
-.PHONY: storybook-build
-storybook-build: ## Build Storybook
-	@echo "$(GREEN)==> Build Storybook$(RESET)"
-	mkdir -p $(CURRENT_DIR)/.storybook-build
-	pnpm run storybook-build -o $(CURRENT_DIR)/.storybook-build
+.PHONY: start-ps
+stack-status:  ## Local Stack: Check Status
+	@echo "Check the status of the local Docker stack"
+	@docker compose -f docker-compose.yml ps
+
+.PHONY: stack-stop
+stack-stop:  ##  Local Stack: Stop Services
+	@echo "Stop local Docker stack"
+	@docker compose -f docker-compose.yml stop
+
+.PHONY: stack-rm
+stack-rm:  ## Local Stack: Remove Services and Volumes
+	@echo "Remove local Docker stack"
+	@docker compose -f docker-compose.yml down
+	@echo "Remove local volume data"
+	@docker volume rm $(PROJECT_NAME)_vol-site-data
 
 ## Acceptance
+.PHONY: acceptance-backend-dev-start
+acceptance-backend-dev-start: ## Build Acceptance Servers
+	@echo "Build acceptance backend"
+	$(MAKE) -C "./backend/" acceptance-backend-start
+
 .PHONY: acceptance-frontend-dev-start
-acceptance-frontend-dev-start: ## Start acceptance frontend in development mode
-	RAZZLE_API_PATH=http://127.0.0.1:55001/plone pnpm start
-
-.PHONY: acceptance-frontend-prod-start
-acceptance-frontend-prod-start: ## Start acceptance frontend in production mode
-	RAZZLE_API_PATH=http://127.0.0.1:55001/plone pnpm build && pnpm start:prod
-
-.PHONY: acceptance-backend-start
-acceptance-backend-start: ## Start backend acceptance server
-	docker run -it --rm -p 55001:55001 $(DOCKER_IMAGE_ACCEPTANCE)
-
-.PHONY: ci-acceptance-backend-start
-ci-acceptance-backend-start: ## Start backend acceptance server in headless mode for CI
-	docker run -i --rm -p 55001:55001 $(DOCKER_IMAGE_ACCEPTANCE)
+acceptance-frontend-dev-start: ## Build Acceptance Servers
+	@echo "Build acceptance backend"
+	$(MAKE) -C "./frontend/" acceptance-frontend-dev-start
 
 .PHONY: acceptance-test
-acceptance-test: ## Start Cypress in interactive mode
-	pnpm --filter @plone/volto exec cypress open --config-file $(CURRENT_DIR)/cypress.config.js --config specPattern=$(CURRENT_DIR)'/cypress/tests/**/*.{js,jsx,ts,tsx}'
+acceptance-test: ## Start Acceptance tests in interactive mode
+	@echo "Build acceptance backend"
+	$(MAKE) -C "./frontend/" acceptance-test
+
+# Build Docker images
+.PHONY: acceptance-frontend-image-build
+acceptance-frontend-image-build: ## Build Acceptance frontend server image
+	@echo "Build acceptance frontend"
+	@docker build frontend -t collective/volto-form-block-frontend:acceptance -f frontend/Dockerfile --build-arg VOLTO_VERSION=$(VOLTO_VERSION)
+
+.PHONY: acceptance-backend-image-build
+acceptance-backend-image-build: ## Build Acceptance backend server image
+	@echo "Build acceptance backend"
+	@docker build backend -t collective/volto-form-block-backend:acceptance -f backend/Dockerfile.acceptance --build-arg PLONE_VERSION=$(PLONE_VERSION)
+
+.PHONY: acceptance-images-build
+acceptance-images-build: ## Build Acceptance frontend/backend images
+	$(MAKE) acceptance-backend-image-build
+	$(MAKE) acceptance-frontend-image-build
+
+.PHONY: acceptance-frontend-container-start
+acceptance-frontend-container-start: ## Start Acceptance frontend container
+	@echo "Start acceptance frontend"
+	@docker run --rm -p 3000:3000 --name volto-form-block-frontend-acceptance --link volto-form-block-backend-acceptance:backend -e RAZZLE_API_PATH=http://localhost:55001/plone -e RAZZLE_INTERNAL_API_PATH=http://backend:55001/plone -d collective/volto-form-block-frontend:acceptance
+
+.PHONY: acceptance-backend-container-start
+acceptance-backend-container-start: ## Start Acceptance backend container
+	@echo "Start acceptance backend"
+	@docker run --rm -p 55001:55001 --name volto-form-block-backend-acceptance -d collective/volto-form-block-backend:acceptance
+
+.PHONY: acceptance-containers-start
+acceptance-containers-start: ## Start Acceptance containers
+	$(MAKE) acceptance-backend-container-start
+	$(MAKE) acceptance-frontend-container-start
+
+.PHONY: acceptance-containers-stop
+acceptance-containers-stop: ## Stop Acceptance containers
+	@echo "Stop acceptance containers"
+	@docker stop volto-form-block-frontend-acceptance
+	@docker stop volto-form-block-backend-acceptance
 
 .PHONY: ci-acceptance-test
-ci-acceptance-test: ## Run cypress tests in headless mode for CI
-	pnpm --filter @plone/volto exec cypress run --config-file $(CURRENT_DIR)/cypress.config.js --config specPattern=$(CURRENT_DIR)'/cypress/tests/**/*.{js,jsx,ts,tsx}'
+ci-acceptance-test: ## Run Acceptance tests in ci mode
+	$(MAKE) acceptance-containers-start
+	pnpm dlx wait-on --httpTimeout 20000 http-get://localhost:55001/plone http://localhost:3000
+	$(MAKE) -C "./frontend/" ci-acceptance-test
+	$(MAKE) acceptance-containers-stop

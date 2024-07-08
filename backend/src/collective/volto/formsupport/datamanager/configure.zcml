@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.volto.formsupport"
+    >
+
+  <!-- Enable each Dexterity content to be a soup root -->
+  <class class="plone.dexterity.content.DexterityContent">
+    <implements interface="souper.plone.interfaces.ISoupRoot" />
+  </class>
+
+  <!-- register the catalog -->
+  <utility
+      factory=".catalog.FormDataSoupCatalogFactory"
+      provides="souper.interfaces.ICatalogFactory"
+      name="form_data"
+      />
+
+  <adapter factory=".catalog.FormDataStore" />
+</configure>

@@ -1,27 +1,16 @@
 repos:
-  - repo: local
+  - repo: https://github.com/ddanier/sub-pre-commit.git
+    rev: v3.7.1  # MUST match your pre-commit version
     hooks:
-      - id: prettier
-        name: prettier
-        entry: pnpm exec prettier --write
-        language: system
-        files: '^packages/.*/src/.*/?.*.(js|jsx|ts|tsx)$'
-        types: [file]
-      - id: eslint
-        name: eslint
-        entry: bash -c "VOLTOCONFIG=$(pwd)/volto.config.js pnpm exec eslint --max-warnings=0 --fix"
-        language: system
-        files: '^packages/.*/src/.*/?.*.(js|jsx|ts|tsx)$'
-        types: [file]
-      - id: stylelint
-        name: stylelint
-        entry: pnpm exec stylelint --fix
-        language: system
-        files: '^packages/.*/src/.*/?.*.(css|scss|less)$'
-        types: [file]
-      - id: i18n
-        name: i18n
-        entry: make ci-i18n
-        language: system
-        files: '^packages/.*/src/.*/?.*.(js|jsx|ts|tsx)$'
-        types: [file]
+      - id: sub-pre-commit
+        alias: backend
+        name: "pre-commit for backend/"
+        args: ["-p", "backend/"]
+        files: "^backend/.*"
+        stages: ["commit"]
+      - id: sub-pre-commit
+        alias: frontend
+        name: "pre-commit for frontend"
+        args: ["-p", "frontend"]
+        files: "^frontend/.*"
+        stages: ["commit"]

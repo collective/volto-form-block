@@ -1,0 +1,157 @@
+#--- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+#SOME DESCRIPTIVE TITLE.
+#FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2024-06-07 00:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.volto.formsupport\n"
+
+#: ../restapi/services/validation/email.py:51
+msgid "Email confirmation code"
+msgstr ""
+
+#: ../captcha/recaptcha.py:12
+msgid "Google ReCaptcha"
+msgstr ""
+
+#: ../captcha/hcaptcha.py:14
+msgid "HCaptcha"
+msgstr ""
+
+#: ../captcha/hcaptcha.py:63
+msgid "HCaptcha Invisible"
+msgstr ""
+
+#: ../captcha/honeypot.py:11
+msgid "Honeypot Support"
+msgstr ""
+
+#: ../configure.zcml:34
+msgid "Installs the collective.volto.formsupport add-on."
+msgstr ""
+
+#: ../captcha/hcaptcha.py:44
+#: ../captcha/norobots.py:49
+#: ../captcha/recaptcha.py:42
+msgid "No captcha token provided."
+msgstr ""
+
+#: ../captcha/norobots.py:14
+msgid "NoRobots ReCaptcha Support"
+msgstr ""
+
+#: ../restapi/services/validation/email.py:94
+msgid "OTP is wrong"
+msgstr ""
+
+#: ../captcha/hcaptcha.py:56
+#: ../captcha/norobots.py:65
+#: ../captcha/recaptcha.py:54
+msgid "The code you entered was wrong, please enter the new one."
+msgstr ""
+
+#: ../restapi/services/validation/email.py:64
+msgid "The email field is missing"
+msgstr ""
+
+#: ../browser/templates/email_confirm_view.pt:386
+msgid "The form on ${page} was compiled with this email address, if it was not you, ignore the message."
+msgstr ""
+
+#: ../restapi/services/validation/email.py:88
+msgid "The otp field is missing"
+msgstr ""
+
+#: ../restapi/services/validation/email.py:67
+msgid "The provided email address is not valid"
+msgstr ""
+
+#: ../restapi/services/validation/email.py:70
+msgid "The uid field is missing"
+msgstr ""
+
+#: ../configure.zcml:43
+msgid "Uninstalls the collective.volto.formsupport add-on."
+msgstr ""
+
+#: ../configure.zcml:34
+msgid "Volto: Form support"
+msgstr ""
+
+#: ../configure.zcml:43
+msgid "Volto: Form support (uninstall)"
+msgstr ""
+
+#: ../browser/templates/email_confirm_view.pt:371
+msgid "Your code to validate the email address:"
+msgstr ""
+
+#. Default: "Attachments too big. You uploaded ${uploaded_str}, but limit is ${max} MB. Try to compress files."
+#: ../restapi/services/submit_form/post.py:215
+msgid "attachments_too_big"
+msgstr ""
+
+#. Default: "Block with @type \"form\" and id \"$block\" not found in this context: $context"
+#: ../restapi/services/submit_form/post.py:130
+msgid "block_form_not_found_label"
+msgstr ""
+
+#. Default: "Empty form data."
+#: ../restapi/services/submit_form/post.py:156
+msgid "empty_form_data"
+msgstr ""
+
+#. Default: "Error submitting form."
+#: ../captcha/honeypot.py:28
+msgid "honeypot_error"
+msgstr ""
+
+#. Default: "Unable to send confirm email. Please retry later or contact site administrator."
+#: ../restapi/services/submit_form/post.py:76
+msgid "mail_send_exception"
+msgstr ""
+
+#. Default: "You need to set at least one form action between \"send\" and \"store\"."
+#: ../restapi/services/submit_form/post.py:145
+msgid "missing_action"
+msgstr ""
+
+#. Default: "Missing block_id"
+#: ../restapi/services/submit_form/post.py:123
+msgid "missing_blockid_label"
+msgstr ""
+
+#. Default: "A new form has been submitted from <a href=\"${url}\">${url}</a>"
+#: ../browser/send_mail_template.pt:22
+msgid "send_mail_text"
+msgstr ""
+
+#. Default: "Form submission data for ${title}"
+#: ../browser/send_mail_template_table.pt:15
+msgid "send_mail_text_table"
+msgstr ""
+
+#. Default: "Missing required field: subject or from."
+#: ../restapi/services/submit_form/post.py:322
+msgid "send_required_field_missing"
+msgstr ""
+
+#. Default: "Email not valid in \"${field}\" field."
+#: ../restapi/services/submit_form/post.py:187
+msgid "wrong_email"
+msgstr ""
+
+#: ../restapi/services/submit_form/post.py:246
+msgid "{email}'s OTP is wrong"
+msgstr ""
