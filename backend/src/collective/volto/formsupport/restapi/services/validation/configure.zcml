@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
+
+  <plone:service
+      method="POST"
+      factory=".email.ValidateEmailMessage"
+      for="*"
+      permission="zope2.View"
+      layer="collective.volto.formsupport.interfaces.ICollectiveVoltoFormsupportLayer"
+      name="@validate-email-address"
+      />
+  <plone:service
+      method="POST"
+      factory=".email.ValidateEmailToken"
+      for="*"
+      permission="zope2.View"
+      layer="collective.volto.formsupport.interfaces.ICollectiveVoltoFormsupportLayer"
+      name="@validate-email-token"
+      />
+
+</configure>
