@@ -1,4 +1,4 @@
-"""Installer for the collective.voltoformblock package."""
+"""Installer for the collective.volto.formsupport package."""
 
 from pathlib import Path
 from setuptools import find_packages
@@ -107,7 +107,7 @@ setup(
     [z3c.autoinclude.plugin]
     target = plone
     [console_scripts]
-    update_locale = collective.voltoformblock.locales.update:update_locale
+    update_locale = collective.volto.formsupport.locales.update:update_locale
     formsupport_data_cleansing = collective.volto.formsupport.scripts.cleansing:main
     """,
 )

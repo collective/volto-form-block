@@ -1,14 +1,14 @@
-from collective.voltoformblock import PACKAGE_NAME
+from collective.volto.formsupport import PACKAGE_NAME
 
 
 class TestSetupInstall:
     def test_addon_installed(self, installer):
-        """Test if collective.voltoformblock is installed."""
+        """Test if collective.volto.formsupport is installed."""
         assert installer.is_product_installed(PACKAGE_NAME) is True
 
     def test_browserlayer(self, browser_layers):
         """Test that IBrowserLayer is registered."""
-        from collective.voltoformblock.interfaces import IBrowserLayer
+        from collective.volto.formsupport.interfaces import IBrowserLayer
 
         assert IBrowserLayer in browser_layers
 

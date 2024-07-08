@@ -50,7 +50,7 @@ payload = {
     "title": "Project Title",
     "profile_id": _DEFAULT_PROFILE,
     "extension_ids": [
-        "collective.voltoformblock:default",
+        "collective.volto.formsupport:default",
     ],
     "setup_content": False,
     "default_language": "en",
@@ -67,6 +67,8 @@ if site_id not in app.objectIds():
     transaction.commit()
     if EXAMPLE_CONTENT:
         portal_setup: SetupTool = site.portal_setup
-        portal_setup.runAllImportStepsFromProfile("collective.voltoformblock:initial")
+        portal_setup.runAllImportStepsFromProfile(
+            "collective.volto.formsupport:initial"
+        )
         transaction.commit()
     app._p_jar.sync()
