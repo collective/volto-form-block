@@ -12,6 +12,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./backend
+
 ##
 # To set environment variables for all jobs, add in .meta.toml:
 # [github]
