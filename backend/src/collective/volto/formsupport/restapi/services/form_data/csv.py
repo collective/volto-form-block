@@ -31,8 +31,10 @@ class FormDataExportGet(Service):
 
     def get_ordered_keys(self, record):
         """
-        We need this method because we want to maintain the fields order set in the form.
-        The form can also change during time, and each record can have different fields stored in it.
+        We need this method because we want to maintain the fields order set in
+        the form.
+        The form can also change during time, and each record can have different
+        fields stored in it.
         """
         record_order = record.attrs.get("fields_order", [])
         if record_order:
@@ -42,8 +44,9 @@ class FormDataExportGet(Service):
         for k in self.form_fields_order:
             if k in record.attrs:
                 order.append(k)
-        # finally append the keys stored in the record but that are not in the form (maybe the form changed during time)
-        for k in record.attrs.keys():
+        # finally append the keys stored in the record but that are not in the form
+        # (maybe the form changed during time)
+        for k in record.attrs:
             if k not in order and k not in SKIP_ATTRS:
                 order.append(k)
         return order

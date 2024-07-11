@@ -10,7 +10,7 @@ import transaction
 
 
 @click.command(
-    help="bin/instance -OPlone run bin/formsupport_data_cleansing [--dryrun|--no-dryrun]",
+    help="bin/instance -OPlone run bin/formsupport_data_cleansing [--dryrun|--no-dryrun]",  # noqa: E501
     context_settings=dict(
         ignore_unknown_options=True,
         allow_extra_args=True,
@@ -22,7 +22,7 @@ import transaction
     default=True,
     help="--dryrun (default) simulate, --no-dryrun actually save the changes",
 )
-def main(dryrun):
+def main(dryrun):  # noqa: C901
     # import pdb;pdb.set_trace()
     if dryrun:
         print("CHECK ONLY")
@@ -59,7 +59,7 @@ def main(dryrun):
                     deleted += 1
                 if deleted:
                     print(
-                        f"[INFO] removed {deleted} records from {brain.getPath()} block: {block_id}"
+                        f"[INFO] removed {deleted} records from {brain.getPath()} block: {block_id}"  # noqa: E501
                     )
     if not dryrun:
         print("COMMIT")

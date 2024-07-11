@@ -51,7 +51,7 @@ def _get_all_content_with_blocks():
             logger.info(f"Progress: {i + 1}/{total}")
         item = brain.getObject()
         for schema in iterSchemata(item.aq_base):
-            for name, field in getFields(schema).items():
+            for name, _ in getFields(schema).items():
                 if name == "blocks":
                     if _has_block_form(getattr(item, "blocks", {})):
                         content.append(item)
@@ -212,7 +212,7 @@ def to_1300(context):  # pragma: no cover
                 new_send_value = ["recipient"] if block.get("send") else []
                 block["send"] = new_send_value
                 logger.info(
-                    f"[CONVERTED] - {item} form send value from {send} to {new_send_value}"
+                    f"[CONVERTED] - {item} form send value from {send} to {new_send_value}"  # noqa: E501
                 )
 
         item.blocks = blocks
