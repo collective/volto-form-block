@@ -87,7 +87,7 @@ backend-test:  ## Test backend codebase
 .PHONY: install
 install:  ## Install
 	@echo "Install Backend & Frontend"
-	if [ -d $(GIT_FOLDER) ]; then $(PRE_COMMIT) install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
+	# if [ -d $(GIT_FOLDER) ]; then $(PRE_COMMIT) install; else echo "$(RED) Not installing pre-commit$(RESET)";fi
 	$(MAKE) backend-install
 	$(MAKE) frontend-install
 
