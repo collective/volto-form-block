@@ -72,9 +72,7 @@ class FormDataStore:
         form_fields = self.get_form_fields()
         if not form_fields:
             logger.error(
-                'Block with id {} and type "form" not found in context: {}.'.format(
-                    self.block_id, self.context.absolute_url()
-                )
+                f'Block with id {self.block_id} and type "form" not found in context: {self.context.absolute_url()}.'
             )
             return None
 

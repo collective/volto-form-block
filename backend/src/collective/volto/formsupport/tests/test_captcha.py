@@ -1,5 +1,5 @@
-from collective.volto.formsupport.testing import (  # noqa: E501,
-    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,
+from collective.volto.formsupport.testing import (
+    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,  # ,
 )
 from collective.z3cform.norobots.browser.interfaces import INorobotsWidgetSettings
 from hashlib import md5
@@ -379,15 +379,13 @@ class TestCaptcha(unittest.TestCase):
         }
         transaction.commit()
 
-        captcha_token = json.dumps(
-            {
-                "value": "5",
-                "id": "question0",
-                "id_check": md5(
-                    "Write five using ciphers".encode("ascii", "ignore")
-                ).hexdigest(),
-            }
-        )
+        captcha_token = json.dumps({
+            "value": "5",
+            "id": "question0",
+            "id_check": md5(
+                "Write five using ciphers".encode("ascii", "ignore")
+            ).hexdigest(),
+        })
 
         response = self.submit_form(
             data={
@@ -434,15 +432,13 @@ class TestCaptcha(unittest.TestCase):
         }
         transaction.commit()
 
-        captcha_token = json.dumps(
-            {
-                "value": "15",
-                "id": "question0",
-                "id_check": md5(
-                    "Write five using ciphers".encode("ascii", "ignore")
-                ).hexdigest(),
-            }
-        )
+        captcha_token = json.dumps({
+            "value": "15",
+            "id": "question0",
+            "id_check": md5(
+                "Write five using ciphers".encode("ascii", "ignore")
+            ).hexdigest(),
+        })
 
         response = self.submit_form(
             data={

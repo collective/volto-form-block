@@ -126,9 +126,7 @@ def to_1200(context):  # noqa: C901 # pragma: no cover
         normalizer = getUtility(IIDNormalizer)
         for field in block.get("subblocks", []):
             normalized_label = normalizer.normalize(field.get("label", ""))
-            if field_id == normalized_label:
-                return {"id": field["field_id"], "label": field.get("label", "")}
-            elif field_id == field["field_id"]:
+            if field_id == normalized_label or field_id == field["field_id"]:
                 return {"id": field["field_id"], "label": field.get("label", "")}
         return {"id": field_id, "label": field_id}
 
@@ -200,7 +198,7 @@ def to_1200(context):  # noqa: C901 # pragma: no cover
         logger.info(f"- {path}")
 
 
-def to_1300(context):  # noqa: C901 # pragma: no cover
+def to_1300(context):  # pragma: no cover
     def update_send_from_bool_to_list_for_content(item):
         blocks = (
             item.blocks
@@ -214,9 +212,7 @@ def to_1300(context):  # noqa: C901 # pragma: no cover
                 new_send_value = ["recipient"] if block.get("send") else []
                 block["send"] = new_send_value
                 logger.info(
-                    "[CONVERTED] - {} form send value from {} to {}".format(
-                        item, send, new_send_value
-                    )
+                    f"[CONVERTED] - {item} form send value from {send} to {new_send_value}"
                 )
 
         item.blocks = blocks

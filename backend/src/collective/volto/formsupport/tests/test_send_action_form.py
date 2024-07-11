@@ -1,5 +1,5 @@
-from collective.volto.formsupport.testing import (  # noqa: E501,
-    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,
+from collective.volto.formsupport.testing import (
+    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,  # ,
 )
 from collective.volto.formsupport.utils import generate_email_token
 from email.parser import Parser
@@ -134,7 +134,7 @@ class TestMailSend(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(
             res["message"],
-            'You need to set at least one form action between "send" and "store".',  # noqa
+            'You need to set at least one form action between "send" and "store".',
         )
 
     def test_email_not_send_if_block_id_is_correct_but_form_data_missing(

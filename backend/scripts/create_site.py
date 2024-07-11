@@ -1,5 +1,5 @@
 from AccessControl.SecurityManagement import newSecurityManager
-from collective.volto.formsupport.interfaces import (  # noqa
+from collective.volto.formsupport.interfaces import (
     ICollectiveVoltoFormsupportLayer,
 )
 from Products.CMFPlone.factory import _DEFAULT_PROFILE

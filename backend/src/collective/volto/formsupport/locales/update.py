@@ -53,13 +53,7 @@ def _rebuild():
 
 
 def _sync():
-    cmd = "{} sync --pot {}/{}.pot {}*/LC_MESSAGES/{}.po".format(
-        i18ndude,
-        locale_path,
-        domain,
-        locale_path,
-        domain,
-    )
+    cmd = f"{i18ndude} sync --pot {locale_path}/{domain}.pot {locale_path}*/LC_MESSAGES/{domain}.po"
     subprocess.call(
         cmd,
         shell=True,
