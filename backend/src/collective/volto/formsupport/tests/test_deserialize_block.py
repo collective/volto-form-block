@@ -1,5 +1,5 @@
-from collective.volto.formsupport.testing import (  # noqa: E501,
-    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,
+from collective.volto.formsupport.testing import (
+    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,  # ,
 )
 from copy import deepcopy
 from plone import api
@@ -54,9 +54,9 @@ class TestBlockDeserialization(unittest.TestCase):
 
     def test_deserializer_cleanup_data_in_send_message_field(self):
         new_blocks = deepcopy(self.document.blocks)
-        new_blocks["form-id"][
-            "send_message"
-        ] = "<b onmouseover=\"alert('XSS testing!')\">click here</b><p><i>keep tags</i></p>"
+        new_blocks["form-id"]["send_message"] = (
+            "<b onmouseover=\"alert('XSS testing!')\">click here</b><p><i>keep tags</i></p>"
+        )
         self.api_session.patch(
             self.document_url,
             json={"blocks": new_blocks},

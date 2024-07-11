@@ -33,7 +33,7 @@ class FormSerializer:
         Otherwise, skip default values because we need them only in edit and
         to send emails from the backend.
         """
-        if "captcha" in value and value["captcha"]:
+        if value.get("captcha"):
             value["captcha_props"] = getMultiAdapter(
                 (self.context, self.request),
                 ICaptchaSupport,
