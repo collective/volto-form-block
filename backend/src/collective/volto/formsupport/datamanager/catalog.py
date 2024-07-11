@@ -19,7 +19,7 @@ from zope.interface import Interface
 @implementer(ICatalogFactory)
 class FormDataSoupCatalogFactory:
     def __call__(self, context):
-        #  do not set any index here..maybe on each form
+        # do not set any index here..maybe on each form
         catalog = Catalog()
         block_id_indexer = NodeAttributeIndexer("block_id")
         catalog["block_id"] = CatalogFieldIndex(block_id_indexer)
@@ -61,7 +61,8 @@ class FormDataStore:
 
         subblocks = form_block.get("subblocks", [])
 
-        # Add the 'custom_field_id' field back in as this isn't stored with each subblock
+        # Add the 'custom_field_id' field back in as this isn't stored with each
+        # subblock
         for index, field in enumerate(subblocks):
             if form_block.get(field["field_id"]):
                 subblocks[index]["custom_field_id"] = form_block.get(field["field_id"])
@@ -72,7 +73,7 @@ class FormDataStore:
         form_fields = self.get_form_fields()
         if not form_fields:
             logger.error(
-                f'Block with id {self.block_id} and type "form" not found in context: {self.context.absolute_url()}.'
+                f'Block with id {self.block_id} and type "form" not found in context: {self.context.absolute_url()}.'  # noqa: E501
             )
             return None
 

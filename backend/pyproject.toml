@@ -248,6 +248,10 @@ lint.select = [
 lint.ignore = [
     # DoNotAssignLambda
     "E731",
+    "S602",
+    "SIM102",
+    "S314",
+    "S324"
 ]
 
 [tool.ruff.format]

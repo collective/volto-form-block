@@ -1,7 +1,5 @@
 from AccessControl.SecurityManagement import newSecurityManager
-from collective.volto.formsupport.interfaces import (
-    ICollectiveVoltoFormsupportLayer,
-)
+from collective.volto.formsupport.interfaces import ICollectiveVoltoFormsupportLayer
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.factory import addPloneSite
 from Products.GenericSetup.tool import SetupTool

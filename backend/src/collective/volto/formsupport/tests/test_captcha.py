@@ -116,7 +116,7 @@ class TestCaptcha(unittest.TestCase):
         self.assertEqual(response.status_code, 500)
         self.assertEqual(
             response.json()["message"],
-            "No recaptcha private key configured. Go to path/to/site/@@recaptcha-settings "
+            "No recaptcha private key configured. Go to path/to/site/@@recaptcha-settings "  # noqa: E501
             "to configure.",
         )
 
@@ -379,13 +379,15 @@ class TestCaptcha(unittest.TestCase):
         }
         transaction.commit()
 
-        captcha_token = json.dumps({
-            "value": "5",
-            "id": "question0",
-            "id_check": md5(
-                "Write five using ciphers".encode("ascii", "ignore")
-            ).hexdigest(),
-        })
+        captcha_token = json.dumps(
+            {
+                "value": "5",
+                "id": "question0",
+                "id_check": md5(
+                    "Write five using ciphers".encode("ascii", "ignore")
+                ).hexdigest(),
+            }
+        )
 
         response = self.submit_form(
             data={
@@ -432,13 +434,15 @@ class TestCaptcha(unittest.TestCase):
         }
         transaction.commit()
 
-        captcha_token = json.dumps({
-            "value": "15",
-            "id": "question0",
-            "id_check": md5(
-                "Write five using ciphers".encode("ascii", "ignore")
-            ).hexdigest(),
-        })
+        captcha_token = json.dumps(
+            {
+                "value": "15",
+                "id": "question0",
+                "id_check": md5(
+                    "Write five using ciphers".encode("ascii", "ignore")
+                ).hexdigest(),
+            }
+        )
 
         response = self.submit_form(
             data={

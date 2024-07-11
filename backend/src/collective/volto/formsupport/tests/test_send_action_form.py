@@ -102,9 +102,7 @@ class TestMailSend(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(
             res["message"],
-            'Block with @type "form" and id "unknown" not found in this context: {}'.format(  # noqa
-                self.document_url
-            ),
+            f'Block with @type "form" and id "unknown" not found in this context: {self.document_url}',  # noqa: E501
         )
 
         response = self.submit_form(
@@ -120,9 +118,7 @@ class TestMailSend(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(
             res["message"],
-            'Block with @type "form" and id "text-id" not found in this context: {}'.format(  # noqa
-                self.document_url
-            ),
+            f'Block with @type "form" and id "text-id" not found in this context: {self.document_url}',  # noqa: E501
         )
 
     def test_email_not_send_if_no_action_set(self):
@@ -814,7 +810,7 @@ class TestMailSend(unittest.TestCase):
                 "send": ["acknowledgement"],
                 "acknowledgementFields": "contact",
                 "acknowledgementMessage": {
-                    "data": "<p>This message will be sent to the person filling in the form.</p><p>It is <strong>Rich Text</strong></p>"
+                    "data": "<p>This message will be sent to the person filling in the form.</p><p>It is <strong>Rich Text</strong></p>"  # noqa: E501
                 },
                 "subblocks": [
                     {
@@ -877,7 +873,7 @@ class TestMailSend(unittest.TestCase):
                 "send": ["recipient", "acknowledgement"],
                 "acknowledgementFields": "contact",
                 "acknowledgementMessage": {
-                    "data": "<p>This message will be sent to the person filling in the form.</p><p>It is <strong>Rich Text</strong></p>"
+                    "data": "<p>This message will be sent to the person filling in the form.</p><p>It is <strong>Rich Text</strong></p>"  # noqa: E501
                 },
                 "subblocks": [
                     {
@@ -1339,12 +1335,12 @@ class TestMailSend(unittest.TestCase):
                     {
                         "field_id": "message",
                         "label": "Message",
-                        "value": "<b onmouseover=\"alert('XSS testing!')\">click here</b><p><i>keep tags</i></p>",
+                        "value": "<b onmouseover=\"alert('XSS testing!')\">click here</b><p><i>keep tags</i></p>",  # noqa: E501
                     },
                     {
                         "field_id": "name",
                         "label": "Name",
-                        "value": "<script>alert(‘XSS’)</script> foo",
+                        "value": "<script>alert('XSS')</script> foo",
                     },
                 ],
                 "subject": "test subject",
@@ -1366,7 +1362,7 @@ class TestMailSend(unittest.TestCase):
                     {
                         "field_id": "name",
                         "label": "Name",
-                        "value": "alert(‘XSS’)  foo",
+                        "value": "alert('XSS')  foo",
                     },
                 ]
             },

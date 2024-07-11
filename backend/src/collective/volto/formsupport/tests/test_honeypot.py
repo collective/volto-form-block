@@ -198,7 +198,8 @@ class TestHoneypot(unittest.TestCase):
 
     def test_form_submitted_from_volto_valid(self):
         """
-        when you compile the form from volto, the honey field value is passed into captcha value
+        when you compile the form from volto, the honey field value is passed into
+        captcha value
         """
         self.document.blocks = {
             "text-id": {"@type": "text"},
@@ -245,7 +246,8 @@ class TestHoneypot(unittest.TestCase):
 
     def test_form_submitted_from_volto_invalid_because_missing_value(self):
         """
-        when you compile the form from volto, the honey field value is passed into captcha value
+        when you compile the form from volto, the honey field value is passed into
+        captcha value
         """
         self.document.blocks = {
             "text-id": {"@type": "text"},
@@ -295,7 +297,8 @@ class TestHoneypot(unittest.TestCase):
 
     def test_form_submitted_from_volto_invalid_because_compiled(self):
         """
-        when you compile the form from volto, the honey field value is passed into captcha value
+        when you compile the form from volto, the honey field value is passed into
+        captcha value
         """
         self.document.blocks = {
             "text-id": {"@type": "text"},

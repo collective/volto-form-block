@@ -83,7 +83,7 @@ class SubmitPost(Service):
                 message = translate(
                     _(
                         "mail_send_exception",
-                        default="Unable to send confirm email. Please retry later or contact site administrator.",
+                        default="Unable to send confirm email. Please retry later or contact site administrator.",  # noqa: E501
                     ),
                     context=self.request,
                 )
@@ -137,7 +137,7 @@ class SubmitPost(Service):
                 translate(
                     _(
                         "block_form_not_found_label",
-                        default='Block with @type "form" and id "$block" not found in this context: $context',
+                        default='Block with @type "form" and id "$block" not found in this context: $context',  # noqa: E501
                         mapping={
                             "block": self.block_id,
                             "context": self.context.absolute_url(),
@@ -152,7 +152,7 @@ class SubmitPost(Service):
                 translate(
                     _(
                         "missing_action",
-                        default='You need to set at least one form action between "send" and "store".',  # noqa
+                        default='You need to set at least one form action between "send" and "store".',  # noqa: E501
                     ),
                     context=self.request,
                 )
@@ -327,7 +327,8 @@ class SubmitPost(Service):
             if not field_id:
                 continue
 
-            # Handle this kind of id format: `field_name_123321, whichj is used by frontend package logics
+            # Handle this kind of id format: `field_name_123321,
+            # which is used by frontend package logics
             pattern = r"\$\{[^}]+\}"
             matches = re.findall(pattern, subject)
 
