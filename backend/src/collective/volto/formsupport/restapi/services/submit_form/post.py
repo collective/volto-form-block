@@ -88,10 +88,7 @@ class SubmitPost(Service):
                     context=self.request,
                 )
                 self.request.response.setStatus(500)
-                return {
-                    "type": "InternalServerError",
-                    "message": message
-                }
+                return {"type": "InternalServerError", "message": message}
         if store_action:
             self.store_data()
 
@@ -341,7 +338,7 @@ class SubmitPost(Service):
 
         return subject
 
-    def send_data(self): # noQA: C901
+    def send_data(self):  # noQA: C901
         subject = self.get_subject()
 
         mfrom = self.form_data.get("from", "") or self.block.get("default_from", "")

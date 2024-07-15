@@ -1,0 +1,6 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber
+      for="collective.volto.formsupport.interfaces.IPostEvent"
+      handler="collective.volto.formsupport.testing.event_handler.event_handler"
+      />
+</configure>

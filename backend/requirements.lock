@@ -7,6 +7,7 @@
 # - i18ndude
 # - isort
 # - hatchling==1.24.2
+# - plone.app.iterate
 # - plone.app.testing
 # - plone.restapi[test]
 # - pytest-cov==5.0.0
@@ -52,6 +53,7 @@ accesscontrol==6.3
     #   plone-batching
     #   plone-subrequest
     #   products-btreefolder2
+    #   products-cmfplacefulworkflow
     #   products-externalmethod
     #   products-mailhost
     #   products-pluggableauthservice
@@ -72,11 +74,13 @@ acquisition==5.1
     #   five-localsitemanager
     #   plone-app-caching
     #   plone-app-customerize
+    #   plone-app-iterate
     #   plone-app-users
     #   plone-schemaeditor
     #   plone-subrequest
     #   plone-uuid
     #   products-btreefolder2
+    #   products-cmfplacefulworkflow
     #   products-externalmethod
     #   products-mailhost
     #   products-pythonscripts
@@ -193,6 +197,7 @@ datetime==5.3
     # via
     #   -c constraints-mxdev.txt
     #   accesscontrol
+    #   plone-app-iterate
     #   products-mailhost
     #   products-pythonscripts
     #   products-zcatalog
@@ -443,6 +448,7 @@ persistence==4.1
     #   accesscontrol
     #   products-btreefolder2
     #   products-cmfeditions
+    #   products-cmfplacefulworkflow
     #   products-externalmethod
     #   products-mailhost
     #   products-portaltransforms
@@ -457,6 +463,7 @@ persistent==5.1
     #   five-localsitemanager
     #   persistence
     #   plone-app-discussion
+    #   plone-app-iterate
     #   plone-app-redirector
     #   plone-app-testing
     #   plone-app-viewletmanager
@@ -577,11 +584,16 @@ plone-app-intid==2.0.0
     #   plone-app-dexterity
     #   plone-app-linkintegrity
     #   plone-app-relationfield
+plone-app-iterate==5.0.5
+    # via
+    #   -c constraints-mxdev.txt
+    #   hatch.envs.default
 plone-app-layout==4.1.0
     # via
     #   -c constraints-mxdev.txt
     #   plone-app-contenttypes
     #   plone-app-discussion
+    #   plone-app-iterate
     #   plone-app-multilingual
     #   plone-app-portlets
     #   plone-app-users
@@ -640,6 +652,7 @@ plone-app-relationfield==3.0.5
     #   -c constraints-mxdev.txt
     #   plone-app-contenttypes
     #   plone-app-dexterity
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-linkintegrity
 plone-app-robotframework==2.1.2
@@ -769,6 +782,7 @@ plone-base==1.4.0
     #   plone-app-dexterity
     #   plone-app-discussion
     #   plone-app-event
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-linkintegrity
     #   plone-app-multilingual
@@ -795,6 +809,7 @@ plone-base==1.4.0
     #   plone-staticresources
     #   plone-stringinterp
     #   products-cmfdifftool
+    #   products-cmfplacefulworkflow
     #   products-cmfplone
     #   products-isurlinportal
     #   products-plonepas
@@ -849,6 +864,7 @@ plone-dexterity==3.0.6
     #   plone-app-contenttypes
     #   plone-app-dexterity
     #   plone-app-event
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-linkintegrity
     #   plone-app-lockingbehavior
@@ -937,6 +953,7 @@ plone-locking==3.0.1
     #   plone-app-content
     #   plone-app-contentmenu
     #   plone-app-dexterity
+    #   plone-app-iterate
     #   plone-app-lockingbehavior
     #   plone-app-multilingual
     #   products-cmfeditions
@@ -952,6 +969,7 @@ plone-memoize==3.0.2
     #   plone-app-contentrules
     #   plone-app-contenttypes
     #   plone-app-event
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-multilingual
     #   plone-app-portlets
@@ -1035,6 +1053,7 @@ plone-registry==2.0.1
     #   plone-app-contenttypes
     #   plone-app-dexterity
     #   plone-app-discussion
+    #   plone-app-iterate
     #   plone-app-linkintegrity
     #   plone-app-multilingual
     #   plone-app-portlets
@@ -1252,6 +1271,7 @@ products-cmfcore==3.5
     #   plone-theme
     #   products-cmfdynamicviewfti
     #   products-cmfeditions
+    #   products-cmfplacefulworkflow
     #   products-cmfuid
     #   products-dcworkflow
     #   products-mimetypesregistry
@@ -1268,9 +1288,14 @@ products-cmfdynamicviewfti==7.0.2
 products-cmfeditions==4.0.3
     # via
     #   -c constraints-mxdev.txt
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-versioningbehavior
     #   products-cmfplone
+products-cmfplacefulworkflow==3.0.3
+    # via
+    #   -c constraints-mxdev.txt
+    #   plone-app-iterate
 products-cmfplone==6.0.11
     # via
     #   -c constraints-mxdev.txt
@@ -1279,6 +1304,7 @@ products-cmfplone==6.0.11
     #   plone-app-robotframework
     #   plone-app-testing
     #   plone-restapi
+    #   products-cmfplacefulworkflow
     #   pytest-plone
     #   souper-plone
 products-cmfuid==4.2
@@ -1292,6 +1318,7 @@ products-daterecurringindex==3.0.1
 products-dcworkflow==3.0
     # via
     #   -c constraints-mxdev.txt
+    #   plone-app-iterate
     #   plone-app-workflow
     #   products-cmfplone
 products-extendedpathindex==4.0.1
@@ -1316,6 +1343,7 @@ products-genericsetup==3.0.2
     #   plone-app-discussion
     #   plone-app-event
     #   plone-app-intid
+    #   plone-app-iterate
     #   plone-app-linkintegrity
     #   plone-app-multilingual
     #   plone-app-portlets
@@ -1341,6 +1369,7 @@ products-genericsetup==3.0.2
     #   products-cmfcore
     #   products-cmfdifftool
     #   products-cmfeditions
+    #   products-cmfplacefulworkflow
     #   products-dcworkflow
     #   products-plonepas
     #   products-pluggableauthservice
@@ -1433,6 +1462,7 @@ products-statusmessages==5.0.6
     #   plone-app-dexterity
     #   plone-app-discussion
     #   plone-app-event
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-linkintegrity
     #   plone-app-multilingual
@@ -1660,6 +1690,7 @@ setuptools==69.5.1
     #   plone-app-event
     #   plone-app-i18n
     #   plone-app-intid
+    #   plone-app-iterate
     #   plone-app-layout
     #   plone-app-linkintegrity
     #   plone-app-locales
@@ -1735,6 +1766,7 @@ setuptools==69.5.1
     #   products-cmfdifftool
     #   products-cmfdynamicviewfti
     #   products-cmfeditions
+    #   products-cmfplacefulworkflow
     #   products-cmfplone
     #   products-cmfuid
     #   products-daterecurringindex
@@ -2022,6 +2054,7 @@ z3c-relationfield==1.0
     #   -c constraints-mxdev.txt
     #   plone-app-content
     #   plone-app-dexterity
+    #   plone-app-iterate
     #   plone-app-linkintegrity
     #   plone-app-multilingual
     #   plone-app-relationfield
@@ -2043,6 +2076,7 @@ zc-lockfile==3.0.post1
 zc-relation==2.0
     # via
     #   -c constraints-mxdev.txt
+    #   plone-app-iterate
     #   plone-app-linkintegrity
     #   plone-app-multilingual
     #   plone-app-relationfield
@@ -2146,6 +2180,7 @@ zope==5.9
     #   products-cmfdifftool
     #   products-cmfdynamicviewfti
     #   products-cmfeditions
+    #   products-cmfplacefulworkflow
     #   products-cmfplone
     #   products-cmfuid
     #   products-dcworkflow
@@ -2169,6 +2204,7 @@ zope-annotation==5.0
     #   borg-localrole
     #   plone-app-caching
     #   plone-app-discussion
+    #   plone-app-iterate
     #   plone-app-portlets
     #   plone-app-users
     #   plone-app-versioningbehavior
@@ -2244,6 +2280,7 @@ zope-component==6.0
     #   plone-alterego
     #   plone-app-caching
     #   plone-app-customerize
+    #   plone-app-iterate
     #   plone-app-robotframework
     #   plone-app-testing
     #   plone-app-users
@@ -2263,6 +2300,7 @@ zope-component==6.0
     #   plone-supermodel
     #   plone-testing
     #   plone-uuid
+    #   products-cmfplacefulworkflow
     #   products-isurlinportal
     #   products-siteerrorlog
     #   products-standardcachemanagers
@@ -2398,6 +2436,7 @@ zope-event==5.0
     #   five-intid
     #   five-localsitemanager
     #   plone-app-caching
+    #   plone-app-iterate
     #   plone-app-users
     #   plone-cachepurging
     #   plone-schemaeditor
@@ -2465,6 +2504,7 @@ zope-i18nmessageid==6.1.0
     #   -c constraints-mxdev.txt
     #   i18ndude
     #   plone-app-caching
+    #   plone-app-iterate
     #   plone-cachepurging
     #   plone-caching
     #   plone-formwidget-hcaptcha
@@ -2472,6 +2512,7 @@ zope-i18nmessageid==6.1.0
     #   plone-schema
     #   plone-schemaeditor
     #   plone-supermodel
+    #   products-cmfplacefulworkflow
     #   products-cmfplone
     #   z3c-form
     #   z3c-formwidget-query
@@ -2509,6 +2550,7 @@ zope-interface==6.1
     #   plone-alterego
     #   plone-app-caching
     #   plone-app-customerize
+    #   plone-app-iterate
     #   plone-app-users
     #   plone-app-uuid
     #   plone-autoform
@@ -2530,6 +2572,7 @@ zope-interface==6.1
     #   plone-supermodel
     #   plone-uuid
     #   products-cmfcore
+    #   products-cmfplacefulworkflow
     #   products-daterecurringindex
     #   products-mailhost
     #   products-sessions
@@ -2591,6 +2634,7 @@ zope-intid==5.0
     #   -c constraints-mxdev.txt
     #   five-intid
     #   plone-app-intid
+    #   plone-app-iterate
     #   plone-app-linkintegrity
     #   plone-app-multilingual
     #   plone-app-relationfield
@@ -2611,6 +2655,7 @@ zope-lifecycleevent==5.0
     #   node
     #   plone-app-caching
     #   plone-app-intid
+    #   plone-app-iterate
     #   plone-schemaeditor
     #   plone-uuid
     #   products-btreefolder2
@@ -2712,6 +2757,7 @@ zope-schema==7.0.1
     #   accesscontrol
     #   five-customerize
     #   plone-app-caching
+    #   plone-app-iterate
     #   plone-app-robotframework
     #   plone-app-users
     #   plone-autoform
@@ -2854,6 +2900,7 @@ zope-viewlet==5.0
     #   five-customerize
     #   plone-app-customerize
     #   plone-app-i18n
+    #   plone-app-iterate
     #   plone-app-viewletmanager
     #   zope
 zope2==4.0

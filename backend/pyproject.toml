@@ -91,6 +91,7 @@ dependencies = [
   "i18ndude",
   "isort",
   "hatchling==1.24.2",
+  "plone.app.iterate",
   "plone.app.testing",
   "plone.restapi[test]",
   "pytest-cov==5.0.0",

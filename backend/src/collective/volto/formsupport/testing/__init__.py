@@ -38,17 +38,17 @@ class VoltoFormsupportLayer(PloneSandboxLayer):
         utils.validate_email_token = validate_email_token_mock
 
 
-VOLTO_FORMSUPPORT_FIXTURE = VoltoFormsupportLayer()
+FIXTURE = VoltoFormsupportLayer()
 
 
-VOLTO_FORMSUPPORT_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(VOLTO_FORMSUPPORT_FIXTURE,),
+INTEGRATION_TESTING = IntegrationTesting(
+    bases=(FIXTURE,),
     name="VoltoFormsupportLayer:IntegrationTesting",
 )
 
 
-VOLTO_FORMSUPPORT_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(VOLTO_FORMSUPPORT_FIXTURE,),
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FIXTURE,),
     name="VoltoFormsupportLayer:FunctionalTesting",
 )
 
@@ -57,11 +57,14 @@ class VoltoFormsupportRestApiLayer(PloneRestApiDXLayer):
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
+        import collective.volto.formsupport.testing
+
         super().setUpZope(app, configurationContext)
         self.loadZCML(package=collective.MockMailHost)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=collective.honeypot)
         self.loadZCML(package=collective.volto.formsupport)
+        self.loadZCML(package=collective.volto.formsupport.testing)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "collective.volto.formsupport:default")
@@ -70,13 +73,13 @@ class VoltoFormsupportRestApiLayer(PloneRestApiDXLayer):
         applyProfile(portal, "collective.MockMailHost:default")
 
 
-VOLTO_FORMSUPPORT_API_FIXTURE = VoltoFormsupportRestApiLayer()
-VOLTO_FORMSUPPORT_API_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(VOLTO_FORMSUPPORT_API_FIXTURE,),
+API_FIXTURE = VoltoFormsupportRestApiLayer()
+API_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(API_FIXTURE,),
     name="VoltoFormsupportRestApiLayer:Integration",
 )
 
-VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(VOLTO_FORMSUPPORT_API_FIXTURE, z2.ZSERVER_FIXTURE),
+API_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(API_FIXTURE, z2.ZSERVER_FIXTURE),
     name="VoltoFormsupportRestApiLayer:Functional",
 )
