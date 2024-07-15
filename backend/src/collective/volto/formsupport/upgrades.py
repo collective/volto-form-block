@@ -27,10 +27,7 @@ DEFAULT_PROFILE = "profile-collective.volto.formsupport:default"
 
 
 def _has_block_form(block_data):
-    for block in block_data.values():
-        if block.get("@type", "") == "form":
-            return True
-    return False
+    return any(block.get("@type", "") == "form" for block in block_data.values())
 
 
 def _get_all_content_with_blocks():

@@ -2,7 +2,6 @@ from AccessControl.SecurityManagement import newSecurityManager
 from collective.volto.formsupport.interfaces import ICollectiveVoltoFormsupportLayer
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.factory import addPloneSite
-from Products.GenericSetup.tool import SetupTool
 from Testing.makerequest import makerequest
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
@@ -35,7 +34,7 @@ app = makerequest(globals()["app"])
 
 request = app.REQUEST
 
-ifaces = [ICollectiveVoltoFormsupportLayer] + list(directlyProvidedBy(request))
+ifaces = [ICollectiveVoltoFormsupportLayer] + list(directlyProvidedBy(request))  # noQA: RUF005
 
 directlyProvides(request, *ifaces)
 
@@ -50,7 +49,7 @@ payload = {
     "extension_ids": [
         "collective.volto.formsupport:default",
     ],
-    "setup_content": False,
+    "setup_content": bool(EXAMPLE_CONTENT),
     "default_language": "en",
     "portal_timezone": "UTC",
 }
@@ -63,10 +62,4 @@ if site_id in app.objectIds() and DELETE_EXISTING:
 if site_id not in app.objectIds():
     site = addPloneSite(app, site_id, **payload)
     transaction.commit()
-    if EXAMPLE_CONTENT:
-        portal_setup: SetupTool = site.portal_setup
-        portal_setup.runAllImportStepsFromProfile(
-            "collective.volto.formsupport:initial"
-        )
-        transaction.commit()
     app._p_jar.sync()

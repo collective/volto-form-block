@@ -19,7 +19,7 @@ class FormDataExportGet(Service):
         blocks = getattr(context, "blocks", {})
         if not blocks:
             return
-        for id, block in blocks.items():
+        for _id, block in blocks.items():
             block_type = block.get("@type", "")
             if block_type == "form":
                 self.form_block = block

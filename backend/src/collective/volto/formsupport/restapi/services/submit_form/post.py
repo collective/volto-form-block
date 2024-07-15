@@ -88,7 +88,10 @@ class SubmitPost(Service):
                     context=self.request,
                 )
                 self.request.response.setStatus(500)
-                return dict(type="InternalServerError", message=message)
+                return {
+                    "type": "InternalServerError",
+                    "message": message
+                }
         if store_action:
             self.store_data()
 
@@ -258,8 +261,8 @@ class SubmitPost(Service):
         blocks = get_blocks(self.context)
         if not blocks:
             return {}
-        for id, block in blocks.items():
-            if id != block_id:
+        for id_, block in blocks.items():
+            if id_ != block_id:
                 continue
             block_type = block.get("@type", "")
             if block_type != "form":
@@ -338,7 +341,7 @@ class SubmitPost(Service):
 
         return subject
 
-    def send_data(self):
+    def send_data(self): # noQA: C901
         subject = self.get_subject()
 
         mfrom = self.form_data.get("from", "") or self.block.get("default_from", "")
@@ -484,7 +487,7 @@ class SubmitPost(Service):
 
         if not attachments:
             return []
-        for key, value in attachments.items():
+        for _key, value in attachments.items():
             content_type = "application/octet-stream"
             filename = None
             if isinstance(value, dict):

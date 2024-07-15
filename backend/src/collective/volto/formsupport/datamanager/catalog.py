@@ -50,8 +50,8 @@ class FormDataStore:
         if not blocks:
             return {}
         form_block = {}
-        for id, block in blocks.items():
-            if id != self.block_id:
+        for id_, block in blocks.items():
+            if id_ != self.block_id:
                 continue
             block_type = block.get("@type", "")
             if block_type == "form":
@@ -98,7 +98,7 @@ class FormDataStore:
         return self.soup.add(record)
 
     def length(self):
-        return len([x for x in self.soup.data.values()])
+        return len([x for x in self.soup.data.values()])  # noQA: C416
 
     def search(self, query=None):
         if not query:
@@ -109,8 +109,8 @@ class FormDataStore:
             )
         return records
 
-    def delete(self, id):
-        record = self.soup.get(id)
+    def delete(self, id_):
+        record = self.soup.get(id_)
         del self.soup[record]
 
     def clear(self):
