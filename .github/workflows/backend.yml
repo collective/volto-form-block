@@ -139,32 +139,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             PLONE_VERSION=${{ needs.config.outputs.PLONE_VERSION }}
-
-      - name: Docker meta
-        id: meta-demo
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            ${{ env.IMAGE_NAME_PREFIX }}-demo
-          labels: |
-            org.label-schema.docker.cmd=docker run -d -p 8080:8080 ${{ env.IMAGE_NAME_PREFIX }}-demo:latest
-          flavor:
-            latest=false
-          tags: |
-            type=ref,event=branch
-            type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
-
-      - name: Build and push demo
-        uses: docker/build-push-action@v5
-        with:
-          platforms: linux/amd64
-          context: backend
-          file: backend/Dockerfile.demo
-          load: true
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta-demo.outputs.tags }}
-          labels: ${{ steps.meta-demo.outputs.labels }}
-          build-args: |
-            SEED=${{ github.run_id }}
-            IMAGE_TAG=${{ needs.config.outputs.BASE_TAG }}
