@@ -129,9 +129,6 @@ test-coverage: $(BIN_FOLDER)/pytest ## run tests with coverage
 .PHONY: build-image
 build-image:  ## Build Docker Images
 	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME_PREFIX)-backend:$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION)
-	@echo "$(GREEN)==> Building $(IMAGE_NAME_PREFIX)-demo:$(IMAGE_TAG) $(RESET)"
-	@DOCKER_BUILDKIT=1 docker build .  --pull=false -t $(IMAGE_NAME_PREFIX)-demo:$(IMAGE_TAG) -f Dockerfile.demo --build-arg IMAGE_TAG=$(IMAGE_TAG) --build-arg SEED=$(SEED)
-
 
 # Acceptance tests
 .PHONY: acceptance-backend-start
