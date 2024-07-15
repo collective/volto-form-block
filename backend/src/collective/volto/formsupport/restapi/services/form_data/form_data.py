@@ -80,9 +80,9 @@ class FormData:
             blocks = json.loads(blocks)
         if not blocks:
             return {}
-        for id, block in blocks.items():
+        for id_, block in blocks.items():
             if block.get("@type", "") == "form" and block.get("store", False):
-                if not self.block_id or self.block_id == id:
+                if not self.block_id or self.block_id == id_:
                     return block
         return {}
 

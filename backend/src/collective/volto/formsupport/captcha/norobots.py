@@ -56,10 +56,10 @@ class NoRobotsSupport(CaptchaSupport):
             context=self.context, request=self.request, name="norobots"
         )
         value = json_token.get("value")
-        id = json_token.get("id")
+        id_ = json_token.get("id")
         id_check = json_token.get("id_check")
 
-        if not view.verify(input=value, question_id=id, id_check=id_check):
+        if not view.verify(input=value, question_id=id_, id_check=id_check):
             raise BadRequest(
                 translate(
                     _("The code you entered was wrong, please enter the new one."),

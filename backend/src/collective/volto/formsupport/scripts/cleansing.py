@@ -11,10 +11,10 @@ import transaction
 
 @click.command(
     help="bin/instance -OPlone run bin/formsupport_data_cleansing [--dryrun|--no-dryrun]",  # noqa: E501
-    context_settings=dict(
-        ignore_unknown_options=True,
-        allow_extra_args=True,
-    ),
+    context_settings={
+        "ignore_unknown_options": True,
+        "allow_extra_args": True,
+    },
 )
 @click.option(
     "--dryrun/--no-dryrun",
