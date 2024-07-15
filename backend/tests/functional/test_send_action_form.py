@@ -1,95 +1,43 @@
-from collective.volto.formsupport.testing import (
-    VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING,  # ,
-)
 from collective.volto.formsupport.utils import generate_email_token
 from email.parser import Parser
-from plone import api
-from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.app.testing import TEST_USER_ID
-from plone.registry.interfaces import IRegistry
-from plone.restapi.testing import RelativeSession
-from Products.MailHost.interfaces import IMailHost
-from zope.component import getUtility
+from pathlib import Path
 
 import base64
-import os
+import pytest
 import re
 import transaction
-import unittest
 import xml.etree.ElementTree as ET
 
 
-class TestMailSend(unittest.TestCase):
-    layer = VOLTO_FORMSUPPORT_API_FUNCTIONAL_TESTING
+@pytest.fixture
+def file_str():
+    filepath = Path(__file__).parent / "file.pdf"
+    return filepath.read_bytes()
 
-    def setUp(self):
-        self.app = self.layer["app"]
-        self.portal = self.layer["portal"]
-        self.portal_url = self.portal.absolute_url()
-        setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
-        self.mailhost = getUtility(IMailHost)
-
-        registry = getUtility(IRegistry)
-        registry["plone.email_from_address"] = "site_addr@plone.com"
-        registry["plone.email_from_name"] = "Plone test site"
-
-        self.api_session = RelativeSession(self.portal_url)
-        self.api_session.headers.update({"Accept": "application/json"})
-        self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
-        self.anon_api_session = RelativeSession(self.portal_url)
-        self.anon_api_session.headers.update({"Accept": "application/json"})
-
-        self.document = api.content.create(
-            type="Document",
-            title="Example context",
-            container=self.portal,
-        )
-        self.document.blocks = {
-            "text-id": {"@type": "text"},
-            "form-id": {"@type": "form"},
-        }
+class TestMailSend:
+    @pytest.fixture(autouse=True)
+    def _set_up(self, portal, document, mailhost):
+        self.portal = portal
+        self.mailhost = mailhost
+        self.document = document()
         self.document_url = self.document.absolute_url()
-
         transaction.commit()
 
-    def tearDown(self):
-        self.api_session.close()
-        self.anon_api_session.close()
-
-        # set default block
-        self.document.blocks = {
-            "text-id": {"@type": "text"},
-            "form-id": {"@type": "form"},
-        }
-
-        os.environ["FORM_ATTACHMENTS_LIMIT"] = ""
-
-        transaction.commit()
-
-    def submit_form(self, data):
-        url = f"{self.document_url}/@submit-form"
-        response = self.api_session.post(
-            url,
-            json=data,
-        )
-        transaction.commit()
-        return response
-
-    def test_email_not_send_if_block_id_is_not_given(self):
-        response = self.submit_form(
+    def test_email_not_send_if_block_id_is_not_given(self, submit_form):
+        response = submit_form(
+            url=self.document_url,
             data={"from": "john@doe.com", "message": "Just want to say hi."},
         )
         transaction.commit()
 
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(res["message"], "Missing block_id")
+        assert response.status_code == 400
+        assert res["message"] == "Missing block_id"
 
-    def test_email_not_send_if_block_id_is_incorrect_or_not_present(self):
-        response = self.submit_form(
+    def test_email_not_send_if_block_id_is_incorrect_or_not_present(self, submit_form):
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "message": "Just want to say hi.",
@@ -99,13 +47,12 @@ class TestMailSend(unittest.TestCase):
         transaction.commit()
 
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            res["message"],
-            f'Block with @type "form" and id "unknown" not found in this context: {self.document_url}',  # noqa: E501
+        assert response.status_code == 400
+        assert res["message"] == (
+            f'Block with @type "form" and id "unknown" not found in this context: {self.document_url}'  # noqa: E501
         )
-
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "message": "Just want to say hi.",
@@ -115,26 +62,25 @@ class TestMailSend(unittest.TestCase):
         transaction.commit()
 
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            res["message"],
-            f'Block with @type "form" and id "text-id" not found in this context: {self.document_url}',  # noqa: E501
+        assert response.status_code == 400
+        assert res["message"] == (
+            f'Block with @type "form" and id "text-id" not found in this context: {self.document_url}'  # noqa: E501
         )
 
-    def test_email_not_send_if_no_action_set(self):
-        response = self.submit_form(
+    def test_email_not_send_if_no_action_set(self, submit_form):
+        response = submit_form(
+            url=self.document_url,
             data={"from": "john@doe.com", "block_id": "form-id"},
         )
         transaction.commit()
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            res["message"],
-            'You need to set at least one form action between "send" and "store".',
+        assert response.status_code == 400
+        assert res["message"] == (
+            'You need to set at least one form action between "send" and "store".'
         )
 
     def test_email_not_send_if_block_id_is_correct_but_form_data_missing(
-        self,
+        self, submit_form
     ):
         self.document.blocks = {
             "form-id": {
@@ -144,7 +90,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "subject": "test subject",
@@ -153,14 +100,11 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            res["message"],
-            "Empty form data.",
-        )
+        assert response.status_code == 400
+        assert res["message"] == "Empty form data."
 
     def test_email_not_send_if_block_id_is_correct_but_required_fields_missing(
-        self,
+        self, submit_form
     ):
         self.document.blocks = {
             "form-id": {
@@ -176,7 +120,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "block_id": "form-id",
@@ -185,15 +130,10 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            res["message"],
-            "Missing required field: subject or from.",
-        )
+        assert response.status_code == 400
+        assert res["message"] == "Missing required field: subject or from."
 
-    def test_email_not_send_if_all_fields_are_not_in_form_schema(
-        self,
-    ):
+    def test_email_not_send_if_all_fields_are_not_in_form_schema(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -202,7 +142,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "block_id": "form-id",
@@ -211,12 +152,10 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
         res = response.json()
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(res["message"], "Empty form data.")
+        assert response.status_code == 400
+        assert res["message"] == "Empty form data."
 
-    def test_email_sent_with_only_fields_from_schema(
-        self,
-    ):
+    def test_email_sent_with_only_fields_from_schema(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -231,7 +170,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "block_id": "form-id",
@@ -244,26 +184,19 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
         res = response.json()
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            res, {"data": [{"field_id": "xxx", "label": "foo", "value": "foo"}]}
-        )
+        assert response.status_code == 200
+        assert res["data"][0] == {"field_id": "xxx", "label": "foo", "value": "foo"}
 
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>foo:</strong> foo", msg)
-        self.assertNotIn("<strong>bar:</strong> bar", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>foo:</strong> foo" in msg
+        assert "<strong>bar:</strong> bar" not in msg
 
-    def test_email_sent_with_site_recipient(
-        self,
-    ):
+    def test_email_sent_with_site_recipient(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -282,7 +215,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -298,22 +232,17 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_email_sent_with_forwarded_headers(
-        self,
-    ):
+    def test_email_sent_with_forwarded_headers(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -333,7 +262,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -349,19 +279,16 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
-        self.assertNotIn("REMOTE_ADDR", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
+        assert "REMOTE_ADDR" not in msg
 
         self.document.blocks = {
             "form-id": {
@@ -385,7 +312,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -401,25 +329,20 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
-        msg = self.mailhost.messages[1]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        msg = self.mailhost.messages[1].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
-        self.assertIn("REMOTE_ADDR", msg)
-        self.assertIn("PATH_INFO", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
+        assert "REMOTE_ADDR" in msg
+        assert "PATH_INFO" in msg
 
-    def test_email_sent_ignore_passed_recipient(
-        self,
-    ):
+    def test_email_sent_ignore_passed_recipient(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -438,7 +361,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "to": "to@spam.com",
@@ -455,22 +379,17 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_email_sent_with_block_recipient_if_set(
-        self,
-    ):
+    def test_email_sent_with_block_recipient_if_set(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -491,7 +410,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -507,22 +427,17 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: to@block.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: to@block.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_email_sent_with_block_subject_if_set_and_not_passed(
-        self,
-    ):
+    def test_email_sent_with_block_subject_if_set_and_not_passed(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -543,7 +458,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -559,22 +475,17 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: block subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: block subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_email_with_use_as_reply_to(
-        self,
-    ):
+    def test_email_with_use_as_reply_to(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -601,7 +512,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -617,22 +529,17 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: block subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: smith@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> Smith", msg)
+        assert "Subject: block subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: smith@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> Smith" in msg
 
-    def test_email_field_used_as_bcc(
-        self,
-    ):
+    def test_email_field_used_as_bcc(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -659,7 +566,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {"label": "Message", "value": "just want to say hi"},
@@ -678,22 +586,16 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(self.mailhost.messages), 2)
-        msg = self.mailhost.messages[0]
-        bcc_msg = self.mailhost.messages[1]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
-            bcc_msg = bcc_msg.decode("utf-8")
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertNotIn("To: smith@doe.com", msg)
-        self.assertNotIn("To: site_addr@plone.com", bcc_msg)
-        self.assertIn("To: smith@doe.com", bcc_msg)
+        assert response.status_code == 200
+        assert len(self.mailhost.messages) == 2
+        msg = self.mailhost.messages[0].decode("utf-8")
+        assert "To: site_addr@plone.com" in msg
+        assert "To: smith@doe.com" not in msg
+        bcc_msg = self.mailhost.messages[1].decode("utf-8")
+        assert "To: site_addr@plone.com" not in bcc_msg
+        assert "To: smith@doe.com" in bcc_msg
 
-    def test_send_attachment(
-        self,
-    ):
+    def test_send_attachment(self, submit_form, file_str):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -718,12 +620,8 @@ class TestMailSend(unittest.TestCase):
             },
         }
         transaction.commit()
-
-        filename = os.path.join(os.path.dirname(__file__), "file.pdf")
-        with open(filename, "rb") as f:
-            file_str = f.read()
-
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -740,13 +638,11 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(self.mailhost.messages), 1)
+        assert response.status_code == 200
+        assert len(self.mailhost.messages) == 1
 
-    def test_send_attachment_validate_size(
-        self,
-    ):
-        os.environ["FORM_ATTACHMENTS_LIMIT"] = "1"
+    def test_send_attachment_validate_size(self, monkeypatch, submit_form, file_str):
+        monkeypatch.setenv("FORM_ATTACHMENTS_LIMIT", "1")
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -772,12 +668,10 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        filename = os.path.join(os.path.dirname(__file__), "file.pdf")
-        with open(filename, "rb") as f:
-            file_str = f.read()
         # increase file dimension
         file_str = file_str * 100
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -793,14 +687,14 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 400)
-        self.assertIn(
-            "Attachments too big. You uploaded 7.1 MB, but limit is 1 MB",
-            response.json()["message"],
+        assert response.status_code == 400
+        assert (
+            "Attachments too big. You uploaded 7.1 MB, but limit is 1 MB"
+            in response.json()["message"]
         )
-        self.assertEqual(len(self.mailhost.messages), 0)
+        assert len(self.mailhost.messages) == 0
 
-    def test_send_only_acknowledgement(self):
+    def test_send_only_acknowledgement(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -830,7 +724,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -846,24 +741,21 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
 
         parsed_msg = Parser().parsestr(msg)
-        self.assertEqual(parsed_msg.get("from"), "john@doe.com")
-        self.assertEqual(parsed_msg.get("to"), "smith@doe.com")
-        self.assertEqual(parsed_msg.get("subject"), "block subject")
+        assert parsed_msg.get("from") == "john@doe.com"
+        assert parsed_msg.get("to") == "smith@doe.com"
+        assert parsed_msg.get("subject") == "block subject"
         msg_body = parsed_msg.get_payload()[1].get_payload().replace("=\r\n", "")
-        self.assertIn(
-            "<p>This message will be sent to the person filling in the form.</p>",
-            msg_body,
+        assert (
+            "<p>This message will be sent to the person filling in the form.</p>"
+            in msg_body
         )
-        self.assertIn("<p>It is <strong>Rich Text</strong></p>", msg_body)
+        assert "<p>It is <strong>Rich Text</strong></p>" in msg_body
 
-    def test_send_recipient_and_acknowledgement(self):
+    def test_send_recipient_and_acknowledgement(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
@@ -893,7 +785,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -909,21 +802,18 @@ class TestMailSend(unittest.TestCase):
         )
         transaction.commit()
 
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        msg = self.mailhost.messages[0].decode("utf-8")
         parsed_msg = Parser().parsestr(msg)
-        self.assertEqual(parsed_msg.get("from"), "john@doe.com")
-        self.assertEqual(parsed_msg.get("to"), "site_addr@plone.com")
-        self.assertEqual(parsed_msg.get("subject"), "block subject")
+        assert parsed_msg.get("from") == "john@doe.com"
+        assert parsed_msg.get("to") == "site_addr@plone.com"
+        assert parsed_msg.get("subject") == "block subject"
 
         msg_body = parsed_msg.get_payload()[1].get_payload()
         msg_body = re.sub(r"\s+", " ", msg_body)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg_body)
-        self.assertIn("<strong>Name:</strong> Smith", msg_body)
+        assert "<strong>Message:</strong> just want to say hi" in msg_body
+        assert "<strong>Name:</strong> Smith" in msg_body
 
         acknowledgement_message = self.mailhost.messages[1]
         if isinstance(acknowledgement_message, bytes) and bytes is not str:
@@ -931,22 +821,20 @@ class TestMailSend(unittest.TestCase):
             acknowledgement_message = acknowledgement_message.decode("utf-8")
 
         parsed_ack_msg = Parser().parsestr(acknowledgement_message)
-        self.assertEqual(parsed_ack_msg.get("from"), "john@doe.com")
-        self.assertEqual(parsed_ack_msg.get("to"), "smith@doe.com")
-        self.assertEqual(parsed_ack_msg.get("subject"), "block subject")
+        assert parsed_ack_msg.get("from") == "john@doe.com"
+        assert parsed_ack_msg.get("to") == "smith@doe.com"
+        assert parsed_ack_msg.get("subject") == "block subject"
 
         ack_msg_body = (
             parsed_ack_msg.get_payload()[1].get_payload().replace("=\r\n", "")
         )
-        self.assertIn(
-            "<p>This message will be sent to the person filling in the form.</p>",
-            ack_msg_body,
+        assert (
+            "<p>This message will be sent to the person filling in the form.</p>"
+            in ack_msg_body
         )
-        self.assertIn("<p>It is <strong>Rich Text</strong></p>", ack_msg_body)
+        assert "<p>It is <strong>Rich Text</strong></p>" in ack_msg_body
 
-    def test_email_body_formated_as_table(
-        self,
-    ):
+    def test_email_body_formated_as_table(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -970,7 +858,8 @@ class TestMailSend(unittest.TestCase):
         name = "John"
         message = "just want to say hi"
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -982,47 +871,30 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg).replace(" >", ">")
 
-        self.assertIn(f"Subject: {subject}", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
+        assert f"Subject: {subject}" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
 
-        self.assertIn("""<table border="1">""", msg)
-        self.assertIn("</table>", msg)
-        self.assertIn(
-            f"<caption>Form submission data for {self.document.title}</caption>", msg
+        assert """<table border="1">""" in msg
+        assert "</table>" in msg
+        assert (
+            f"<caption>Form submission data for {self.document.title}</caption>" in msg
         )
-        self.assertIn(
-            """<th align="left" role="columnheader" scope="col">Field</th>""",
-            msg,
-        )
-        self.assertIn(
-            """<th align="left" role="columnheader" scope="col">Value</th>""",
-            msg,
-        )
+        assert """<th align="left" role="columnheader" scope="col">Field</th>""" in msg
+        assert """<th align="left" role="columnheader" scope="col">Value</th>""" in msg
 
-        self.assertIn(
-            """<th align="left" role="rowheader" scope="row">Name</th>""",
-            msg,
-        )
+        assert """<th align="left" role="rowheader" scope="row">Name</th>""" in msg
 
-        self.assertIn(f'<td align="left">{name}</td>', msg)
-        self.assertIn(
-            """<th align="left" role="rowheader" scope="row">""",
-            msg,
-        )
-        self.assertIn(f'<td align="left">{message}</td>', msg)
+        assert f'<td align="left">{name}</td>' in msg
+        assert """<th align="left" role="rowheader" scope="row">""" in msg
+        assert f'<td align="left">{message}</td>' in msg
 
-    def test_email_body_formated_as_list(
-        self,
-    ):
+    def test_email_body_formated_as_list(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -1042,7 +914,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -1058,20 +931,17 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_send_xml(self):
+    def test_send_xml(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -1096,7 +966,8 @@ class TestMailSend(unittest.TestCase):
             {"field_id": "name", "label": "Name", "value": "John"},
         ]
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": form_data,
@@ -1105,11 +976,8 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
 
         parsed_msgs = Parser().parsestr(msg)
         # 1st index is the XML attachment
@@ -1117,12 +985,10 @@ class TestMailSend(unittest.TestCase):
 
         xml_tree = ET.fromstring(msg_contents)
         for index, field in enumerate(xml_tree):
-            self.assertEqual(field.get("name"), form_data[index]["label"])
-            self.assertEqual(field.text, form_data[index]["value"])
+            assert field.get("name") == form_data[index]["label"]
+            assert field.text == form_data[index]["value"]
 
-    def test_submit_return_400_if_malformed_email_in_email_field(
-        self,
-    ):
+    def test_submit_return_400_if_malformed_email_in_email_field(self, submit_form):
         """
         email fields in frontend are set as "from" field_type
         """
@@ -1151,7 +1017,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -1165,12 +1032,11 @@ class TestMailSend(unittest.TestCase):
                 "block_id": "form-id",
             },
         )
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            response.json()["message"], 'Email not valid in "Email" field.'
-        )
+        assert response.status_code == 400
+        assert response.json()["message"] == 'Email not valid in "Email" field.'
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -1184,12 +1050,11 @@ class TestMailSend(unittest.TestCase):
                 "block_id": "form-id",
             },
         )
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            response.json()["message"], 'Email not valid in "Email" field.'
-        )
+        assert response.status_code == 400
+        assert response.json()["message"] == 'Email not valid in "Email" field.'
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -1203,14 +1068,10 @@ class TestMailSend(unittest.TestCase):
                 "block_id": "form-id",
             },
         )
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(
-            response.json()["message"], 'Email not valid in "Email" field.'
-        )
+        assert response.status_code == 400
+        assert response.json()["message"] == 'Email not valid in "Email" field.'
 
-    def test_submit_return_200_if_correct_email_in_email_field(
-        self,
-    ):
+    def test_submit_return_200_if_correct_email_in_email_field(self, submit_form):
         """
         email fields in frontend are set as "from" field_type
         """
@@ -1239,7 +1100,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "data": [
                     {
@@ -1253,9 +1115,9 @@ class TestMailSend(unittest.TestCase):
                 "block_id": "form-id",
             },
         )
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
-    def test_submit_return_200_with_submitted_data(self):
+    def test_submit_return_200_with_submitted_data(self, submit_form):
         """
         This is needed for confirm message
         """
@@ -1277,7 +1139,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -1293,20 +1156,17 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert response.status_code == 200
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn("Subject: test subject", msg)
-        self.assertIn("From: john@doe.com", msg)
-        self.assertIn("To: site_addr@plone.com", msg)
-        self.assertIn("Reply-To: john@doe.com", msg)
-        self.assertIn("<strong>Message:</strong> just want to say hi", msg)
-        self.assertIn("<strong>Name:</strong> John", msg)
+        assert "Subject: test subject" in msg
+        assert "From: john@doe.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: john@doe.com" in msg
+        assert "<strong>Message:</strong> just want to say hi" in msg
+        assert "<strong>Name:</strong> John" in msg
 
-    def test_cleanup_html_in_submitted_data(self):
+    def test_cleanup_html_in_submitted_data(self, submit_form):
         """
         This is needed for confirm message
         """
@@ -1328,7 +1188,8 @@ class TestMailSend(unittest.TestCase):
         }
         transaction.commit()
 
-        response = self.submit_form(
+        response = submit_form(
+            url=self.document_url,
             data={
                 "from": "john@doe.com",
                 "data": [
@@ -1348,32 +1209,23 @@ class TestMailSend(unittest.TestCase):
             },
         )
         transaction.commit()
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
         res = response.json()
-        self.assertEqual(
-            res,
-            {
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "click here keep tags",
-                    },
-                    {
-                        "field_id": "name",
-                        "label": "Name",
-                        "value": "alert('XSS')  foo",
-                    },
-                ]
-            },
-        )
-        msg = self.mailhost.messages[0]
-        if isinstance(msg, bytes) and bytes is not str:
-            # Python 3 with Products.MailHost 4.10+
-            msg = msg.decode("utf-8")
+        assert res == ({
+            "data": [
+                {
+                    "field_id": "message",
+                    "label": "Message",
+                    "value": "click here keep tags",
+                },
+                {
+                    "field_id": "name",
+                    "label": "Name",
+                    "value": "alert('XSS')  foo",
+                },
+            ]
+        })
+        transaction.commit()
+        msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        self.assertIn(
-            "<strong>Message:</strong> click here keep tags",
-            msg,
-        )
-        self.assertIn("<strong>Name:</strong> alert(=E2=80=98XSS=E2=80=99) foo", msg)
+        assert "<strong>Message:</strong> click here keep tags" in msg

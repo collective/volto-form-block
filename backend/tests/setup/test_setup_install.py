@@ -8,10 +8,12 @@ class TestSetupInstall:
 
     def test_browserlayer(self, browser_layers):
         """Test that IBrowserLayer is registered."""
-        from collective.volto.formsupport.interfaces import IBrowserLayer
+        from collective.volto.formsupport.interfaces import (
+            ICollectiveVoltoFormsupportLayer,
+        )
 
-        assert IBrowserLayer in browser_layers
+        assert ICollectiveVoltoFormsupportLayer in browser_layers
 
     def test_latest_version(self, profile_last_version):
         """Test latest version of default profile."""
-        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1000"
+        assert profile_last_version(f"{PACKAGE_NAME}:default") == "1300"

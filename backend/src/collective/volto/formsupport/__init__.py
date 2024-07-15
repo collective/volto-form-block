@@ -5,5 +5,7 @@ from zope.i18nmessageid import MessageFactory
 import logging
 
 
-logger = logging.getLogger(__name__)
-_ = MessageFactory("collective.volto.formsupport")
+PACKAGE_NAME = "collective.volto.formsupport"
+
+logger = logging.getLogger(PACKAGE_NAME)
+_ = MessageFactory(PACKAGE_NAME)

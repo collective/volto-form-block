@@ -14,6 +14,8 @@ class TestSetupUninstall:
 
     def test_browserlayer_not_registered(self, browser_layers):
         """Test that IBrowserLayer is not registered."""
-        from collective.volto.formsupport.interfaces import IBrowserLayer
+        from collective.volto.formsupport.interfaces import (
+            ICollectiveVoltoFormsupportLayer,
+        )
 
-        assert IBrowserLayer not in browser_layers
+        assert ICollectiveVoltoFormsupportLayer not in browser_layers
