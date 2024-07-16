@@ -8,43 +8,14 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <!--
-    Be careful if you use general includeDependencies, it can have side effects!
-    Better import explicit packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
-
-  <include package="souper.plone" />
+  <include file="dependencies.zcml" />
+  <include file="permissions.zcml" />
+  <include file="profiles.zcml" />
+  <include file="upgrades.zcml" />
 
   <include package=".browser" />
   <include package=".datamanager" />
   <include package=".restapi" />
   <include package=".captcha" />
-
-  <include file="permissions.zcml" />
-  <include file="upgrades.zcml" />
-
-  <genericsetup:registerProfile
-      name="default"
-      title="Volto: Form support"
-      description="Installs the collective.volto.formsupport add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      directory="profiles/default"
-      post_handler=".setuphandlers.post_install"
-      />
-
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="Volto: Form support (uninstall)"
-      description="Uninstalls the collective.volto.formsupport add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      directory="profiles/uninstall"
-      post_handler=".setuphandlers.uninstall"
-      />
-
-  <utility
-      factory=".setuphandlers.HiddenProfiles"
-      name="collective.volto.formsupport-hiddenprofiles"
-      />
 
 </configure>
