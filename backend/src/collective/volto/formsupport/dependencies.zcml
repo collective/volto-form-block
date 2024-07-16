@@ -1,0 +1,7 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <include package="souper.plone" />
+  <include package="plone.restapi" />
+  <include package="plone.volto" />
+
+</configure>

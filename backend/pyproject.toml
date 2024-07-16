@@ -1,0 +1,276 @@
+[project]
+name = "collective.volto.formsupport"
+description = "Add support for customizable forms in Volto"
+dynamic = ["version"]
+authors = [
+  { name = "RedTurtle Technology", email = "sviluppo@redturtle.it" },
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["Plone", "Python", "forms", "CMS", "Volto"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Web Environment",
+  "Framework :: Plone",
+  "Framework :: Plone :: Addon",
+  "Framework :: Plone :: 6.0",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+]
+dependencies = [
+  "z3c.jbot",
+  "Zope",
+  "plone.api>=1.8.4",
+  "plone.dexterity",
+  "plone.keyring",
+  "plone.i18n",
+  "plone.memoize",
+  "plone.protect",
+  "plone.registry",
+  "plone.restapi>=8.36.0",
+  "plone.schema",
+  "plone.volto",
+  "Products.GenericSetup",
+  "Products.PortalTransforms",
+  "souper.plone",
+  "click",
+  "beautifulsoup4",
+  "pyotp",
+]
+
+[project.urls]
+Documentation = "https://github.com/collective/collective.volto.formsupport#readme"
+Issues = "https://github.com/collective/collective.volto.formsupport/issues"
+Source = "https://github.com/collective/collective.volto.formsupport"
+
+[project.entry-points."z3c.autoinclude.plugin"]
+target = "plone"
+
+[tool.hatch.version]
+path = "src/collective/volto/formsupport/about.py"
+
+[tool.hatch.build]
+strict-naming = false
+packages = ["src/collective","src/collective/volto"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.env]
+requires = [
+    "hatch-pip-compile"
+]
+
+[tool.hatch.envs.default]
+type = "pip-compile"
+path = ".venv"
+pip-compile-resolver = "uv"
+pip-compile-installer = "uv"
+lock-filename = "requirements.lock"
+pip-compile-args = [
+    "--constraint",
+    "constraints-mxdev.txt",
+]
+dependencies = [
+  "collective.honeypot",
+  "collective.MockMailHost",
+  "collective.z3cform.norobots",
+  "coverage[toml]>=6.5",
+  "hatch",
+  "hatchling==1.24.2",
+  "i18ndude",
+  "isort",
+  "plone.app.iterate",
+  "plone.app.testing",
+  "plone.app.upgrade",
+  "plone.browserlayer",
+  "plone.formwidget.hcaptcha",
+  "plone.formwidget.recaptcha",
+  "plone.restapi[test]",
+  "Products.MailHost",
+  "pytest-cov==5.0.0",
+  "pytest-plone>=0.5.0",
+  "pytest",
+  "ruff",
+  "towncrier==23.11.0",
+  "zpretty",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+zpretty_lint = [
+  "find src -name '*.xml'|xargs zpretty -x --check",
+  "find src -name '*.zcml'|xargs zpretty -z --check",
+]
+zpretty_format = [
+  "find src -name '*.xml'|xargs zpretty -x -i",
+  "find src -name '*.zcml'|xargs zpretty -z -i",
+]
+lint = [
+  "ruff check",
+  "isort --check-only src/ tests/",
+  "zpretty_lint"
+]
+format = [
+  "ruff format",
+  "isort src/ tests/",
+  "zpretty_format"
+]
+i18n = [
+  "python -m collective.volto.formsupport.locales.update"
+]
+changelog-draft = "towncrier --draft"
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.coverage.run]
+source_pkgs = ["collective.volto.formsupport", "tests"]
+branch = true
+parallel = true
+omit = [
+  "collective/volto/formsupport/locales/__init__.py",
+  "collective/volto/formsupport/locales/update.py",
+]
+
+[tool.coverage.paths]
+collective.volto.formsupport = ["src/collective/volto/formsupport"]
+tests = ["tests",]
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.isort]
+profile = "plone"
+
+[tool.towncrier]
+package = "collective.volto.formsupport"
+package_dir = "src"
+directory = "news/"
+filename = "CHANGES.md"
+start_string = "<!-- towncrier release notes start -->\n"
+title_format = "## {version} ({project_date})"
+template = "news/.changelog_template.jinja"
+underlines = ["", "", ""]
+
+[[tool.towncrier.type]]
+directory = "breaking"
+name = "Breaking changes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "New features:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bug fixes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "internal"
+name = "Internal:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "documentation"
+name = "Documentation:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "tests"
+name = "Tests"
+showcontent = true
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+fix = true
+lint.select = [
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
+    # flake8-simplify
+    "SIM",
+    # mccabe
+    "C90",
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # pygrep-hooks
+    "PGH",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+]
+lint.ignore = [
+    # DoNotAssignLambda
+    "E731",
+    "S602",
+    "SIM102",
+    "S314",
+    "S324"
+]
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.codespell]
+ignore-words-list = "discreet,vew"
+skip = "*.po,*.min.js"
+
+[tool.check-manifest]
+ignore = [
+    ".editorconfig",
+    ".flake8",
+    ".meta.toml",
+    ".pre-commit-config.yaml",
+    "dependabot.yml",
+    "mx.ini",
+]

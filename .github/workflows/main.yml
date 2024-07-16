@@ -1,0 +1,48 @@
+name: 'volto-form-block'
+
+on:
+  push:
+    paths:
+      - "backend/**"
+      - "frontend/**"
+      - ".github/workflows/backend.yml"
+      - ".github/workflows/frontend.yml"
+      - ".github/workflows/main.yml"
+  workflow_dispatch:
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+              - '.github/workflows/backend.yml'
+            frontend:
+              - 'frontend/**'
+              - '.github/workflows/frontend.yml'
+
+  backend:
+    uses: ./.github/workflows/backend.yml
+    needs: config
+    if: ${{ needs.config.outputs.backend == 'true' }}
+    permissions:
+      contents: read
+      packages: write
+
+  frontend:
+    uses: ./.github/workflows/frontend.yml
+    needs: config
+    if: ${{ needs.config.outputs.frontend == 'true' }}
+    permissions:
+      contents: read
+      packages: write

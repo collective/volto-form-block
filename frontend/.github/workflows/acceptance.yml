@@ -1,0 +1,102 @@
+name: Acceptance tests
+on:
+  push:
+    paths:
+      - "*.js"
+      - "*.json"
+      - "*.yaml"
+      - "cypress/**"
+      - "packages/**"
+      - ".github/workflows/acceptance.yml"
+
+env:
+  NODE_VERSION: 20.x
+  CYPRESS_RETRIES: 2
+
+jobs:
+
+  acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Cache Cypress Binary
+        id: cache-cypress-binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: binary-${{ env.NODE_VERSION }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Install Cypress if not in cache
+        if: steps.cache-cypress-binary.outputs.cache-hit != 'true'
+        working-directory: core/packages/volto
+        run: make cypress-install
+
+      - uses: JarvusInnovations/background-action@v1
+        name: Start Servers
+        with:
+          run: |
+            make ci-acceptance-backend-start &
+            make acceptance-frontend-prod-start &
+          # your step-level and job-level environment variables are available to your commands as-is
+          # npm install will count towards the wait-for timeout
+          # whenever possible, move unrelated scripts to a different step
+          # to background multiple processes: add & to the end of the command
+
+          wait-on: |
+            http-get://localhost:55001/plone
+            http://localhost:3000
+          # IMPORTANT: to use environment variables in wait-on, you must use this form: ${{ env.VAR }}
+          # See wait-on section below for all resource types and prefixes
+
+          tail: true # true = stderr,stdout
+          # This will allow you to monitor the progress live
+
+          log-output-resume: stderr
+          # Eliminates previosuly output stderr log entries from post-run output
+
+          wait-for: 10m
+
+          log-output: stderr,stdout # same as true
+
+          log-output-if: failure
+
+      - run: make ci-acceptance-test
+
+      # Upload Cypress screenshots
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots-acceptance
+          path: acceptance/cypress/screenshots
+
+      # Upload Cypress videos
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-videos-acceptance
+          path: acceptance/cypress/videos
