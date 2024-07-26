@@ -13,4 +13,13 @@
       provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
       />
 
+  <subscriber
+      factory=".blocks.SchemaFormBlockSerializerContents"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
+  <subscriber
+      factory=".blocks.SchemaFormBlockSerializerRoot"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
+
 </configure>

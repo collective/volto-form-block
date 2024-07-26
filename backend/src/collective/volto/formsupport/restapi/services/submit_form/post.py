@@ -108,17 +108,23 @@ class SubmitPost(Service):
         block = self.get_block_data(block_id=form_data.get("block_id", ""))
         block_fields = [x.get("field_id", "") for x in block.get("subblocks", [])]
 
-        for form_field in form_data.get("data", []):
-            if form_field.get("field_id", "") not in block_fields:
-                # unknown field, skip it
-                continue
-            new_field = deepcopy(form_field)
-            value = new_field.get("value", "")
-            if isinstance(value, str):
-                stream = transforms.convertTo("text/plain", value, mimetype="text/html")
-                new_field["value"] = stream.getData().strip()
-            fixed_fields.append(new_field)
-        form_data["data"] = fixed_fields
+        if block["@type"] == "form":
+            # cleanup form data if it's a form block
+            for form_field in form_data.get("data", []):
+                if form_field.get("field_id", "") not in block_fields:
+                    # unknown field, skip it
+                    continue
+                new_field = deepcopy(form_field)
+                value = new_field.get("value", "")
+                if isinstance(value, str):
+                    stream = transforms.convertTo(
+                        "text/plain", value, mimetype="text/html"
+                    )
+                    new_field["value"] = stream.getData().strip()
+                fixed_fields.append(new_field)
+            form_data["data"] = fixed_fields
+
+        # TODO: cleanup form data if it's a schemaForm block
         return form_data
 
     def validate_form(self):
@@ -171,16 +177,23 @@ class SubmitPost(Service):
 
         self.validate_attachments()
         if self.block.get("captcha", False):
+            # breakpoint()
             getMultiAdapter(
                 (self.context, self.request),
                 ICaptchaSupport,
                 name=self.block["captcha"],
-            ).verify(self.form_data.get("captcha"))
+            ).verify(
+                self.form_data.get("captcha")
+                or self.form_data["data"].get("captchaWidget")
+            )
 
         self.validate_email_fields()
         self.validate_bcc()
 
     def validate_email_fields(self):
+        # TODO: validate email fields for schemaForm block
+        if self.block["@type"] == "schemaForm":
+            return
         email_fields = [
             x.get("field_id", "")
             for x in self.block.get("subblocks", [])
@@ -234,6 +247,10 @@ class SubmitPost(Service):
             )
 
     def validate_bcc(self):
+        # TODO: validate email fields for schemaForm block
+        if self.block["@type"] == "schemaForm":
+            return
+
         bcc_fields = []
         for field in self.block.get("subblocks", []):
             if field.get("use_as_bcc", False):
@@ -262,7 +279,7 @@ class SubmitPost(Service):
             if id_ != block_id:
                 continue
             block_type = block.get("@type", "")
-            if block_type != "form":
+            if not (block_type == "form" or block_type == "schemaForm"):
                 continue
             return block
         return {}
@@ -459,6 +476,10 @@ class SubmitPost(Service):
         """
         do not send attachments fields.
         """
+        # TODO: do not send attachments for schemaForm block
+        if self.block["@type"] == "schemaForm":
+            return self.form_data.get("data", [])
+
         skip_fields = [
             x.get("field_id", "")
             for x in self.block.get("subblocks", [])
@@ -537,6 +558,7 @@ class SubmitPost(Service):
 
     def store_data(self):
         store = getMultiAdapter((self.context, self.request), IFormDataStore)
+        breakpoint()
         res = store.add(data=self.filter_parameters())
         if not res:
             raise BadRequest("Unable to store data")

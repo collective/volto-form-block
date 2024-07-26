@@ -31,6 +31,11 @@ import {
   validateDefaultTo,
 } from 'volto-form-block/helpers/validators';
 
+import { schemaFormBlockSchema } from 'volto-form-block/schemaFormBlock/schema';
+import schemaFormBlockEdit from 'volto-form-block/schemaFormBlock/EditSchemaForm';
+import schemaFormBlockView from 'volto-form-block/schemaFormBlock/ViewSchemaForm';
+import HoneypotCaptchaWidget from 'volto-form-block/schemaFormBlock/HoneypotCaptchaWidget';
+
 export {
   submitForm,
   getFormData,
@@ -40,8 +45,46 @@ export {
 export { isValidEmail };
 
 const applyConfig = (config) => {
+  config.widgets.widget.honeypot = HoneypotCaptchaWidget;
+
   config.blocks.blocksConfig = {
     ...config.blocks.blocksConfig,
+    schemaForm: {
+      id: 'schemaForm',
+      title: 'schemaForm',
+      icon: formSVG,
+      group: 'text',
+      view: schemaFormBlockView,
+      edit: schemaFormBlockEdit,
+      formSchema: FormSchema,
+      blockSchema: schemaFormBlockSchema,
+      fieldSchema: FieldSchema,
+      additionalFields: [],
+      fieldTypeSchemaExtenders: {
+        select: SelectionSchemaExtender,
+        single_choice: SelectionSchemaExtender,
+        multiple_choice: SelectionSchemaExtender,
+        from: FromSchemaExtender,
+        hidden: HiddenSchemaExtender,
+      },
+      schemaValidators: {
+        /*fieldname: validationFN(data)*/
+        default_from: (data, intl) => {
+          return validateDefaultFrom(data.default_from, intl);
+        },
+        default_to: (data, intl) => {
+          return validateDefaultTo(data.default_to, intl);
+        },
+      },
+      attachment_fields: ['attachment'],
+      restricted: false,
+      mostUsed: true,
+      security: {
+        addPermission: [],
+        view: [],
+      },
+      sidebarTab: 1,
+    },
     form: {
       id: 'form',
       title: 'Form',

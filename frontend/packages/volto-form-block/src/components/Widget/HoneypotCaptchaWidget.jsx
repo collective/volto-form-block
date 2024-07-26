@@ -40,6 +40,8 @@ const HoneypotCaptchaWidget = ({
   }, []);
 
   const [value, setValue] = useState();
+  console.log('oldWidget', value);
+
   return (
     <div className="honey-wrapper" key={'honeypot-captcha'}>
       <TextWidget

@@ -6,6 +6,8 @@ from plone.restapi.deserializer import json_body
 from zExceptions import BadRequest
 from zope.i18n import translate
 
+import json
+
 
 class HoneypotSupport(CaptchaSupport):
     name = _("Honeypot Support")
@@ -31,6 +33,8 @@ class HoneypotSupport(CaptchaSupport):
         # first check if volto-form-block send the compiled token
         # (because by default it does not insert the honeypot field into the submitted
         # form)
+        if isinstance(data, str):
+            data = json.loads(data)
         if not data:
             # @submit-form has been called not from volto-form-block so do the standard
             # validation.
