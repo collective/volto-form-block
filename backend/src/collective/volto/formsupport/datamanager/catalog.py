@@ -54,10 +54,14 @@ class FormDataStore:
             if id_ != self.block_id:
                 continue
             block_type = block.get("@type", "")
-            if block_type == "form":
+            if block_type == "form" or block_type == "schemaForm":
                 form_block = deepcopy(block)
         if not form_block:
             return {}
+
+        # TODO: get fields for schemaForm block
+        if block["@type"] == "schemaForm":
+            return block.get("data", {})
 
         subblocks = form_block.get("subblocks", [])
 
