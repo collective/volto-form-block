@@ -302,6 +302,11 @@ msgstr ""
 msgid "form_default_submit_label"
 msgstr "Enviar"
 
+#: formSchema
+# defaultMessage: Disable email OTP
+msgid "form_disable_email_otp"
+msgstr ""
+
 #: components/Sidebar
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"

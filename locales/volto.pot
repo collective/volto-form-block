@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-07-01T12:44:37.040Z\n"
+"POT-Creation-Date: 2024-08-13T11:04:09.848Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -293,6 +293,11 @@ msgstr ""
 #: components/FormView
 # defaultMessage: Invia
 msgid "form_default_submit_label"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Disable email OTP
+msgid "form_disable_email_otp"
 msgstr ""
 
 #: components/Sidebar

@@ -293,6 +293,11 @@ msgstr "Utilizza la sintassi ${identificativo} per aggiungere un valore della fo
 msgid "form_default_submit_label"
 msgstr "Invia"
 
+#: formSchema
+# defaultMessage: Disable email OTP
+msgid "form_disable_email_otp"
+msgstr "Disabilita verifica email"
+
 #: components/Sidebar
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
