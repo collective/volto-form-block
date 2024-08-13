@@ -31,6 +31,10 @@ const messages = defineMessages({
     defaultMessage:
       'Use the ${field_id} syntax to add a form value to the email subject',
   },
+  disable_email_otp: {
+    id: 'form_disable_email_otp',
+    defaultMessage: 'Disable email OTP',
+  },
   submit_label: {
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
@@ -180,6 +184,11 @@ const Schema = (data) => {
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
+      },
+      disable_email_otp: {
+        title: intl.formatMessage(messages.disable_email_otp),
+        type: 'boolean',
+        default: false,
       },
       store: {
         type: 'boolean',

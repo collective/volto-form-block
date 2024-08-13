@@ -157,7 +157,7 @@ const FormView = ({
                 })}
 
                 {/*OTP*/}
-                {data.subblocks
+                {!data.disable_email_otp && data.subblocks
                   .filter((subblock) => subblock.use_as_bcc)
                   .map((subblock, index) => {
                     const fieldName = getFieldName(subblock.label, subblock.id);
