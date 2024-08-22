@@ -15,9 +15,10 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
     };
     if (data.captcha === 'honeypot') {
       captcha.value = formData['captchaWidget']?.value ?? '';
+      delete formData.captchaToken;
     }
 
-    dispatch(submitForm(path, id, data, attachments, captcha));
+    dispatch(submitForm(path, id, formData, attachments, captcha));
   };
 
   return <Form schema={data.schema} formData={{}} onSubmit={onSubmit} />;
