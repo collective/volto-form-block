@@ -107,9 +107,9 @@ const defaultEmptyData = {
   required: [],
 };
 
-export const schemaFormBlockSchema = ({ data, intl }) => {
+export const schemaFormBlockSchema = ({ formData, intl }) => {
   let conditional_required = [];
-  if (!data.store && !data.send) {
+  if (!formData?.store && !formData?.send) {
     conditional_required.push('store');
     conditional_required.push('send');
   }
@@ -128,7 +128,7 @@ export const schemaFormBlockSchema = ({ data, intl }) => {
           'default_subject',
           'submit_label',
           'show_cancel',
-          ...(data?.show_cancel ? ['cancel_label'] : []),
+          ...(formData?.show_cancel ? ['cancel_label'] : []),
           'mail_header',
           'mail_footer',
           'captcha',

@@ -89,9 +89,9 @@ class SchemaFormBlockSerializer:
                 "widget": value["captcha"],
                 "captcha_props": value["captcha_props"],
             }
-            new_schema["fieldsets"][0]["fields"].append("captchaWidget")
+            if "captchaWidget" not in new_schema["fieldsets"][0]["fields"]:
+                new_schema["fieldsets"][0]["fields"].append("captchaWidget")
             value["schema"] = new_schema
-        print(value["captcha_props"])
         attachments_limit = os.environ.get("FORM_ATTACHMENTS_LIMIT", "")
         if attachments_limit:
             value["attachments_limit"] = attachments_limit

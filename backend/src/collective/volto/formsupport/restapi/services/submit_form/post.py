@@ -106,9 +106,9 @@ class SubmitPost(Service):
         transforms = api.portal.get_tool(name="portal_transforms")
 
         block = self.get_block_data(block_id=form_data.get("block_id", ""))
-        block_fields = [x.get("field_id", "") for x in block.get("subblocks", [])]
 
         if block["@type"] == "form":
+            block_fields = [x.get("field_id", "") for x in block.get("subblocks", [])]
             # cleanup form data if it's a form block
             for form_field in form_data.get("data", []):
                 if form_field.get("field_id", "") not in block_fields:
@@ -177,7 +177,6 @@ class SubmitPost(Service):
 
         self.validate_attachments()
         if self.block.get("captcha", False):
-            # breakpoint()
             getMultiAdapter(
                 (self.context, self.request),
                 ICaptchaSupport,
@@ -285,7 +284,7 @@ class SubmitPost(Service):
         return {}
 
     def get_reply_to(self):
-        """This method retrieves the correct field to be used as 'reply to'.
+        """This method retrieves the 'reply to' email address.
 
         Three "levels" of logic:
         1. If there is a field marked with 'use_as_reply_to' set to True, that
@@ -309,6 +308,11 @@ class SubmitPost(Service):
         return self.form_data.get("from", "") or self.block.get("default_from", "")
 
     def get_bcc(self):
+        # todo: handle bcc for schemaForm
+        subblocks = self.block.get("subblocks", [])
+        if not subblocks:
+            return []
+
         bcc = []
         bcc_fields = []
         for field in self.block.get("subblocks", []):
@@ -334,26 +338,22 @@ class SubmitPost(Service):
                         return data.get("value")
 
     def get_subject(self):
-        subject = self.form_data.get("subject", "") or self.block.get(
-            "default_subject", ""
-        )
-
-        for i in self.form_data.get("data", []):
-            field_id = i.get("field_id")
-
-            if not field_id:
-                continue
-
-            # Handle this kind of id format: `field_name_123321,
-            # which is used by frontend package logics
-            pattern = r"\$\{[^}]+\}"
-            matches = re.findall(pattern, subject)
-
-            for match in matches:
-                if field_id in match:
-                    subject = subject.replace(match, i.get("value"))
-
+        subject = self.block.get("default_subject", "${subject}")
+        subject = self.substitute_variables(subject)
         return subject
+
+    def substitute_variables(self, value):
+        pattern = r"\$\{([^}]+)\}"
+        return re.sub(pattern, lambda match: self.get_value(match.group(1), ""), value)
+
+    def get_value(self, field_id, default=None):
+        if self.block.get("@type") == "schemaForm":
+            return self.form_data["data"].get(field_id, default)
+
+        for field in self.form_data.get("data", []):
+            if field.get("field_id") == field_id:
+                return field.get("value", default)
+        return default
 
     def send_data(self):  # noQA: C901
         subject = self.get_subject()
@@ -476,9 +476,12 @@ class SubmitPost(Service):
         """
         do not send attachments fields.
         """
-        # TODO: do not send attachments for schemaForm block
+        # TODO: handle attachments for schemaForm block
         if self.block["@type"] == "schemaForm":
-            return self.form_data.get("data", [])
+            return [{
+                "value": v,
+                "label": self.block["schema"]["properties"].get(k, {}).get("title", k),
+            } for k, v in self.form_data["data"].items()]
 
         skip_fields = [
             x.get("field_id", "")
@@ -558,7 +561,6 @@ class SubmitPost(Service):
 
     def store_data(self):
         store = getMultiAdapter((self.context, self.request), IFormDataStore)
-        breakpoint()
         res = store.add(data=self.filter_parameters())
         if not res:
             raise BadRequest("Unable to store data")
