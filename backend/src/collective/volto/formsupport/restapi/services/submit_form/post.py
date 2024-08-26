@@ -479,6 +479,7 @@ class SubmitPost(Service):
         # TODO: handle attachments for schemaForm block
         if self.block["@type"] == "schemaForm":
             return [{
+                "field_id": k,
                 "value": v,
                 "label": self.block["schema"]["properties"].get(k, {}).get("title", k),
             } for k, v in self.form_data["data"].items()]

@@ -46,32 +46,24 @@ class FormDataStore:
 
     def get_form_fields(self):
         blocks = get_blocks(self.context)
-
         if not blocks:
             return {}
-        form_block = {}
-        for id_, block in blocks.items():
-            if id_ != self.block_id:
-                continue
-            block_type = block.get("@type", "")
-            if block_type == "form" or block_type == "schemaForm":
-                form_block = deepcopy(block)
-        if not form_block:
-            return {}
-
-        # TODO: get fields for schemaForm block
-        if block["@type"] == "schemaForm":
-            return block.get("data", {})
-
-        subblocks = form_block.get("subblocks", [])
-
-        # Add the 'custom_field_id' field back in as this isn't stored with each
-        # subblock
-        for index, field in enumerate(subblocks):
-            if form_block.get(field["field_id"]):
-                subblocks[index]["custom_field_id"] = form_block.get(field["field_id"])
-
-        return subblocks
+        block = blocks.get(self.block_id, {})
+        block_type = block.get("@type", "")
+        if block_type == "schemaForm":
+            return [
+                {"field_id": name, "label": field.get("title", name)}
+                for name, field in block["schema"]["properties"].items()
+            ]
+        elif block_type == "form":
+            subblocks = block.get("subblocks", [])
+            # Add the 'custom_field_id' field back in as this isn't stored with each
+            # subblock
+            for index, field in enumerate(subblocks):
+                if block.get(field["field_id"]):
+                    subblocks[index]["custom_field_id"] = block.get(field["field_id"])
+            return subblocks
+        return {}
 
     def add(self, data):
         form_fields = self.get_form_fields()
