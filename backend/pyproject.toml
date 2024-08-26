@@ -42,6 +42,7 @@ dependencies = [
   "souper.plone",
   "click",
   "beautifulsoup4",
+  "jsonschema",
   "pyotp",
 ]
 

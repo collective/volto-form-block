@@ -35,6 +35,8 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 
 import codecs
+import json
+import jsonschema
 import logging
 import math
 import os
@@ -175,6 +177,7 @@ class SubmitPost(Service):
                 )
             )
 
+        self.validate_schema()
         self.validate_attachments()
         if self.block.get("captcha", False):
             getMultiAdapter(
@@ -188,6 +191,21 @@ class SubmitPost(Service):
 
         self.validate_email_fields()
         self.validate_bcc()
+
+    def validate_schema(self):
+        if self.block["@type"] != "schemaForm":
+            return
+        validator = jsonschema.Draft202012Validator(self.block["schema"])
+        errors = []
+        for err in validator.iter_errors(self.form_data["data"]):
+            error = {
+                "message": err.message
+            }
+            if err.path:
+                error["field"] = ".".join(err.path)
+            errors.append(error)
+        if errors:
+            raise BadRequest(json.dumps(errors))
 
     def validate_email_fields(self):
         # TODO: validate email fields for schemaForm block
