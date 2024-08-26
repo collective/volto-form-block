@@ -338,7 +338,7 @@ class SubmitPost(Service):
                         return data.get("value")
 
     def get_subject(self):
-        subject = self.block.get("default_subject", "${subject}")
+        subject = self.block.get("default_subject") or "${subject}"
         subject = self.substitute_variables(subject)
         return subject
 

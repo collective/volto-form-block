@@ -77,9 +77,17 @@ const messages = defineMessages({
       // eslint-disable-next-line no-template-curly-in-string
       'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
   },
-  manage_data: {
-    id: 'form_manage_data',
-    defaultMessage: 'Manage data',
+  fieldset_confirmation: {
+    id: 'fieldset_confirmation',
+    defaultMessage: 'Confirmation',
+  },
+  fieldset_savedata: {
+    id: 'fieldset_savedata',
+    defaultMessage: 'Store data',
+  },
+  fieldset_email: {
+    id: 'fieldset_email',
+    defaultMessage: 'Send email',
   },
   mail_header_label: {
     id: 'mail_header_label',
@@ -123,21 +131,33 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
         fields: [
           'title',
           'description',
-          'default_to',
-          'default_from',
-          'default_subject',
           'submit_label',
           'show_cancel',
           ...(formData?.show_cancel ? ['cancel_label'] : []),
-          'mail_header',
-          'mail_footer',
           'captcha',
         ],
       },
       {
-        id: 'manage_data',
-        title: intl.formatMessage(messages.manage_data),
-        fields: ['store', 'remove_data_after_days', 'send', 'send_message'],
+        id: 'confirmation',
+        title: intl.formatMessage(messages.fieldset_confirmation),
+        fields: ['send_message'],
+      },
+      {
+        id: 'email',
+        title: intl.formatMessage(messages.fieldset_email),
+        fields: [
+          'send',
+          'default_to',
+          'default_from',
+          'default_subject',
+          'mail_header',
+          'mail_footer',
+        ],
+      },
+      {
+        id: 'savedata',
+        title: intl.formatMessage(messages.fieldset_savedata),
+        fields: ['store', 'remove_data_after_days'],
       },
     ],
     properties: {
@@ -219,12 +239,6 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
         description: intl.formatMessage(messages.send_message_helptext),
       },
     },
-    required: [
-      'default_to',
-      'default_from',
-      'default_subject',
-      'captcha',
-      ...conditional_required,
-    ],
+    required: ['default_from', 'captcha', ...conditional_required],
   };
 };
