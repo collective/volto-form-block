@@ -55,7 +55,7 @@ class FormData:
             return {}
         if self.block_id:
             service_id = (
-                f"{self.context.absolute_url()}/@form-data?block_id{self.block_id}"
+                f"{self.context.absolute_url()}/@form-data?block_id={self.block_id}"
             )
         else:
             service_id = f"{self.context.absolute_url()}/@form-data"
@@ -81,7 +81,7 @@ class FormData:
         if not blocks:
             return {}
         for id_, block in blocks.items():
-            if block.get("@type", "") == "form" and block.get("store", False):
+            if block.get("@type", "") in ("form", "schemaForm") and block.get("store", False):
                 if not self.block_id or self.block_id == id_:
                     return block
         return {}
