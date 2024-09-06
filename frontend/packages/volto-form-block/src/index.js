@@ -31,7 +31,11 @@ import {
   validateDefaultTo,
 } from 'volto-form-block/helpers/validators';
 
-import { schemaFormBlockSchema } from 'volto-form-block/schemaFormBlock/schema';
+import {
+  schemaFormBlockSchema,
+  enhanceSendActionSchema,
+  enhanceStoreActionSchema,
+} from 'volto-form-block/schemaFormBlock/schema';
 import schemaFormBlockEdit from 'volto-form-block/schemaFormBlock/EditSchemaForm';
 import schemaFormBlockView from 'volto-form-block/schemaFormBlock/ViewSchemaForm';
 import HoneypotCaptchaWidget from 'volto-form-block/schemaFormBlock/HoneypotCaptchaWidget';
@@ -84,6 +88,14 @@ const applyConfig = (config) => {
         view: [],
       },
       sidebarTab: 1,
+      formActions: {
+        send: {
+          schemaEnhancer: enhanceSendActionSchema,
+        },
+        store: {
+          schemaEnhancer: enhanceStoreActionSchema,
+        },
+      },
     },
     form: {
       id: 'form',

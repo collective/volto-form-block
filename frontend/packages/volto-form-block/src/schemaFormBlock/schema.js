@@ -1,4 +1,6 @@
 import { defineMessages } from 'react-intl';
+import { cloneDeep } from 'lodash';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   form: {
@@ -47,10 +49,6 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-  store: {
-    id: 'form_save_persistent_data',
-    defaultMessage: 'Store compiled data',
-  },
   remove_data_after_days: {
     id: 'form_remove_data_after_days',
     defaultMessage: 'Data wipe',
@@ -62,10 +60,6 @@ const messages = defineMessages({
   attachmentSendEmail: {
     id: 'form_attachment_send_email_info_text',
     defaultMessage: 'Attached file will be sent via email, but not stored',
-  },
-  send: {
-    id: 'form_send_email',
-    defaultMessage: 'Send email to recipient',
   },
   send_message: {
     id: 'form_send_message',
@@ -81,13 +75,21 @@ const messages = defineMessages({
     id: 'fieldset_confirmation',
     defaultMessage: 'Confirmation',
   },
-  fieldset_savedata: {
-    id: 'fieldset_savedata',
-    defaultMessage: 'Store data',
+  fieldset_formActions: {
+    id: 'fieldset_formActions',
+    defaultMessage: 'Form actions',
   },
-  fieldset_email: {
-    id: 'fieldset_email',
-    defaultMessage: 'Send email',
+  label_formActions: {
+    id: 'label_formActions',
+    defaultMessage: 'Actions',
+  },
+  label_formAction: {
+    id: 'label_formAction',
+    defaultMessage: 'Action',
+  },
+  label_formActionType: {
+    id: 'label_formActionType',
+    defaultMessage: 'Action type',
   },
   mail_header_label: {
     id: 'mail_header_label',
@@ -100,6 +102,14 @@ const messages = defineMessages({
   mail_footer_label: {
     id: 'mail_footer_label',
     defaultMessage: 'Text at the end of the email',
+  },
+  formAction_send: {
+    id: 'formAction_send',
+    defaultMessage: 'Send email',
+  },
+  formAction_store: {
+    id: 'formAction_store',
+    defaultMessage: 'Store data',
   },
 });
 
@@ -115,13 +125,41 @@ const defaultEmptyData = {
   required: [],
 };
 
-export const schemaFormBlockSchema = ({ formData, intl }) => {
-  let conditional_required = [];
-  if (!formData?.store && !formData?.send) {
-    conditional_required.push('store');
-    conditional_required.push('send');
-  }
+const FormActionSchema = ({ intl }) => ({
+  title: intl.formatMessage(messages.label_formAction),
+  fieldsets: [
+    {
+      id: 'default',
+      title: 'Default',
+      fields: ['type'],
+    },
+  ],
+  properties: {
+    type: {
+      title: intl.formatMessage(messages.label_formActionType),
+      choices: Object.keys(
+        config.blocks.blocksConfig.schemaForm.formActions,
+      ).map((id) => [id, intl.formatMessage(messages[`formAction_${id}`])]),
+      default: 'store',
+    },
+  },
+  required: ['type'],
+});
 
+const enhanceFormActionSchema = (origSchema, formData, intl) => {
+  const formActionId = formData?.type;
+  const formAction =
+    config.blocks.blocksConfig.schemaForm.formActions[formActionId];
+  return formAction
+    ? formAction.schemaEnhancer({
+        schema: cloneDeep(origSchema),
+        formData,
+        intl,
+      })
+    : cloneDeep(origSchema);
+};
+
+export const schemaFormBlockSchema = ({ formData, intl }) => {
   return {
     title: intl.formatMessage(messages.form),
     fieldsets: [
@@ -143,21 +181,9 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
         fields: ['send_message'],
       },
       {
-        id: 'email',
-        title: intl.formatMessage(messages.fieldset_email),
-        fields: [
-          'send',
-          'default_to',
-          'default_from',
-          'default_subject',
-          'mail_header',
-          'mail_footer',
-        ],
-      },
-      {
-        id: 'savedata',
-        title: intl.formatMessage(messages.fieldset_savedata),
-        fields: ['store', 'remove_data_after_days'],
+        id: 'formActions',
+        title: intl.formatMessage(messages.fieldset_formActions),
+        fields: ['formActions'],
       },
     ],
     properties: {
@@ -172,16 +198,6 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
         title: intl.formatMessage(messages.description),
         type: 'textarea',
       },
-      default_to: {
-        title: intl.formatMessage(messages.default_to),
-      },
-      default_from: {
-        title: intl.formatMessage(messages.default_from),
-      },
-      default_subject: {
-        title: intl.formatMessage(messages.default_subject),
-        description: intl.formatMessage(messages.default_subject_description),
-      },
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
       },
@@ -193,22 +209,6 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
       },
-      mail_header: {
-        title: intl.formatMessage(messages.mail_header_label),
-        widget: 'richtext',
-        type: 'string',
-        description: intl.formatMessage(
-          messages.mail_header_footer_description,
-        ),
-      },
-      mail_footer: {
-        title: intl.formatMessage(messages.mail_footer_label),
-        widget: 'richtext',
-        type: 'string',
-        description: intl.formatMessage(
-          messages.mail_header_footer_description,
-        ),
-      },
       captcha: {
         title: intl.formatMessage(messages.captcha),
         type: 'string',
@@ -216,29 +216,67 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
       },
-      store: {
-        type: 'boolean',
-        title: intl.formatMessage(messages.store),
-      },
-      remove_data_after_days: {
-        type: 'integer',
-        title: intl.formatMessage(messages.remove_data_after_days),
-        description: intl.formatMessage(
-          messages.remove_data_after_days_helptext,
-        ),
-        default: -1,
-      },
-      send: {
-        type: 'boolean',
-        title: intl.formatMessage(messages.send),
-        description: intl.formatMessage(messages.attachmentSendEmail),
-      },
       send_message: {
         title: intl.formatMessage(messages.send_message),
         widget: 'textarea',
         description: intl.formatMessage(messages.send_message_helptext),
       },
+      formActions: {
+        title: intl.formatMessage(messages.label_formActions),
+        widget: 'object_list',
+        schema: FormActionSchema({ intl }),
+        schemaExtender: enhanceFormActionSchema,
+        minLength: 1,
+      },
     },
-    required: ['default_from', 'captcha', ...conditional_required],
+    required: ['captcha', 'formActions'],
   };
+};
+
+export const enhanceSendActionSchema = ({ schema, intl }) => {
+  schema.fieldsets[0].fields = [
+    'type',
+    'default_to',
+    'default_from',
+    'default_subject',
+    'mail_header',
+    'mail_footer',
+  ];
+  schema.properties = {
+    ...schema.properties,
+    default_to: {
+      title: intl.formatMessage(messages.default_to),
+    },
+    default_from: {
+      title: intl.formatMessage(messages.default_from),
+    },
+    default_subject: {
+      title: intl.formatMessage(messages.default_subject),
+      description: intl.formatMessage(messages.default_subject_description),
+    },
+    mail_header: {
+      title: intl.formatMessage(messages.mail_header_label),
+      widget: 'richtext',
+      type: 'string',
+      description: intl.formatMessage(messages.mail_header_footer_description),
+    },
+    mail_footer: {
+      title: intl.formatMessage(messages.mail_footer_label),
+      widget: 'richtext',
+      type: 'string',
+      description: intl.formatMessage(messages.mail_header_footer_description),
+    },
+  };
+  return schema;
+};
+
+export const enhanceStoreActionSchema = ({ schema, intl }) => {
+  schema.fieldsets[0].fields.push('remove_data_after_days');
+  schema.properties.remove_data_after_days = {
+    type: 'integer',
+    title: intl.formatMessage(messages.remove_data_after_days),
+    description: intl.formatMessage(messages.remove_data_after_days_helptext),
+    default: -1,
+  };
+  return schema;
 };
