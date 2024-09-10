@@ -33,7 +33,7 @@ import {
 
 import {
   schemaFormBlockSchema,
-  enhanceSendActionSchema,
+  enhanceEmailActionSchema,
   enhanceStoreActionSchema,
 } from 'volto-form-block/schemaFormBlock/schema';
 import schemaFormBlockEdit from 'volto-form-block/schemaFormBlock/EditSchemaForm';
@@ -89,8 +89,8 @@ const applyConfig = (config) => {
       },
       sidebarTab: 1,
       formActions: {
-        send: {
-          schemaEnhancer: enhanceSendActionSchema,
+        email: {
+          schemaEnhancer: enhanceEmailActionSchema,
         },
         store: {
           schemaEnhancer: enhanceStoreActionSchema,

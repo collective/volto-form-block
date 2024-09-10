@@ -1,0 +1,8 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    >
+
+  <adapter name="email" factory=".email.EmailFormAction" />
+  <adapter name="store" factory=".store.StoreFormAction" />
+
+</configure>

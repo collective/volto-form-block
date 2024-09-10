@@ -1,5 +1,8 @@
+from plone.dexterity.content import DexterityContent
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from ZPublisher.BaseRequest import BaseRequest
+import dataclasses
 
 
 class ICollectiveVoltoFormsupportLayer(IDefaultBrowserLayer):
@@ -44,3 +47,22 @@ class ICaptchaSupport(Interface):
         """Verify the captcha
         @return: True if verified, Raise exception otherwise
         """
+
+
+@dataclasses.dataclass
+class FormActionContext:
+    context: DexterityContent
+    action: dict
+    block: dict
+    data: dict
+    request: BaseRequest
+
+
+class IFormAction(Interface):
+    """Adapter which processes form data when it is submitted"""
+
+    def __init__(context: FormActionContext):
+        pass
+
+    def __call__():
+        """Process the data."""

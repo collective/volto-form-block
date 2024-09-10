@@ -103,8 +103,8 @@ const messages = defineMessages({
     id: 'mail_footer_label',
     defaultMessage: 'Text at the end of the email',
   },
-  formAction_send: {
-    id: 'formAction_send',
+  formAction_email: {
+    id: 'formAction_email',
     defaultMessage: 'Send email',
   },
   formAction_store: {
@@ -233,7 +233,7 @@ export const schemaFormBlockSchema = ({ formData, intl }) => {
   };
 };
 
-export const enhanceSendActionSchema = ({ schema, intl }) => {
+export const enhanceEmailActionSchema = ({ schema, intl }) => {
   schema.fieldsets[0].fields = [
     'type',
     'default_to',

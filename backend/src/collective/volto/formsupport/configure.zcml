@@ -13,6 +13,7 @@
   <include file="profiles.zcml" />
   <include file="upgrades.zcml" />
 
+  <include package=".actions" />
   <include package=".browser" />
   <include package=".datamanager" />
   <include package=".restapi" />
