@@ -55,16 +55,13 @@ class PostEventService:
 
 
 class SubmitPost(Service):
-    def __init__(self, context, request):
-        super().__init__(context, request)
-
+    def reply(self):
         self.block = {}
         self.form_data = self.cleanup_data()
         self.block_id = self.form_data.get("block_id", "")
         if self.block_id:
             self.block = self.get_block_data(block_id=self.block_id)
 
-    def reply(self):
         self.validate_form()
 
         store_action = self.block.get("store", False)
@@ -109,7 +106,7 @@ class SubmitPost(Service):
 
         block = self.get_block_data(block_id=form_data.get("block_id", ""))
 
-        if block["@type"] == "form":
+        if block.get("@type") == "form":
             block_fields = [x.get("field_id", "") for x in block.get("subblocks", [])]
             # cleanup form data if it's a form block
             for form_field in form_data.get("data", []):
@@ -184,23 +181,18 @@ class SubmitPost(Service):
                 (self.context, self.request),
                 ICaptchaSupport,
                 name=self.block["captcha"],
-            ).verify(
-                self.form_data.get("captcha")
-                or self.form_data["data"].get("captchaWidget")
-            )
+            ).verify(self.form_data.get("captcha"))
 
         self.validate_email_fields()
         self.validate_bcc()
 
     def validate_schema(self):
-        if self.block["@type"] != "schemaForm":
+        if self.block.get("@type") != "schemaForm":
             return
         validator = jsonschema.Draft202012Validator(self.block["schema"])
         errors = []
         for err in validator.iter_errors(self.form_data["data"]):
-            error = {
-                "message": err.message
-            }
+            error = {"message": err.message}
             if err.path:
                 error["field"] = ".".join(err.path)
             errors.append(error)
@@ -356,7 +348,11 @@ class SubmitPost(Service):
                         return data.get("value")
 
     def get_subject(self):
-        subject = self.block.get("default_subject") or "${subject}"
+        subject = (
+            self.form_data.get("subject")
+            or self.block.get("default_subject")
+            or "${subject}"
+        )
         subject = self.substitute_variables(subject)
         return subject
 
@@ -496,11 +492,16 @@ class SubmitPost(Service):
         """
         # TODO: handle attachments for schemaForm block
         if self.block["@type"] == "schemaForm":
-            return [{
-                "field_id": k,
-                "value": v,
-                "label": self.block["schema"]["properties"].get(k, {}).get("title", k),
-            } for k, v in self.form_data["data"].items()]
+            return [
+                {
+                    "field_id": k,
+                    "value": v,
+                    "label": self.block["schema"]["properties"]
+                    .get(k, {})
+                    .get("title", k),
+                }
+                for k, v in self.form_data["data"].items()
+            ]
 
         skip_fields = [
             x.get("field_id", "")
