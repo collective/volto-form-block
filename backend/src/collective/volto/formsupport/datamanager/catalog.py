@@ -1,7 +1,6 @@
 from collective.volto.formsupport import logger
 from collective.volto.formsupport.interfaces import IFormDataStore
 from collective.volto.formsupport.utils import get_blocks
-from copy import deepcopy
 from datetime import datetime
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.deserializer import json_body

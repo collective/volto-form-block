@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { defineMessages, useIntl } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
-import { Captcha } from 'volto-form-block/components/Widget';
 import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
