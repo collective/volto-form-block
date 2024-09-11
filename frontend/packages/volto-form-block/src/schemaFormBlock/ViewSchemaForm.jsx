@@ -12,12 +12,22 @@ const messages = defineMessages({
     id: 'Error',
     defaultMessage: 'Error',
   },
+  submit: {
+    id: 'Submit',
+    defaultMessage: 'Submit',
+  },
+  cancel: {
+    id: 'Cancel',
+    defaultMessage: 'Cancel',
+  },
 });
 
 const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
   let attachments = {};
+
+  const onCancel = () => {};
 
   const onSubmit = (formData) => {
     let captcha = {
@@ -54,7 +64,17 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
     );
   };
 
-  return <Form schema={data.schema} formData={{}} onSubmit={onSubmit} />;
+  return (
+    <Form
+      schema={data.schema}
+      formData={{}}
+      onSubmit={onSubmit}
+      resetOnCancel={true}
+      onCancel={data.show_cancel ? onCancel : null}
+      submitLabel={data.submit_label || intl.formatMessage(messages.submit)}
+      cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
+    />
+  );
 };
 
 export default FormBlockView;
