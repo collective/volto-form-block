@@ -6,6 +6,9 @@ import { submitForm } from 'volto-form-block/actions';
 import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
+import { useLocation } from 'react-router-dom';
+import qs from 'query-string';
+import { pickBy, keys } from 'lodash';
 
 const messages = defineMessages({
   error: {
@@ -26,6 +29,12 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
   let attachments = {};
+  const location = useLocation();
+
+  const propertyNames = keys(data.schema.properties);
+  const initialData = pickBy(qs.parse(location.search), (value, key) =>
+    propertyNames.includes(key),
+  );
 
   const onCancel = () => {};
 
@@ -67,7 +76,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   return (
     <Form
       schema={data.schema}
-      formData={{}}
+      formData={initialData}
       onSubmit={onSubmit}
       resetOnCancel={true}
       onCancel={data.show_cancel ? onCancel : null}
