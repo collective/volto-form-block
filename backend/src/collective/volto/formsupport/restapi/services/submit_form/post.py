@@ -349,9 +349,7 @@ class SubmitPost(Service):
 
     def get_subject(self):
         subject = (
-            self.form_data.get("subject")
-            or self.block.get("default_subject")
-            or "${subject}"
+            self.form_data.get("subject") or self.block.get("subject") or "${subject}"
         )
         subject = self.substitute_variables(subject)
         return subject
@@ -400,7 +398,7 @@ class SubmitPost(Service):
         should_send = self.block.get("send", [])
         if should_send:
             portal_transforms = api.portal.get_tool(name="portal_transforms")
-            mto = self.block.get("default_to", mail_settings.email_from_address)
+            mto = self.block.get("recipients", mail_settings.email_from_address)
             message = self.prepare_message()
             text_message = (
                 portal_transforms.convertTo("text/plain", message, mimetype="text/html")

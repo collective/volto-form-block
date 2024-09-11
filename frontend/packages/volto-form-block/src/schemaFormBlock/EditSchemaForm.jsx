@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { isEmpty } from 'lodash';
+import { compose } from 'redux';
+import { defineMessages, injectIntl } from 'react-intl';
 import { SidebarPortal } from '@plone/volto/components';
 import { Form, BlockDataForm } from '@plone/volto/components/manage/Form';
 import { withBlockExtensions } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 
+const messages = defineMessages({
+  submit: {
+    id: 'Submit',
+    defaultMessage: 'Submit',
+  },
+  cancel: {
+    id: 'Cancel',
+    defaultMessage: 'Cancel',
+  },
+});
+
 class Edit extends Component {
   render() {
     const FormSchema = config.blocks.blocksConfig.schemaForm.blockSchema;
+    const filterFactory = config.blocks.blocksConfig.schemaForm.filterFactory;
     const schema = FormSchema(this.props);
     const { data } = this.props;
 
@@ -22,6 +36,8 @@ class Edit extends Component {
       properties: {},
       required: [],
     };
+
+    const dummyHandler = () => {};
 
     return (
       <>
@@ -43,6 +59,7 @@ class Edit extends Component {
                 type: 'string',
                 widget: 'schema',
                 default: defaultEmptyData,
+                filterFactory,
               },
             },
             required: [],
@@ -60,7 +77,14 @@ class Edit extends Component {
               schema: formData.schema,
             });
           }}
-          hideActions
+          onSubmit={dummyHandler}
+          onCancel={data.show_cancel ? dummyHandler : null}
+          submitLabel={
+            data.submit_label || this.props.intl.formatMessage(messages.submit)
+          }
+          cancelLabel={
+            data.cancel_label || this.props.intl.formatMessage(messages.cancel)
+          }
         />
 
         <SidebarPortal selected={this.props.selected}>
@@ -85,4 +109,4 @@ class Edit extends Component {
   }
 }
 
-export default withBlockExtensions(Edit);
+export default compose(withBlockExtensions, injectIntl)(Edit);
