@@ -1,5 +1,13 @@
 
 
+### [3.9.3](https://github.com/collective/volto-form-block/compare/v3.9.2...v3.9.3) (2024-09-12)
+
+
+### Bug Fixes
+
+* Fix bug that form data can not be loaded for forms in accordions ([#74](https://github.com/collective/volto-form-block/issues/74)) ([9dd726f](https://github.com/collective/volto-form-block/commit/9dd726f2286f3004d7cf74ebc1df364d8e5d9fc4))
+* reset otp on formdata reset ([#116](https://github.com/collective/volto-form-block/issues/116)) ([eb259a0](https://github.com/collective/volto-form-block/commit/eb259a048ba3688116cad1aeafcf4ef49d5e0d8f))
+
 ### [3.9.2](https://github.com/collective/volto-form-block/compare/v3.9.1...v3.9.2) (2024-07-01)
 
 
