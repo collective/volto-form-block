@@ -95,7 +95,7 @@ export const SEND_OTP = 'SEND_OTP';
 export function sendOTP(path, block_id, email) {
   return {
     type: SEND_OTP,
-    subrequest: block_id + '_' + email,
+    subrequest: 'otp_' + block_id + '_' + email,
     request: {
       op: 'post',
       path: path + '/@validate-email-address',
@@ -104,5 +104,18 @@ export function sendOTP(path, block_id, email) {
         uid: block_id,
       },
     },
+  };
+}
+
+/**
+ * resetOTP action
+ * @module actions/resetOTP
+ */
+export const RESET_OTP = 'RESET_OTP';
+
+export function resetOTP(block_id) {
+  return {
+    type: RESET_OTP,
+    block_id,
   };
 }

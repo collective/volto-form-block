@@ -8,6 +8,7 @@ import {
   GET_FORM_DATA,
   CLEAR_FORM_DATA,
   SEND_OTP,
+  RESET_OTP,
 } from 'volto-form-block/actions';
 
 function download(filename, text) {
@@ -302,7 +303,27 @@ export const sendOTP = (state = initialState, action = {}) => {
             loading: false,
             loaded: false,
           };
+    case RESET_OTP:
+      let new_subrequests = { ...state.subrequests };
 
+      if (action.block_id) {
+        Object.keys(new_subrequests)
+          .filter((k) => k.indexOf('otp_' + action.block_id) === 0)
+          .forEach((k) => {
+            delete new_subrequests[k];
+          });
+      }
+      return action.block_id
+        ? {
+            ...state,
+            subrequests: new_subrequests,
+          }
+        : {
+            ...state,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
     default:
       return state;
   }

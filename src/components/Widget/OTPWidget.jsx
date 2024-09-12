@@ -66,7 +66,8 @@ const OTPWidget = (props) => {
   const dispatch = useDispatch();
   const _id = id + OTP_FIELDNAME_EXTENDER;
   const sendOTPResponse = useSelector(
-    (state) => state.sendOTP?.subrequests?.[block_id + '_' + fieldValue],
+    (state) =>
+      state.sendOTP?.subrequests?.['otp_' + block_id + '_' + fieldValue],
   );
   const [countDownEnd, setCountDownEnd] = useState(null);
   const [countDown, setCountDown] = useState(null);
