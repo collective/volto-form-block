@@ -119,6 +119,23 @@ const FileWidget = (props) => {
       }
     };
     reader.readAsDataURL(files[0]);
+
+    /* add dummy file to input element,
+       to make sure the browsers form validation
+       recognizes this field as filled
+    */
+    let inputEl = document.getElementById(`field-${id}`);
+    const myFile = new File([], file.name, {
+      type: 'text/plain',
+      lastModified: new Date(),
+    });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(myFile);
+    inputEl.files = dataTransfer.files;
+    // help Safari out by setting the data-file attribute
+    if (inputEl.webkitEntries.length) {
+      inputEl.dataset.file = `${dataTransfer.files[0].name}`;
+    }
   };
 
   let attributes = {};
