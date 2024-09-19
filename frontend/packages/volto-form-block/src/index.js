@@ -70,8 +70,12 @@ const applyConfig = (config) => {
         'File Upload',
         'label_email',
         'hidden',
+        'static_text',
       ],
-      additionalFactory: [{ value: 'hidden', label: 'Hidden' }],
+      additionalFactory: [
+        { value: 'hidden', label: 'Hidden' },
+        { value: 'static_text', label: 'Static Text' },
+      ],
       defaultSender: 'noreply@plone.org',
       defaultSenderName: 'Plone',
       additionalFields: [],
