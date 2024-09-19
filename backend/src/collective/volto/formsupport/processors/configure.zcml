@@ -1,0 +1,8 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    >
+
+  <subscriber name="email" factory=".email.EmailFormProcessor" />
+  <subscriber name="store" factory=".store.StoreFormProcessor" />
+
+</configure>
