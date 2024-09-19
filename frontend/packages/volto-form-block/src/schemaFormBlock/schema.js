@@ -279,6 +279,6 @@ export const schemaFormBlockSchema = ({ data, intl }) => {
         default: -1,
       },
     },
-    required: ['default_from', 'captcha', ...conditional_required],
+    required: ['default_from', ...conditional_required],
   };
 };
