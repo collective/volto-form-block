@@ -1,5 +1,9 @@
+from plone.dexterity.content import DexterityContent
+from zope.interface import Attribute
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from ZPublisher.BaseRequest import BaseRequest
+import dataclasses
 
 
 class ICollectiveVoltoFormsupportLayer(IDefaultBrowserLayer):
@@ -44,3 +48,23 @@ class ICaptchaSupport(Interface):
         """Verify the captcha
         @return: True if verified, Raise exception otherwise
         """
+
+
+@dataclasses.dataclass
+class FormSubmissionContext:
+    context: DexterityContent
+    block: dict
+    form_data: dict
+    request: BaseRequest
+
+
+class IFormSubmissionProcessor(Interface):
+    """Subscriber which processes form data when it is submitted"""
+
+    order: int = Attribute("Processors with the lowest order are processed first")
+
+    def __init__(context: FormSubmissionContext):
+        pass
+
+    def __call__():
+        """Process the data."""
