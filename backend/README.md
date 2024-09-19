@@ -8,7 +8,7 @@ Works with volto-form-block >= v3.8.0
 
 ## plone.restapi endpoints
 
-### `@submit-form`
+### `@schemaform-data`
 
 Endpoint that the frontend should call as a submit action.
 

@@ -19,7 +19,7 @@ export function submitForm(path = '', block_id, data, attachments, captcha) {
     subrequest: block_id,
     request: {
       op: 'post',
-      path: path + '/@submit-form',
+      path: path + '/@schemaform-data',
       data: {
         block_id,
         data,
