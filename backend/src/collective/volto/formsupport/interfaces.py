@@ -55,6 +55,7 @@ class FormSubmissionContext:
     context: DexterityContent
     block: dict
     form_data: dict
+    attachments: dict
     request: BaseRequest
 
 

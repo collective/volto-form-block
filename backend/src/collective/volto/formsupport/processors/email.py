@@ -32,11 +32,12 @@ class EmailFormProcessor:
 
     order = 1
 
-    def __init__(self, context):
+    def __init__(self, context: FormSubmissionContext):
         self.context = context.context
         self.request = context.request
         self.block = context.block
         self.form_data = context.form_data
+        self.attachments = context.attachments
 
     def __call__(self):
         if not self.block.get("send"):
@@ -161,9 +162,9 @@ class EmailFormProcessor:
 
     def get_value(self, field_id, default=None):
         if self.block.get("@type") == "schemaForm":
-            return self.form_data["data"].get(field_id, default)
+            return self.form_data.get(field_id, default)
 
-        for field in self.form_data.get("data", []):
+        for field in self.form_data:
             if field.get("field_id") == field_id:
                 return field.get("value", default)
         return default
@@ -182,7 +183,7 @@ class EmailFormProcessor:
                 if field_id not in bcc_fields:
                     bcc_fields.append(field_id)
         bcc = []
-        for field in self.form_data.get("data", []):
+        for field in self.form_data:
             value = field.get("value", "")
             if not value:
                 continue
@@ -223,7 +224,7 @@ class EmailFormProcessor:
         return message_template(**parameters)
 
     def manage_attachments(self, msg):
-        attachments = self.form_data.get("attachments", {})
+        attachments = self.attachments
 
         if not attachments:
             return []
@@ -262,6 +263,6 @@ class EmailFormProcessor:
         acknowledgementField = self.block["acknowledgementFields"]
         for field in self.block.get("subblocks", []):
             if field.get("field_id") == acknowledgementField:
-                for submitted in self.form_data.get("data", []):
+                for submitted in self.form_data:
                     if submitted.get("field_id", "") == field.get("field_id"):
                         return submitted.get("value")
