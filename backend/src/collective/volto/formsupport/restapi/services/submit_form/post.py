@@ -58,7 +58,8 @@ class SubmitPost(Service):
             context=self.context,
             request=self.request,
             block=self.block,
-            form_data=self.form_data,
+            form_data=self.form_data.get("data", {}),
+            attachments=self.form_data.get("attachments", {}),
         )
         for handler in sorted(subscribers((form_submission_context,), IFormSubmissionProcessor), key=lambda h: h.order):
             try:
