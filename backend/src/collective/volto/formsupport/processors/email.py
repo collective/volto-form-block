@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 from collective.volto.formsupport import _
-from collective.volto.formsupport.processors import filter_parameters
 from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
+from collective.volto.formsupport.processors import filter_parameters
 from email import policy
 from email.message import EmailMessage
 from plone import api
@@ -13,9 +13,11 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import implementer
+
 import codecs
 import os
 import re
+
 
 try:
     from plone.base.interfaces.controlpanel import IMailSchema
@@ -55,9 +57,8 @@ class EmailFormProcessor:
 
         subject = self.get_subject()
 
-        # TODO
-        mfrom = self.form_data.get("from", "") or self.block.get("default_from", "") or mail_settings.email_from_address
-        mreply_to = self.get_reply_to()
+        mfrom = mail_settings.email_from_address
+        mreply_to = self.get_reply_to() or mfrom
 
         if not subject or not mfrom:
             raise BadRequest(
@@ -69,11 +70,6 @@ class EmailFormProcessor:
                     context=self.request,
                 )
             )
-
-        # TODO sort out admin email vs acknowledgment
-        send_to = self.block.get("send", ["recipient"])
-        if not isinstance(send_to, list):
-            send_to = ["recipient"] if send_to else []
 
         portal_transforms = api.portal.get_tool(name="portal_transforms")
         mto = self.block.get("recipients", mail_settings.email_from_address)
@@ -99,57 +95,37 @@ class EmailFormProcessor:
 
         self.manage_attachments(msg=msg)
 
-        if "recipient" in send_to:
-            self.send_mail(msg=msg, charset=charset)
+        self.send_mail(msg=msg, charset=charset)
 
         # send a copy also to the fields with bcc flag
         for bcc in self.get_bcc():
             msg.replace_header("To", bcc)
             self.send_mail(msg=msg, charset=charset)
 
-        acknowledgement_message = self.block.get("acknowledgementMessage")
-        if acknowledgement_message and "acknowledgement" in send_to:
-            acknowledgement_address = self.get_acknowledgement_field_value()
-            if acknowledgement_address:
-                acknowledgement_mail = EmailMessage(policy=policy.SMTP)
-                acknowledgement_mail["Subject"] = subject
-                acknowledgement_mail["From"] = mfrom
-                acknowledgement_mail["To"] = acknowledgement_address
-                ack_msg = acknowledgement_message.get("data")
-                ack_msg_text = (
-                    portal_transforms.convertTo(
-                        "text/plain", ack_msg, mimetype="text/html"
-                    )
-                    .getData()
-                    .strip()
-                )
-                acknowledgement_mail.set_content(ack_msg_text, cte=CTE)
-                acknowledgement_mail.add_alternative(ack_msg, subtype="html", cte=CTE)
-                self.send_mail(msg=acknowledgement_mail, charset=charset)
+        # acknowledgement_message = self.block.get("acknowledgementMessage")
+        # if acknowledgement_message:
+        #     acknowledgement_address = self.get_acknowledgement_field_value()
+        #     if acknowledgement_address:
+        #         acknowledgement_mail = EmailMessage(policy=policy.SMTP)
+        #         acknowledgement_mail["Subject"] = subject
+        #         acknowledgement_mail["From"] = mfrom
+        #         acknowledgement_mail["To"] = acknowledgement_address
+        #         ack_msg = acknowledgement_message.get("data")
+        #         ack_msg_text = (
+        #             portal_transforms.convertTo(
+        #                 "text/plain", ack_msg, mimetype="text/html"
+        #             )
+        #             .getData()
+        #             .strip()
+        #         )
+        #         acknowledgement_mail.set_content(ack_msg_text, cte=CTE)
+        #         acknowledgement_mail.add_alternative(ack_msg, subtype="html", cte=CTE)
+        #         self.send_mail(msg=acknowledgement_mail, charset=charset)
 
     def get_reply_to(self):
-        """This method retrieves the 'reply to' email address.
-
-        Three "levels" of logic:
-        1. If there is a field marked with 'use_as_reply_to' set to True, that
-           field wins and we use that.
-           If not:
-        2. We search for the "from" field.
-           If not present:
-        3. We use the fallback field: "default_from"
-        """
-
-        subblocks = self.block.get("subblocks", "")
-        if subblocks:
-            for field in subblocks:
-                if field.get("use_as_reply_to", False):
-                    field_id = field.get("field_id", "")
-                    if field_id:
-                        for data in data.get("data", ""):
-                            if data.get("field_id", "") == field_id:
-                                return data.get("value", "")
-
-        return self.form_data.get("from", "") or self.block.get("default_from", "")
+        sender = self.block.get("sender", "")
+        sender = self.substitute_variables(sender)
+        return sender
 
     def get_subject(self):
         subject = self.block.get("subject") or "${subject}"
@@ -161,35 +137,12 @@ class EmailFormProcessor:
         return re.sub(pattern, lambda match: self.get_value(match.group(1), ""), value)
 
     def get_value(self, field_id, default=None):
-        if self.block.get("@type") == "schemaForm":
-            return self.form_data.get(field_id, default)
+        return self.form_data.get(field_id, default)
 
-        for field in self.form_data:
-            if field.get("field_id") == field_id:
-                return field.get("value", default)
-        return default
-
-    def get_bcc(self):
-        # todo: handle bcc for schemaForm
-        subblocks = self.block.get("subblocks", [])
-        if not subblocks:
-            return []
-
-        bcc = []
-        bcc_fields = []
-        for field in self.block.get("subblocks", []):
-            if field.get("use_as_bcc", False):
-                field_id = field.get("field_id", "")
-                if field_id not in bcc_fields:
-                    bcc_fields.append(field_id)
-        bcc = []
-        for field in self.form_data:
-            value = field.get("value", "")
-            if not value:
-                continue
-            if field.get("field_id", "") in bcc_fields:
-                bcc.append(field["value"])
-        return bcc
+    def get_bcc(self) -> list:
+        bcc = self.block.get("bcc", "")
+        bcc = self.substitute_variables(bcc)
+        return bcc.split(";") if bcc else []
 
     def prepare_message(self):
         mail_header = self.block.get("mail_header", {}).get("data", "")
@@ -258,11 +211,3 @@ class EmailFormProcessor:
         # we set immediate=True because we need to catch exceptions.
         # by default (False) exceptions are handled by MailHost and we can't catch them.
         host.send(msg, charset=charset, immediate=True)
-
-    def get_acknowledgement_field_value(self):
-        acknowledgementField = self.block["acknowledgementFields"]
-        for field in self.block.get("subblocks", []):
-            if field.get("field_id") == acknowledgementField:
-                for submitted in self.form_data:
-                    if submitted.get("field_id", "") == field.get("field_id"):
-                        return submitted.get("value")

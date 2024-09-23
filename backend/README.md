@@ -1,6 +1,6 @@
 # collective.volto.formsupport
 
-Add some helper routes and functionalities for Volto sites with ``form`` blocks provided by `volto-form-block <https://github.com/collective/volto-form-block>`_ Volto plugin.
+Add some helper routes and functionalities for Volto sites with `form` blocks provided by `volto-form-block <https://github.com/collective/volto-form-block>`\_ Volto plugin.
 
 ## volto-form-block version
 
@@ -15,7 +15,7 @@ Endpoint that the frontend should call as a submit action.
 You can call it with a POST on the context where the block form is stored like this:
 
 ```shell
-> curl -i -X POST http://localhost:8080/Plone/my-form/@submit-form -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{"block_id": "123456789", "data": [{"field_id": "foo", "value":"foo", "label": "Foo"},{"field_id": "from", "value": "support@foo.com"}, {"field_id":"name", "value": "John Doe", "label": "Name"}]}'
+> curl -i -X POST http://localhost:8080/Plone/my-form/@schemaform-data -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{"block_id": "123456789", "data": [{"field_id": "foo", "value":"foo", "label": "Foo"},{"field_id": "from", "value": "support@foo.com"}, {"field_id":"name", "value": "John Doe", "label": "Name"}]}'
 ```
 
 where:
@@ -25,7 +25,6 @@ where:
 - `data` contains the submitted form data
 
 Calling this endpoint, it will do some actions (based on block settings) and returns a `200` response with the submitted data.
-
 
 ### `@form-data`
 
@@ -86,8 +85,8 @@ Reset the store (only for users that have **Modify portal content** permission):
 
 Optional parameters could be passed in the payload:
 
-* `block_id` to delete only data related to a specific block on the page, otherwise data from all form blocks on the page will be deleted
-* `expired` a boolean that, if `true`, removes only records older than the value of days specified in the block configuration (the above `block_id` parameter is required)
+- `block_id` to delete only data related to a specific block on the page, otherwise data from all form blocks on the page will be deleted
+- `expired` a boolean that, if `true`, removes only records older than the value of days specified in the block configuration (the above `block_id` parameter is required)
 
 ### `@validate-email-address`
 
@@ -100,8 +99,8 @@ Returns a HTTP 204 in case of success or HTTP 400 in case the email is badly com
 
 parameters:
 
-* `email` email address.
-* `uid` uid related to email field
+- `email` email address.
+- `uid` uid related to email field
 
 ### `@validate-email-token`
 
@@ -114,13 +113,13 @@ Returns HTTP 204 in case of success or HTTP 400 in case of failure ::
 
 parameters:
 
-* `email` email address
-* `uid` uid used to generate the OTP
-* `otp` OTP code
+- `email` email address
+- `uid` uid used to generate the OTP
+- `otp` OTP code
 
 ## Form actions
 
-Using `volto-form-block <https://github.com/collective/volto-form-block>`_ you can set if the form submit should send data to an email address
+Using `volto-form-block <https://github.com/collective/volto-form-block>`\_ you can set if the form submit should send data to an email address
 or store it into an internal catalog (or both).
 
 ### Send
@@ -149,13 +148,13 @@ Set the 'Send to' value to include `acknowledgement` to enable this behaviour. T
 
 ### Store
 
-If block is set to store data, we store it into the content that has that block (with a `souper.plone <https://pypi.org/project/souper.plone>`_ catalog).
+If block is set to store data, we store it into the content that has that block (with a `souper.plone <https://pypi.org/project/souper.plone>`\_ catalog).
 
-The store is an adapter registered for *IFormDataStore* interface, so you can override it easily.
+The store is an adapter registered for _IFormDataStore_ interface, so you can override it easily.
 
 Only fields that are also in block settings are stored. Missing ones will be skipped.
 
-Each Record stores also two *service* attributes:
+Each Record stores also two _service_ attributes:
 
 - **fields_labels**: a mapping of field ids to field labels. This is useful when we export csv files, so we can labels for the columns.
 - **fields_order**: sorted list of field ids. This can be used in csv export to keep the order of fields.
@@ -168,14 +167,14 @@ The exported CSV file may need to be used by further processes which require spe
 
 ## Block serializer
 
-There is a custom block serializer for type ``form``.
+There is a custom block serializer for type `form`.
 
-This serializer removes all fields that start with "\**default_**\" if the user can't edit the current context.
+This serializer removes all fields that start with "\*\*default\_\*\*\" if the user can't edit the current context.
 
 This is useful because we don't want to expose some internals configurations (for example the recipient email address)
 to external users that should only fill the form.
 
-If the block has a field ``captcha``, an additional property ``captcha_props`` is serialized by the ``serialize``
+If the block has a field `captcha`, an additional property `captcha_props` is serialized by the `serialize`
 method provided by the ICaptchaSupport named adapter, the result contains useful metadata for the client, as the
 captcha public_key, ie:
 
@@ -202,7 +201,6 @@ This product contains implementations for:
 - Custom questions and answers (collective.z3cform.norobots)
 - Honeypot (collective.honeypot)
 
-
 Each implementation must be included, installed and configured separately.
 
 To include one implementation, you need to install the egg with the needed extras_require:
@@ -220,7 +218,7 @@ For captcha support `volto-form-block` version >= 2.4.0 is required.
 
 If honeypot dependency is available in the buildout, the honeypot validation is enabled and selectable in forms.
 
-Default field name is `protected_1` and you can change it with an environment variable. See `collective.honeypot <https://github.com/collective/collective.honeypot#id7>`_ for details.
+Default field name is `protected_1` and you can change it with an environment variable. See `collective.honeypot <https://github.com/collective/collective.honeypot#id7>`\_ for details.
 
 ## Attachments upload limits
 
@@ -257,11 +255,9 @@ This is useful for some SMTP servers that have problems with `quoted-printable` 
 By default the content-transfer-encoding is `quoted-printable` as overridden in
 https://github.com/zopefoundation/Products.MailHost/blob/master/src/Products/MailHost/MailHost.py#L65
 
-
 ## Email subject templating
 
 You can also interpolate the form values to the email subject using the field id, in this way: ${123321123}
-
 
 ## Header forwarding
 
@@ -302,13 +298,11 @@ This add-on can be seen in action at the following sites:
 
 - https://www.comune.modena.it/form/contatti
 
-
 ## Translations
 
 This product has been translated into
 
 - Italian
-
 
 ## Installation
 
@@ -323,14 +317,12 @@ Install collective.volto.formsupport by adding it to your buildout::
         collective.volto.formsupport
 ```
 
-and then running ``bin/buildout``
-
+and then running `bin/buildout`
 
 ## Contribute
 
 - Issue Tracker: https://github.com/collective/volto-form-block/issues
 - Source Code: https://github.com/collective/volto-form-block
-
 
 ## License
 
@@ -341,9 +333,8 @@ The project is licensed under the GPLv2.
 This product was developed by **RedTurtle Technology** team.
 
 .. image:: https://avatars1.githubusercontent.com/u/1087171?s=100&v=4
-   :alt: RedTurtle Technology Site
-   :target: https://www.redturtle.it/
-
+:alt: RedTurtle Technology Site
+:target: https://www.redturtle.it/
 
 ## Credits and Acknowledgements 🙏
 
