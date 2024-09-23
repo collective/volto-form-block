@@ -4,15 +4,9 @@ from collective.volto.formsupport.interfaces import ICaptchaSupport
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
 from collective.volto.formsupport.interfaces import IPostEvent
 from collective.volto.formsupport.utils import get_blocks
-from collective.volto.formsupport.utils import validate_email_token
-from copy import deepcopy
-from plone import api
-
-
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
-from plone.schema.email import _isemail
 from zExceptions import BadRequest
 from zope.component import getMultiAdapter
 from zope.component import subscribers
@@ -29,7 +23,6 @@ import os
 
 
 logger = logging.getLogger(__name__)
-CTE = os.environ.get("MAIL_CONTENT_TRANSFER_ENCODING", None)
 
 
 @implementer(IPostEvent)
@@ -41,27 +34,31 @@ class PostEventService:
 
 class SubmitPost(Service):
     def reply(self):
+        self.body = json_body(self.request)
         self.block = {}
-        self.form_data = self.cleanup_data()
-        self.block_id = self.form_data.get("block_id", "")
+        self.block_id = self.body.get("block_id", "")
         if self.block_id:
             self.block = self.get_block_data(block_id=self.block_id)
+        self.form_data = self.cleanup_data()
 
         self.validate_form()
 
         # Disable CSRF protection
         alsoProvides(self.request, IDisableCSRFProtection)
 
-        notify(PostEventService(self.context, self.form_data))
+        notify(PostEventService(self.context, self.body))
 
         form_submission_context = FormSubmissionContext(
             context=self.context,
             request=self.request,
             block=self.block,
-            form_data=self.form_data.get("data", {}),
-            attachments=self.form_data.get("attachments", {}),
+            form_data=self.form_data,
+            attachments=self.body.get("attachments", {}),
         )
-        for handler in sorted(subscribers((form_submission_context,), IFormSubmissionProcessor), key=lambda h: h.order):
+        for handler in sorted(
+            subscribers((form_submission_context,), IFormSubmissionProcessor),
+            key=lambda h: h.order,
+        ):
             try:
                 handler()
             except BadRequest:
@@ -71,46 +68,32 @@ class SubmitPost(Service):
                 message = translate(
                     _(
                         "form_action_exception",
-                        default="Unable to process form. Please retry later or contact site administrator.",  # noqa: E501
+                        default="Unable to process form. "
+                        "Please retry later or contact site administrator.",
                     ),
                     context=self.request,
                 )
                 self.request.response.setStatus(500)
                 return {"type": "InternalServerError", "message": message}
 
-        return {"data": self.form_data.get("data", [])}
+        return {"data": self.form_data}
 
     def cleanup_data(self):
-        """
-        Avoid XSS injections and other attacks.
-
-        - cleanup HTML with plone transform
-        - remove from data, fields not defined in form schema
-        """
-        form_data = json_body(self.request)
-        fixed_fields = []
-        transforms = api.portal.get_tool(name="portal_transforms")
-
-        block = self.get_block_data(block_id=form_data.get("block_id", ""))
-
-        if block.get("@type") == "form":
-            block_fields = [x.get("field_id", "") for x in block.get("subblocks", [])]
-            # cleanup form data if it's a form block
-            for form_field in form_data.get("data", []):
-                if form_field.get("field_id", "") not in block_fields:
-                    # unknown field, skip it
-                    continue
-                new_field = deepcopy(form_field)
-                value = new_field.get("value", "")
-                if isinstance(value, str):
-                    stream = transforms.convertTo(
-                        "text/plain", value, mimetype="text/html"
-                    )
-                    new_field["value"] = stream.getData().strip()
-                fixed_fields.append(new_field)
-            form_data["data"] = fixed_fields
-
-        # TODO: cleanup form data if it's a schemaForm block
+        """Ignore fields not defined in form schema"""
+        schema = self.block.get("schema", {})
+        form_data = self.body.get("data", {})
+        if not isinstance(form_data, dict):
+            raise BadRequest(translate(
+                    _(
+                        "invalid_form_data",
+                        default="Invalid form data.",
+                    ),
+                    context=self.request,
+                )
+            )
+        form_data = {
+            k: v for k, v in form_data.items() if k in schema.get("properties", {})
+        }
         return form_data
 
     def validate_form(self):
@@ -129,7 +112,7 @@ class SubmitPost(Service):
                 translate(
                     _(
                         "block_form_not_found_label",
-                        default='Block with @type "form" and id "$block" not found in this context: $context',  # noqa: E501
+                        default='Block with @type "schemaForm" and id "$block" not found in this context: $context',  # noqa: E501
                         mapping={
                             "block": self.block_id,
                             "context": self.context.absolute_url(),
@@ -138,8 +121,7 @@ class SubmitPost(Service):
                     context=self.request,
                 ),
             )
-
-        if not self.form_data.get("data", []):
+        if not self.form_data:
             raise BadRequest(
                 translate(
                     _(
@@ -157,17 +139,12 @@ class SubmitPost(Service):
                 (self.context, self.request),
                 ICaptchaSupport,
                 name=self.block["captcha"],
-            ).verify(self.form_data.get("captcha"))
-
-        self.validate_email_fields()
-        self.validate_bcc()
+            ).verify(self.body.get("captcha"))
 
     def validate_schema(self):
-        if self.block.get("@type") != "schemaForm":
-            return
-        validator = jsonschema.Draft202012Validator(self.block["schema"])
+        validator = jsonschema.Draft202012Validator(self.block.get("schema", {}))
         errors = []
-        for err in validator.iter_errors(self.form_data["data"]):
+        for err in validator.iter_errors(self.form_data):
             error = {"message": err.message}
             if err.path:
                 error["field"] = ".".join(err.path)
@@ -175,37 +152,12 @@ class SubmitPost(Service):
         if errors:
             raise BadRequest(json.dumps(errors))
 
-    def validate_email_fields(self):
-        # TODO: validate email fields for schemaForm block
-        if self.block["@type"] == "schemaForm":
-            return
-        email_fields = [
-            x.get("field_id", "")
-            for x in self.block.get("subblocks", [])
-            if x.get("field_type", "") == "from"
-        ]
-        for form_field in self.form_data.get("data", []):
-            if form_field.get("field_id", "") not in email_fields:
-                continue
-            if _isemail(form_field.get("value", "")) is None:
-                raise BadRequest(
-                    translate(
-                        _(
-                            "wrong_email",
-                            default='Email not valid in "${field}" field.',
-                            mapping={
-                                "field": form_field.get("label", ""),
-                            },
-                        ),
-                        context=self.request,
-                    )
-                )
-
     def validate_attachments(self):
+        # TODO handle schemaForm attachments
         attachments_limit = os.environ.get("FORM_ATTACHMENTS_LIMIT", "")
         if not attachments_limit:
             return
-        attachments = self.form_data.get("attachments", {})
+        attachments = self.body.get("attachments", {})
         attachments_len = 0
         for attachment in attachments.values():
             data = attachment.get("data", "")
@@ -231,31 +183,6 @@ class SubmitPost(Service):
                 )
             )
 
-    def validate_bcc(self):
-        # TODO: validate email fields for schemaForm block
-        if self.block["@type"] == "schemaForm":
-            return
-
-        bcc_fields = []
-        for field in self.block.get("subblocks", []):
-            if field.get("use_as_bcc", False):
-                field_id = field.get("field_id", "")
-                if field_id not in bcc_fields:
-                    bcc_fields.append(field_id)
-
-        for data in self.form_data.get("data", []):
-            value = data.get("value", "")
-            if not value:
-                continue
-
-            if data.get("field_id", "") in bcc_fields:
-                if not validate_email_token(
-                    self.form_data.get("block_id", ""), data["value"], data["otp"]
-                ):
-                    raise BadRequest(
-                        _("{email}'s OTP is wrong").format(email=data["value"])
-                    )
-
     def get_block_data(self, block_id):
         blocks = get_blocks(self.context)
         if not blocks:
@@ -264,7 +191,7 @@ class SubmitPost(Service):
             if id_ != block_id:
                 continue
             block_type = block.get("@type", "")
-            if not (block_type == "form" or block_type == "schemaForm"):
+            if block_type != "schemaForm":
                 continue
             return block
         return {}

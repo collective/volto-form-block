@@ -17,5 +17,6 @@
   <include package=".datamanager" />
   <include package=".restapi" />
   <include package=".captcha" />
+  <include package=".processors" />
 
 </configure>

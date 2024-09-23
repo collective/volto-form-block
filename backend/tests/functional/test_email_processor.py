@@ -24,10 +24,10 @@ class TestMailSend:
         self.document_url = self.document.absolute_url()
         transaction.commit()
 
-    def test_email_not_send_if_block_id_is_not_given(self, submit_form):
+    def test_email_not_sent_if_block_id_is_not_given(self, submit_form):
         response = submit_form(
             url=self.document_url,
-            data={"from": "john@doe.com", "message": "Just want to say hi."},
+            data={},
         )
         transaction.commit()
 
@@ -35,87 +35,73 @@ class TestMailSend:
         assert response.status_code == 400
         assert res["message"] == "Missing block_id"
 
-    def test_email_not_send_if_block_id_is_incorrect_or_not_present(self, submit_form):
+    def test_email_not_sent_if_block_id_is_incorrect_or_not_present(self, submit_form):
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "message": "Just want to say hi.",
                 "block_id": "unknown",
             },
         )
         transaction.commit()
-
         res = response.json()
         assert response.status_code == 400
         assert res["message"] == (
-            f'Block with @type "form" and id "unknown" not found in this context: {self.document_url}'  # noqa: E501
+            f'Block with @type "schemaForm" and id "unknown" not found in this context: {self.document_url}'  # noqa: E501
         )
+
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "message": "Just want to say hi.",
                 "block_id": "text-id",
             },
         )
         transaction.commit()
-
         res = response.json()
         assert response.status_code == 400
         assert res["message"] == (
-            f'Block with @type "form" and id "text-id" not found in this context: {self.document_url}'  # noqa: E501
+            f'Block with @type "schemaForm" and id "text-id" not found in this context: {self.document_url}'  # noqa: E501
         )
 
-    def test_email_not_send_if_no_action_set(self, submit_form):
-        response = submit_form(
-            url=self.document_url,
-            data={"from": "john@doe.com", "block_id": "form-id"},
-        )
-        transaction.commit()
-        res = response.json()
-        assert response.status_code == 400
-        assert res["message"] == (
-            'You need to set at least one form action between "send" and "store".'
-        )
-
-    def test_email_not_send_if_block_id_is_correct_but_form_data_missing(
+    def test_email_not_sent_if_block_id_is_correct_but_form_data_missing(
         self, submit_form
     ):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
+                "@type": "schemaForm",
+                "send": True,
             },
         }
         transaction.commit()
-
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "subject": "test subject",
                 "block_id": "form-id",
             },
         )
-        transaction.commit()
         res = response.json()
         assert response.status_code == 400
         assert res["message"] == "Empty form data."
 
-    def test_email_not_send_if_block_id_is_correct_but_required_fields_missing(
+    def test_email_not_sent_if_block_id_is_correct_but_required_fields_missing(
         self, submit_form
     ):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "xxx",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "send": True,
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["xxx"],
+                        },
+                    ],
+                    "properties": {
+                        "xxx": {},
                     },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -123,9 +109,8 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
                 "block_id": "form-id",
-                "data": [{"field_id": "xxx", "label": "foo", "value": "bar"}],
+                "data": {"xxx": "bar"},
             },
         )
         transaction.commit()
@@ -133,11 +118,11 @@ class TestMailSend:
         assert response.status_code == 400
         assert res["message"] == "Missing required field: subject or from."
 
-    def test_email_not_send_if_all_fields_are_not_in_form_schema(self, submit_form):
+    def test_email_not_sent_if_all_fields_are_not_in_form_schema(self, submit_form):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
+                "@type": "schemaForm",
+                "send": True,
             },
         }
         transaction.commit()
@@ -145,9 +130,8 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
                 "block_id": "form-id",
-                "data": [{"label": "foo", "value": "bar"}],
+                "data": {"xxx": "bar"},
             },
         )
         transaction.commit()
@@ -158,14 +142,23 @@ class TestMailSend:
     def test_email_sent_with_only_fields_from_schema(self, submit_form):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "xxx",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "send": True,
+                "sender": "john@doe.com",
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["xxx"],
+                        },
+                    ],
+                    "properties": {
+                        "xxx": {"title": "foo"},
                     },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -173,24 +166,19 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
                 "block_id": "form-id",
-                "subject": "test subject",
-                "data": [
-                    {"label": "foo", "value": "foo", "field_id": "xxx"},
-                    {"label": "bar", "value": "bar", "field_id": "yyy"},
-                ],
+                "data": {"xxx": "foo", "yyy": "bar"},
             },
         )
         transaction.commit()
         res = response.json()
         assert response.status_code == 200
-        assert res["data"][0] == {"field_id": "xxx", "label": "foo", "value": "foo"}
+        assert res["data"] == {"xxx": "foo"}
 
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: site_addr@plone.com" in msg
         assert "Reply-To: john@doe.com" in msg
         assert "<strong>foo:</strong> foo" in msg
@@ -199,18 +187,24 @@ class TestMailSend:
     def test_email_sent_with_site_recipient(self, submit_form):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "send": True,
+                "sender": "john@doe.com",
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
                     },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -218,16 +212,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
+                "data": {"message": "just want to say hi", "name": "John"},
                 "block_id": "form-id",
             },
         )
@@ -236,7 +221,7 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: site_addr@plone.com" in msg
         assert "Reply-To: john@doe.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
@@ -245,19 +230,28 @@ class TestMailSend:
     def test_email_sent_with_forwarded_headers(self, submit_form):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
+                "@type": "schemaForm",
                 "send": True,
-                "httpHeaders": [],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
+                "sender": "john@doe.com",
+                "subject": "test subject",
+                "httpHeaders": [
+                    "REMOTE_ADDR",
+                    "PATH_INFO",
                 ],
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
+                    },
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -265,16 +259,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
+                "data": {"message": "just want to say hi", "name": "John"},
                 "block_id": "form-id",
             },
         )
@@ -283,58 +268,7 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
-        assert "REMOTE_ADDR" not in msg
-
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "send": True,
-                "httpHeaders": [
-                    "REMOTE_ADDR",
-                    "PATH_INFO",
-                ],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-
-        msg = self.mailhost.messages[1].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: site_addr@plone.com" in msg
         assert "Reply-To: john@doe.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
@@ -342,70 +276,29 @@ class TestMailSend:
         assert "REMOTE_ADDR" in msg
         assert "PATH_INFO" in msg
 
-    def test_email_sent_ignore_passed_recipient(self, submit_form):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "to": "to@spam.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
-
     def test_email_sent_with_block_recipient_if_set(self, submit_form):
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_to": "to@block.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "recipients": "to@block.com",
+                "send": True,
+                "sender": "john@doe.com",
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
                     },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -413,16 +306,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
+                "data": {"message": "just want to say hi", "name": "John"},
                 "block_id": "form-id",
             },
         )
@@ -431,29 +315,32 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: to@block.com" in msg
         assert "Reply-To: john@doe.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
 
-    def test_email_sent_with_block_subject_if_set_and_not_passed(self, submit_form):
+    def test_email_sent_with_subject_from_form_data(self, submit_form):
         self.document.blocks = {
-            "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "subject": "${message}",
+                "send": True,
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
                     },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -461,15 +348,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
+                "data": {"message": "just want to say hi", "name": "John"},
                 "block_id": "form-id",
             },
         )
@@ -478,36 +357,35 @@ class TestMailSend:
         assert response.status_code == 200
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: block subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "Subject: just want to say hi" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
+        assert "Reply-To: site_addr@plone.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
 
-    def test_email_with_use_as_reply_to(self, submit_form):
+    def test_email_with_sender_from_form_data(self, submit_form):
         self.document.blocks = {
-            "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "contact",
-                        "field_type": "from",
-                        "use_as_reply_to": True,
+                "@type": "schemaForm",
+                "send": True,
+                "sender": "${email}",
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name", "email"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
+                        "email": {}
                     },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -515,15 +393,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "contact", "label": "Email", "value": "smith@doe.com"},
-                ],
+                "data": {"message": "just want to say hi", "name": "Smith", "email": "smith@doe.com"},
                 "block_id": "form-id",
             },
         )
@@ -532,36 +402,34 @@ class TestMailSend:
         assert response.status_code == 200
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: block subject" in msg
-        assert "From: john@doe.com" in msg
+        assert "From: site_addr@plone.com" in msg
         assert "To: site_addr@plone.com" in msg
         assert "Reply-To: smith@doe.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> Smith" in msg
 
-    def test_email_field_used_as_bcc(self, submit_form):
+    def test_email_with_bcc_from_form_data(self, submit_form):
         self.document.blocks = {
-            "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "contact",
-                        "field_type": "from",
-                        "use_as_bcc": True,
+                "@type": "schemaForm",
+                "send": True,
+                "subject": "test subject",
+                "bcc": "${email}",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name", "email"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
+                        "email": {}
                     },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -569,18 +437,7 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": [
-                    {"label": "Message", "value": "just want to say hi"},
-                    {"label": "Name", "value": "Smith"},
-                    {
-                        "field_id": "contact",
-                        "label": "Email",
-                        "value": "smith@doe.com",
-                        "otp": generate_email_token(
-                            uid="form-id", email="smith@doe.com"
-                        ),
-                    },
-                ],
+                "data": {"message": "just want to say hi", "name": "Smith", "email": "smith@doe.com"},
                 "block_id": "form-id",
             },
         )
@@ -589,11 +446,11 @@ class TestMailSend:
         assert response.status_code == 200
         assert len(self.mailhost.messages) == 2
         msg = self.mailhost.messages[0].decode("utf-8")
-        assert "To: site_addr@plone.com" in msg
-        assert "To: smith@doe.com" not in msg
+        assert "\nTo: site_addr@plone.com" in msg
+        assert "\nTo: smith@doe.com" not in msg
         bcc_msg = self.mailhost.messages[1].decode("utf-8")
-        assert "To: site_addr@plone.com" not in bcc_msg
-        assert "To: smith@doe.com" in bcc_msg
+        assert "\nTo: site_addr@plone.com" not in bcc_msg
+        assert "\nTo: smith@doe.com" in bcc_msg
 
     def test_send_attachment(self, submit_form, file_str):
         self.document.blocks = {
@@ -834,7 +691,7 @@ class TestMailSend:
         )
         assert "<p>It is <strong>Rich Text</strong></p>" in ack_msg_body
 
-    def test_email_body_formated_as_table(self, submit_form):
+    def test_email_body_formatted_as_table(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",
@@ -894,7 +751,7 @@ class TestMailSend:
         assert """<th align="left" role="rowheader" scope="row">""" in msg
         assert f'<td align="left">{message}</td>' in msg
 
-    def test_email_body_formated_as_list(self, submit_form):
+    def test_email_body_formatted_as_list(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "form",

@@ -1,6 +1,6 @@
+from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.interfaces import IFormDataStore
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
-from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.processors import filter_parameters
 from zExceptions import BadRequest
 from zope.component import adapter

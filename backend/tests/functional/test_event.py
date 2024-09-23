@@ -14,21 +14,24 @@ class TestEvent:
         self.document.blocks = {
             "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "contact",
-                        "field_type": "from",
-                        "use_as_bcc": True,
+                "@type": "schemaForm",
+                "subject": "block subject",
+                "sender": "john@doe.com",
+                "send": True,
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "reply": {"title": "Reply"},
                     },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -37,13 +40,7 @@ class TestEvent:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                ],
+                "data": {"message": "just want to say hi"},
                 "block_id": "form-id",
             },
         )

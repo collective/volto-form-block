@@ -54,21 +54,13 @@ class FormDataStore:
                 {"field_id": name, "label": field.get("title", name)}
                 for name, field in block["schema"]["properties"].items()
             ]
-        elif block_type == "form":
-            subblocks = block.get("subblocks", [])
-            # Add the 'custom_field_id' field back in as this isn't stored with each
-            # subblock
-            for index, field in enumerate(subblocks):
-                if block.get(field["field_id"]):
-                    subblocks[index]["custom_field_id"] = block.get(field["field_id"])
-            return subblocks
         return {}
 
     def add(self, data):
         form_fields = self.get_form_fields()
         if not form_fields:
             logger.error(
-                f'Block with id {self.block_id} and type "form" not found in context: {self.context.absolute_url()}.'  # noqa: E501
+                f'Block with id {self.block_id} and type "schemaForm" not found in context: {self.context.absolute_url()}.'  # noqa: E501
             )
             return None
 
