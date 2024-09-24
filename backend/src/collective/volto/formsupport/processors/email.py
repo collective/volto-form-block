@@ -42,7 +42,9 @@ class EmailFormProcessor:
         self.attachments = context.get_attachments()
 
     def __call__(self):
-        if not self.block.get("send"):
+        send_to_admin = bool(self.block.get("send"))
+        send_confirmation = bool(self.block.get("send_confirmation"))
+        if not send_to_admin and not send_confirmation:
             return
 
         portal = api.portal.get()
@@ -54,73 +56,52 @@ class EmailFormProcessor:
         registry = getUtility(IRegistry)
         mail_settings = registry.forInterface(IMailSchema, prefix="plone")
         charset = registry.get("plone.email_charset", "utf-8")
+        portal_transforms = api.portal.get_tool(name="portal_transforms")
 
         subject = self.get_subject()
 
         mfrom = mail_settings.email_from_address
         mreply_to = self.get_reply_to() or mfrom
-
-        if not subject or not mfrom:
-            raise BadRequest(
-                translate(
-                    _(
-                        "send_required_field_missing",
-                        default="Missing required field: subject or from.",
-                    ),
-                    context=self.request,
-                )
-            )
-
-        portal_transforms = api.portal.get_tool(name="portal_transforms")
-        mto = self.block.get("recipients", mail_settings.email_from_address)
         message = self.prepare_message()
         text_message = (
             portal_transforms.convertTo("text/plain", message, mimetype="text/html")
             .getData()
             .strip()
         )
-        msg = EmailMessage(policy=policy.SMTP)
-        msg.set_content(text_message, cte=CTE)
-        msg.add_alternative(message, subtype="html", cte=CTE)
-        msg["Subject"] = subject
-        msg["From"] = mfrom
-        msg["To"] = mto
-        msg["Reply-To"] = mreply_to
 
-        headers_to_forward = self.block.get("httpHeaders", [])
-        for header in headers_to_forward:
-            header_value = self.request.get(header)
-            if header_value:
-                msg[header] = header_value
+        if send_to_admin:
+            mto = self.block.get("recipients", mail_settings.email_from_address)
+            msg = EmailMessage(policy=policy.SMTP)
+            msg.set_content(text_message, cte=CTE)
+            msg.add_alternative(message, subtype="html", cte=CTE)
+            msg["Subject"] = subject
+            msg["From"] = mfrom
+            msg["To"] = mto
+            msg["Reply-To"] = mreply_to
 
-        self.add_attachments(msg=msg)
+            headers_to_forward = self.block.get("httpHeaders", [])
+            for header in headers_to_forward:
+                header_value = self.request.get(header)
+                if header_value:
+                    msg[header] = header_value
 
-        self.send_mail(msg=msg, charset=charset)
-
-        # send a copy also to the fields with bcc flag
-        for bcc in self.get_bcc():
-            msg.replace_header("To", bcc)
+            self.add_attachments(msg=msg)
             self.send_mail(msg=msg, charset=charset)
+            # send a copy also to the fields with bcc flag
+            for bcc in self.get_bcc():
+                msg.replace_header("To", bcc)
+                self.send_mail(msg=msg, charset=charset)
 
-        # acknowledgement_message = self.block.get("acknowledgementMessage")
-        # if acknowledgement_message:
-        #     acknowledgement_address = self.get_acknowledgement_field_value()
-        #     if acknowledgement_address:
-        #         acknowledgement_mail = EmailMessage(policy=policy.SMTP)
-        #         acknowledgement_mail["Subject"] = subject
-        #         acknowledgement_mail["From"] = mfrom
-        #         acknowledgement_mail["To"] = acknowledgement_address
-        #         ack_msg = acknowledgement_message.get("data")
-        #         ack_msg_text = (
-        #             portal_transforms.convertTo(
-        #                 "text/plain", ack_msg, mimetype="text/html"
-        #             )
-        #             .getData()
-        #             .strip()
-        #         )
-        #         acknowledgement_mail.set_content(ack_msg_text, cte=CTE)
-        #         acknowledgement_mail.add_alternative(ack_msg, subtype="html", cte=CTE)
-        #         self.send_mail(msg=acknowledgement_mail, charset=charset)
+        if send_confirmation:
+            recipients = self.get_confirmation_recipients()
+            if recipients:
+                msg = EmailMessage(policy=policy.SMTP)
+                msg["Subject"] = subject
+                msg["From"] = mfrom
+                msg["To"] = self.get_confirmation_recipients()
+                msg.set_content(text_message, cte=CTE)
+                msg.add_alternative(message, subtype="html", cte=CTE)
+                self.send_mail(msg=msg, charset=charset)
 
     def get_reply_to(self):
         sender = self.block.get("sender", "")
@@ -148,6 +129,11 @@ class EmailFormProcessor:
         bcc = self.block.get("bcc", "")
         bcc = self.substitute_variables(bcc)
         return bcc.split(";") if bcc else []
+
+    def get_confirmation_recipients(self) -> str:
+        confirmation_recipients = self.block.get("confirmation_recipients", "")
+        confirmation_recipients = self.substitute_variables(confirmation_recipients)
+        return confirmation_recipients
 
     def prepare_message(self):
         mail_header = self.block.get("mail_header", {}).get("data", "")
