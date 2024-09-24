@@ -36,17 +36,17 @@ const messages = defineMessages({
     defaultMessage: 'Send email',
   },
   send: {
-    id: 'Send email to recipients',
-    defaultMessage: 'Send email to recipients',
+    id: 'Send email to admin',
+    defaultMessage: 'Send email to admin',
   },
   send_description: {
-    id: 'When activated, an email will be sent to the given recipients when a form is submitted',
+    id: 'When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted',
     defaultMessage:
-      'When activated, an email will be sent to the given recipients when a form is submitted',
+      'When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted',
   },
   recipients: {
-    id: 'Recipients',
-    defaultMessage: 'Recipients',
+    id: 'Admin Recipients',
+    defaultMessage: 'Admin Recipients',
   },
   recipients_description: {
     id: 'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
@@ -68,7 +68,9 @@ const messages = defineMessages({
   },
   sender_description: {
     id: 'The email address of the sender',
-    defaultMessage: 'The email address of the sender',
+    defaultMessage:
+      // eslint-disable-next-line no-template-curly-in-string
+      'The email address of the sender. Use the ${field_id} syntax to use a form value as the sender.',
   },
   sender_name: {
     id: 'Sender name',
@@ -76,7 +78,9 @@ const messages = defineMessages({
   },
   sender_name_description: {
     id: 'The name of the sender',
-    defaultMessage: 'The name of the sender',
+    defaultMessage:
+      // eslint-disable-next-line no-template-curly-in-string
+      'The name of the sender. Use the ${field_id} syntax to use a form value as the sender name.',
   },
   subject: {
     id: 'Subject',
@@ -136,6 +140,27 @@ const messages = defineMessages({
     defaultMessage:
       'Number of days after which, the data should be deleted. Enter -1 to store indefinitely.',
   },
+
+  fieldset_send_confirmation: {
+    id: 'fieldset_send_confirmation',
+    defaultMessage: 'Confirmation email',
+  },
+  send_confirmation: {
+    id: 'send_confirmation',
+    defaultMessage: 'Send confirmation email to user',
+  },
+  confirmation_recipients: {
+    id: 'confirmation_recipients',
+    defaultMessage: 'Recipients',
+  },
+  confirmation_recipients_description: {
+    id: 'confirmation_recipients_description',
+    defaultMessage:
+      'Email addresses to send the confirmation to. ' +
+      'Multiple email addresses can be entered separated by a semicolon. ' +
+      // eslint-disable-next-line no-template-curly-in-string
+      'Use the ${field_id} syntax to use a form value as the recipient.',
+  },
 });
 
 const defaultEmptyData = {
@@ -150,11 +175,15 @@ const defaultEmptyData = {
   required: [],
 };
 
-export const schemaFormBlockSchema = ({ data, intl }) => {
+export const schemaFormBlockSchema = ({ intl, ...props }) => {
+  let data = props.data || props.formData;
   let conditional_required = [];
   if (!data?.store && !data?.send) {
     conditional_required.push('store');
     conditional_required.push('send');
+  }
+  if (data?.send_confirmation) {
+    conditional_required.push('confirmation_recipients');
   }
 
   return {
@@ -170,6 +199,14 @@ export const schemaFormBlockSchema = ({ data, intl }) => {
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
           'captcha',
+        ],
+      },
+      {
+        id: 'send_confirmation',
+        title: intl.formatMessage(messages.fieldset_send_confirmation),
+        fields: [
+          'send_confirmation',
+          ...(data?.send_confirmation ? ['confirmation_recipients'] : []),
         ],
       },
       {
@@ -278,7 +315,18 @@ export const schemaFormBlockSchema = ({ data, intl }) => {
         description: intl.formatMessage(messages.data_wipe_description),
         default: -1,
       },
+
+      send_confirmation: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.send_confirmation),
+      },
+      confirmation_recipients: {
+        title: intl.formatMessage(messages.confirmation_recipients),
+        description: intl.formatMessage(
+          messages.confirmation_recipients_description,
+        ),
+      },
     },
-    required: [...conditional_required],
+    required: conditional_required,
   };
 };

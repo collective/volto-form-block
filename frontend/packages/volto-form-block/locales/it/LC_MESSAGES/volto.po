@@ -16,6 +16,11 @@ msgstr ""
 msgid "Add field"
 msgstr "Aggiungi campo"
 
+#. Default: "Admin Recipients"
+#: schemaFormBlock/schema
+msgid "Admin Recipients"
+msgstr ""
+
 #. Default: "Blind carbon copy"
 #: schemaFormBlock/schema
 msgid "Blind carbon copy"
@@ -121,11 +126,6 @@ msgstr "Nessun valore"
 msgid "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
 msgstr ""
 
-#. Default: "Recipients"
-#: schemaFormBlock/schema
-msgid "Recipients"
-msgstr ""
-
 #. Default: "Replace existing file"
 #: components/Widget/FileWidget
 msgid "Replace existing file"
@@ -146,9 +146,9 @@ msgstr "Selezionare…"
 msgid "Send email"
 msgstr ""
 
-#. Default: "Send email to recipients"
+#. Default: "Send email to admin"
 #: schemaFormBlock/schema
-msgid "Send email to recipients"
+msgid "Send email to admin"
 msgstr ""
 
 #. Default: "Sender"
@@ -197,7 +197,7 @@ msgstr ""
 msgid "Text at the end of the email. Use the ${field_id} syntax to add a form value."
 msgstr ""
 
-#. Default: "The email address of the sender"
+#. Default: "The email address of the sender. Use the ${field_id} syntax to use a form value as the sender."
 #: schemaFormBlock/schema
 msgid "The email address of the sender"
 msgstr ""
@@ -212,7 +212,7 @@ msgstr ""
 msgid "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
 msgstr ""
 
-#. Default: "The name of the sender"
+#. Default: "The name of the sender. Use the ${field_id} syntax to use a form value as the sender name."
 #: schemaFormBlock/schema
 msgid "The name of the sender"
 msgstr ""
@@ -238,9 +238,9 @@ msgstr "Titolo"
 msgid "Used for programmatic access to the fieldset."
 msgstr "Utilizzato per l'accesso programmatico al fieldset."
 
-#. Default: "When activated, an email will be sent to the given recipients when a form is submitted"
+#. Default: "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
 #: schemaFormBlock/schema
-msgid "When activated, an email will be sent to the given recipients when a form is submitted"
+msgid "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
 msgstr ""
 
 #. Default: "When activated, the data will be stored for later use when the form is submitted"
@@ -359,6 +359,16 @@ msgstr "premi la freccia a sinistra per evidenziare i valori selezionati"
 msgid "captcha"
 msgstr ""
 
+#. Default: "Recipients"
+#: schemaFormBlock/schema
+msgid "confirmation_recipients"
+msgstr ""
+
+#. Default: "Email addresses to send the confirmation to. Multiple email addresses can be entered separated by a semicolon. Use the ${field_id} syntax to use a form value as the recipient."
+#: schemaFormBlock/schema
+msgid "confirmation_recipients_description"
+msgstr ""
+
 #. Default: "Description"
 #: formSchema
 msgid "description"
@@ -368,6 +378,11 @@ msgstr "Descrizione"
 #: components/Sidebar
 msgid "fieldId"
 msgstr "Identificativo"
+
+#. Default: "Confirmation email"
+#: schemaFormBlock/schema
+msgid "fieldset_send_confirmation"
+msgstr ""
 
 #. Default: "Form"
 #: formSchema
@@ -741,6 +756,11 @@ msgstr "risultati"
 #: helpers/react-select
 msgid "select_risultato"
 msgstr "risultato"
+
+#. Default: "Send confirmation email to user"
+#: schemaFormBlock/schema
+msgid "send_confirmation"
+msgstr ""
 
 #. Default: "Title"
 #: formSchema
