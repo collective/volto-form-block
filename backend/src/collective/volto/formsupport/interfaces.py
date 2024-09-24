@@ -56,8 +56,33 @@ class FormSubmissionContext:
     context: DexterityContent
     block: dict
     form_data: dict
-    attachments: dict
     request: BaseRequest
+
+    def get_records(self) -> list:
+        """
+        Return field id, value, and label.
+
+        Skips file upload fields.
+        """
+        records = []
+        for k, v in self.form_data.items():
+            field = self.block["schema"]["properties"].get(k, {})
+            if field.get("type") == "object":
+                continue
+            records.append({
+                "field_id": k,
+                "value": v,
+                "label": field.get("title", k),
+            })
+        return records
+
+    def get_attachments(self) -> dict:
+        attachments = {}
+        for k, v in self.form_data.items():
+            field = self.block["schema"]["properties"].get(k, {})
+            if field.get("factory") == "File Upload":
+                attachments[k] = v
+        return attachments
 
 
 class IFormSubmissionProcessor(Interface):

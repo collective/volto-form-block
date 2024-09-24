@@ -28,7 +28,6 @@ const messages = defineMessages({
 const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
-  let attachments = {};
   const location = useLocation();
 
   const propertyNames = keys(data.schema.properties);
@@ -48,29 +47,27 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       delete formData.captchaToken;
     }
 
-    dispatch(submitForm(path, id, formData, attachments, captcha)).catch(
-      (err) => {
-        let message =
-          err?.response?.body?.error?.message ||
-          err?.response?.body?.message ||
-          err?.response?.text ||
-          '';
-        const errorsList = tryParseJSON(message);
-        let invariantErrors = [];
-        if (Array.isArray(errorsList)) {
-          invariantErrors = extractInvariantErrors(errorsList);
-        }
-        if (invariantErrors.length > 0) {
-          toast.error(
-            <Toast
-              error
-              title={intl.formatMessage(messages.error)}
-              content={invariantErrors.join(' - ')}
-            />,
-          );
-        }
-      },
-    );
+    dispatch(submitForm(path, id, formData, captcha)).catch((err) => {
+      let message =
+        err?.response?.body?.error?.message ||
+        err?.response?.body?.message ||
+        err?.response?.text ||
+        '';
+      const errorsList = tryParseJSON(message);
+      let invariantErrors = [];
+      if (Array.isArray(errorsList)) {
+        invariantErrors = extractInvariantErrors(errorsList);
+      }
+      if (invariantErrors.length > 0) {
+        toast.error(
+          <Toast
+            error
+            title={intl.formatMessage(messages.error)}
+            content={invariantErrors.join(' - ')}
+          />,
+        );
+      }
+    });
   };
 
   return (
