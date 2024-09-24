@@ -140,9 +140,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: Form Submission" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: site_addr@plone.com" in msg
+        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
 
     def test_email_sent_with_only_fields_from_schema(self, submit_form):
         self.document.blocks = {
@@ -150,6 +150,7 @@ class TestMailSend:
                 "@type": "schemaForm",
                 "send": True,
                 "sender": "john@doe.com",
+                "sender_name": "John Doe",
                 "subject": "test subject",
                 "schema": {
                     "fieldsets": [
@@ -183,9 +184,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
+        assert "Reply-To: John Doe <john@doe.com>" in msg
         assert "<strong>foo:</strong> foo" in msg
         assert "<strong>bar:</strong> bar" not in msg
 
@@ -194,7 +195,6 @@ class TestMailSend:
             "form-id": {
                 "@type": "schemaForm",
                 "send": True,
-                "sender": "john@doe.com",
                 "subject": "test subject",
                 "schema": {
                     "fieldsets": [
@@ -226,9 +226,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
+        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
 
@@ -237,7 +237,6 @@ class TestMailSend:
             "form-id": {
                 "@type": "schemaForm",
                 "send": True,
-                "sender": "john@doe.com",
                 "subject": "test subject",
                 "httpHeaders": [
                     "REMOTE_ADDR",
@@ -273,9 +272,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
+        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
         assert "REMOTE_ADDR" in msg
@@ -288,7 +287,6 @@ class TestMailSend:
                 "@type": "schemaForm",
                 "recipients": "to@block.com",
                 "send": True,
-                "sender": "john@doe.com",
                 "subject": "test subject",
                 "schema": {
                     "fieldsets": [
@@ -320,9 +318,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: test subject" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: to@block.com" in msg
-        assert "Reply-To: john@doe.com" in msg
+        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
 
@@ -363,9 +361,9 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
         assert "Subject: just want to say hi" in msg
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: site_addr@plone.com" in msg
+        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
 
@@ -375,6 +373,7 @@ class TestMailSend:
                 "@type": "schemaForm",
                 "send": True,
                 "sender": "${email}",
+                "sender_name": "${name}",
                 "subject": "test subject",
                 "schema": {
                     "fieldsets": [
@@ -411,9 +410,9 @@ class TestMailSend:
         assert response.status_code == 200
         msg = self.mailhost.messages[0].decode("utf-8")
         msg = re.sub(r"\s+", " ", msg)
-        assert "From: site_addr@plone.com" in msg
+        assert "From: Plone test site <site_addr@plone.com>" in msg
         assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: smith@doe.com" in msg
+        assert "Reply-To: Smith <smith@doe.com>" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> Smith" in msg
 
@@ -594,7 +593,7 @@ class TestMailSend:
         msg = self.mailhost.messages[0].decode("utf-8")
         parsed_msg = Parser().parsestr(msg)
         msg = re.sub(r"\s+", " ", msg)
-        assert parsed_msg.get("from") == "site_addr@plone.com"
+        assert parsed_msg.get("from") == "Plone test site <site_addr@plone.com>"
         assert parsed_msg.get("to") == "smith@doe.com"
         assert parsed_msg.get("subject") == "Form Submission"
         assert "<strong>Name:</strong> Smith" in msg

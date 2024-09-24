@@ -4,13 +4,13 @@ from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
 from email import policy
 from email.message import EmailMessage
+from email.utils import formataddr
 from plone import api
 from plone.registry.interfaces import IRegistry
 from zExceptions import BadRequest
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-from zope.i18n import translate
 from zope.interface import implementer
 
 import codecs
@@ -41,6 +41,10 @@ class EmailFormProcessor:
         self.records = context.get_records()
         self.attachments = context.get_attachments()
 
+        registry = getUtility(IRegistry)
+        self.mail_settings = registry.forInterface(IMailSchema, prefix="plone")
+        self.charset = registry.get("plone.email_charset", "utf-8")
+
     def __call__(self):
         send_to_admin = bool(self.block.get("send"))
         send_confirmation = bool(self.block.get("send_confirmation"))
@@ -53,15 +57,15 @@ class EmailFormProcessor:
         )
         if overview_controlpanel.mailhost_warning():
             raise BadRequest("MailHost is not configured.")
-        registry = getUtility(IRegistry)
-        mail_settings = registry.forInterface(IMailSchema, prefix="plone")
-        charset = registry.get("plone.email_charset", "utf-8")
         portal_transforms = api.portal.get_tool(name="portal_transforms")
 
         subject = self.get_subject()
 
-        mfrom = mail_settings.email_from_address
-        mreply_to = self.get_reply_to() or mfrom
+        mfrom = formataddr((
+            self.mail_settings.email_from_name,
+            self.mail_settings.email_from_address,
+        ))
+        mreply_to = self.get_reply_to()
         message = self.prepare_message()
         text_message = (
             portal_transforms.convertTo("text/plain", message, mimetype="text/html")
@@ -70,7 +74,7 @@ class EmailFormProcessor:
         )
 
         if send_to_admin:
-            mto = self.block.get("recipients", mail_settings.email_from_address)
+            mto = self.block.get("recipients", self.mail_settings.email_from_address)
             msg = EmailMessage(policy=policy.SMTP)
             msg.set_content(text_message, cte=CTE)
             msg.add_alternative(message, subtype="html", cte=CTE)
@@ -86,11 +90,11 @@ class EmailFormProcessor:
                     msg[header] = header_value
 
             self.add_attachments(msg=msg)
-            self.send_mail(msg=msg, charset=charset)
+            self.send_mail(msg=msg, charset=self.charset)
             # send a copy also to the fields with bcc flag
             for bcc in self.get_bcc():
                 msg.replace_header("To", bcc)
-                self.send_mail(msg=msg, charset=charset)
+                self.send_mail(msg=msg, charset=self.charset)
 
         if send_confirmation:
             recipients = self.get_confirmation_recipients()
@@ -101,12 +105,20 @@ class EmailFormProcessor:
                 msg["To"] = self.get_confirmation_recipients()
                 msg.set_content(text_message, cte=CTE)
                 msg.add_alternative(message, subtype="html", cte=CTE)
-                self.send_mail(msg=msg, charset=charset)
+                self.send_mail(msg=msg, charset=self.charset)
 
-    def get_reply_to(self):
+    def get_reply_to(self) -> str:
         sender = self.block.get("sender", "")
-        sender = self.substitute_variables(sender)
-        return sender
+        sender = (
+            self.substitute_variables(sender) or self.mail_settings.email_from_address
+        )
+
+        sender_name = self.block.get("sender_name", "")
+        sender_name = (
+            self.substitute_variables(sender_name) or self.mail_settings.email_from_name
+        )
+
+        return formataddr((sender_name, sender))
 
     def get_subject(self):
         subject = self.block.get("subject")
