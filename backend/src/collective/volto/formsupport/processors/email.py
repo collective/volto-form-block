@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from collective.volto.formsupport import _
 from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
-from collective.volto.formsupport.processors import filter_parameters
 from email import policy
 from email.message import EmailMessage
 from plone import api
@@ -39,7 +38,8 @@ class EmailFormProcessor:
         self.request = context.request
         self.block = context.block
         self.form_data = context.form_data
-        self.attachments = context.attachments
+        self.records = context.get_records()
+        self.attachments = context.get_attachments()
 
     def __call__(self):
         if not self.block.get("send"):
@@ -93,7 +93,7 @@ class EmailFormProcessor:
             if header_value:
                 msg[header] = header_value
 
-        self.manage_attachments(msg=msg)
+        self.add_attachments(msg=msg)
 
         self.send_mail(msg=msg, charset=charset)
 
@@ -128,7 +128,12 @@ class EmailFormProcessor:
         return sender
 
     def get_subject(self):
-        subject = self.block.get("subject") or "${subject}"
+        subject = self.block.get("subject")
+        if not subject:
+            if "subject" in self.block["schema"].get("properties", {}):
+                subject = "${subject}"
+            else:
+                subject = self.block.get("title") or "Form Submission"
         subject = self.substitute_variables(subject)
         return subject
 
@@ -168,7 +173,7 @@ class EmailFormProcessor:
             request=self.request,
         )
         parameters = {
-            "parameters": filter_parameters(self.form_data, self.block),
+            "parameters": self.records,
             "url": self.context.absolute_url(),
             "title": self.context.Title(),
             "mail_header": mail_header,
@@ -176,12 +181,10 @@ class EmailFormProcessor:
         }
         return message_template(**parameters)
 
-    def manage_attachments(self, msg):
-        attachments = self.attachments
-
-        if not attachments:
+    def add_attachments(self, msg):
+        if not self.attachments:
             return []
-        for _key, value in attachments.items():
+        for _key, value in self.attachments.items():
             content_type = "application/octet-stream"
             filename = None
             if isinstance(value, dict):

@@ -82,9 +82,28 @@ class TestMailSend:
         assert response.status_code == 400
         assert res["message"] == "Empty form data."
 
-    def test_email_not_sent_if_block_id_is_correct_but_required_fields_missing(
-        self, submit_form
-    ):
+    def test_email_not_sent_if_all_fields_are_not_in_form_schema(self, submit_form):
+        self.document.blocks = {
+            "form-id": {
+                "@type": "schemaForm",
+                "send": True,
+            },
+        }
+        transaction.commit()
+
+        response = submit_form(
+            url=self.document_url,
+            data={
+                "block_id": "form-id",
+                "data": {"xxx": "bar"},
+            },
+        )
+        transaction.commit()
+        res = response.json()
+        assert response.status_code == 400
+        assert res["message"] == "Empty form data."
+
+    def test_email_sent_with_fallback_subject_and_sender(self, submit_form):
         self.document.blocks = {
             "form-id": {
                 "@type": "schemaForm",
@@ -115,29 +134,15 @@ class TestMailSend:
         )
         transaction.commit()
         res = response.json()
-        assert response.status_code == 400
-        assert res["message"] == "Missing required field: subject or from."
+        assert response.status_code == 200
+        assert res["data"] == {"xxx": "bar"}
 
-    def test_email_not_sent_if_all_fields_are_not_in_form_schema(self, submit_form):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "schemaForm",
-                "send": True,
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "block_id": "form-id",
-                "data": {"xxx": "bar"},
-            },
-        )
-        transaction.commit()
-        res = response.json()
-        assert response.status_code == 400
-        assert res["message"] == "Empty form data."
+        msg = self.mailhost.messages[0].decode("utf-8")
+        msg = re.sub(r"\s+", " ", msg)
+        assert "Subject: Form Submission" in msg
+        assert "From: site_addr@plone.com" in msg
+        assert "To: site_addr@plone.com" in msg
+        assert "Reply-To: site_addr@plone.com" in msg
 
     def test_email_sent_with_only_fields_from_schema(self, submit_form):
         self.document.blocks = {
@@ -382,7 +387,7 @@ class TestMailSend:
                     "properties": {
                         "message": {"title": "Message"},
                         "name": {"title": "Name"},
-                        "email": {}
+                        "email": {},
                     },
                     "required": [],
                 },
@@ -393,7 +398,11 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": {"message": "just want to say hi", "name": "Smith", "email": "smith@doe.com"},
+                "data": {
+                    "message": "just want to say hi",
+                    "name": "Smith",
+                    "email": "smith@doe.com",
+                },
                 "block_id": "form-id",
             },
         )
@@ -426,7 +435,7 @@ class TestMailSend:
                     "properties": {
                         "message": {"title": "Message"},
                         "name": {"title": "Name"},
-                        "email": {}
+                        "email": {},
                     },
                     "required": [],
                 },
@@ -437,7 +446,11 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": {"message": "just want to say hi", "name": "Smith", "email": "smith@doe.com"},
+                "data": {
+                    "message": "just want to say hi",
+                    "name": "Smith",
+                    "email": "smith@doe.com",
+                },
                 "block_id": "form-id",
             },
         )
@@ -454,73 +467,65 @@ class TestMailSend:
 
     def test_send_attachment(self, submit_form, file_str):
         self.document.blocks = {
-            "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "test",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "send": True,
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["attachment"],
+                        },
+                    ],
+                    "properties": {
+                        "attachment": {"factory": "File Upload", "type": "object"},
                     },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
         response = submit_form(
             url=self.document_url,
             data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
+                "data": {
+                    "attachment": {
+                        "data": base64.b64encode(file_str),
+                        "filename": "test.pdf",
                     },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "test", "label": "Test", "value": "test text"},
-                ],
+                },
                 "block_id": "form-id",
-                "attachments": {"foo": {"data": base64.b64encode(file_str)}},
             },
         )
         transaction.commit()
 
         assert response.status_code == 200
         assert len(self.mailhost.messages) == 1
+        msg = self.mailhost.messages[0].decode("utf-8")
+        assert 'Content-Disposition: attachment; filename="test.pdf"' in msg
 
     def test_send_attachment_validate_size(self, monkeypatch, submit_form, file_str):
         monkeypatch.setenv("FORM_ATTACHMENTS_LIMIT", "1")
         self.document.blocks = {
-            "text-id": {"@type": "text"},
             "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "test",
-                        "field_type": "text",
+                "@type": "schemaForm",
+                "send": True,
+                "subject": "test subject",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["attachment"],
+                        },
+                    ],
+                    "properties": {
+                        "attachment": {"factory": "File Upload", "type": "object"},
                     },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -530,17 +535,13 @@ class TestMailSend:
         response = submit_form(
             url=self.document_url,
             data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
+                "data": {
+                    "attachment": {
+                        "data": base64.b64encode(file_str),
+                        "filename": "test.pdf",
                     },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "test", "label": "Test", "value": "test text"},
-                ],
+                },
                 "block_id": "form-id",
-                "attachments": {"foo": {"data": base64.b64encode(file_str)}},
             },
         )
         transaction.commit()
@@ -797,292 +798,3 @@ class TestMailSend:
         assert "Reply-To: john@doe.com" in msg
         assert "<strong>Message:</strong> just want to say hi" in msg
         assert "<strong>Name:</strong> John" in msg
-
-    def test_send_xml(self, submit_form):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "send": True,
-                "attachXml": True,
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        form_data = [
-            {"field_id": "message", "label": "Message", "value": "just want to say hi"},
-            {"field_id": "name", "label": "Name", "value": "John"},
-        ]
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "data": form_data,
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-
-        parsed_msgs = Parser().parsestr(msg)
-        # 1st index is the XML attachment
-        msg_contents = parsed_msgs.get_payload()[1].get_payload(decode=True)
-
-        xml_tree = ET.fromstring(msg_contents)
-        for index, field in enumerate(xml_tree):
-            assert field.get("name") == form_data[index]["label"]
-            assert field.text == form_data[index]["value"]
-
-    def test_submit_return_400_if_malformed_email_in_email_field(self, submit_form):
-        """
-        email fields in frontend are set as "from" field_type
-        """
-        self.document.blocks = {
-            "text-id": {"@type": "text"},
-            "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "contact",
-                        "field_type": "from",
-                    },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "contact", "label": "Email", "value": "foo"},
-                ],
-                "block_id": "form-id",
-            },
-        )
-        assert response.status_code == 400
-        assert response.json()["message"] == 'Email not valid in "Email" field.'
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "contact", "label": "Email", "value": "foo@"},
-                ],
-                "block_id": "form-id",
-            },
-        )
-        assert response.status_code == 400
-        assert response.json()["message"] == 'Email not valid in "Email" field.'
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "contact", "label": "Email", "value": "foo@asd"},
-                ],
-                "block_id": "form-id",
-            },
-        )
-        assert response.status_code == 400
-        assert response.json()["message"] == 'Email not valid in "Email" field.'
-
-    def test_submit_return_200_if_correct_email_in_email_field(self, submit_form):
-        """
-        email fields in frontend are set as "from" field_type
-        """
-        self.document.blocks = {
-            "text-id": {"@type": "text"},
-            "form-id": {
-                "@type": "form",
-                "default_subject": "block subject",
-                "default_from": "john@doe.com",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "contact",
-                        "field_type": "from",
-                    },
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "Smith"},
-                    {"field_id": "contact", "label": "Email", "value": "foo@plone.org"},
-                ],
-                "block_id": "form-id",
-            },
-        )
-        assert response.status_code == 200
-
-    def test_submit_return_200_with_submitted_data(self, submit_form):
-        """
-        This is needed for confirm message
-        """
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: john@doe.com" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: john@doe.com" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
-
-    def test_cleanup_html_in_submitted_data(self, submit_form):
-        """
-        This is needed for confirm message
-        """
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "send": ["recipient"],
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "<b onmouseover=\"alert('XSS testing!')\">click here</b><p><i>keep tags</i></p>",  # noqa: E501
-                    },
-                    {
-                        "field_id": "name",
-                        "label": "Name",
-                        "value": "<script>alert('XSS')</script> foo",
-                    },
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        res = response.json()
-        assert res == ({
-            "data": [
-                {
-                    "field_id": "message",
-                    "label": "Message",
-                    "value": "click here keep tags",
-                },
-                {
-                    "field_id": "name",
-                    "label": "Name",
-                    "value": "alert('XSS')  foo",
-                },
-            ]
-        })
-        transaction.commit()
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "<strong>Message:</strong> click here keep tags" in msg

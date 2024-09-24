@@ -40,6 +40,12 @@ class SubmitPost(Service):
         if self.block_id:
             self.block = self.get_block_data(block_id=self.block_id)
         self.form_data = self.cleanup_data()
+        self.form_submission_context = FormSubmissionContext(
+            context=self.context,
+            request=self.request,
+            block=self.block,
+            form_data=self.form_data,
+        )
 
         self.validate_form()
 
@@ -48,15 +54,8 @@ class SubmitPost(Service):
 
         notify(PostEventService(self.context, self.body))
 
-        form_submission_context = FormSubmissionContext(
-            context=self.context,
-            request=self.request,
-            block=self.block,
-            form_data=self.form_data,
-            attachments=self.body.get("attachments", {}),
-        )
         for handler in sorted(
-            subscribers((form_submission_context,), IFormSubmissionProcessor),
+            subscribers((self.form_submission_context,), IFormSubmissionProcessor),
             key=lambda h: h.order,
         ):
             try:
@@ -83,7 +82,8 @@ class SubmitPost(Service):
         schema = self.block.get("schema", {})
         form_data = self.body.get("data", {})
         if not isinstance(form_data, dict):
-            raise BadRequest(translate(
+            raise BadRequest(
+                translate(
                     _(
                         "invalid_form_data",
                         default="Invalid form data.",
@@ -153,11 +153,10 @@ class SubmitPost(Service):
             raise BadRequest(json.dumps(errors))
 
     def validate_attachments(self):
-        # TODO handle schemaForm attachments
         attachments_limit = os.environ.get("FORM_ATTACHMENTS_LIMIT", "")
         if not attachments_limit:
             return
-        attachments = self.body.get("attachments", {})
+        attachments = self.form_submission_context.get_attachments()
         attachments_len = 0
         for attachment in attachments.values():
             data = attachment.get("data", "")

@@ -126,19 +126,7 @@ or store it into an internal catalog (or both).
 
 If block is set to send data, an email with form data will be sent to the recipient set in block settings or (if not set) to the site address.
 
-If there is an `attachments` field in the POST data, these files will be attached to the email sent.
-
-#### XML attachments
-
-An XML copy of the data can be optionally attached to the sent email by configuring the volto block's `attachXml` option.
-
-The sent XML follows the same format as the feature in [collective.easyform](https://github.com/collective/collective.easyform). An example is shown below:
-
-```xml
-<?xml version='1.0' encoding='utf-8'?><form><field name="Custom field label">My value</field></form>
-```
-
-The field names in the XML will utilise the Data ID Mapping feature if it is used. Read more about this feature in the following Store section of the documentation.
+If there are file upload fields in the POST data, these files will be attached to the email sent.
 
 #### Acknowledgement email
 
@@ -220,9 +208,9 @@ If honeypot dependency is available in the buildout, the honeypot validation is 
 
 Default field name is `protected_1` and you can change it with an environment variable. See `collective.honeypot <https://github.com/collective/collective.honeypot#id7>`\_ for details.
 
-## Attachments upload limits
+## File upload limits
 
-Forms can have one or more attachment field to allow users to upload some files.
+Forms can have one or more file upload fields to allow users to upload some files.
 
 These files will be sent via mail, so it could be a good idea setting a limit to them.
 For example if you use Gmail as mail server, you can't send messages with attachments > 25MB.
@@ -236,8 +224,6 @@ There is an environment variable that you can use to set that limit (in MB):
 ```
 
 By default this is not set.
-
-The upload limit is also passed to the frontend in the form data with the `attachments_limit` key.
 
 ## Content-transfer-encoding
 
