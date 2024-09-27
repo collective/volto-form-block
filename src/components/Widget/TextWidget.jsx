@@ -7,7 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'semantic-ui-react';
+import { Input } from 'react-aria-components';
 
 import { injectIntl } from 'react-intl';
 import { Icon, FormFieldWrapper } from '@plone/volto/components';
@@ -47,6 +47,7 @@ class TextWidget extends Component {
     maxLength: PropTypes.number,
     wrapped: PropTypes.bool,
     placeholder: PropTypes.string,
+    autocomplete: PropTypes.string,
   };
 
   /**
@@ -69,6 +70,7 @@ class TextWidget extends Component {
     iconAction: null,
     minLength: null,
     maxLength: null,
+    autocomplete: undefined,
   };
 
   /**
@@ -102,6 +104,7 @@ class TextWidget extends Component {
       error,
       required,
       invalid,
+      autocomplete,
     } = this.props;
 
     let attributes = {};
@@ -137,6 +140,7 @@ class TextWidget extends Component {
           onClick={() => onClick()}
           minLength={minLength || null}
           maxLength={maxLength || null}
+          autoComplete={autocomplete ?? 'off'}
         />
         {icon && iconAction && (
           <button className={`field-${id}-action-button`} onClick={iconAction}>
