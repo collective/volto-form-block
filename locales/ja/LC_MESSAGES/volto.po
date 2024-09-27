@@ -236,6 +236,246 @@ msgstr ""
 msgid "fieldId"
 msgstr ""
 
+#: fieldSchema
+# defaultMessage: "Autocomplete" attribute
+msgid "field_autocomplete"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Additional name
+msgid "field_autocomplete_additional_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 1
+msgid "field_autocomplete_address_line1"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 2
+msgid "field_autocomplete_address_line2"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 3
+msgid "field_autocomplete_address_line3"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birthday
+msgid "field_autocomplete_bday"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth day
+msgid "field_autocomplete_bday_day"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth month
+msgid "field_autocomplete_bday_month"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth year
+msgid "field_autocomplete_bday_year"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder additional name
+msgid "field_autocomplete_cc_additional_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card security code
+msgid "field_autocomplete_cc_csc"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration date
+msgid "field_autocomplete_cc_exp"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration month
+msgid "field_autocomplete_cc_exp_month"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration year
+msgid "field_autocomplete_cc_exp_year"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder family name
+msgid "field_autocomplete_cc_family_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder given name
+msgid "field_autocomplete_cc_given_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder name
+msgid "field_autocomplete_cc_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card number
+msgid "field_autocomplete_cc_number"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card type
+msgid "field_autocomplete_cc_type"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Country
+msgid "field_autocomplete_country"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Country name
+msgid "field_autocomplete_country_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Current password
+msgid "field_autocomplete_current_password"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: This field adds the "autocomplete" attribute to the field. This allows to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>
+msgid "field_autocomplete_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Email
+msgid "field_autocomplete_email"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Family name
+msgid "field_autocomplete_family_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Given name
+msgid "field_autocomplete_given_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Prefix (ex. mr, mrs)
+msgid "field_autocomplete_honorific_prefix"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Suffix (ex. jr, sr)
+msgid "field_autocomplete_honorific_suffix"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Language
+msgid "field_autocomplete_language"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Full name
+msgid "field_autocomplete_name_complete"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: New password
+msgid "field_autocomplete_new_password"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Nickname
+msgid "field_autocomplete_nickname"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Organization
+msgid "field_autocomplete_organization"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Organization title
+msgid "field_autocomplete_organization_title"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Photo
+msgid "field_autocomplete_photo"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Postal code
+msgid "field_autocomplete_postal_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Gender
+msgid "field_autocomplete_sex"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Street address
+msgid "field_autocomplete_street_address"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone number
+msgid "field_autocomplete_tel"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone area code
+msgid "field_autocomplete_tel_area_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone country code
+msgid "field_autocomplete_tel_country_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone extension
+msgid "field_autocomplete_tel_extension"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Local telephone number
+msgid "field_autocomplete_tel_local"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: National telephone number
+msgid "field_autocomplete_tel_national"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Transaction amount
+msgid "field_autocomplete_transaction_amount"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Transaction currency
+msgid "field_autocomplete_transaction_currency"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Website URL
+msgid "field_autocomplete_url"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Username
+msgid "field_autocomplete_username"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"

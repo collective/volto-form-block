@@ -74,7 +74,7 @@ const messages = defineMessages({
   field_autocomplete_description: {
     id: 'field_autocomplete_description',
     defaultMessage:
-      'This field adds the "autocomplete" attribute to the field. This allows the browser to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>',
+      'This field adds the "autocomplete" attribute to the field. This allows to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>',
   },
   field_autocomplete_name_complete: {
     id: 'field_autocomplete_name_complete',
