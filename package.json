@@ -96,6 +96,7 @@
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^0.3.6",
     "file-saver": "^2.0.5",
+    "react-aria-components": "1.2.0",
     "react-google-recaptcha-v3": "^1.8.0",
     "volto-subblocks": "^2.1.0"
   },

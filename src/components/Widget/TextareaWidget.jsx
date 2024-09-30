@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Label, TextArea } from 'semantic-ui-react';
+import { TextArea, Label } from 'react-aria-components';
 
 import { injectIntl } from 'react-intl';
 import { FormFieldWrapper } from '@plone/volto/components';
@@ -33,6 +33,7 @@ const TextareaWidget = (props) => {
     placeholder,
     required,
     invalid,
+    autocomplete,
   } = props;
   const [lengthError, setlengthError] = useState('');
 
@@ -70,6 +71,7 @@ const TextareaWidget = (props) => {
         onChange={({ target }) =>
           onhandleChange(id, target.value === '' ? undefined : target.value)
         }
+        autoComplete={autocomplete ?? 'off'}
         {...attributes}
       />
       {lengthError.length > 0 && (
@@ -99,6 +101,7 @@ TextareaWidget.propTypes = {
   onDelete: PropTypes.func,
   wrapped: PropTypes.bool,
   placeholder: PropTypes.string,
+  autocomplete: PropTypes.string,
 };
 
 /**
@@ -115,6 +118,7 @@ TextareaWidget.defaultProps = {
   onChange: null,
   onEdit: null,
   onDelete: null,
+  autocomplete: undefined,
 };
 
 export default injectIntl(TextareaWidget);

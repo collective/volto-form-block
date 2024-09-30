@@ -5,605 +5,847 @@ msgstr ""
 "POT-Creation-Date: 2017-04-27T19:30:59.079Z\n"
 "PO-Revision-Date: 2024-08-31 14:28-0300\n"
 "Last-Translator: Érico Andrei <ericof@plone.org>\n"
-"Language-Team: Portuguese (https://www.transifex.com/plone/teams/14552/pt/)\n"
 "Language: pt_BR\n"
-"MIME-Version: 1.0\n"
+"Language-Team: Portuguese (https://www.transifex.com/plone/teams/14552/pt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
 "Language-Code: pt-br\n"
 "Language-Name: Português do Brasil\n"
 "Preferred-Encodings: utf-8\n"
 "Domain: volto\n"
 "X-Generator: Poedit 3.4.4\n"
 
-# defaultMessage: Aggiungi un campo
 #: components/Edit
+# defaultMessage: Aggiungi un campo
 msgid "Add field"
 msgstr "Adicionar campo"
 
-# defaultMessage: Cancel
 #: components/Sidebar
+# defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Cancelar"
 
-# defaultMessage: Choices
 #: components/Widget/SelectWidget
+# defaultMessage: Choices
 msgid "Choices"
 msgstr "Opções"
 
-# defaultMessage: Choose a file
 #: components/Widget/FileWidget
+# defaultMessage: Choose a file
 msgid "Choose a file"
 msgstr "Escolha um arquivo"
 
-# defaultMessage: Close
 #: components/Widget/SelectWidget
+# defaultMessage: Close
 msgid "Close"
 msgstr "Fechar"
 
-# defaultMessage: Date
 #: components/Widget/DatetimeWidget
+# defaultMessage: Date
 msgid "Date"
 msgstr "Data"
 
-# defaultMessage: Default
 #: components/Widget/SelectWidget
+# defaultMessage: Default
 msgid "Default"
 msgstr "Padrão"
 
-# defaultMessage: Description
 #: components/Widget/SelectWidget
+# defaultMessage: Description
 msgid "Description"
 msgstr "Descrição"
 
-# defaultMessage: Drop file here to replace the existing file
 #: components/Widget/FileWidget
+# defaultMessage: Drop file here to replace the existing file
 msgid "Drop file here to replace the existing file"
 msgstr "Solte um arquivo aqui para substituir o arquivo existente"
 
-# defaultMessage: Drop file here to upload a new file
 #: components/Widget/FileWidget
+# defaultMessage: Drop file here to upload a new file
 msgid "Drop file here to upload a new file"
 msgstr "Solte um arquivo aqui para enviar um novo arquivo"
 
-# defaultMessage: Drop files here ...
 #: components/Widget/FileWidget
+# defaultMessage: Drop files here ...
 msgid "Drop files here ..."
 msgstr "Soltar aquivos aqui…"
 
-# defaultMessage: Error
 #: components/FormView
+# defaultMessage: Error
 msgid "Error"
 msgstr "Erro"
 
-# defaultMessage: Form
 #: components/Sidebar
+# defaultMessage: Form
 msgid "Form"
 msgstr "Formulário"
 
-# defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 #: components/Widget/HCaptchaWidget
+# defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
 msgstr "Este site é protegido pelo hCaptcha e sua <a href=“https://www.hcaptcha.com/privacy”>política de privacidade</a> e <a href=“https://www.hcaptcha.com/terms”>termos de serviço</a> se aplicam."
 
-# defaultMessage: No value
 #: components/Widget/SelectWidget
+# defaultMessage: No value
 msgid "No value"
 msgstr "Sem valor"
 
-# defaultMessage: Replace existing file
 #: components/Widget/FileWidget
+# defaultMessage: Replace existing file
 msgid "Replace existing file"
 msgstr "Substituir o arquivo existente"
 
-# defaultMessage: Required
 #: components/Widget/SelectWidget
+# defaultMessage: Required
 msgid "Required"
 msgstr "Obrigatório"
 
-# defaultMessage: Select…
 #: components/Widget/SelectWidget
+# defaultMessage: Select…
 msgid "Select…"
 msgstr "Selecione…"
 
-# defaultMessage: Time
 #: components/Widget/DatetimeWidget
+# defaultMessage: Time
 msgid "Time"
 msgstr "Hora"
 
-# defaultMessage: Title
 #: components/Widget/SelectWidget
+# defaultMessage: Title
 msgid "Title"
 msgstr "Título"
 
-# defaultMessage: Used for programmatic access to the fieldset.
 #: components/Widget/SelectWidget
+# defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
 msgstr "Usado para acesso programático ao conjunto de campos."
 
-# defaultMessage: Use Up and Down to choose options
 #: helpers/react-select
+# defaultMessage: Use Up and Down to choose options
 msgid "ay11_Use Up and Down to choose options"
 msgstr "Use as setas para Cima e para Baixo para escolher as opções."
 
-# defaultMessage: available
 #: helpers/react-select
+# defaultMessage: available
 msgid "ay11_select available"
 msgstr "Disponível"
 
-# defaultMessage: availables
 #: helpers/react-select
+# defaultMessage: availables
 msgid "ay11_select availables"
 msgstr "disponíveis"
 
-# defaultMessage: deselected
 #: helpers/react-select
+# defaultMessage: deselected
 msgid "ay11_select deselected"
 msgstr "desselecionado"
 
-# defaultMessage: disabled
 #: helpers/react-select
+# defaultMessage: disabled
 msgid "ay11_select disabled"
 msgstr "desabilitado"
 
-# defaultMessage: focused
 #: helpers/react-select
+# defaultMessage: focused
 msgid "ay11_select focused"
 msgstr "em foco "
 
-# defaultMessage: for search term
 #: helpers/react-select
+# defaultMessage: for search term
 msgid "ay11_select for search term"
 msgstr "para termo de busca "
 
-# defaultMessage: is disabled. Select another option.
 #: helpers/react-select
+# defaultMessage: is disabled. Select another option.
 msgid "ay11_select is disabled. Select another option."
 msgstr "está desabilitado. Selecione outra opção. "
 
-# defaultMessage: option
 #: helpers/react-select
+# defaultMessage: option
 msgid "ay11_select option"
 msgstr "opção"
 
-# defaultMessage: result
 #: helpers/react-select
+# defaultMessage: result
 msgid "ay11_select result"
 msgstr "resultado"
 
-# defaultMessage: results
 #: helpers/react-select
+# defaultMessage: results
 msgid "ay11_select results"
 msgstr "resultados"
 
-# defaultMessage: selected
 #: helpers/react-select
+# defaultMessage: selected
 msgid "ay11_select selected"
 msgstr "selecionado"
 
-# defaultMessage: value
 #: helpers/react-select
+# defaultMessage: value
 msgid "ay11_select value"
 msgstr "valor"
 
-# defaultMessage: Use left and right to toggle between focused values, press Backspace to remove the currently focused value
 #: helpers/react-select
+# defaultMessage: Use left and right to toggle between focused values, press Backspace to remove the currently focused value
 msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
 msgstr "Use as setas esquerda e direita para alternar entre os valores focados, pressione Backspace para remover o valor atualmente focado."
 
-# defaultMessage: press Tab to select the option and exit the menu
 #: helpers/react-select
+# defaultMessage: press Tab to select the option and exit the menu
 msgid "ay11_select__press Tab to select the option and exit the menu"
 msgstr "pressione Tab para selecionar a opção e sair do menu"
 
-# defaultMessage: type to refine list
 #: helpers/react-select
+# defaultMessage: type to refine list
 msgid "ay11_select__type to refine list"
 msgstr "digite para refinar a lista "
 
-# defaultMessage: is_focused
 #: helpers/react-select
+# defaultMessage: is_focused
 msgid "ay11_select_is_focused"
 msgstr "está em foco "
 
-# defaultMessage: press Down to open the menu
 #: helpers/react-select
+# defaultMessage: press Down to open the menu
 msgid "ay11_select_press Down to open the menu"
 msgstr "pressione para Baixo para abrir o menu"
 
-# defaultMessage: press Enter to select the currently focused option
 #: helpers/react-select
+# defaultMessage: press Enter to select the currently focused option
 msgid "ay11_select_press Enter to select the currently focused option"
 msgstr "pressione Enter para selecionar a opção atualmente focada"
 
-# defaultMessage: press Escape to exit the menu
 #: helpers/react-select
+# defaultMessage: press Escape to exit the menu
 msgid "ay11_select_press Escape to exit the menu"
 msgstr "pressione ESC para sair do menu "
 
-# defaultMessage: press left to focus selected values
 #: helpers/react-select
+# defaultMessage: press left to focus selected values
 msgid "ay11_select_press left to focus selected values"
 msgstr "pressione Esquerda para focar nos valores selecionados "
 
-# defaultMessage: Captcha provider
 #: formSchema
+# defaultMessage: Captcha provider
 msgid "captcha"
 msgstr "Provedor de Captcha"
 
-# defaultMessage: Description
 #: formSchema
+# defaultMessage: Description
 msgid "description"
 msgstr "descrição"
 
-# defaultMessage: Field ID
 #: components/Sidebar
+# defaultMessage: Field ID
 msgid "fieldId"
 msgstr "Id do campo"
 
-# defaultMessage: Form
+#: fieldSchema
+# defaultMessage: "Autocomplete" attribute
+msgid "field_autocomplete"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Additional name
+msgid "field_autocomplete_additional_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 1
+msgid "field_autocomplete_address_line1"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 2
+msgid "field_autocomplete_address_line2"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Address line 3
+msgid "field_autocomplete_address_line3"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birthday
+msgid "field_autocomplete_bday"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth day
+msgid "field_autocomplete_bday_day"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth month
+msgid "field_autocomplete_bday_month"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Birth year
+msgid "field_autocomplete_bday_year"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder additional name
+msgid "field_autocomplete_cc_additional_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card security code
+msgid "field_autocomplete_cc_csc"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration date
+msgid "field_autocomplete_cc_exp"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration month
+msgid "field_autocomplete_cc_exp_month"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card expiration year
+msgid "field_autocomplete_cc_exp_year"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder family name
+msgid "field_autocomplete_cc_family_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder given name
+msgid "field_autocomplete_cc_given_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Cardholder name
+msgid "field_autocomplete_cc_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card number
+msgid "field_autocomplete_cc_number"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Credit card type
+msgid "field_autocomplete_cc_type"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Country
+msgid "field_autocomplete_country"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Country name
+msgid "field_autocomplete_country_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Current password
+msgid "field_autocomplete_current_password"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: This field adds the "autocomplete" attribute to the field. This allows to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>
+msgid "field_autocomplete_description"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Email
+msgid "field_autocomplete_email"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Family name
+msgid "field_autocomplete_family_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Given name
+msgid "field_autocomplete_given_name"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Prefix (ex. mr, mrs)
+msgid "field_autocomplete_honorific_prefix"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Suffix (ex. jr, sr)
+msgid "field_autocomplete_honorific_suffix"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Language
+msgid "field_autocomplete_language"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Full name
+msgid "field_autocomplete_name_complete"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: New password
+msgid "field_autocomplete_new_password"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Nickname
+msgid "field_autocomplete_nickname"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Organization
+msgid "field_autocomplete_organization"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Organization title
+msgid "field_autocomplete_organization_title"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Photo
+msgid "field_autocomplete_photo"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Postal code
+msgid "field_autocomplete_postal_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Gender
+msgid "field_autocomplete_sex"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Street address
+msgid "field_autocomplete_street_address"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone number
+msgid "field_autocomplete_tel"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone area code
+msgid "field_autocomplete_tel_area_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone country code
+msgid "field_autocomplete_tel_country_code"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Telephone extension
+msgid "field_autocomplete_tel_extension"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Local telephone number
+msgid "field_autocomplete_tel_local"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: National telephone number
+msgid "field_autocomplete_tel_national"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Transaction amount
+msgid "field_autocomplete_transaction_amount"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Transaction currency
+msgid "field_autocomplete_transaction_currency"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Website URL
+msgid "field_autocomplete_url"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Username
+msgid "field_autocomplete_username"
+msgstr ""
+
 #: formSchema
+# defaultMessage: Form
 msgid "form"
 msgstr "Formulário"
 
-# defaultMessage: Form successfully submitted
 #: components/View
+# defaultMessage: Form successfully submitted
 msgid "formSubmitted"
 msgstr "Formulário enviado com sucesso"
 
-# defaultMessage: Attached file will be sent via email, but not stored
 #: formSchema
+# defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
 msgstr "O arquivo anexado será enviado por e-mail, mas não será armazenado."
 
-# defaultMessage: Cancel button label
 #: formSchema
+# defaultMessage: Cancel button label
 msgid "form_cancel_label"
 msgstr "Etiqueta do botão de cancelar"
 
-# defaultMessage: Clear data
 #: components/Sidebar
+# defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Limpar dados"
 
-# defaultMessage: Are you sure you want to delete all saved items?
 #: components/Sidebar
+# defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Você tem certeza que deseja apagar todos as respostas salvas?"
 
+#: components/Edit
+#: components/FormView
 # defaultMessage: Annulla
-#: components/Edit components/FormView
 msgid "form_default_cancel_label"
 msgstr "Cancelar"
 
-# defaultMessage: Default sender
 #: formSchema
+# defaultMessage: Default sender
 msgid "form_default_from"
 msgstr "Remetente padrão"
 
-# defaultMessage: Mail subject
 #: formSchema
+# defaultMessage: Mail subject
 msgid "form_default_subject"
 msgstr "Assunto do e-mail"
 
-# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
 #: formSchema
+# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
 msgid "form_default_subject_description"
 msgstr "Use a sintaxe ${id_campo} para adicionar um valor do formulário ao assunto do e-mail."
 
+#: components/Edit
+#: components/FormView
 # defaultMessage: Invia
-#: components/Edit components/FormView
 msgid "form_default_submit_label"
 msgstr "Enviar"
 
-# defaultMessage: Export data
 #: components/Sidebar
+# defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Exportar dados"
 
-# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 #: components/ValidateConfigForm
+# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
 msgstr "Por favor, preencha os campos de configuração obrigatórios na barra lateral. O formulário não será exibido no modo de visualização até que os campos obrigatórios sejam preenchidos."
 
-# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 #: helpers/validators
+# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
 msgid "form_edit_invalid_from_email"
 msgstr "O e-mail inserido no campo ‘De’ deve ser um endereço de e-mail válido."
 
-# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 #: helpers/validators
+# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
 msgid "form_edit_invalid_to_email"
 msgstr "Os e-mails inseridos no campo ‘Destinatários’ devem ser endereços de e-mail válidos."
 
-# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 #: components/ValidateConfigForm
+# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
 msgid "form_edit_other_errors"
 msgstr "Por favor, verifique esses erros de configuração na barra lateral. O formulário não será exibido no modo de visualização até que esses campos com erro sejam corrigidos."
 
-# defaultMessage: Attenzione!
 #: components/Edit
+# defaultMessage: Attenzione!
 msgid "form_edit_warning"
 msgstr "Atenção"
 
-# defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 #: components/Edit
+# defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
 msgstr "Digite um campo do tipo 'E-mail do remetente'. Se não estiver presente, ou estiver presente mas não for preenchido pelo usuário, o endereço do remetente do e-mail será o configurado na barra lateral direita."
 
-# defaultMessage: There are some errors in the form.
 #: components/FormView
+# defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
 msgstr "Existem erros nesse formulário."
 
-# defaultMessage: Description
 #: fieldSchema
+# defaultMessage: Description
 msgid "form_field_description"
 msgstr "Descrição"
 
-# defaultMessage: Value for field
 #: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
+# defaultMessage: Value for field
 msgid "form_field_input_value"
 msgstr "Valor para o campo"
 
-# defaultMessage: Possible values
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
+# defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr "Valores possíveis"
 
-# defaultMessage: Label
 #: fieldSchema
+# defaultMessage: Label
 msgid "form_field_label"
 msgstr "Etiqueta"
 
-# defaultMessage: Required
 #: fieldSchema
+# defaultMessage: Required
 msgid "form_field_required"
 msgstr "Obrigatório"
 
-# defaultMessage: Field type
 #: fieldSchema
+# defaultMessage: Field type
 msgid "form_field_type"
 msgstr "Tipo de campo"
 
-# defaultMessage: Attachment
 #: fieldSchema
+# defaultMessage: Attachment
 msgid "form_field_type_attachment"
 msgstr "Anexo"
 
-# defaultMessage: Any attachments can be emailed, but will not be saved.
 #: fieldSchema
+# defaultMessage: Any attachments can be emailed, but will not be saved.
 msgid "form_field_type_attachment_info_text"
 msgstr "Qualquer anexo pode ser enviado por e-mail, mas não será salvo."
 
-# defaultMessage: Checkbox
 #: fieldSchema
+# defaultMessage: Checkbox
 msgid "form_field_type_checkbox"
 msgstr "Múltipla escolha"
 
-# defaultMessage: Date
 #: fieldSchema
+# defaultMessage: Date
 msgid "form_field_type_date"
 msgstr "Data"
 
-# defaultMessage: E-mail
 #: fieldSchema
+# defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "E-mail"
 
-# defaultMessage: Hidden
 #: fieldSchema
+# defaultMessage: Hidden
 msgid "form_field_type_hidden"
 msgstr "Oculto"
 
-# defaultMessage: Multiple choice
 #: fieldSchema
+# defaultMessage: Multiple choice
 msgid "form_field_type_multiple_choice"
 msgstr "Múltipla escolha"
 
-# defaultMessage: List
 #: fieldSchema
+# defaultMessage: List
 msgid "form_field_type_select"
 msgstr "Opções"
 
-# defaultMessage: Single choice
 #: fieldSchema
+# defaultMessage: Single choice
 msgid "form_field_type_single_choice"
 msgstr "Escolha única"
 
-# defaultMessage: Static text
 #: fieldSchema
+# defaultMessage: Static text
 msgid "form_field_type_static_text"
 msgstr "Texto estático"
 
-# defaultMessage: Text
 #: fieldSchema
+# defaultMessage: Text
 msgid "form_field_type_text"
 msgstr "Texto"
 
-# defaultMessage: Textarea
 #: fieldSchema
+# defaultMessage: Textarea
 msgid "form_field_type_textarea"
 msgstr "Área de texto"
 
-# defaultMessage: {formDataCount} item(s) stored
 #: components/Sidebar
+# defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} item(ns) armazenados"
 
-# defaultMessage: Insert here the OTP code received at {email}
 #: components/Widget/OTPWidget
+# defaultMessage: Insert here the OTP code received at {email}
 msgid "form_insert_otp"
 msgstr "Insira aqui o código OTP recebido em {email}."
 
-# defaultMessage: Manage data
 #: formSchema
+# defaultMessage: Manage data
 msgid "form_manage_data"
 msgstr "Gerenciar dados"
 
-# defaultMessage: You can send a new OTP code in
 #: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
 msgid "form_otp_countdown"
 msgstr "Você pode enviar um novo código OTP em"
 
-# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 #: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
 msgid "form_otp_send"
 msgstr "O código OTP foi enviado para {email}. Verifique seu e-mail e insira o código OTP recebido no campo acima."
 
-# defaultMessage: Data wipe
 #: formSchema
+# defaultMessage: Data wipe
 msgid "form_remove_data_after_days"
 msgstr "Exclusão dos dados"
 
-# defaultMessage: Number of days after which, the data should be deleted
 #: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
 msgid "form_remove_data_after_days_helptext"
 msgstr "Número de dias após os quais os dados devem ser excluídos."
 
-# defaultMessage: Clear
 #: components/FormResult
+# defaultMessage: Clear
 msgid "form_reset"
 msgstr "Limpar"
 
-# defaultMessage: Store compiled data
 #: formSchema
+# defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
 msgstr "Armazenar dados"
 
-# defaultMessage: Select a value
 #: components/Field
+# defaultMessage: Select a value
 msgid "form_select_a_value"
 msgstr "Selecione um valor"
 
-# defaultMessage: Send email to recipient
 #: formSchema
+# defaultMessage: Send email to recipient
 msgid "form_send_email"
 msgstr "Enviar e-mail para o destinatário"
 
-# defaultMessage: Message of sending confirmed
 #: formSchema
+# defaultMessage: Message of sending confirmed
 msgid "form_send_message"
 msgstr "Mensagem de envio confirmada."
 
-# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
 #: formSchema
+# defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
 msgid "form_send_message_helptext"
 msgstr "Você pode adicionar o valor de um campo preenchido no formulário inserindo seu ID entre chaves precedido por $, exemplo: ${field_id}; você também pode adicionar elementos HTML, como links <a>, nova linha <br />, formatação em negrito <b> e itálico <i>."
 
-# defaultMessage: Send OTP code to {email}
 #: components/Widget/OTPWidget
+# defaultMessage: Send OTP code to {email}
 msgid "form_send_otp_to"
 msgstr "Enviar código OTP para {email}."
 
-# defaultMessage: Show cancel button
 #: formSchema
+# defaultMessage: Show cancel button
 msgid "form_show_cancel"
 msgstr "Mostrar botão de cancelar"
 
-# defaultMessage: Submit button label
 #: formSchema
+# defaultMessage: Submit button label
 msgid "form_submit_label"
 msgstr "Texto do botão de enviar"
 
-# defaultMessage: Sent!
 #: components/FormResult
+# defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Enviado!"
 
-# defaultMessage: Recipients
 #: formSchema
+# defaultMessage: Recipients
 msgid "form_to"
 msgstr "Destinatários"
 
-# defaultMessage: Send an email copy to this address
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Send an email copy to this address
 msgid "form_useAsBCC"
 msgstr "Enviar uma cópia do e-mail para este endereço"
 
-# defaultMessage: If selected, a copy of email will alse be sent to this address.
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected, a copy of email will alse be sent to this address.
 msgid "form_useAsBCC_description"
 msgstr "Caso selecionado, uma cópia do e-mail também será enviada para este endereço."
 
-# defaultMessage: Use as 'reply to'
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: Use as 'reply to'
 msgid "form_useAsReplyTo"
 msgstr "Utilizar como 'responder para'"
 
-# defaultMessage: If selected, this will be the address the receiver can use to reply.
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
+# defaultMessage: If selected, this will be the address the receiver can use to reply.
 msgid "form_useAsReplyTo_description"
 msgstr "Usar este campo como valor do cabeçalho de 'responder para'"
 
-# defaultMessage: Invalid field value
 #: components/View
+# defaultMessage: Invalid field value
 msgid "formblock_defaultInvalidFieldMessage"
 msgstr "Valor inválido para o campo"
 
-# defaultMessage: Please, insert the OTP code recived via email.
 #: components/View
+# defaultMessage: Please, insert the OTP code recived via email.
 msgid "formblock_insertOtp_error"
 msgstr "Por favor informe o código OTP recebido"
 
-# defaultMessage: The email is incorrect
 #: components/View
+# defaultMessage: The email is incorrect
 msgid "formblock_invalidEmailMessage"
 msgstr "E-mail incorreto"
 
-# defaultMessage: Fill-in this field
 #: components/View
+# defaultMessage: Fill-in this field
 msgid "formblock_requiredFieldMessage"
 msgstr "Preencha este campo"
 
-# defaultMessage: Text at the end of the email
 #: formSchema
+# defaultMessage: Text at the end of the email
 msgid "mail_footer_label"
 msgstr "Texto ao final do e-mail."
 
-# defaultMessage: If field isn't filled in, a default text will be used
 #: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
 msgid "mail_header_description"
 msgstr "Se o campo não for preenchido, um texto padrão será usado"
 
-# defaultMessage: Text at the beginning of the email
 #: formSchema
+# defaultMessage: Text at the beginning of the email
 msgid "mail_header_label"
 msgstr "Texto no início do e-mail."
 
-# defaultMessage: remove expired data
 #: components/Sidebar
+# defaultMessage: remove expired data
 msgid "remove_data_button"
 msgstr "Remover dados antigos"
 
-# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 #: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 msgid "remove_data_cron_info"
 msgstr "Para automatizar a remoção de registros que ultrapassaram o número máximo de dias indicado na configuração, um cron deve ser configurado no servidor conforme indicado na documentação do produto."
 
-# defaultMessage: There are {record} record that have exceeded the maximum number of days.
 #: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
 msgid "remove_data_warning"
 msgstr "Há {record} respostas que ultrapassaram o número máximo de dias."
 
-# defaultMessage: Answer the question to prove that you are human
 #: components/Widget/NoRobotsCaptchaWidget
+# defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
 msgstr "Responda à pergunta para provar que você é humano."
 
-# defaultMessage: results
 #: helpers/react-select
+# defaultMessage: results
 msgid "select_risultati"
 msgstr "resultados"
 
-# defaultMessage: result
 #: helpers/react-select
+# defaultMessage: result
 msgid "select_risultato"
 msgstr "resultado"
 
-# defaultMessage: Title
 #: formSchema
+# defaultMessage: Title
 msgid "title"
 msgstr "título"
