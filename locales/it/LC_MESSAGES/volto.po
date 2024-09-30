@@ -244,7 +244,7 @@ msgstr "Attributo 'autocomplete'"
 #: fieldSchema
 # defaultMessage: Additional name
 msgid "field_autocomplete_additional_name"
-msgstr "Questa opzione aggiunge l'attributo 'autocomplete' al campo. Questo attrivuto permette al browser di compilare automaticamente il campo con le informazioni dell'utente, se presenti. Per consultare la lista completa degli attributi e il loro uso, visita <a>questa pagina</a>"
+msgstr "Secondo nome"
 
 #: fieldSchema
 # defaultMessage: Address line 1
@@ -349,7 +349,7 @@ msgstr "Password attuale"
 #: fieldSchema
 # defaultMessage: This field adds the "autocomplete" attribute to the field. This allows to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>
 msgid "field_autocomplete_description"
-msgstr "Questo campo aggiunge l'attributo "autocomplete" al campo. Ciò consente al browser di compilare automaticamente il campo con le informazioni dell'utente, se memorizzate. Per un elenco completo di questi attributi e del loro utilizzo, visita <a>questa pagina</a>."
+msgstr "Questo campo aggiunge l'attributo 'autocomplete' al campo. Ciò consente al browser di compilare automaticamente il campo con le informazioni dell'utente, se memorizzate. Per un elenco completo di questi attributi e del loro utilizzo, visita <a>questa pagina</a>."
 
 #: fieldSchema
 # defaultMessage: Email
