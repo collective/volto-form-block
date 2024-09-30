@@ -71,15 +71,21 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   };
 
   return (
-    <Form
-      schema={data.schema}
-      formData={initialData}
-      onSubmit={onSubmit}
-      resetOnCancel={true}
-      onCancel={data.show_cancel ? onCancel : null}
-      submitLabel={data.submit_label || intl.formatMessage(messages.submit)}
-      cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
-    />
+    <>
+      {data.title && <h2>{data.title}</h2>}
+      {data.description && (
+        <p className="documentDescription">{data.description}</p>
+      )}
+      <Form
+        schema={data.schema}
+        formData={initialData}
+        onSubmit={onSubmit}
+        resetOnCancel={true}
+        onCancel={data.show_cancel ? onCancel : null}
+        submitLabel={data.submit_label || intl.formatMessage(messages.submit)}
+        cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
+      />
+    </>
   );
 };
 
