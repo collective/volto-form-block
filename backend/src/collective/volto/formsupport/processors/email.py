@@ -130,9 +130,16 @@ class EmailFormProcessor:
         subject = self.substitute_variables(subject)
         return subject
 
-    def substitute_variables(self, value):
+    def substitute_variables(self, value, context=None):
+        if context is None:
+            context = self.form_data
+
+        def replace(match):
+            name = match.group(1)
+            return context.get(name, "")
+
         pattern = r"\$\{([^}]+)\}"
-        return re.sub(pattern, lambda match: self.get_value(match.group(1), ""), value)
+        return re.sub(pattern, replace, value)
 
     def get_value(self, field_id, default=None):
         return self.form_data.get(field_id, default)
@@ -148,36 +155,22 @@ class EmailFormProcessor:
         return confirmation_recipients
 
     def prepare_message(self):
-        mail_header = self.block.get("mail_header", {}).get("data", "")
-        mail_footer = self.block.get("mail_footer", {}).get("data", "")
-
-        # Check if there is content
-        mail_header = BeautifulSoup(mail_header).get_text() if mail_header else None
-        mail_footer = BeautifulSoup(mail_footer).get_text() if mail_footer else None
-
-        # TODO
-        email_format_page_template_mapping = {
-            "list": "send_mail_template",
-            "table": "send_mail_template_table",
+        templates = api.portal.get_registry_record("schemaform.mail_templates")
+        template_name = self.block.get("email_template", "default")
+        template = templates[template_name]
+        template_vars = {
+            "mail_header": self.block.get("mail_header", {}).get("data", ""),
+            "mail_footer": self.block.get("mail_footer", {}).get("data", ""),
         }
-        email_format = self.block.get("email_format", "")
-        template_name = email_format_page_template_mapping.get(
-            email_format, "send_mail_template"
-        )
-
-        message_template = api.content.get_view(
-            name=template_name,
-            context=self.context,
-            request=self.request,
-        )
-        parameters = {
-            "parameters": self.records,
-            "url": self.context.absolute_url(),
-            "title": self.context.Title(),
-            "mail_header": mail_header,
-            "mail_footer": mail_footer,
-        }
-        return message_template(**parameters)
+        form_fields = "<table>\n"
+        for record in self.records:
+            value = str(record["value"])
+            template_vars[record["field_id"]] = value
+            form_fields += f"<tr><th>{record['label']}</th><td>{value}</td></tr>"
+        form_fields += "\n</table>\n"
+        template_vars["form_fields"] = form_fields
+        message = self.substitute_variables(template, template_vars)
+        return message
 
     def add_attachments(self, msg):
         if not self.attachments:

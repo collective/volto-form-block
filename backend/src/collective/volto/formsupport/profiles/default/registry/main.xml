@@ -3,6 +3,7 @@
           i18n:domain="collective.volto.formsupport"
 >
 
-  <!-- -*- extra stuff goes here -*- -->
+  <records interface="collective.volto.formsupport.interfaces.IFormSettings"
+           prefix="schemaform" />
 
 </registry>

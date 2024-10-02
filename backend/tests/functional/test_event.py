@@ -52,5 +52,5 @@ class TestEvent:
         msg = re.sub(r"\s+", " ", msg)
         assert "To: site_addr@plone.com" in msg
         assert "To: smith@doe.com" not in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Reply:</strong> hello" in msg
+        assert "<th>Message</th><td>just want to say hi</td>" in msg
+        assert "<th>Reply</th><td>Hello</td>" in msg

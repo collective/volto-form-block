@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-  <version>1300</version>
+  <version>1400</version>
   <dependencies>
     <dependency>profile-plone.restapi:default</dependency>
     <dependency>profile-plone.volto:default</dependency>
