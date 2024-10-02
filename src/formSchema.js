@@ -92,6 +92,15 @@ const messages = defineMessages({
     id: 'mail_footer_label',
     defaultMessage: 'Text at the end of the email',
   },
+  email_otp_verification: {
+    id: 'form_email_otp_verification',
+    defaultMessage: 'Validate BCC emails with OTP verification',
+  },
+  email_otp_verification_description: {
+    id: 'form_email_otp_verification_description',
+    defaultMessage:
+      "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.",
+  },
 });
 
 const Schema = (data) => {
@@ -121,6 +130,7 @@ const Schema = (data) => {
           'mail_header',
           'mail_footer',
           'captcha',
+          'email_otp_verification',
         ],
       },
       {
@@ -180,6 +190,14 @@ const Schema = (data) => {
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
+      },
+      email_otp_verification: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.email_otp_verification),
+        description: intl.formatMessage(
+          messages.email_otp_verification_description,
+        ),
+        default: false,
       },
       store: {
         type: 'boolean',
