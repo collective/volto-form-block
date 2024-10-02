@@ -1,12 +1,10 @@
-from collective.volto.formsupport.utils import generate_email_token
-from email.parser import Parser
 from pathlib import Path
 
 import base64
+import email
 import pytest
 import re
 import transaction
-import xml.etree.ElementTree as ET
 
 
 @pytest.fixture
@@ -137,12 +135,12 @@ class TestMailSend:
         assert response.status_code == 200
         assert res["data"] == {"xxx": "bar"}
 
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: Form Submission" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        assert msg["Subject"] == "Form Submission"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "Plone test site <site_addr@plone.com>"
 
     def test_email_sent_with_only_fields_from_schema(self, submit_form):
         self.document.blocks = {
@@ -181,14 +179,15 @@ class TestMailSend:
         assert response.status_code == 200
         assert res["data"] == {"xxx": "foo"}
 
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: John Doe <john@doe.com>" in msg
-        assert "<strong>foo:</strong> foo" in msg
-        assert "<strong>bar:</strong> bar" not in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["Subject"] == "test subject"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "John Doe <john@doe.com>"
+        assert "<th>foo</th><td>foo</td>" in body
+        assert "<th>bar</th><td>bar</td>" not in body
 
     def test_email_sent_with_site_recipient(self, submit_form):
         self.document.blocks = {
@@ -223,14 +222,15 @@ class TestMailSend:
         )
         transaction.commit()
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["Subject"] == "test subject"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "Plone test site <site_addr@plone.com>"
+        assert "<th>Message</th><td>just want to say hi</td>" in body
+        assert "<th>Name</th><td>John</td>" in body
 
     def test_email_sent_with_forwarded_headers(self, submit_form):
         self.document.blocks = {
@@ -269,14 +269,15 @@ class TestMailSend:
         )
         transaction.commit()
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["Subject"] == "test subject"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "Plone test site <site_addr@plone.com>"
+        assert "<th>Message</th><td>just want to say hi</td>" in body
+        assert "<th>Name</th><td>John</td>" in body
         assert "REMOTE_ADDR" in msg
         assert "PATH_INFO" in msg
 
@@ -315,14 +316,15 @@ class TestMailSend:
         )
         transaction.commit()
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: test subject" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: to@block.com" in msg
-        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["Subject"] == "test subject"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "to@block.com"
+        assert msg["Reply-To"] == "Plone test site <site_addr@plone.com>"
+        assert "<th>Message</th><td>just want to say hi</td>" in body
+        assert "<th>Name</th><td>John</td>" in body
 
     def test_email_sent_with_subject_from_form_data(self, submit_form):
         self.document.blocks = {
@@ -358,14 +360,15 @@ class TestMailSend:
         transaction.commit()
 
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "Subject: just want to say hi" in msg
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: Plone test site <site_addr@plone.com>" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["Subject"] == "just want to say hi"
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "Plone test site <site_addr@plone.com>"
+        assert "<th>Message</th><td>just want to say hi</td>" in body
+        assert "<th>Name</th><td>John</td>" in body
 
     def test_email_with_sender_from_form_data(self, submit_form):
         self.document.blocks = {
@@ -408,13 +411,14 @@ class TestMailSend:
         transaction.commit()
 
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "From: Plone test site <site_addr@plone.com>" in msg
-        assert "To: site_addr@plone.com" in msg
-        assert "Reply-To: Smith <smith@doe.com>" in msg
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> Smith" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        body = msg.get_body().get_content()
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "site_addr@plone.com"
+        assert msg["Reply-To"] == "Smith <smith@doe.com>"
+        assert "<th>Message</th><td>just want to say hi</td>" in body
+        assert "<th>Name</th><td>Smith</td>" in body
 
     def test_email_with_bcc_from_form_data(self, submit_form):
         self.document.blocks = {
@@ -457,12 +461,12 @@ class TestMailSend:
 
         assert response.status_code == 200
         assert len(self.mailhost.messages) == 2
-        msg = self.mailhost.messages[0].decode("utf-8")
-        assert "\nTo: site_addr@plone.com" in msg
-        assert "\nTo: smith@doe.com" not in msg
-        bcc_msg = self.mailhost.messages[1].decode("utf-8")
-        assert "\nTo: site_addr@plone.com" not in bcc_msg
-        assert "\nTo: smith@doe.com" in bcc_msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        assert msg["To"] == "site_addr@plone.com"
+        bcc_msg = self.mailhost.messages[1]
+        msg = email.message_from_bytes(bcc_msg, policy=email.policy.default)
+        assert msg["To"] == "smith@doe.com"
 
     def test_send_attachment(self, submit_form, file_str):
         self.document.blocks = {
@@ -590,98 +594,9 @@ class TestMailSend:
         transaction.commit()
 
         assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        parsed_msg = Parser().parsestr(msg)
-        msg = re.sub(r"\s+", " ", msg)
-        assert parsed_msg.get("from") == "Plone test site <site_addr@plone.com>"
-        assert parsed_msg.get("to") == "smith@doe.com"
-        assert parsed_msg.get("subject") == "Form Submission"
-        assert "<strong>Name:</strong> Smith" in msg
-
-    def test_email_body_formatted_as_table(self, submit_form):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "schemaForm",
-                "send": True,
-                "email_format": "table",
-                "schema": {
-                    "fieldsets": [
-                        {
-                            "id": "default",
-                            "title": "Default",
-                            "fields": ["message", "name"],
-                        },
-                    ],
-                    "properties": {
-                        "message": {"title": "Message"},
-                        "name": {"title": "Name"},
-                    },
-                    "required": [],
-                },
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": {"message": "just want to say hi", "name": "John"},
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg).replace(" >", ">")
-
-        assert """<table border="1">""" in msg
-        assert "</table>" in msg
-        assert (
-            f"<caption>Form submission data for {self.document.title}</caption>" in msg
-        )
-        assert """<th align="left" role="columnheader" scope="col">Field</th>""" in msg
-        assert """<th align="left" role="columnheader" scope="col">Value</th>""" in msg
-
-        assert """<th align="left" role="rowheader" scope="row">Name</th>""" in msg
-
-        assert f'<td align="left">John</td>' in msg
-        assert """<th align="left" role="rowheader" scope="row">""" in msg
-        assert f'<td align="left">just want to say hi</td>' in msg
-
-    def test_email_body_formatted_as_list(self, submit_form):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "schemaForm",
-                "send": True,
-                "email_format": "list",
-                "schema": {
-                    "fieldsets": [
-                        {
-                            "id": "default",
-                            "title": "Default",
-                            "fields": ["message", "name"],
-                        },
-                    ],
-                    "properties": {
-                        "message": {"title": "Message"},
-                        "name": {"title": "Name"},
-                    },
-                    "required": [],
-                },
-            },
-        }
-        transaction.commit()
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "data": {"message": "just want to say hi", "name": "John"},
-                "block_id": "form-id",
-            },
-        )
-        transaction.commit()
-        assert response.status_code == 200
-        msg = self.mailhost.messages[0].decode("utf-8")
-        msg = re.sub(r"\s+", " ", msg)
-        assert "<strong>Message:</strong> just want to say hi" in msg
-        assert "<strong>Name:</strong> John" in msg
+        msg = self.mailhost.messages[0]
+        msg = email.message_from_bytes(msg, policy=email.policy.default)
+        assert msg["From"] == "Plone test site <site_addr@plone.com>"
+        assert msg["To"] == "smith@doe.com"
+        assert msg["Subject"] == "Form Submission"
+        assert "<th>Name</th><td>Smith</td>" in msg.get_body().get_content()

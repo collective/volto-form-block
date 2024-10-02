@@ -23,18 +23,6 @@
       />
 
   <browser:page
-      name="send_mail_template"
-      for="*"
-      template="send_mail_template.pt"
-      permission="zope2.View"
-      />
-  <browser:page
-      name="send_mail_template_table"
-      for="*"
-      template="send_mail_template_table.pt"
-      permission="zope2.View"
-      />
-  <browser:page
       name="email-confirm-view"
       for="*"
       class=".email_confirm_view.EmailConfirmView"

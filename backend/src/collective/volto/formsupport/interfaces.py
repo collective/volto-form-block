@@ -2,6 +2,7 @@ from plone.dexterity.content import DexterityContent
 from zope.interface import Attribute
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from zope import schema
 from ZPublisher.BaseRequest import BaseRequest
 
 import dataclasses
@@ -95,3 +96,23 @@ class IFormSubmissionProcessor(Interface):
 
     def __call__():
         """Process the data."""
+
+
+DEFAULT_TEMPLATE = """
+${mail_header}
+<hr />
+${form_fields}
+<hr />
+${mail_footer}
+"""
+
+class IFormSettings(Interface):
+
+    mail_templates = schema.Dict(
+        title="Email templates",
+        key_type=schema.TextLine(),
+        value_type=schema.Text(),
+        default={
+            "default": DEFAULT_TEMPLATE
+        }
+    )
