@@ -1,5 +1,12 @@
 
 
+## [3.10.0](https://github.com/collective/volto-form-block/compare/v3.9.3...v3.10.0) (2024-10-02)
+
+
+### Features
+
+* email otp validation switchable per form ([#119](https://github.com/collective/volto-form-block/issues/119)) ([9cda160](https://github.com/collective/volto-form-block/commit/9cda1608d9a6c7bb600f27f23b305360a4e21072))
+
 ### [3.9.3](https://github.com/collective/volto-form-block/compare/v3.9.2...v3.9.3) (2024-09-12)
 
 
