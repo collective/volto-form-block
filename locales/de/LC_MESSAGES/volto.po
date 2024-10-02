@@ -79,7 +79,7 @@ msgstr "Formular"
 #: components/Widget/HCaptchaWidget
 # defaultMessage: This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
 msgid "HCaptchaInvisibleInfo"
-msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href=\"https://www.hcaptcha.com/privacy\">Datenschutzbestimmungen</a> und <a href=\"https://www.hcaptcha.com/terms\">Nutzungsbedingungen</a>."
+msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="https://www.hcaptcha.com/privacy">Datenschutzbestimmungen</a> und <a href="https://www.hcaptcha.com/terms">Nutzungsbedingungen</a>."
 
 #: components/Widget/SelectWidget
 # defaultMessage: No value
@@ -327,6 +327,16 @@ msgstr "Achtung!"
 # defaultMessage: Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.
 msgid "form_edit_warning_from"
 msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
+
+#: formSchema
+# defaultMessage: Validate BCC emails with OTP verification
+msgid "form_email_otp_verification"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
+msgid "form_email_otp_verification_description"
+msgstr ""
 
 #: components/FormView
 # defaultMessage: There are some errors in the form.

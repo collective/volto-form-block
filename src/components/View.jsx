@@ -104,7 +104,9 @@ const View = ({ data, id, path }) => {
 
   const [formData, setFormData] = useReducer((state, action) => {
     if (action.reset) {
-      dispatch(resetOTP(id));
+      if (data.email_otp_verification) {
+        dispatch(resetOTP(id));
+      }
       return getInitialData(data);
     }
 
@@ -187,7 +189,11 @@ const View = ({ data, id, path }) => {
             field: name,
             message: intl.formatMessage(messages.invalidEmailMessage),
           });
-        } else if (isBCC && !formData[name].otp) {
+        } else if (
+          data.email_otp_verification &&
+          isBCC &&
+          !formData[name].otp
+        ) {
           v.push({
             field: name + OTP_FIELDNAME_EXTENDER,
             message: intl.formatMessage(messages.insertOtp),
