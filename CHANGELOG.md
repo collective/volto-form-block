@@ -1,5 +1,12 @@
 
 
+### [3.10.1](https://github.com/collective/volto-form-block/compare/v3.10.0...v3.10.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* always set static_text fields as not required ([3cdb14d](https://github.com/collective/volto-form-block/commit/3cdb14d9b8b892d5681f9c30fb3a9cdf422cce06))
+
 ## [3.10.0](https://github.com/collective/volto-form-block/compare/v3.9.3...v3.10.0) (2024-10-02)
 
 
