@@ -48,6 +48,10 @@ const messages = defineMessages({
     id: 'Admin Recipients',
     defaultMessage: 'Admin Recipients',
   },
+  thankyou: {
+    id: 'thankyou',
+    defaultMessage: 'Thank you message',
+  },
   recipients_description: {
     id: 'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
     defaultMessage:
@@ -197,6 +201,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           'description',
           'submit_label',
           'show_cancel',
+          'thankyou',
           ...(data?.show_cancel ? ['cancel_label'] : []),
           'captcha',
         ],
@@ -255,6 +260,14 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       },
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
+      },
+      thankyou: {
+        title: intl.formatMessage(messages.thankyou),
+        widget: 'richtext',
+        type: 'string',
+        default: {
+          data: '<p>Send!</p>',
+        },
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),
