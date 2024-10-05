@@ -794,6 +794,11 @@ msgstr ""
 msgid "textarea"
 msgstr ""
 
+#. Default: "Thank you message"
+#: schemaFormBlock/schema
+msgid "thankyou"
+msgstr ""
+
 #. Default: "Time"
 #: index
 msgid "time"
