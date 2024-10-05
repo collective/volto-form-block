@@ -85,6 +85,7 @@ const applyConfig = (config) => {
         { value: 'number', label: 'Number' },
         { value: 'time', label: 'Time' },
       ],
+      filterFactorySend: ['static_text'],
       defaultSender: 'noreply@plone.org',
       defaultSenderName: 'Plone',
       additionalFields: [],

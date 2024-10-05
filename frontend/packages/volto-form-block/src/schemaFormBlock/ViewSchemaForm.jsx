@@ -8,7 +8,8 @@ import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
-import { pickBy, keys } from 'lodash';
+import { includes, keys, pickBy } from 'lodash';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   error: {
@@ -38,16 +39,26 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const onCancel = () => {};
 
   const onSubmit = (formData) => {
+    let submitData = { ...formData };
     let captcha = {
       provider: data.captcha,
-      token: formData.captchaToken,
+      token: submitData.captchaToken,
     };
     if (data.captcha === 'honeypot') {
-      captcha.value = formData['captchaWidget']?.value ?? '';
-      delete formData.captchaToken;
+      captcha.value = submitData['captchaWidget']?.value ?? '';
+      delete submitData.captchaToken;
     }
 
-    dispatch(submitForm(path, id, formData, captcha)).catch((err) => {
+    submitData = pickBy(
+      submitData,
+      (value, field) =>
+        !includes(
+          config.blocks.blocksConfig.schemaForm.filterFactorySend,
+          data.schema.properties[field].factory,
+        ),
+    );
+
+    dispatch(submitForm(path, id, submitData, captcha)).catch((err) => {
       let message =
         err?.response?.body?.error?.message ||
         err?.response?.body?.message ||
