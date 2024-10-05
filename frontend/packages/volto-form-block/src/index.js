@@ -35,7 +35,9 @@ import {
 import { schemaFormBlockSchema } from 'volto-form-block/schemaFormBlock/schema';
 import schemaFormBlockEdit from 'volto-form-block/schemaFormBlock/EditSchemaForm';
 import schemaFormBlockView from 'volto-form-block/schemaFormBlock/ViewSchemaForm';
-import HoneypotCaptchaWidget from 'volto-form-block/schemaFormBlock/HoneypotCaptchaWidget';
+
+import HoneypotCaptchaWidget from 'volto-form-block/schemaFormBlock/Widgets/HoneypotCaptchaWidget';
+import NorobotsCaptchaWidget from 'volto-form-block/schemaFormBlock/Widgets/NorobotsCaptchaWidget';
 
 export {
   submitForm,
@@ -78,6 +80,7 @@ defineMessages({
 
 const applyConfig = (config) => {
   config.widgets.widget.honeypot = HoneypotCaptchaWidget;
+  config.widgets.widget['norobots-captcha'] = NorobotsCaptchaWidget;
 
   config.blocks.blocksConfig = {
     ...config.blocks.blocksConfig,
