@@ -51,7 +51,7 @@ const applyConfig = (config) => {
     ...config.blocks.blocksConfig,
     schemaForm: {
       id: 'schemaForm',
-      title: 'schemaForm',
+      title: 'Form',
       icon: formSVG,
       group: 'text',
       view: schemaFormBlockView,
@@ -59,6 +59,7 @@ const applyConfig = (config) => {
       formSchema: FormSchema,
       blockSchema: schemaFormBlockSchema,
       fieldSchema: FieldSchema,
+      disableEnter: true,
       filterFactory: [
         'label_text_field',
         'label_choice_field',
