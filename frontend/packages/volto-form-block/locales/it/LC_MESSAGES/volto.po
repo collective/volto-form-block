@@ -359,6 +359,11 @@ msgstr "premi la freccia a sinistra per evidenziare i valori selezionati"
 msgid "captcha"
 msgstr ""
 
+#. Default: "Checkbox Group"
+#: index
+msgid "checkbox_group"
+msgstr ""
+
 #. Default: "Recipients"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -712,6 +717,11 @@ msgstr "L'email inserita non è corretta"
 msgid "formblock_requiredFieldMessage"
 msgstr "Compila questo campo"
 
+#. Default: "Hidden"
+#: index
+msgid "hidden"
+msgstr ""
+
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
@@ -726,6 +736,16 @@ msgstr "Se il campo non viene compilato verrà utilizzato un testo di default"
 #: formSchema
 msgid "mail_header_label"
 msgstr "Testo all'inizio dell'email"
+
+#. Default: "Number"
+#: index
+msgid "number"
+msgstr ""
+
+#. Default: "Radio Group"
+#: index
+msgid "radio_group"
+msgstr ""
 
 #. Default: "remove expired data"
 #: components/Sidebar
@@ -760,6 +780,21 @@ msgstr "risultato"
 #. Default: "Send confirmation email to user"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
+msgstr ""
+
+#. Default: "Static Text"
+#: index
+msgid "static_text"
+msgstr ""
+
+#. Default: "Textarea"
+#: index
+msgid "textarea"
+msgstr ""
+
+#. Default: "Time"
+#: index
+msgid "time"
 msgstr ""
 
 #. Default: "Title"

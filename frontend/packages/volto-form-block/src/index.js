@@ -1,3 +1,4 @@
+import { defineMessages } from 'react-intl';
 import loadable from '@loadable/component';
 import formSVG from '@plone/volto/icons/form.svg';
 
@@ -43,6 +44,37 @@ export {
   sendOTP,
 } from 'volto-form-block/actions';
 export { isValidEmail };
+
+defineMessages({
+  textarea: {
+    id: 'textarea',
+    defaultMessage: 'Textarea',
+  },
+  radio_group: {
+    id: 'radio_group',
+    defaultMessage: 'Radio Group',
+  },
+  checkbox_group: {
+    id: 'checkbox_group',
+    defaultMessage: 'Checkbox Group',
+  },
+  hidden: {
+    id: 'hidden',
+    defaultMessage: 'Hidden',
+  },
+  static_text: {
+    id: 'static_text',
+    defaultMessage: 'Static Text',
+  },
+  number: {
+    id: 'number',
+    defaultMessage: 'Number',
+  },
+  time: {
+    id: 'time',
+    defaultMessage: 'Time',
+  },
+});
 
 const applyConfig = (config) => {
   config.widgets.widget.honeypot = HoneypotCaptchaWidget;

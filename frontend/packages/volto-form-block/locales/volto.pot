@@ -1,11 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2024-10-02T07:18:42.778Z\n"
-=======
-"POT-Creation-Date: 2024-09-24T21:03:44.005Z\n"
->>>>>>> b354fb4 (Add confirmation email)
+"POT-Creation-Date: 2024-10-05T13:25:45.385Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -365,6 +361,11 @@ msgstr ""
 msgid "captcha"
 msgstr ""
 
+#. Default: "Checkbox Group"
+#: index
+msgid "checkbox_group"
+msgstr ""
+
 #. Default: "Recipients"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -718,6 +719,11 @@ msgstr ""
 msgid "formblock_requiredFieldMessage"
 msgstr ""
 
+#. Default: "Hidden"
+#: index
+msgid "hidden"
+msgstr ""
+
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
@@ -731,6 +737,16 @@ msgstr ""
 #. Default: "Text at the beginning of the email"
 #: formSchema
 msgid "mail_header_label"
+msgstr ""
+
+#. Default: "Number"
+#: index
+msgid "number"
+msgstr ""
+
+#. Default: "Radio Group"
+#: index
+msgid "radio_group"
 msgstr ""
 
 #. Default: "remove expired data"
@@ -766,6 +782,21 @@ msgstr ""
 #. Default: "Send confirmation email to user"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
+msgstr ""
+
+#. Default: "Static Text"
+#: index
+msgid "static_text"
+msgstr ""
+
+#. Default: "Textarea"
+#: index
+msgid "textarea"
+msgstr ""
+
+#. Default: "Time"
+#: index
+msgid "time"
 msgstr ""
 
 #. Default: "Title"
