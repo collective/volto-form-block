@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
-import { includes, keys, pickBy } from 'lodash';
+import { includes, keys, map, pickBy, without } from 'lodash';
 import config from '@plone/volto/registry';
 
 const messages = defineMessages({
@@ -88,7 +88,15 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
         <p className="documentDescription">{data.description}</p>
       )}
       <Form
-        schema={data.schema}
+        schema={{
+          ...data.schema,
+          fieldsets: map(data.schema.fieldsets, (fieldset) => ({
+            ...fieldset,
+            fields: includes(fieldset.fields, 'captchaWidget')
+              ? [...without(fieldset.fields, 'captchaWidget'), 'captchaWidget']
+              : fieldset.fields,
+          })),
+        }}
         formData={initialData}
         onSubmit={onSubmit}
         resetOnCancel={true}

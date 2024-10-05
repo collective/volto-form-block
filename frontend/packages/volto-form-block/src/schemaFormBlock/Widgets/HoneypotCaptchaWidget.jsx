@@ -19,7 +19,9 @@ const HoneypotCaptchaWidget = ({ id, value, onChange, captcha_props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return onEdit ? (
+    <></>
+  ) : (
     <div className="honey-wrapper2" key={'honeypot-captcha'}>
       <TextWidget
         id={captcha_props.id}
