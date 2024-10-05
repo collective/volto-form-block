@@ -45,10 +45,10 @@ class TestMailStore:
         transaction.commit()
 
     def test_unable_to_store_data(self, submit_form):
-        """form schema not defined, unable to store data"""
+        """empty form data, unable to store data"""
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
+                "@type": "schemaForm",
                 "store": True,
             },
         }
@@ -57,16 +57,6 @@ class TestMailStore:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "value": "just want to say hi",
-                    },
-                    {"field_id": "name", "label": "Name", "value": "John"},
-                ],
-                "subject": "test subject",
                 "block_id": "form-id",
             },
         )
@@ -77,20 +67,22 @@ class TestMailStore:
     def test_store_data(self, submit_form, export_data, export_csv, clear_data):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
+                "@type": "schemaForm",
                 "store": True,
-                "subblocks": [
-                    {
-                        "label": "Message",
-                        "field_id": "message",
-                        "field_type": "text",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
                     },
-                    {
-                        "label": "Name",
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
@@ -98,13 +90,11 @@ class TestMailStore:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "just want to say hi"},
-                    {"field_id": "name", "value": "John"},
-                    {"field_id": "foo", "value": "skip this"},
-                ],
-                "subject": "test subject",
+                "data": {
+                    "message": "just want to say hi",
+                    "name": "John",
+                    "foo": "skip this",
+                },
                 "block_id": "form-id",
             },
         )
@@ -127,12 +117,7 @@ class TestMailStore:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "sally@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "bye"},
-                    {"field_id": "name", "value": "Sally"},
-                ],
-                "subject": "test subject",
+                "data": {"message": "bye", "name": "Sally"},
                 "block_id": "form-id",
             },
         )
@@ -167,33 +152,33 @@ class TestMailStore:
     def test_export_csv(self, submit_form, export_csv):
         self.document.blocks = {
             "form-id": {
-                "@type": "form",
+                "@type": "schemaForm",
                 "store": True,
-                "subblocks": [
-                    {
-                        "label": "Message",
-                        "field_id": "message",
-                        "field_type": "text",
+                "schema": {
+                    "fieldsets": [
+                        {
+                            "id": "default",
+                            "title": "Default",
+                            "fields": ["message", "name"],
+                        },
+                    ],
+                    "properties": {
+                        "message": {"title": "Message"},
+                        "name": {"title": "Name"},
                     },
-                    {
-                        "label": "Name",
-                        "field_id": "name",
-                        "field_type": "text",
-                    },
-                ],
+                    "required": [],
+                },
             },
         }
         transaction.commit()
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "john@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "just want to say hi"},
-                    {"field_id": "name", "value": "John"},
-                    {"field_id": "foo", "value": "skip this"},
-                ],
-                "subject": "test subject",
+                "data": {
+                    "message": "just want to say hi",
+                    "name": "John",
+                    "foo": "skip this",
+                },
                 "block_id": "form-id",
             },
         )
@@ -201,12 +186,7 @@ class TestMailStore:
         response = submit_form(
             url=self.document_url,
             data={
-                "from": "sally@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "bye"},
-                    {"field_id": "name", "value": "Sally"},
-                ],
-                "subject": "test subject",
+                "data": {"message": "bye", "name": "Sally"},
                 "block_id": "form-id",
             },
         )
@@ -216,68 +196,6 @@ class TestMailStore:
         data = [*csv.reader(StringIO(response.text), delimiter=",")]
         assert len(data) == 3
         assert data[0] == ["Message", "Name", "date"]
-        sorted_data = sorted(data[1:])
-        assert sorted_data[0][:-1] == ["bye", "Sally"]
-        assert sorted_data[1][:-1] == ["just want to say hi", "John"]
-
-        # check date column. Skip seconds because can change during test
-        now = datetime.now().strftime("%Y-%m-%dT%H:%M")
-        assert sorted_data[0][-1].startswith(now)
-        assert sorted_data[1][-1].startswith(now)
-
-    def test_data_id_mapping(self, submit_form, export_csv):
-        self.document.blocks = {
-            "form-id": {
-                "@type": "form",
-                "store": True,
-                "test-field": "renamed-field",
-                "subblocks": [
-                    {
-                        "field_id": "message",
-                        "label": "Message",
-                        "field_type": "text",
-                    },
-                    {
-                        "field_id": "test-field",
-                        "label": "Test field",
-                        "field_type": "text",
-                    },
-                ],
-            },
-        }
-        transaction.commit()
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "john@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "just want to say hi"},
-                    {"field_id": "test-field", "value": "John"},
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-
-        response = submit_form(
-            url=self.document_url,
-            data={
-                "from": "sally@doe.com",
-                "data": [
-                    {"field_id": "message", "value": "bye"},
-                    {"field_id": "test-field", "value": "Sally"},
-                ],
-                "subject": "test subject",
-                "block_id": "form-id",
-            },
-        )
-
-        assert response.status_code == 200
-        response = export_csv(self.document_url)
-        data = [*csv.reader(StringIO(response.text), delimiter=",")]
-        assert len(data) == 3
-        # Check that 'test-field' got renamed
-        assert data[0] == ["Message", "renamed-field", "date"]
         sorted_data = sorted(data[1:])
         assert sorted_data[0][:-1] == ["bye", "Sally"]
         assert sorted_data[1][:-1] == ["just want to say hi", "John"]

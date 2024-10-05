@@ -36,7 +36,7 @@ def mailhost(portal):
 @pytest.fixture
 def submit_form(manager_request):
     def func(url, data):
-        url = f"{url}/@submit-form"
+        url = f"{url}/@schemaform-data"
         response = manager_request.post(
             url,
             json=data,

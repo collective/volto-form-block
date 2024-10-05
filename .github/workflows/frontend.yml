@@ -26,7 +26,7 @@ jobs:
         id: vars
         run: |
           echo 'BASE_TAG=sha-$(git rev-parse --short HEAD)' >> $GITHUB_OUTPUT
-          python3 -c 'import json; data = json.load(open("./mrs.developer.json")); print("VOLTO_VERSION=" + data["core"].get("tag") or "latest")' >> $GITHUB_OUTPUT
+          python3 -c 'import json; data = json.load(open("./mrs.developer.json")); print("VOLTO_VERSION=" + data["core"].get("tag") or data["core"].get("branch") or "latest")' >> $GITHUB_OUTPUT
       - name: Test vars
         run: |
           echo 'BASE_TAG=${{ steps.vars.outputs.BASE_TAG }}'
@@ -97,7 +97,6 @@ jobs:
       packages: write
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -109,8 +108,7 @@ jobs:
             ${{ env.IMAGE_NAME_PREFIX }}-${{ env.IMAGE_NAME_SUFFIX }}
           labels: |
             org.label-schema.docker.cmd=docker run -d -p 3000:3000 ${{ env.IMAGE_NAME_PREFIX }}-${{ env.IMAGE_NAME_SUFFIX }}:latest
-          flavor:
-            latest=false
+          flavor: latest=false
           tags: |
             type=ref,event=branch
             type=sha
