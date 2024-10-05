@@ -359,6 +359,11 @@ msgstr "Drücken Sie die linke Pfeiltaste, um die ausgewählten Werte hervorzuhe
 msgid "captcha"
 msgstr "Captcha-Anbieter"
 
+#. Default: "Checkbox Group"
+#: index
+msgid "checkbox_group"
+msgstr "Auswahlfeldgruppe"
+
 #. Default: "Recipients"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -702,6 +707,11 @@ msgstr "Fehlerhafte E-Mail-Adresse"
 msgid "formblock_requiredFieldMessage"
 msgstr "Bitte füllen Sie dieses Feld aus"
 
+#. Default: "Hidden"
+#: index
+msgid "hidden"
+msgstr "Versteckt"
+
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
@@ -716,6 +726,16 @@ msgstr ""
 #: formSchema
 msgid "mail_header_label"
 msgstr ""
+
+#. Default: "Number"
+#: index
+msgid "number"
+msgstr "Nummer"
+
+#. Default: "Radio Group"
+#: index
+msgid "radio_group"
+msgstr "Radiogruppe"
 
 #. Default: "remove expired data"
 #: components/Sidebar
@@ -751,6 +771,21 @@ msgstr "Ergebnis"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
 msgstr ""
+
+#. Default: "Static Text"
+#: index
+msgid "static_text"
+msgstr "Statischer Text"
+
+#. Default: "Textarea"
+#: index
+msgid "textarea"
+msgstr "Textfeld"
+
+#. Default: "Time"
+#: index
+msgid "time"
+msgstr "Zeit"
 
 #. Default: "Title"
 #: formSchema

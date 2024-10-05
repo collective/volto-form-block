@@ -361,6 +361,11 @@ msgstr "sakatu ezkerrera aukeratutako balioetan fokua jartzeko"
 msgid "captcha"
 msgstr ""
 
+#. Default: "Checkbox Group"
+#: index
+msgid "checkbox_group"
+msgstr ""
+
 #. Default: "Recipients"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -704,6 +709,11 @@ msgstr "Posta elektronikoa okerra da"
 msgid "formblock_requiredFieldMessage"
 msgstr "Bete eremua"
 
+#. Default: "Hidden"
+#: index
+msgid "hidden"
+msgstr ""
+
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
@@ -717,6 +727,16 @@ msgstr ""
 #. Default: "Text at the beginning of the email"
 #: formSchema
 msgid "mail_header_label"
+msgstr ""
+
+#. Default: "Number"
+#: index
+msgid "number"
+msgstr ""
+
+#. Default: "Radio Group"
+#: index
+msgid "radio_group"
 msgstr ""
 
 #. Default: "remove expired data"
@@ -752,6 +772,21 @@ msgstr "emaitza"
 #. Default: "Send confirmation email to user"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
+msgstr ""
+
+#. Default: "Static Text"
+#: index
+msgid "static_text"
+msgstr ""
+
+#. Default: "Textarea"
+#: index
+msgid "textarea"
+msgstr ""
+
+#. Default: "Time"
+#: index
+msgid "time"
 msgstr ""
 
 #. Default: "Title"
