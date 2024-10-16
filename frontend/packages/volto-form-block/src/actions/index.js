@@ -13,17 +13,16 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
  * @param {Object} data
  * @returns {Object} attachments
  */
-export function submitForm(path = '', block_id, data, attachments, captcha) {
+export function submitForm(path = '', block_id, data, captcha) {
   return {
     type: SUBMIT_FORM_ACTION,
     subrequest: block_id,
     request: {
       op: 'post',
-      path: path + '/@submit-form',
+      path: path + '/@schemaform-data',
       data: {
         block_id,
         data,
-        attachments,
         captcha,
       },
     },

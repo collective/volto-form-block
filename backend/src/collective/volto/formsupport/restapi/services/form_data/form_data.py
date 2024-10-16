@@ -29,10 +29,10 @@ class FormData:
         items = []
         if block:
             store = getMultiAdapter((self.context, self.request), IFormDataStore)
-            remove_data_after_days = int(block.get("remove_data_after_days") or 0)
+            data_wipe = int(block.get("data_wipe") or 0)
             data = store.search()
-            if remove_data_after_days > 0:
-                expire_date = datetime.now() - timedelta(days=remove_data_after_days)
+            if data_wipe > 0:
+                expire_date = datetime.now() - timedelta(days=data_wipe)
             else:
                 expire_date = None
             for record in data:
@@ -55,7 +55,7 @@ class FormData:
             return {}
         if self.block_id:
             service_id = (
-                f"{self.context.absolute_url()}/@form-data?block_id{self.block_id}"
+                f"{self.context.absolute_url()}/@form-data?block_id={self.block_id}"
             )
         else:
             service_id = f"{self.context.absolute_url()}/@form-data"
@@ -81,7 +81,8 @@ class FormData:
         if not blocks:
             return {}
         for id_, block in blocks.items():
-            if block.get("@type", "") == "form" and block.get("store", False):
+            is_form_block = block.get("@type", "") in ("form", "schemaForm")
+            if is_form_block and block.get("store", False):
                 if not self.block_id or self.block_id == id_:
                     return block
         return {}

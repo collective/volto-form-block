@@ -32,4 +32,12 @@
       handler=".upgrades.to_1300"
       />
 
+  <genericsetup:upgradeDepends
+      title="Add form settings to registry"
+      profile="collective.volto.formsupport:default"
+      source="1300"
+      destination="1400"
+      import_steps="plone.app.registry"
+      />
+
 </configure>

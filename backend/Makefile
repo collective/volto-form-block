@@ -84,15 +84,15 @@ clean: ## Clean environment
 
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
-	ALLOWED_DISTRIBUTIONS=portalbrasil-intranet PYTHONWARNINGS=ignore $(BIN_FOLDER)/runwsgi instance/etc/zope.ini
+	ENABLE_PRINTING_MAILHOST=True PYTHONWARNINGS=ignore $(BIN_FOLDER)/runwsgi instance/etc/zope.ini
 
 .PHONY: console
 console: instance/etc/zope.ini ## Start a console into a Plone instance
-	ALLOWED_DISTRIBUTIONS=portalbrasil-intranet PYTHONWARNINGS=ignore $(BIN_FOLDER)/zconsole debug instance/etc/zope.conf
+	PYTHONWARNINGS=ignore $(BIN_FOLDER)/zconsole debug instance/etc/zope.conf
 
 .PHONY: create-site
 create-site: instance/etc/zope.ini ## Create a new site from scratch
-	ALLOWED_DISTRIBUTIONS=portalbrasil-intranet PYTHONWARNINGS=ignore $(BIN_FOLDER)/zconsole run instance/etc/zope.conf ./scripts/create_site.py
+	PYTHONWARNINGS=ignore $(BIN_FOLDER)/zconsole run instance/etc/zope.conf ./scripts/create_site.py
 
 # Example Content
 .PHONY: update-example-content

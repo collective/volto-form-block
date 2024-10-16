@@ -10,7 +10,7 @@
       for="plone.restapi.behaviors.IBlocks"
       permission="zope2.View"
       layer="collective.volto.formsupport.interfaces.ICollectiveVoltoFormsupportLayer"
-      name="@submit-form"
+      name="@schemaform-data"
       />
 
 </configure>
