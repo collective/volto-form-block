@@ -67,6 +67,7 @@ class Edit extends Component {
                 default: defaultEmptyData,
                 filterFactory,
                 additionalFactory,
+                allowEditId: true,
               },
             },
             required: [],

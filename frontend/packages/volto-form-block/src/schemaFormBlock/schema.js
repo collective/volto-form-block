@@ -26,6 +26,14 @@ const messages = defineMessages({
     id: 'Cancel button label',
     defaultMessage: 'Cancel button label',
   },
+  cancel: {
+    id: 'Cancel',
+    defaultMessage: 'Cancel',
+  },
+  submit: {
+    id: 'Submit',
+    defaultMessage: 'Submit',
+  },
   captcha: {
     id: 'captcha',
     defaultMessage: 'Captcha provider',
@@ -201,8 +209,8 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           'description',
           'submit_label',
           'show_cancel',
-          'thankyou',
           ...(data?.show_cancel ? ['cancel_label'] : []),
+          'thankyou',
           'captcha',
         ],
       },
@@ -248,10 +256,11 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       },
       description: {
         title: intl.formatMessage(messages.description),
-        type: 'textarea',
+        widget: 'textarea',
       },
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
+        default: intl.formatMessage(messages.submit),
       },
       show_cancel: {
         type: 'boolean',
@@ -260,6 +269,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       },
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
+        default: intl.formatMessage(messages.cancel),
       },
       thankyou: {
         title: intl.formatMessage(messages.thankyou),

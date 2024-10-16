@@ -29,6 +29,7 @@ msgstr ""
 #. Default: "Cancel"
 #: components/Sidebar
 #: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
 #: schemaFormBlock/ViewSchemaForm
 msgid "Cancel"
 msgstr "Cancel"
@@ -178,6 +179,7 @@ msgstr ""
 
 #. Default: "Submit"
 #: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
 #: schemaFormBlock/ViewSchemaForm
 msgid "Submit"
 msgstr ""
