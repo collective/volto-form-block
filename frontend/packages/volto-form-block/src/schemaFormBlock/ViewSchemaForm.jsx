@@ -87,7 +87,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   };
 
   return (
-    <>
+    <div className="block schemaForm">
       {data.title && <h2>{data.title}</h2>}
       {data.description && (
         <p className="documentDescription">{data.description}</p>
@@ -120,7 +120,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
           cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
         />
       )}
-    </>
+    </div>
   );
 };
 

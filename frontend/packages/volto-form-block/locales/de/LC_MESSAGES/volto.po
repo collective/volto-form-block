@@ -29,6 +29,7 @@ msgstr ""
 #. Default: "Cancel"
 #: components/Sidebar
 #: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
 #: schemaFormBlock/ViewSchemaForm
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -178,9 +179,10 @@ msgstr ""
 
 #. Default: "Submit"
 #: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
 #: schemaFormBlock/ViewSchemaForm
 msgid "Submit"
-msgstr ""
+msgstr "Senden"
 
 #. Default: "Submit button label"
 #: schemaFormBlock/schema
@@ -585,7 +587,7 @@ msgstr "Text"
 #. Default: "Textarea"
 #: fieldSchema
 msgid "form_field_type_textarea"
-msgstr "Textfeld"
+msgstr "Textbereichsfeld"
 
 #. Default: "{formDataCount} item(s) stored"
 #: components/Sidebar
@@ -790,7 +792,7 @@ msgstr "Statischer Text"
 #. Default: "Textarea"
 #: index
 msgid "textarea"
-msgstr "Textfeld"
+msgstr "Textbereichsfeld"
 
 #. Default: "Thank you message"
 #: schemaFormBlock/schema
