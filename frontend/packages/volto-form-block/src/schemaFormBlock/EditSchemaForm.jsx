@@ -93,6 +93,7 @@ class Edit extends Component {
           cancelLabel={
             data.cancel_label || this.props.intl.formatMessage(messages.cancel)
           }
+          textButtons={true}
         />
 
         <SidebarPortal selected={this.props.selected}>
