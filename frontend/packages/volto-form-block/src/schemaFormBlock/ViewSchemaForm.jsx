@@ -9,6 +9,7 @@ import { Toast } from '@plone/volto/components';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { includes, keys, map, pickBy, without } from 'lodash';
+import { Grid } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
 
 const messages = defineMessages({
@@ -31,11 +32,26 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const intl = useIntl();
   const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState({});
 
   const propertyNames = keys(data.schema.properties);
-  const initialData = pickBy(qs.parse(location.search), (value, key) =>
-    propertyNames.includes(key),
-  );
+  const queryParams = qs.parse(location.search);
+  let initialData = {};
+  propertyNames.map((property) => {
+    if (queryParams[property] !== undefined) {
+      initialData[property] = queryParams[property];
+    }
+
+    const queryParameterName =
+      data.schema.properties[property].queryParameterName;
+
+    if (
+      queryParameterName !== undefined &&
+      queryParams[queryParameterName] !== undefined
+    ) {
+      initialData[property] = queryParams[queryParameterName];
+    }
+  });
 
   const onCancel = () => {};
 
@@ -62,6 +78,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
     dispatch(submitForm(path, id, submitData, captcha))
       .then((resp) => {
         setSubmitted(true);
+        setSubmittedData(submitData);
       })
       .catch((err) => {
         let message =
@@ -93,11 +110,21 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
         <p className="documentDescription">{data.description}</p>
       )}
       {submitted ? (
-        <p
-          dangerouslySetInnerHTML={{
-            __html: data.thankyou?.data || '',
-          }}
-        />
+        <Grid stackable columns={2}>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: data.thankyou?.data || '',
+            }}
+          />
+          {map(keys(submittedData), (property) => (
+            <Grid.Row>
+              <Grid.Column>
+                {data.schema.properties[property].title}
+              </Grid.Column>
+              <Grid.Column>{submittedData[property]}</Grid.Column>
+            </Grid.Row>
+          ))}
+        </Grid>
       ) : (
         <Form
           schema={{
