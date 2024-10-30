@@ -144,11 +144,6 @@ msgstr "Beharrezkoa"
 msgid "Select…"
 msgstr "Aukeratu..."
 
-#. Default: "Send email"
-#: schemaFormBlock/schema
-msgid "Send email"
-msgstr ""
-
 #. Default: "Send email to admin"
 #: schemaFormBlock/schema
 msgid "Send email to admin"
@@ -388,9 +383,9 @@ msgstr "Deskribapena"
 msgid "fieldId"
 msgstr ""
 
-#. Default: "Confirmation email"
+#. Default: "Mailing"
 #: schemaFormBlock/schema
-msgid "fieldset_send_confirmation"
+msgid "fieldset_mailing"
 msgstr ""
 
 #. Default: "Form"
@@ -711,6 +706,16 @@ msgstr "Posta elektronikoa okerra da"
 msgid "formblock_requiredFieldMessage"
 msgstr "Bete eremua"
 
+#. Default: "Forward user to"
+#: schemaFormBlock/schema
+msgid "forward_user_to"
+msgstr ""
+
+#. Default: "If a page is specified, the user will be directed there after submitting the form. The thank you message will not be displayed."
+#: schemaFormBlock/schema
+msgid "forward_user_to_description"
+msgstr ""
+
 #. Default: "Hidden"
 #: index
 msgid "hidden"
@@ -781,6 +786,16 @@ msgstr ""
 msgid "static_text"
 msgstr ""
 
+#. Default: "Success message"
+#: schemaFormBlock/schema
+msgid "success"
+msgstr ""
+
+#. Default: "Thank you! You have submitted the following data:"
+#: schemaFormBlock/schema
+msgid "success_default"
+msgstr ""
+
 #. Default: "Textarea"
 #: index
 msgid "textarea"
@@ -789,6 +804,11 @@ msgstr ""
 #. Default: "Thank you message"
 #: schemaFormBlock/schema
 msgid "thankyou"
+msgstr ""
+
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
+#: schemaFormBlock/schema
+msgid "thankyou_description"
 msgstr ""
 
 #. Default: "Time"

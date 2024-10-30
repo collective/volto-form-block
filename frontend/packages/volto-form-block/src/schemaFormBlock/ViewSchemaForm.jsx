@@ -11,6 +11,7 @@ import qs from 'query-string';
 import { includes, keys, map, pickBy, without } from 'lodash';
 import { Grid } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
+import { renderToString } from 'react-dom/server';
 
 const messages = defineMessages({
   error: {
@@ -37,6 +38,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const propertyNames = keys(data.schema.properties);
   const queryParams = qs.parse(location.search);
   let initialData = {};
+
   propertyNames.map((property) => {
     if (queryParams[property] !== undefined) {
       initialData[property] = queryParams[property];
@@ -79,6 +81,16 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       .then((resp) => {
         setSubmitted(true);
         setSubmittedData(submitData);
+        if (
+          Array.isArray(data.forward_user_to) &&
+          data.forward_user_to.length > 0
+        ) {
+          window.location.href = data.forward_user_to[0]['@id'];
+        } else {
+          const url = new URL(window.location);
+          url.searchParams.set('send', 'true');
+          history.pushState({}, '', url);
+        }
       })
       .catch((err) => {
         let message =
@@ -103,6 +115,21 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       });
   };
 
+  const formfields = renderToString(
+    <Grid stackable columns={2}>
+      {map(keys(submittedData), (property) => (
+        <Grid.Row>
+          <Grid.Column>{data.schema.properties[property].title}</Grid.Column>
+          <Grid.Column>{submittedData[property]}</Grid.Column>
+        </Grid.Row>
+      ))}
+    </Grid>,
+  );
+
+  let thankyou = data.thankyou?.data || '';
+
+  thankyou = thankyou.replace('${formfields}', formfields);
+
   return (
     <div className="block schemaForm">
       {data.title && <h2>{data.title}</h2>}
@@ -110,21 +137,14 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
         <p className="documentDescription">{data.description}</p>
       )}
       {submitted ? (
-        <Grid stackable columns={2}>
+        <div className="submitted">
+          <div className="success">{data.success}</div>
           <p
             dangerouslySetInnerHTML={{
-              __html: data.thankyou?.data || '',
+              __html: thankyou,
             }}
           />
-          {map(keys(submittedData), (property) => (
-            <Grid.Row>
-              <Grid.Column>
-                {data.schema.properties[property].title}
-              </Grid.Column>
-              <Grid.Column>{submittedData[property]}</Grid.Column>
-            </Grid.Row>
-          ))}
-        </Grid>
+        </div>
       ) : (
         <Form
           schema={{
