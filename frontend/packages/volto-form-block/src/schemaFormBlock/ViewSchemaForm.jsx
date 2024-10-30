@@ -9,7 +9,7 @@ import { Toast } from '@plone/volto/components';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { includes, keys, map, pickBy, without } from 'lodash';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Message } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
 import { renderToString } from 'react-dom/server';
 
@@ -128,7 +128,13 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
 
   let thankyou = data.thankyou?.data || '';
 
-  thankyou = thankyou.replace('${formfields}', formfields);
+  // Add formfields
+  thankyou = thankyou.replace('{formfields}', formfields);
+
+  // Add seperate fields
+  map(keys(submittedData), (field) => {
+    thankyou = thankyou.replace('{' + field + '}', submittedData[field]);
+  });
 
   return (
     <div className="block schemaForm">
@@ -138,7 +144,9 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       )}
       {submitted ? (
         <div className="submitted">
-          <div className="success">{data.success}</div>
+          <Message positive>
+            <p>{data.success}</p>
+          </Message>
           <p
             dangerouslySetInnerHTML={{
               __html: thankyou,
