@@ -43,10 +43,10 @@ def main(dryrun):  # noqa: C901
                     continue
                 if not block.get("store", False):
                     continue
-                remove_data_after_days = int(block.get("remove_data_after_days") or 0)
+                data_wipe = int(block.get("data_wipe") or 0)
                 # 0/None -> default value
                 # -1 -> don't remove
-                if remove_data_after_days <= 0:
+                if data_wipe <= 0:
                     print(
                         f"SKIP record cleanup from {brain.getPath()} block: {block_id}"
                     )

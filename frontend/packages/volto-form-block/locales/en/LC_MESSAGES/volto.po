@@ -16,10 +16,28 @@ msgstr ""
 msgid "Add field"
 msgstr "Add field"
 
+#. Default: "Admin email"
+#: schemaFormBlock/schema
+msgid "Admin email"
+msgstr ""
+
+#. Default: "Blind copy"
+#: schemaFormBlock/schema
+msgid "Blind copy"
+msgstr ""
+
 #. Default: "Cancel"
 #: components/Sidebar
+#: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
+#: schemaFormBlock/ViewSchemaForm
 msgid "Cancel"
 msgstr "Cancel"
+
+#. Default: "Cancel button label"
+#: schemaFormBlock/schema
+msgid "Cancel button label"
+msgstr ""
 
 #. Default: "Choices"
 #: components/Widget/SelectWidget
@@ -36,6 +54,11 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+#. Default: "Data wipe"
+#: schemaFormBlock/schema
+msgid "Data wipe"
+msgstr ""
+
 #. Default: "Date"
 #: components/Widget/DatetimeWidget
 msgid "Date"
@@ -48,6 +71,7 @@ msgstr ""
 
 #. Default: "Description"
 #: components/Widget/SelectWidget
+#: schemaFormBlock/schema
 msgid "Description"
 msgstr ""
 
@@ -66,13 +90,25 @@ msgstr ""
 msgid "Drop files here ..."
 msgstr ""
 
+#. Default: "Email footer"
+#: schemaFormBlock/schema
+msgid "Email footer"
+msgstr ""
+
+#. Default: "Email header"
+#: schemaFormBlock/schema
+msgid "Email header"
+msgstr ""
+
 #. Default: "Error"
 #: components/FormView
+#: schemaFormBlock/ViewSchemaForm
 msgid "Error"
 msgstr "Error"
 
 #. Default: "Form"
 #: components/Sidebar
+#: schemaFormBlock/schema
 msgid "Form"
 msgstr "Form"
 
@@ -84,6 +120,11 @@ msgstr ""
 #. Default: "No value"
 #: components/Widget/SelectWidget
 msgid "No value"
+msgstr ""
+
+#. Default: "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
+#: schemaFormBlock/schema
+msgid "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
 msgstr ""
 
 #. Default: "Replace existing file"
@@ -101,6 +142,83 @@ msgstr ""
 msgid "Select…"
 msgstr ""
 
+#. Default: "Send email to admin"
+#: schemaFormBlock/schema
+msgid "Send email to admin"
+msgstr ""
+
+#. Default: "Sender"
+#: schemaFormBlock/schema
+msgid "Sender"
+msgstr ""
+
+#. Default: "Sender name"
+#: schemaFormBlock/schema
+msgid "Sender name"
+msgstr ""
+
+#. Default: "Show cancel button"
+#: schemaFormBlock/schema
+msgid "Show cancel button"
+msgstr ""
+
+#. Default: "Store data"
+#: schemaFormBlock/schema
+msgid "Store data"
+msgstr ""
+
+#. Default: "Subject"
+#: schemaFormBlock/schema
+msgid "Subject"
+msgstr ""
+
+#. Default: "Submit"
+#: schemaFormBlock/EditSchemaForm
+#: schemaFormBlock/schema
+#: schemaFormBlock/ViewSchemaForm
+msgid "Submit"
+msgstr ""
+
+#. Default: "Submit button label"
+#: schemaFormBlock/schema
+msgid "Submit button label"
+msgstr ""
+
+#. Default: "Text at the beginning of the email."
+#: schemaFormBlock/schema
+msgid "Text at the beginning of the email."
+msgstr ""
+
+#. Default: "Text at the end of the email."
+#: schemaFormBlock/schema
+msgid "Text at the end of the email."
+msgstr ""
+
+#. Default: "The email address of the sender."
+#: schemaFormBlock/schema
+msgid "The email address of the sender"
+msgstr ""
+
+#. Default: "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
+#: schemaFormBlock/schema
+msgid "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
+msgstr ""
+
+#. Default: "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
+#: schemaFormBlock/schema
+msgid "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
+msgstr ""
+
+#. Default: "The name of the sender."
+#: schemaFormBlock/schema
+msgid "The name of the sender"
+msgstr ""
+
+#. Default: "The subject used in the sent email."
+#: schemaFormBlock/schema
+msgid "The subject used in the sent email."
+msgstr ""
+
 #. Default: "Time"
 #: components/Widget/DatetimeWidget
 msgid "Time"
@@ -108,12 +226,28 @@ msgstr ""
 
 #. Default: "Title"
 #: components/Widget/SelectWidget
+#: schemaFormBlock/schema
 msgid "Title"
 msgstr ""
 
 #. Default: "Used for programmatic access to the fieldset."
 #: components/Widget/SelectWidget
 msgid "Used for programmatic access to the fieldset."
+msgstr ""
+
+#. Default: "When activated, the data will be stored for later use when the form is submitted"
+#: schemaFormBlock/schema
+msgid "When activated, the data will be stored for later use when the form is submitted"
+msgstr ""
+
+#. Default: "Admin info"
+#: schemaFormBlock/schema
+msgid "admin_info"
+msgstr ""
+
+#. Default: "This field can be used to store additional information which should only be displayed in the email sent to the administration email (not for the user email)."
+#: schemaFormBlock/schema
+msgid "admin_info_description"
 msgstr ""
 
 #. Default: "Use Up and Down to choose options"
@@ -223,7 +357,23 @@ msgstr ""
 
 #. Default: "Captcha provider"
 #: formSchema
+#: schemaFormBlock/schema
 msgid "captcha"
+msgstr ""
+
+#. Default: "Checkbox Group"
+#: index
+msgid "checkbox_group"
+msgstr ""
+
+#. Default: "Recipient"
+#: schemaFormBlock/schema
+msgid "confirmation_recipients"
+msgstr ""
+
+#. Default: "Send confirmation to the email entered in the following field"
+#: schemaFormBlock/schema
+msgid "confirmation_recipients_description"
 msgstr ""
 
 #. Default: "Description"
@@ -235,6 +385,16 @@ msgstr "Description"
 #: components/Sidebar
 msgid "fieldId"
 msgstr "Field ID"
+
+#. Default: "Mailing"
+#: schemaFormBlock/schema
+msgid "fieldset_mailing"
+msgstr ""
+
+#. Default: "Fixed attachment"
+#: schemaFormBlock/schema
+msgid "fixed_attachment"
+msgstr ""
 
 #. Default: "Form"
 #: formSchema
@@ -554,6 +714,21 @@ msgstr ""
 msgid "formblock_requiredFieldMessage"
 msgstr ""
 
+#. Default: "Forward user to"
+#: schemaFormBlock/schema
+msgid "forward_user_to"
+msgstr ""
+
+#. Default: "If a page is specified, the user will be directed there after submitting the form. The thank you message will not be displayed."
+#: schemaFormBlock/schema
+msgid "forward_user_to_description"
+msgstr ""
+
+#. Default: "Hidden"
+#: index
+msgid "hidden"
+msgstr ""
+
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
@@ -567,6 +742,16 @@ msgstr ""
 #. Default: "Text at the beginning of the email"
 #: formSchema
 msgid "mail_header_label"
+msgstr ""
+
+#. Default: "Number"
+#: index
+msgid "number"
+msgstr ""
+
+#. Default: "Radio Group"
+#: index
+msgid "radio_group"
 msgstr ""
 
 #. Default: "remove expired data"
@@ -597,6 +782,51 @@ msgstr ""
 #. Default: "result"
 #: helpers/react-select
 msgid "select_risultato"
+msgstr ""
+
+#. Default: "Send confirmation email"
+#: schemaFormBlock/schema
+msgid "send_confirmation"
+msgstr ""
+
+#. Default: "When activated, an email will be sent to the admin recipients (see below) when a form is submitted"
+#: schemaFormBlock/schema
+msgid "send_description"
+msgstr ""
+
+#. Default: "Static Text"
+#: index
+msgid "static_text"
+msgstr ""
+
+#. Default: "Success message"
+#: schemaFormBlock/schema
+msgid "success"
+msgstr ""
+
+#. Default: "Thank you! You have submitted the following data:"
+#: schemaFormBlock/schema
+msgid "success_default"
+msgstr ""
+
+#. Default: "Textarea"
+#: index
+msgid "textarea"
+msgstr ""
+
+#. Default: "Thank you message"
+#: schemaFormBlock/schema
+msgid "thankyou"
+msgstr ""
+
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
+#: schemaFormBlock/schema
+msgid "thankyou_description"
+msgstr ""
+
+#. Default: "Time"
+#: index
+msgid "time"
 msgstr ""
 
 #. Default: "Title"

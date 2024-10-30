@@ -882,9 +882,6 @@ importers:
       react-select-async-paginate:
         specifier: 0.5.3
         version: 0.5.3(react-dom@18.2.0(react@18.2.0))(react-select@4.3.1(@types/react@18.2.27)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-      react-share:
-        specifier: 2.3.1
-        version: 2.3.1(react@18.2.0)
       react-side-effect:
         specifier: 2.1.2
         version: 2.1.2(react@18.2.0)
@@ -1059,7 +1056,7 @@ importers:
         version: 8.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@testing-library/cypress':
         specifier: 10.0.1
-        version: 10.0.1(cypress@13.6.6)
+        version: 10.0.1(cypress@13.13.2)
       '@testing-library/jest-dom':
         specifier: 6.4.2
         version: 6.4.2(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@26.6.3)(vitest@1.6.0(jsdom@16.7.0)(less@3.11.1)(sass@1.77.6))
@@ -1136,14 +1133,14 @@ importers:
         specifier: 5.2.7
         version: 5.2.7(webpack@5.90.1)
       cypress:
-        specifier: 13.6.6
-        version: 13.6.6
+        specifier: 13.13.2
+        version: 13.13.2
       cypress-axe:
         specifier: 1.5.0
-        version: 1.5.0(axe-core@4.4.2)(cypress@13.6.6)
+        version: 1.5.0(axe-core@4.4.2)(cypress@13.13.2)
       cypress-file-upload:
         specifier: 5.0.8
-        version: 5.0.8(cypress@13.6.6)
+        version: 5.0.8(cypress@13.13.2)
       deep-freeze:
         specifier: 0.0.1
         version: 0.0.1
@@ -1417,7 +1414,7 @@ importers:
     dependencies:
       '@testing-library/cypress':
         specifier: 10.0.1
-        version: 10.0.1(cypress@13.6.6)
+        version: 10.0.1(cypress@13.13.2)
       '@testing-library/jest-dom':
         specifier: 6.4.2
         version: 6.4.2(@jest/globals@29.7.0)(@types/jest@29.5.12)(vitest@1.6.0)
@@ -1428,14 +1425,14 @@ importers:
         specifier: 4.8.4
         version: 4.8.4
       cypress:
-        specifier: 13.6.6
-        version: 13.6.6
+        specifier: 13.13.2
+        version: 13.13.2
       cypress-axe:
         specifier: 1.5.0
-        version: 1.5.0(axe-core@4.8.4)(cypress@13.6.6)
+        version: 1.5.0(axe-core@4.8.4)(cypress@13.13.2)
       cypress-file-upload:
         specifier: 5.0.8
-        version: 5.0.8(cypress@13.6.6)
+        version: 5.0.8(cypress@13.13.2)
     devDependencies:
       release-it:
         specifier: ^17.1.1
@@ -1460,7 +1457,7 @@ importers:
         version: 1.10.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       volto-subblocks:
         specifier: ^2.1.0
-        version: 2.1.0(@plone/volto@18.0.0-alpha.40(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4))(react@18.2.0)
+        version: 2.1.0(@plone/volto@18.0.0-alpha.42(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4))(react@18.2.0)
     devDependencies:
       '@plone/scripts':
         specifier: ^3.6.1
@@ -3652,8 +3649,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@plone/registry@1.7.0':
-    resolution: {integrity: sha512-Ar5eXwtGitYbj9yHQTX1bs7FZfdmSW3YSrG6HOP/FNwdM47m9ES4vfkliS2rvuC8TVpWn27U0DK5v7I+mlSZeQ==}
+  '@plone/registry@1.8.0':
+    resolution: {integrity: sha512-xQH7vhnzQpxPxZLZtObpN/jv4JOIBhYEKsdWUCYmL1e8wlbxb+Xk2C6qNK9+i+kyjmLdAUzDH0v5Xl9Y7igxKw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -3665,11 +3662,11 @@ packages:
     resolution: {integrity: sha512-52S2Nb8sUDnHobzoYBstn6UkXxri+UGEh5DWZfy0xJ9h/ia6n9XI+mjtSEG3vKkr+hsbLH9sO8RlX4tpG3Kyhg==}
     hasBin: true
 
-  '@plone/volto-slate@18.0.0-alpha.16':
-    resolution: {integrity: sha512-c0I2/iZ94Ozoxsc+K2ODPeRKDyg4yUJL0shuCHXro7VIM0Q48j6v8dGoT+p+XKVwGKEDkPEhMNrCciR42jhhWw==}
+  '@plone/volto-slate@18.0.0-alpha.17':
+    resolution: {integrity: sha512-ztO3BwN1vZ0q+ZVOPcU7Yz0PVaIpMj4xzsGr1+6/cAdCIxBD9JXaoI7fu3QJQFDHXDKNTg4cLWKQzjiyslczHw==}
 
-  '@plone/volto@18.0.0-alpha.40':
-    resolution: {integrity: sha512-ZthD2KjA8qrdiXFx+RGCsJQyGy5E9Ig0YSAuBzO2cJw1NRNSrirHEaxcB1PlR+OXcwfG6oF3jkfoC7QeazG1Ig==}
+  '@plone/volto@18.0.0-alpha.42':
+    resolution: {integrity: sha512-PXuHWSgI7ggGYbpN8NwnqM5mL0QX4SjD/yx+i0U7UWSexfeAs6RgRyZJSDW6A8QkzRN+qvctjaqZv6vimg90vw==}
     engines: {node: ^16 || ^18 || ^20}
 
   '@pmmmwh/react-refresh-webpack-plugin@0.4.3':
@@ -7177,8 +7174,8 @@ packages:
     peerDependencies:
       cypress: '>3.0.0'
 
-  cypress@13.6.6:
-    resolution: {integrity: sha512-S+2S9S94611hXimH9a3EAYt81QM913ZVA03pUmGDfLTFa5gyp85NJ8dJGSlEAEmyRsYkioS1TtnWtbv/Fzt11A==}
+  cypress@13.13.2:
+    resolution: {integrity: sha512-PvJQU33933NvS1StfzEb8/mu2kMy4dABwCF+yd5Bi7Qly1HOVf+Bufrygee/tlmty/6j5lX+KIi8j9Q3JUMbhA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -10112,9 +10109,6 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  jsonp@0.2.1:
-    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
-
   jsonpack@1.1.5:
     resolution: {integrity: sha512-d2vwomK605ks7Q+uCpbwGyoIF5j+UZuJjlYcugISBt3CxM+eBo/W6y63yVPIyIvbYON+pvJYsYZjCYbzqJj/xQ==}
 
@@ -12653,12 +12647,6 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
 
-  react-share@2.3.1:
-    resolution: {integrity: sha512-iLUQwCaeVgOkXJxa+8B0iyIIlUajY6BxO9TRb2j8erM+q1ORe0akQZ1gtjEfWYMG4UnGTMU1fOstqes+X0AStw==}
-    engines: {node: '>=6.9.0', npm: '>=5.0.0'}
-    peerDependencies:
-      react: ^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0-0
-
   react-side-effect@2.1.2:
     resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
     peerDependencies:
@@ -14126,6 +14114,10 @@ packages:
   tmp@0.2.1:
     resolution: {integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==}
     engines: {node: '>=8.17.0'}
+
+  tmp@0.2.3:
+    resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
+    engines: {node: '>=14.14'}
 
   tmpl@1.0.5:
     resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}
@@ -18659,7 +18651,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@plone/registry@1.7.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@plone/registry@1.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       crypto-random-string: 3.2.0
       debug: 4.3.2
@@ -18713,7 +18705,7 @@ snapshots:
       - debug
       - supports-color
 
-  '@plone/volto-slate@18.0.0-alpha.16(@types/react-dom@18.2.12)(@types/react@18.2.27)(redux@4.2.1)':
+  '@plone/volto-slate@18.0.0-alpha.17(@types/react-dom@18.2.12)(@types/react@18.2.27)(redux@4.2.1)':
     dependencies:
       classnames: 2.2.6
       github-slugger: 1.4.0
@@ -18747,13 +18739,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@plone/volto@18.0.0-alpha.40(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4)':
+  '@plone/volto@18.0.0-alpha.42(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4)':
     dependencies:
       '@loadable/component': 5.14.1(react@18.2.0)
       '@loadable/server': 5.14.0(@loadable/component@5.14.1(react@18.2.0))(react@18.2.0)
-      '@plone/registry': 1.7.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@plone/registry': 1.8.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@plone/scripts': 3.6.2(debug@4.3.2)
-      '@plone/volto-slate': 18.0.0-alpha.16(@types/react-dom@18.2.12)(@types/react@18.2.27)(redux@4.2.1)
+      '@plone/volto-slate': 18.0.0-alpha.17(@types/react-dom@18.2.12)(@types/react@18.2.27)(redux@4.2.1)
       '@redux-devtools/extension': 3.3.0(redux@4.2.1)
       classnames: 2.2.6
       connected-react-router: 6.8.0(history@4.10.1)(immutable@3.8.2)(react-redux@8.1.2(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1))(react-router@5.2.0(react@18.2.0))(react@18.2.0)(redux@4.2.1)(seamless-immutable@7.1.4)
@@ -18813,7 +18805,6 @@ snapshots:
       react-router-hash-link: 2.4.3(react-router-dom@5.2.0(react@18.2.0))(react@18.2.0)
       react-select: 4.3.1(@types/react@18.2.27)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-select-async-paginate: 0.5.3(react-dom@18.2.0(react@18.2.0))(react-select@4.3.1(@types/react@18.2.27)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
-      react-share: 2.3.1(react@18.2.0)
       react-side-effect: 2.1.2(react@18.2.0)
       react-simple-code-editor: 0.7.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-sortable-hoc: 2.0.0(prop-types@15.7.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -20958,11 +20949,11 @@ snapshots:
       '@tanstack/query-core': 5.49.1
       react: 18.2.0
 
-  '@testing-library/cypress@10.0.1(cypress@13.6.6)':
+  '@testing-library/cypress@10.0.1(cypress@13.13.2)':
     dependencies:
       '@babel/runtime': 7.20.6
       '@testing-library/dom': 9.3.4
-      cypress: 13.6.6
+      cypress: 13.13.2
 
   '@testing-library/dom@10.1.0':
     dependencies:
@@ -23819,21 +23810,21 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  cypress-axe@1.5.0(axe-core@4.4.2)(cypress@13.6.6):
+  cypress-axe@1.5.0(axe-core@4.4.2)(cypress@13.13.2):
     dependencies:
       axe-core: 4.4.2
-      cypress: 13.6.6
+      cypress: 13.13.2
 
-  cypress-axe@1.5.0(axe-core@4.8.4)(cypress@13.6.6):
+  cypress-axe@1.5.0(axe-core@4.8.4)(cypress@13.13.2):
     dependencies:
       axe-core: 4.8.4
-      cypress: 13.6.6
+      cypress: 13.13.2
 
-  cypress-file-upload@5.0.8(cypress@13.6.6):
+  cypress-file-upload@5.0.8(cypress@13.13.2):
     dependencies:
-      cypress: 13.6.6
+      cypress: 13.13.2
 
-  cypress@13.6.6:
+  cypress@13.13.2:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -23874,7 +23865,7 @@ snapshots:
       request-progress: 3.0.0
       semver: 7.6.2
       supports-color: 8.1.1
-      tmp: 0.2.1
+      tmp: 0.2.3
       untildify: 4.0.0
       yauzl: 2.10.0
 
@@ -27859,12 +27850,6 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  jsonp@0.2.1:
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
-
   jsonpack@1.1.5: {}
 
   jsonparse@1.3.1: {}
@@ -31260,16 +31245,6 @@ snapshots:
       react: 18.2.0
       react-is: 18.3.1
 
-  react-share@2.3.1(react@18.2.0):
-    dependencies:
-      babel-runtime: 6.26.0
-      classnames: 2.2.6
-      jsonp: 0.2.1
-      prop-types: 15.7.2
-      react: 18.2.0
-    transitivePeerDependencies:
-      - supports-color
-
   react-side-effect@2.1.2(react@18.2.0):
     dependencies:
       react: 18.2.0
@@ -33240,6 +33215,8 @@ snapshots:
     dependencies:
       rimraf: 3.0.2
 
+  tmp@0.2.3: {}
+
   tmpl@1.0.5: {}
 
   to-fast-properties@1.0.3: {}
@@ -34082,9 +34059,9 @@ snapshots:
       - terser
     optional: true
 
-  volto-subblocks@2.1.0(@plone/volto@18.0.0-alpha.40(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4))(react@18.2.0):
+  volto-subblocks@2.1.0(@plone/volto@18.0.0-alpha.42(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4))(react@18.2.0):
     dependencies:
-      '@plone/volto': 18.0.0-alpha.40(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4)
+      '@plone/volto': 18.0.0-alpha.42(@babel/runtime@7.24.7)(@popperjs/core@2.11.8)(@types/react-dom@18.2.12)(@types/react@18.2.27)(react-with-direction@1.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(seamless-immutable@7.1.4)
       react-dnd: 5.0.0(react@18.2.0)
       react-dnd-html5-backend: 5.0.1
     transitivePeerDependencies:

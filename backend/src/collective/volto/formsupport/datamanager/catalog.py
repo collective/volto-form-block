@@ -1,7 +1,6 @@
 from collective.volto.formsupport import logger
 from collective.volto.formsupport.interfaces import IFormDataStore
 from collective.volto.formsupport.utils import get_blocks
-from copy import deepcopy
 from datetime import datetime
 from plone.dexterity.interfaces import IDexterityContent
 from plone.restapi.deserializer import json_body
@@ -46,34 +45,22 @@ class FormDataStore:
 
     def get_form_fields(self):
         blocks = get_blocks(self.context)
-
         if not blocks:
             return {}
-        form_block = {}
-        for id_, block in blocks.items():
-            if id_ != self.block_id:
-                continue
-            block_type = block.get("@type", "")
-            if block_type == "form":
-                form_block = deepcopy(block)
-        if not form_block:
-            return {}
-
-        subblocks = form_block.get("subblocks", [])
-
-        # Add the 'custom_field_id' field back in as this isn't stored with each
-        # subblock
-        for index, field in enumerate(subblocks):
-            if form_block.get(field["field_id"]):
-                subblocks[index]["custom_field_id"] = form_block.get(field["field_id"])
-
-        return subblocks
+        block = blocks.get(self.block_id, {})
+        block_type = block.get("@type", "")
+        if block_type == "schemaForm":
+            return [
+                {"field_id": name, "label": field.get("title", name)}
+                for name, field in block["schema"]["properties"].items()
+            ]
+        return {}
 
     def add(self, data):
         form_fields = self.get_form_fields()
         if not form_fields:
             logger.error(
-                f'Block with id {self.block_id} and type "form" not found in context: {self.context.absolute_url()}.'  # noqa: E501
+                f'Block with id {self.block_id} and type "schemaForm" not found in context: {self.context.absolute_url()}.'  # noqa: E501
             )
             return None
 
