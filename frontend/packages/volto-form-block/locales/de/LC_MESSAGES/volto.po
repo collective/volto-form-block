@@ -16,15 +16,15 @@ msgstr ""
 msgid "Add field"
 msgstr "Feld Hinzufügen"
 
-#. Default: "Admin Recipients"
+#. Default: "Admin email"
 #: schemaFormBlock/schema
-msgid "Admin Recipients"
-msgstr ""
+msgid "Admin email"
+msgstr "Administration E-Mail"
 
-#. Default: "Blind carbon copy"
+#. Default: "Blind copy"
 #: schemaFormBlock/schema
-msgid "Blind carbon copy"
-msgstr ""
+msgid "Blind copy"
+msgstr "Blind Copy (BCC) E-Mail"
 
 #. Default: "Cancel"
 #: components/Sidebar
@@ -57,7 +57,7 @@ msgstr "Schließen"
 #. Default: "Data wipe"
 #: schemaFormBlock/schema
 msgid "Data wipe"
-msgstr ""
+msgstr "Datenlöschung"
 
 #. Default: "Date"
 #: components/Widget/DatetimeWidget
@@ -93,12 +93,12 @@ msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 #. Default: "Email footer"
 #: schemaFormBlock/schema
 msgid "Email footer"
-msgstr ""
+msgstr "E-Mail Footer"
 
 #. Default: "Email header"
 #: schemaFormBlock/schema
 msgid "Email header"
-msgstr ""
+msgstr "E-Mail Header"
 
 #. Default: "Error"
 #: components/FormView
@@ -125,7 +125,7 @@ msgstr "Kein Wert"
 #. Default: "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
 #: schemaFormBlock/schema
 msgid "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
-msgstr ""
+msgstr "Anzahl der Tage, nach denen die Daten gelöscht werden sollen. Geben Sie -1 ein, um die Daten unbegrenzt zu speichern."
 
 #. Default: "Replace existing file"
 #: components/Widget/FileWidget
@@ -145,17 +145,17 @@ msgstr "Wähle…"
 #. Default: "Send email to admin"
 #: schemaFormBlock/schema
 msgid "Send email to admin"
-msgstr ""
+msgstr "E-Mail an Administration senden"
 
 #. Default: "Sender"
 #: schemaFormBlock/schema
 msgid "Sender"
-msgstr ""
+msgstr "Absender"
 
 #. Default: "Sender name"
 #: schemaFormBlock/schema
 msgid "Sender name"
-msgstr ""
+msgstr "Absender Name"
 
 #. Default: "Show cancel button"
 #: schemaFormBlock/schema
@@ -170,7 +170,7 @@ msgstr "Daten speichern"
 #. Default: "Subject"
 #: schemaFormBlock/schema
 msgid "Subject"
-msgstr ""
+msgstr "Betreff"
 
 #. Default: "Submit"
 #: schemaFormBlock/EditSchemaForm
@@ -184,40 +184,40 @@ msgstr "Senden"
 msgid "Submit button label"
 msgstr "Beschriftung des Senden-Buttons"
 
-#. Default: "Text at the beginning of the email. Use the ${field_id} syntax to add a form value."
+#. Default: "Text at the beginning of the email."
 #: schemaFormBlock/schema
-msgid "Text at the beginning of the email. Use the ${field_id} syntax to add a form value."
-msgstr ""
+msgid "Text at the beginning of the email."
+msgstr "Text am Anfang der E-Mail."
 
-#. Default: "Text at the end of the email. Use the ${field_id} syntax to add a form value."
+#. Default: "Text at the end of the email."
 #: schemaFormBlock/schema
-msgid "Text at the end of the email. Use the ${field_id} syntax to add a form value."
-msgstr ""
+msgid "Text at the end of the email."
+msgstr "Text am Ende der E-Mail."
 
-#. Default: "The email address of the sender. Use the ${field_id} syntax to use a form value as the sender."
+#. Default: "The email address of the sender."
 #: schemaFormBlock/schema
 msgid "The email address of the sender"
-msgstr ""
+msgstr "Die E-Mail-Adresse des Absenders"
 
 #. Default: "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
 #: schemaFormBlock/schema
 msgid "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
-msgstr ""
+msgstr "Die übermittelten Formulardaten werden an die E-Mail-Adressen als Blindkopie gesendet. Mehrere E-Mail-Adressen können durch ein Semikolon getrennt eingegeben werden."
 
 #. Default: "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
 #: schemaFormBlock/schema
 msgid "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
-msgstr ""
+msgstr "Die E-Mail-Adressen, an die die übermittelten Formulardaten gesendet werden. Mehrere E-Mail-Adressen können durch ein Semikolon getrennt eingegeben werden."
 
-#. Default: "The name of the sender. Use the ${field_id} syntax to use a form value as the sender name."
+#. Default: "The name of the sender."
 #: schemaFormBlock/schema
 msgid "The name of the sender"
-msgstr ""
+msgstr "Der Name des Absenders"
 
-#. Default: "The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject."
+#. Default: "The subject used in the sent email."
 #: schemaFormBlock/schema
-msgid "The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject."
-msgstr ""
+msgid "The subject used in the sent email."
+msgstr "Der Betreff der gesendeten E-Mail."
 
 #. Default: "Time"
 #: components/Widget/DatetimeWidget
@@ -235,15 +235,20 @@ msgstr "Titel"
 msgid "Used for programmatic access to the fieldset."
 msgstr "Wir für den programmierten Zugriff auf das Fieldset verwendet."
 
-#. Default: "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
-#: schemaFormBlock/schema
-msgid "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
-msgstr ""
-
 #. Default: "When activated, the data will be stored for later use when the form is submitted"
 #: schemaFormBlock/schema
 msgid "When activated, the data will be stored for later use when the form is submitted"
 msgstr "Bei Aktivierung werden die Daten für eine spätere Verwendung beim Absenden des Formulars gespeichert"
+
+#. Default: "Admin info"
+#: schemaFormBlock/schema
+msgid "admin_info"
+msgstr "Administrations-Info"
+
+#. Default: "This field can be used to store additional information which should only be displayed in the email sent to the administration email (not for the user email)."
+#: schemaFormBlock/schema
+msgid "admin_info_description"
+msgstr "In diesem Feld können zusätzliche Informationen gespeichert werden, die nur in der E-Mail angezeigt werden sollen, die an die Administrations-E-Mail gesendet wird (nicht für die Benutzer-E-Mail)."
 
 #. Default: "Use Up and Down to choose options"
 #: helpers/react-select
@@ -440,7 +445,7 @@ msgstr "Betreff"
 #. Default: "Use the ${field_id} syntax to add a form value to the email subject"
 #: formSchema
 msgid "form_default_subject_description"
-msgstr ""
+msgstr "Verwenden Sie die Syntax ${field_id}, um dem E-Mail-Betreff einen Formularwert hinzuzufügen"
 
 #. Default: "Invia"
 #: components/Edit
@@ -737,12 +742,12 @@ msgstr "Versteckt"
 #. Default: "Text at the end of the email"
 #: formSchema
 msgid "mail_footer_label"
-msgstr ""
+msgstr "Text am Ende der E-Mail"
 
 #. Default: "If field isn't filled in, a default text will be used"
 #: formSchema
 msgid "mail_header_description"
-msgstr ""
+msgstr "Wenn das Feld nicht ausgefüllt ist, wird ein Standardtext verwendet"
 
 #. Default: "Text at the beginning of the email"
 #: formSchema
@@ -794,6 +799,11 @@ msgstr "Ergebnis"
 msgid "send_confirmation"
 msgstr "E-Mail an Nutzenden senden"
 
+#. Default: "When activated, an email will be sent to the admin recipients (see below) when a form is submitted"
+#: schemaFormBlock/schema
+msgid "send_description"
+msgstr "Wenn diese Option aktiviert ist, wird eine E-Mail an die Administratorempfänger (siehe unten) gesendet, wenn ein Formular übermittelt wird"
+
 #. Default: "Static Text"
 #: index
 msgid "static_text"
@@ -819,7 +829,7 @@ msgstr "Textbereichsfeld"
 msgid "thankyou"
 msgstr "Dankesnachricht"
 
-#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; {field_id} can be used to display the value of a field inside the form. The {formfields} variable lists all form fields in a tabular view."
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
 #: schemaFormBlock/schema
 msgid "thankyou_description"
 msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem ist es möglich, Variablen zu verwenden; ${field_id} kann verwendet werden, um den Wert eines Feldes im Formular anzuzeigen. Die Variable ${formfields} listet alle Formularfelder in einer tabellarischen Ansicht auf."
