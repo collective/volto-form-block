@@ -363,12 +363,12 @@ msgstr ""
 msgid "checkbox_group"
 msgstr ""
 
-#. Default: "Recipients"
+#. Default: "Recipient"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
 msgstr ""
 
-#. Default: "Email addresses to send the confirmation to. Multiple email addresses can be entered separated by a semicolon. Use the ${field_id} syntax to use a form value as the recipient."
+#. Default: "Send confirmation to the email entered in the following field"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients_description"
 msgstr ""
@@ -776,7 +776,7 @@ msgstr "emaitzak"
 msgid "select_risultato"
 msgstr "emaitza"
 
-#. Default: "Send confirmation email to user"
+#. Default: "Send confirmation email"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
 msgstr ""
@@ -806,7 +806,7 @@ msgstr ""
 msgid "thankyou"
 msgstr ""
 
-#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; {field_id} can be used to display the value of a field inside the form. The {formfields} variable lists all form fields in a tabular view."
 #: schemaFormBlock/schema
 msgid "thankyou_description"
 msgstr ""

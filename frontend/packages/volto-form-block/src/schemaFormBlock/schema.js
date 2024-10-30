@@ -175,19 +175,16 @@ const messages = defineMessages({
   },
   send_confirmation: {
     id: 'send_confirmation',
-    defaultMessage: 'Send confirmation email to user',
+    defaultMessage: 'Send confirmation email',
   },
   confirmation_recipients: {
     id: 'confirmation_recipients',
-    defaultMessage: 'Recipients',
+    defaultMessage: 'Recipient',
   },
   confirmation_recipients_description: {
     id: 'confirmation_recipients_description',
     defaultMessage:
-      'Email addresses to send the confirmation to. ' +
-      'Multiple email addresses can be entered separated by a semicolon. ' +
-      // eslint-disable-next-line no-template-curly-in-string
-      'Use the ${field_id} syntax to use a form value as the recipient.',
+      'Send confirmation to the email entered in the following field',
   },
 });
 
@@ -301,7 +298,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         description: intl.formatMessage(messages.thankyou_description),
         widget: 'richtext',
         default: {
-          data: '{formfields}',
+          data: '${formfields}',
         },
       },
       captcha: {

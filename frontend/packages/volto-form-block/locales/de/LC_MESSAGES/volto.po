@@ -361,15 +361,15 @@ msgstr "Captcha-Anbieter"
 msgid "checkbox_group"
 msgstr "Auswahlfeldgruppe"
 
-#. Default: "Recipients"
+#. Default: "Recipient"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
-msgstr ""
+msgstr "Empfänger"
 
-#. Default: "Email addresses to send the confirmation to. Multiple email addresses can be entered separated by a semicolon. Use the ${field_id} syntax to use a form value as the recipient."
+#. Default: "Send confirmation to the email entered in the following field"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients_description"
-msgstr ""
+msgstr "Bestätigung an in folgendem Feld eingetragene Adresse senden"
 
 #. Default: "Description"
 #: formSchema
@@ -774,10 +774,10 @@ msgstr "Ergebnisse"
 msgid "select_risultato"
 msgstr "Ergebnis"
 
-#. Default: "Send confirmation email to user"
+#. Default: "Send confirmation email"
 #: schemaFormBlock/schema
 msgid "send_confirmation"
-msgstr ""
+msgstr "E-Mail an Nutzenden senden"
 
 #. Default: "Static Text"
 #: index
@@ -807,7 +807,7 @@ msgstr "Dankesnachricht"
 #. Default: "A text with simple formatting can be entered. Also it is possible to use variables; {field_id} can be used to display the value of a field inside the form. The {formfields} variable lists all form fields in a tabular view."
 #: schemaFormBlock/schema
 msgid "thankyou_description"
-msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem ist es möglich, Variablen zu verwenden; {field_id} kann verwendet werden, um den Wert eines Feldes im Formular anzuzeigen. Die Variable {formfields} listet alle Formularfelder in einer tabellarischen Ansicht auf."
+msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem ist es möglich, Variablen zu verwenden; ${field_id} kann verwendet werden, um den Wert eines Feldes im Formular anzuzeigen. Die Variable ${formfields} listet alle Formularfelder in einer tabellarischen Ansicht auf."
 
 #. Default: "Time"
 #: index
