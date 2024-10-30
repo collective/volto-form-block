@@ -37,7 +37,7 @@ msgstr "Abbrechen"
 #. Default: "Cancel button label"
 #: schemaFormBlock/schema
 msgid "Cancel button label"
-msgstr ""
+msgstr "Beschriftung des Abbrechen-Buttons"
 
 #. Default: "Choices"
 #: components/Widget/SelectWidget
@@ -142,11 +142,6 @@ msgstr "Notwendig"
 msgid "Select…"
 msgstr "Wähle…"
 
-#. Default: "Send email"
-#: schemaFormBlock/schema
-msgid "Send email"
-msgstr ""
-
 #. Default: "Send email to admin"
 #: schemaFormBlock/schema
 msgid "Send email to admin"
@@ -165,12 +160,12 @@ msgstr ""
 #. Default: "Show cancel button"
 #: schemaFormBlock/schema
 msgid "Show cancel button"
-msgstr ""
+msgstr "Abbrechen-Button anzeigen"
 
 #. Default: "Store data"
 #: schemaFormBlock/schema
 msgid "Store data"
-msgstr ""
+msgstr "Daten speichern"
 
 #. Default: "Subject"
 #: schemaFormBlock/schema
@@ -187,7 +182,7 @@ msgstr "Senden"
 #. Default: "Submit button label"
 #: schemaFormBlock/schema
 msgid "Submit button label"
-msgstr ""
+msgstr "Beschriftung des Senden-Buttons"
 
 #. Default: "Text at the beginning of the email. Use the ${field_id} syntax to add a form value."
 #: schemaFormBlock/schema
@@ -248,7 +243,7 @@ msgstr ""
 #. Default: "When activated, the data will be stored for later use when the form is submitted"
 #: schemaFormBlock/schema
 msgid "When activated, the data will be stored for later use when the form is submitted"
-msgstr ""
+msgstr "Bei Aktivierung werden die Daten für eine spätere Verwendung beim Absenden des Formulars gespeichert"
 
 #. Default: "Use Up and Down to choose options"
 #: helpers/react-select
@@ -386,10 +381,10 @@ msgstr "Beschreibung"
 msgid "fieldId"
 msgstr "Feld-ID"
 
-#. Default: "Confirmation email"
+#. Default: "Mailing"
 #: schemaFormBlock/schema
-msgid "fieldset_send_confirmation"
-msgstr ""
+msgid "fieldset_mailing"
+msgstr "E-Mail senden"
 
 #. Default: "Form"
 #: formSchema
@@ -719,6 +714,16 @@ msgstr "Fehlerhafte E-Mail-Adresse"
 msgid "formblock_requiredFieldMessage"
 msgstr "Bitte füllen Sie dieses Feld aus"
 
+#. Default: "Forward user to"
+#: schemaFormBlock/schema
+msgid "forward_user_to"
+msgstr "Weiterleiten nach"
+
+#. Default: "If a page is specified, the user will be directed there after submitting the form. The thank you message will not be displayed."
+#: schemaFormBlock/schema
+msgid "forward_user_to_description"
+msgstr "Falls eine Seite angegeben ist, wird der User nach dem Absenden des Formulares dort hin geleitet. Die Dankesnachricht wird nicht angezeigt."
+
 #. Default: "Hidden"
 #: index
 msgid "hidden"
@@ -789,6 +794,16 @@ msgstr ""
 msgid "static_text"
 msgstr "Statischer Text"
 
+#. Default: "Success message"
+#: schemaFormBlock/schema
+msgid "success"
+msgstr "Erfolgsnachricht"
+
+#. Default: "Thank you! You have submitted the following data:"
+#: schemaFormBlock/schema
+msgid "success_default"
+msgstr "Vielen Dank! Sie haben folgende Daten übermittelt:"
+
 #. Default: "Textarea"
 #: index
 msgid "textarea"
@@ -797,7 +812,12 @@ msgstr "Textbereichsfeld"
 #. Default: "Thank you message"
 #: schemaFormBlock/schema
 msgid "thankyou"
-msgstr ""
+msgstr "Dankesnachricht"
+
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
+#: schemaFormBlock/schema
+msgid "thankyou_description"
+msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem ist es möglich, Variablen zu verwenden; ${field_id} kann verwendet werden, um den Wert eines Feldes im Formular anzuzeigen. Die Variable ${formfields} listet alle Formularfelder in einer tabellarischen Ansicht auf."
 
 #. Default: "Time"
 #: index

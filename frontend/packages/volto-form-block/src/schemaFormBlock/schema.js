@@ -1,5 +1,6 @@
 import { defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
+import { map, keys, filter } from 'lodash';
 
 const messages = defineMessages({
   form: {
@@ -38,11 +39,6 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-
-  fieldset_email: {
-    id: 'Send email',
-    defaultMessage: 'Send email',
-  },
   send: {
     id: 'Send email to admin',
     defaultMessage: 'Send email to admin',
@@ -56,9 +52,31 @@ const messages = defineMessages({
     id: 'Admin Recipients',
     defaultMessage: 'Admin Recipients',
   },
+  forward_user_to: {
+    id: 'forward_user_to',
+    defaultMessage: 'Forward user to',
+  },
+  forward_user_to_description: {
+    id: 'forward_user_to_description',
+    defaultMessage:
+      'If a page is specified, the user will be directed there after submitting the form. The thank you message will not be displayed.',
+  },
+  success: {
+    id: 'success',
+    defaultMessage: 'Success message',
+  },
+  success_default: {
+    id: 'success_default',
+    defaultMessage: 'Thank you! You have submitted the following data:',
+  },
   thankyou: {
     id: 'thankyou',
     defaultMessage: 'Thank you message',
+  },
+  thankyou_description: {
+    id: 'thankyou_description',
+    defaultMessage:
+      'A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view.',
   },
   recipients_description: {
     id: 'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
@@ -129,7 +147,6 @@ const messages = defineMessages({
       // eslint-disable-next-line no-template-curly-in-string
       'Text at the end of the email. Use the ${field_id} syntax to add a form value.',
   },
-
   fieldset_store: {
     id: 'Store data',
     defaultMessage: 'Store data',
@@ -152,10 +169,9 @@ const messages = defineMessages({
     defaultMessage:
       'Number of days after which, the data should be deleted. Enter -1 to store indefinitely.',
   },
-
-  fieldset_send_confirmation: {
-    id: 'fieldset_send_confirmation',
-    defaultMessage: 'Confirmation email',
+  fieldset_mailing: {
+    id: 'fieldset_mailing',
+    defaultMessage: 'Mailing',
   },
   send_confirmation: {
     id: 'send_confirmation',
@@ -210,22 +226,18 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
+          'forward_user_to',
+          'success',
           'thankyou',
           'captcha',
         ],
       },
       {
-        id: 'send_confirmation',
-        title: intl.formatMessage(messages.fieldset_send_confirmation),
+        id: 'mailing',
+        title: intl.formatMessage(messages.fieldset_mailing),
         fields: [
           'send_confirmation',
           ...(data?.send_confirmation ? ['confirmation_recipients'] : []),
-        ],
-      },
-      {
-        id: 'email',
-        title: intl.formatMessage(messages.fieldset_email),
-        fields: [
           'send',
           ...(data?.send
             ? [
@@ -271,12 +283,25 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         title: intl.formatMessage(messages.cancel_label),
         default: intl.formatMessage(messages.cancel),
       },
-      thankyou: {
-        title: intl.formatMessage(messages.thankyou),
-        widget: 'richtext',
+      forward_user_to: {
+        title: intl.formatMessage(messages.forward_user_to),
+        description: intl.formatMessage(messages.forward_user_to_description),
+        widget: 'object_browser',
+        mode: 'link',
+        allowExternals: true,
+      },
+      success: {
         type: 'string',
+        title: intl.formatMessage(messages.success),
+        default: intl.formatMessage(messages.success_default),
+      },
+      thankyou: {
+        type: 'string',
+        title: intl.formatMessage(messages.thankyou),
+        description: intl.formatMessage(messages.thankyou_description),
+        widget: 'richtext',
         default: {
-          data: '<p>Send!</p>',
+          data: '${formfields}',
         },
       },
       captcha: {
@@ -347,6 +372,15 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         title: intl.formatMessage(messages.confirmation_recipients),
         description: intl.formatMessage(
           messages.confirmation_recipients_description,
+        ),
+        choices: map(
+          filter(
+            keys(data.schema.properties),
+            (value) =>
+              data.schema.properties[value].factory === 'label_email' ||
+              data.schema.properties[value].factory === 'Email',
+          ),
+          (property) => [property, data.schema.properties[property].title],
         ),
       },
     },
