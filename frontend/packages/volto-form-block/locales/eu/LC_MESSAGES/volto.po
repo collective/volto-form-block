@@ -388,6 +388,11 @@ msgstr ""
 msgid "fieldset_mailing"
 msgstr ""
 
+#. Default: "Fixed attachment"
+#: schemaFormBlock/schema
+msgid "fixed_attachment"
+msgstr ""
+
 #. Default: "Form"
 #: formSchema
 msgid "form"

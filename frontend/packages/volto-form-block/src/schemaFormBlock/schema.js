@@ -186,6 +186,10 @@ const messages = defineMessages({
     defaultMessage:
       'Send confirmation to the email entered in the following field',
   },
+  fixed_attachment: {
+    id: 'fixed_attachment',
+    defaultMessage: 'Fixed attachment',
+  },
 });
 
 const defaultEmptyData = {
@@ -234,7 +238,9 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         title: intl.formatMessage(messages.fieldset_mailing),
         fields: [
           'send_confirmation',
-          ...(data?.send_confirmation ? ['confirmation_recipients'] : []),
+          ...(data?.send_confirmation
+            ? ['confirmation_recipients', 'fixed_attachment']
+            : []),
           'send',
           ...(data?.send
             ? [
@@ -379,6 +385,12 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           ),
           (property) => [property, data.schema.properties[property].title],
         ),
+      },
+
+      fixed_attachment: {
+        title: intl.formatMessage(messages.fixed_attachment),
+        type: 'object',
+        widget: 'file',
       },
     },
     required: conditional_required,

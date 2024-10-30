@@ -386,6 +386,11 @@ msgstr "Feld-ID"
 msgid "fieldset_mailing"
 msgstr "E-Mail senden"
 
+#. Default: "Fixed attachment"
+#: schemaFormBlock/schema
+msgid "fixed_attachment"
+msgstr "Fixer Anhang"
+
 #. Default: "Form"
 #: formSchema
 msgid "form"
