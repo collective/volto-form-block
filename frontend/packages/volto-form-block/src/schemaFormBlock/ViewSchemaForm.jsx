@@ -129,11 +129,11 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   let thankyou = data.thankyou?.data || '';
 
   // Add formfields
-  thankyou = thankyou.replace('{formfields}', formfields);
+  thankyou = thankyou.replace('${formfields}', formfields);
 
   // Add seperate fields
   map(keys(submittedData), (field) => {
-    thankyou = thankyou.replace('{' + field + '}', submittedData[field]);
+    thankyou = thankyou.replace('${' + field + '}', submittedData[field]);
   });
 
   return (
