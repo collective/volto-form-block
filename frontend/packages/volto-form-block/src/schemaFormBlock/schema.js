@@ -44,13 +44,13 @@ const messages = defineMessages({
     defaultMessage: 'Send email to admin',
   },
   send_description: {
-    id: 'When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted',
+    id: 'send_description',
     defaultMessage:
-      'When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted',
+      'When activated, an email will be sent to the admin recipients (see below) when a form is submitted',
   },
   recipients: {
-    id: 'Admin Recipients',
-    defaultMessage: 'Admin Recipients',
+    id: 'Admin email',
+    defaultMessage: 'Admin email',
   },
   forward_user_to: {
     id: 'forward_user_to',
@@ -76,7 +76,7 @@ const messages = defineMessages({
   thankyou_description: {
     id: 'thankyou_description',
     defaultMessage:
-      'A text with simple formatting can be entered. Also it is possible to use variables; {field_id} can be used to display the value of a field inside the form. The {formfields} variable lists all form fields in a tabular view.',
+      'A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view.',
   },
   recipients_description: {
     id: 'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
@@ -84,13 +84,22 @@ const messages = defineMessages({
       'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
   },
   bcc: {
-    id: 'Blind carbon copy',
-    defaultMessage: 'Blind carbon copy',
+    id: 'Blind copy',
+    defaultMessage: 'Blind copy',
   },
   bcc_description: {
     id: 'The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon.',
     defaultMessage:
       'The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon.',
+  },
+  admin_info: {
+    id: 'admin_info',
+    defaultMessage: 'Admin info',
+  },
+  admin_info_description: {
+    id: 'admin_info_description',
+    defaultMessage:
+      'This field can be used to store additional information which should only be displayed in the email sent to the administration email (not for the user email).',
   },
   sender: {
     id: 'Sender',
@@ -98,9 +107,7 @@ const messages = defineMessages({
   },
   sender_description: {
     id: 'The email address of the sender',
-    defaultMessage:
-      // eslint-disable-next-line no-template-curly-in-string
-      'The email address of the sender. Use the ${field_id} syntax to use a form value as the sender.',
+    defaultMessage: 'The email address of the sender.',
   },
   sender_name: {
     id: 'Sender name',
@@ -108,44 +115,31 @@ const messages = defineMessages({
   },
   sender_name_description: {
     id: 'The name of the sender',
-    defaultMessage:
-      // eslint-disable-next-line no-template-curly-in-string
-      'The name of the sender. Use the ${field_id} syntax to use a form value as the sender name.',
+    defaultMessage: 'The name of the sender.',
   },
   subject: {
     id: 'Subject',
     defaultMessage: 'Subject',
   },
   subject_description: {
-    id:
-      // eslint-disable-next-line no-template-curly-in-string
-      'The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject.',
-    defaultMessage:
-      // eslint-disable-next-line no-template-curly-in-string
-      'The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject.',
+    id: 'The subject used in the sent email.',
+    defaultMessage: 'The subject used in the sent email.',
   },
   mail_header: {
     id: 'Email header',
     defaultMessage: 'Email header',
   },
   mail_header_description: {
-    // eslint-disable-next-line no-template-curly-in-string
-    id: 'Text at the beginning of the email. Use the ${field_id} syntax to add a form value.',
-    // eslint-disable-next-line no-template-curly-in-string
-    defaultMessage:
-      // eslint-disable-next-line no-template-curly-in-string
-      'Text at the beginning of the email. Use the ${field_id} syntax to add a form value.',
+    id: 'Text at the beginning of the email.',
+    defaultMessage: 'Text at the beginning of the email.',
   },
   mail_footer: {
     id: 'Email footer',
     defaultMessage: 'Email footer',
   },
   mail_footer_description: {
-    // eslint-disable-next-line no-template-curly-in-string
-    id: 'Text at the end of the email. Use the ${field_id} syntax to add a form value.',
-    defaultMessage:
-      // eslint-disable-next-line no-template-curly-in-string
-      'Text at the end of the email. Use the ${field_id} syntax to add a form value.',
+    id: 'Text at the end of the email.',
+    defaultMessage: 'Text at the end of the email.',
   },
   fieldset_store: {
     id: 'Store data',
@@ -242,16 +236,9 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
             ? ['confirmation_recipients', 'fixed_attachment']
             : []),
           'send',
-          ...(data?.send
-            ? [
-                'recipients',
-                'bcc',
-                'sender',
-                'sender_name',
-                'subject',
-                'mail_header',
-                'mail_footer',
-              ]
+          ...(data?.send ? ['recipients', 'bcc', 'admin_info'] : []),
+          ...(data?.send || data?.send_confirmation
+            ? ['sender', 'sender_name', 'subject', 'mail_header', 'mail_footer']
             : []),
         ],
       },
@@ -314,7 +301,6 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
       },
-
       send: {
         type: 'boolean',
         title: intl.formatMessage(messages.send),
@@ -327,6 +313,11 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       bcc: {
         title: intl.formatMessage(messages.bcc),
         description: intl.formatMessage(messages.bcc_description),
+      },
+      admin_info: {
+        title: intl.formatMessage(messages.admin_info),
+        description: intl.formatMessage(messages.admin_info_description),
+        widget: 'textarea',
       },
       sender: {
         title: intl.formatMessage(messages.sender),
@@ -341,6 +332,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       subject: {
         title: intl.formatMessage(messages.subject),
         description: intl.formatMessage(messages.subject_description),
+        default: props.content?.title,
       },
       mail_header: {
         title: intl.formatMessage(messages.mail_header),
@@ -354,7 +346,6 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         type: 'string',
         description: intl.formatMessage(messages.mail_footer_description),
       },
-
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
@@ -366,7 +357,6 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         description: intl.formatMessage(messages.data_wipe_description),
         default: -1,
       },
-
       send_confirmation: {
         type: 'boolean',
         title: intl.formatMessage(messages.send_confirmation),
@@ -378,7 +368,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         ),
         choices: map(
           filter(
-            keys(data.schema.properties),
+            keys(data.schema?.properties || {}),
             (value) =>
               data.schema.properties[value].factory === 'label_email' ||
               data.schema.properties[value].factory === 'Email',
@@ -386,7 +376,6 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           (property) => [property, data.schema.properties[property].title],
         ),
       },
-
       fixed_attachment: {
         title: intl.formatMessage(messages.fixed_attachment),
         type: 'object',

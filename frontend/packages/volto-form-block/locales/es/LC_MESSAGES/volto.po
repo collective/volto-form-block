@@ -22,14 +22,14 @@ msgstr ""
 msgid "Add field"
 msgstr "Agregar campo"
 
-#. Default: "Admin Recipients"
+#. Default: "Admin email"
 #: schemaFormBlock/schema
-msgid "Admin Recipients"
+msgid "Admin email"
 msgstr ""
 
-#. Default: "Blind carbon copy"
+#. Default: "Blind copy"
 #: schemaFormBlock/schema
-msgid "Blind carbon copy"
+msgid "Blind copy"
 msgstr ""
 
 #. Default: "Cancel"
@@ -190,17 +190,17 @@ msgstr ""
 msgid "Submit button label"
 msgstr ""
 
-#. Default: "Text at the beginning of the email. Use the ${field_id} syntax to add a form value."
+#. Default: "Text at the beginning of the email."
 #: schemaFormBlock/schema
-msgid "Text at the beginning of the email. Use the ${field_id} syntax to add a form value."
+msgid "Text at the beginning of the email."
 msgstr ""
 
-#. Default: "Text at the end of the email. Use the ${field_id} syntax to add a form value."
+#. Default: "Text at the end of the email."
 #: schemaFormBlock/schema
-msgid "Text at the end of the email. Use the ${field_id} syntax to add a form value."
+msgid "Text at the end of the email."
 msgstr ""
 
-#. Default: "The email address of the sender. Use the ${field_id} syntax to use a form value as the sender."
+#. Default: "The email address of the sender."
 #: schemaFormBlock/schema
 msgid "The email address of the sender"
 msgstr ""
@@ -215,14 +215,14 @@ msgstr ""
 msgid "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
 msgstr ""
 
-#. Default: "The name of the sender. Use the ${field_id} syntax to use a form value as the sender name."
+#. Default: "The name of the sender."
 #: schemaFormBlock/schema
 msgid "The name of the sender"
 msgstr ""
 
-#. Default: "The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject."
+#. Default: "The subject used in the sent email."
 #: schemaFormBlock/schema
-msgid "The subject used in the sent email. Use the ${field_id} syntax to add a form value to the email subject."
+msgid "The subject used in the sent email."
 msgstr ""
 
 #. Default: "Time"
@@ -241,14 +241,19 @@ msgstr "Título"
 msgid "Used for programmatic access to the fieldset."
 msgstr "Usado para acceso programático al conjunto de campos."
 
-#. Default: "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
-#: schemaFormBlock/schema
-msgid "When activated, an email will be sent to the Admin Recipients (see below) when a form is submitted"
-msgstr ""
-
 #. Default: "When activated, the data will be stored for later use when the form is submitted"
 #: schemaFormBlock/schema
 msgid "When activated, the data will be stored for later use when the form is submitted"
+msgstr ""
+
+#. Default: "Admin info"
+#: schemaFormBlock/schema
+msgid "admin_info"
+msgstr ""
+
+#. Default: "This field can be used to store additional information which should only be displayed in the email sent to the administration email (not for the user email)."
+#: schemaFormBlock/schema
+msgid "admin_info_description"
 msgstr ""
 
 #. Default: "Use Up and Down to choose options"
@@ -790,6 +795,11 @@ msgstr "Resultado"
 msgid "send_confirmation"
 msgstr ""
 
+#. Default: "When activated, an email will be sent to the admin recipients (see below) when a form is submitted"
+#: schemaFormBlock/schema
+msgid "send_description"
+msgstr ""
+
 #. Default: "Static Text"
 #: index
 msgid "static_text"
@@ -815,7 +825,7 @@ msgstr ""
 msgid "thankyou"
 msgstr ""
 
-#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; {field_id} can be used to display the value of a field inside the form. The {formfields} variable lists all form fields in a tabular view."
+#. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
 #: schemaFormBlock/schema
 msgid "thankyou_description"
 msgstr ""
