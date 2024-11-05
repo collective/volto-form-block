@@ -36,8 +36,8 @@ class HoneypotSupport(CaptchaSupport):
         if isinstance(data, str):
             data = json.loads(data)
         if not data:
-            # @schemaform-data has been called not from volto-form-block so do the standard
-            # validation.
+            # @schemaform-data has been called not from volto-form-block so do the
+            # standard validation.
             form_data = json_body(self.request).get("data", [])
             form = {x["label"]: x["value"] for x in form_data}
             if found_honeypot(form, required=True):
