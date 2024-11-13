@@ -92,6 +92,7 @@ const applyConfig = (config) => {
       view: schemaFormBlockView,
       edit: schemaFormBlockEdit,
       formSchema: FormSchema,
+      widgets: null,
       blockSchema: schemaFormBlockSchema,
       fieldSchema: FieldSchema,
       disableEnter: true,

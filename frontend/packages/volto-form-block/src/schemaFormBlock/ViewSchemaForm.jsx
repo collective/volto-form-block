@@ -168,6 +168,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
             })),
           }}
           formData={initialData}
+          widgets={config.blocks.blocksConfig.schemaForm.widgets}
           onSubmit={onSubmit}
           resetOnCancel={true}
           onCancel={data.show_cancel ? onCancel : null}
