@@ -75,6 +75,10 @@ class Edit extends Component {
             title: 'Form',
             type: 'object',
           }}
+          component={config.blocks.blocksConfig.schemaForm.component}
+          buttonComponent={
+            config.blocks.blocksConfig.schemaForm.buttonComponent
+          }
           formData={
             isEmpty(data.schema)
               ? { schema: defaultEmptyData }

@@ -4,14 +4,12 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const NumberWrapper = (props) => {
   const {
     id,
     value,
     onChange,
     onClick,
-    minLength,
-    maxLength,
     placeholder,
     isDisabled,
     title,
@@ -19,7 +17,7 @@ const TextWrapper = (props) => {
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.number;
 
   return (
     <FormFieldWrapper {...props} className="text">
@@ -34,16 +32,14 @@ const TextWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
       />
     </FormFieldWrapper>
   );
 };
 
-export default TextWrapper;
+export default NumberWrapper;
 
-TextWrapper.propTypes = {
+NumberWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -55,6 +51,4 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
 };

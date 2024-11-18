@@ -4,46 +4,33 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
-  const {
-    id,
-    value,
-    onChange,
-    onClick,
-    minLength,
-    maxLength,
-    placeholder,
-    isDisabled,
-    title,
-    description,
-  } = props;
+const DatetimeWrapper = (props) => {
+  const { id, value, onChange, onClick, isDisabled, title, description } =
+    props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.datetime;
 
   return (
     <FormFieldWrapper {...props} className="text">
       <Widget
         id={`field-${id}`}
         name={id}
-        value={value || ''}
+        value={value || null}
         label={title}
         description={description}
         disabled={isDisabled}
-        placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
       />
     </FormFieldWrapper>
   );
 };
 
-export default TextWrapper;
+export default DatetimeWrapper;
 
-TextWrapper.propTypes = {
+DatetimeWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -55,6 +42,4 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
 };

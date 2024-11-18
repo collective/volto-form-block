@@ -4,46 +4,47 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const SelectWrapper = (props) => {
   const {
     id,
     value,
+    choices,
     onChange,
     onClick,
-    minLength,
-    maxLength,
-    placeholder,
     isDisabled,
     title,
     description,
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.select;
+
+  const options = choices || [];
 
   return (
     <FormFieldWrapper {...props} className="text">
       <Widget
         id={`field-${id}`}
         name={id}
-        value={value || ''}
+        value={value || undefined}
         label={title}
         description={description}
         disabled={isDisabled}
-        placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
+        options={options.map((option) => ({
+          value: option[0],
+          label: option[1],
+        }))}
       />
     </FormFieldWrapper>
   );
 };
 
-export default TextWrapper;
+export default SelectWrapper;
 
-TextWrapper.propTypes = {
+SelectWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -55,6 +56,4 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
 };

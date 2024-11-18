@@ -4,7 +4,7 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const TextareaWrapper = (props) => {
   const {
     id,
     value,
@@ -19,7 +19,7 @@ const TextWrapper = (props) => {
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.textarea;
 
   return (
     <FormFieldWrapper {...props} className="text">
@@ -41,9 +41,9 @@ const TextWrapper = (props) => {
   );
 };
 
-export default TextWrapper;
+export default TextareaWrapper;
 
-TextWrapper.propTypes = {
+TextareaWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,

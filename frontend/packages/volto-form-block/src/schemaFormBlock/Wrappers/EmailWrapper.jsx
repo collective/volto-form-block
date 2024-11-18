@@ -4,7 +4,7 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const EmailWrapper = (props) => {
   const {
     id,
     value,
@@ -12,14 +12,13 @@ const TextWrapper = (props) => {
     onClick,
     minLength,
     maxLength,
-    placeholder,
     isDisabled,
     title,
     description,
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.email;
 
   return (
     <FormFieldWrapper {...props} className="text">
@@ -30,7 +29,6 @@ const TextWrapper = (props) => {
         label={title}
         description={description}
         disabled={isDisabled}
-        placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
@@ -41,9 +39,9 @@ const TextWrapper = (props) => {
   );
 };
 
-export default TextWrapper;
+export default EmailWrapper;
 
-TextWrapper.propTypes = {
+EmailWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,

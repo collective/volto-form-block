@@ -93,6 +93,8 @@ const applyConfig = (config) => {
       edit: schemaFormBlockEdit,
       formSchema: FormSchema,
       widgets: null,
+      component: null,
+      buttonComponent: null,
       blockSchema: schemaFormBlockSchema,
       fieldSchema: FieldSchema,
       disableEnter: true,

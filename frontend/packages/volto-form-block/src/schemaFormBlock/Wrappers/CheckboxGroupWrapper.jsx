@@ -4,22 +4,25 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const CheckboxGroupWrapper = (props) => {
   const {
     id,
     value,
+    choices,
     onChange,
     onClick,
-    minLength,
-    maxLength,
-    placeholder,
     isDisabled,
     title,
     description,
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget =
+    config.blocks.blocksConfig.schemaForm.innerWidgets.checkboxGroup;
+  const OptionWidget =
+    config.blocks.blocksConfig.schemaForm.innerWidgets.checkboxGroupOption;
+
+  const options = choices || [];
 
   return (
     <FormFieldWrapper {...props} className="text">
@@ -30,20 +33,21 @@ const TextWrapper = (props) => {
         label={title}
         description={description}
         disabled={isDisabled}
-        placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
-      />
+      >
+        {options.map((option) => (
+          <OptionWidget value={option[0]}>{option[1]}</OptionWidget>
+        ))}
+      </Widget>
     </FormFieldWrapper>
   );
 };
 
-export default TextWrapper;
+export default CheckboxGroupWrapper;
 
-TextWrapper.propTypes = {
+CheckboxGroupWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -55,6 +59,4 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
 };

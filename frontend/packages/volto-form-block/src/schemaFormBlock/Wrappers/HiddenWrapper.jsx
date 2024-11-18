@@ -4,24 +4,23 @@ import config from '@plone/volto/registry';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
-const TextWrapper = (props) => {
+const HiddenWrapper = (props) => {
   const {
     id,
     value,
     onChange,
     onClick,
-    minLength,
-    maxLength,
     placeholder,
     isDisabled,
     title,
     description,
+    onEdit,
   } = props;
 
   const ref = useRef();
-  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
+  const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.hidden;
 
-  return (
+  return onEdit ? (
     <FormFieldWrapper {...props} className="text">
       <Widget
         id={`field-${id}`}
@@ -34,16 +33,23 @@ const TextWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
       />
     </FormFieldWrapper>
+  ) : (
+    <input
+      id={`field-${id}`}
+      name={id}
+      value={value || ''}
+      placeholder={placeholder}
+      ref={ref}
+      type="hidden"
+    />
   );
 };
 
-export default TextWrapper;
+export default HiddenWrapper;
 
-TextWrapper.propTypes = {
+HiddenWrapper.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -55,6 +61,4 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
 };
