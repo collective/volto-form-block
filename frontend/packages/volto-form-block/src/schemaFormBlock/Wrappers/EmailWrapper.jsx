@@ -29,6 +29,7 @@ const EmailWrapper = (props) => {
         label={title}
         description={description}
         disabled={isDisabled}
+        type="email"
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}

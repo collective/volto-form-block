@@ -27,6 +27,7 @@ const NumberWrapper = (props) => {
         value={value || ''}
         label={title}
         description={description}
+        type="number"
         disabled={isDisabled}
         placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
