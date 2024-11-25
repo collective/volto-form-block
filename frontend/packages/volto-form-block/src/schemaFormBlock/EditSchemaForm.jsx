@@ -44,9 +44,7 @@ class Edit extends Component {
     return (
       <>
         {data.title && <h2>{data.title}</h2>}
-        {data.description && (
-          <p className="documentDescription">{data.description}</p>
-        )}
+        {data.description && <p>{data.description}</p>}
         <Form
           schema={{
             fieldsets: [

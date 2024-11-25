@@ -139,9 +139,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   return (
     <div className="block schemaForm">
       {data.title && <h2>{data.title}</h2>}
-      {data.description && (
-        <p className="documentDescription">{data.description}</p>
-      )}
+      {data.description && <p>{data.description}</p>}
       {submitted ? (
         <div className="submitted">
           <Message positive>
