@@ -22,15 +22,19 @@ const SelectWrapper = (props) => {
   const options = choices || [];
 
   return (
-    <FormFieldWrapper {...props} className="text">
+    <FormFieldWrapper {...props} className="select">
       <Widget
         id={`field-${id}`}
         name={id}
-        value={value || undefined}
+        value={
+          (value && { value, label: value }) ||
+          (props.default && { value: props.default, label: props.default }) ||
+          undefined
+        }
         label={title}
         description={description}
         disabled={isDisabled}
-        onChange={(value) => onChange(id, value === '' ? undefined : value)}
+        onChange={(value) => onChange(id, value.value)}
         ref={ref}
         onClick={() => onClick()}
         options={options.map((option) => ({

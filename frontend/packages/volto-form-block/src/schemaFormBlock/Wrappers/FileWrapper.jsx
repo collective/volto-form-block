@@ -12,8 +12,6 @@ const FileWrapper = (props) => {
   const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.file;
 
-  console.log(value);
-
   return (
     <FormFieldWrapper {...props} className="text">
       <Widget
