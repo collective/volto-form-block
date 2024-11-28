@@ -2,12 +2,30 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { readAsDataURL } from 'promise-file-reader';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
+
 const FileWrapper = (props) => {
-  const { id, value, onChange, isDisabled, title, description, accept, size } =
-    props;
+  const {
+    id,
+    value,
+    onChange,
+    isDisabled,
+    title,
+    description,
+    accept,
+    size,
+    required,
+    intl,
+  } = props;
 
   const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.file;
@@ -20,6 +38,8 @@ const FileWrapper = (props) => {
         labelFile={value?.filename || ''}
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         accept={accept}
         size={size}
@@ -45,7 +65,7 @@ const FileWrapper = (props) => {
   );
 };
 
-export default FileWrapper;
+export default injectIntl(FileWrapper);
 
 FileWrapper.propTypes = {
   id: PropTypes.string.isRequired,

@@ -1,8 +1,16 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
+
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
 
 const HiddenWrapper = (props) => {
   const {
@@ -15,6 +23,8 @@ const HiddenWrapper = (props) => {
     title,
     description,
     onEdit,
+    required,
+    intl,
   } = props;
 
   const ref = useRef();
@@ -28,6 +38,8 @@ const HiddenWrapper = (props) => {
         value={value || ''}
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
@@ -47,7 +59,7 @@ const HiddenWrapper = (props) => {
   );
 };
 
-export default HiddenWrapper;
+export default injectIntl(HiddenWrapper);
 
 HiddenWrapper.propTypes = {
   id: PropTypes.string.isRequired,

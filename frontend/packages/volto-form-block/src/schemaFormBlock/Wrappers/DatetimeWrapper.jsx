@@ -1,12 +1,30 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
+
 const DatetimeWrapper = (props) => {
-  const { id, value, onChange, onClick, isDisabled, title, description } =
-    props;
+  const {
+    id,
+    value,
+    onChange,
+    onClick,
+    isDisabled,
+    title,
+    description,
+    widget,
+    required,
+    intl,
+  } = props;
 
   const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.datetime;
@@ -19,8 +37,18 @@ const DatetimeWrapper = (props) => {
         value={value || null}
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
-        onChange={(value) => onChange(id, value === '' ? undefined : value)}
+        isDateOnly={widget === 'date'}
+        onChange={(newValue) => {
+          console.log(newValue);
+          return onChange(id, newValue === '' ? undefined : newValue);
+        }}
+        onChangeTime={(value) => {
+          console.log(newValue);
+          return onChange(id, newValue === '' ? undefined : newValue);
+        }}
         ref={ref}
         onClick={() => onClick()}
       />
@@ -28,7 +56,7 @@ const DatetimeWrapper = (props) => {
   );
 };
 
-export default DatetimeWrapper;
+export default injectIntl(DatetimeWrapper);
 
 DatetimeWrapper.propTypes = {
   id: PropTypes.string.isRequired,

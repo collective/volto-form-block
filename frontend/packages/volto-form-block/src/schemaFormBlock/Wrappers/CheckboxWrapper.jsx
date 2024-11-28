@@ -1,12 +1,29 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
+
 const CheckboxWrapper = (props) => {
-  const { id, value, onChange, onClick, isDisabled, title, description } =
-    props;
+  const {
+    id,
+    value,
+    onChange,
+    onClick,
+    isDisabled,
+    title,
+    description,
+    required,
+    intl,
+  } = props;
 
   const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.checkbox;
@@ -19,6 +36,8 @@ const CheckboxWrapper = (props) => {
         value={value || ''}
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
@@ -28,7 +47,7 @@ const CheckboxWrapper = (props) => {
   );
 };
 
-export default CheckboxWrapper;
+export default injectIntl(CheckboxWrapper);
 
 CheckboxWrapper.propTypes = {
   id: PropTypes.string.isRequired,

@@ -1,8 +1,16 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
+
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
 
 const RadioGroupWrapper = (props) => {
   const {
@@ -14,6 +22,8 @@ const RadioGroupWrapper = (props) => {
     isDisabled,
     title,
     description,
+    required,
+    intl,
   } = props;
 
   const ref = useRef();
@@ -31,6 +41,8 @@ const RadioGroupWrapper = (props) => {
         value={value || undefined}
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
@@ -44,7 +56,7 @@ const RadioGroupWrapper = (props) => {
   );
 };
 
-export default RadioGroupWrapper;
+export default injectIntl(RadioGroupWrapper);
 
 RadioGroupWrapper.propTypes = {
   id: PropTypes.string.isRequired,

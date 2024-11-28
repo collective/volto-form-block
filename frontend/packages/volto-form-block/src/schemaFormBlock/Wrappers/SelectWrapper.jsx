@@ -1,8 +1,16 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import FormFieldWrapper from './FormFieldWrapper';
+
+const messages = defineMessages({
+  required: {
+    id: 'Required',
+    defaultMessage: 'Required',
+  },
+});
 
 const SelectWrapper = (props) => {
   const {
@@ -14,6 +22,8 @@ const SelectWrapper = (props) => {
     isDisabled,
     title,
     description,
+    required,
+    intl,
   } = props;
 
   const ref = useRef();
@@ -33,6 +43,8 @@ const SelectWrapper = (props) => {
         }
         label={title}
         description={description}
+        isRequired={required}
+        labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         onChange={(value) => onChange(id, value.value)}
         ref={ref}
@@ -46,7 +58,7 @@ const SelectWrapper = (props) => {
   );
 };
 
-export default SelectWrapper;
+export default injectIntl(SelectWrapper);
 
 SelectWrapper.propTypes = {
   id: PropTypes.string.isRequired,
