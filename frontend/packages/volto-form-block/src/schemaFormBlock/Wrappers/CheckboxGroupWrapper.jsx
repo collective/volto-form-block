@@ -27,32 +27,59 @@ const CheckboxGroupWrapper = (props) => {
   } = props;
 
   const ref = useRef();
-  const Widget =
+  const CheckboxGroup =
     config.blocks.blocksConfig.schemaForm.innerWidgets.checkboxGroup;
-  const OptionWidget =
+  const Checkbox =
     config.blocks.blocksConfig.schemaForm.innerWidgets.checkboxGroupOption;
+  const Select = config.blocks.blocksConfig.schemaForm.innerWidgets.select;
 
   const options = choices || [];
 
   return (
     <FormFieldWrapper {...props} className="text">
-      <Widget
-        id={`field-${id}`}
-        name={id}
-        value={value || ''}
-        label={title}
-        description={description}
-        isRequired={required}
-        labelRequired={intl.formatMessage(messages.required)}
-        disabled={isDisabled}
-        onChange={(value) => onChange(id, value === '' ? undefined : value)}
-        ref={ref}
-        onClick={() => onClick()}
-      >
-        {options.map((option) => (
-          <OptionWidget value={option[0]}>{option[1]}</OptionWidget>
-        ))}
-      </Widget>
+      {options.length < 6 && (
+        <CheckboxGroup
+          id={`field-${id}`}
+          name={id}
+          value={value || []}
+          label={title}
+          description={description}
+          isRequired={required}
+          labelRequired={intl.formatMessage(messages.required)}
+          disabled={isDisabled}
+          onChange={(value) => onChange(id, value)}
+          ref={ref}
+          onClick={() => onClick()}
+        >
+          {options.map((option) => (
+            <Checkbox value={option[0]}>{option[1]}</Checkbox>
+          ))}
+        </CheckboxGroup>
+      )}
+      {options.length > 5 && (
+        <Select
+          id={`field-${id}`}
+          name={id}
+          value={
+            (value && { value, label: value }) ||
+            (props.default && { value: props.default, label: props.default }) ||
+            undefined
+          }
+          label={title}
+          description={description}
+          isRequired={required}
+          isMulti={true}
+          labelRequired={intl.formatMessage(messages.required)}
+          disabled={isDisabled}
+          onChange={(value) => onChange(id, value.value)}
+          ref={ref}
+          onClick={() => onClick()}
+          options={options.map((option) => ({
+            value: option[0],
+            label: option[1],
+          }))}
+        />
+      )}
     </FormFieldWrapper>
   );
 };
