@@ -97,6 +97,8 @@ const applyConfig = (config) => {
       buttonComponent: null,
       blockSchema: schemaFormBlockSchema,
       fieldSchema: FieldSchema,
+      captchaProvidersVocabulary:
+        'collective.volto.formsupport.captcha.providers',
       disableEnter: true,
       filterFactory: [
         'label_text_field',

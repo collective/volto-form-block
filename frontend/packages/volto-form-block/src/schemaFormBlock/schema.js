@@ -184,6 +184,10 @@ const messages = defineMessages({
     id: 'fixed_attachment',
     defaultMessage: 'Fixed attachment',
   },
+  fieldset_confirmation: {
+    id: 'fieldset_confirmation',
+    defaultMessage: 'Confirmation-Page',
+  },
 });
 
 const defaultEmptyData = {
@@ -221,11 +225,13 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
-          'forward_user_to',
-          'success',
-          'thankyou',
           'captcha',
         ],
+      },
+      {
+        id: 'confirmation',
+        title: intl.formatMessage(messages.fieldset_confirmation),
+        fields: ['forward_user_to', 'success', 'thankyou'],
       },
       {
         id: 'mailing',
@@ -297,9 +303,8 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       captcha: {
         title: intl.formatMessage(messages.captcha),
         type: 'string',
-        vocabulary: {
-          '@id': 'collective.volto.formsupport.captcha.providers',
-        },
+        vocabulary:
+          config.blocks?.blocksConfig?.schemaForm?.captchaProvidersVocabulary,
       },
       send: {
         type: 'boolean',

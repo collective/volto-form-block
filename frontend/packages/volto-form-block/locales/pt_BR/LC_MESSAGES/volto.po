@@ -75,6 +75,11 @@ msgstr "Data"
 msgid "Default"
 msgstr "Padrão"
 
+#. Default: "Delete"
+#: schemaFormBlock/Wrappers/FormFieldWrapper
+msgid "Delete"
+msgstr ""
+
 #. Default: "Description"
 #: components/Widget/SelectWidget
 #: schemaFormBlock/schema
@@ -95,6 +100,11 @@ msgstr "Solte um arquivo aqui para enviar um novo arquivo"
 #: components/Widget/FileWidget
 msgid "Drop files here ..."
 msgstr "Soltar aquivos aqui…"
+
+#. Default: "Edit"
+#: schemaFormBlock/Wrappers/FormFieldWrapper
+msgid "Edit"
+msgstr ""
 
 #. Default: "Email footer"
 #: schemaFormBlock/schema
@@ -140,6 +150,18 @@ msgstr "Substituir o arquivo existente"
 
 #. Default: "Required"
 #: components/Widget/SelectWidget
+#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
+#: schemaFormBlock/Wrappers/CheckboxWrapper
+#: schemaFormBlock/Wrappers/DatetimeWrapper
+#: schemaFormBlock/Wrappers/EmailWrapper
+#: schemaFormBlock/Wrappers/FileWrapper
+#: schemaFormBlock/Wrappers/HiddenWrapper
+#: schemaFormBlock/Wrappers/NumberWrapper
+#: schemaFormBlock/Wrappers/RadioGroupWrapper
+#: schemaFormBlock/Wrappers/SelectWrapper
+#: schemaFormBlock/Wrappers/TextareaWrapper
+#: schemaFormBlock/Wrappers/TextWrapper
+#: schemaFormBlock/Wrappers/TimeWrapper
 msgid "Required"
 msgstr "Obrigatório"
 
@@ -392,6 +414,11 @@ msgstr "descrição"
 msgid "fieldId"
 msgstr "Id do campo"
 
+#. Default: "Confirmation-Page"
+#: schemaFormBlock/schema
+msgid "fieldset_confirmation"
+msgstr ""
+
 #. Default: "Mailing"
 #: schemaFormBlock/schema
 msgid "fieldset_mailing"
@@ -494,13 +521,13 @@ msgstr "Atenção"
 msgid "form_edit_warning_from"
 msgstr "Digite um campo do tipo 'E-mail do remetente'. Se não estiver presente, ou estiver presente mas não for preenchido pelo usuário, o endereço do remetente do e-mail será o configurado na barra lateral direita."
 
+#. Default: "Validate BCC emails with OTP verification"
 #: formSchema
-# defaultMessage: Validate BCC emails with OTP verification
 msgid "form_email_otp_verification"
 msgstr ""
 
+#. Default: "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked."
 #: formSchema
-# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
 msgid "form_email_otp_verification_description"
 msgstr ""
 

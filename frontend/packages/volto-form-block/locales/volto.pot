@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-10-30T21:33:58.422Z\n"
+"POT-Creation-Date: 2024-12-03T14:37:51.085Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -71,6 +71,11 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
+#. Default: "Delete"
+#: schemaFormBlock/Wrappers/FormFieldWrapper
+msgid "Delete"
+msgstr ""
+
 #. Default: "Description"
 #: components/Widget/SelectWidget
 #: schemaFormBlock/schema
@@ -90,6 +95,11 @@ msgstr ""
 #. Default: "Drop files here ..."
 #: components/Widget/FileWidget
 msgid "Drop files here ..."
+msgstr ""
+
+#. Default: "Edit"
+#: schemaFormBlock/Wrappers/FormFieldWrapper
+msgid "Edit"
 msgstr ""
 
 #. Default: "Email footer"
@@ -136,6 +146,18 @@ msgstr ""
 
 #. Default: "Required"
 #: components/Widget/SelectWidget
+#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
+#: schemaFormBlock/Wrappers/CheckboxWrapper
+#: schemaFormBlock/Wrappers/DatetimeWrapper
+#: schemaFormBlock/Wrappers/EmailWrapper
+#: schemaFormBlock/Wrappers/FileWrapper
+#: schemaFormBlock/Wrappers/HiddenWrapper
+#: schemaFormBlock/Wrappers/NumberWrapper
+#: schemaFormBlock/Wrappers/RadioGroupWrapper
+#: schemaFormBlock/Wrappers/SelectWrapper
+#: schemaFormBlock/Wrappers/TextareaWrapper
+#: schemaFormBlock/Wrappers/TextWrapper
+#: schemaFormBlock/Wrappers/TimeWrapper
 msgid "Required"
 msgstr ""
 
@@ -388,6 +410,11 @@ msgstr ""
 msgid "fieldId"
 msgstr ""
 
+#. Default: "Confirmation-Page"
+#: schemaFormBlock/schema
+msgid "fieldset_confirmation"
+msgstr ""
+
 #. Default: "Mailing"
 #: schemaFormBlock/schema
 msgid "fieldset_mailing"
@@ -490,13 +517,13 @@ msgstr ""
 msgid "form_edit_warning_from"
 msgstr ""
 
+#. Default: "Validate BCC emails with OTP verification"
 #: formSchema
-# defaultMessage: Validate BCC emails with OTP verification
 msgid "form_email_otp_verification"
 msgstr ""
 
+#. Default: "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked."
 #: formSchema
-# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
 msgid "form_email_otp_verification_description"
 msgstr ""
 
