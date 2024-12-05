@@ -75,7 +75,10 @@ class SubmitPost(Service):
                 self.request.response.setStatus(500)
                 return {"type": "InternalServerError", "message": message}
 
-        return {"data": self.form_data}
+        data_without_attachments = {
+            k: v for k, v in self.form_data.items() if type(v) is not dict
+        }
+        return {"data": data_without_attachments}
 
     def cleanup_data(self):
         """Ignore fields not defined in form schema"""
