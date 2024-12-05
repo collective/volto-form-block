@@ -4,6 +4,7 @@
 >
 
   <records interface="collective.volto.formsupport.interfaces.IFormSettings"
-           prefix="schemaform" />
+           prefix="schemaform"
+  />
 
 </registry>

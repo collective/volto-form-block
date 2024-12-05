@@ -1,8 +1,8 @@
 from plone.dexterity.content import DexterityContent
+from zope import schema
 from zope.interface import Attribute
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-from zope import schema
 from ZPublisher.BaseRequest import BaseRequest
 
 import dataclasses
@@ -106,13 +106,11 @@ ${form_fields}
 ${mail_footer}
 """
 
-class IFormSettings(Interface):
 
+class IFormSettings(Interface):
     mail_templates = schema.Dict(
         title="Email templates",
         key_type=schema.TextLine(),
         value_type=schema.Text(),
-        default={
-            "default": DEFAULT_TEMPLATE
-        }
+        default={"default": DEFAULT_TEMPLATE},
     )
