@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
+import { isString, map } from 'lodash';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
@@ -35,13 +36,25 @@ const CheckboxGroupWrapper = (props) => {
 
   const options = choices || [];
 
+  const curValue = value
+    ? isString(value)
+      ? value.split('\n')
+      : value
+    : undefined;
+
+  const curDefault = props.default
+    ? isString(props.default)
+      ? props.default.split('\n')
+      : props.default
+    : undefined;
+
   return (
     <FormFieldWrapper {...props} className="text">
       {options.length < 6 && (
         <CheckboxGroup
           id={`field-${id}`}
           name={id}
-          value={value || []}
+          value={curValue || []}
           label={title}
           description={description}
           isRequired={required}
@@ -61,8 +74,13 @@ const CheckboxGroupWrapper = (props) => {
           id={`field-${id}`}
           name={id}
           value={
-            (value && { value, label: value }) ||
-            (props.default && { value: props.default, label: props.default }) ||
+            (curValue &&
+              map(curValue, (item) => ({ value: item, label: item }))) ||
+            (curDefault &&
+              map(curDefault, (item) => ({
+                value: item,
+                label: item,
+              }))) ||
             undefined
           }
           label={title}
@@ -71,7 +89,12 @@ const CheckboxGroupWrapper = (props) => {
           isMulti={true}
           labelRequired={intl.formatMessage(messages.required)}
           disabled={isDisabled}
-          onChange={(value) => onChange(id, value.value)}
+          onChange={(value) => {
+            return onChange(
+              id,
+              map(value, (item) => item.value),
+            );
+          }}
           ref={ref}
           onClick={() => onClick()}
           options={options.map((option) => ({

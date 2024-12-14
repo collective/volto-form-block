@@ -36,6 +36,7 @@ const DatetimeWrapper = (props) => {
         name={id}
         value={value || null}
         label={title}
+        locale={intl.locale}
         description={description}
         isRequired={required}
         labelRequired={intl.formatMessage(messages.required)}

@@ -117,12 +117,24 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
 
   const formfields = renderToString(
     <Grid stackable columns={2}>
-      {map(keys(submittedData), (property) => (
-        <Grid.Row>
-          <Grid.Column>{data.schema.properties[property].title}</Grid.Column>
-          <Grid.Column>{submittedData[property]}</Grid.Column>
-        </Grid.Row>
-      ))}
+      {map(keys(submittedData), (property) => {
+        const propertyType = data.schema.properties[property].type;
+
+        // Only render if the type is not 'object'
+        if (propertyType !== 'object') {
+          return (
+            <Grid.Row key={property}>
+              <Grid.Column>
+                {data.schema.properties[property].title}
+              </Grid.Column>
+              <Grid.Column>{submittedData[property]}</Grid.Column>
+            </Grid.Row>
+          );
+        }
+
+        // Return null to avoid rendering the row for object types
+        return null;
+      })}
     </Grid>,
   );
 
