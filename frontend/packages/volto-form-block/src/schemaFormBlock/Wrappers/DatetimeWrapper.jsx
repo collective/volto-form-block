@@ -2,6 +2,13 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
+import {
+  parseAbsolute,
+  parseAbsoluteToLocal,
+  parseDate,
+  parseDateTime,
+} from '@internationalized/date';
+import moment from 'moment';
 
 import FormFieldWrapper from './FormFieldWrapper';
 
@@ -28,13 +35,39 @@ const DatetimeWrapper = (props) => {
 
   const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.datetime;
+  const onDateChange = (date) => {
+    if (date) {
+      const base = moment().set({
+        year: date.year,
+        month: date.month - 1,
+        date: date.day,
+        ...(widget === 'date'
+          ? {}
+          : {
+              hour: date.hour,
+              minute: date.minute,
+              second: date.second,
+            }),
+      });
+      onChange(
+        id,
+        widget === 'date' ? base.format('YYYY-MM-DD') : base.toISOString(),
+      );
+    }
+  };
+
+  let dateValue = value
+    ? widget === 'date'
+      ? parseDate(value)
+      : parseDateTime(moment(value).format('YYYY-MM-DDTHH:mm:ss'))
+    : null;
 
   return (
     <FormFieldWrapper {...props} className="text">
       <Widget
         id={`field-${id}`}
         name={id}
-        value={value || null}
+        value={dateValue}
         label={title}
         locale={intl.locale}
         description={description}
@@ -42,14 +75,8 @@ const DatetimeWrapper = (props) => {
         labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
         isDateOnly={widget === 'date'}
-        onChange={(newValue) => {
-          console.log(newValue);
-          return onChange(id, newValue === '' ? undefined : newValue);
-        }}
-        onChangeTime={(value) => {
-          console.log(newValue);
-          return onChange(id, newValue === '' ? undefined : newValue);
-        }}
+        onChange={onDateChange}
+        onChangeTime={onDateChange}
         ref={ref}
         onClick={() => onClick()}
       />
