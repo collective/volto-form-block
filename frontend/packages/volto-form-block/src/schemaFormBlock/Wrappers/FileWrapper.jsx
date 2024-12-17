@@ -11,6 +11,14 @@ const messages = defineMessages({
     id: 'form_required',
     defaultMessage: 'Required',
   },
+  no_file: {
+    id: 'no_file',
+    defaultMessage: 'No file chosen',
+  },
+  choose_file: {
+    id: 'choose_file',
+    defaultMessage: 'Choose file',
+  },
 });
 
 const FileWrapper = (props) => {
@@ -35,8 +43,9 @@ const FileWrapper = (props) => {
       <Widget
         id={`field-${id}`}
         name={id}
-        labelFile={value?.filename || ''}
+        labelFile={value?.filename || intl.formatMessage(messages.no_file)}
         label={title}
+        labelButton={intl.formatMessage(messages.choose_file)}
         description={description}
         isRequired={required}
         labelRequired={intl.formatMessage(messages.required)}

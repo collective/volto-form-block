@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-12-17T19:07:10.506Z\n"
+"POT-Creation-Date: 2024-12-17T20:37:32.457Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -376,6 +376,11 @@ msgstr ""
 #. Default: "Checkbox Group"
 #: index
 msgid "checkbox_group"
+msgstr ""
+
+#. Default: "Choose file"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "choose_file"
 msgstr ""
 
 #. Default: "Recipient"
@@ -792,6 +797,11 @@ msgstr ""
 msgid "mail_template"
 msgstr ""
 
+#. Default: "No file chosen"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "no_file"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"
@@ -820,6 +830,11 @@ msgstr ""
 #. Default: "Answer the question to prove that you are human"
 #: components/Widget/NoRobotsCaptchaWidget
 msgid "resolveCaptcha"
+msgstr ""
+
+#. Default: "Select..."
+#: schemaFormBlock/Wrappers/SelectWrapper
+msgid "select"
 msgstr ""
 
 #. Default: "results"

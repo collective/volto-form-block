@@ -376,6 +376,11 @@ msgstr "Captcha-Anbieter"
 msgid "checkbox_group"
 msgstr "Auswahlfeldgruppe"
 
+#. Default: "Choose file"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "choose_file"
+msgstr "Datei auswählen"
+
 #. Default: "Recipient"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -790,6 +795,11 @@ msgstr "Text am Anfang der E-Mail"
 msgid "mail_template"
 msgstr "Mail-Vorlage"
 
+#. Default: "No file chosen"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "no_file"
+msgstr "Keine Datei ausgewählt"
+
 #. Default: "Number"
 #: index
 msgid "number"
@@ -819,6 +829,11 @@ msgstr "{record} Einträge haben die maximale Anzahl von Tagen überschritten."
 #: components/Widget/NoRobotsCaptchaWidget
 msgid "resolveCaptcha"
 msgstr "Bitte beantworten Sie die Frage, um zu beweisen, dass Sie ein Mensch sind."
+
+#. Default: "Select..."
+#: schemaFormBlock/Wrappers/SelectWrapper
+msgid "select"
+msgstr "Bitte wählen..."
 
 #. Default: "results"
 #: helpers/react-select

@@ -382,6 +382,11 @@ msgstr "Proveedor de captchas"
 msgid "checkbox_group"
 msgstr ""
 
+#. Default: "Choose file"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "choose_file"
+msgstr ""
+
 #. Default: "Recipient"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -796,6 +801,11 @@ msgstr ""
 msgid "mail_template"
 msgstr ""
 
+#. Default: "No file chosen"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "no_file"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"
@@ -825,6 +835,11 @@ msgstr ""
 #: components/Widget/NoRobotsCaptchaWidget
 msgid "resolveCaptcha"
 msgstr "Responde la pregunta para demostrar que eres humano"
+
+#. Default: "Select..."
+#: schemaFormBlock/Wrappers/SelectWrapper
+msgid "select"
+msgstr ""
 
 #. Default: "results"
 #: helpers/react-select

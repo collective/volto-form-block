@@ -10,6 +10,10 @@ const messages = defineMessages({
     id: 'form_required',
     defaultMessage: 'Required',
   },
+  select: {
+    id: 'select',
+    defaultMessage: 'Select...',
+  },
 });
 
 const SelectWrapper = (props) => {
@@ -46,6 +50,7 @@ const SelectWrapper = (props) => {
         isRequired={required}
         labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
+        placeholder={intl.formatMessage(messages.select)}
         onChange={(value) => onChange(id, value.value)}
         ref={ref}
         onClick={() => onClick()}

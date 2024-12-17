@@ -376,6 +376,11 @@ msgstr ""
 msgid "checkbox_group"
 msgstr ""
 
+#. Default: "Choose file"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "choose_file"
+msgstr ""
+
 #. Default: "Recipient"
 #: schemaFormBlock/schema
 msgid "confirmation_recipients"
@@ -790,6 +795,11 @@ msgstr "Testo all'inizio dell'email"
 msgid "mail_template"
 msgstr ""
 
+#. Default: "No file chosen"
+#: schemaFormBlock/Wrappers/FileWrapper
+msgid "no_file"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"
@@ -819,6 +829,11 @@ msgstr "Sono presenti {record} record che hanno superato il numero massimo di gi
 #: components/Widget/NoRobotsCaptchaWidget
 msgid "resolveCaptcha"
 msgstr "Rispondi alla domanda per verificare che tu sia un umano."
+
+#. Default: "Select..."
+#: schemaFormBlock/Wrappers/SelectWrapper
+msgid "select"
+msgstr ""
 
 #. Default: "results"
 #: helpers/react-select
