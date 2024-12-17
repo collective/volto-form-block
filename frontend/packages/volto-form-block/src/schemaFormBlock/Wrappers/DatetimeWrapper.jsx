@@ -53,6 +53,8 @@ const DatetimeWrapper = (props) => {
         id,
         widget === 'date' ? base.format('YYYY-MM-DD') : base.toISOString(),
       );
+    } else {
+      onChange(id, undefined);
     }
   };
 
