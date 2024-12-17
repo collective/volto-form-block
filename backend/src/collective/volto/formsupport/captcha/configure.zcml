@@ -53,4 +53,9 @@
       component=".vocabularies.captcha_providers_vocabulary_factory"
       />
 
+  <utility
+      name="collective.volto.formsupport.mail.templates"
+      component=".vocabularies.mail_templates_vocabulary_factory"
+      />
+
 </configure>
