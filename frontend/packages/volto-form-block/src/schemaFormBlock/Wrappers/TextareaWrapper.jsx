@@ -25,6 +25,7 @@ const TextareaWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -46,6 +47,8 @@ const TextareaWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
         minLength={minLength || null}
         maxLength={maxLength || null}
       />

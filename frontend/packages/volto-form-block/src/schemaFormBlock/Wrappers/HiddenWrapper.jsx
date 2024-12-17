@@ -24,6 +24,7 @@ const HiddenWrapper = (props) => {
     description,
     onEdit,
     required,
+    error,
     intl,
   } = props;
 
@@ -45,6 +46,8 @@ const HiddenWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       />
     </FormFieldWrapper>
   ) : (

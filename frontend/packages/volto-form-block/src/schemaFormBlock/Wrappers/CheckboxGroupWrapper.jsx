@@ -24,6 +24,7 @@ const CheckboxGroupWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -101,6 +102,8 @@ const CheckboxGroupWrapper = (props) => {
             value: option[0],
             label: option[1],
           }))}
+          errorMessage={error ? error[0] : ''}
+          isInvalid={error}
         />
       )}
     </FormFieldWrapper>

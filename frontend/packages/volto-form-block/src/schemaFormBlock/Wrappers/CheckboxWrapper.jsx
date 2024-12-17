@@ -22,6 +22,7 @@ const CheckboxWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -42,6 +43,8 @@ const CheckboxWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       />
     </FormFieldWrapper>
   );

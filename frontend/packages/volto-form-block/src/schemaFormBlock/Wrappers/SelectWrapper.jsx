@@ -27,6 +27,7 @@ const SelectWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -53,6 +54,8 @@ const SelectWrapper = (props) => {
         placeholder={intl.formatMessage(messages.select)}
         onChange={(value) => onChange(id, value.value)}
         ref={ref}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
         onClick={() => onClick()}
         options={options.map((option) => ({
           value: option[0],

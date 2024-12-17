@@ -32,6 +32,7 @@ const FileWrapper = (props) => {
     accept,
     size,
     required,
+    error,
     intl,
   } = props;
 
@@ -69,6 +70,8 @@ const FileWrapper = (props) => {
           onChange(id, null);
         }}
         ref={ref}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       />
     </FormFieldWrapper>
   );

@@ -23,6 +23,7 @@ const RadioGroupWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -47,6 +48,8 @@ const RadioGroupWrapper = (props) => {
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
         onClick={() => onClick()}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       >
         {options.map((option) => (
           <OptionWidget value={option[0]}>{option[1]}</OptionWidget>

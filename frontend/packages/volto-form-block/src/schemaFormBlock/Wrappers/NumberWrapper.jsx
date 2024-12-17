@@ -23,6 +23,7 @@ const NumberWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -44,6 +45,8 @@ const NumberWrapper = (props) => {
         placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
         ref={ref}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
         onClick={() => onClick()}
       />
     </FormFieldWrapper>

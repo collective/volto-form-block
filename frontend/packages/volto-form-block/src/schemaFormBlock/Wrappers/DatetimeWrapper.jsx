@@ -30,6 +30,7 @@ const DatetimeWrapper = (props) => {
     description,
     widget,
     required,
+    error,
     intl,
   } = props;
 
@@ -81,6 +82,8 @@ const DatetimeWrapper = (props) => {
         onChangeTime={onDateChange}
         ref={ref}
         onClick={() => onClick()}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       />
     </FormFieldWrapper>
   );

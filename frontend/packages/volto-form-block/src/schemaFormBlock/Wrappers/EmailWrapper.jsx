@@ -24,6 +24,7 @@ const EmailWrapper = (props) => {
     title,
     description,
     required,
+    error,
     intl,
   } = props;
 
@@ -47,6 +48,8 @@ const EmailWrapper = (props) => {
         onClick={() => onClick()}
         minLength={minLength || null}
         maxLength={maxLength || null}
+        errorMessage={error ? error[0] : ''}
+        isInvalid={error}
       />
     </FormFieldWrapper>
   );
