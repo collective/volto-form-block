@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-12-17T18:05:44.148Z\n"
+"POT-Creation-Date: 2024-12-17T19:07:10.506Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -146,18 +146,6 @@ msgstr ""
 
 #. Default: "Required"
 #: components/Widget/SelectWidget
-#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
-#: schemaFormBlock/Wrappers/CheckboxWrapper
-#: schemaFormBlock/Wrappers/DatetimeWrapper
-#: schemaFormBlock/Wrappers/EmailWrapper
-#: schemaFormBlock/Wrappers/FileWrapper
-#: schemaFormBlock/Wrappers/HiddenWrapper
-#: schemaFormBlock/Wrappers/NumberWrapper
-#: schemaFormBlock/Wrappers/RadioGroupWrapper
-#: schemaFormBlock/Wrappers/SelectWrapper
-#: schemaFormBlock/Wrappers/TextareaWrapper
-#: schemaFormBlock/Wrappers/TextWrapper
-#: schemaFormBlock/Wrappers/TimeWrapper
 msgid "Required"
 msgstr ""
 
@@ -656,6 +644,22 @@ msgstr ""
 #. Default: "Number of days after which, the data should be deleted"
 #: formSchema
 msgid "form_remove_data_after_days_helptext"
+msgstr ""
+
+#. Default: "Required"
+#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
+#: schemaFormBlock/Wrappers/CheckboxWrapper
+#: schemaFormBlock/Wrappers/DatetimeWrapper
+#: schemaFormBlock/Wrappers/EmailWrapper
+#: schemaFormBlock/Wrappers/FileWrapper
+#: schemaFormBlock/Wrappers/HiddenWrapper
+#: schemaFormBlock/Wrappers/NumberWrapper
+#: schemaFormBlock/Wrappers/RadioGroupWrapper
+#: schemaFormBlock/Wrappers/SelectWrapper
+#: schemaFormBlock/Wrappers/TextareaWrapper
+#: schemaFormBlock/Wrappers/TextWrapper
+#: schemaFormBlock/Wrappers/TimeWrapper
+msgid "form_required"
 msgstr ""
 
 #. Default: "Clear"

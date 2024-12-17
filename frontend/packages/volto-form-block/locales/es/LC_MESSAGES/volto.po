@@ -150,18 +150,6 @@ msgstr "Sustituir el archivo actual"
 
 #. Default: "Required"
 #: components/Widget/SelectWidget
-#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
-#: schemaFormBlock/Wrappers/CheckboxWrapper
-#: schemaFormBlock/Wrappers/DatetimeWrapper
-#: schemaFormBlock/Wrappers/EmailWrapper
-#: schemaFormBlock/Wrappers/FileWrapper
-#: schemaFormBlock/Wrappers/HiddenWrapper
-#: schemaFormBlock/Wrappers/NumberWrapper
-#: schemaFormBlock/Wrappers/RadioGroupWrapper
-#: schemaFormBlock/Wrappers/SelectWrapper
-#: schemaFormBlock/Wrappers/TextareaWrapper
-#: schemaFormBlock/Wrappers/TextWrapper
-#: schemaFormBlock/Wrappers/TimeWrapper
 msgid "Required"
 msgstr "Obligatorio"
 
@@ -661,6 +649,22 @@ msgstr ""
 #: formSchema
 msgid "form_remove_data_after_days_helptext"
 msgstr "Número de días después de los cuales se deben eliminar los datos"
+
+#. Default: "Required"
+#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
+#: schemaFormBlock/Wrappers/CheckboxWrapper
+#: schemaFormBlock/Wrappers/DatetimeWrapper
+#: schemaFormBlock/Wrappers/EmailWrapper
+#: schemaFormBlock/Wrappers/FileWrapper
+#: schemaFormBlock/Wrappers/HiddenWrapper
+#: schemaFormBlock/Wrappers/NumberWrapper
+#: schemaFormBlock/Wrappers/RadioGroupWrapper
+#: schemaFormBlock/Wrappers/SelectWrapper
+#: schemaFormBlock/Wrappers/TextareaWrapper
+#: schemaFormBlock/Wrappers/TextWrapper
+#: schemaFormBlock/Wrappers/TimeWrapper
+msgid "form_required"
+msgstr ""
 
 #. Default: "Clear"
 #: components/FormResult

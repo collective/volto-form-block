@@ -8,7 +8,7 @@ import FormFieldWrapper from './FormFieldWrapper';
 
 const messages = defineMessages({
   required: {
-    id: 'Required',
+    id: 'form_required',
     defaultMessage: 'Required',
   },
 });
