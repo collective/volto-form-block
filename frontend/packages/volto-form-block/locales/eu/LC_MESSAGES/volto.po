@@ -783,6 +783,11 @@ msgstr ""
 msgid "mail_header_label"
 msgstr ""
 
+#. Default: "Mail template"
+#: schemaFormBlock/schema
+msgid "mail_template"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"

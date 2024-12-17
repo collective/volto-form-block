@@ -188,6 +188,10 @@ const messages = defineMessages({
     id: 'fieldset_confirmation',
     defaultMessage: 'Confirmation-Page',
   },
+  mail_template: {
+    id: 'mail_template',
+    defaultMessage: 'Mail template',
+  },
 });
 
 const defaultEmptyData = {
@@ -239,7 +243,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         fields: [
           'send_confirmation',
           ...(data?.send_confirmation
-            ? ['confirmation_recipients', 'fixed_attachment']
+            ? ['confirmation_recipients', 'fixed_attachment', 'mail_template']
             : []),
           'send',
           ...(data?.send ? ['recipients', 'bcc', 'admin_info'] : []),
@@ -303,8 +307,11 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
       captcha: {
         title: intl.formatMessage(messages.captcha),
         type: 'string',
-        vocabulary:
-          config.blocks?.blocksConfig?.schemaForm?.captchaProvidersVocabulary,
+        factory: 'Choice',
+        vocabulary: {
+          '@id':
+            config.blocks?.blocksConfig?.schemaForm?.captchaProvidersVocabulary,
+        },
       },
       send: {
         type: 'boolean',
@@ -385,6 +392,15 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         title: intl.formatMessage(messages.fixed_attachment),
         type: 'object',
         widget: 'file',
+      },
+      mail_template: {
+        title: intl.formatMessage(messages.mail_template),
+        type: 'string',
+        factory: 'Choice',
+        vocabulary: {
+          '@id':
+            config.blocks?.blocksConfig?.schemaForm?.mailTemplatesVocabulary,
+        },
       },
     },
     required: conditional_required,

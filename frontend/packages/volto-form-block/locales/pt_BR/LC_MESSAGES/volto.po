@@ -787,6 +787,11 @@ msgstr "Se o campo não for preenchido, um texto padrão será usado"
 msgid "mail_header_label"
 msgstr "Texto no início do e-mail."
 
+#. Default: "Mail template"
+#: schemaFormBlock/schema
+msgid "mail_template"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"

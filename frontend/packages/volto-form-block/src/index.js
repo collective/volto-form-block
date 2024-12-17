@@ -99,6 +99,7 @@ const applyConfig = (config) => {
       fieldSchema: FieldSchema,
       captchaProvidersVocabulary:
         'collective.volto.formsupport.captcha.providers',
+      mailTemplatesVocabulary: 'collective.volto.formsupport.mail.templates',
       disableEnter: true,
       filterFactory: [
         'label_text_field',

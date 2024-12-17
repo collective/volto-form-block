@@ -779,7 +779,12 @@ msgstr "Wenn das Feld nicht ausgefüllt ist, wird ein Standardtext verwendet"
 #. Default: "Text at the beginning of the email"
 #: formSchema
 msgid "mail_header_label"
-msgstr ""
+msgstr "Text am Anfang der E-Mail"
+
+#. Default: "Mail template"
+#: schemaFormBlock/schema
+msgid "mail_template"
+msgstr "Mail-Vorlage"
 
 #. Default: "Number"
 #: index

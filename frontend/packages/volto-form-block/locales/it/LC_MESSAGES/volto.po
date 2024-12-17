@@ -781,6 +781,11 @@ msgstr "Se il campo non viene compilato verrà utilizzato un testo di default"
 msgid "mail_header_label"
 msgstr "Testo all'inizio dell'email"
 
+#. Default: "Mail template"
+#: schemaFormBlock/schema
+msgid "mail_template"
+msgstr ""
+
 #. Default: "Number"
 #: index
 msgid "number"
