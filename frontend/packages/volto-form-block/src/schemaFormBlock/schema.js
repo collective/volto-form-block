@@ -299,10 +299,8 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         type: 'string',
         title: intl.formatMessage(messages.thankyou),
         description: intl.formatMessage(messages.thankyou_description),
-        widget: 'richtext',
-        default: {
-          data: '${formfields}',
-        },
+        widget: 'textarea',
+        default: '${formfields}',
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),

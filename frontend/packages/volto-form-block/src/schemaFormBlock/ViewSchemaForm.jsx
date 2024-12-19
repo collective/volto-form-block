@@ -138,7 +138,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
     </Grid>,
   );
 
-  let thankyou = data.thankyou?.data || '';
+  let thankyou = data.thankyou || '';
 
   // Add formfields
   thankyou = thankyou.replace('${formfields}', formfields);
