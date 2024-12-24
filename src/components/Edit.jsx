@@ -5,7 +5,7 @@ import {
   SubblocksEdit,
   SubblocksWrapper,
 } from 'volto-subblocks';
-import { SidebarPortal } from '@plone/volto/components';
+import SidebarPortal from '@plone/volto/components/manage/Sidebar/SidebarPortal';
 
 import EditBlock from 'volto-form-block/components/EditBlock';
 import Sidebar from 'volto-form-block/components/Sidebar';
