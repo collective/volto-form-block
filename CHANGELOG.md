@@ -1,5 +1,12 @@
 
 
+### [3.10.2](https://github.com/collective/volto-form-block/compare/v3.10.1...v3.10.2) (2024-12-24)
+
+
+### Maintenance
+
+* removed volto imports from barrel files ([778f717](https://github.com/collective/volto-form-block/commit/778f717acc297b01b2e4279b2e2d10fa72fe1c2f))
+
 ### [3.10.1](https://github.com/collective/volto-form-block/compare/v3.10.0...v3.10.1) (2024-10-03)
 
 
