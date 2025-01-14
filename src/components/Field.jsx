@@ -12,6 +12,7 @@ import {
   TextareaWidget,
   CheckboxListWidget,
   RadioWidget,
+  HiddenWidget,
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 
@@ -43,6 +44,7 @@ const Field = ({
   valid,
   disabled = false,
   formHasErrors = false,
+  errorMessage,
   id,
 }) => {
   const intl = useIntl();
@@ -50,6 +52,8 @@ const Field = ({
   const isInvalid = () => {
     return !isOnEdit && !valid;
   };
+
+  const error = errorMessage ? [errorMessage] : [];
 
   return (
     <div className="field">
@@ -62,6 +66,7 @@ const Field = ({
           required={required}
           onChange={onChange}
           value={value}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -77,6 +82,7 @@ const Field = ({
           onChange={onChange}
           value={value}
           rows={10}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -96,6 +102,7 @@ const Field = ({
           placeholder={intl.formatMessage(messages.select_a_value)}
           aria-label={intl.formatMessage(messages.select_a_value)}
           classNamePrefix="react-select"
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           required={required}
@@ -113,6 +120,7 @@ const Field = ({
             ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
           ]}
           value={value}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -130,6 +138,7 @@ const Field = ({
             ...(input_values?.map((v) => ({ value: v, label: v })) ?? []),
           ]}
           value={value}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -144,6 +153,7 @@ const Field = ({
           required={required}
           onChange={onChange}
           value={!!value}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
@@ -160,6 +170,7 @@ const Field = ({
           resettable={false}
           onChange={onChange}
           value={value}
+          error={error}
           isDisabled={disabled}
           required={required}
           invalid={isInvalid().toString()}
@@ -175,6 +186,7 @@ const Field = ({
           type="file"
           required={required}
           invalid={isInvalid().toString()}
+          error={error}
           isDisabled={disabled}
           onChange={onChange}
           value={value}
@@ -190,10 +202,14 @@ const Field = ({
           required={required}
           onChange={onChange}
           value={value}
+          error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
         />
+      )}
+      {field_type === 'hidden' && (
+        <HiddenWidget id={name} value={value} isOnEdit={isOnEdit} />
       )}
       {field_type === 'static_text' &&
         (isOnEdit ? (
@@ -226,6 +242,7 @@ const Field = ({
               required={required}
               onChange={onChange}
               value={value}
+              error={error}
               isDisabled={disabled}
               formHasErrors={formHasErrors}
               invalid={isInvalid().toString()}

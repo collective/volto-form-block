@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'semantic-ui-react';
-import { FormFieldWrapper } from '@plone/volto/components';
+import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
 
 /* Style */
 import 'volto-form-block/components/Widget/CheckboxListWidget.css';

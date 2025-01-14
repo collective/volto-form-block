@@ -58,6 +58,10 @@ With HCaptcha integration, you also have an additional option in the sidebar in 
 
 In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
 
+### OTP email validation
+
+To prevent sending spam emails to users via the email address configured as sender, the 'email' fields type flagged as BCC will require the user to enter an OTP code received at the address entered in the field when user fills out the form.
+
 ## Export
 
 With backend support, you can store data submitted from the form.
@@ -115,6 +119,24 @@ In backend integration, you can add in block data an object called `static_field
 i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
+
+## Schema validators
+
+If you want to validate configuration field (for example, testing if 'From email' is an address of a specific domain), you could add your validation functions to block config:
+
+```js
+config.blocks.blocksConfig.form = {
+  ...config.blocks.blocksConfig.form,
+  schemaValidators: {
+    fieldname: yourValidationFN(data),
+  },
+};
+```
+
+`yourValidationFN` have to return:
+
+- null if field is valid
+- a string with the error message if field is invalid.
 
 ## Upgrade guide
 

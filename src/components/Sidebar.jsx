@@ -13,12 +13,14 @@ import {
 } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
 import downloadSVG from '@plone/volto/icons/download.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
+
+import warningSVG from '@plone/volto/icons/warning.svg';
 
 import {
   getFormData,
@@ -26,10 +28,12 @@ import {
   clearFormData,
 } from 'volto-form-block/actions';
 
-import config from '@plone/volto/registry';
+import { BlockDataForm } from '@plone/volto/components/manage/Form';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
+import { getFieldName } from 'volto-form-block/components/utils';
 
-import { BlockDataForm } from '@plone/volto/components';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import './Sidebar.css';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   exportCsv: {
@@ -52,6 +56,24 @@ const messages = defineMessages({
     id: 'Cancel',
     defaultMessage: 'Cancel',
   },
+  fieldId: {
+    id: 'fieldId',
+    defaultMessage: 'Field ID',
+  },
+  remove_data_cron_info: {
+    id: 'remove_data_cron_info',
+    defaultMessage:
+      'To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.',
+  },
+  remove_data_warning: {
+    id: 'remove_data_warning',
+    defaultMessage:
+      'There are {record} record that have exceeded the maximum number of days.',
+  },
+  remove_data_button: {
+    id: 'remove_data_button',
+    defaultMessage: 'remove expired data',
+  },
 });
 
 const Sidebar = ({
@@ -73,7 +95,12 @@ const Sidebar = ({
   );
   useEffect(() => {
     if (properties?.['@id'])
-      dispatch(getFormData(flattenToAppURL(properties['@id'])));
+      dispatch(
+        getFormData({
+          path: flattenToAppURL(properties['@id']),
+          block_id: block,
+        }),
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clearFormDataState]);
 
@@ -132,6 +159,7 @@ const Sidebar = ({
                           exportCsvFormData(
                             flattenToAppURL(properties['@id']),
                             `export-${properties.id ?? 'form'}.csv`,
+                            block,
                           ),
                         )
                       }
@@ -159,13 +187,63 @@ const Sidebar = ({
                       onCancel={() => setConfirmOpen(false)}
                       onConfirm={() => {
                         dispatch(
-                          clearFormData(flattenToAppURL(properties['@id'])),
+                          clearFormData({
+                            path: flattenToAppURL(properties['@id']),
+                            block_id: block,
+                          }),
                         );
                         setConfirmOpen(false);
                       }}
                     />
                   </Grid.Column>
                 </Grid.Row>
+                {data.remove_data_after_days > 0 && (
+                  <Grid.Row>
+                    <div class="ui message info tiny">
+                      {formData.loaded &&
+                        formData.result?.expired_total > 0 && (
+                          <>
+                            <p>
+                              <Icon name={warningSVG} size="18px" />
+                              {intl.formatMessage(
+                                messages.remove_data_warning,
+                                {
+                                  record: formData.result.expired_total,
+                                },
+                              )}
+                            </p>
+                            <p>
+                              <Button
+                                onClick={() =>
+                                  dispatch(
+                                    clearFormData({
+                                      path: flattenToAppURL(properties['@id']),
+                                      expired: true,
+                                      block_id: block,
+                                    }),
+                                  )
+                                }
+                                size="tiny"
+                                compact
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                }}
+                              >
+                                <Icon name={deleteSVG} size="1.5rem" />{' '}
+                                {intl.formatMessage(
+                                  messages.remove_data_button,
+                                )}
+                              </Button>
+                            </p>
+                          </>
+                        )}
+                      <p>
+                        {intl.formatMessage(messages.remove_data_cron_info)}
+                      </p>
+                    </div>
+                  </Grid.Row>
+                )}
               </Grid>
             </Form.Field>
           )}
@@ -190,10 +268,30 @@ const Sidebar = ({
                     )}
                   </Accordion.Title>
                   <Accordion.Content active={selected === index}>
+                    {/* Field ID info */}
+                    {(subblock.field_type === 'text' ||
+                      subblock.field_type === 'from' ||
+                      subblock.field_type === 'textarea' ||
+                      subblock.field_type === 'date' ||
+                      subblock.field_type === 'single_choice' ||
+                      subblock.field_type === 'multiple_choice' ||
+                      subblock.field_type === 'select' ||
+                      subblock.field_type === 'checkbox' ||
+                      subblock.field_type === 'attachment') && (
+                      <Segment tertiary>
+                        {intl.formatMessage(messages.fieldId)}:{' '}
+                        <strong>
+                          {getFieldName(subblock.label, subblock.field_id)}
+                        </strong>
+                      </Segment>
+                    )}
                     <BlockDataForm
                       schema={FieldSchema(subblock)}
                       onChangeField={(name, value) => {
-                        var update_values = {};
+                        const update_values = {};
+                        if (subblock.field_type === 'static_text') {
+                          update_values.required = false;
+                        }
 
                         onChangeSubBlock(index, {
                           ...subblock,
