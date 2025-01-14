@@ -209,7 +209,7 @@ const defaultEmptyData = {
 export const schemaFormBlockSchema = ({ intl, ...props }) => {
   let data = props.data || props.formData;
   let conditional_required = [];
-  if (!data?.store && !data?.send) {
+  if (data?.store !== true && data?.send !== true) {
     conditional_required.push('store');
     conditional_required.push('send');
   }

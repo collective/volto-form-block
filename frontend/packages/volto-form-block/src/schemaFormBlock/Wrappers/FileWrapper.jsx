@@ -71,6 +71,7 @@ const FileWrapper = (props) => {
         }}
         ref={ref}
         errorMessage={error ? error[0] : ''}
+        hasError={error}
         isInvalid={error}
       />
     </FormFieldWrapper>

@@ -11,6 +11,10 @@ const messages = defineMessages({
     id: 'form_required',
     defaultMessage: 'Required',
   },
+  select: {
+    id: 'select',
+    defaultMessage: 'Select...',
+  },
 });
 
 const CheckboxGroupWrapper = (props) => {
@@ -62,11 +66,19 @@ const CheckboxGroupWrapper = (props) => {
           labelRequired={intl.formatMessage(messages.required)}
           disabled={isDisabled}
           onChange={(value) => onChange(id, value)}
+          errorMessage={error ? error[0] : ''}
           ref={ref}
           onClick={() => onClick()}
+          isInvalid={error !== undefined}
         >
           {options.map((option) => (
-            <Checkbox value={option[0]}>{option[1]}</Checkbox>
+            <Checkbox
+              key={option}
+              value={option[0]}
+              isInvalid={error !== undefined}
+            >
+              {option[1]}
+            </Checkbox>
           ))}
         </CheckboxGroup>
       )}
@@ -88,6 +100,7 @@ const CheckboxGroupWrapper = (props) => {
           description={description}
           isRequired={required}
           isMulti={true}
+          placeholder={intl.formatMessage(messages.select)}
           labelRequired={intl.formatMessage(messages.required)}
           disabled={isDisabled}
           onChange={(value) => {
