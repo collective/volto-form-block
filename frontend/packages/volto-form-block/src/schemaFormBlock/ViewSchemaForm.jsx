@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
-import { includes, keys, map, pickBy, without } from 'lodash';
+import { includes, keys, map, pickBy, without, isObject } from 'lodash';
 import { Grid, Message } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
 import { renderToString } from 'react-dom/server';
@@ -76,6 +76,23 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
           data.schema.properties[field].factory,
         ),
     );
+
+    map(keys(submitData), (field) => {
+      if (
+        data.schema.properties[field].factory === 'number' &&
+        submitData[field] !== undefined
+      ) {
+        submitData[field] = parseInt(submitData[field]);
+      }
+
+      if (
+        data.schema.properties[field].factory === 'time' &&
+        isObject(submitData[field])
+      ) {
+        submitData[field] =
+          `${submitData[field].hour}:${submitData[field].minute}`;
+      }
+    });
 
     dispatch(submitForm(path, id, submitData, captcha))
       .then((resp) => {

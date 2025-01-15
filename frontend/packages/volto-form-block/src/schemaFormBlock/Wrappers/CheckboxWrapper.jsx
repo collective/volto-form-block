@@ -37,6 +37,7 @@ const CheckboxWrapper = (props) => {
         value={value || ''}
         label={title}
         description={description}
+        default={props.default}
         isRequired={required}
         labelRequired={intl.formatMessage(messages.required)}
         disabled={isDisabled}
@@ -44,7 +45,7 @@ const CheckboxWrapper = (props) => {
         ref={ref}
         onClick={() => onClick()}
         errorMessage={error ? error[0] : ''}
-        isInvalid={error}
+        isInvalid={error !== undefined}
       />
     </FormFieldWrapper>
   );
