@@ -61,10 +61,12 @@ class EmailFormProcessor:
 
         subject = self.get_subject()
 
-        mfrom = formataddr((
-            self.mail_settings.email_from_name,
-            self.mail_settings.email_from_address,
-        ))
+        mfrom = formataddr(
+            (
+                self.mail_settings.email_from_name,
+                self.mail_settings.email_from_address,
+            )
+        )
         mreply_to = self.get_reply_to()
         message = self.prepare_message()
         text_message = (
@@ -83,6 +85,10 @@ class EmailFormProcessor:
             msg["To"] = mto
             msg["Reply-To"] = mreply_to
 
+            bcc = self.get_bcc()
+            if bcc:
+                msg["Bcc"] = bcc
+
             headers_to_forward = self.block.get("httpHeaders", [])
             for header in headers_to_forward:
                 header_value = self.request.get(header)
@@ -91,10 +97,6 @@ class EmailFormProcessor:
 
             self.add_attachments(msg=msg)
             self.send_mail(msg=msg, charset=self.charset)
-            # send a copy also to the fields with bcc flag
-            for bcc in self.get_bcc():
-                msg.replace_header("To", bcc)
-                self.send_mail(msg=msg, charset=self.charset)
 
         if send_confirmation:
             recipients = self.get_confirmation_recipients()
@@ -105,6 +107,13 @@ class EmailFormProcessor:
                 msg["To"] = self.get_confirmation_recipients()
                 msg.set_content(text_message, cte=CTE)
                 msg.add_alternative(message, subtype="html", cte=CTE)
+
+                if "fixed_attachment" in self.block and self.block["fixed_attachment"]:
+                    self.attachments["fixed_attachment"] = self.block[
+                        "fixed_attachment"
+                    ]
+
+                self.add_attachments(msg=msg)
                 self.send_mail(msg=msg, charset=self.charset)
 
     def get_reply_to(self) -> str:
@@ -147,7 +156,7 @@ class EmailFormProcessor:
     def get_bcc(self) -> list:
         bcc = self.block.get("bcc", "")
         bcc = self.substitute_variables(bcc)
-        return bcc.split(";") if bcc else []
+        return bcc if bcc != "" else None
 
     def get_confirmation_recipients(self) -> str:
         confirmation_recipients = self.block.get("confirmation_recipients", "")
