@@ -106,11 +106,26 @@ class Edit extends Component {
             onChangeField={(id, value) => {
               this.props.onChangeBlock(this.props.block, {
                 ...this.props.data,
-                [id]: value,
+                [id]:
+                  id === 'confirmation_recipients' && value
+                    ? '${' + value + '}'
+                    : value,
               });
             }}
-            onChangeBlock={this.props.onChangeBlock}
-            formData={this.props.data}
+            onChangeBlock={(block, data) => {
+              this.props.onChangeBlock(block, {
+                ...data,
+                confirmation_recipients: data.confirmation_recipients
+                  ? '${' + data.confirmation_recipients + '}'
+                  : data.confirmation_recipients,
+              });
+            }}
+            formData={{
+              ...this.props.data,
+              confirmation_recipients: this.props.data.confirmation_recipients
+                ? this.props.data.confirmation_recipients.replace(/[${}]/g, '')
+                : this.props.data.confirmation_recipients,
+            }}
             block={this.props.block}
             navRoot={this.props.navRoot}
             contentType={this.props.contentType}
