@@ -74,12 +74,18 @@ class EmailFormProcessor:
             .getData()
             .strip()
         )
+        admin_message = self.prepare_message(True)
+        admin_text_message = (
+            portal_transforms.convertTo("text/plain", message, mimetype="text/html")
+            .getData()
+            .strip()
+        )
 
         if send_to_admin:
             mto = self.block.get("recipients", self.mail_settings.email_from_address)
             msg = EmailMessage(policy=policy.SMTP)
-            msg.set_content(text_message, cte=CTE)
-            msg.add_alternative(message, subtype="html", cte=CTE)
+            msg.set_content(admin_text_message, cte=CTE)
+            msg.add_alternative(admin_message, subtype="html", cte=CTE)
             msg["Subject"] = subject
             msg["From"] = mfrom
             msg["To"] = mto
@@ -163,15 +169,20 @@ class EmailFormProcessor:
         confirmation_recipients = self.substitute_variables(confirmation_recipients)
         return confirmation_recipients
 
-    def prepare_message(self):
+    def prepare_message(self, admin=False):
         templates = api.portal.get_registry_record("schemaform.mail_templates")
         template_name = self.block.get("email_template", "default")
+        admin_info = self.block.get("admin_info", "")
         template = templates[template_name]
         template_vars = {
             "mail_header": self.block.get("mail_header", {}).get("data", ""),
             "mail_footer": self.block.get("mail_footer", {}).get("data", ""),
         }
-        form_fields = "<table>\n"
+        form_fields = ""
+        if admin:
+            form_fields += admin_info.replace("\n", "<br/>") + "<br/><br/>"
+
+        form_fields += "<table>\n"
         for record in self.records:
             value = str(record["value"])
             template_vars[record["field_id"]] = value
