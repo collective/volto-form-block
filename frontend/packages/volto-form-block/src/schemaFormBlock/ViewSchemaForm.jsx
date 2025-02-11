@@ -13,6 +13,7 @@ import {
   includes,
   keys,
   map,
+  omitBy,
   pickBy,
   without,
   isObject,
@@ -114,6 +115,9 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
         ),
       ),
     );
+
+    // Remove empty values
+    submitData = omitBy(submitData, (value) => value === null);
 
     dispatch(submitForm(path, id, submitData, captcha))
       .then((resp) => {
