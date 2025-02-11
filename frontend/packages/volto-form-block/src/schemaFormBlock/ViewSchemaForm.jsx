@@ -42,6 +42,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const intl = useIntl();
   const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
+  const [submitPressed, setSubmitPressed] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
 
   const propertyNames = keys(data.schema.properties);
@@ -76,6 +77,8 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       captcha.value = submitData['captchaWidget']?.value ?? '';
       delete submitData.captchaToken;
     }
+
+    setSubmitPressed(true);
 
     submitData = pickBy(
       submitData,
@@ -218,7 +221,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
           buttonComponent={
             config.blocks.blocksConfig.schemaForm.buttonComponent
           }
-          onSubmit={onSubmit}
+          onSubmit={!submitPressed && onSubmit}
           resetOnCancel={true}
           onCancel={data.show_cancel ? onCancel : null}
           submitLabel={data.submit_label || intl.formatMessage(messages.submit)}
