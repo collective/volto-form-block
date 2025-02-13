@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
@@ -28,8 +28,8 @@ import {
   clearFormData,
 } from 'volto-form-block/actions';
 
-import { BlockDataForm } from '@plone/volto/components';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { BlockDataForm } from '@plone/volto/components/manage/Form';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { getFieldName } from 'volto-form-block/components/utils';
 
 import './Sidebar.css';
