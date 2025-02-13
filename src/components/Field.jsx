@@ -46,6 +46,7 @@ const Field = ({
   formHasErrors = false,
   errorMessage,
   id,
+  autocomplete,
 }) => {
   const intl = useIntl();
 
@@ -70,6 +71,7 @@ const Field = ({
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          autocomplete={autocomplete}
         />
       )}
       {field_type === 'textarea' && (
@@ -86,6 +88,7 @@ const Field = ({
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          autocomplete={autocomplete}
         />
       )}
       {field_type === 'select' && (
@@ -107,6 +110,7 @@ const Field = ({
           invalid={isInvalid().toString()}
           required={required}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          autocomplete={autocomplete}
         />
       )}
       {field_type === 'single_choice' && (
@@ -175,6 +179,7 @@ const Field = ({
           required={required}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          autocomplete={autocomplete}
         />
       )}
       {field_type === 'attachment' && (
@@ -206,6 +211,7 @@ const Field = ({
           isDisabled={disabled}
           invalid={isInvalid().toString()}
           {...(isInvalid() ? { className: 'is-invalid' } : {})}
+          autocomplete={autocomplete}
         />
       )}
       {field_type === 'hidden' && (
@@ -247,6 +253,7 @@ const Field = ({
               formHasErrors={formHasErrors}
               invalid={isInvalid().toString()}
               {...(isInvalid() ? { className: 'is-invalid' } : {})}
+              autocomplete={autocomplete}
             />,
           ];
 
@@ -271,6 +278,7 @@ Field.propTypes = {
   value: PropTypes.any,
   formHasErrors: PropTypes.bool,
   onChange: PropTypes.func,
+  autocomplete: PropTypes.string,
 };
 
 export default Field;
