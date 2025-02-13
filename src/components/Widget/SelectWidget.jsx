@@ -14,8 +14,8 @@ import {
   getVocabFromHint,
   getVocabFromField,
   getVocabFromItems,
-} from '@plone/volto/helpers';
-import { FormFieldWrapper } from '@plone/volto/components';
+} from '@plone/volto/helpers/Vocabularies/Vocabularies';
+import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
 import { getVocabulary, getVocabularyTokenTitle } from '@plone/volto/actions';
 import { normalizeValue } from '@plone/volto/components/manage/Widgets/SelectUtils';
 
@@ -169,16 +169,8 @@ class SelectWidget extends Component {
    * @returns {string} Markup for the component.
    */
   render() {
-    const {
-      id,
-      choices,
-      value,
-      intl,
-      onChange,
-      required,
-      invalid,
-      title,
-    } = this.props;
+    const { id, choices, value, intl, onChange, required, invalid, title } =
+      this.props;
     const normalizedValue = normalizeValue(choices, value, intl);
     // Make sure that both disabled and isDisabled (from the DX layout feat work)
     const disabled = this.props.disabled || this.props.isDisabled;

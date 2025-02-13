@@ -4,7 +4,7 @@
  * added aria- attributes
  */
 
-import { FormFieldWrapper } from '@plone/volto/components';
+import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Input } from 'react-aria-components';

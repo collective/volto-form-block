@@ -570,6 +570,16 @@ msgstr "Adi!"
 msgid "form_edit_warning_from"
 msgstr "'Bidaltzailearen posta elektronikoa' motako eremu bat gehitu. Ez baduzu hori egiten edo gehitzen baduzu baina erabiltzaileak ez badu betetzen, mezuaren bidaltzailea formularioaren konfigurazioan ezarritakoa izango da."
 
+#: formSchema
+# defaultMessage: Validate BCC emails with OTP verification
+msgid "form_email_otp_verification"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
+msgid "form_email_otp_verification_description"
+msgstr ""
+
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"

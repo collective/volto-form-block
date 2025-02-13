@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { TextArea, Label } from 'react-aria-components';
 
 import { injectIntl } from 'react-intl';
-import { FormFieldWrapper } from '@plone/volto/components';
+import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
 
 /**
  * TextareaWidget, a widget for multiple lines text
