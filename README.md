@@ -11,9 +11,9 @@ yarn add volto-form-block volto-subblocks
 
 > [!NOTE]
 > - Since version v2.0.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 2.0.0 or later and performing its upgrade steps is required.
-> **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
-> **Note**: Since version v3.0.0 of this addon, it's required Volto >= 16.0.0-alpha.38
-> **Note**: Since version v3.11.0 of this adddon, it's required it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 3.1.4 or higher.
+> - Since version v2.1.2 of this add-on, Volto 14.2.0 or later is required.
+> - Since version v3.0.0 of this add-on, Volto 16.0.0-alpha.38 or later is required.
+> - Since version v3.11.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 3.1.4 or later is required.
 
 ## Features
 
