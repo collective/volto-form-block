@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
+import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 
 /* Style */
 import 'volto-form-block/components/Widget/RadioWidget.css';

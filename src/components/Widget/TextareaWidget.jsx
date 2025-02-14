@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { Label, TextArea } from 'semantic-ui-react';
 
 import { injectIntl } from 'react-intl';
-import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
+import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 
 /**
  * TextareaWidget, a widget for multiple lines text
