@@ -1,5 +1,16 @@
 
 
+## [3.11.0](https://github.com/collective/volto-form-block/compare/v3.10.2...v3.11.0) (2025-02-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* dates sent as ISO not DD-MM-YYYY (#122)
+
+### Bug Fixes
+
+* dates sent as ISO not DD-MM-YYYY ([#122](https://github.com/collective/volto-form-block/issues/122)) ([9c2ce02](https://github.com/collective/volto-form-block/commit/9c2ce02868c98eda5c4c9ec0f846deb79b22a6e7))
+
 ### [3.10.2](https://github.com/collective/volto-form-block/compare/v3.10.1...v3.10.2) (2024-12-24)
 
 
