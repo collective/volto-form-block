@@ -28,7 +28,7 @@ import {
   clearFormData,
 } from 'volto-form-block/actions';
 
-import { BlockDataForm } from '@plone/volto/components/manage/Form';
+import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { getFieldName } from 'volto-form-block/components/utils';
 
