@@ -237,20 +237,12 @@ const View = ({ data, id, path }) => {
                 config.blocks.blocksConfig.form.attachment_fields.includes(
                   subblock.field_type,
                 );
-              const isDate = subblock.field_type === 'date';
 
               if (isAttachment) {
                 attachments[name] = formattedFormData[name].value;
                 delete formattedFormData[name];
               }
 
-              if (isDate) {
-                formattedFormData[name].value = formatDate({
-                  date: formattedFormData[name].value,
-                  format: 'DD-MM-YYYY',
-                  locale: intl.locale,
-                });
-              }
             }
           });
           dispatch(

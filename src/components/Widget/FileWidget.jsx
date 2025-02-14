@@ -10,7 +10,7 @@ import { Image, Dimmer } from 'semantic-ui-react';
 import { readAsDataURL } from 'promise-file-reader';
 import { injectIntl } from 'react-intl';
 import deleteSVG from '@plone/volto/icons/delete.svg';
-import { FormFieldWrapper } from '@plone/volto/components/manage/Widgets';
+import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import loadable from '@loadable/component';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
