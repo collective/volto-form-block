@@ -76,7 +76,12 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
     };
     if (data.captcha === 'honeypot') {
       captcha.value = submitData['captchaWidget']?.value ?? '';
-      delete submitData.captchaToken;
+      delete submitData.captchaWidget;
+    }
+
+    if (data.captcha === 'recaptcha') {
+      captcha.token = submitData.captchaWidget;
+      delete submitData.captchaWidget;
     }
 
     setSubmitPressed(true);
