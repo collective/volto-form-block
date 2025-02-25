@@ -12,7 +12,7 @@ import Field from 'volto-form-block/components/Field';
 import { Button } from 'volto-form-block/components/Widget';
 import { sendOTP } from 'volto-form-block/actions';
 
-import 'volto-form-block/components/Widget/OTPWidget.css';
+import 'volto-form-block/components/Widgets/OTPWidget.css';
 export const OTP_FIELDNAME_EXTENDER = '_otp';
 
 const messages = defineMessages({

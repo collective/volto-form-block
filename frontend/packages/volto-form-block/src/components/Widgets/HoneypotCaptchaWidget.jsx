@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import TextWidget from '@plone/volto/components/manage/Widgets/TextWidget';
 
-import 'volto-form-block/components/Widget/HoneypotCaptchaWidget.css';
+import 'volto-form-block/components/Widgets/HoneypotCaptchaWidget.css';
 
 /* By default, captcha token is setted, and becames empty if user/bot fills the field. */
 const HoneypotCaptchaWidget = ({ id, value, onChange, captcha_props }) => {
