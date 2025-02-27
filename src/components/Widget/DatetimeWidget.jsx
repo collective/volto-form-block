@@ -188,6 +188,7 @@ export class DatetimeWidgetComponent extends Component {
       widgetOptions,
       invalid,
       required,
+      autocomplete,
     } = this.props;
     const noPastDates =
       this.props.noPastDates || widgetOptions?.pattern_options?.noPastDates;
@@ -230,6 +231,7 @@ export class DatetimeWidgetComponent extends Component {
               id={`${id}-date`}
               placeholder={intl.formatMessage(messages.date)}
               {...attributes}
+              autoComplete={autocomplete}
             />
           </div>
           {!dateOnly && (
@@ -286,6 +288,7 @@ DatetimeWidgetComponent.propTypes = {
   onChange: PropTypes.func.isRequired,
   wrapped: PropTypes.bool,
   resettable: PropTypes.bool,
+  autocomplete: PropTypes.string,
 };
 
 /**
@@ -301,6 +304,7 @@ DatetimeWidgetComponent.defaultProps = {
   noPastDates: false,
   value: null,
   resettable: true,
+  autocomplete: undefined,
 };
 
 export default compose(

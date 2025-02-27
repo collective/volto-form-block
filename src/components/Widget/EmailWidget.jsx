@@ -7,7 +7,7 @@
 import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Input } from 'semantic-ui-react';
+import { Input } from 'react-aria-components';
 
 /** EmailWidget, a widget for email addresses
  *
@@ -33,6 +33,7 @@ const EmailWidget = (props) => {
     isDisabled,
     required,
     invalid,
+    autocomplete,
   } = props;
   const inputId = `field-${id}`;
 
@@ -64,6 +65,7 @@ const EmailWidget = (props) => {
         onClick={() => onClick()}
         minLength={minLength || null}
         maxLength={maxLength || null}
+        autoComplete={autocomplete ?? 'off'}
         {...attributes}
       />
     </FormFieldWrapper>
@@ -88,6 +90,7 @@ EmailWidget.propTypes = {
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   placeholder: PropTypes.string,
+  autocomplete: PropTypes.string,
 };
 
 /**
@@ -105,6 +108,7 @@ EmailWidget.defaultProps = {
   onClick: () => {},
   minLength: null,
   maxLength: null,
+  autocomplete: undefined,
 };
 
 export default EmailWidget;
