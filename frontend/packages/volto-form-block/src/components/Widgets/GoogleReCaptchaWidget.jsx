@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useState } from 'react';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useIntl } from 'react-intl';
 
@@ -7,14 +7,22 @@ const GoogleReCaptchaWidget = (props) => {
 
   const { GoogleReCaptchaProvider, GoogleReCaptcha } = recaptchalib;
   const intl = useIntl();
+  const [submitted, setSubmitted] = useState(false);
 
   return (
-    <GoogleReCaptchaProvider
-      reCaptchaKey={captcha_props.public_key}
-      language={intl.locale ?? 'en'}
-    >
-      <GoogleReCaptcha onVerify={(token) => onChange(id, token)} />
-    </GoogleReCaptchaProvider>
+    !submitted && (
+      <GoogleReCaptchaProvider
+        reCaptchaKey={captcha_props.public_key}
+        language={intl.locale ?? 'en'}
+      >
+        <GoogleReCaptcha
+          onVerify={(token) => {
+            setSubmitted(true);
+            onChange(id, token);
+          }}
+        />
+      </GoogleReCaptchaProvider>
+    )
   );
 };
 
