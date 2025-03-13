@@ -22,6 +22,7 @@ import {
 import { Grid, Message } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
 import { renderToString } from 'react-dom/server';
+import { stripRequiredProperty } from '../helpers/schema';
 
 const messages = defineMessages({
   error: {
@@ -45,6 +46,7 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const [submitted, setSubmitted] = useState(false);
   const [submitPressed, setSubmitPressed] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
+  data.schema = stripRequiredProperty(data.schema);
 
   const propertyNames = keys(data.schema.properties);
   const queryParams = qs.parse(location.search);

@@ -6,6 +6,7 @@ import { SidebarPortal } from '@plone/volto/components';
 import { Form, BlockDataForm } from '@plone/volto/components/manage/Form';
 import { withBlockExtensions } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
+import { stripRequiredProperty } from '../helpers/schema';
 
 const messages = defineMessages({
   submit: {
@@ -80,7 +81,7 @@ class Edit extends Component {
           formData={
             isEmpty(data.schema)
               ? { schema: defaultEmptyData }
-              : { schema: data.schema }
+              : { schema: stripRequiredProperty(data.schema) }
           }
           onChangeFormData={(formData) => {
             this.props.onChangeBlock(this.props.block, {
