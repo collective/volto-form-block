@@ -67,6 +67,8 @@ class Edit extends Component {
                 filterFactory,
                 additionalFactory,
                 allowEditId: true,
+                allowEditQueryParameter: true,
+                allowEditPlaceholder: true,
                 widgets: config.blocks.blocksConfig.schemaForm.widgets,
               },
             },
