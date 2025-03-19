@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-10-02T07:18:42.778Z\n"
+"POT-Creation-Date: 2025-03-19T16:22:55.224Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -359,6 +359,11 @@ msgstr ""
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
 # defaultMessage: Possible values
 msgid "form_field_input_values"
+msgstr ""
+
+#: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
+# defaultMessage: You can create value pairs separated by a "|" symbol to add a different addressee based on your choice, e.g. "Value | email.recipient@gmail.com"
+msgid "form_field_input_values_description"
 msgstr ""
 
 #: fieldSchema

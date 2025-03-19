@@ -365,6 +365,11 @@ msgstr "Valor para o campo"
 msgid "form_field_input_values"
 msgstr "Valores possíveis"
 
+#: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
+# defaultMessage: You can create value pairs separated by a "|" symbol to add a different addressee based on your choice, e.g. "Value | email.recipient@gmail.com"
+msgid "form_field_input_values_description"
+msgstr ""
+
 #: fieldSchema
 # defaultMessage: Label
 msgid "form_field_label"
