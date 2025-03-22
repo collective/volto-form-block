@@ -17,6 +17,7 @@ import {
   pickBy,
   without,
   isObject,
+  isString,
   fromPairs,
 } from 'lodash';
 import { Grid, Message } from 'semantic-ui-react';
@@ -57,8 +58,17 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       initialData[property] = queryParams[property];
     }
 
-    const queryParameterName =
-      data.schema.properties[property].queryParameterName;
+    const field = data.schema.properties[property];
+
+    if (
+      field.factory &&
+      field.factory === 'checkbox_group' &&
+      isString(field.default)
+    ) {
+      initialData[property] = field.default.split('\n');
+    }
+
+    const queryParameterName = field.queryParameterName;
 
     if (
       queryParameterName !== undefined &&
