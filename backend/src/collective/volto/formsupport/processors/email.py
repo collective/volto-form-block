@@ -61,13 +61,7 @@ class EmailFormProcessor:
 
         subject = self.get_subject()
 
-        mfrom = formataddr(
-            (
-                self.mail_settings.email_from_name,
-                self.mail_settings.email_from_address,
-            )
-        )
-        mreply_to = self.get_reply_to()
+        mfrom = self.get_sender()
         message = self.prepare_message()
         text_message = (
             portal_transforms.convertTo("text/plain", message, mimetype="text/html")
@@ -89,7 +83,6 @@ class EmailFormProcessor:
             msg["Subject"] = subject
             msg["From"] = mfrom
             msg["To"] = mto
-            msg["Reply-To"] = mreply_to
 
             bcc = self.get_bcc()
             if bcc:
@@ -122,7 +115,7 @@ class EmailFormProcessor:
                 self.add_attachments(msg=msg)
                 self.send_mail(msg=msg, charset=self.charset)
 
-    def get_reply_to(self) -> str:
+    def get_sender(self) -> str:
         sender = self.block.get("sender", "")
         sender = (
             self.substitute_variables(sender) or self.mail_settings.email_from_address
