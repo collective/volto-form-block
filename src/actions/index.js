@@ -3,6 +3,7 @@
  * @module actions/submitForm
  */
 
+import { getFieldName } from 'volto-form-block/components/utils';
 export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
 
 /**
@@ -117,5 +118,28 @@ export function resetOTP(block_id) {
   return {
     type: RESET_OTP,
     block_id,
+  };
+}
+
+/**
+ * Function
+ * @function setSubblocksIDList
+ * @param {subblocks} subblocks array
+ * @returns {Array} list of subblocks Id
+ */
+
+export const SUBBLOCKS_ID_LIST = 'SUBBLOCKS_ID_LIST';
+
+export function setSubblocksIDList(subblocks) {
+  let subblocksOptions = subblocks.map((item) => ({
+    field_type: item.field_type,
+    choices: item?.input_values?.length > 0 ? item.input_values : [],
+    value: getFieldName(item.label, item.field_id),
+    text: getFieldName(item.label, item.field_id),
+  }));
+
+  return {
+    type: SUBBLOCKS_ID_LIST,
+    options: subblocksOptions,
   };
 }

@@ -46,6 +46,7 @@ const Field = ({
   formHasErrors = false,
   errorMessage,
   id,
+  isVisible = true,
 }) => {
   const intl = useIntl();
 
@@ -57,7 +58,7 @@ const Field = ({
 
   return (
     <div className="field">
-      {field_type === 'text' && (
+      {field_type === 'text' && isVisible && (
         <TextWidget
           id={name}
           name={name}

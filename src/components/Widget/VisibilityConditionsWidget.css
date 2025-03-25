@@ -1,0 +1,44 @@
+/* sidebar Widget */
+.visibility-conditions-widget .wrapper-widget-label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.visibility-conditions-widget .wrapper-widget-label .ui.button {
+    margin-bottom: 0.5rem;
+}
+
+.visibility-conditions-widget textarea#form_visibility_conditions {
+    opacity: 0.7;
+}
+
+/* Modal */
+.modal_visibility_conditions .ui.button.choice-add {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.modal_visibility_conditions .choice-input {
+    width: 100%;
+}
+
+.modal_visibility_conditions .ui.grid.grid-row-wrapper {
+    padding: 0.5rem 0;
+    margin: 0;
+}
+
+.modal_visibility_conditions .ui.grid.grid-row-wrapper:nth-child(even) {
+    background-color: #e1f7f7b3;
+}
+
+.modal_visibility_conditions .ui.input.choice-input > input {
+    padding-left: 1rem;
+}
+
+.modal_visibility_conditions .ui.radio.field_boolean {
+    margin-right: 1rem;
+}

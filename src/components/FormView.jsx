@@ -10,6 +10,8 @@ import {
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 import { FormResult } from 'volto-form-block/components';
+import { evaluateAllConditions } from 'volto-form-block/helpers/conditions-list';
+
 /* Style */
 import 'volto-form-block/components/FormView.css';
 
@@ -150,6 +152,10 @@ const FormView = ({
                           valid={isValidField(name)}
                           errorMessage={getErrorMessage(name)}
                           formHasErrors={formErrors?.length > 0}
+                          isVisible={evaluateAllConditions(
+                            subblock?.visibility_conditions,
+                            formData,
+                          )}
                         />
                       </Grid.Column>
                     </Grid.Row>

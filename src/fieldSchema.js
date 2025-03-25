@@ -69,6 +69,7 @@ const messages = defineMessages({
   },
 });
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
   var intl = useIntl();
   const baseFieldTypeChoices = [
@@ -114,6 +115,7 @@ export default (props) => {
           'field_type',
           ...schemaExtenderValues.fields,
           ...(props?.field_type === 'static_text' ? [] : ['required']),
+          'visibility_conditions',
         ],
       },
     ],
@@ -141,6 +143,10 @@ export default (props) => {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
+      },
+      visibility_conditions: {
+        title: 'Scelte visibili se',
+        widget: 'visibility_conditions_widget',
       },
       ...schemaExtenderValues.properties,
     },

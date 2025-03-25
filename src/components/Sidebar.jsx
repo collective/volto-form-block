@@ -26,6 +26,7 @@ import {
   getFormData,
   exportCsvFormData,
   clearFormData,
+  setSubblocksIDList,
 } from 'volto-form-block/actions';
 
 import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
@@ -112,6 +113,14 @@ const Sidebar = ({
     });
   var FormSchema = config.blocks.blocksConfig.form.formSchema;
   var FieldSchema = config.blocks.blocksConfig.form.fieldSchema;
+
+  // update list of fields ID
+  useEffect(() => {
+    if (data.subblocks?.length > 0) {
+      dispatch(setSubblocksIDList(data.subblocks));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <Form>
@@ -292,7 +301,6 @@ const Sidebar = ({
                         if (subblock.field_type === 'static_text') {
                           update_values.required = false;
                         }
-
                         onChangeSubBlock(index, {
                           ...subblock,
                           [name]: value,
