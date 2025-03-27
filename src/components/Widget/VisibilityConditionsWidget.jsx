@@ -27,6 +27,7 @@ import {
   checkTypeDateField,
   createStringFormula,
 } from 'volto-form-block/helpers/conditions-list';
+import { cloneDeep } from 'lodash';
 
 /* Style */
 import 'volto-form-block/components/Widget/VisibilityConditionsWidget.css';
@@ -88,7 +89,7 @@ const messages = defineMessages({
 });
 
 const VisibilityConditionsWidget = (props) => {
-  const { onChange, value } = props;
+  const { onChange, value = [] } = props;
   const intl = useIntl();
   const initialCondition = {
     field: null,
@@ -107,7 +108,7 @@ const VisibilityConditionsWidget = (props) => {
 
   // Delete condition button
   const deleteCondition = (index) => {
-    let newValues = [...conditions];
+    let newValues = cloneDeep(conditions);
     if (index >= 0 && index < newValues.length) {
       // remove fields
       newValues.splice(index, 1);
@@ -123,31 +124,31 @@ const VisibilityConditionsWidget = (props) => {
 
   // Add condition button
   const addCondition = () => {
-    let newValues = [...conditions];
+    let newValues = cloneDeep(conditions);
     let newItem = initialCondition;
     newValues.push(newItem);
     setConditions(newValues);
   };
 
   // OnChange select Field
-  const choiceFieldChange = (e, data, index) => {
-    let newValues = [...conditions];
-
+  const choiceFieldChange = (data, index) => {
+    let newValues = cloneDeep(conditions);
     // Find the complete object based on the selected value
     const selectedObj = optionsFieldsID.find(
       (option) => option.value === data.value,
     );
 
     if (index >= 0 && index < newValues.length) {
-      newValues[index].field = selectedObj;
-      newValues[index].field_id = selectedObj.value;
+      const obj = cloneDeep(selectedObj);
+      newValues[index].field = obj;
+      newValues[index].field_id = obj.value;
       setConditions(newValues);
     }
   };
 
   // OnChange select Condition
-  const conditionFieldChange = (e, conditionID, index) => {
-    let newValues = [...conditions];
+  const conditionFieldChange = (conditionID, index) => {
+    let newValues = cloneDeep(conditions);
     if (index >= 0 && index < newValues.length) {
       newValues[index].condition = conditionID;
       setConditions(newValues);
@@ -156,7 +157,7 @@ const VisibilityConditionsWidget = (props) => {
 
   // OnChange select value of condition
   const conditionValueFieldChange = (value, index) => {
-    let newValues = [...conditions];
+    let newValues = cloneDeep(conditions);
     newValues[index].value_condition = value;
     setConditions(newValues);
   };
@@ -173,28 +174,38 @@ const VisibilityConditionsWidget = (props) => {
     return options;
   };
 
+  const getInitialConditions = () => {
+    if (value?.length > 0) {
+      setConditions(value);
+    } else {
+      setConditions([initialCondition]);
+    }
+  };
+
   // initialized conditions value
-  //   useEffect(() => {
-  //     if (value?.length > 0) {
-  //       setConditions(value);
-  //     } else {
-  //       setConditions(conditions);
-  //     }
-  //   }, [showModalChoices]);
+  useEffect(() => {
+    if (value?.length > 0) {
+      setConditions(value);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (conditions.length === 0) {
+      setConditions([initialCondition]);
+    }
+  }, [conditions]);
 
   // reset fields modal not confirmed
-  //   useEffect(() => {
-  //     // console.log('value del widget', value);
-  //     // console.log('condition del widget', conditions);
-  //     if (showModalChoices) {
-  //       if (!value || value?.length === 0) {
-  //         setConditions([initialCondition]);
-  //       } else {
-  //         setConditions(value);
-  //       }
-  //     }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [showModalChoices]);
+  useEffect(() => {
+    if (showModalChoices) {
+      if (!value || value?.length === 0) {
+        setConditions([initialCondition]);
+      } else {
+        setConditions(value);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModalChoices]);
 
   return (
     <Grid.Row className="visibility-conditions-widget">
@@ -208,11 +219,6 @@ const VisibilityConditionsWidget = (props) => {
             onClose={() => setShowModalChoices(false)}
             onOpen={() => {
               setShowModalChoices(true);
-              if (value.length > 0) {
-                setConditions(value);
-              } else {
-                setConditions(initialCondition);
-              }
             }}
             open={showModalChoices}
             trigger={
@@ -255,9 +261,9 @@ const VisibilityConditionsWidget = (props) => {
                             messages.visible_conditions_widget_fields,
                           )}
                           value={item?.field?.value ? item.field.value : null}
-                          onChange={(e, data) =>
-                            choiceFieldChange(e, data, index)
-                          }
+                          onChange={(e, data) => {
+                            choiceFieldChange(data, index);
+                          }}
                           options={optionsFieldsID}
                         />
                         {/* TO DO: filter the array excluding the field you are focusing on */}
@@ -271,9 +277,9 @@ const VisibilityConditionsWidget = (props) => {
                           placeholder={intl.formatMessage(
                             messages.visible_conditions_widget_options,
                           )}
-                          onChange={(e, { value }) =>
-                            conditionFieldChange(e, value, index)
-                          }
+                          onChange={(e, { value }) => {
+                            conditionFieldChange(value, index);
+                          }}
                           value={item.condition}
                           options={conditionsListOptions()}
                         />
@@ -321,21 +327,22 @@ const VisibilityConditionsWidget = (props) => {
                             )}
                             className="choice-input"
                             value={item.value_condition}
-                            onChange={(e) =>
-                              conditionValueFieldChange(e.target.value, index)
-                            }
+                            onChange={(e) => {
+                              conditionValueFieldChange(e.target.value, index);
+                            }}
                           />
                         )}
 
                         {/* Condition if field has a choices */}
+                        {/* TO DO: do a multiselect if multiple values ​​can be selected */}
                         {checkTypeSelectionField(item) && (
                           <Select
                             placeholder={intl.formatMessage(
                               messages.visible_conditions_widget_options,
                             )}
-                            onChange={(e, { value }) =>
-                              conditionValueFieldChange(value, index)
-                            }
+                            onChange={(e, { value }) => {
+                              conditionValueFieldChange(value, index);
+                            }}
                             value={item.value_condition}
                             options={choicesOptions(item.field?.choices ?? [])}
                           />
@@ -351,9 +358,9 @@ const VisibilityConditionsWidget = (props) => {
                               label={intl.formatMessage(
                                 messages.visible_conditions_widget_true,
                               )}
-                              onChange={() =>
-                                conditionValueFieldChange(true, index)
-                              }
+                              onChange={(e) => {
+                                conditionValueFieldChange(true, index);
+                              }}
                             />
                             <Radio
                               id="field_bool_false"
@@ -362,9 +369,9 @@ const VisibilityConditionsWidget = (props) => {
                               label={intl.formatMessage(
                                 messages.visible_conditions_widget_false,
                               )}
-                              onChange={() =>
-                                conditionValueFieldChange(false, index)
-                              }
+                              onChange={(e) => {
+                                conditionValueFieldChange(false, index);
+                              }}
                             />
                           </>
                         )}
@@ -379,14 +386,13 @@ const VisibilityConditionsWidget = (props) => {
                             )}
                             className="choice-input"
                             value={item.value_condition}
-                            onChange={(e) =>
-                              conditionValueFieldChange(e.target.value, index)
-                            }
+                            onChange={(e) => {
+                              conditionValueFieldChange(e.target.value, index);
+                            }}
                           />
                         )}
 
                         {/* If none of the above conditions are satisfied */}
-                        {/*   // TO DO: se queste condizioni non vengono soddisfatte, aggiungere un helptext dove si dice che non è la condizione migliore per quel campo */}
                         {!checkTypeTextField(item) &&
                           !checkTypeSelectionField(item) &&
                           !checkTypeBooleanField(item) &&
@@ -426,14 +432,16 @@ const VisibilityConditionsWidget = (props) => {
             <ModalActions>
               {/* TO DO: bug sul salvataggio dei dati anche quando fai annulla */}
               <Button
+                type="button"
                 onClick={() => {
                   setShowModalChoices(false);
-                  onChange(props.id, value);
+                  getInitialConditions();
                 }}
               >
                 {intl.formatMessage(messages.visible_conditions_widget_cancel)}
               </Button>
               <Button
+                type="button"
                 color="primary"
                 onClick={() => {
                   setShowModalChoices(false);
@@ -458,4 +466,4 @@ const VisibilityConditionsWidget = (props) => {
   );
 };
 
-export default VisibilityConditionsWidget;
+export default React.memo(VisibilityConditionsWidget);

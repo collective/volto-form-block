@@ -95,33 +95,43 @@ export const createConditionFormula = (
   value_field_id,
   value_condition,
 ) => {
-  // console.log(
-  //   'stampa dalla formulaxxx',
-  //   condition,
-  //   value_field_id,
-  //   value_condition,
-  // );
   // Type of condition
   switch (condition) {
     case 'is_empty':
-      if (!value_field_id) return true;
+      if (!value_field_id || value_field_id?.length === 0) return true;
       break;
 
     case 'is_not_empty':
-      if (value_field_id) return true;
+      if (value_field_id || value_field_id?.length > 0) return true;
       break;
 
     case 'is_equal_to':
-      return value_field_id === value_condition;
+      if (value_field_id && Array.isArray(value_field_id)) {
+        return value_field_id[0] === value_condition;
+      } else if (value_field_id) {
+        return value_field_id === value_condition;
+      }
+      break;
 
     case 'is_not_equal_to':
-      return value_field_id !== value_condition;
+      if (value_field_id && Array.isArray(value_field_id)) {
+        return value_field_id[0] !== value_condition;
+      } else if (value_field_id) {
+        return value_field_id !== value_condition;
+      }
+      break;
 
     case 'contains':
-      return value_field_id.includes(value_condition);
+      if (value_field_id && value_field_id?.length > 0) {
+        return value_field_id.includes(value_condition);
+      }
+      break;
 
     case 'not_contains':
-      return !value_field_id.includes(value_condition);
+      if (value_field_id && value_field_id?.length > 0) {
+        return !value_field_id?.includes(value_condition);
+      }
+      break;
 
     case 'greater_than':
       return value_field_id > value_condition;
@@ -143,18 +153,14 @@ export const createConditionFormula = (
 export const evaluateAllConditions = (conditions = [], formData) => {
   if (conditions?.length > 0) {
     return conditions.every((conditionObj) => {
-      // console.log(
-      //   'formData',
-      //   formData,
-      //   formData[conditionObj.field_id]?.value,
-      //   conditionObj,
-      // ),
-      createConditionFormula(
+      return createConditionFormula(
         conditionObj.condition,
         formData[conditionObj.field_id]?.value,
         conditionObj.value_condition,
       );
     });
+  } else {
+    return true;
   }
 };
 
@@ -164,10 +170,10 @@ export const createStringFormula = (conditions) => {
   const operator = (operator) => {
     switch (operator) {
       case 'is_empty':
-        return '= ∅';
+        return '=∅';
 
       case 'is_not_empty':
-        return '!= ∅';
+        return '!∅';
 
       case 'is_equal_to':
         return '=';
@@ -176,10 +182,10 @@ export const createStringFormula = (conditions) => {
         return '!=';
 
       case 'contains':
-        return '';
+        return '∈';
 
       case 'not_contains':
-        return '!';
+        return '∉';
 
       case 'greater_than':
         return '>';
