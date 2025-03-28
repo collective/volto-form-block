@@ -38,13 +38,7 @@ const messages = defineMessages({
   },
 });
 
-const DataTable = ({
-  ReactTable,
-  properties,
-  fields,
-  blockId,
-  removeDataAfterDays,
-}) => {
+const DataTable = ({ ReactTable, properties, fields, blockId }) => {
   const {
     useReactTable,
     flexRender,
@@ -60,7 +54,12 @@ const DataTable = ({
   const [sorting, setSorting] = useState([]);
 
   useEffect(() => {
-    dispatch(getFormData(flattenToAppURL(properties['@id'])));
+    dispatch(
+      getFormData({
+        path: flattenToAppURL(properties['@id']),
+        block_id: blockId,
+      }),
+    );
   }, [clearFormDataSelector.loaded]);
 
   const columns = useMemo(() => {
@@ -234,7 +233,7 @@ const DataTable = ({
           formDataCount: data.length,
         })}
       </p>
-      <div class="inline">
+      <div className="inline">
         <Button
           compact
           size="small"
@@ -243,8 +242,8 @@ const DataTable = ({
             dispatch(
               exportCsvFormData(
                 flattenToAppURL(properties['@id']),
-                blockId,
                 `export-${properties.id ?? 'form'}.csv`,
+                blockId,
               ),
             )
           }
