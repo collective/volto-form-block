@@ -9,8 +9,9 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import loadable from '@loadable/component';
 import cx from 'classnames';
-import { Icon, FormFieldWrapper } from '@plone/volto/components';
-import { parseDateTime } from '@plone/volto/helpers';
+import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
+import { parseDateTime } from '@plone/volto/helpers/Utils/Utils';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 
 import leftKey from '@plone/volto/icons/left-key.svg';

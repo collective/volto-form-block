@@ -9,11 +9,11 @@ Install with mrs-developer (see [Volto docs](https://docs.voltocms.com/customizi
 yarn add volto-form-block volto-subblocks
 ```
 
-> **Note**: Since version v2.0.0 of this addon, it's required [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) 2.0.0 or higher (and its upgrade steps).
->
-> **Note**: Since version v2.1.2 of this addon, it's required Volto 14.2.0
->
-> **Note**: Since version v3.0.0 of this addon, it's required Volto >= 16.0.0-alpha.38
+> [!NOTE]
+> - Since version v2.0.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 2.0.0 or later and performing its upgrade steps is required.
+> - Since version v2.1.2 of this add-on, Volto 14.2.0 or later is required.
+> - Since version v3.0.0 of this add-on, Volto 16.0.0-alpha.38 or later is required.
+> - Since version v3.11.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 3.1.4 or later is required.
 
 ## Features
 
@@ -57,6 +57,10 @@ Plone addon and configure public and private keys in controlpanels.
 With HCaptcha integration, you also have an additional option in the sidebar in 'Captcha provider' to enable or disable the invisible captcha (see implications [here](https://docs.hcaptcha.com/faq#do-i-need-to-display-anything-on-the-page-when-using-hcaptcha-in-invisible-mode)).
 
 In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
+
+### OTP email validation
+
+To prevent sending spam emails to users via the email address configured as sender, the 'email' fields type flagged as BCC will require the user to enter an OTP code received at the address entered in the field when user fills out the form.
 
 ## Export
 
@@ -115,6 +119,24 @@ In backend integration, you can add in block data an object called `static_field
 i.e.: aggregated data from user federated authentication:
 
 ![Static fields](./docs/form-static-fields.png)
+
+## Schema validators
+
+If you want to validate configuration field (for example, testing if 'From email' is an address of a specific domain), you could add your validation functions to block config:
+
+```js
+config.blocks.blocksConfig.form = {
+  ...config.blocks.blocksConfig.form,
+  schemaValidators: {
+    fieldname: yourValidationFN(data),
+  },
+};
+```
+
+`yourValidationFN` have to return:
+
+- null if field is valid
+- a string with the error message if field is invalid.
 
 ## Upgrade guide
 

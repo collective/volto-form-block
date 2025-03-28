@@ -7,6 +7,8 @@ import {
   EXPORT_CSV_FORMDATA,
   GET_FORM_DATA,
   CLEAR_FORM_DATA,
+  SEND_OTP,
+  RESET_OTP,
 } from 'volto-form-block/actions';
 
 function download(filename, text) {
@@ -30,6 +32,7 @@ const initialState = {
   error: null,
   loaded: false,
   loading: false,
+  subrequests: {},
 };
 
 /**
@@ -42,26 +45,73 @@ const initialState = {
 export const submitForm = (state = initialState, action = {}) => {
   switch (action.type) {
     case `${SUBMIT_FORM_ACTION}_PENDING`:
-      return {
-        ...state,
-        error: null,
-        loaded: false,
-        loading: true,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {
+                  result: null,
+                }),
+                error: null,
+                loaded: false,
+                loading: true,
+              },
+            },
+          }
+        : {
+            ...state,
+            result: null,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
     case `${SUBMIT_FORM_ACTION}_SUCCESS`:
-      return {
-        ...state,
-        error: null,
-        loaded: true,
-        loading: false,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                result: action.result,
+                error: null,
+                loaded: true,
+                loading: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            result: action.result,
+            error: null,
+            loaded: true,
+            loading: false,
+          };
     case `${SUBMIT_FORM_ACTION}_FAIL`:
-      return {
-        ...state,
-        error: action.error,
-        loaded: false,
-        loading: false,
-      };
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: action.error,
+                result: null,
+                loading: false,
+                loaded: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: action.error,
+            result: null,
+            loading: false,
+            loaded: false,
+          };
+
     default:
       return state;
   }
@@ -85,10 +135,7 @@ export const exportCsvFormData = (state = initialState, action = {}) => {
         loading: true,
       };
     case `${EXPORT_CSV_FORMDATA}_SUCCESS`:
-      download(
-        `export-${state.content?.data?.id ?? 'form'}.csv`,
-        action.result,
-      );
+      download(action.filename ?? `export-form.csv`, action.result);
 
       return {
         ...state,
@@ -178,6 +225,105 @@ export const clearFormData = (state = initialState, action = {}) => {
         loaded: false,
         loading: false,
       };
+    default:
+      return state;
+  }
+};
+
+/**
+ * sendOTP reducer.
+ * @function sendOTP
+ * @param {Object} state Current state.
+ * @param {Object} action Action to be handled.
+ * @returns {Object} New state.
+ */
+export const sendOTP = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case `${SEND_OTP}_PENDING`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {
+                  items: [],
+                  total: 0,
+                  batching: {},
+                }),
+                error: null,
+                loaded: false,
+                loading: true,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
+    case `${SEND_OTP}_SUCCESS`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: null,
+                loaded: true,
+                loading: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: null,
+            loaded: true,
+            loading: false,
+          };
+    case `${SEND_OTP}_FAIL`:
+      return action.subrequest
+        ? {
+            ...state,
+            subrequests: {
+              ...state.subrequests,
+              [action.subrequest]: {
+                ...(state.subrequests[action.subrequest] || {}),
+                error: action.error,
+                loading: false,
+                loaded: false,
+              },
+            },
+          }
+        : {
+            ...state,
+            error: action.error,
+            loading: false,
+            loaded: false,
+          };
+    case RESET_OTP:
+      let new_subrequests = { ...state.subrequests };
+
+      if (action.block_id) {
+        Object.keys(new_subrequests)
+          .filter((k) => k.indexOf('otp_' + action.block_id) === 0)
+          .forEach((k) => {
+            delete new_subrequests[k];
+          });
+      }
+      return action.block_id
+        ? {
+            ...state,
+            subrequests: new_subrequests,
+          }
+        : {
+            ...state,
+            error: null,
+            loading: true,
+            loaded: false,
+          };
     default:
       return state;
   }

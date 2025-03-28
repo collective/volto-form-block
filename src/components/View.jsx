@@ -2,17 +2,35 @@ import React, { useState, useEffect, useReducer, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useIntl, defineMessages } from 'react-intl';
-import { submitForm } from 'volto-form-block/actions';
+import { submitForm, resetOTP } from 'volto-form-block/actions';
 import { getFieldName } from 'volto-form-block/components/utils';
 import FormView from 'volto-form-block/components/FormView';
-import { formatDate } from '@plone/volto/helpers/Utils/Date';
 import config from '@plone/volto/registry';
 import { Captcha } from 'volto-form-block/components/Widget';
+import { isValidEmail } from 'volto-form-block/helpers/validators';
+import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
+import { OTP_FIELDNAME_EXTENDER } from 'volto-form-block/components/Widget';
 
 const messages = defineMessages({
   formSubmitted: {
     id: 'formSubmitted',
     defaultMessage: 'Form successfully submitted',
+  },
+  defaultInvalidFieldMessage: {
+    id: 'formblock_defaultInvalidFieldMessage',
+    defaultMessage: 'Invalid field value',
+  },
+  requiredFieldMessage: {
+    id: 'formblock_requiredFieldMessage',
+    defaultMessage: 'Fill-in this field',
+  },
+  invalidEmailMessage: {
+    id: 'formblock_invalidEmailMessage',
+    defaultMessage: 'The email is incorrect',
+  },
+  insertOtp: {
+    id: 'formblock_insertOtp_error',
+    defaultMessage: 'Please, insert the OTP code recived via email.',
   },
 });
 
@@ -85,6 +103,9 @@ const View = ({ data, id, path }) => {
 
   const [formData, setFormData] = useReducer((state, action) => {
     if (action.reset) {
+      if (data.email_otp_verification) {
+        dispatch(resetOTP(id));
+      }
       return getInitialData(data);
     }
 
@@ -96,7 +117,10 @@ const View = ({ data, id, path }) => {
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
   const [formErrors, setFormErrors] = useState([]);
-  const submitResults = useSelector((state) => state.submitForm);
+
+  const submitResults = useSelector(
+    (state) => state.submitForm?.subrequests?.[id],
+  );
   const captchaToken = useRef();
 
   const onChangeFormData = (field_id, field, value, extras) => {
@@ -115,34 +139,73 @@ const View = ({ data, id, path }) => {
     data.subblocks.forEach((subblock, index) => {
       const name = getFieldName(subblock.label, subblock.id);
       const fieldType = subblock.field_type;
+      const isBCC = subblock.use_as_bcc;
       const additionalField =
         config.blocks.blocksConfig.form.additionalFields?.filter(
           (f) => f.id === fieldType && f.isValid !== undefined,
         )?.[0] ?? null;
+
       if (
         subblock.required &&
         additionalField &&
         !additionalField?.isValid(formData, name)
       ) {
-        v.push(name);
+        const validation = additionalField?.isValid(formData, name);
+        if (typeof validation === 'boolean') {
+          //for retro-compatibility with previous formErrors structure
+          v.push({
+            field: name,
+            message: intl.formatMessage(messages.defaultInvalidFieldMessage),
+          });
+        } else if (typeof validation === 'object') {
+          v.push(validation);
+        }
       } else if (
         subblock.required &&
         fieldType === 'checkbox' &&
         !formData[name]?.value
       ) {
-        v.push(name);
+        v.push({
+          field: name,
+          message: intl.formatMessage(messages.requiredFieldMessage),
+        });
       } else if (
         subblock.required &&
         (!formData[name] ||
           formData[name]?.value?.length === 0 ||
           JSON.stringify(formData[name]?.value ?? {}) === '{}')
       ) {
-        v.push(name);
+        v.push({
+          field: name,
+          message: intl.formatMessage(messages.requiredFieldMessage),
+        });
+      } else if (
+        (fieldType === 'from' || fieldType === 'email') &&
+        formData[name]?.value
+      ) {
+        if (!isValidEmail(formData[name].value)) {
+          v.push({
+            field: name,
+            message: intl.formatMessage(messages.invalidEmailMessage),
+          });
+        } else if (
+          data.email_otp_verification &&
+          isBCC &&
+          !formData[name].otp
+        ) {
+          v.push({
+            field: name + OTP_FIELDNAME_EXTENDER,
+            message: intl.formatMessage(messages.insertOtp),
+          });
+        }
       }
     });
 
     if (data.captcha && !captchaToken.current) {
-      v.push('captcha');
+      v.push({
+        field: 'captcha',
+        message: intl.formatMessage(messages.requiredFieldMessage),
+      });
     }
 
     setFormErrors(v);
@@ -173,7 +236,6 @@ const View = ({ data, id, path }) => {
                 config.blocks.blocksConfig.form.attachment_fields.includes(
                   subblock.field_type,
                 );
-              const isDate = subblock.field_type === 'date';
 
               // XXX: at the end of the day, we should avoid to use `attachments`
               if (isAttachment) {
@@ -183,14 +245,6 @@ const View = ({ data, id, path }) => {
                   field_id: subblock.field_id,
                 };
                 delete formattedFormData[name];
-              }
-
-              if (isDate) {
-                formattedFormData[name].value = formatDate({
-                  date: formattedFormData[name].value,
-                  format: 'DD-MM-YYYY',
-                  locale: intl.locale,
-                });
               }
             }
           });
@@ -224,10 +278,16 @@ const View = ({ data, id, path }) => {
     setFormState({ type: FORM_STATES.normal });
   };
 
+  const getErrorMessage = (field) => {
+    const e = formErrors?.filter((e) => e.field === field);
+    return e.length > 0 ? e[0].message : null;
+  };
+
   const captcha = new Captcha({
     captchaToken,
     captcha: data.captcha,
     captcha_props: data.captcha_props,
+    errorMessage: getErrorMessage('captcha'),
     onChangeFormData,
   });
 
@@ -237,7 +297,10 @@ const View = ({ data, id, path }) => {
     if (submitResults?.loaded) {
       setFormState({
         type: FORM_STATES.success,
-        result: intl.formatMessage(messages.formSubmitted),
+        result: {
+          message: intl.formatMessage(messages.formSubmitted),
+          ...submitResults.result,
+        },
       });
       captcha.reset();
       const formItem = document.getElementById(formid);
@@ -265,18 +328,23 @@ const View = ({ data, id, path }) => {
   }, []);
 
   return (
-    <FormView
-      id={formid}
-      formState={formState}
-      formErrors={formErrors}
-      formData={formData}
-      captcha={captcha}
-      onChangeFormData={onChangeFormData}
-      data={data}
-      onSubmit={submit}
-      resetFormState={resetFormState}
-      resetFormOnError={resetFormOnError}
-    />
+    <ValidateConfigForm data={data}>
+      <FormView
+        id={formid}
+        formState={formState}
+        formErrors={formErrors}
+        formData={formData}
+        captcha={captcha}
+        onChangeFormData={onChangeFormData}
+        data={data}
+        onSubmit={submit}
+        resetFormState={resetFormState}
+        resetFormOnError={resetFormOnError}
+        getErrorMessage={getErrorMessage}
+        path={path}
+        block_id={id}
+      />
+    </ValidateConfigForm>
   );
 };
 

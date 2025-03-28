@@ -1,0 +1,49 @@
+.otp-widget .otp-widget-field-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.otp-widget .otp-widget-field-wrapper .field {
+    flex-grow: 1;
+}
+
+.otp-widget .otp-alert {
+    position: relative;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #5d7083;
+    border-left: 8px solid #5d7083;
+    background-color: #fff;
+    border-radius: 0;
+    margin-top: -3rem;
+    margin-bottom: 3rem;
+}
+
+.otp-widget .otp-alert.otp-error {
+    border-left: 8px solid #cc334d;
+}
+
+.otp-widget .otp-alert.otp-success {
+    border-left: 8px solid #008055;
+}
+
+.otp-widget .otp-widget-field-wrapper .button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.otp-widget .otp-widget-field-wrapper .button-wrapper .otp-button-message {
+    font-size: 0.8rem;
+    color: #555555;
+    text-align: center;
+}
+@media (max-width: 1024px) {
+    .otp-widget .otp-widget-field-wrapper {
+        flex-direction: column;
+    }
+    .otp-widget .otp-widget-field-wrapper .field,
+    .otp-widget .otp-widget-field-wrapper .button-wrapper,
+    .otp-widget .otp-widget-field-wrapper .button-wrapper button {
+        width: 100%;
+    }
+}
