@@ -91,11 +91,6 @@ msgid "HCaptchaInvisibleInfo"
 msgstr "Este sitio está protegido por hCaptcha y su <a href="https://www.hcaptcha.com/privacy">Política de privacidad</a> y <a href="https://www.hcaptcha.com/terms">Términos de servicio</a> se aplican."
 
 #: components/Widget/SelectWidget
-# defaultMessage: No options
-msgid "No options"
-msgstr "No hay opciones"
-
-#: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
 msgstr "Sin valor"
@@ -114,11 +109,6 @@ msgstr "Obligatorio"
 # defaultMessage: Select…
 msgid "Select…"
 msgstr "Seleccionar..."
-
-#: components/Widget/SelectWidget
-# defaultMessage: Short Name
-msgid "Short Name"
-msgstr "Nombre Corto"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Time
@@ -273,7 +263,7 @@ msgstr "El archivo adjunto se enviará por correo electrónico pero no se almace
 #: formSchema
 # defaultMessage: Cancel button label
 msgid "form_cancel_label"
-msgstr ""
+msgstr "Etiqueta del botón cancelar"
 
 #: components/DataTable
 # defaultMessage: Clear data
@@ -289,7 +279,7 @@ msgstr "¿Está seguro de que quiere borrar todos los datos guardados?"
 #: components/FormView
 # defaultMessage: Annulla
 msgid "form_default_cancel_label"
-msgstr ""
+msgstr "Cancelar"
 
 #: formSchema
 # defaultMessage: Default sender
@@ -300,6 +290,11 @@ msgstr "Remitente por defecto"
 # defaultMessage: Mail subject
 msgid "form_default_subject"
 msgstr "Asunto"
+
+#: formSchema
+# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
+msgid "form_default_subject_description"
+msgstr ""
 
 #: components/Edit
 #: components/FormView
@@ -312,6 +307,26 @@ msgstr "Enviar"
 msgid "form_edit_exportCsv"
 msgstr "Exportar datos"
 
+#: components/ValidateConfigForm
+# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
+msgid "form_edit_fill_required_configuration_fields"
+msgstr "Por favor, complete los campos de configuración obligatorios en la barra lateral. El formulario no se mostrará en modo de visualización hasta que se completen los campos obligatorios."
+
+#: helpers/validators
+# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
+msgid "form_edit_invalid_from_email"
+msgstr "El correo electrónico introducido en el campo 'Remitente por defecto' debe ser una dirección de correo electrónico válida."
+
+#: helpers/validators
+# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
+msgid "form_edit_invalid_to_email"
+msgstr "El correo electrónico introducido en el campo 'Destinatarios' debe ser una dirección de correo electrónico válida."
+
+#: components/ValidateConfigForm
+# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
+msgid "form_edit_other_errors"
+msgstr "Por favor, verifique los errores de configuración en la barra lateral. El formulario no se mostrará en modo de visualización hasta que estos campos no se corrijan."
+
 #: components/Edit
 # defaultMessage: Attenzione!
 msgid "form_edit_warning"
@@ -322,10 +337,20 @@ msgstr "¡Atención!"
 msgid "form_edit_warning_from"
 msgstr "Introduzca un campo de tipo 'Correo electrónico del remitente'. Si no está presente o si está presente pero el usuario no lo rellena, el remitente del mensaje será el configurado por defecto en el formulario."
 
+#: formSchema
+# defaultMessage: Validate BCC emails with OTP verification
+msgid "form_email_otp_verification"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
+msgid "form_email_otp_verification_description"
+msgstr ""
+
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
-msgstr "Rellene todos los campos requeridos"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
+msgstr "Hay algunos errores en el formulario."
 
 #: fieldSchema
 # defaultMessage: Description
@@ -335,7 +360,7 @@ msgstr "Descripción"
 #: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
 # defaultMessage: Value for field
 msgid "form_field_input_value"
-msgstr ""
+msgstr "Valor del campo"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
@@ -423,7 +448,37 @@ msgstr "Campo de texto"
 msgid "form_formDataCount"
 msgstr "{formDataCount} elemento(s) guardados"
 
-#: components/FormView
+#: components/Widget/OTPWidget
+# defaultMessage: Insert here the OTP code received at {email}
+msgid "form_insert_otp"
+msgstr "Inserte el código OTP recibido en {email}"
+
+#: formSchema
+# defaultMessage: Manage data
+msgid "form_manage_data"
+msgstr "Administrar datos"
+
+#: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr "Puedes enviar un nuevo código OTP en"
+
+#: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
+msgid "form_otp_send"
+msgstr "El código OTP se ha enviado a {email}. Revise su correo electrónico e introduzca el código recibido."
+
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
+msgstr "Número de días después de los cuales se deben eliminar los datos"
+
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr "Borrar"
@@ -446,24 +501,29 @@ msgstr "Enviar correo electrónico al receptor"
 #: formSchema
 # defaultMessage: Message of sending confirmed
 msgid "form_send_message"
-msgstr ""
+msgstr "Mensaje de envío confirmado"
 
 #: formSchema
 # defaultMessage: You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.
 msgid "form_send_message_helptext"
 msgstr ""
 
+#: components/Widget/OTPWidget
+# defaultMessage: Send OTP code to {email}
+msgid "form_send_otp_to"
+msgstr "Envíe el código OTP a {email}"
+
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
-msgstr ""
+msgstr "Mostrar botón cancelar"
 
 #: formSchema
 # defaultMessage: Submit button label
 msgid "form_submit_label"
 msgstr "Etiqueta del botón de envío"
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr "Enviado"
@@ -471,7 +531,7 @@ msgstr "Enviado"
 #: formSchema
 # defaultMessage: Recipients
 msgid "form_to"
-msgstr "Receptores"
+msgstr "Destinatarios"
 
 #: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Send an email copy to this address
@@ -493,15 +553,60 @@ msgstr "Utilizar como 'Responder a'"
 msgid "form_useAsReplyTo_description"
 msgstr "Si está seleccionado el valor de este campo se utilizará como cabecera 'Responder A' en el correo electrónico enviado al receptor"
 
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr "Valor de campo no válido"
+
+#: components/View
+# defaultMessage: Please, insert the OTP code recived via email.
+msgid "formblock_insertOtp_error"
+msgstr "Por favor, introduzca el código OTP recibido por correo electrónico."
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr "El correo electrónico es incorrecto."
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
+msgstr "Rellena este campo"
+
+#: formSchema
+# defaultMessage: Text at the end of the email
+msgid "mail_footer_label"
+msgstr ""
+
+#: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
+msgid "mail_header_description"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Text at the beginning of the email
+msgid "mail_header_label"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: remove expired data
+msgid "remove_data_button"
+msgstr "eliminar datos caducados"
+
+#: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
+msgid "remove_data_cron_info"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
+msgid "remove_data_warning"
+msgstr ""
+
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
 msgstr "Responde la pregunta para demostrar que eres humano"
-
-#: helpers/react-select
-# defaultMessage: No options
-msgid "select_noOptionsMessage"
-msgstr "Ninguna opción"
 
 #: helpers/react-select
 # defaultMessage: results

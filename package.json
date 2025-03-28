@@ -1,6 +1,6 @@
 {
   "name": "volto-form-block",
-  "version": "3.2.0",
+  "version": "3.11.0",
   "description": "Volto block to build a form",
   "main": "src/index.js",
   "repository": "https://github.com/collective/volto-form-block",
@@ -24,12 +24,6 @@
   "addons": [
     "volto-subblocks"
   ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
   "prettier": {
     "trailingComma": "all",
     "singleQuote": true,
@@ -104,7 +98,7 @@
     "@tanstack/react-table": "^8.11.7",
     "file-saver": "^2.0.5",
     "react-google-recaptcha-v3": "^1.8.0",
-    "volto-subblocks": "^2.0.0"
+    "volto-subblocks": "^2.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "7.18.10",
@@ -135,6 +129,7 @@
   },
   "peerDependencies": {
     "@plone/volto": ">=16.0.0-alpha.38",
-    "volto-subblocks": "^2.0.0"
-  }
+    "volto-subblocks": "^2.1.0"
+  },
+  "packageManager": "yarn@3.2.3"
 }

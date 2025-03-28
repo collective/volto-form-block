@@ -1,3 +1,253 @@
+
+
+## [3.11.0](https://github.com/collective/volto-form-block/compare/v3.10.2...v3.11.0) (2025-02-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* dates sent as ISO not DD-MM-YYYY (#122)
+
+### Bug Fixes
+
+* dates sent as ISO not DD-MM-YYYY ([#122](https://github.com/collective/volto-form-block/issues/122)) ([9c2ce02](https://github.com/collective/volto-form-block/commit/9c2ce02868c98eda5c4c9ec0f846deb79b22a6e7))
+
+### [3.10.2](https://github.com/collective/volto-form-block/compare/v3.10.1...v3.10.2) (2024-12-24)
+
+
+### Maintenance
+
+* removed volto imports from barrel files ([778f717](https://github.com/collective/volto-form-block/commit/778f717acc297b01b2e4279b2e2d10fa72fe1c2f))
+
+### [3.10.1](https://github.com/collective/volto-form-block/compare/v3.10.0...v3.10.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* always set static_text fields as not required ([3cdb14d](https://github.com/collective/volto-form-block/commit/3cdb14d9b8b892d5681f9c30fb3a9cdf422cce06))
+
+## [3.10.0](https://github.com/collective/volto-form-block/compare/v3.9.3...v3.10.0) (2024-10-02)
+
+
+### Features
+
+* email otp validation switchable per form ([#119](https://github.com/collective/volto-form-block/issues/119)) ([9cda160](https://github.com/collective/volto-form-block/commit/9cda1608d9a6c7bb600f27f23b305360a4e21072))
+
+### [3.9.3](https://github.com/collective/volto-form-block/compare/v3.9.2...v3.9.3) (2024-09-12)
+
+
+### Bug Fixes
+
+* Fix bug that form data can not be loaded for forms in accordions ([#74](https://github.com/collective/volto-form-block/issues/74)) ([9dd726f](https://github.com/collective/volto-form-block/commit/9dd726f2286f3004d7cf74ebc1df364d8e5d9fc4))
+* reset otp on formdata reset ([#116](https://github.com/collective/volto-form-block/issues/116)) ([eb259a0](https://github.com/collective/volto-form-block/commit/eb259a048ba3688116cad1aeafcf4ef49d5e0d8f))
+
+### [3.9.2](https://github.com/collective/volto-form-block/compare/v3.9.1...v3.9.2) (2024-07-01)
+
+
+### Maintenance
+
+* updated subject field with description text ([3080394](https://github.com/collective/volto-form-block/commit/30803949a013161b38ac650c783a45e25ae56b89))
+
+### [3.9.1](https://github.com/collective/volto-form-block/compare/v3.9.0...v3.9.1) (2024-06-26)
+
+
+### Maintenance
+
+* updated header and footer email fields with richtext ([c656644](https://github.com/collective/volto-form-block/commit/c65664461a934f541823be4973e257a3e3190373))
+
+## [3.9.0](https://github.com/collective/volto-form-block/compare/v3.8.7...v3.9.0) (2024-06-20)
+
+
+### Features
+
+* add missing german translations ([c40b1ea](https://github.com/collective/volto-form-block/commit/c40b1ea895b23990cdde29cc8b56c6de95039fed))
+* added header and footer mail fields ([#105](https://github.com/collective/volto-form-block/issues/105)) ([d74cf6c](https://github.com/collective/volto-form-block/commit/d74cf6c54c59a81d3498b2960dda443c35b7ad47))
+
+### [3.8.7](https://github.com/collective/volto-form-block/compare/v3.8.6...v3.8.7) (2024-06-17)
+
+
+### Bug Fixes
+
+* view message response [#96](https://github.com/collective/volto-form-block/issues/96) ([#103](https://github.com/collective/volto-form-block/issues/103)) ([7262025](https://github.com/collective/volto-form-block/commit/726202567e72e6e7540603e7439229042778323f))
+
+### [3.8.6](https://github.com/collective/volto-form-block/compare/v3.8.5...v3.8.6) (2024-06-14)
+
+
+### Bug Fixes
+
+* formState success ([8bbf87e](https://github.com/collective/volto-form-block/commit/8bbf87e28a339aab30ab9603eda06f85c2d51687))
+
+### [3.8.5](https://github.com/collective/volto-form-block/compare/v3.8.4...v3.8.5) (2024-05-30)
+
+
+### Bug Fixes
+
+* upgrade volto-subblocks to 2.1.0 ([ebc71a3](https://github.com/collective/volto-form-block/commit/ebc71a3aeade96efc33f3e7dcf27a13b2c0c3a5b))
+
+### [3.8.4](https://github.com/collective/volto-form-block/compare/v3.8.3...v3.8.4) (2024-05-30)
+
+
+### Bug Fixes
+
+* align-items start in CSS - Makes autoprefixer happy :/ ([#100](https://github.com/collective/volto-form-block/issues/100)) ([39ab173](https://github.com/collective/volto-form-block/commit/39ab173e6c561cbc92d0f5fef630b13535d5c9e2))
+
+### [3.8.3](https://github.com/collective/volto-form-block/compare/v3.8.2...v3.8.3) (2024-05-16)
+
+
+### Bug Fixes
+
+* error on form submit: Objects are not valid as a React child. ([#97](https://github.com/collective/volto-form-block/issues/97)) ([1816c1b](https://github.com/collective/volto-form-block/commit/1816c1b3d51f635f5e24843dc217a8dd33b8b2cc))
+
+
+### Maintenance
+
+* add the first few Dutch translations. ([#98](https://github.com/collective/volto-form-block/issues/98)) ([6132730](https://github.com/collective/volto-form-block/commit/6132730f361c30b346f6276ab90fb7004be10eb2))
+* eu and es translations ([#95](https://github.com/collective/volto-form-block/issues/95)) ([09c248f](https://github.com/collective/volto-form-block/commit/09c248faa9d177e8482d4342f0e1a86e0b3cacf7))
+
+### [3.8.2](https://github.com/collective/volto-form-block/compare/v3.8.1...v3.8.2) (2024-04-26)
+
+
+### Maintenance
+
+* removed print field id ([98278d1](https://github.com/collective/volto-form-block/commit/98278d18d2eb665d4c28e44f63da08c96a74fa9c))
+
+### [3.8.1](https://github.com/collective/volto-form-block/compare/v3.8.0...v3.8.1) (2024-04-26)
+
+
+### Bug Fixes
+
+* display field_id for more fields in sidebar ([e15e1ad](https://github.com/collective/volto-form-block/commit/e15e1ad071fedb11422804d3c2208109f3f54b64))
+* replace placeholder of empty fields with nothing in thamkyou message ([8e75c8b](https://github.com/collective/volto-form-block/commit/8e75c8b665476958d0ec9bab803b11d1cfdaff2b))
+
+## [3.8.0](https://github.com/collective/volto-form-block/compare/v3.7.5...v3.8.0) (2024-04-18)
+
+
+### Features
+
+* added bcc email validation with otp code ([#93](https://github.com/collective/volto-form-block/issues/93)) ([e2100be](https://github.com/collective/volto-form-block/commit/e2100be25ac307f7fc27a1d70de53a771badc9ea))
+
+### [3.7.5](https://github.com/collective/volto-form-block/compare/v3.7.4...v3.7.5) (2024-04-17)
+
+
+### Bug Fixes
+
+* replace message ([8982698](https://github.com/collective/volto-form-block/commit/8982698b4ebd191b6f27d6afe2612a80147e7143))
+
+### [3.7.4](https://github.com/collective/volto-form-block/compare/v3.7.3...v3.7.4) (2024-04-16)
+
+
+### Bug Fixes
+
+* fix field schema form sent_message and added customizable FormResult component ([6dd725b](https://github.com/collective/volto-form-block/commit/6dd725b7aa3d7a218a7426cfa3df9ec72c90b6a1))
+* prevent xss in form block reading sent data from BE response ([b4139d2](https://github.com/collective/volto-form-block/commit/b4139d2284102e6820b892e7e40eee7ffcd1a36d))
+
+
+### Maintenance
+
+* fix husky config ([6a47f33](https://github.com/collective/volto-form-block/commit/6a47f33fa8bd103c0b697336bd3ad59f480599ae))
+
+### [3.7.3](https://github.com/collective/volto-form-block/compare/v3.7.2...v3.7.3) (2024-04-08)
+
+
+### Maintenance
+
+* gitignore ([435d0d7](https://github.com/collective/volto-form-block/commit/435d0d793a1ae3a7670221cb4df5fd72254a4af8))
+* lazy loading components to improve bundle size ([#92](https://github.com/collective/volto-form-block/issues/92)) ([e791bf0](https://github.com/collective/volto-form-block/commit/e791bf032255459697b71ac3a06a2d50629c13d8))
+
+
+
+### [3.7.2](https://github.com/collective/volto-form-block/compare/v3.7.1...v3.7.2) (2024-03-27)
+
+
+### Bug Fixes
+
+* Fix 'error is null' when adding form block. ([06f8300](https://github.com/collective/volto-form-block/commit/06f830071396aeaa798c58459c068421bd47177e))
+
+### [3.7.1](https://github.com/collective/volto-form-block/compare/v3.7.0...v3.7.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* empty props ([e03df2e](https://github.com/collective/volto-form-block/commit/e03df2e984d5338c106bf61f83c1428c08ef39dc))
+
+
+### Maintenance
+
+* removed console.log ([3022402](https://github.com/collective/volto-form-block/commit/302240223280c75dbb447697451b846ffb15e212))
+
+## [3.7.0](https://github.com/collective/volto-form-block/compare/v3.5.2...v3.7.0) (2024-03-18)
+
+
+### Features
+
+* added default validators for field default_from and default_to ([ba41002](https://github.com/collective/volto-form-block/commit/ba410028c45ef8472f6c68a6cefa28b4b1f34d71))
+
+
+### Bug Fixes
+
+* removed 'required' option for field type 'static_text ([32c4ef5](https://github.com/collective/volto-form-block/commit/32c4ef5e8851b29fbfddb95c0db7c86c01de4043))
+
+
+### Maintenance
+
+* removed unused translations ([164bd34](https://github.com/collective/volto-form-block/commit/164bd3422f1fe0493007e789412b5ca908fd6b8b))
+
+### [3.5.2](https://github.com/collective/volto-form-block/compare/v3.5.1...v3.5.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* view form ([6b389bc](https://github.com/collective/volto-form-block/commit/6b389bc06ed7fd72f8f3287c230e0a7013544e42))
+
+### [3.5.1](https://github.com/collective/volto-form-block/compare/v3.5.0...v3.5.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* view block ([18cfa82](https://github.com/collective/volto-form-block/commit/18cfa826ee0ff5296df844c4bcf7b1987e74b953))
+
+## [3.5.0](https://github.com/collective/volto-form-block/compare/v3.4.1...v3.5.0) (2024-03-14)
+
+
+### Features
+
+* Validate field config and fix multiple form in page ([#83](https://github.com/collective/volto-form-block/issues/83)) ([ca373b6](https://github.com/collective/volto-form-block/commit/ca373b685481988effff667f10461214766c5977))
+
+### [3.4.1](https://github.com/collective/volto-form-block/compare/v3.4.0...v3.4.1) (2024-03-13)
+
+
+### Bug Fixes
+
+* validator for mail ([eded840](https://github.com/collective/volto-form-block/commit/eded840689b891df98316261508cecfbbfbd63e1))
+
+## [3.4.0](https://github.com/collective/volto-form-block/compare/v3.3.1...v3.4.0) (2024-03-13)
+
+
+### Features
+
+* view error for each field, validate form config ([#82](https://github.com/collective/volto-form-block/issues/82)) ([23e710c](https://github.com/collective/volto-form-block/commit/23e710c0a74b3bda9a64e9e6d11e16d925847bab))
+
+### [3.3.1](https://github.com/collective/volto-form-block/compare/v3.3.0...v3.3.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* remain in form when there's errors on sending form ([c6fe827](https://github.com/collective/volto-form-block/commit/c6fe82721906dfaac8588164a77ca145b16d0dbd))
+
+
+
+## [3.3.0](https://github.com/collective/volto-form-block/compare/v3.2.0...v3.3.0) (2024-02-27)
+
+
+### Features
+
+* validate email field ([6572342](https://github.com/collective/volto-form-block/commit/65723428812859e84a1661181c4f75aa7f0a947c))
+
+
+### Maintenance
+
+* lint/husky ([bb32a2f](https://github.com/collective/volto-form-block/commit/bb32a2fcd7a8350dcecfce3a8cdd07a0767a7c79))
+* updated lockfile ([ec16920](https://github.com/collective/volto-form-block/commit/ec16920763e49ae4691f562a90ba404b665830de))
+
 ## [3.2.0](https://github.com/collective/volto-form-block/compare/v3.1.0...v3.2.0) (2023-12-11)
 
 

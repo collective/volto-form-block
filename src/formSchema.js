@@ -26,6 +26,11 @@ const messages = defineMessages({
     id: 'form_default_subject',
     defaultMessage: 'Mail subject',
   },
+  default_subject_description: {
+    id: 'form_default_subject_description',
+    defaultMessage:
+      'Use the ${field_id} syntax to add a form value to the email subject',
+  },
   submit_label: {
     id: 'form_submit_label',
     defaultMessage: 'Submit button label',
@@ -42,10 +47,17 @@ const messages = defineMessages({
     id: 'captcha',
     defaultMessage: 'Captcha provider',
   },
-
   store: {
     id: 'form_save_persistent_data',
     defaultMessage: 'Store compiled data',
+  },
+  remove_data_after_days: {
+    id: 'form_remove_data_after_days',
+    defaultMessage: 'Data wipe',
+  },
+  remove_data_after_days_helptext: {
+    id: 'form_remove_data_after_days_helptext',
+    defaultMessage: 'Number of days after which, the data should be deleted',
   },
   attachmentSendEmail: {
     id: 'form_attachment_send_email_info_text',
@@ -64,10 +76,41 @@ const messages = defineMessages({
     defaultMessage:
       'You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting.',
   },
+  manage_data: {
+    id: 'form_manage_data',
+    defaultMessage: 'Manage data',
+  },
+  mail_header_label: {
+    id: 'mail_header_label',
+    defaultMessage: 'Text at the beginning of the email',
+  },
+  mail_header_footer_description: {
+    id: 'mail_header_description',
+    defaultMessage: "If field isn't filled in, a default text will be used",
+  },
+  mail_footer_label: {
+    id: 'mail_footer_label',
+    defaultMessage: 'Text at the end of the email',
+  },
+  email_otp_verification: {
+    id: 'form_email_otp_verification',
+    defaultMessage: 'Validate BCC emails with OTP verification',
+  },
+  email_otp_verification_description: {
+    id: 'form_email_otp_verification_description',
+    defaultMessage:
+      "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.",
+  },
 });
 
-export default (data) => {
+const Schema = (data) => {
   var intl = useIntl();
+
+  let conditional_required = [];
+  if (!data.store && !data.send) {
+    conditional_required.push('store');
+    conditional_required.push('send');
+  }
 
   return {
     title: intl.formatMessage(messages.form),
@@ -84,11 +127,16 @@ export default (data) => {
           'submit_label',
           'show_cancel',
           ...(data?.show_cancel ? ['cancel_label'] : []),
+          'mail_header',
+          'mail_footer',
           'captcha',
-          'store',
-          'send',
-          'send_message',
+          'email_otp_verification',
         ],
+      },
+      {
+        id: 'manage_data',
+        title: intl.formatMessage(messages.manage_data),
+        fields: ['store', 'remove_data_after_days', 'send', 'send_message'],
       },
     ],
     properties: {
@@ -107,6 +155,7 @@ export default (data) => {
       },
       default_subject: {
         title: intl.formatMessage(messages.default_subject),
+        description: intl.formatMessage(messages.default_subject_description),
       },
       submit_label: {
         title: intl.formatMessage(messages.submit_label),
@@ -119,6 +168,22 @@ export default (data) => {
       cancel_label: {
         title: intl.formatMessage(messages.cancel_label),
       },
+      mail_header: {
+        title: intl.formatMessage(messages.mail_header_label),
+        widget: 'richtext',
+        type: 'string',
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
+      },
+      mail_footer: {
+        title: intl.formatMessage(messages.mail_footer_label),
+        widget: 'richtext',
+        type: 'string',
+        description: intl.formatMessage(
+          messages.mail_header_footer_description,
+        ),
+      },
       captcha: {
         title: intl.formatMessage(messages.captcha),
         type: 'string',
@@ -126,9 +191,25 @@ export default (data) => {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
       },
+      email_otp_verification: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.email_otp_verification),
+        description: intl.formatMessage(
+          messages.email_otp_verification_description,
+        ),
+        default: false,
+      },
       store: {
         type: 'boolean',
         title: intl.formatMessage(messages.store),
+      },
+      remove_data_after_days: {
+        type: 'integer',
+        title: intl.formatMessage(messages.remove_data_after_days),
+        description: intl.formatMessage(
+          messages.remove_data_after_days_helptext,
+        ),
+        default: -1,
       },
       send: {
         type: 'boolean',
@@ -137,10 +218,17 @@ export default (data) => {
       },
       send_message: {
         title: intl.formatMessage(messages.send_message),
-        type: 'textarea',
+        widget: 'textarea',
         description: intl.formatMessage(messages.send_message_helptext),
       },
     },
-    required: ['default_to', 'default_from', 'default_subject'],
+    required: [
+      'default_to',
+      'default_from',
+      'default_subject',
+      'captcha',
+      ...conditional_required,
+    ],
   };
 };
+export default Schema;

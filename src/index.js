@@ -1,17 +1,22 @@
 import loadable from '@loadable/component';
 import formSVG from '@plone/volto/icons/form.svg';
-import View from 'volto-form-block/components/View';
-import Edit from 'volto-form-block/components/Edit';
-import FormView from 'volto-form-block/components/FormView';
-import Sidebar from 'volto-form-block/components/Sidebar';
-import EditBlock from 'volto-form-block/components/EditBlock';
-import Field from 'volto-form-block/components/Field';
+
+import {
+  View,
+  Edit,
+  FormView,
+  Sidebar,
+  EditBlock,
+  Field,
+} from 'volto-form-block/components';
+
 import { downloadFile, getFieldName } from 'volto-form-block/components/utils';
 import {
   submitForm,
   getFormData,
   exportCsvFormData,
   clearFormData,
+  sendOTP,
 } from 'volto-form-block/reducers';
 import FormSchema from 'volto-form-block/formSchema';
 import FieldSchema from 'volto-form-block/fieldSchema';
@@ -20,11 +25,19 @@ import {
   FromSchemaExtender,
   HiddenSchemaExtender,
 } from './components/FieldTypeSchemaExtenders';
+import {
+  isValidEmail,
+  validateDefaultFrom,
+  validateDefaultTo,
+} from 'volto-form-block/helpers/validators';
+
 export {
   submitForm,
   getFormData,
   exportCsvFormData,
+  sendOTP,
 } from 'volto-form-block/actions';
+export { isValidEmail };
 
 const applyConfig = (config) => {
   config.blocks.blocksConfig = {
@@ -46,6 +59,15 @@ const applyConfig = (config) => {
         from: FromSchemaExtender,
         hidden: HiddenSchemaExtender,
       },
+      schemaValidators: {
+        /*fieldname: validationFN(data)*/
+        default_from: (data, intl) => {
+          return validateDefaultFrom(data.default_from, intl);
+        },
+        default_to: (data, intl) => {
+          return validateDefaultTo(data.default_to, intl);
+        },
+      },
       attachment_fields: ['attachment'],
       restricted: false,
       mostUsed: true,
@@ -63,13 +85,14 @@ const applyConfig = (config) => {
     formData: getFormData,
     exportCsvFormData,
     clearFormData,
+    sendOTP,
   };
 
-  config.settings.loadables['HCaptcha'] = loadable(() =>
-    import('@hcaptcha/react-hcaptcha'),
+  config.settings.loadables['HCaptcha'] = loadable(
+    () => import('@hcaptcha/react-hcaptcha'),
   );
-  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(() =>
-    import('react-google-recaptcha-v3'),
+  config.settings.loadables['GoogleReCaptcha'] = loadable.lib(
+    () => import('react-google-recaptcha-v3'),
   );
   config.settings.loadables['ReactTable'] = loadable.lib(() =>
     import('@tanstack/react-table'),

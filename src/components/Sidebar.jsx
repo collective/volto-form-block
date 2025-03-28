@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Segment, Accordion, Form, Grid } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 
 import upSVG from '@plone/volto/icons/up-key.svg';
 import downSVG from '@plone/volto/icons/down-key.svg';
@@ -13,10 +13,26 @@ import config from '@plone/volto/registry';
 import { BlockDataForm } from '@plone/volto/components';
 import { getFieldName } from 'volto-form-block/components/utils';
 
+import './Sidebar.css';
+
 const messages = defineMessages({
   fieldId: {
     id: 'fieldId',
     defaultMessage: 'Field ID',
+  },
+  remove_data_cron_info: {
+    id: 'remove_data_cron_info',
+    defaultMessage:
+      'To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.',
+  },
+  remove_data_warning: {
+    id: 'remove_data_warning',
+    defaultMessage:
+      'There are {record} record that have exceeded the maximum number of days.',
+  },
+  remove_data_button: {
+    id: 'remove_data_button',
+    defaultMessage: 'remove expired data',
   },
 });
 
@@ -89,7 +105,12 @@ const Sidebar = ({
                     {(subblock.field_type === 'text' ||
                       subblock.field_type === 'from' ||
                       subblock.field_type === 'textarea' ||
-                      subblock.field_type === 'date') && (
+                      subblock.field_type === 'date' ||
+                      subblock.field_type === 'single_choice' ||
+                      subblock.field_type === 'multiple_choice' ||
+                      subblock.field_type === 'select' ||
+                      subblock.field_type === 'checkbox' ||
+                      subblock.field_type === 'attachment') && (
                       <Segment tertiary>
                         {intl.formatMessage(messages.fieldId)}:{' '}
                         <strong>
@@ -100,7 +121,10 @@ const Sidebar = ({
                     <BlockDataForm
                       schema={FieldSchema(subblock)}
                       onChangeField={(name, value) => {
-                        var update_values = {};
+                        const update_values = {};
+                        if (subblock.field_type === 'static_text') {
+                          update_values.required = false;
+                        }
 
                         onChangeSubBlock(index, {
                           ...subblock,

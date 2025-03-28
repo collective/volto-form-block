@@ -101,6 +101,7 @@ export default (props) => {
   const schemaExtenderValues = schemaExtender
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -112,7 +113,7 @@ export default (props) => {
           'description',
           'field_type',
           ...schemaExtenderValues.fields,
-          'required',
+          ...(props?.field_type === 'static_text' ? [] : ['required']),
         ],
       },
     ],

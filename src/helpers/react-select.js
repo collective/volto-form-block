@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  select_noOptionsMessage: {
-    id: 'select_noOptionsMessage',
-    defaultMessage: 'No options',
-  },
   risultato: { id: 'select_risultato', defaultMessage: 'result' },
   risultati: { id: 'select_risultati', defaultMessage: 'results' },
   ay11_up_down: {

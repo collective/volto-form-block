@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-01-22T23:18:33.393Z\n"
+"POT-Creation-Date: 2024-10-02T07:18:42.778Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -84,11 +84,6 @@ msgid "HCaptchaInvisibleInfo"
 msgstr ""
 
 #: components/Widget/SelectWidget
-# defaultMessage: No options
-msgid "No options"
-msgstr ""
-
-#: components/Widget/SelectWidget
 # defaultMessage: No value
 msgid "No value"
 msgstr ""
@@ -106,11 +101,6 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Select…
 msgid "Select…"
-msgstr ""
-
-#: components/Widget/SelectWidget
-# defaultMessage: Short Name
-msgid "Short Name"
 msgstr ""
 
 #: components/Widget/DatetimeWidget
@@ -294,6 +284,11 @@ msgstr ""
 msgid "form_default_subject"
 msgstr ""
 
+#: formSchema
+# defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
+msgid "form_default_subject_description"
+msgstr ""
+
 #: components/Edit
 #: components/FormView
 # defaultMessage: Invia
@@ -303,6 +298,26 @@ msgstr ""
 #: components/DataTable
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
+msgstr ""
+
+#: components/ValidateConfigForm
+# defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
+msgid "form_edit_fill_required_configuration_fields"
+msgstr ""
+
+#: helpers/validators
+# defaultMessage: The e-mail entered in the 'From' field must be a valid e-mail address.
+msgid "form_edit_invalid_from_email"
+msgstr ""
+
+#: helpers/validators
+# defaultMessage: The e-mail entered in the 'Receipients' field must be a valid e-mail address.
+msgid "form_edit_invalid_to_email"
+msgstr ""
+
+#: components/ValidateConfigForm
+# defaultMessage: Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed.
+msgid "form_edit_other_errors"
 msgstr ""
 
 #: components/Edit
@@ -315,9 +330,19 @@ msgstr ""
 msgid "form_edit_warning_from"
 msgstr ""
 
+#: formSchema
+# defaultMessage: Validate BCC emails with OTP verification
+msgid "form_email_otp_verification"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
+msgid "form_email_otp_verification_description"
+msgstr ""
+
 #: components/FormView
-# defaultMessage: Fill in the required fields
-msgid "form_empty_values_validation"
+# defaultMessage: There are some errors in the form.
+msgid "form_errors_validation"
 msgstr ""
 
 #: fieldSchema
@@ -416,7 +441,37 @@ msgstr ""
 msgid "form_formDataCount"
 msgstr ""
 
-#: components/FormView
+#: components/Widget/OTPWidget
+# defaultMessage: Insert here the OTP code received at {email}
+msgid "form_insert_otp"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Manage data
+msgid "form_manage_data"
+msgstr ""
+
+#: components/Widget/OTPWidget
+# defaultMessage: You can send a new OTP code in
+msgid "form_otp_countdown"
+msgstr ""
+
+#: components/Widget/OTPWidget
+# defaultMessage: OTP code was sent to {email}. Check your email and insert the received OTP code into the field above.
+msgid "form_otp_send"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Data wipe
+msgid "form_remove_data_after_days"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Number of days after which, the data should be deleted
+msgid "form_remove_data_after_days_helptext"
+msgstr ""
+
+#: components/FormResult
 # defaultMessage: Clear
 msgid "form_reset"
 msgstr ""
@@ -446,6 +501,11 @@ msgstr ""
 msgid "form_send_message_helptext"
 msgstr ""
 
+#: components/Widget/OTPWidget
+# defaultMessage: Send OTP code to {email}
+msgid "form_send_otp_to"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Show cancel button
 msgid "form_show_cancel"
@@ -456,7 +516,7 @@ msgstr ""
 msgid "form_submit_label"
 msgstr ""
 
-#: components/FormView
+#: components/FormResult
 # defaultMessage: Sent!
 msgid "form_submit_success"
 msgstr ""
@@ -486,14 +546,59 @@ msgstr ""
 msgid "form_useAsReplyTo_description"
 msgstr ""
 
+#: components/View
+# defaultMessage: Invalid field value
+msgid "formblock_defaultInvalidFieldMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Please, insert the OTP code recived via email.
+msgid "formblock_insertOtp_error"
+msgstr ""
+
+#: components/View
+# defaultMessage: The email is incorrect
+msgid "formblock_invalidEmailMessage"
+msgstr ""
+
+#: components/View
+# defaultMessage: Fill-in this field
+msgid "formblock_requiredFieldMessage"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Text at the end of the email
+msgid "mail_footer_label"
+msgstr ""
+
+#: formSchema
+# defaultMessage: If field isn't filled in, a default text will be used
+msgid "mail_header_description"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Text at the beginning of the email
+msgid "mail_header_label"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: remove expired data
+msgid "remove_data_button"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
+msgid "remove_data_cron_info"
+msgstr ""
+
+#: components/Sidebar
+# defaultMessage: There are {record} record that have exceeded the maximum number of days.
+msgid "remove_data_warning"
+msgstr ""
+
 #: components/Widget/NoRobotsCaptchaWidget
 # defaultMessage: Answer the question to prove that you are human
 msgid "resolveCaptcha"
-msgstr ""
-
-#: helpers/react-select
-# defaultMessage: No options
-msgid "select_noOptionsMessage"
 msgstr ""
 
 #: helpers/react-select
