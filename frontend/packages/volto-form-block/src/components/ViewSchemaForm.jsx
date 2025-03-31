@@ -18,6 +18,7 @@ import {
   without,
   isObject,
   isString,
+  isBoolean,
   fromPairs,
 } from 'lodash';
 import { Grid, Message } from 'semantic-ui-react';
@@ -121,6 +122,13 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       ) {
         submitData[field] =
           `${submitData[field].hour}:${submitData[field].minute}`;
+      }
+
+      if (
+        data.schema.properties[field].factory === 'label_boolean_field' &&
+        !isBoolean(submitData[field])
+      ) {
+        submitData[field] = false;
       }
     });
 
