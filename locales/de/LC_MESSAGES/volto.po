@@ -285,7 +285,7 @@ msgstr "Betreff"
 #: formSchema
 # defaultMessage: Use the ${field_id} syntax to add a form value to the email subject
 msgid "form_default_subject_description"
-msgstr ""
+msgstr "Verwenden Sie die ${field_id}-Syntax, um dem E-Mail-Betreff einen Formularwert hinzuzufügen"
 
 #: components/Edit
 #: components/FormView
@@ -331,13 +331,12 @@ msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhande
 #: formSchema
 # defaultMessage: Validate BCC emails with OTP verification
 msgid "form_email_otp_verification"
-msgstr ""
+msgstr "Validierung von BCC-E-Mails mit OTP-Verifizierung"
 
 #: formSchema
 # defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
 msgid "form_email_otp_verification_description"
-msgstr ""
-
+msgstr "Verhindern Sie Spam von Ihrer Website. Wenn Sie diese Option aktivieren, verhindern Sie, dass böswillige Benutzer über Ihre Website E-Mails an andere E-Mail-Adressen senden. Das OTP wird für alle E-Mail-Felder angefordert, für die die Option „Eine Kopie der E-Mail an diese Adresse senden“ aktiviert ist."
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
@@ -567,17 +566,17 @@ msgstr "Bitte füllen Sie dieses Feld aus"
 #: formSchema
 # defaultMessage: Text at the end of the email
 msgid "mail_footer_label"
-msgstr ""
+msgstr "Text am Ende der E-Mail"
 
 #: formSchema
 # defaultMessage: If field isn't filled in, a default text will be used
 msgid "mail_header_description"
-msgstr ""
+msgstr "Wenn das Feld nicht ausgefüllt ist, wird ein Standardtext verwendet."
 
 #: formSchema
 # defaultMessage: Text at the beginning of the email
 msgid "mail_header_label"
-msgstr ""
+msgstr "Text am Anfang der E-Mail"
 
 #: components/Sidebar
 # defaultMessage: remove expired data
