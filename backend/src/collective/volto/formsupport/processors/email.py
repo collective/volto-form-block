@@ -82,11 +82,11 @@ class EmailFormProcessor:
             msg.add_alternative(admin_message, subtype="html", cte=CTE)
             msg["Subject"] = subject
             msg["From"] = mfrom
-            msg["To"] = mto
+            msg["To"] = mto.replace(";", ",")
 
             bcc = self.get_bcc()
             if bcc:
-                msg["Bcc"] = bcc
+                msg["Bcc"] = bcc.replace(";", ",")
 
             headers_to_forward = self.block.get("httpHeaders", [])
             for header in headers_to_forward:
