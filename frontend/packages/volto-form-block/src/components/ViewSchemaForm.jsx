@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { defineMessages, useIntl } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
 import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
+import { toBackendLang } from '@plone/volto/helpers/Utils/Utils';
+import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import {
@@ -19,6 +21,7 @@ import {
   isObject,
   isString,
   isBoolean,
+  isUndefined,
   fromPairs,
 } from 'lodash';
 import { Grid, Message } from 'semantic-ui-react';
@@ -39,9 +42,24 @@ const messages = defineMessages({
     id: 'Cancel',
     defaultMessage: 'Cancel',
   },
+  yes: {
+    id: 'Yes',
+    defaultMessage: 'Yes',
+  },
+  no: {
+    id: 'No',
+    defaultMessage: 'No',
+  },
 });
 
-const FormBlockView = ({ data, id, properties, metadata, path }) => {
+const FormBlockView = ({
+  data,
+  id,
+  properties,
+  metadata,
+  path,
+  moment: momentlib,
+}) => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const location = useLocation();
@@ -49,6 +67,9 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   const [submitPressed, setSubmitPressed] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
   data.schema = stripRequiredProperty(data.schema);
+  const moment = momentlib.default;
+  const lang = useSelector((state) => state.intl.locale);
+  moment.locale(toBackendLang(lang));
 
   const propertyNames = keys(data.schema.properties);
   const queryParams = qs.parse(location.search);
@@ -182,19 +203,42 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
       });
   };
 
+  const formatProperty = (factory, value) => {
+    switch (factory) {
+      case 'label_boolean_field':
+        return value === true
+          ? intl.formatMessage(messages.yes)
+          : intl.formatMessage(messages.no);
+      case 'checkbox_group':
+        return Array.isArray(value)
+          ? value.map((item) => [item, <br />]).flat()
+          : value;
+      case 'label_date_field':
+        return isUndefined(value) ? '' : moment(value).format('l');
+      case 'label_datetime_field':
+        return isUndefined(value) ? '' : moment(value).format('LLL');
+    }
+    return value;
+  };
+
   const formfields = renderToString(
     <Grid stackable columns={2}>
       {map(keys(submittedData), (property) => {
         const propertyType = data.schema.properties[property].type;
 
         // Only render if the type is not 'object'
-        if (propertyType !== 'object') {
+        if (propertyType !== 'object' && property !== 'captchaWidget') {
           return (
             <Grid.Row key={property}>
               <Grid.Column>
                 {data.schema.properties[property].title}
               </Grid.Column>
-              <Grid.Column>{submittedData[property]}</Grid.Column>
+              <Grid.Column>
+                {formatProperty(
+                  data.schema.properties[property].factory,
+                  submittedData[property],
+                )}
+              </Grid.Column>
             </Grid.Row>
           );
         }
@@ -262,4 +306,4 @@ const FormBlockView = ({ data, id, properties, metadata, path }) => {
   );
 };
 
-export default FormBlockView;
+export default injectLazyLibs(['moment'])(FormBlockView);
