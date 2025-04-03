@@ -179,7 +179,9 @@ class EmailFormProcessor:
         for record in self.records:
             value = str(record["value"])
             template_vars[record["field_id"]] = value
-            form_fields += f"<tr><th>{record['label']}</th><td>{value}</td></tr>"
+            form_fields += (
+                f"<tr><th align=\"left\">{record['label']}</th><td>{value}</td></tr>"
+            )
         form_fields += "\n</table>\n"
         template_vars["form_fields"] = form_fields
         message = self.substitute_variables(template, template_vars)
