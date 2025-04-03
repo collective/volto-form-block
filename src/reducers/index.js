@@ -9,6 +9,7 @@ import {
   CLEAR_FORM_DATA,
   SEND_OTP,
   RESET_OTP,
+  SUBBLOCKS_ID_LIST,
 } from 'volto-form-block/actions';
 
 function download(filename, text) {
@@ -327,4 +328,14 @@ export const sendOTP = (state = initialState, action = {}) => {
     default:
       return state;
   }
+};
+
+export const subblocksIDList = (state = false, action = {}) => {
+  switch (action.type) {
+    case SUBBLOCKS_ID_LIST:
+      return action.options;
+    default:
+      break;
+  }
+  return state;
 };

@@ -17,6 +17,7 @@ import {
   exportCsvFormData,
   clearFormData,
   sendOTP,
+  subblocksIDList,
 } from 'volto-form-block/reducers';
 import FormSchema from 'volto-form-block/formSchema';
 import FieldSchema from 'volto-form-block/fieldSchema';
@@ -30,6 +31,7 @@ import {
   validateDefaultFrom,
   validateDefaultTo,
 } from 'volto-form-block/helpers/validators';
+import VisibilityConditionsWidget from 'volto-form-block/components/Widget/VisibilityConditionsWidget';
 
 export {
   submitForm,
@@ -40,6 +42,9 @@ export {
 export { isValidEmail };
 
 const applyConfig = (config) => {
+  config.widgets.widget.visibility_conditions_widget =
+    VisibilityConditionsWidget;
+
   config.blocks.blocksConfig = {
     ...config.blocks.blocksConfig,
     form: {
@@ -86,6 +91,7 @@ const applyConfig = (config) => {
     exportCsvFormData,
     clearFormData,
     sendOTP,
+    subblocksIDList,
   };
 
   config.settings.loadables['HCaptcha'] = loadable(
