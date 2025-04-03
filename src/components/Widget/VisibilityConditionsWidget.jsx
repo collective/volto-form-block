@@ -20,7 +20,7 @@ import deleteSVG from '@plone/volto/icons/delete.svg';
 import addSVG from '@plone/volto/icons/add.svg';
 import configSVG from '@plone/volto/icons/configuration.svg';
 import {
-  conditionsListOptions,
+  ConditionsListOptions,
   checkTypeTextField,
   checkTypeSelectionField,
   checkTypeBooleanField,
@@ -281,7 +281,7 @@ const VisibilityConditionsWidget = (props) => {
                             conditionFieldChange(value, index);
                           }}
                           value={item.condition}
-                          options={conditionsListOptions()}
+                          options={ConditionsListOptions()}
                         />
                       </Grid.Column>
                       <Grid.Column

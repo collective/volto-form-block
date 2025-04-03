@@ -1,4 +1,4 @@
-import { defineMessages } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
   is_empty: { id: 'condition_is_empty', defaultMessage: 'Is empty' },
@@ -31,10 +31,11 @@ const messages = defineMessages({
   },
 });
 
-export const conditionsListOptions = () => {
+export const ConditionsListOptions = () => {
+  const intl = useIntl();
   const transformMessages = Object.keys(messages).map((condition) => ({
     value: condition,
-    text: messages[condition].defaultMessage,
+    text: intl.formatMessage(messages[condition]),
   }));
 
   return transformMessages;
