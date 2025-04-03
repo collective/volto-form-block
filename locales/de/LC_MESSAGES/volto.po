@@ -114,7 +114,7 @@ msgstr "Titel"
 #: components/Widget/SelectWidget
 # defaultMessage: Used for programmatic access to the fieldset.
 msgid "Used for programmatic access to the fieldset."
-msgstr "Wir für den programmierten Zugriff auf das Fieldset verwendet."
+msgstr "Wird für den programmierten Zugriff auf das Fieldset verwendet."
 
 #: helpers/react-select
 # defaultMessage: Use Up and Down to choose options
