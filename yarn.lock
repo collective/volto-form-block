@@ -2684,6 +2684,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-table@npm:^8.11.7":
+  version: 8.11.7
+  resolution: "@tanstack/react-table@npm:8.11.7"
+  dependencies:
+    "@tanstack/table-core": 8.11.7
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 47aaf7b94e32de136a218f9afafbae832949560020f344fdbda69bad80d4c4f8be1eff0c4b1b4628e4966b1cda9db0cd219fea1c6815cdbcf042db00b789b026
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.11.7":
+  version: 8.11.7
+  resolution: "@tanstack/table-core@npm:8.11.7"
+  checksum: 0db445806a85d2a226225c7a6b31dae0e8be477172c0cabb796ccb2766bfec4c6a8930ebbaa7b4d410de170e1c41f2005bb47762677c059aecba69d65d22e496
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -15077,6 +15096,7 @@ __metadata:
     "@hcaptcha/react-hcaptcha": ^0.3.6
     "@plone/scripts": ^2.0.0
     "@release-it/conventional-changelog": ^5.1.1
+    "@tanstack/react-table": ^8.11.7
     eslint: 8.54.0
     eslint-config-prettier: 9.0.0
     eslint-config-react-app: 7.0.1

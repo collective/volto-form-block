@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add field"
 msgstr "Add field"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Cancel"
@@ -256,12 +256,12 @@ msgstr ""
 msgid "form_cancel_label"
 msgstr "Cancel button label"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Clear data"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Are you sure you want to delete all saved items?"
@@ -293,7 +293,7 @@ msgstr ""
 msgid "form_default_submit_label"
 msgstr "Submit"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Export in CSV"
@@ -434,7 +434,7 @@ msgstr "Text"
 msgid "form_field_type_textarea"
 msgstr "Textarea"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} item(s) stored"
@@ -613,3 +613,8 @@ msgstr ""
 # defaultMessage: Title
 msgid "title"
 msgstr "Title"
+
+#: components/Edit
+# defaultMessage: Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.
+msgid "warning_enable_save"
+msgstr ""
