@@ -14,8 +14,10 @@ const ReCaptchaComponent = (props) => {
       return;
     }
 
-    const token = await executeRecaptcha();
-    onChange(id, token);
+    setTimeout(async () => {
+      const token = await executeRecaptcha();
+      onChange(id, token);
+    }, 300);
   }, [executeRecaptcha]);
 
   useEffect(() => {
