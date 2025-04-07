@@ -169,6 +169,7 @@ class EmailFormProcessor:
         admin_info = self.block.get("admin_info", "")
         properties = self.block.get("schema").get("properties")
         template = templates[template_name]
+        plone = getMultiAdapter((self.context, self.request), name="plone")
         template_vars = {
             "mail_header": self.block.get("mail_header", {}).get("data", ""),
             "mail_footer": self.block.get("mail_footer", {}).get("data", ""),
@@ -178,7 +179,28 @@ class EmailFormProcessor:
             form_fields += admin_info.replace("\n", "<br/>") + "<br/><br/>"
 
         def format_property(factory, value):
-            return str(value)
+            if factory == "label_boolean_field":
+                if value == True:
+                    return self.context.translate(
+                        _("Yes"),
+                        context=self.request,
+                    )
+                else:
+                    return self.context.translate(
+                        _("No"),
+                        context=self.request,
+                    )
+            elif factory == "checkbox_group":
+                if isinstance(value, list):
+                    return "<br/>".join(value)
+                else:
+                    return str(value)
+            elif factory == "label_date_field":
+                return plone.toLocalizedTime(value)
+            elif factory == "label_datetime_field":
+                return plone.toLocalizedTime(value, True)
+            else:
+                return str(value)
 
         form_fields += "<table>\n"
         for record in self.records:
