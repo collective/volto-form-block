@@ -106,6 +106,7 @@ class EmailFormProcessor:
                 msg["To"] = self.get_confirmation_recipients()
                 msg.set_content(text_message, cte=CTE)
                 msg.add_alternative(message, subtype="html", cte=CTE)
+                self.attachments = {}
 
                 if "fixed_attachment" in self.block and self.block["fixed_attachment"]:
                     self.attachments["fixed_attachment"] = self.block[
