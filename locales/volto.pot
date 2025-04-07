@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-10-02T07:18:42.778Z\n"
+"POT-Creation-Date: 2025-04-07T11:13:24.618Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -437,8 +437,23 @@ msgid "form_field_type_textarea"
 msgstr ""
 
 #: components/DataTable
-# defaultMessage: {formDataCount} item(s) stored
+# defaultMessage: Items stored
 msgid "form_formDataCount"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Item stored
+msgid "form_formDataCountSingle"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: No
+msgid "form_formValueNo"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Yes
+msgid "form_formValueYes"
 msgstr ""
 
 #: components/Widget/OTPWidget

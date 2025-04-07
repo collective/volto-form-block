@@ -444,9 +444,24 @@ msgid "form_field_type_textarea"
 msgstr "Campo de texto"
 
 #: components/DataTable
-# defaultMessage: {formDataCount} item(s) stored
+# defaultMessage: Items stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} elemento(s) guardados"
+
+#: components/DataTable
+# defaultMessage: Item stored
+msgid "form_formDataCountSingle"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: No
+msgid "form_formValueNo"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Yes
+msgid "form_formValueYes"
+msgstr ""
 
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}

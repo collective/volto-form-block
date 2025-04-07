@@ -15,6 +15,9 @@ import {
   getFormData,
 } from 'volto-form-block/actions';
 
+/* Style */
+import 'volto-form-block/components/DataTable.css';
+
 const messages = defineMessages({
   exportCsv: {
     id: 'form_edit_exportCsv',
@@ -24,9 +27,13 @@ const messages = defineMessages({
     id: 'form_clear_data',
     defaultMessage: 'Clear data',
   },
+  formDataCountSingle: {
+    id: 'form_formDataCountSingle',
+    defaultMessage: 'Item stored',
+  },
   formDataCount: {
     id: 'form_formDataCount',
-    defaultMessage: '{formDataCount} item(s) stored',
+    defaultMessage: 'Items stored',
   },
   confirmClearData: {
     id: 'form_confirmClearData',
@@ -36,9 +43,17 @@ const messages = defineMessages({
     id: 'Cancel',
     defaultMessage: 'Cancel',
   },
+  formValueYes: {
+    id: 'form_formValueYes',
+    defaultMessage: 'Yes',
+  },
+  formValueNo: {
+    id: 'form_formValueNo',
+    defaultMessage: 'No',
+  },
 });
 
-const DataTable = ({ ReactTable, properties, fields, blockId }) => {
+const DataTable = ({ ReactTable, properties, blockId }) => {
   const {
     useReactTable,
     flexRender,
@@ -46,12 +61,15 @@ const DataTable = ({ ReactTable, properties, fields, blockId }) => {
     getPaginationRowModel,
     getSortedRowModel,
   } = ReactTable;
-  const formData = useSelector((state) => state.formData);
-  const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const dispatch = useDispatch();
   const intl = useIntl();
+
+  const formData = useSelector((state) => state.formData);
+  const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sorting, setSorting] = useState([]);
+  const [allFields, setAllFields] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     dispatch(
@@ -62,59 +80,88 @@ const DataTable = ({ ReactTable, properties, fields, blockId }) => {
     );
   }, [clearFormDataSelector.loaded]);
 
-  const columns = useMemo(() => {
-    // TODO: field_type
-    return [
-      ...fields.map((field) => ({
-        // TODO: field_id vs id (?)
-        id: field.id,
-        header: field.label,
-        accessorFn: (row) => row[field.id]?.value,
-        cell: (props) => {
-          switch (field.field_type) {
-            case 'attachment':
-              const value = props.getValue();
-              // TODO: unused fields:
-              //      value.size -> size in bytes
-              //      value.contentType -> mime type
-              return value ? (
-                <a href={value.url} download>
-                  {value.filename}
-                </a>
-              ) : (
-                ''
-              );
-            case 'textarea':
-              return <pre>{props.getValue() || ''}</pre>;
-            // case 'checkbox':
-            //   return props.getValue() ? 'Yes' : 'No';
-            default:
-              return props.getValue() || '';
-          }
-        },
-      })),
-      {
-        id: 'date',
-        header: 'date',
-        accessorFn: (row) => row.date?.value,
-      },
-    ];
-  }, []);
+  // const data = useMemo(
+  //   () =>
+  //     // TODO: filter data by blockid
+  //     formData.loaded
+  //       ? formData.result.items.filter(
+  //           (item) => item.block_id.value === blockId,
+  //         )
+  //       : [],
+  //   [formData],
+  // );
 
-  const data = useMemo(
-    () =>
-      // TODO: filter data by blockid
-      formData.loaded
-        ? formData.result.items.filter(
-            (item) => item.block_id.value === blockId,
-          )
-        : [],
-    [formData],
-  );
+  useEffect(() => {
+    let dataResults = [];
+    if (formData?.result?.items?.length > 0) {
+      dataResults = formData.result.items.filter(
+        (item) => item.block_id.value === blockId,
+      );
+    }
+    setData(dataResults);
+  }, [formData]);
 
   // SORT
   // https://react.semantic-ui.com/collections/table/#variations-sortable
   // https://tanstack.com/table/v8/docs/examples/react/sorting
+
+  const columns = useMemo(() => {
+    let arrayColumn = [];
+    let filteredColumn = [];
+    // List of IDs to exclude
+    const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
+    if (data?.length > 0) {
+      arrayColumn = data
+        .flatMap((obj) => {
+          return Object.entries(obj).map(([key, value]) => ({
+            id: key,
+            header: value?.label,
+            accessorFn: (row) => row[key]?.value,
+            cell: (props) => {
+              switch (value?.field_type) {
+                case 'attachment':
+                  const value = props.getValue();
+                  // TODO: unused fields:
+                  // value.size -> size in bytes
+                  // value.contentType -> mime type
+                  return value ? (
+                    <a href={value.url} download>
+                      {value.filename}
+                    </a>
+                  ) : (
+                    ''
+                  );
+                case 'textarea':
+                  return <pre>{props.getValue() || ''}</pre>;
+                case 'checkbox':
+                  return props.getValue()
+                    ? intl.formatMessage(messages.formValueYes)
+                    : intl.formatMessage(messages.formValueNo);
+                default:
+                  return props.getValue() || '';
+              }
+            },
+          }));
+        })
+        .filter((item) => !excludeIds.includes(item.id))
+        .reduce((acc, current) => {
+          // Check if the id already exists
+          const existing = acc.find((item) => item.id === current.id);
+          if (!existing) {
+            acc.push(current); // If it doesn't exist, add object
+          }
+          return acc;
+        }, []);
+
+      const dateItem = arrayColumn.find((item) => item.id === 'date');
+      filteredColumn = arrayColumn.filter((item) => item.id !== 'date');
+
+      if (dateItem) {
+        filteredColumn.push(dateItem); // Add field "date" at the end fo array
+      }
+    }
+    return filteredColumn;
+  });
 
   const table = useReactTable({
     columns,
@@ -130,24 +177,66 @@ const DataTable = ({ ReactTable, properties, fields, blockId }) => {
     getSortedRowModel: getSortedRowModel(),
     // debugTable: true,
   });
+
   return (
-    <>
-      <div style={{ overflowX: 'auto' }}>
-        <Table
-          sortable
-          style={{
-            width: table.getCenterTotalSize(),
-          }}
-        >
+    <div className="dt-wrapper">
+      <div className="dt-wrapper-header">
+        {/* RESULTS INFO */}
+        <div className="dt-info-results">
+          <p>
+            <strong>{data.length} </strong>
+            {data.length === 1
+              ? intl.formatMessage(messages.formDataCountSingle)
+              : intl.formatMessage(messages.formDataCount)}
+          </p>
+        </div>
+
+        <div className="dt-actions">
+          {/* BUTTON EXPORT */}
+          <Button
+            icon
+            primary
+            onClick={() =>
+              dispatch(
+                exportCsvFormData(
+                  flattenToAppURL(properties['@id']),
+                  `export-${properties.id ?? 'form'}.csv`,
+                  blockId,
+                ),
+              )
+            }
+          >
+            <Icon name={downloadSVG} size="30px" />
+            {intl.formatMessage(messages.exportCsv)}
+          </Button>
+          {/* BUTTON DELETE */}
+          <Button icon negative onClick={() => setConfirmOpen(true)}>
+            <Icon name={deleteSVG} size="30px" />
+            {intl.formatMessage(messages.clearData)}
+          </Button>
+          {/* MODAL CONFIRM DELETE */}
+          <Confirm
+            open={confirmOpen}
+            content={intl.formatMessage(messages.confirmClearData)}
+            cancelButton={intl.formatMessage(messages.cancel)}
+            onCancel={() => setConfirmOpen(false)}
+            onConfirm={() => {
+              dispatch(
+                clearFormData(flattenToAppURL(properties['@id']), blockId),
+              );
+              setConfirmOpen(false);
+            }}
+          />
+        </div>
+      </div>
+      {/* TABLE */}
+      <div className="dt-wrapper-table">
+        <Table celled sortable striped>
           <Table.Header>
             {table.getHeaderGroups().map((headerGroup) => (
               <Table.Row key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <Table.HeaderCell
-                    style={{
-                      width: header.getSize(),
-                      whiteSpace: 'inherit',
-                    }}
                     key={header.id}
                     sorted={
                       { asc: 'ascending', desc: 'descending' }[
@@ -168,18 +257,25 @@ const DataTable = ({ ReactTable, properties, fields, blockId }) => {
             ))}
           </Table.Header>
           <Table.Body>
-            {table.getRowModel().rows.map((row) => (
-              <Table.Row key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <Table.Cell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </Table.Cell>
-                ))}
-              </Table.Row>
-            ))}
+            {table.getRowModel().rows.map((row) => {
+              return (
+                <Table.Row key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <Table.Cell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </Table.Cell>
+                  ))}
+                </Table.Row>
+              );
+            })}
           </Table.Body>
         </Table>
       </div>
+
+      {/* PAGINATION */}
       {table.getPageCount() > 1 && (
         <div className="pagination-wrapper react-table-pagination">
           <Pagination
@@ -227,48 +323,7 @@ const DataTable = ({ ReactTable, properties, fields, blockId }) => {
         </select> */}
         </div>
       )}
-
-      <p>
-        {intl.formatMessage(messages.formDataCount, {
-          formDataCount: data.length,
-        })}
-      </p>
-      <div className="inline">
-        <Button
-          compact
-          size="small"
-          primary
-          onClick={() =>
-            dispatch(
-              exportCsvFormData(
-                flattenToAppURL(properties['@id']),
-                `export-${properties.id ?? 'form'}.csv`,
-                blockId,
-              ),
-            )
-          }
-        >
-          <Icon name={downloadSVG} />
-          {intl.formatMessage(messages.exportCsv)}
-        </Button>
-        <Button compact size="small" onClick={() => setConfirmOpen(true)}>
-          <Icon name={deleteSVG} />
-          {intl.formatMessage(messages.clearData)}
-        </Button>
-        <Confirm
-          open={confirmOpen}
-          content={intl.formatMessage(messages.confirmClearData)}
-          cancelButton={intl.formatMessage(messages.cancel)}
-          onCancel={() => setConfirmOpen(false)}
-          onConfirm={() => {
-            dispatch(
-              clearFormData(flattenToAppURL(properties['@id']), blockId),
-            );
-            setConfirmOpen(false);
-          }}
-        />
-      </div>
-    </>
+    </div>
   );
 };
 

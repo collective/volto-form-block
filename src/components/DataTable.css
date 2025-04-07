@@ -1,0 +1,51 @@
+.dt-wrapper .ui.table {
+    width: 100%;
+}
+
+.dt-wrapper-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dt-wrapper .ui.table {
+    max-width: 100%;
+}
+
+.dt-wrapper .ui.table th {
+    width: 150px;
+    min-width: 130px;
+    white-space: inherit;
+}
+
+.dt-wrapper-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.dt-info-results {
+    display: flex;
+    width: 50%;
+}
+
+.dt-info-results p {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.dt-actions {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.dt-actions .ui.button {
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+    margin-left: 1rem;
+}
+
+.dt-actions .ui.button .icon {
+    padding-right: 0.5rem;
+}

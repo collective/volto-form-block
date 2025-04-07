@@ -142,7 +142,6 @@ class Edit extends SubblocksEdit {
                         {this.props.data.store ? (
                           <DataTable
                             properties={this.props.properties}
-                            fields={this.props.data?.subblocks}
                             blockId={this.props.block}
                             removeDataAfterDays={
                               this.props.data.remove_data_after_days
