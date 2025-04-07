@@ -166,6 +166,7 @@ class EmailFormProcessor:
         templates = api.portal.get_registry_record("schemaform.mail_templates")
         template_name = self.block.get("email_template", "default")
         admin_info = self.block.get("admin_info", "")
+        properties = self.block.get("schema").get("properties")
         template = templates[template_name]
         template_vars = {
             "mail_header": self.block.get("mail_header", {}).get("data", ""),
@@ -175,10 +176,20 @@ class EmailFormProcessor:
         if admin:
             form_fields += admin_info.replace("\n", "<br/>") + "<br/><br/>"
 
+        def format_property(factory, value):
+            return str(value)
+
         form_fields += "<table>\n"
         for record in self.records:
-            value = str(record["value"])
+            factory = properties[record["field_id"]].get("factory", "")
+            value = format_property(factory, record["value"])
             template_vars[record["field_id"]] = value
+
+            if factory == "hidden" and not admin:
+                continue
+            if record["field_id"] == "captchaWidget":
+                continue
+
             form_fields += (
                 f"<tr><th align=\"left\">{record['label']}</th><td>{value}</td></tr>"
             )
