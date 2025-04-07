@@ -226,8 +226,11 @@ const FormBlockView = ({
       {map(keys(submittedData), (property) => {
         const propertyType = data.schema.properties[property].type;
 
-        // Only render if the type is not 'object'
-        if (propertyType !== 'object' && property !== 'captchaWidget') {
+        if (
+          propertyType !== 'object' &&
+          property !== 'captchaWidget' &&
+          data.schema.properties[property].factory !== 'hidden'
+        ) {
           return (
             <Grid.Row key={property}>
               <Grid.Column>
