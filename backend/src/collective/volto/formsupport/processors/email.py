@@ -171,8 +171,12 @@ class EmailFormProcessor:
         template = templates[template_name]
         plone = getMultiAdapter((self.context, self.request), name="plone")
         template_vars = {
-            "mail_header": self.block.get("mail_header", {}).get("data", ""),
-            "mail_footer": self.block.get("mail_footer", {}).get("data", ""),
+            "mail_header": self.substitute_variables(
+                self.block.get("mail_header", {}).get("data", "")
+            ),
+            "mail_footer": self.substitute_variables(
+                self.block.get("mail_footer", {}).get("data", "")
+            ),
         }
         form_fields = ""
         if admin:
