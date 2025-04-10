@@ -212,6 +212,9 @@ const FormBlockView = ({
             />,
           );
         }
+
+        const errEvent = new Event('formBlockSubmitError');
+        document.dispatchEvent(errEvent);
         setSubmitPressed(false);
       });
   };

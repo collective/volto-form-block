@@ -24,6 +24,16 @@ const ReCaptchaComponent = (props) => {
     handleReCaptchaVerify();
   }, [handleReCaptchaVerify]);
 
+  useEffect(() => {
+    function handleError(event) {
+      handleReCaptchaVerify();
+    }
+
+    document.addEventListener('formBlockSubmitError', handleError);
+    return () =>
+      document.removeEventListener('formBlockSubmitError', handleError);
+  }, [document]);
+
   return null;
 };
 
