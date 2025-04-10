@@ -11,363 +11,192 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. Default: "Aggiungi un campo"
-#: components/Edit
-msgid "Add field"
-msgstr "Feld Hinzufügen"
-
 #. Default: "Admin email"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Admin email"
 msgstr "Administration E-Mail"
 
 #. Default: "Blind copy"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Blind copy"
 msgstr "Blind Copy (BCC) E-Mail"
 
 #. Default: "Cancel"
-#: components/Sidebar
-#: schemaFormBlock/EditSchemaForm
-#: schemaFormBlock/schema
-#: schemaFormBlock/ViewSchemaForm
+#: components/EditSchemaForm
+#: components/schema
+#: components/ViewSchemaForm
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. Default: "Cancel button label"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Cancel button label"
 msgstr "Beschriftung des Abbrechen-Buttons"
 
-#. Default: "Choices"
-#: components/Widget/SelectWidget
-msgid "Choices"
-msgstr "Auswahlfeld"
-
-#. Default: "Choose a file"
-#: components/Widget/FileWidget
-msgid "Choose a file"
-msgstr "Datei auswählen"
-
-#. Default: "Close"
-#: components/Widget/SelectWidget
-msgid "Close"
-msgstr "Schließen"
-
 #. Default: "Data wipe"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Data wipe"
 msgstr "Datenlöschung"
 
-#. Default: "Date"
-#: components/Widget/DatetimeWidget
-msgid "Date"
-msgstr "Datum"
-
-#. Default: "Default"
-#: components/Widget/SelectWidget
-msgid "Default"
-msgstr "Standard"
-
 #. Default: "Delete"
-#: schemaFormBlock/Wrappers/FormFieldWrapper
+#: components/Wrappers/FormFieldWrapper
 msgid "Delete"
 msgstr ""
 
 #. Default: "Description"
-#: components/Widget/SelectWidget
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Description"
 msgstr "Beschreibung"
 
-#. Default: "Drop file here to replace the existing file"
-#: components/Widget/FileWidget
-msgid "Drop file here to replace the existing file"
-msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
-
-#. Default: "Drop file here to upload a new file"
-#: components/Widget/FileWidget
-msgid "Drop file here to upload a new file"
-msgstr "Datei hier ablegen um eine neue Datei hochzuladen"
-
-#. Default: "Drop files here ..."
-#: components/Widget/FileWidget
-msgid "Drop files here ..."
-msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
-
 #. Default: "Edit"
-#: schemaFormBlock/Wrappers/FormFieldWrapper
+#: components/Wrappers/FormFieldWrapper
 msgid "Edit"
 msgstr ""
 
 #. Default: "Email footer"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Email footer"
 msgstr "E-Mail Footer"
 
 #. Default: "Email header"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Email header"
 msgstr "E-Mail Header"
 
 #. Default: "Error"
-#: components/FormView
-#: schemaFormBlock/ViewSchemaForm
+#: components/ViewSchemaForm
 msgid "Error"
 msgstr "Fehler"
 
 #. Default: "Form"
-#: components/Sidebar
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Form"
 msgstr "Formular"
 
 #. Default: "This site is protected by hCaptcha and its <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply."
-#: components/Widget/HCaptchaWidget
+#: components/Widgets/HCaptchaWidget
 msgid "HCaptchaInvisibleInfo"
 msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="https://www.hcaptcha.com/privacy">Datenschutzbestimmungen</a> und <a href="https://www.hcaptcha.com/terms">Nutzungsbedingungen</a>."
 
-#. Default: "No value"
-#: components/Widget/SelectWidget
-msgid "No value"
-msgstr "Kein Wert"
+#. Default: "No"
+#: components/ViewSchemaForm
+msgid "No"
+msgstr ""
 
 #. Default: "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
 msgstr "Anzahl der Tage, nach denen die Daten gelöscht werden sollen. Geben Sie -1 ein, um die Daten unbegrenzt zu speichern."
 
-#. Default: "Replace existing file"
-#: components/Widget/FileWidget
-msgid "Replace existing file"
-msgstr "Bestehende Datei ersetzen"
-
-#. Default: "Required"
-#: components/Widget/SelectWidget
-msgid "Required"
-msgstr "Pflichtfeld"
-
-#. Default: "Select…"
-#: components/Widget/SelectWidget
-msgid "Select…"
-msgstr "Wähle…"
-
 #. Default: "Send email to admin"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Send email to admin"
 msgstr "E-Mail an Administration senden"
 
 #. Default: "Sender"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Sender"
 msgstr "Absender"
 
 #. Default: "Sender name"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Sender name"
 msgstr "Absender Name"
 
 #. Default: "Show cancel button"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Show cancel button"
 msgstr "Abbrechen-Button anzeigen"
 
 #. Default: "Store data"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Store data"
 msgstr "Daten speichern"
 
 #. Default: "Subject"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Subject"
 msgstr "Betreff"
 
 #. Default: "Submit"
-#: schemaFormBlock/EditSchemaForm
-#: schemaFormBlock/schema
-#: schemaFormBlock/ViewSchemaForm
+#: components/EditSchemaForm
+#: components/schema
+#: components/ViewSchemaForm
 msgid "Submit"
 msgstr "Senden"
 
 #. Default: "Submit button label"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Submit button label"
 msgstr "Beschriftung des Senden-Buttons"
 
 #. Default: "Text at the beginning of the email."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Text at the beginning of the email."
 msgstr "Text am Anfang der E-Mail."
 
 #. Default: "Text at the end of the email."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Text at the end of the email."
 msgstr "Text am Ende der E-Mail."
 
 #. Default: "The email address of the sender."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "The email address of the sender"
 msgstr "Die E-Mail-Adresse des Absenders"
 
 #. Default: "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "The email addresses the submitted form data will be sent to as blind carbon copy. Multiple email addresses can be entered separated by a semicolon."
 msgstr "Die übermittelten Formulardaten werden an die E-Mail-Adressen als Blindkopie gesendet. Mehrere E-Mail-Adressen können durch ein Semikolon getrennt eingegeben werden."
 
 #. Default: "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon."
 msgstr "Die E-Mail-Adressen, an die die übermittelten Formulardaten gesendet werden. Mehrere E-Mail-Adressen können durch ein Semikolon getrennt eingegeben werden."
 
 #. Default: "The name of the sender."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "The name of the sender"
 msgstr "Der Name des Absenders"
 
 #. Default: "The subject used in the sent email."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "The subject used in the sent email."
 msgstr "Der Betreff der gesendeten E-Mail."
 
-#. Default: "Time"
-#: components/Widget/DatetimeWidget
-msgid "Time"
-msgstr "Zeit"
-
 #. Default: "Title"
-#: components/Widget/SelectWidget
-#: schemaFormBlock/schema
+#: components/schema
 msgid "Title"
 msgstr "Titel"
 
-#. Default: "Used for programmatic access to the fieldset."
-#: components/Widget/SelectWidget
-msgid "Used for programmatic access to the fieldset."
-msgstr "Wir für den programmierten Zugriff auf das Fieldset verwendet."
-
 #. Default: "When activated, the data will be stored for later use when the form is submitted"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "When activated, the data will be stored for later use when the form is submitted"
 msgstr "Bei Aktivierung werden die Daten für eine spätere Verwendung beim Absenden des Formulars gespeichert"
 
+#. Default: "Yes"
+#: components/ViewSchemaForm
+msgid "Yes"
+msgstr ""
+
+#. Default: "Your form could not be sent. Please try again later."
+#: components/ViewSchemaForm
+msgid "Your form could not be sent. Please try again later."
+msgstr "Ihr Formular konnte nicht versendet werden. Bitte versuchen Sie es später nochmals."
+
 #. Default: "Admin info"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "admin_info"
 msgstr "Administrations-Info"
 
 #. Default: "This field can be used to store additional information which should only be displayed in the email sent to the administration email (not for the user email)."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "admin_info_description"
 msgstr "In diesem Feld können zusätzliche Informationen gespeichert werden, die nur in der E-Mail angezeigt werden sollen, die an die Administrations-E-Mail gesendet wird (nicht für die Benutzer-E-Mail)."
 
-#. Default: "Use Up and Down to choose options"
-#: helpers/react-select
-msgid "ay11_Use Up and Down to choose options"
-msgstr "Verwenden Sie die Aufwärts- und Abwärtspfeile, um eine Option auszuwählen"
-
-#. Default: "available"
-#: helpers/react-select
-msgid "ay11_select available"
-msgstr "verfügbar"
-
-#. Default: "availables"
-#: helpers/react-select
-msgid "ay11_select availables"
-msgstr "verfügbar"
-
-#. Default: "deselected"
-#: helpers/react-select
-msgid "ay11_select deselected"
-msgstr "abgewählt"
-
-#. Default: "disabled"
-#: helpers/react-select
-msgid "ay11_select disabled"
-msgstr "deaktiviert"
-
-#. Default: "focused"
-#: helpers/react-select
-msgid "ay11_select focused"
-msgstr "hervorgehoben"
-
-#. Default: "for search term"
-#: helpers/react-select
-msgid "ay11_select for search term"
-msgstr "für die Forschung"
-
-#. Default: "is disabled. Select another option."
-#: helpers/react-select
-msgid "ay11_select is disabled. Select another option."
-msgstr "ist behindert. Bitte wählen Sie eine andere Option"
-
-#. Default: "option"
-#: helpers/react-select
-msgid "ay11_select option"
-msgstr "Möglichkeit"
-
-#. Default: "result"
-#: helpers/react-select
-msgid "ay11_select result"
-msgstr "Ergebnis"
-
-#. Default: "results"
-#: helpers/react-select
-msgid "ay11_select results"
-msgstr "Ergebnisse"
-
-#. Default: "selected"
-#: helpers/react-select
-msgid "ay11_select selected"
-msgstr "ausgewählt"
-
-#. Default: "value"
-#: helpers/react-select
-msgid "ay11_select value"
-msgstr "Wert"
-
-#. Default: "Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
-#: helpers/react-select
-msgid "ay11_select_Use left and right to toggle between focused values, press Backspace to remove the currently focused value"
-msgstr "Verwenden Sie die Links- und Rechtspfeile, um die hervorgehobenen Werte ein- oder auszuschalten, drücken Sie die Rücktaste, um den aktuell hervorgehobenen Wert zu entfernen"
-
-#. Default: "press Tab to select the option and exit the menu"
-#: helpers/react-select
-msgid "ay11_select__press Tab to select the option and exit the menu"
-msgstr "Tab, um die Option auszuwählen und das Menü zu verlassen"
-
-#. Default: "type to refine list"
-#: helpers/react-select
-msgid "ay11_select__type to refine list"
-msgstr "eingeben, um die Liste zu filtern"
-
-#. Default: "is_focused"
-#: helpers/react-select
-msgid "ay11_select_is_focused"
-msgstr "ist ausgewählt"
-
-#. Default: "press Down to open the menu"
-#: helpers/react-select
-msgid "ay11_select_press Down to open the menu"
-msgstr "Drücken Sie den Pfeil nach unten, um das Menü zu öffnen, drücken Sie die Rücktaste, um den ausgewählten Wert zu entfernen"
-
-#. Default: "press Enter to select the currently focused option"
-#: helpers/react-select
-msgid "ay11_select_press Enter to select the currently focused option"
-msgstr "Drücken Sie die Eingabetaste, um die aktuelle Option auszuwählen"
-
-#. Default: "press Escape to exit the menu"
-#: helpers/react-select
-msgid "ay11_select_press Escape to exit the menu"
-msgstr "Drücken Sie Esc, um das Menü zu verlassen"
-
-#. Default: "press left to focus selected values"
-#: helpers/react-select
-msgid "ay11_select_press left to focus selected values"
-msgstr "Drücken Sie die linke Pfeiltaste, um die ausgewählten Werte hervorzuheben"
-
 #. Default: "Captcha provider"
-#: formSchema
-#: schemaFormBlock/schema
+#: components/schema
 msgid "captcha"
 msgstr "Captcha-Anbieter"
 
@@ -377,396 +206,78 @@ msgid "checkbox_group"
 msgstr "Auswahlfeldgruppe"
 
 #. Default: "Choose file"
-#: schemaFormBlock/Wrappers/FileWrapper
+#: components/Wrappers/FileWrapper
 msgid "choose_file"
 msgstr "Datei auswählen"
 
 #. Default: "Recipient"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "confirmation_recipients"
 msgstr "Empfänger"
 
 #. Default: "Send confirmation to the email entered in the following field"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "confirmation_recipients_description"
 msgstr "Bestätigung an in folgendem Feld eingetragene Adresse senden"
 
-#. Default: "Description"
-#: formSchema
-msgid "description"
-msgstr "Beschreibung"
-
-#. Default: "Field ID"
-#: components/Sidebar
-msgid "fieldId"
-msgstr "Feld-ID"
-
 #. Default: "Confirmation-Page"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "fieldset_confirmation"
 msgstr "Dankesseite"
 
 #. Default: "Mailing"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "fieldset_mailing"
 msgstr "E-Mail senden"
 
 #. Default: "Fixed attachment"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "fixed_attachment"
 msgstr "Fixer Anhang"
 
-#. Default: "Form"
-#: formSchema
-msgid "form"
-msgstr "Formular"
-
-#. Default: "Form successfully submitted"
-#: components/View
-msgid "formSubmitted"
-msgstr "Formular erfolgreich eingereicht"
-
-#. Default: "Attached file will be sent via email, but not stored"
-#: formSchema
-msgid "form_attachment_send_email_info_text"
-msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versendet."
-
-#. Default: "Cancel button label"
-#: formSchema
-msgid "form_cancel_label"
-msgstr "Beschriftung der Schaltfläche Abbrechen"
-
-#. Default: "Clear data"
-#: components/Sidebar
-msgid "form_clear_data"
-msgstr "Daten löschen"
-
-#. Default: "Are you sure you want to delete all saved items?"
-#: components/Sidebar
-msgid "form_confirmClearData"
-msgstr "Gespeicherte Elemente wirklich löschen?"
-
-#. Default: "Annulla"
-#: components/Edit
-#: components/FormView
-msgid "form_default_cancel_label"
-msgstr "Abbrechen"
-
-#. Default: "Default sender"
-#: formSchema
-msgid "form_default_from"
-msgstr "Standard Absender"
-
-#. Default: "Mail subject"
-#: formSchema
-msgid "form_default_subject"
-msgstr "Betreff"
-
-#. Default: "Use the ${field_id} syntax to add a form value to the email subject"
-#: formSchema
-msgid "form_default_subject_description"
-msgstr "Verwenden Sie die Syntax ${field_id}, um dem E-Mail-Betreff einen Formularwert hinzuzufügen"
-
-#. Default: "Invia"
-#: components/Edit
-#: components/FormView
-msgid "form_default_submit_label"
-msgstr "Senden"
-
-#. Default: "Export data"
-#: components/Sidebar
-msgid "form_edit_exportCsv"
-msgstr "Daten exportieren"
-
-#. Default: "Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in."
-#: components/ValidateConfigForm
-msgid "form_edit_fill_required_configuration_fields"
-msgstr "Bitte füllen Sie die erforderlichen Konfigurationsfelder in der Seitenleiste aus. Das Formular wird im Ansichtsmodus nicht angezeigt, bis die erforderlichen Felder ausgefüllt sind."
-
-#. Default: "The e-mail entered in the 'From' field must be a valid e-mail address."
-#: helpers/validators
-msgid "form_edit_invalid_from_email"
-msgstr "Die in das Feld 'Absender' eingegebene E-Mail muss eine gültige E-Mail-Adresse sein."
-
-#. Default: "The e-mail entered in the 'Receipients' field must be a valid e-mail address."
-#: helpers/validators
-msgid "form_edit_invalid_to_email"
-msgstr "Die in das Feld 'Empfänger' eingegebene E-Mail muss eine gültige E-Mail-Adresse sein."
-
-#. Default: "Please, verify this configuration errors in sidebar. The form will be not displayed in view mode until this errors fields are not fixed."
-#: components/ValidateConfigForm
-msgid "form_edit_other_errors"
-msgstr "Bitte überprüfen Sie folgende Konfigurationsfehler in der Seitenleiste. Das Formular wird im Ansichtsmodus nicht angezeigt, bis diese Fehler nicht behoben sind."
-
-#. Default: "Attenzione!"
-#: components/Edit
-msgid "form_edit_warning"
-msgstr "Achtung!"
-
-#. Default: "Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar."
-#: components/Edit
-msgid "form_edit_warning_from"
-msgstr "Geben Sie ein Feld vom Typ 'Absender-E-Mail' ein. Wenn es nicht vorhanden ist oder vom Benutzer nicht ausgefüllt wurde, wird die Absenderadresse aus der Seitenleiste übernommen."
-
-#. Default: "Validate BCC emails with OTP verification"
-#: formSchema
-msgid "form_email_otp_verification"
-msgstr ""
-
-#. Default: "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked."
-#: formSchema
-msgid "form_email_otp_verification_description"
-msgstr ""
-
-#. Default: "There are some errors in the form."
-#: components/FormView
-msgid "form_errors_validation"
-msgstr "Das Formular enthält Fehler."
-
-#. Default: "Description"
-#: fieldSchema
-msgid "form_field_description"
-msgstr "Beschreibung"
-
-#. Default: "Value for field"
-#: components/FieldTypeSchemaExtenders/HiddenSchemaExtender
-msgid "form_field_input_value"
-msgstr "Wert"
-
-#. Default: "Possible values"
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
-#: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
-msgid "form_field_input_values"
-msgstr "Mögliche Werte"
-
-#. Default: "Label"
-#: fieldSchema
-msgid "form_field_label"
-msgstr "Bezeichung"
-
-#. Default: "Required"
-#: fieldSchema
-msgid "form_field_required"
-msgstr "Erforderlich"
-
-#. Default: "Field type"
-#: fieldSchema
-msgid "form_field_type"
-msgstr "Feld Typ"
-
-#. Default: "Attachment"
-#: fieldSchema
-msgid "form_field_type_attachment"
-msgstr "Anhang"
-
-#. Default: "Any attachments can be emailed, but will not be saved."
-#: fieldSchema
-msgid "form_field_type_attachment_info_text"
-msgstr "Anhänge können per E-Mail verschickt werden, werden aber nicht gespeichert."
-
-#. Default: "Checkbox"
-#: fieldSchema
-msgid "form_field_type_checkbox"
-msgstr "Auswahlfeld"
-
-#. Default: "Date"
-#: fieldSchema
-msgid "form_field_type_date"
-msgstr "Datum"
-
-#. Default: "E-mail"
-#: fieldSchema
-msgid "form_field_type_from"
-msgstr "E-Mail"
-
-#. Default: "Hidden"
-#: fieldSchema
-msgid "form_field_type_hidden"
-msgstr "Versteckt"
-
-#. Default: "Multiple choice"
-#: fieldSchema
-msgid "form_field_type_multiple_choice"
-msgstr "Mehrfachauswahl"
-
-#. Default: "List"
-#: fieldSchema
-msgid "form_field_type_select"
-msgstr "Liste"
-
-#. Default: "Single choice"
-#: fieldSchema
-msgid "form_field_type_single_choice"
-msgstr "Einfache Auswahl"
-
-#. Default: "Static text"
-#: fieldSchema
-msgid "form_field_type_static_text"
-msgstr "Statischer Text"
-
-#. Default: "Text"
-#: fieldSchema
-msgid "form_field_type_text"
-msgstr "Text"
-
-#. Default: "Textarea"
-#: fieldSchema
-msgid "form_field_type_textarea"
-msgstr "Textbereichsfeld"
-
-#. Default: "{formDataCount} item(s) stored"
-#: components/Sidebar
-msgid "form_formDataCount"
-msgstr "{formDataCount} Element(e) gespeichert"
-
 #. Default: "Insert here the OTP code received at {email}"
-#: components/Widget/OTPWidget
+#: components/Widgets/OTPWidget
 msgid "form_insert_otp"
 msgstr "Geben Sie hier den OTP-Code ein, den Sie über {email} erhalten haben."
 
-#. Default: "Manage data"
-#: formSchema
-msgid "form_manage_data"
-msgstr "Daten verwalten"
-
 #. Default: "You can send a new OTP code in"
-#: components/Widget/OTPWidget
+#: components/Widgets/OTPWidget
 msgid "form_otp_countdown"
 msgstr "Sie können einen neuen OTP-Code senden in"
 
 #. Default: "OTP code was sent to {email}. Check your email and insert the received OTP code into the field above."
-#: components/Widget/OTPWidget
+#: components/Widgets/OTPWidget
 msgid "form_otp_send"
 msgstr "OTP-Code wurde an {email} gesendet. Prüfen Sie Ihre E-Mail und geben Sie den erhaltenen OTP-Code in das obige Feld ein."
 
-#. Default: "Data wipe"
-#: formSchema
-msgid "form_remove_data_after_days"
-msgstr "Datenlöschung"
-
-#. Default: "Number of days after which, the data should be deleted"
-#: formSchema
-msgid "form_remove_data_after_days_helptext"
-msgstr "Anzahl der Tage, nach denen die Daten gelöscht werden sollen"
-
 #. Default: "Required"
-#: schemaFormBlock/Wrappers/CheckboxGroupWrapper
-#: schemaFormBlock/Wrappers/CheckboxWrapper
-#: schemaFormBlock/Wrappers/DatetimeWrapper
-#: schemaFormBlock/Wrappers/EmailWrapper
-#: schemaFormBlock/Wrappers/FileWrapper
-#: schemaFormBlock/Wrappers/HiddenWrapper
-#: schemaFormBlock/Wrappers/NumberWrapper
-#: schemaFormBlock/Wrappers/RadioGroupWrapper
-#: schemaFormBlock/Wrappers/SelectWrapper
-#: schemaFormBlock/Wrappers/TextareaWrapper
-#: schemaFormBlock/Wrappers/TextWrapper
-#: schemaFormBlock/Wrappers/TimeWrapper
+#: components/Wrappers/CheckboxGroupWrapper
+#: components/Wrappers/CheckboxWrapper
+#: components/Wrappers/DatetimeWrapper
+#: components/Wrappers/EmailWrapper
+#: components/Wrappers/FileWrapper
+#: components/Wrappers/HiddenWrapper
+#: components/Wrappers/NumberWrapper
+#: components/Wrappers/RadioGroupWrapper
+#: components/Wrappers/SelectWrapper
+#: components/Wrappers/TextareaWrapper
+#: components/Wrappers/TextWrapper
+#: components/Wrappers/TimeWrapper
 msgid "form_required"
 msgstr "Pflichtfeld"
 
-#. Default: "Clear"
-#: components/FormResult
-msgid "form_reset"
-msgstr "Löschen"
-
-#. Default: "Store compiled data"
-#: formSchema
-msgid "form_save_persistent_data"
-msgstr "Kompilierte Daten speichern"
-
-#. Default: "Select a value"
-#: components/Field
-msgid "form_select_a_value"
-msgstr "Wählen Sie einen Wert"
-
-#. Default: "Send email to recipient"
-#: formSchema
-msgid "form_send_email"
-msgstr "E-Mail an Empfänger senden"
-
-#. Default: "Message of sending confirmed"
-#: formSchema
-msgid "form_send_message"
-msgstr "Nachricht nach erfolgreichem Abschicken"
-
-#. Default: "You can add the value of a filled field in the form by inserting its ID between curly brackets preceded by $, example: ${field_id}; you can add also html elements such as links <a>, new line <br />, bold <b> and italic <i> formatting."
-#: formSchema
-msgid "form_send_message_helptext"
-msgstr "Der Platzhalter ${field_id} wird durch den Eingabewert des entsprechenden Feldes ersetzt. Auch HTML-Elemente wie <a>, <br/>, <b> und <i> können verwendet werden."
-
 #. Default: "Send OTP code to {email}"
-#: components/Widget/OTPWidget
+#: components/Widgets/OTPWidget
 msgid "form_send_otp_to"
 msgstr "Sende OTP-Code an {email}"
 
-#. Default: "Show cancel button"
-#: formSchema
-msgid "form_show_cancel"
-msgstr "Zeige Schaltfläche Abbrechen"
-
-#. Default: "Submit button label"
-#: formSchema
-msgid "form_submit_label"
-msgstr "Beschriftung der Schaltfläche Senden"
-
-#. Default: "Sent!"
-#: components/FormResult
-msgid "form_submit_success"
-msgstr "Gesendet!"
-
-#. Default: "Recipients"
-#: formSchema
-msgid "form_to"
-msgstr "Empfänger"
-
-#. Default: "Send an email copy to this address"
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
-msgid "form_useAsBCC"
-msgstr "Senden Sie eine E-Mail-Kopie an diese Adresse"
-
-#. Default: "If selected, a copy of email will alse be sent to this address."
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
-msgid "form_useAsBCC_description"
-msgstr "Wenn ausgewählt, wird auch eine Kopie der E-Mail an diese Adresse gesendet."
-
-#. Default: "Use as 'reply to'"
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
-msgid "form_useAsReplyTo"
-msgstr "Als Antwortadresse nutzen"
-
-#. Default: "If selected, this will be the address the receiver can use to reply."
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
-msgid "form_useAsReplyTo_description"
-msgstr "Setzt diese Adresse als Antwortadresse in versendeten Mails"
-
-#. Default: "Invalid field value"
-#: components/View
-msgid "formblock_defaultInvalidFieldMessage"
-msgstr "Fehlerhafter Eingabewert"
-
-#. Default: "Please, insert the OTP code recived via email."
-#: components/View
-msgid "formblock_insertOtp_error"
-msgstr "Bitte geben Sie den OTP-Code ein, den Sie per E-Mail erhalten haben."
-
-#. Default: "The email is incorrect"
-#: components/View
-msgid "formblock_invalidEmailMessage"
-msgstr "Fehlerhafte E-Mail-Adresse"
-
-#. Default: "Fill-in this field"
-#: components/View
-msgid "formblock_requiredFieldMessage"
-msgstr "Bitte füllen Sie dieses Feld aus"
-
 #. Default: "Forward user to"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "forward_user_to"
 msgstr "Weiterleiten nach"
 
 #. Default: "If a page is specified, the user will be directed there after submitting the form. The thank you message will not be displayed."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "forward_user_to_description"
 msgstr "Falls eine Seite angegeben ist, wird der User nach dem Absenden des Formulares dort hin geleitet. Die Dankesnachricht wird nicht angezeigt."
 
@@ -775,28 +286,13 @@ msgstr "Falls eine Seite angegeben ist, wird der User nach dem Absenden des Form
 msgid "hidden"
 msgstr "Versteckt"
 
-#. Default: "Text at the end of the email"
-#: formSchema
-msgid "mail_footer_label"
-msgstr "Text am Ende der E-Mail"
-
-#. Default: "If field isn't filled in, a default text will be used"
-#: formSchema
-msgid "mail_header_description"
-msgstr "Wenn das Feld nicht ausgefüllt ist, wird ein Standardtext verwendet"
-
-#. Default: "Text at the beginning of the email"
-#: formSchema
-msgid "mail_header_label"
-msgstr "Text am Anfang der E-Mail"
-
 #. Default: "Mail template"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "mail_template"
 msgstr "Mail-Vorlage"
 
 #. Default: "No file chosen"
-#: schemaFormBlock/Wrappers/FileWrapper
+#: components/Wrappers/FileWrapper
 msgid "no_file"
 msgstr "Keine Datei ausgewählt"
 
@@ -810,48 +306,19 @@ msgstr "Nummer"
 msgid "radio_group"
 msgstr "Radiogruppe"
 
-#. Default: "remove expired data"
-#: components/Sidebar
-msgid "remove_data_button"
-msgstr "Abgelaufene Daten löschen"
-
-#. Default: "To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation."
-#: components/Sidebar
-msgid "remove_data_cron_info"
-msgstr "Um die Löschung von Datensätzen, die die in der Konfiguration angegebene maximale Anzahl von Tagen überschritten haben, zu automatisieren, muss auf dem Server ein Cron-Job eingerichtet werden, wie in der Dokumentation beschrieben."
-
-#. Default: "There are {record} record that have exceeded the maximum number of days."
-#: components/Sidebar
-msgid "remove_data_warning"
-msgstr "{record} Einträge haben die maximale Anzahl von Tagen überschritten."
-
-#. Default: "Answer the question to prove that you are human"
-#: components/Widget/NoRobotsCaptchaWidget
-msgid "resolveCaptcha"
-msgstr "Bitte beantworten Sie die Frage, um zu beweisen, dass Sie ein Mensch sind."
-
 #. Default: "Select..."
-#: schemaFormBlock/Wrappers/SelectWrapper
+#: components/Wrappers/CheckboxGroupWrapper
+#: components/Wrappers/SelectWrapper
 msgid "select"
 msgstr "Bitte wählen..."
 
-#. Default: "results"
-#: helpers/react-select
-msgid "select_risultati"
-msgstr "Ergebnisse"
-
-#. Default: "result"
-#: helpers/react-select
-msgid "select_risultato"
-msgstr "Ergebnis"
-
 #. Default: "Send confirmation email"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "send_confirmation"
 msgstr "E-Mail an Nutzenden senden"
 
 #. Default: "When activated, an email will be sent to the admin recipients (see below) when a form is submitted"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "send_description"
 msgstr "Wenn diese Option aktiviert ist, wird eine E-Mail an die Administratorempfänger (siehe unten) gesendet, wenn ein Formular übermittelt wird"
 
@@ -861,12 +328,12 @@ msgid "static_text"
 msgstr "Statischer Text"
 
 #. Default: "Success message"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "success"
 msgstr "Erfolgsnachricht"
 
 #. Default: "Thank you! You have submitted the following data:"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "success_default"
 msgstr "Vielen Dank! Sie haben folgende Daten übermittelt:"
 
@@ -876,12 +343,12 @@ msgid "textarea"
 msgstr "Textbereichsfeld"
 
 #. Default: "Thank you message"
-#: schemaFormBlock/schema
+#: components/schema
 msgid "thankyou"
 msgstr "Dankesnachricht"
 
 #. Default: "A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view."
-#: schemaFormBlock/schema
+#: components/schema
 msgid "thankyou_description"
 msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem ist es möglich, Variablen zu verwenden; ${field_id} kann verwendet werden, um den Wert eines Feldes im Formular anzuzeigen. Die Variable ${formfields} listet alle Formularfelder in einer tabellarischen Ansicht auf."
 
@@ -889,8 +356,3 @@ msgstr "Ein Text mit einfacher Formatierung kann eingegeben werden. Außerdem is
 #: index
 msgid "time"
 msgstr "Zeit"
-
-#. Default: "Title"
-#: formSchema
-msgid "title"
-msgstr "Titel"

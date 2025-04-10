@@ -38,6 +38,10 @@ const messages = defineMessages({
     id: 'Submit',
     defaultMessage: 'Submit',
   },
+  errorSend: {
+    id: 'Your form could not be sent. Please try again later.',
+    defaultMessage: 'Your form could not be sent. Please try again later.',
+  },
   cancel: {
     id: 'Cancel',
     defaultMessage: 'Cancel',
@@ -203,7 +207,7 @@ const FormBlockView = ({
           toast.error(
             <Toast
               error
-              title={intl.formatMessage(messages.error)}
+              title={intl.formatMessage(messages.errorSend)}
               content={message}
             />,
           );
