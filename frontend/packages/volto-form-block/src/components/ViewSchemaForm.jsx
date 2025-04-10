@@ -199,7 +199,16 @@ const FormBlockView = ({
               content={invariantErrors.join(' - ')}
             />,
           );
+        } else {
+          toast.error(
+            <Toast
+              error
+              title={intl.formatMessage(messages.error)}
+              content={message}
+            />,
+          );
         }
+        setSubmitPressed(false);
       });
   };
 
