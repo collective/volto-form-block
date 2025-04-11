@@ -50,8 +50,11 @@ class RecaptchaSupport(CaptchaSupport):
         res = submit(token, self.settings.private_key, remote_addr)
         if not res.is_valid:
             raise BadRequest(
-                translate(
-                    _("The code you entered was wrong, please enter the new one."),
-                    context=self.request,
+                "{error} ({code})".format(
+                    error=translate(
+                        _("The code you entered was wrong, please enter the new one."),
+                        context=self.request,
+                    ),
+                    code=res.error_code,
                 )
             )
