@@ -236,6 +236,246 @@ msgstr "Descrizione"
 msgid "fieldId"
 msgstr "Identificativo"
 
+#: fieldSchema
+# defaultMessage: "Autocomplete" attribute
+msgid "field_autocomplete"
+msgstr "Attributo 'autocomplete'"
+
+#: fieldSchema
+# defaultMessage: Additional name
+msgid "field_autocomplete_additional_name"
+msgstr "Secondo nome"
+
+#: fieldSchema
+# defaultMessage: Address line 1
+msgid "field_autocomplete_address_line1"
+msgstr "Indirizzo riga 1"
+
+#: fieldSchema
+# defaultMessage: Address line 2
+msgid "field_autocomplete_address_line2"
+msgstr "Indirizzo riga 2"
+
+#: fieldSchema
+# defaultMessage: Address line 3
+msgid "field_autocomplete_address_line3"
+msgstr "Indirizzo riga 3"
+
+#: fieldSchema
+# defaultMessage: Birthday
+msgid "field_autocomplete_bday"
+msgstr "Data di nascita"
+
+#: fieldSchema
+# defaultMessage: Birth day
+msgid "field_autocomplete_bday_day"
+msgstr "Giorno di nascita"
+
+#: fieldSchema
+# defaultMessage: Birth month
+msgid "field_autocomplete_bday_month"
+msgstr "Mese di nascita"
+
+#: fieldSchema
+# defaultMessage: Birth year
+msgid "field_autocomplete_bday_year"
+msgstr "Anno di nascita"
+
+#: fieldSchema
+# defaultMessage: Cardholder additional name
+msgid "field_autocomplete_cc_additional_name"
+msgstr "Secondo nome del titolare della carta"
+
+#: fieldSchema
+# defaultMessage: Credit card security code
+msgid "field_autocomplete_cc_csc"
+msgstr "Codice di sicurezza della carta di credito"
+
+#: fieldSchema
+# defaultMessage: Credit card expiration date
+msgid "field_autocomplete_cc_exp"
+msgstr "Data di scadenza della carta di credito"
+
+#: fieldSchema
+# defaultMessage: Credit card expiration month
+msgid "field_autocomplete_cc_exp_month"
+msgstr "Mese di scadenza della carta di credito"
+
+#: fieldSchema
+# defaultMessage: Credit card expiration year
+msgid "field_autocomplete_cc_exp_year"
+msgstr "Anno di scadenza della carta di credito"
+
+#: fieldSchema
+# defaultMessage: Cardholder family name
+msgid "field_autocomplete_cc_family_name"
+msgstr "Cognome del titolare della carta"
+
+#: fieldSchema
+# defaultMessage: Cardholder given name
+msgid "field_autocomplete_cc_given_name"
+msgstr "Nome del titolare della carta"
+
+#: fieldSchema
+# defaultMessage: Cardholder name
+msgid "field_autocomplete_cc_name"
+msgstr "Nome del titolare della carta"
+
+#: fieldSchema
+# defaultMessage: Credit card number
+msgid "field_autocomplete_cc_number"
+msgstr "Numero della carta di credito"
+
+#: fieldSchema
+# defaultMessage: Credit card type
+msgid "field_autocomplete_cc_type"
+msgstr "Tipo di carta di credito"
+
+#: fieldSchema
+# defaultMessage: Country
+msgid "field_autocomplete_country"
+msgstr "Paese"
+
+#: fieldSchema
+# defaultMessage: Country name
+msgid "field_autocomplete_country_name"
+msgstr "Nome del paese"
+
+#: fieldSchema
+# defaultMessage: Current password
+msgid "field_autocomplete_current_password"
+msgstr "Password attuale"
+
+#: fieldSchema
+# defaultMessage: This field adds the "autocomplete" attribute to the field. This allows to fill in the field automatically with the user info, if stored. For a complete list of these attributes and their use, visit <a>this page</a>
+msgid "field_autocomplete_description"
+msgstr "Questo campo aggiunge l'attributo 'autocomplete' al campo. Ciò consente al browser di compilare automaticamente il campo con le informazioni dell'utente, se memorizzate. Per un elenco completo di questi attributi e del loro utilizzo, visita <a>questa pagina</a>."
+
+#: fieldSchema
+# defaultMessage: Email
+msgid "field_autocomplete_email"
+msgstr "Email"
+
+#: fieldSchema
+# defaultMessage: Family name
+msgid "field_autocomplete_family_name"
+msgstr "Cognome"
+
+#: fieldSchema
+# defaultMessage: Given name
+msgid "field_autocomplete_given_name"
+msgstr "Nome"
+
+#: fieldSchema
+# defaultMessage: Prefix (ex. mr, mrs)
+msgid "field_autocomplete_honorific_prefix"
+msgstr "Prefisso (es. sig., sig.ra)"
+
+#: fieldSchema
+# defaultMessage: Suffix (ex. jr, sr)
+msgid "field_autocomplete_honorific_suffix"
+msgstr "Suffisso (es. jr, sr)"
+
+#: fieldSchema
+# defaultMessage: Language
+msgid "field_autocomplete_language"
+msgstr "Lingua"
+
+#: fieldSchema
+# defaultMessage: Full name
+msgid "field_autocomplete_name_complete"
+msgstr "Nome completo"
+
+#: fieldSchema
+# defaultMessage: New password
+msgid "field_autocomplete_new_password"
+msgstr "Nuova password"
+
+#: fieldSchema
+# defaultMessage: Nickname
+msgid "field_autocomplete_nickname"
+msgstr "Soprannome"
+
+#: fieldSchema
+# defaultMessage: Organization
+msgid "field_autocomplete_organization"
+msgstr "Organizzazione"
+
+#: fieldSchema
+# defaultMessage: Organization title
+msgid "field_autocomplete_organization_title"
+msgstr "Titolo dell'organizzazione"
+
+#: fieldSchema
+# defaultMessage: Photo
+msgid "field_autocomplete_photo"
+msgstr "Foto"
+
+#: fieldSchema
+# defaultMessage: Postal code
+msgid "field_autocomplete_postal_code"
+msgstr "Codice postale"
+
+#: fieldSchema
+# defaultMessage: Gender
+msgid "field_autocomplete_sex"
+msgstr "Genere"
+
+#: fieldSchema
+# defaultMessage: Street address
+msgid "field_autocomplete_street_address"
+msgstr "Indirizzo"
+
+#: fieldSchema
+# defaultMessage: Telephone number
+msgid "field_autocomplete_tel"
+msgstr "Numero di telefono"
+
+#: fieldSchema
+# defaultMessage: Telephone area code
+msgid "field_autocomplete_tel_area_code"
+msgstr "Prefisso telefonico"
+
+#: fieldSchema
+# defaultMessage: Telephone country code
+msgid "field_autocomplete_tel_country_code"
+msgstr "Prefisso internazionale"
+
+#: fieldSchema
+# defaultMessage: Telephone extension
+msgid "field_autocomplete_tel_extension"
+msgstr "Interno telefonico"
+
+#: fieldSchema
+# defaultMessage: Local telephone number
+msgid "field_autocomplete_tel_local"
+msgstr "Numero telefonico locale"
+
+#: fieldSchema
+# defaultMessage: National telephone number
+msgid "field_autocomplete_tel_national"
+msgstr "Numero telefonico nazionale"
+
+#: fieldSchema
+# defaultMessage: Transaction amount
+msgid "field_autocomplete_transaction_amount"
+msgstr "Importo della transazione"
+
+#: fieldSchema
+# defaultMessage: Transaction currency
+msgid "field_autocomplete_transaction_currency"
+msgstr "Valuta della transazione"
+
+#: fieldSchema
+# defaultMessage: Website URL
+msgid "field_autocomplete_url"
+msgstr "URL del sito web"
+
+#: fieldSchema
+# defaultMessage: Username
+msgid "field_autocomplete_username"
+msgstr "Nome utente"
+
 #: formSchema
 # defaultMessage: Form
 msgid "form"
