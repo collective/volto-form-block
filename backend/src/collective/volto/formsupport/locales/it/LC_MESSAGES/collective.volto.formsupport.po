@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-07 00:42+0000\n"
+"POT-Creation-Date: 2025-04-15 14:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,13 +30,17 @@ msgstr "HCaptcha"
 msgid "HCaptcha Invisible"
 msgstr "HCaptcha Invisible"
 
-#: ../captcha/honeypot.py:11
+#: ../captcha/honeypot.py:13
 msgid "Honeypot Support"
 msgstr "Honeypot"
 
-#: ../configure.zcml:34
+#: ../profiles.zcml:15
 msgid "Installs the collective.volto.formsupport add-on."
 msgstr "Install collective.volto.formsupport"
+
+#: ../processors/email.py:194
+msgid "No"
+msgstr ""
 
 #: ../captcha/hcaptcha.py:44
 #: ../captcha/norobots.py:49
@@ -52,9 +56,13 @@ msgstr "NoRobots"
 msgid "OTP is wrong"
 msgstr "Il codice OTP è errato."
 
+#: ../browser/templates/email_confirm_view.pt:17
+msgid "Simple Transactional Email"
+msgstr ""
+
 #: ../captcha/hcaptcha.py:56
 #: ../captcha/norobots.py:65
-#: ../captcha/recaptcha.py:54
+#: ../captcha/recaptcha.py:55
 msgid "The code you entered was wrong, please enter the new one."
 msgstr "Il codice che hai inserito è sbagliato, per favore prova con un altro."
 
@@ -78,77 +86,58 @@ msgstr "L'email usato non è valido"
 msgid "The uid field is missing"
 msgstr "Campo uid è mancante"
 
-#: ../configure.zcml:43
+#: ../profiles.zcml:24
 msgid "Uninstalls the collective.volto.formsupport add-on."
 msgstr "Disinstalla collective.volto.formsupport."
 
-#: ../configure.zcml:34
+#: ../profiles.zcml:15
 msgid "Volto: Form support"
 msgstr "Volto: Form support"
 
-#: ../configure.zcml:43
+#: ../profiles.zcml:24
 msgid "Volto: Form support (uninstall)"
 msgstr "Volto: Form support (uninstall)"
+
+#: ../processors/email.py:189
+msgid "Yes"
+msgstr ""
 
 #: ../browser/templates/email_confirm_view.pt:371
 msgid "Your code to validate the email address:"
 msgstr "Il tuo codice per la conferma dell'indirizzo email:"
 
 #. Default: "Attachments too big. You uploaded ${uploaded_str}, but limit is ${max} MB. Try to compress files."
-#: ../restapi/services/submit_form/post.py:215
+#: ../restapi/services/submit_form/post.py:175
 msgid "attachments_too_big"
 msgstr "Allegati troppo grandi. Hai caricato ${uploaded_str}, ma il limite è di ${max} MB. Prova a comprimerli."
 
-#. Default: "Block with @type \"form\" and id \"$block\" not found in this context: $context"
-#: ../restapi/services/submit_form/post.py:130
+#. Default: "Block with @type \"schemaForm\" and id \"$block\" not found in this context: $context"
+#: ../restapi/services/submit_form/post.py:116
+#, fuzzy
 msgid "block_form_not_found_label"
 msgstr "Blocco con @type \"form\" e id \"$block\" non trovato nel contesto: $context"
 
 #. Default: "Empty form data."
-#: ../restapi/services/submit_form/post.py:156
+#: ../restapi/services/submit_form/post.py:130
 msgid "empty_form_data"
 msgstr "Form senza dati."
 
+#. Default: "Unable to process form. Please retry later or contact site administrator."
+#: ../restapi/services/submit_form/post.py:68
+msgid "form_action_exception"
+msgstr ""
+
 #. Default: "Error submitting form."
-#: ../captcha/honeypot.py:28
+#: ../captcha/honeypot.py:30
 msgid "honeypot_error"
 msgstr "Errore nella sottomissione del form."
 
-#. Default: "Unable to send confirm email. Please retry later or contact site administator."
-#: ../restapi/services/submit_form/post.py:76
-msgid "mail_send_exception"
-msgstr "Impossibile inviare la mail di conferma. Per favore riprova più tardi o contatta l'amministratore del sito."
-
-#. Default: "You need to set at least one form action between \"send\" and \"store\"."
-#: ../restapi/services/submit_form/post.py:145
-msgid "missing_action"
-msgstr "Devi selezionare almeno un'azione tra \"salva\" e \"invia\"."
+#. Default: "Invalid form data."
+#: ../restapi/services/submit_form/post.py:90
+msgid "invalid_form_data"
+msgstr ""
 
 #. Default: "Missing block_id"
-#: ../restapi/services/submit_form/post.py:123
+#: ../restapi/services/submit_form/post.py:109
 msgid "missing_blockid_label"
 msgstr "Campo block_id mancante."
-
-#. Default: "A new form has been submitted from <a href=\"${url}\">${url}</a>"
-#: ../browser/send_mail_template.pt:22
-msgid "send_mail_text"
-msgstr "Modulo compilato su <a href=\"${url}\">${url}</a>"
-
-#. Default: "Form submission data for ${title}"
-#: ../browser/send_mail_template_table.pt:15
-msgid "send_mail_text_table"
-msgstr "Dati inviati per ${title}"
-
-#. Default: "Missing required field: subject or from."
-#: ../restapi/services/submit_form/post.py:322
-msgid "send_required_field_missing"
-msgstr "Campo obbligatorio mancante: subject o from."
-
-#. Default: "Email not valid in \"${field}\" field."
-#: ../restapi/services/submit_form/post.py:187
-msgid "wrong_email"
-msgstr "Email inserita non valida nel campo \"${field}\"."
-
-#: ../restapi/services/submit_form/post.py:246
-msgid "{email}'s OTP is wrong"
-msgstr "Il codice OTP per {email} è errato."

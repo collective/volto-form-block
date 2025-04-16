@@ -81,7 +81,7 @@ msgstr "Diese Website ist durch hCaptcha geschützt und es gelten die <a href="h
 #. Default: "No"
 #: components/ViewSchemaForm
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #. Default: "Number of days after which, the data should be deleted. Enter -1 to store indefinitely."
 #: components/schema
@@ -178,7 +178,7 @@ msgstr "Bei Aktivierung werden die Daten für eine spätere Verwendung beim Abse
 #. Default: "Yes"
 #: components/ViewSchemaForm
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. Default: "Your form could not be sent. Please try again later."
 #: components/ViewSchemaForm

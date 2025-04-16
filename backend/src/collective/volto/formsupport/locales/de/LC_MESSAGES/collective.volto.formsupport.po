@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-07 00:42+0000\n"
+"POT-Creation-Date: 2025-04-15 14:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,27 +16,31 @@ msgstr ""
 
 #: ../restapi/services/validation/email.py:51
 msgid "Email confirmation code"
-msgstr ""
+msgstr "E-Mail-Bestätigungscode"
 
 #: ../captcha/recaptcha.py:12
 msgid "Google ReCaptcha"
-msgstr ""
+msgstr "Google ReCaptcha"
 
 #: ../captcha/hcaptcha.py:14
 msgid "HCaptcha"
-msgstr ""
+msgstr "HCaptcha"
 
 #: ../captcha/hcaptcha.py:63
 msgid "HCaptcha Invisible"
 msgstr ""
 
-#: ../captcha/honeypot.py:11
+#: ../captcha/honeypot.py:13
 msgid "Honeypot Support"
 msgstr ""
 
-#: ../configure.zcml:34
+#: ../profiles.zcml:15
 msgid "Installs the collective.volto.formsupport add-on."
 msgstr ""
+
+#: ../processors/email.py:194
+msgid "No"
+msgstr "Nein"
 
 #: ../captcha/hcaptcha.py:44
 #: ../captcha/norobots.py:49
@@ -52,9 +56,13 @@ msgstr ""
 msgid "OTP is wrong"
 msgstr ""
 
+#: ../browser/templates/email_confirm_view.pt:17
+msgid "Simple Transactional Email"
+msgstr ""
+
 #: ../captcha/hcaptcha.py:56
 #: ../captcha/norobots.py:65
-#: ../captcha/recaptcha.py:54
+#: ../captcha/recaptcha.py:55
 msgid "The code you entered was wrong, please enter the new one."
 msgstr "Der eingegebene Code war falsch. Bitte geben Sie den neuen Code ein."
 
@@ -78,77 +86,58 @@ msgstr ""
 msgid "The uid field is missing"
 msgstr ""
 
-#: ../configure.zcml:43
+#: ../profiles.zcml:24
 msgid "Uninstalls the collective.volto.formsupport add-on."
 msgstr ""
 
-#: ../configure.zcml:34
+#: ../profiles.zcml:15
 msgid "Volto: Form support"
 msgstr ""
 
-#: ../configure.zcml:43
+#: ../profiles.zcml:24
 msgid "Volto: Form support (uninstall)"
 msgstr ""
+
+#: ../processors/email.py:189
+msgid "Yes"
+msgstr "Ja"
 
 #: ../browser/templates/email_confirm_view.pt:371
 msgid "Your code to validate the email address:"
 msgstr ""
 
 #. Default: "Attachments too big. You uploaded ${uploaded_str}, but limit is ${max} MB. Try to compress files."
-#: ../restapi/services/submit_form/post.py:215
+#: ../restapi/services/submit_form/post.py:175
 msgid "attachments_too_big"
 msgstr "Anhang ist zu groß (${uploaded_str}). Die Größe darf ${max} MB nicht überschreiten. Versuchen Sie Dateien zu komprimieren."
 
-#. Default: "Block with @type \"form\" and id \"$block\" not found in this context: $context"
-#: ../restapi/services/submit_form/post.py:130
+#. Default: "Block with @type \"schemaForm\" and id \"$block\" not found in this context: $context"
+#: ../restapi/services/submit_form/post.py:116
+#, fuzzy
 msgid "block_form_not_found_label"
 msgstr "Kein Formular-Block mit der ID \"$block\" in diesem Kontext gefunden: $context"
 
 #. Default: "Empty form data."
-#: ../restapi/services/submit_form/post.py:156
+#: ../restapi/services/submit_form/post.py:130
 msgid "empty_form_data"
 msgstr "Leere Formulardaten."
 
+#. Default: "Unable to process form. Please retry later or contact site administrator."
+#: ../restapi/services/submit_form/post.py:68
+msgid "form_action_exception"
+msgstr ""
+
 #. Default: "Error submitting form."
-#: ../captcha/honeypot.py:28
+#: ../captcha/honeypot.py:30
 msgid "honeypot_error"
 msgstr "Formular konnte nicht abgeschickt werden."
 
-#. Default: "Unable to send confirm email. Please retry later or contact site administator."
-#: ../restapi/services/submit_form/post.py:76
-msgid "mail_send_exception"
-msgstr "Die Bestätigungsmail konnte nicht versandt werden. Bitte versuchen Sie es später erneut oder kontaktieren Sie die Seitenadministration."
-
-#. Default: "You need to set at least one form action between \"send\" and \"store\"."
-#: ../restapi/services/submit_form/post.py:145
-msgid "missing_action"
-msgstr "Es muss mindestens eine Formular-Aktion gesetzt werden (\"E-Mail an Empfänger senden\" und/oder \"Kompilierte Daten speichern\")."
+#. Default: "Invalid form data."
+#: ../restapi/services/submit_form/post.py:90
+msgid "invalid_form_data"
+msgstr ""
 
 #. Default: "Missing block_id"
-#: ../restapi/services/submit_form/post.py:123
+#: ../restapi/services/submit_form/post.py:109
 msgid "missing_blockid_label"
 msgstr "Fehlende block_id"
-
-#. Default: "A new form has been submitted from <a href=\"${url}\">${url}</a>"
-#: ../browser/send_mail_template.pt:22
-msgid "send_mail_text"
-msgstr "Auf der Seite ${url} wurde ein neues Formular eingereicht:"
-
-#. Default: "Form submission data for ${title}"
-#: ../browser/send_mail_template_table.pt:15
-msgid "send_mail_text_table"
-msgstr ""
-
-#. Default: "Missing required field: subject or from."
-#: ../restapi/services/submit_form/post.py:322
-msgid "send_required_field_missing"
-msgstr "Erforderliches Feld fehlt: Betreff oder Absender"
-
-#. Default: "Email not valid in \"${field}\" field."
-#: ../restapi/services/submit_form/post.py:187
-msgid "wrong_email"
-msgstr ""
-
-#: ../restapi/services/submit_form/post.py:246
-msgid "{email}'s OTP is wrong"
-msgstr ""
