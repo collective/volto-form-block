@@ -125,7 +125,7 @@ msgstr "Leere Formulardaten."
 #. Default: "Unable to process form. Please retry later or contact site administrator."
 #: ../restapi/services/submit_form/post.py:68
 msgid "form_action_exception"
-msgstr ""
+msgstr "Formular kann aktuell nicht bearbeitet werden. Bitte versuchen sie es später."
 
 #. Default: "Error submitting form."
 #: ../captcha/honeypot.py:30
@@ -135,7 +135,7 @@ msgstr "Formular konnte nicht abgeschickt werden."
 #. Default: "Invalid form data."
 #: ../restapi/services/submit_form/post.py:90
 msgid "invalid_form_data"
-msgstr ""
+msgstr "Formulardaten können nicht verarbeitet werden."
 
 #. Default: "Missing block_id"
 #: ../restapi/services/submit_form/post.py:109
