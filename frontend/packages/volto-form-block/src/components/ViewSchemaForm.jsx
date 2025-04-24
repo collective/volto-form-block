@@ -56,14 +56,7 @@ const messages = defineMessages({
   },
 });
 
-const FormBlockView = ({
-  data,
-  id,
-  properties,
-  metadata,
-  path,
-  moment: momentlib,
-}) => {
+const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const location = useLocation();
@@ -106,19 +99,14 @@ const FormBlockView = ({
 
   const onCancel = () => {};
 
-  const onSubmit = (formData) => {
+  const onSubmit = async (formData) => {
     let submitData = { ...formData };
     let captcha = {
       provider: data.captcha,
-      token: submitData.captchaToken,
     };
-    if (data.captcha === 'honeypot') {
-      captcha.value = submitData['captchaWidget']?.value ?? '';
-      delete submitData.captchaWidget;
-    }
 
     if (data.captcha === 'recaptcha') {
-      captcha.token = submitData.captchaWidget;
+      captcha.token = await submitData.captchaWidget();
       delete submitData.captchaWidget;
     }
 
@@ -213,8 +201,6 @@ const FormBlockView = ({
           );
         }
 
-        const errEvent = new Event('formBlockSubmitError');
-        document.dispatchEvent(errEvent);
         setSubmitPressed(false);
       });
   };
