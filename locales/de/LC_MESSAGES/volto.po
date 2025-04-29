@@ -420,6 +420,11 @@ msgid "form_field_required"
 msgstr "Erforderlich"
 
 #: fieldSchema
+# defaultMessage: If visibility conditions have been added to the field, it is advisable not to apply the requirement.
+msgid "form_field_required_info_text"
+msgstr ""
+
+#: fieldSchema
 # defaultMessage: Field type
 msgid "form_field_type"
 msgstr "Feld Typ"

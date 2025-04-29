@@ -420,6 +420,11 @@ msgid "form_field_required"
 msgstr "Obbligatorio"
 
 #: fieldSchema
+# defaultMessage: If visibility conditions have been added to the field, it is advisable not to apply the requirement.
+msgid "form_field_required_info_text"
+msgstr "Se sono state aggiunte condizioni di visibilità al campo è consigliabile non applicare l'obbligatorietà."
+
+#: fieldSchema
 # defaultMessage: Field type
 msgid "form_field_type"
 msgstr "Tipo di campo"

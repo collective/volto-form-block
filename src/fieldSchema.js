@@ -15,6 +15,11 @@ const messages = defineMessages({
     id: 'form_field_required',
     defaultMessage: 'Required',
   },
+  field_required_info_text: {
+    id: 'form_field_required_info_text',
+    defaultMessage:
+      'If visibility conditions have been added to the field, it is advisable not to apply the requirement.',
+  },
   field_type: {
     id: 'form_field_type',
     defaultMessage: 'Field type',
@@ -143,6 +148,7 @@ export default (props) => {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
+        description: intl.formatMessage(messages.field_required_info_text),
       },
       visibility_conditions: {
         title: 'Scelte visibili se',
