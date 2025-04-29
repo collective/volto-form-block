@@ -1,5 +1,12 @@
 
 
+## [3.12.0](https://github.com/collective/volto-form-block/compare/v3.11.0...v3.12.0) (2025-04-29)
+
+
+### Features
+
+* added conditions to show or hide fields ([#129](https://github.com/collective/volto-form-block/issues/129)) ([bc08fb8](https://github.com/collective/volto-form-block/commit/bc08fb8e9b38f8fd5514f470e14215d97589f8d8))
+
 ## [3.11.0](https://github.com/collective/volto-form-block/compare/v3.10.2...v3.11.0) (2025-02-14)
 
 
