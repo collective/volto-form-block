@@ -10,6 +10,8 @@ import {
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 import { FormResult } from 'volto-form-block/components';
+import { evaluateAllConditions } from 'volto-form-block/helpers/conditions-list';
+
 /* Style */
 import 'volto-form-block/components/FormView.css';
 
@@ -129,30 +131,35 @@ const FormView = ({
                     getFieldsToSendWithValue(subblock);
 
                   return (
-                    <Grid.Row key={'row' + index}>
-                      <Grid.Column>
-                        <Field
-                          {...subblock}
-                          name={name}
-                          onChange={(field, value) =>
-                            onChangeFormData(
-                              subblock.id,
-                              field,
-                              value,
-                              fields_to_send_with_value,
-                            )
-                          }
-                          value={
-                            subblock.field_type === 'static_text'
-                              ? subblock.value
-                              : formData[name]?.value
-                          }
-                          valid={isValidField(name)}
-                          errorMessage={getErrorMessage(name)}
-                          formHasErrors={formErrors?.length > 0}
-                        />
-                      </Grid.Column>
-                    </Grid.Row>
+                    evaluateAllConditions(
+                      subblock?.visibility_conditions,
+                      formData,
+                    ) && (
+                      <Grid.Row key={'row' + index}>
+                        <Grid.Column>
+                          <Field
+                            {...subblock}
+                            name={name}
+                            onChange={(field, value) =>
+                              onChangeFormData(
+                                subblock.id,
+                                field,
+                                value,
+                                fields_to_send_with_value,
+                              )
+                            }
+                            value={
+                              subblock.field_type === 'static_text'
+                                ? subblock.value
+                                : formData[name]?.value
+                            }
+                            valid={isValidField(name)}
+                            errorMessage={getErrorMessage(name)}
+                            formHasErrors={formErrors?.length > 0}
+                          />
+                        </Grid.Column>
+                      </Grid.Row>
+                    )
                   );
                 })}
 
