@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Segment, Accordion, Form, Grid } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
