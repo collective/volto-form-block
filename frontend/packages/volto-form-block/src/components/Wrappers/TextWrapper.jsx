@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -29,7 +28,6 @@ const TextWrapper = (props) => {
     intl,
   } = props;
 
-  const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.text;
 
   return (
@@ -45,7 +43,6 @@ const TextWrapper = (props) => {
         disabled={isDisabled}
         placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
-        ref={ref}
         onClick={() => onClick()}
         minLength={minLength || null}
         maxLength={maxLength || null}
@@ -70,6 +67,6 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: null,
-  maxLength: null,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
 };

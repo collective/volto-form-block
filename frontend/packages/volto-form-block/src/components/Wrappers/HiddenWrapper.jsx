@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -28,7 +27,6 @@ const HiddenWrapper = (props) => {
     intl,
   } = props;
 
-  const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.hidden;
 
   return onEdit ? (
@@ -44,7 +42,6 @@ const HiddenWrapper = (props) => {
         disabled={isDisabled}
         placeholder={placeholder}
         onChange={(value) => onChange(id, value === '' ? undefined : value)}
-        ref={ref}
         onClick={() => onClick()}
         errorMessage={error ? error[0] : ''}
         isInvalid={error}
@@ -56,7 +53,6 @@ const HiddenWrapper = (props) => {
       name={id}
       value={value || ''}
       placeholder={placeholder}
-      ref={ref}
       type="hidden"
     />
   );

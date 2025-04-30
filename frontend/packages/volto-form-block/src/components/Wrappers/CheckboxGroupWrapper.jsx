@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -32,7 +31,6 @@ const CheckboxGroupWrapper = (props) => {
     intl,
   } = props;
 
-  const ref = useRef();
   const CheckboxGroup =
     config.blocks.blocksConfig.schemaForm.innerWidgets.checkboxGroup;
   const Checkbox =
@@ -67,7 +65,6 @@ const CheckboxGroupWrapper = (props) => {
           disabled={isDisabled}
           onChange={(value) => onChange(id, value)}
           errorMessage={error ? error[0] : ''}
-          ref={ref}
           onClick={() => onClick()}
           isInvalid={error !== undefined}
         >
@@ -109,7 +106,6 @@ const CheckboxGroupWrapper = (props) => {
               map(value, (item) => item.value),
             );
           }}
-          ref={ref}
           onClick={() => onClick()}
           options={options.map((option) => ({
             value: option[0],

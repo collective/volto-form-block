@@ -1,13 +1,7 @@
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import { defineMessages, injectIntl } from 'react-intl';
-import {
-  parseAbsolute,
-  parseAbsoluteToLocal,
-  parseDate,
-  parseDateTime,
-} from '@internationalized/date';
+import { parseDate, parseDateTime } from '@internationalized/date';
 import moment from 'moment';
 
 import FormFieldWrapper from './FormFieldWrapper';
@@ -34,7 +28,6 @@ const DatetimeWrapper = (props) => {
     intl,
   } = props;
 
-  const ref = useRef();
   const Widget = config.blocks.blocksConfig.schemaForm.innerWidgets.datetime;
   const onDateChange = (date) => {
     if (date) {
@@ -80,7 +73,6 @@ const DatetimeWrapper = (props) => {
         isDateOnly={widget === 'date'}
         onChange={onDateChange}
         onChangeTime={onDateChange}
-        ref={ref}
         onClick={() => onClick()}
         errorMessage={error ? error[0] : ''}
         isInvalid={error}
