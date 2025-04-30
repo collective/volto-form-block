@@ -226,6 +226,56 @@ msgstr ""
 msgid "captcha"
 msgstr ""
 
+#: helpers/conditions-list
+# defaultMessage: Contains
+msgid "condition_contains"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Greater or equal
+msgid "condition_greater_or_equal"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Greater than
+msgid "condition_greater_than"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Is empty
+msgid "condition_is_empty"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Is equal to
+msgid "condition_is_equal_to"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Is not empty
+msgid "condition_is_not_empty"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Is not equal to
+msgid "condition_is_not_equal_to"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Less or equal
+msgid "condition_less_or_equal"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Less than
+msgid "condition_less_than"
+msgstr ""
+
+#: helpers/conditions-list
+# defaultMessage: Not contains
+msgid "condition_not_contains"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Description
 msgid "description"
@@ -368,6 +418,11 @@ msgstr "Étiqueter"
 # defaultMessage: Required
 msgid "form_field_required"
 msgstr "Obligatoire"
+
+#: fieldSchema
+# defaultMessage: If visibility conditions have been added to the field, it is advisable not to apply the requirement.
+msgid "form_field_required_info_text"
+msgstr ""
 
 #: fieldSchema
 # defaultMessage: Field type
@@ -627,6 +682,71 @@ msgstr ""
 #: formSchema
 # defaultMessage: Title
 msgid "title"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Add condition
+msgid "visible_conditions_widget_add"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: and
+msgid "visible_conditions_widget_and"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Apply
+msgid "visible_conditions_widget_apply"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Cancel
+msgid "visible_conditions_widget_cancel"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Delete condition
+msgid "visible_conditions_widget_delete"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Not checked
+msgid "visible_conditions_widget_false"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Select a field
+msgid "visible_conditions_widget_fields"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: If
+msgid "visible_conditions_widget_if"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: For this field it is not the best solution, we recommend changing the condition.
+msgid "visible_conditions_widget_not_satisfied"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Select a condition
+msgid "visible_conditions_widget_options"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Write text
+msgid "visible_conditions_widget_text"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Visible choices if
+msgid "visible_conditions_widget_title"
+msgstr ""
+
+#: components/Widget/VisibilityConditionsWidget
+# defaultMessage: Checked
+msgid "visible_conditions_widget_true"
 msgstr ""
 
 #: components/Edit
