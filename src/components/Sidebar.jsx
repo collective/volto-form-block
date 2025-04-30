@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Segment, Accordion, Form, Grid } from 'semantic-ui-react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -17,7 +18,7 @@ import {
   setSubblocksIDList,
 } from 'volto-form-block/actions';
 
-import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
+import { BlockDataForm } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { getFieldName } from 'volto-form-block/components/utils';
 
@@ -54,6 +55,7 @@ const Sidebar = ({
   setSelected,
 }) => {
   const intl = useIntl();
+  const dispatch = useDispatch();
 
   if (data.send_email === undefined) data.send_email = true;
 
