@@ -52,7 +52,9 @@ const RadioGroupWrapper = (props) => {
         isInvalid={error}
       >
         {options.map((option) => (
-          <OptionWidget value={option[0]}>{option[1]}</OptionWidget>
+          <OptionWidget key={option[0]} value={option[0]}>
+            {option[1]}
+          </OptionWidget>
         ))}
       </Widget>
     </FormFieldWrapper>
