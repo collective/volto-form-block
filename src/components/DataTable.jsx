@@ -222,7 +222,10 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
             onCancel={() => setConfirmOpen(false)}
             onConfirm={() => {
               dispatch(
-                clearFormData(flattenToAppURL(properties['@id']), blockId),
+                clearFormData({
+                  path: flattenToAppURL(properties['@id']),
+                  block_id: blockId,
+                }),
               );
               setConfirmOpen(false);
             }}
