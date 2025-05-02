@@ -18,7 +18,7 @@ msgstr ""
 msgid "Add field"
 msgstr "Gehitu eremua"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Utzi"
@@ -308,12 +308,12 @@ msgstr "Erantsitako fitxategia email bidez bidaliko da, baina ez da gordeko"
 msgid "form_cancel_label"
 msgstr "Ezeztatu botoiaren etiketa"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Garbitu datuak"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Ziur zaude mezu guztiak ezabatu nahi dituzula?"
@@ -345,7 +345,7 @@ msgstr ""
 msgid "form_default_submit_label"
 msgstr "Bidali"
 
-#: components/Sidebar
+#: components/DataTable
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Esportatu datuak"
@@ -491,10 +491,25 @@ msgstr "Testua"
 msgid "form_field_type_textarea"
 msgstr "Testua"
 
-#: components/Sidebar
-# defaultMessage: {formDataCount} item(s) stored
+#: components/DataTable
+# defaultMessage: Items stored
 msgid "form_formDataCount"
 msgstr "Gordetako elementu kopurua: {formDataCount}"
+
+#: components/DataTable
+# defaultMessage: Item stored
+msgid "form_formDataCountSingle"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: No
+msgid "form_formValueNo"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Yes
+msgid "form_formValueYes"
+msgstr ""
 
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
@@ -734,4 +749,9 @@ msgstr ""
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Checked
 msgid "visible_conditions_widget_true"
+msgstr ""
+
+#: components/Edit
+# defaultMessage: Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.
+msgid "warning_enable_save"
 msgstr ""

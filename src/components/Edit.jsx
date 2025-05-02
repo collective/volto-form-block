@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Grid, Form, Button } from 'semantic-ui-react';
+import { Segment, Grid, Form, Button, TabPane, Tab } from 'semantic-ui-react';
 import {
   withDNDContext,
   SubblocksEdit,
@@ -9,6 +9,7 @@ import SidebarPortal from '@plone/volto/components/manage/Sidebar/SidebarPortal'
 
 import EditBlock from 'volto-form-block/components/EditBlock';
 import Sidebar from 'volto-form-block/components/Sidebar';
+import DataTable from 'volto-form-block/components/DataTable';
 import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
 
 import { defineMessages } from 'react-intl';
@@ -34,6 +35,11 @@ const messages = defineMessages({
     id: 'form_edit_warning_from',
     defaultMessage:
       "Enter a field of type 'Sender E-mail'. If it is not present, or it is present but not filled in by the user, the sender address of the e-mail will be the one configured in the right sidebar.",
+  },
+  warning_enable_save: {
+    id: 'warning_enable_save',
+    defaultMessage:
+      'Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.',
   },
 });
 
@@ -82,46 +88,77 @@ class Edit extends SubblocksEdit {
             )}
 
             <SubblocksWrapper node={this.node}>
-              {this.state.subblocks.map((subblock, subindex) => (
-                <Form.Field key={subindex}>
-                  <EditBlock
-                    data={subblock}
-                    index={subindex}
-                    selected={this.isSubblockSelected(subindex)}
-                    {...this.subblockProps}
-                    openObjectBrowser={this.props.openObjectBrowser}
-                  />
-                </Form.Field>
-              ))}
-
-              {this.props.selected && (
-                <Form.Field>
-                  {this.renderAddBlockButton(
-                    this.props.intl.formatMessage(messages.addField),
-                  )}
-                </Form.Field>
-              )}
-
-              <Grid columns={1} padded="vertically">
-                <Grid.Row>
-                  <Grid.Column textAlign="center">
-                    {this.props.data?.show_cancel && (
-                      <Button secondary>
-                        {this.props.data.cancel_label ||
-                          this.props.intl.formatMessage(
-                            messages.default_cancel_label,
-                          )}
-                      </Button>
-                    )}
-                    <Button primary>
-                      {this.props.data.submit_label ||
-                        this.props.intl.formatMessage(
-                          messages.default_submit_label,
+              <Tab
+                panes={[
+                  {
+                    menuItem: 'Form',
+                    render: () => (
+                      <TabPane>
+                        {this.state.subblocks.map((subblock, subindex) => (
+                          <Form.Field key={subindex}>
+                            <EditBlock
+                              data={subblock}
+                              index={subindex}
+                              selected={this.isSubblockSelected(subindex)}
+                              {...this.subblockProps}
+                              openObjectBrowser={this.props.openObjectBrowser}
+                            />
+                          </Form.Field>
+                        ))}
+                        {this.props.selected && (
+                          <Form.Field>
+                            {this.renderAddBlockButton(
+                              this.props.intl.formatMessage(messages.addField),
+                            )}
+                          </Form.Field>
                         )}
-                    </Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
+                        <Grid columns={1} padded="vertically">
+                          <Grid.Row>
+                            <Grid.Column textAlign="center">
+                              {this.props.data?.show_cancel && (
+                                <Button secondary>
+                                  {this.props.data.cancel_label ||
+                                    this.props.intl.formatMessage(
+                                      messages.default_cancel_label,
+                                    )}
+                                </Button>
+                              )}
+                              <Button primary>
+                                {this.props.data.submit_label ||
+                                  this.props.intl.formatMessage(
+                                    messages.default_submit_label,
+                                  )}
+                              </Button>
+                            </Grid.Column>
+                          </Grid.Row>
+                        </Grid>
+                      </TabPane>
+                    ),
+                  },
+                  {
+                    menuItem: 'Data',
+                    render: () => (
+                      <TabPane className="container">
+                        {this.props.data.store ? (
+                          <DataTable
+                            properties={this.props.properties}
+                            blockId={this.props.block}
+                            removeDataAfterDays={
+                              this.props.data.remove_data_after_days
+                            }
+                          />
+                        ) : (
+                          <p>
+                            {this.props.intl.formatMessage(
+                              messages.warning_enable_save,
+                            )}
+                          </p>
+                        )}
+                      </TabPane>
+                    ),
+                  },
+                ]}
+              />
             </SubblocksWrapper>
           </Segment>
         </ValidateConfigForm>
