@@ -72,6 +72,16 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   const queryParams = qs.parse(location.search);
   let initialData = {};
 
+  let localStorageData;
+  try {
+    localStorageData = JSON.parse(localStorage.getItem('formBlocks'));
+  } catch (error) {
+    localStorageData = {};
+  }
+  if (id in localStorageData) {
+    initialData = localStorageData[id];
+  }
+
   propertyNames.map((property) => {
     if (queryParams[property] !== undefined) {
       initialData[property] = queryParams[property];
@@ -99,6 +109,25 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
 
   const onCancel = () => {};
 
+  const onChangeFormData = (formData) => {
+    let localStorageData;
+    try {
+      localStorageData = JSON.parse(localStorage.getItem('formBlocks'));
+    } catch (error) {
+      localStorageData = {};
+    }
+
+    let storeData = { ...formData };
+    delete storeData.captchaWidget;
+    localStorage.setItem(
+      'formBlocks',
+      JSON.stringify({
+        ...localStorageData,
+        [id]: storeData,
+      }),
+    );
+  };
+
   const onSubmit = async (formData) => {
     let submitData = { ...formData };
     let captcha = {
@@ -117,20 +146,20 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
       (value, field) =>
         !includes(
           config.blocks.blocksConfig.schemaForm.filterFactorySend,
-          data.schema.properties[field].factory,
+          data.schema.properties[field]?.factory,
         ),
     );
 
     map(keys(submitData), (field) => {
       if (
-        data.schema.properties[field].factory === 'number' &&
+        data.schema.properties[field]?.factory === 'number' &&
         submitData[field] !== undefined
       ) {
         submitData[field] = parseInt(submitData[field]);
       }
 
       if (
-        data.schema.properties[field].factory === 'time' &&
+        data.schema.properties[field]?.factory === 'time' &&
         isObject(submitData[field])
       ) {
         submitData[field] =
@@ -138,7 +167,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
       }
 
       if (
-        data.schema.properties[field].factory === 'label_boolean_field' &&
+        data.schema.properties[field]?.factory === 'label_boolean_field' &&
         !isBoolean(submitData[field])
       ) {
         submitData[field] = false;
@@ -159,8 +188,22 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
 
     dispatch(submitForm(path, id, submitData, captcha))
       .then((resp) => {
+        // Set submitted
         setSubmitted(true);
         setSubmittedData(submitData);
+
+        // Clear localstorage
+        let localStorageData;
+        try {
+          localStorageData = JSON.parse(localStorage.getItem('formBlocks'));
+        } catch (error) {
+          localStorageData = {};
+        }
+
+        delete localStorageData[id];
+        localStorage.setItem('formBlocks', JSON.stringify(localStorageData));
+
+        // Redirect after submit
         if (
           Array.isArray(data.forward_user_to) &&
           data.forward_user_to.length > 0
@@ -301,6 +344,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           }
           onSubmit={!submitPressed && onSubmit}
           resetOnCancel={true}
+          onChangeFormData={onChangeFormData}
           onCancel={data.show_cancel ? onCancel : null}
           submitLabel={data.submit_label || intl.formatMessage(messages.submit)}
           cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
