@@ -180,10 +180,15 @@ msgstr "Bei Aktivierung werden die Daten für eine spätere Verwendung beim Abse
 msgid "Yes"
 msgstr "Ja"
 
-#. Default: "Your form could not be sent. Please try again later."
+#. Default: "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
 #: components/ViewSchemaForm
-msgid "Your form could not be sent. Please try again later."
-msgstr "Ihr Formular konnte nicht versendet werden. Bitte versuchen Sie es später nochmals."
+msgid "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
+msgstr "Ihr Formular konnte nicht versendet werden. Bitte laden Sie die Seite neu und versuchen Sie es erneut. Ihre eingegebenen Daten bleiben erhalten."
+
+#. Default: "Your form could not be sent. Please try again."
+#: components/ViewSchemaForm
+msgid "Your form could not be sent. Please try again."
+msgstr "Formular konnte nicht gesendet werden. Versuchen Sie es nochmal."
 
 #. Default: "Admin info"
 #: components/schema

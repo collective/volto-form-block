@@ -186,9 +186,14 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#. Default: "Your form could not be sent. Please try again later."
+#. Default: "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
 #: components/ViewSchemaForm
-msgid "Your form could not be sent. Please try again later."
+msgid "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
+msgstr ""
+
+#. Default: "Your form could not be sent. Please try again."
+#: components/ViewSchemaForm
+msgid "Your form could not be sent. Please try again."
 msgstr ""
 
 #. Default: "Admin info"

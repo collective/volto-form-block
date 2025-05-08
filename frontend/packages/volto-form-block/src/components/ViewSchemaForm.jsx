@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
 import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
@@ -39,8 +39,9 @@ const messages = defineMessages({
     defaultMessage: 'Submit',
   },
   errorSend: {
-    id: 'Your form could not be sent. Please try again later.',
-    defaultMessage: 'Your form could not be sent. Please try again later.',
+    id: 'Your form could not be sent. Please reload the page and try again. The data you entered will be retained.',
+    defaultMessage:
+      'Your form could not be sent. Please reload the page and try again. The data you entered will be retained.',
   },
   cancel: {
     id: 'Cancel',
@@ -72,15 +73,22 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   const queryParams = qs.parse(location.search);
   let initialData = {};
 
-  let localStorageData;
+  let localStorageData = {};
   try {
     localStorageData = JSON.parse(localStorage.getItem('formBlocks'));
+    if (!localStorageData) {
+      localStorageData = {};
+    }
   } catch (error) {
     localStorageData = {};
   }
   if (id in localStorageData) {
     initialData = localStorageData[id];
   }
+
+  // Get captcha error
+  const captchaError =
+    localStorage.getItem('formBlockError') === 'error' ? true : false;
 
   propertyNames.map((property) => {
     if (queryParams[property] !== undefined) {
@@ -191,6 +199,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         // Set submitted
         setSubmitted(true);
         setSubmittedData(submitData);
+        localStorage.removeItem('formBlockError');
 
         // Clear localstorage
         let localStorageData;
@@ -226,6 +235,9 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         if (Array.isArray(errorsList)) {
           invariantErrors = extractInvariantErrors(errorsList);
         }
+        localStorage.setItem('formBlockError', 'error');
+        window.location.reload();
+        /*
         if (invariantErrors.length > 0) {
           toast.error(
             <Toast
@@ -233,6 +245,9 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
               title={intl.formatMessage(messages.error)}
               content={invariantErrors.join(' - ')}
             />,
+            {
+              autoClose: false,
+            },
           );
         } else {
           toast.error(
@@ -241,8 +256,12 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
               title={intl.formatMessage(messages.errorSend)}
               content={message}
             />,
+            {
+              autoClose: false,
+            },
           );
         }
+        */
 
         setSubmitPressed(false);
       });
@@ -350,6 +369,14 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
           textButtons={true}
         />
+      )}
+      {captchaError && (
+        <Message error size="small`">
+          <FormattedMessage
+            id="Your form could not be sent. Please try again."
+            defaultMessage="Your form could not be sent. Please try again."
+          />
+        </Message>
       )}
     </div>
   );
