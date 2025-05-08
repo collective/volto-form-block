@@ -67,6 +67,6 @@ TextWrapper.propTypes = {
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
+  minLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
 import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
@@ -42,6 +42,10 @@ const messages = defineMessages({
     id: 'Your form could not be sent. Please reload the page and try again. The data you entered will be retained.',
     defaultMessage:
       'Your form could not be sent. Please reload the page and try again. The data you entered will be retained.',
+  },
+  errorCaptcha: {
+    id: 'Your form could not be sent. Please try again later.',
+    defaultMessage: 'Your form could not be sent. Please try again later.',
   },
   cancel: {
     id: 'Cancel',
@@ -89,6 +93,18 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   // Get captcha error
   const captchaError =
     localStorage.getItem('formBlockError') === 'error' ? true : false;
+
+  useEffect(() => {
+    if (captchaError) {
+      toast.error(
+        <Toast
+          error
+          title={intl.formatMessage(messages.errorCaptcha)}
+          content=""
+        />,
+      );
+    }
+  }, [captchaError]);
 
   propertyNames.map((property) => {
     if (queryParams[property] !== undefined) {
@@ -361,7 +377,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           buttonComponent={
             config.blocks.blocksConfig.schemaForm.buttonComponent
           }
-          onSubmit={!submitPressed && onSubmit}
+          onSubmit={submitPressed ? () => {} : onSubmit}
           resetOnCancel={true}
           onChangeFormData={onChangeFormData}
           onCancel={data.show_cancel ? onCancel : null}
@@ -369,14 +385,6 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           cancelLabel={data.cancel_label || intl.formatMessage(messages.cancel)}
           textButtons={true}
         />
-      )}
-      {captchaError && (
-        <Message error size="small`">
-          <FormattedMessage
-            id="Your form could not be sent. Please try again."
-            defaultMessage="Your form could not be sent. Please try again."
-          />
-        </Message>
       )}
     </div>
   );

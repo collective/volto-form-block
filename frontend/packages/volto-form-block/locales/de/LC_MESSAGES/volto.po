@@ -185,6 +185,11 @@ msgstr "Ja"
 msgid "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
 msgstr "Ihr Formular konnte nicht versendet werden. Bitte laden Sie die Seite neu und versuchen Sie es erneut. Ihre eingegebenen Daten bleiben erhalten."
 
+#. Default: "Your form could not be sent. Please try again later."
+#: components/ViewSchemaForm
+msgid "Your form could not be sent. Please try again later."
+msgstr "Das Formular konnte nicht gesendet werden. Bitte versuchen Sie es später nochmal."
+
 #. Default: "Your form could not be sent. Please try again."
 #: components/ViewSchemaForm
 msgid "Your form could not be sent. Please try again."

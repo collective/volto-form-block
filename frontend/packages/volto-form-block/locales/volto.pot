@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-05-08T09:34:22.308Z\n"
+"POT-Creation-Date: 2025-05-08T11:56:44.396Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -185,6 +185,11 @@ msgstr ""
 #. Default: "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
 #: components/ViewSchemaForm
 msgid "Your form could not be sent. Please reload the page and try again. The data you entered will be retained."
+msgstr ""
+
+#. Default: "Your form could not be sent. Please try again later."
+#: components/ViewSchemaForm
+msgid "Your form could not be sent. Please try again later."
 msgstr ""
 
 #. Default: "Your form could not be sent. Please try again."

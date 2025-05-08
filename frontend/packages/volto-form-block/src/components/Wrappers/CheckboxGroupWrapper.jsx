@@ -127,7 +127,10 @@ CheckboxGroupWrapper.propTypes = {
   description: PropTypes.string,
   required: PropTypes.bool,
   error: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   focus: PropTypes.bool,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
