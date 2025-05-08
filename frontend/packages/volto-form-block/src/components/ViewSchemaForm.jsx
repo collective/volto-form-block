@@ -91,8 +91,19 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   }
 
   // Get captcha error
-  const captchaError =
-    localStorage.getItem('formBlockError') === 'error' ? true : false;
+  let captchaErrors = {};
+  let captchaError = false;
+  try {
+    captchaErrors = JSON.parse(localStorage.getItem('formBlocksError'));
+    if (!captchaErrors) {
+      captchaErrors = {};
+    }
+  } catch (error) {
+    captchaErrors = {};
+  }
+  if (id in captchaErrors) {
+    captchaError = captchaErrors[id] === 'error' ? true : false;
+  }
 
   useEffect(() => {
     if (captchaError) {
@@ -215,7 +226,20 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         // Set submitted
         setSubmitted(true);
         setSubmittedData(submitData);
-        localStorage.removeItem('formBlockError');
+
+        // Clear error
+        let captchaErrors;
+        try {
+          captchaErrors = JSON.parse(localStorage.getItem('formBlocksError'));
+          if (!captchaErrors) {
+            captchaErrors = {};
+          }
+        } catch (error) {
+          captchaErrors = {};
+        }
+
+        delete captchaErrors[id];
+        localStorage.setItem('formBlocks', JSON.stringify(captchaErrors));
 
         // Clear localstorage
         let localStorageData;
@@ -226,7 +250,10 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         }
 
         delete localStorageData[id];
-        localStorage.setItem('formBlocks', JSON.stringify(localStorageData));
+        localStorage.setItem(
+          'formBlocksError',
+          JSON.stringify(localStorageData),
+        );
 
         // Redirect after submit
         if (
@@ -251,7 +278,21 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         if (Array.isArray(errorsList)) {
           invariantErrors = extractInvariantErrors(errorsList);
         }
-        localStorage.setItem('formBlockError', 'error');
+
+        // Clear error
+        let captchaErrors = {};
+        try {
+          captchaErrors = JSON.parse(localStorage.getItem('formBlocksError'));
+          if (!captchaErrors) {
+            captchaErrors = {};
+          }
+        } catch (error) {
+          captchaErrors = {};
+        }
+
+        captchaErrors[id] = 'error';
+        localStorage.setItem('formBlocksError', JSON.stringify(captchaErrors));
+
         window.location.reload();
         /*
         if (invariantErrors.length > 0) {
