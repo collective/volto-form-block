@@ -14,6 +14,7 @@ yarn add volto-form-block volto-subblocks
 > - Since version v2.1.2 of this add-on, Volto 14.2.0 or later is required.
 > - Since version v3.0.0 of this add-on, Volto 16.0.0-alpha.38 or later is required.
 > - Since version v3.11.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 3.1.4 or later is required.
+> - Since version v3.13.0 of this add-on, [`collective.volto.formsupport`](https://github.com/collective/collective.volto.formsupport) 3.3.0 or later is required.
 
 ## Features
 
@@ -68,6 +69,9 @@ With backend support, you can store data submitted from the form.
 In Edit, you can export and clear stored data from the sidebar.
 
 <img alt="Form export" src="./docs/store-export-data.png" width="400" />
+
+In the most recent versions of the form, a table has been introduced for consulting the saved data.
+<img alt="Form export" src="./docs/form-datatable.png" />
 
 ## Additional fields
 
