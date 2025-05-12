@@ -1,5 +1,16 @@
 
 
+## [3.13.0](https://github.com/collective/volto-form-block/compare/v3.12.0...v3.13.0) (2025-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* added table for consulting saved data including attachments (#78)
+
+### Features
+
+* added table for consulting saved data including attachments ([#78](https://github.com/collective/volto-form-block/issues/78)) ([3e88af2](https://github.com/collective/volto-form-block/commit/3e88af236e02c542510398bda2060af0277f7b0e))
+
 ## [3.12.0](https://github.com/collective/volto-form-block/compare/v3.11.0...v3.12.0) (2025-04-29)
 
 
