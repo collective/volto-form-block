@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { defineMessages, useIntl } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
-import { tryParseJSON, extractInvariantErrors } from '@plone/volto/helpers';
+import {
+  flattenToAppURL,
+  tryParseJSON,
+  extractInvariantErrors,
+} from '@plone/volto/helpers';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
 import { toBackendLang } from '@plone/volto/helpers/Utils/Utils';
@@ -260,7 +264,9 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           Array.isArray(data.forward_user_to) &&
           data.forward_user_to.length > 0
         ) {
-          window.location.href = data.forward_user_to[0]['@id'];
+          window.location.href = flattenToAppURL(
+            data.forward_user_to[0]['@id'],
+          );
         } else {
           const url = new URL(window.location);
           url.searchParams.set('send', 'true');
@@ -293,8 +299,15 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         captchaErrors[id] = 'error';
         localStorage.setItem('formBlocksError', JSON.stringify(captchaErrors));
 
-        window.location.reload();
-        /*
+        if (
+          err.status === 400 &&
+          (err?.response?.body?.message === 'Kein Captcha-Token angegeben.' ||
+            err?.response?.body?.error?.message ===
+              'No captcha token provided.')
+        ) {
+          window.location.reload();
+        }
+
         if (invariantErrors.length > 0) {
           toast.error(
             <Toast
@@ -318,7 +331,6 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
             },
           );
         }
-        */
 
         setSubmitPressed(false);
       });
@@ -354,10 +366,10 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         ) {
           return (
             <Grid.Row key={property}>
-              <Grid.Column>
+              <Grid.Column className={`${property}-label`}>
                 {data.schema.properties[property].title}
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column className={`${property}-value`}>
                 {formatProperty(
                   data.schema.properties[property].factory,
                   submittedData[property],
@@ -386,13 +398,16 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   return (
     <div className="block schemaForm">
       {data.title && <h2>{data.title}</h2>}
-      {data.description && <p>{data.description}</p>}
+      {data.description && (
+        <p className="formDescription">{data.description}</p>
+      )}
       {submitted ? (
         <div className="submitted">
           <Message positive>
             <p>{data.success}</p>
           </Message>
           <p
+            className="thankyou"
             dangerouslySetInnerHTML={{
               __html: thankyou,
             }}
