@@ -183,7 +183,7 @@ class EmailFormProcessor:
             form_fields += admin_info.replace("\n", "<br/>") + "<br/><br/>"
 
         def format_property(factory, value):
-            if factory == "label_boolean_field":
+            if factory == "label_boolean_field" or factory == "termsAccepted":
                 if value == True:
                     return self.context.translate(
                         _("Yes"),
