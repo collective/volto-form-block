@@ -361,6 +361,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
 
   const formatProperty = (factory, value) => {
     switch (factory) {
+      case 'termsAccepted':
       case 'label_boolean_field':
         return value === true
           ? intl.formatMessage(messages.yes)
