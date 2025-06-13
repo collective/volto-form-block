@@ -63,6 +63,10 @@ const messages = defineMessages({
     id: 'No',
     defaultMessage: 'No',
   },
+  requiredCheckbox: {
+    id: 'requiredCheckbox',
+    defaultMessage: '{field} is required to be checked.',
+  },
 });
 
 const FormBlockView = ({ data, id, path, moment: momentlib }) => {
@@ -189,6 +193,8 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         ),
     );
 
+    const requiredErrors = [];
+
     map(keys(submitData), (field) => {
       if (
         data.schema.properties[field]?.factory === 'number' &&
@@ -206,12 +212,29 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
       }
 
       if (
-        data.schema.properties[field]?.factory === 'label_boolean_field' &&
-        !isBoolean(submitData[field])
+        data.schema.properties[field]?.factory === 'label_boolean_field' ||
+        data.schema.properties[field]?.type === 'boolean'
       ) {
-        submitData[field] = false;
+        if (!isBoolean(submitData[field])) {
+          submitData[field] = false;
+        }
+        if (!submitData[field] && data.schema.required.includes(field)) {
+          requiredErrors.push(
+            intl.formatMessage(messages.requiredCheckbox, {
+              field: data.schema.properties[field].title,
+            }),
+          );
+        }
       }
     });
+
+    if (requiredErrors.length > 0) {
+      map(requiredErrors, (title) => {
+        toast.error(<Toast error title={title} content="" />);
+      });
+      setSubmitPressed(false);
+      return;
+    }
 
     // Order fields based on schema
     submitData = fromPairs(

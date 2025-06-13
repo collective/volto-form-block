@@ -190,11 +190,6 @@ msgstr ""
 msgid "Your form could not be sent. Please try again later."
 msgstr ""
 
-#. Default: "Your form could not be sent. Please try again."
-#: components/ViewSchemaForm
-msgid "Your form could not be sent. Please try again."
-msgstr ""
-
 #. Default: "Admin info"
 #: components/schema
 msgid "admin_info"
@@ -314,6 +309,11 @@ msgstr ""
 #. Default: "Radio Group"
 #: index
 msgid "radio_group"
+msgstr ""
+
+#. Default: "{field} is required to be checked."
+#: components/ViewSchemaForm
+msgid "requiredCheckbox"
 msgstr ""
 
 #. Default: "Select..."

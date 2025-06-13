@@ -190,11 +190,6 @@ msgstr "Ihr Formular konnte nicht versendet werden. Bitte laden Sie die Seite ne
 msgid "Your form could not be sent. Please try again later."
 msgstr "Das Formular konnte nicht gesendet werden. Bitte versuchen Sie es später nochmal."
 
-#. Default: "Your form could not be sent. Please try again."
-#: components/ViewSchemaForm
-msgid "Your form could not be sent. Please try again."
-msgstr "Formular konnte nicht gesendet werden. Versuchen Sie es nochmal."
-
 #. Default: "Admin info"
 #: components/schema
 msgid "admin_info"
@@ -315,6 +310,11 @@ msgstr "Nummer"
 #: index
 msgid "radio_group"
 msgstr "Radiogruppe"
+
+#. Default: "{field} is required to be checked."
+#: components/ViewSchemaForm
+msgid "requiredCheckbox"
+msgstr "{field} muss aktiviert werden."
 
 #. Default: "Select..."
 #: components/Wrappers/CheckboxGroupWrapper

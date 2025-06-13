@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-05-08T11:56:44.396Z\n"
+"POT-Creation-Date: 2025-06-13T10:09:44.314Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -192,11 +192,6 @@ msgstr ""
 msgid "Your form could not be sent. Please try again later."
 msgstr ""
 
-#. Default: "Your form could not be sent. Please try again."
-#: components/ViewSchemaForm
-msgid "Your form could not be sent. Please try again."
-msgstr ""
-
 #. Default: "Admin info"
 #: components/schema
 msgid "admin_info"
@@ -316,6 +311,11 @@ msgstr ""
 #. Default: "Radio Group"
 #: index
 msgid "radio_group"
+msgstr ""
+
+#. Default: "{field} is required to be checked."
+#: components/ViewSchemaForm
+msgid "requiredCheckbox"
 msgstr ""
 
 #. Default: "Select..."
