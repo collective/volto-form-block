@@ -24,3 +24,9 @@ cache
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# i18n
+*.mo
+
+# visual code
+*.code-workspace
