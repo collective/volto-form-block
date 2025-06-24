@@ -1,3 +1,8 @@
+## [3.13.1] (Unknown)
+
+### Maintenance
+
+* Added missing Spanish translations. [@macagua](https://github.com/macagua/).
 
 
 ## [3.13.0](https://github.com/collective/volto-form-block/compare/v3.12.0...v3.13.0) (2025-05-12)
