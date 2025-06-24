@@ -2,6 +2,8 @@
 
 ### Maintenance
 
+* Updated README file. [@macagua](https://github.com/macagua/).
+
 * Added missing Spanish translations. [@macagua](https://github.com/macagua/).
 
 

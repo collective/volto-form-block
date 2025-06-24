@@ -24,7 +24,7 @@ This addon will add in your project the Form block and the needed reducers.
 
 ![Form block view](./docs/form-block-view.png)
 
-Using the engine of subblocks, you can manage form fields adding, sorting and deleting items.
+Using the engine of sub-blocks, you can manage form fields by adding, sorting, and deleting items.
 
 For each field, you can select the field type from:
 
@@ -48,10 +48,10 @@ This form addon is configured to work with [HCaptcha](https://www.hcaptcha.com),
 [NoRobot](https://github.com/collective/collective.z3cform.norobots) to prevent spam.
 
 In order to make one of these integrations work, you need to add
-[https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) and/or
-[https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) and/or
-[https://github.com/collective/collective.z3cform.norobots](https://github.com/collective/collective.z3cform.norobots)
-Plone addon and configure public and private keys in controlpanels.
+[plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) and/or
+[plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) and/or
+[collective.z3cform.norobots](https://github.com/collective/collective.z3cform.norobots)
+Plone addon and configure public and private keys in the control panels.
 
 ### HCaptcha
 
@@ -146,9 +146,9 @@ config.blocks.blocksConfig.form = {
 
 To upgrade to version 2.4.0 you need to:
 
-- remove the env vars
-- install [https://github.com/plone/plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) or [https://github.com/plone/plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) or both in Plone.
-- insert private and public keys in Plone HCaptcha controlpanel or/and Plone ReCaptcha controlpanel.
+- Remove the env vars
+- Install [plone.formwidget.hcaptcha](https://github.com/plone/plone.formwidget.hcaptcha) or [plone.formwidget.recaptcha](https://github.com/plone/plone.formwidget.recaptcha) or both in Plone.
+- Insert private and public keys in Plone HCaptcha control panel and/or Plone ReCaptcha control panel.
 
 ## Video demos
 
@@ -158,4 +158,4 @@ To upgrade to version 2.4.0 you need to:
 
 ## VERSIONS
 
-With volto-form-block@2.5.0 you need to upgrade collective.volto.formsupport to version 2.4.0
+With volto-form-block@2.5.0 you need to upgrade [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) to version 2.4.0
