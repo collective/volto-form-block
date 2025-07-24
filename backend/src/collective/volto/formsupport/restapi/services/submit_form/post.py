@@ -166,7 +166,7 @@ class SubmitPost(Service):
             attachments_len += (len(data) * 3) / 4 - data.count("=", -2)
         if attachments_len > float(attachments_limit) * pow(1024, 2):
             size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-            i = int(math.floor(math.log(attachments_len, 1024)))
+            i = int(math.floor(math.log(attachments_len, 1024)))  # noqa: RUF046
             p = math.pow(1024, i)
             s = round(attachments_len / p, 2)
             uploaded_str = f"{s} {size_name[i]}"

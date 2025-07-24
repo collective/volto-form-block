@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { defineMessages, useIntl } from 'react-intl';
 import { Form } from '@plone/volto/components/manage/Form';
 import { submitForm } from 'volto-form-block/actions';
-import {
-  flattenToAppURL,
-  tryParseJSON,
-  extractInvariantErrors,
-} from '@plone/volto/helpers';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
+import { tryParseJSON } from '@plone/volto/helpers/FormValidation/FormValidation';
+import { extractInvariantErrors } from '@plone/volto/helpers/FormValidation/FormValidation';
 import { toast } from 'react-toastify';
-import { Toast } from '@plone/volto/components';
+import Toast from '@plone/volto/components/manage/Toast/Toast';
 import { toBackendLang } from '@plone/volto/helpers/Utils/Utils';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useLocation } from 'react-router-dom';
@@ -123,7 +121,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         />,
       );
     }
-  }, [captchaError]);
+  }, [captchaError, intl]);
 
   propertyNames.map((property) => {
     if (queryParams[property] !== undefined) {
@@ -148,6 +146,8 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
     ) {
       initialData[property] = queryParams[queryParameterName];
     }
+
+    return property;
   });
 
   const onCancel = () => {};
@@ -293,7 +293,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
         } else {
           const url = new URL(window.location);
           url.searchParams.set('send', 'true');
-          history.pushState({}, '', url);
+          history.pushState({}, '', url); // eslint-disable-line no-restricted-globals
         }
       })
       .catch((err) => {
@@ -368,14 +368,15 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
           : intl.formatMessage(messages.no);
       case 'checkbox_group':
         return Array.isArray(value)
-          ? value.map((item) => [item, <br />]).flat()
+          ? value.map((item) => [item, <br />]).flat() // eslint-disable-line react/jsx-key
           : value;
       case 'label_date_field':
         return isUndefined(value) ? '' : moment(value).format('l');
       case 'label_datetime_field':
         return isUndefined(value) ? '' : moment(value).format('LLL');
+      default:
+        return value;
     }
-    return value;
   };
 
   const formfields = renderToString(
@@ -412,7 +413,7 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
   let thankyou = data.thankyou || '';
 
   // Add formfields
-  thankyou = thankyou.replace('${formfields}', formfields);
+  thankyou = thankyou.replace('${formfields}', formfields); // eslint-disable-line no-template-curly-in-string
 
   // Add seperate fields
   map(keys(submittedData), (field) => {

@@ -90,7 +90,7 @@ class FormData:
     def show_component(self):
         if not api.user.has_permission("Modify portal content", obj=self.context):
             return False
-        return self.form_block and True or False
+        return (self.form_block and True) or False
 
     def expand_records(self, record):
         fields_labels = record.attrs.get("fields_labels", {})

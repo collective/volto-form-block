@@ -1,19 +1,7 @@
-import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const NorobotsCaptchaWidget = (props) => {
-  const {
-    id,
-    value,
-    onChange,
-    onBlur,
-    onClick,
-    icon,
-    iconAction,
-    isDisabled,
-    focus,
-    onEdit,
-  } = props;
+  const { onEdit } = props;
 
   return onEdit ? <></> : <></>;
 };

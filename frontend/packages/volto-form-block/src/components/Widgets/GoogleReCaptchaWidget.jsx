@@ -17,7 +17,7 @@ const ReCaptchaComponent = (props) => {
   useEffect(() => {
     handleReCaptchaVerify();
     onChange(id, handleReCaptchaVerify);
-  }, [handleReCaptchaVerify]);
+  }, [handleReCaptchaVerify, id, onChange]);
 
   return null;
 };

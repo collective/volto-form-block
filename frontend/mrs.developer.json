@@ -4,6 +4,6 @@
     "package": "@plone/volto",
     "url": "git@github.com:plone/volto.git",
     "https": "https://github.com/plone/volto.git",
-    "branch": "volto-form-block-fixes"
+    "branch": "18.23.0"
   }
 }

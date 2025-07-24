@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 const FormComponent = (props) => {
-  const { children, onSubmit, error } = props;
+  const { children, error } = props;
 
   const handleSubmit = (e, ...args) => {
     if (typeof action !== 'string') _.invoke(e, 'preventDefault');

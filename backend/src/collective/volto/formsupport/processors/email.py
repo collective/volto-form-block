@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from collective.volto.formsupport import _
 from collective.volto.formsupport.interfaces import FormSubmissionContext
 from collective.volto.formsupport.interfaces import IFormSubmissionProcessor
@@ -108,7 +107,7 @@ class EmailFormProcessor:
                 msg.add_alternative(message, subtype="html", cte=CTE)
                 self.attachments = {}
 
-                if "fixed_attachment" in self.block and self.block["fixed_attachment"]:
+                if self.block.get("fixed_attachment"):
                     self.attachments["fixed_attachment"] = self.block[
                         "fixed_attachment"
                     ]
@@ -163,7 +162,7 @@ class EmailFormProcessor:
         confirmation_recipients = self.substitute_variables(confirmation_recipients)
         return confirmation_recipients
 
-    def prepare_message(self, admin=False):
+    def prepare_message(self, admin=False):  # noqa: C901
         templates = api.portal.get_registry_record("schemaform.mail_templates")
         template_name = self.block.get("email_template", "default")
         admin_info = self.block.get("admin_info", "")
@@ -184,7 +183,7 @@ class EmailFormProcessor:
 
         def format_property(factory, value):
             if factory == "label_boolean_field" or factory == "termsAccepted":
-                if value == True:
+                if value == True:  # noqa: E712
                     return self.context.translate(
                         _("Yes"),
                         context=self.request,
@@ -218,7 +217,7 @@ class EmailFormProcessor:
                 continue
 
             form_fields += (
-                f"<tr><th align=\"left\">{record['label']}</th><td>{value}</td></tr>"
+                f'<tr><th align="left">{record["label"]}</th><td>{value}</td></tr>'
             )
         form_fields += "\n</table>\n"
         template_vars["form_fields"] = form_fields
