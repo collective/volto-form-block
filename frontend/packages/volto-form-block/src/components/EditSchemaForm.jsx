@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 import { defineMessages, injectIntl } from 'react-intl';
-import { SidebarPortal } from '@plone/volto/components';
+import SidebarPortal from '@plone/volto/components/manage/Sidebar/SidebarPortal';
 import { Form, BlockDataForm } from '@plone/volto/components/manage/Form';
-import { withBlockExtensions } from '@plone/volto/helpers';
+import { withBlockExtensions } from '@plone/volto/helpers/Extensions';
 import config from '@plone/volto/registry';
 import { stripRequiredProperty } from '../helpers/schema';
 

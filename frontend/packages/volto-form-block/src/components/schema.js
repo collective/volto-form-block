@@ -76,7 +76,7 @@ const messages = defineMessages({
   thankyou_description: {
     id: 'thankyou_description',
     defaultMessage:
-      'A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view.',
+      'A text with simple formatting can be entered. Also it is possible to use variables; ${field_id} can be used to display the value of a field inside the form. The ${formfields} variable lists all form fields in a tabular view.', // eslint-disable-line no-template-curly-in-string
   },
   recipients_description: {
     id: 'The email addresses the submitted form data will be sent to. Multiple email addresses can be entered separated by a semicolon.',
@@ -300,7 +300,7 @@ export const schemaFormBlockSchema = ({ intl, ...props }) => {
         title: intl.formatMessage(messages.thankyou),
         description: intl.formatMessage(messages.thankyou_description),
         widget: 'textarea',
-        default: '${formfields}',
+        default: '${formfields}', // eslint-disable-line no-template-curly-in-string
       },
       captcha: {
         title: intl.formatMessage(messages.captcha),

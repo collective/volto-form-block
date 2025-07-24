@@ -240,21 +240,6 @@ msgstr "E-Mail senden"
 msgid "fixed_attachment"
 msgstr "Fixer Anhang"
 
-#. Default: "Insert here the OTP code received at {email}"
-#: components/Widgets/OTPWidget
-msgid "form_insert_otp"
-msgstr "Geben Sie hier den OTP-Code ein, den Sie über {email} erhalten haben."
-
-#. Default: "You can send a new OTP code in"
-#: components/Widgets/OTPWidget
-msgid "form_otp_countdown"
-msgstr "Sie können einen neuen OTP-Code senden in"
-
-#. Default: "OTP code was sent to {email}. Check your email and insert the received OTP code into the field above."
-#: components/Widgets/OTPWidget
-msgid "form_otp_send"
-msgstr "OTP-Code wurde an {email} gesendet. Prüfen Sie Ihre E-Mail und geben Sie den erhaltenen OTP-Code in das obige Feld ein."
-
 #. Default: "Required"
 #: components/Wrappers/CheckboxGroupWrapper
 #: components/Wrappers/CheckboxWrapper
@@ -270,11 +255,6 @@ msgstr "OTP-Code wurde an {email} gesendet. Prüfen Sie Ihre E-Mail und geben Si
 #: components/Wrappers/TimeWrapper
 msgid "form_required"
 msgstr "Pflichtfeld"
-
-#. Default: "Send OTP code to {email}"
-#: components/Widgets/OTPWidget
-msgid "form_send_otp_to"
-msgstr "Sende OTP-Code an {email}"
 
 #. Default: "Forward user to"
 #: components/schema
