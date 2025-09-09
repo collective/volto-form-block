@@ -27,6 +27,7 @@ import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWr
  */
 const CheckboxWidget = (props) => {
   const { id, title, value, onChange, isDisabled, required, invalid } = props;
+  const randomSuffixId = Math.random().toString(36).substr(2, 5)
 
   let attributes = {};
   if (required) {
@@ -43,15 +44,15 @@ const CheckboxWidget = (props) => {
     <FormFieldWrapper {...props} columns={1}>
       <div className="wrapper">
         <Checkbox
-          id={`field-${id}`}
-          name={`field-${id}`}
+          id={`field-${id}-${randomSuffixId}`}
+          name={`field-${id}-${randomSuffixId}`}
           checked={value || false}
           disabled={isDisabled}
           onChange={(event, { checked }) => {
             onChange(id, checked);
           }}
           aria-required={required ? 'true' : 'false'}
-          label={<label htmlFor={`field-${id}`}>{title}</label>}
+          label={<label htmlFor={`field-${id}-${randomSuffixId}`}>{title}</label>}
           {...attributes}
         />
       </div>
