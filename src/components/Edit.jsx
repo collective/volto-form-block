@@ -41,6 +41,14 @@ const messages = defineMessages({
     defaultMessage:
       'Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.',
   },
+  form: {
+    id: 'Form',
+    defaultMessage: 'Form',
+  },
+  data: {
+    id: 'Data',
+    defaultMessage: 'data',
+  },
 });
 
 /**
@@ -91,7 +99,7 @@ class Edit extends SubblocksEdit {
               <Tab
                 panes={[
                   {
-                    menuItem: 'Form',
+                    menuItem: this.props.intl.formatMessage(messages.form),
                     render: () => (
                       <TabPane>
                         {this.state.subblocks.map((subblock, subindex) => (
@@ -136,7 +144,7 @@ class Edit extends SubblocksEdit {
                     ),
                   },
                   {
-                    menuItem: 'Data',
+                    menuItem: this.props.intl.formatMessage(messages.data),
                     render: () => (
                       <TabPane className="container">
                         {this.props.data.store ? (

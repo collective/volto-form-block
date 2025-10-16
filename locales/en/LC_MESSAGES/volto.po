@@ -36,6 +36,11 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
+msgstr ""
+
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
@@ -71,6 +76,7 @@ msgstr ""
 msgid "Error"
 msgstr "Error"
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"

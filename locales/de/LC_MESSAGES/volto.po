@@ -36,6 +36,11 @@ msgstr "Datei auswählen"
 msgid "Close"
 msgstr "Schließen"
 
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
+msgstr "Daten"
+
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
@@ -71,6 +76,7 @@ msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 msgid "Error"
 msgstr "Fehler"
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"
@@ -229,52 +235,52 @@ msgstr "Captcha-Anbieter"
 #: helpers/conditions-list
 # defaultMessage: Contains
 msgid "condition_contains"
-msgstr ""
+msgstr "Enthält"
 
 #: helpers/conditions-list
 # defaultMessage: Greater or equal
 msgid "condition_greater_or_equal"
-msgstr ""
+msgstr "Größer oder gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Greater than
 msgid "condition_greater_than"
-msgstr ""
+msgstr "Größer als"
 
 #: helpers/conditions-list
 # defaultMessage: Is empty
 msgid "condition_is_empty"
-msgstr ""
+msgstr "Ist leer"
 
 #: helpers/conditions-list
 # defaultMessage: Is equal to
 msgid "condition_is_equal_to"
-msgstr ""
+msgstr "Ist gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Is not empty
 msgid "condition_is_not_empty"
-msgstr ""
+msgstr "Ist nicht leer"
 
 #: helpers/conditions-list
 # defaultMessage: Is not equal to
 msgid "condition_is_not_equal_to"
-msgstr ""
+msgstr "Ist nicht gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Less or equal
 msgid "condition_less_or_equal"
-msgstr ""
+msgstr "Kleiner oder gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Less than
 msgid "condition_less_than"
-msgstr ""
+msgstr "Kleiner als"
 
 #: helpers/conditions-list
 # defaultMessage: Not contains
 msgid "condition_not_contains"
-msgstr ""
+msgstr "Enthält nicht"
 
 #: formSchema
 # defaultMessage: Description
@@ -387,6 +393,7 @@ msgstr "Validierung von BCC-E-Mails mit OTP-Verifizierung"
 # defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
 msgid "form_email_otp_verification_description"
 msgstr "Verhindern Sie Spam von Ihrer Website. Wenn Sie diese Option aktivieren, verhindern Sie, dass böswillige Benutzer über Ihre Website E-Mails an andere E-Mail-Adressen senden. Das OTP wird für alle E-Mail-Felder angefordert, für die die Option „Eine Kopie der E-Mail an diese Adresse senden“ aktiviert ist."
+
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
@@ -421,7 +428,7 @@ msgstr "Erforderlich"
 #: fieldSchema
 # defaultMessage: If visibility conditions have been added to the field, it is advisable not to apply the requirement.
 msgid "form_field_required_info_text"
-msgstr ""
+msgstr "Nur auswählen, wenn dieses Feld immer sichtbar ist."
 
 #: fieldSchema
 # defaultMessage: Field type
@@ -491,22 +498,22 @@ msgstr "Textfeld"
 #: components/DataTable
 # defaultMessage: Items stored
 msgid "form_formDataCount"
-msgstr "{formDataCount} Element(e) gespeichert"
+msgstr "Eintrag gespeichert"
 
 #: components/DataTable
 # defaultMessage: Item stored
 msgid "form_formDataCountSingle"
-msgstr ""
+msgstr "Einträge gespeichert"
 
 #: components/DataTable
 # defaultMessage: No
 msgid "form_formValueNo"
-msgstr ""
+msgstr "Nein"
 
 #: components/DataTable
 # defaultMessage: Yes
 msgid "form_formValueYes"
-msgstr ""
+msgstr "Ja"
 
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
@@ -546,7 +553,7 @@ msgstr "Löschen"
 #: formSchema
 # defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
-msgstr "Kompilierte Daten speichern"
+msgstr "Daten speichern"
 
 #: components/Field
 # defaultMessage: Select a value
@@ -686,69 +693,69 @@ msgstr "Titel"
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Add condition
 msgid "visible_conditions_widget_add"
-msgstr ""
+msgstr "Bedingung hinzufügen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: and
 msgid "visible_conditions_widget_and"
-msgstr ""
+msgstr "und"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Apply
 msgid "visible_conditions_widget_apply"
-msgstr ""
+msgstr "Anwenden"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Cancel
 msgid "visible_conditions_widget_cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Delete condition
 msgid "visible_conditions_widget_delete"
-msgstr ""
+msgstr "Bedingung entfernen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Not checked
 msgid "visible_conditions_widget_false"
-msgstr ""
+msgstr "Nicht ausgewählt"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Select a field
 msgid "visible_conditions_widget_fields"
-msgstr ""
+msgstr "Feld auswählen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: If
 msgid "visible_conditions_widget_if"
-msgstr ""
+msgstr "Wenn"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: For this field it is not the best solution, we recommend changing the condition.
 msgid "visible_conditions_widget_not_satisfied"
-msgstr ""
+msgstr "Diese Bedingung lässt sich bei diesem Feld-Typen nicht anwenden."
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Select a condition
 msgid "visible_conditions_widget_options"
-msgstr ""
+msgstr "Bedingung auswählen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Write text
 msgid "visible_conditions_widget_text"
-msgstr ""
+msgstr "Text schreiben"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Visible choices if
 msgid "visible_conditions_widget_title"
-msgstr ""
+msgstr "Nur sichtbar, wenn"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Checked
 msgid "visible_conditions_widget_true"
-msgstr ""
+msgstr "Ausgewählt"
 
 #: components/Edit
 # defaultMessage: Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.
 msgid "warning_enable_save"
-msgstr ""
+msgstr "Wählen Sie die Option 'Daten speichern' in der rechten Seitenleiste, um die Speicherung und Anzeige der übermittelten Daten zu aktivieren."
