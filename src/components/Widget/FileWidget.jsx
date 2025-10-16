@@ -126,7 +126,7 @@ const FileWidget = (props) => {
     */
     let inputEl = document.getElementById(`field-${id}`);
     const myFile = new File([], file.name, {
-      type: 'text/plain',
+      type: file.type,
       lastModified: new Date(),
     });
     const dataTransfer = new DataTransfer();
