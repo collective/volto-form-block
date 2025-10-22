@@ -38,6 +38,11 @@ msgstr "Aukeratu fitxategia"
 msgid "Close"
 msgstr "Itxi"
 
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
+msgstr ""
+
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
@@ -73,6 +78,7 @@ msgstr "Arrastatu fitxategiak hona..."
 msgid "Error"
 msgstr "Errorea"
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"

@@ -36,6 +36,11 @@ msgstr "Kies een bestand"
 msgid "Close"
 msgstr "Sluiten"
 
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
+msgstr ""
+
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
 msgid "Date"
@@ -71,6 +76,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"

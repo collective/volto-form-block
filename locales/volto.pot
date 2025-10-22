@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-04-30T13:10:48.470Z\n"
+"POT-Creation-Date: 2025-10-16T12:13:06.370Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,11 @@ msgstr ""
 #: components/Widget/SelectWidget
 # defaultMessage: Close
 msgid "Close"
+msgstr ""
+
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
 msgstr ""
 
 #: components/Widget/DatetimeWidget
@@ -73,6 +78,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"
