@@ -113,8 +113,8 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     if (data?.length > 0) {
       arrayColumn = data
         .flatMap((obj) => {
-          return Object.entries(obj).map(([key, value]) => ({
-            id: key,
+          return Object.entries(obj).map(([key, value, index]) => ({
+            id: key || 'col-' + index,
             header: value?.label,
             accessorFn: (row) => row[key]?.value,
             cell: (props) => {
