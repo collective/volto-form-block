@@ -113,35 +113,39 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     if (data?.length > 0) {
       arrayColumn = data
         .flatMap((obj) => {
-          return Object.entries(obj).map(([key, value], index) => ({
-            id: key || 'col-' + index,
-            header: value?.label,
-            accessorFn: (row) => row[key]?.value,
-            cell: (props) => {
-              switch (value?.field_type) {
-                case 'attachment':
-                  const value = props.getValue();
-                  // TODO: unused fields:
-                  // value.size -> size in bytes
-                  // value.contentType -> mime type
-                  return value ? (
-                    <a href={value.url} download>
-                      {value.filename}
-                    </a>
-                  ) : (
-                    ''
-                  );
-                case 'textarea':
-                  return <pre>{props.getValue() || ''}</pre>;
-                case 'checkbox':
-                  return props.getValue()
-                    ? intl.formatMessage(messages.formValueYes)
-                    : intl.formatMessage(messages.formValueNo);
-                default:
-                  return props.getValue() || '';
-              }
-            },
-          }));
+          return Object.entries(obj)
+            .filter(([key, value]) => key)
+            .map(([key, value]) => {
+              return {
+                id: key,
+                header: value?.label,
+                accessorFn: (row) => row[key]?.value,
+                cell: (props) => {
+                  switch (value?.field_type) {
+                    case 'attachment':
+                      const val = props.getValue();
+                      // TODO: unused fields:
+                      // val.size -> size in bytes
+                      // val.contentType -> mime type
+                      return val ? (
+                        <a href={val.url} download>
+                          {val.filename}
+                        </a>
+                      ) : (
+                        ''
+                      );
+                    case 'textarea':
+                      return <pre>{props.getValue() || ''}</pre>;
+                    case 'checkbox':
+                      return props.getValue()
+                        ? intl.formatMessage(messages.formValueYes)
+                        : intl.formatMessage(messages.formValueNo);
+                    default:
+                      return props.getValue() || '';
+                  }
+                },
+              };
+            });
         })
         .filter((item) => !excludeIds.includes(item.id))
         .reduce((acc, current) => {
