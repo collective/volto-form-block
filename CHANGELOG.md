@@ -1,3 +1,15 @@
+
+
+### [3.13.1](https://github.com/collective/volto-form-block/compare/v3.13.0...v3.13.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* fields requirement edition fixed ([#133](https://github.com/collective/volto-form-block/issues/133)) ([1ee4584](https://github.com/collective/volto-form-block/commit/1ee45842a76715ec93991a8a82157f42615ba732))
+* fixed lack of item id ([#135](https://github.com/collective/volto-form-block/issues/135)) ([a968c18](https://github.com/collective/volto-form-block/commit/a968c18ab73d163af196ee936a969cf8c502434e))
+* issue [#111](https://github.com/collective/volto-form-block/issues/111) - prevent form submission when d&d on a required attachment field ([#112](https://github.com/collective/volto-form-block/issues/112)) ([c1098f8](https://github.com/collective/volto-form-block/commit/c1098f8e1f4b584aa9bdeb8494853694a3bb3b73)), closes [#73](https://github.com/collective/volto-form-block/issues/73)
+* translate tab items and add missing german translations ([#134](https://github.com/collective/volto-form-block/issues/134)) ([3ea2c9c](https://github.com/collective/volto-form-block/commit/3ea2c9cacb4cb93424b78c734b60d14fb9e5d90f))
+
 ## [3.13.1] (Unreleased)
 
 ### Maintenance
