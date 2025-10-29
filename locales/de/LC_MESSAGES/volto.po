@@ -498,12 +498,12 @@ msgstr "Textfeld"
 #: components/DataTable
 # defaultMessage: Items stored
 msgid "form_formDataCount"
-msgstr "Eintrag gespeichert"
+msgstr "Einträge gespeichert"
 
 #: components/DataTable
 # defaultMessage: Item stored
 msgid "form_formDataCountSingle"
-msgstr "Einträge gespeichert"
+msgstr "Eintrag gespeichert"
 
 #: components/DataTable
 # defaultMessage: No
