@@ -36,7 +36,7 @@ const Field = ({
   description,
   name,
   field_type,
-  required,
+  field_id,
   input_values,
   value,
   onChange,
@@ -46,7 +46,9 @@ const Field = ({
   formHasErrors = false,
   errorMessage,
   id,
+  ...props
 }) => {
+  const required = props[`required-${field_id}`];
   const intl = useIntl();
 
   const isInvalid = () => {

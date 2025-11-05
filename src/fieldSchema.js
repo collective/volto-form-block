@@ -119,7 +119,9 @@ export default (props) => {
           'description',
           'field_type',
           ...schemaExtenderValues.fields,
-          ...(props?.field_type === 'static_text' ? [] : ['required']),
+          ...(props?.field_type === 'static_text'
+            ? []
+            : [`required-${props?.field_id}`]),
           'visibility_conditions',
         ],
       },
@@ -144,7 +146,7 @@ export default (props) => {
         ],
         ...attachmentDescription,
       },
-      required: {
+      [`required-${props?.field_id}`]: {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,
