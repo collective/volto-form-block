@@ -19,7 +19,9 @@
   "scripts": {
     "prepare": "husky install",
     "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
-    "lint": "./node_modules/eslint/bin/eslint.js --max-warnings=0 'src/**/*.{js,jsx,ts,tsx,json}'"
+    "lint": "./node_modules/eslint/bin/eslint.js --max-warnings=0 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "release": "release-it",
+    "release-alpha": "release-it --preRelease=alpha"
   },
   "addons": [
     "volto-subblocks"
