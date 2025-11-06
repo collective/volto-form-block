@@ -1,5 +1,18 @@
 
 
+### [3.13.2](https://github.com/collective/volto-form-block/compare/v3.13.1...v3.13.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* added unique field name to form block subfields ([#137](https://github.com/collective/volto-form-block/issues/137)) ([e7e5531](https://github.com/collective/volto-form-block/commit/e7e5531a5c9873ab9de7e06402932b132523e51d))
+* german translation for items stored ([44d8c77](https://github.com/collective/volto-form-block/commit/44d8c776e9efd2ea5108ceecb35624db4c3b40d3))
+
+
+### Maintenance
+
+* added release scripts ([c538491](https://github.com/collective/volto-form-block/commit/c53849140bccaf80e8bd15f1222af3a0f9aa66c4))
+
 ### [3.13.1](https://github.com/collective/volto-form-block/compare/v3.13.0...v3.13.1) (2025-10-27)
 
 
