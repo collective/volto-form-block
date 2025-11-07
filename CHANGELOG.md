@@ -1,5 +1,12 @@
 
 
+### [3.13.3](https://github.com/collective/volto-form-block/compare/v3.13.2...v3.13.3) (2025-11-07)
+
+
+### Bug Fixes
+
+* values saved in volto form restored to 'required' and 'unique' key to avoid breaking existing forms ([#138](https://github.com/collective/volto-form-block/issues/138)) ([e1ca5b3](https://github.com/collective/volto-form-block/commit/e1ca5b3d1c5bcbd182bc9b017241496be2785936))
+
 ### [3.13.2](https://github.com/collective/volto-form-block/compare/v3.13.1...v3.13.2) (2025-11-06)
 
 
