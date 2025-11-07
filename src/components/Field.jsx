@@ -47,7 +47,6 @@ const Field = ({
   formHasErrors = false,
   errorMessage,
   id,
-  ...props
 }) => {
   const intl = useIntl();
 
