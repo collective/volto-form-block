@@ -1,5 +1,12 @@
 
 
+## [3.14.0](https://github.com/collective/volto-form-block/compare/v3.13.3...v3.14.0) (2025-11-11)
+
+
+### Features
+
+* opt out of the datatable and advanced visibility fields features ([#139](https://github.com/collective/volto-form-block/issues/139)) ([52a3f74](https://github.com/collective/volto-form-block/commit/52a3f7438ad261e1836f4e441073cff02322b4f6))
+
 ### [3.13.3](https://github.com/collective/volto-form-block/compare/v3.13.2...v3.13.3) (2025-11-07)
 
 
