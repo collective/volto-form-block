@@ -68,7 +68,6 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sorting, setSorting] = useState([]);
-  const [allFields, setAllFields] = useState([]);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -78,6 +77,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
         block_id: blockId,
       }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clearFormDataSelector.loaded]);
 
   // const data = useMemo(
@@ -99,6 +99,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
       );
     }
     setData(dataResults);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   // SORT
@@ -165,7 +166,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
       }
     }
     return filteredColumn;
-  });
+  }, [data, intl]);
 
   const table = useReactTable({
     columns,

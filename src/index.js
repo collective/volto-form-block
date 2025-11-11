@@ -74,6 +74,8 @@ const applyConfig = (config) => {
         },
       },
       attachment_fields: ['attachment'],
+      enableConditionalFields: true,
+      enableDatatableView: true,
       restricted: false,
       mostUsed: true,
       security: {
