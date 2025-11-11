@@ -27,6 +27,7 @@ msgid "Add field"
 msgstr "Agregar campo"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Cancelar"
@@ -323,11 +324,13 @@ msgid "form_cancel_label"
 msgstr "Etiqueta del botón cancelar"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Borrar datos"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "¿Está seguro de que quiere borrar todos los datos guardados?"
@@ -360,6 +363,7 @@ msgid "form_default_submit_label"
 msgstr "Enviar"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Exportar datos"
@@ -506,6 +510,7 @@ msgid "form_field_type_textarea"
 msgstr "Campo de texto"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Items stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} elemento(s) guardados"
@@ -666,16 +671,19 @@ msgid "mail_header_label"
 msgstr "Texto al principio del correo electrónico"
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: remove expired data
 msgid "remove_data_button"
 msgstr "eliminar datos caducados"
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 msgid "remove_data_cron_info"
 msgstr "Para automatizar la eliminación de registros que hayan superado el número máximo de días indicado en configuración, se debe configurar un cron en el servidor tal y como se indica en la documentación del producto."
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: There are {record} record that have exceeded the maximum number of days.
 msgid "remove_data_warning"
 msgstr "Hay {record} registros que han superado el número máximo de días."

@@ -17,6 +17,7 @@ msgid "Add field"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr ""
@@ -313,11 +314,13 @@ msgid "form_cancel_label"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr ""
@@ -350,6 +353,7 @@ msgid "form_default_submit_label"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr ""
@@ -496,6 +500,7 @@ msgid "form_field_type_textarea"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Items stored
 msgid "form_formDataCount"
 msgstr ""
@@ -656,16 +661,19 @@ msgid "mail_header_label"
 msgstr ""
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: remove expired data
 msgid "remove_data_button"
 msgstr ""
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 msgid "remove_data_cron_info"
 msgstr ""
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: There are {record} record that have exceeded the maximum number of days.
 msgid "remove_data_warning"
 msgstr ""

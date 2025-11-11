@@ -131,10 +131,12 @@ const FormView = ({
                     getFieldsToSendWithValue(subblock);
 
                   return (
-                    evaluateAllConditions(
-                      subblock?.visibility_conditions,
-                      formData,
-                    ) && (
+                    // if conditional fields are disabled always show the field
+                    (!config.blocks.blocksConfig.form.enableConditionalFields ||
+                      evaluateAllConditions(
+                        subblock?.visibility_conditions,
+                        formData,
+                      )) && (
                       <Grid.Row key={'row' + index}>
                         <Grid.Column>
                           <Field
