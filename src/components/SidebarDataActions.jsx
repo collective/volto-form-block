@@ -55,6 +55,7 @@ export default function SidebarDataActions({ properties, block, data }) {
       >
         <Grid.Column>
           <Button
+            type="button"
             primary
             compact
             onClick={() =>
@@ -75,6 +76,7 @@ export default function SidebarDataActions({ properties, block, data }) {
         </Grid.Column>
         <Grid.Column>
           <Button
+            type="button"
             negative
             compact
             onClick={() => setConfirmOpen(true)}
