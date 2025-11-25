@@ -1,5 +1,12 @@
 
 
+## [3.15.0](https://github.com/collective/volto-form-block/compare/v3.14.0...v3.15.0) (2025-11-25)
+
+
+### Features
+
+* **i18n:** add pt_BR translations ([57026b2](https://github.com/collective/volto-form-block/commit/57026b2e578a0a8e03f80febf8dde4b09d6e911e))
+
 ## [3.14.0](https://github.com/collective/volto-form-block/compare/v3.13.3...v3.14.0) (2025-11-11)
 
 
