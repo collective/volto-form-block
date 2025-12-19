@@ -57,7 +57,6 @@ export const checkTypeTextField = (item) => {
 
 // For type number field
 export const checkTypeNumberField = (item) => {
-  console.log('checkTypeNumberField', item.field?.field_type, item?.condition);
   return (
     item?.field?.field_type === 'number' &&
     (item?.condition === 'is_equal_to' ||
@@ -138,13 +137,17 @@ export const createConditionFormula = (
 
     case 'contains':
       if (value_field_id && value_field_id?.length > 0) {
-        return value_field_id.includes(value_condition);
+        return value_field_id
+          .toLowerCase()
+          .includes(value_condition.toLowerCase());
       }
       break;
 
     case 'not_contains':
       if (value_field_id && value_field_id?.length > 0) {
-        return !value_field_id?.includes(value_condition);
+        return !value_field_id
+          .toLowerCase()
+          ?.includes(value_condition.toLowerCase());
       }
       break;
 

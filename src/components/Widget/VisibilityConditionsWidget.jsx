@@ -333,7 +333,6 @@ const VisibilityConditionsWidget = (props) => {
                             }}
                           />
                         )}
-
                         {/* Condition if field_type is like number */}
                         {checkTypeNumberField(item) && (
                           <Input
@@ -349,7 +348,6 @@ const VisibilityConditionsWidget = (props) => {
                             }}
                           />
                         )}
-
                         {/* Condition if field has a choices */}
                         {/* TO DO: do a multiselect if multiple values ​​can be selected */}
                         {checkTypeSelectionField(item) && (
@@ -364,7 +362,6 @@ const VisibilityConditionsWidget = (props) => {
                             options={choicesOptions(item.field?.choices ?? [])}
                           />
                         )}
-
                         {checkTypeBooleanField(item) && (
                           <>
                             <Radio
@@ -392,7 +389,6 @@ const VisibilityConditionsWidget = (props) => {
                             />
                           </>
                         )}
-
                         {checkTypeDateField(item) && (
                           <Input
                             id="field"
