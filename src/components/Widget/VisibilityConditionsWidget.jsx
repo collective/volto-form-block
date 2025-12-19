@@ -26,6 +26,7 @@ import {
   checkTypeBooleanField,
   checkTypeDateField,
   createStringFormula,
+  checkTypeNumberField,
 } from 'volto-form-block/helpers/conditions-list';
 import { cloneDeep } from 'lodash';
 
@@ -333,6 +334,22 @@ const VisibilityConditionsWidget = (props) => {
                           />
                         )}
 
+                        {/* Condition if field_type is like number */}
+                        {checkTypeNumberField(item) && (
+                          <Input
+                            id="field_type_number"
+                            name="field_type_number"
+                            placeholder={intl.formatMessage(
+                              messages.visible_conditions_widget_text,
+                            )}
+                            className="choice-input"
+                            value={item.value_condition}
+                            onChange={(e) => {
+                              conditionValueFieldChange(e.target.value, index);
+                            }}
+                          />
+                        )}
+
                         {/* Condition if field has a choices */}
                         {/* TO DO: do a multiselect if multiple values ​​can be selected */}
                         {checkTypeSelectionField(item) && (
@@ -394,6 +411,7 @@ const VisibilityConditionsWidget = (props) => {
 
                         {/* If none of the above conditions are satisfied */}
                         {!checkTypeTextField(item) &&
+                          !checkTypeNumberField(item) &&
                           !checkTypeSelectionField(item) &&
                           !checkTypeBooleanField(item) &&
                           !checkTypeDateField(item) &&

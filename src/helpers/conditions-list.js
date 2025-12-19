@@ -55,6 +55,20 @@ export const checkTypeTextField = (item) => {
   );
 };
 
+// For type number field
+export const checkTypeNumberField = (item) => {
+  console.log('checkTypeNumberField', item.field?.field_type, item?.condition);
+  return (
+    item?.field?.field_type === 'number' &&
+    (item?.condition === 'is_equal_to' ||
+      item?.condition === 'is_not_equal_to' ||
+      item?.condition === 'greater_than' ||
+      item?.condition === 'less_than' ||
+      item?.condition === 'greater_or_equal' ||
+      item?.condition === 'less_or_equal')
+  );
+};
+
 // For multi selection field
 export const checkTypeSelectionField = (item) => {
   return (

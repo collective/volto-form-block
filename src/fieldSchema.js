@@ -72,6 +72,10 @@ const messages = defineMessages({
     id: 'form_field_type_hidden',
     defaultMessage: 'Hidden',
   },
+  field_type_number: {
+    id: 'form_field_type_number',
+    defaultMessage: 'Number',
+  },
 });
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -80,6 +84,7 @@ export default (props) => {
   const baseFieldTypeChoices = [
     ['text', intl.formatMessage(messages.field_type_text)],
     ['textarea', intl.formatMessage(messages.field_type_textarea)],
+    ['number', intl.formatMessage(messages.field_type_number)],
     ['select', intl.formatMessage(messages.field_type_select)],
     ['single_choice', intl.formatMessage(messages.field_type_single_choice)],
     [
