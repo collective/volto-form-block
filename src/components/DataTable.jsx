@@ -110,7 +110,6 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     let arrayColumn = [];
     let filteredColumn = [];
     // List of IDs to exclude
-    console.log(data);
     const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
     if (data?.length > 0) {
       arrayColumn = data
