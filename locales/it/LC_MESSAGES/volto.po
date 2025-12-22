@@ -475,6 +475,11 @@ msgid "form_field_type_multiple_choice"
 msgstr "Scelta multipla"
 
 #: fieldSchema
+# defaultMessage: Number
+msgid "form_field_type_number"
+msgstr "Numero"
+
+#: fieldSchema
 # defaultMessage: List
 msgid "form_field_type_select"
 msgstr "Lista"

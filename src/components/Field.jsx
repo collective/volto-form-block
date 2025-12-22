@@ -13,6 +13,7 @@ import {
   CheckboxListWidget,
   RadioWidget,
   HiddenWidget,
+  NumberWidget,
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 
@@ -83,6 +84,21 @@ const Field = ({
           onChange={onChange}
           value={value}
           rows={10}
+          error={error}
+          isDisabled={disabled}
+          invalid={isInvalid().toString()}
+          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+        />
+      )}
+      {field_type === 'number' && (
+        <NumberWidget
+          id={name}
+          name={name}
+          title={label}
+          description={description}
+          required={required}
+          onChange={onChange}
+          value={value}
           error={error}
           isDisabled={disabled}
           invalid={isInvalid().toString()}

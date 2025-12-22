@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-11-11T14:56:50.497Z\n"
+"POT-Creation-Date: 2025-12-19T14:07:32.087Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -474,6 +474,11 @@ msgstr ""
 #: fieldSchema
 # defaultMessage: Multiple choice
 msgid "form_field_type_multiple_choice"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Number
+msgid "form_field_type_number"
 msgstr ""
 
 #: fieldSchema
