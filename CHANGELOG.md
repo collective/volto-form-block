@@ -1,5 +1,17 @@
 
 
+## [3.16.0](https://github.com/collective/volto-form-block/compare/v3.15.0...v3.16.0) (2025-12-22)
+
+
+### Features
+
+* added field type 'number' ([#141](https://github.com/collective/volto-form-block/issues/141)) ([0a99e6c](https://github.com/collective/volto-form-block/commit/0a99e6c86b42a8f3840c63b33711675154da961d))
+
+
+### Bug Fixes
+
+* typo in Italian translation for save warning ([08d065a](https://github.com/collective/volto-form-block/commit/08d065ad632f5843832614efbcdf071dececb328))
+
 ## [3.15.0](https://github.com/collective/volto-form-block/compare/v3.14.0...v3.15.0) (2025-11-25)
 
 
