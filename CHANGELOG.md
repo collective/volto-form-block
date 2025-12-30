@@ -1,5 +1,17 @@
 
 
+## [3.17.0](https://github.com/collective/volto-form-block/compare/v3.16.0...v3.17.0) (2025-12-30)
+
+
+### Features
+
+* pass block id in sidebar ([#144](https://github.com/collective/volto-form-block/issues/144)) ([c631e24](https://github.com/collective/volto-form-block/commit/c631e24af27e8d1b50da79075820c57159f1adc1))
+
+
+### Changes
+
+* **imports:** replace barrel imports with direct imports in Field.jsx ([#143](https://github.com/collective/volto-form-block/issues/143)) ([e7e4e31](https://github.com/collective/volto-form-block/commit/e7e4e3147f8f6335ab683f31b30da0f1ce966ea8))
+
 ## [3.16.0](https://github.com/collective/volto-form-block/compare/v3.15.0...v3.16.0) (2025-12-22)
 
 
