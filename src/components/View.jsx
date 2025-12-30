@@ -318,7 +318,27 @@ const View = ({ data, id, path }) => {
         JSON.parse(submitResults.error.response?.text ?? '{}')?.message
       }`;
 
-      setFormState({ type: FORM_STATES.error, error: errorDescription });
+      const fieldsErrors = JSON.parse(
+        submitResults.error.response?.text ?? '{}',
+      )?.fields_errors;
+
+      // fieldsErrors = [
+      //   { field_id: '1767088715579', label: 'univoco', message: 'Errore' },
+      // ];
+      if (fieldsErrors?.length > 0) {
+        const v = [];
+        fieldsErrors.forEach((fieldError) => {
+          v.push({
+            field: getFieldName(fieldError.label, fieldError.field_id),
+            message: fieldError.message,
+          });
+        });
+        setFormErrors(v);
+        setFormState({ type: FORM_STATES.error });
+      } else {
+        setFormErrors([]);
+        setFormState({ type: FORM_STATES.error, error: errorDescription });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitResults]);
