@@ -323,14 +323,14 @@ const View = ({ data, id, path }) => {
       )?.fields_errors;
 
       // fieldsErrors = [
-      //   { field_id: '1767088715579', label: 'univoco', message: 'Errore' },
+      //   { field_id: '1767088715579', label: 'univoco', error: 'Errore' },
       // ];
       if (fieldsErrors?.length > 0) {
         const v = [];
         fieldsErrors.forEach((fieldError) => {
           v.push({
             field: getFieldName(fieldError.label, fieldError.field_id),
-            message: fieldError.message,
+            message: fieldError.error,
           });
         });
         setFormErrors(v);
