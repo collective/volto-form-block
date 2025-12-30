@@ -70,7 +70,6 @@ const Sidebar = ({
   }, [data]);
 
   const datatableEnabled = config.blocks.blocksConfig.form.enableDatatableView;
-
   return (
     <Form>
       <Segment.Group raised>
@@ -90,6 +89,7 @@ const Sidebar = ({
             }}
             formData={data}
             onChangeBlock={() => {}}
+            block={block}
           />
           {!datatableEnabled && (
             <SidebarDataActions
@@ -163,6 +163,7 @@ const Sidebar = ({
                       }}
                       formData={subblockData}
                       onChangeBlock={() => {}}
+                      block={block}
                     />
                   </Accordion.Content>
                 </div>
