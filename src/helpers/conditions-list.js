@@ -104,6 +104,22 @@ export const checkTypeDateField = (item) => {
   );
 };
 
+const toNumber = (value) => {
+  if (typeof value === 'number') return value;
+
+  if (typeof value === 'string') {
+    try {
+      // rimuove spazi e converte la virgola in punto
+      const normalized = value.trim().replace(',', '.');
+      const num = Number(normalized);
+      return isNaN(num) ? null : num;
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+};
 export const createConditionFormula = (
   condition,
   value_field_id,
@@ -152,16 +168,16 @@ export const createConditionFormula = (
       break;
 
     case 'greater_than':
-      return value_field_id > value_condition;
+      return toNumber(value_field_id) > toNumber(value_condition);
 
     case 'less_than':
-      return value_field_id < value_condition;
+      return toNumber(value_field_id) < toNumber(value_condition);
 
     case 'greater_or_equal':
-      return value_field_id >= value_condition;
+      return toNumber(value_field_id) >= toNumber(value_condition);
 
     case 'less_or_equal':
-      return value_field_id <= value_condition;
+      return toNumber(value_field_id) <= toNumber(value_condition);
 
     default:
       return true;
