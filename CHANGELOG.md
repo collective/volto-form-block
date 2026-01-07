@@ -1,5 +1,12 @@
 
 
+### [3.17.1](https://github.com/collective/volto-form-block/compare/v3.17.0...v3.17.1) (2026-01-07)
+
+
+### Bug Fixes
+
+* conditions on number fields ([#146](https://github.com/collective/volto-form-block/issues/146)) ([b241d83](https://github.com/collective/volto-form-block/commit/b241d83e61bac552c76269c7da634baa2d890ba6))
+
 ## [3.17.0](https://github.com/collective/volto-form-block/compare/v3.16.0...v3.17.0) (2025-12-30)
 
 
