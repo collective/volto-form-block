@@ -61,6 +61,7 @@ const FileWrapper = (props) => {
               encoding: fields[2],
               'content-type': fields[1],
               filename: file.name,
+              size: file.size,
             });
           });
         }}
@@ -89,5 +90,5 @@ FileWrapper.propTypes = {
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   accept: PropTypes.string,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
