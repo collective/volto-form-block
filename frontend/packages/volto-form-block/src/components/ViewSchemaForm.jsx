@@ -162,13 +162,17 @@ const FormBlockView = ({ data, id, path, moment: momentlib }) => {
 
     let storeData = { ...formData };
     delete storeData.captchaWidget;
-    localStorage.setItem(
-      'formBlocks',
-      JSON.stringify({
-        ...localStorageData,
-        [id]: storeData,
-      }),
-    );
+    try {
+      localStorage.setItem(
+        'formBlocks',
+        JSON.stringify({
+          ...localStorageData,
+          [id]: storeData,
+        }),
+      );
+    } catch (e) {
+      console.error('Error saving form data to localStorage', e);
+    }
   };
 
   const onSubmit = async (formData) => {
