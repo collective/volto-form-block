@@ -8,7 +8,7 @@ import paginationRightSVG from '@plone/volto/icons/right-key.svg';
 import React, { useEffect, useMemo, useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Confirm, Pagination, Table } from 'semantic-ui-react';
+import { Button, Confirm, Pagination, Table, Input } from 'semantic-ui-react';
 import {
   clearFormData,
   exportCsvFormData,
@@ -58,6 +58,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     useReactTable,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
   } = ReactTable;
@@ -68,6 +69,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
   const [allFields, setAllFields] = useState([]);
   const [data, setData] = useState([]);
 
@@ -106,73 +108,76 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   // https://tanstack.com/table/v8/docs/examples/react/sorting
 
   const columns = useMemo(() => {
-    let arrayColumn = [];
-    let filteredColumn = [];
+    if (data?.length === 0) {
+      return [];
+    }
+
     // List of IDs to exclude
     const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
-    if (data?.length > 0) {
-      arrayColumn = data
-        .flatMap((obj) => {
-          return Object.entries(obj).map(([key, value]) => ({
-            id: key,
-            header: value?.label,
-            accessorFn: (row) => row[key]?.value,
-            cell: (props) => {
-              switch (value?.field_type) {
-                case 'attachment':
-                  const value = props.getValue();
-                  // TODO: unused fields:
-                  // value.size -> size in bytes
-                  // value.contentType -> mime type
-                  return value ? (
-                    <a href={value.url} download>
-                      {value.filename}
-                    </a>
-                  ) : (
-                    ''
-                  );
-                case 'textarea':
-                  return <pre>{props.getValue() || ''}</pre>;
-                case 'checkbox':
-                  return props.getValue()
-                    ? intl.formatMessage(messages.formValueYes)
-                    : intl.formatMessage(messages.formValueNo);
-                default:
-                  return props.getValue() || '';
-              }
-            },
-          }));
-        })
-        .filter((item) => !excludeIds.includes(item.id))
-        .reduce((acc, current) => {
-          // Check if the id already exists
-          const existing = acc.find((item) => item.id === current.id);
-          if (!existing) {
-            acc.push(current); // If it doesn't exist, add object
-          }
-          return acc;
-        }, []);
+    const arrayColumn = data
+      .flatMap((obj) => {
+        return Object.entries(obj).map(([key, value]) => ({
+          id: key,
+          header: value?.label,
+          accessorFn: (row) => row[key]?.value,
+          cell: (props) => {
+            switch (value?.field_type) {
+              case 'attachment':
+                const value = props.getValue();
+                // TODO: unused fields:
+                // value.size -> size in bytes
+                // value.contentType -> mime type
+                return value ? (
+                  <a href={value.url} download>
+                    {value.filename}
+                  </a>
+                ) : (
+                  ''
+                );
+              case 'textarea':
+                return <pre>{props.getValue() || ''}</pre>;
+              case 'checkbox':
+                return props.getValue()
+                  ? intl.formatMessage(messages.formValueYes)
+                  : intl.formatMessage(messages.formValueNo);
+              default:
+                return props.getValue() || '';
+            }
+          },
+        }));
+      })
+      .filter((item) => !excludeIds.includes(item.id))
+      .reduce((acc, current) => {
+        // Check if the id already exists
+        const existing = acc.find((item) => item.id === current.id);
+        if (!existing) {
+          acc.push(current); // If it doesn't exist, add object
+        }
+        return acc;
+      }, []);
 
-      const dateItem = arrayColumn.find((item) => item.id === 'date');
-      filteredColumn = arrayColumn.filter((item) => item.id !== 'date');
+    const dateItem = arrayColumn.find((item) => item.id === 'date');
+    const filteredColumn = arrayColumn.filter((item) => item.id !== 'date');
 
-      if (dateItem) {
-        filteredColumn.push(dateItem); // Add field "date" at the end fo array
-      }
+    if (dateItem) {
+      filteredColumn.push(dateItem); // Add field "date" at the end fo array
     }
+
     return filteredColumn;
-  });
+  }, [data]);
 
   const table = useReactTable({
     columns,
     data,
     state: {
       sorting,
+      columnFilters,
     },
     columnResizeMode: 'onEnd',
     onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    // getFilteredRowModel: getFilteredRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     // debugTable: true,
@@ -237,26 +242,47 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
         <Table celled sortable striped>
           <Table.Header>
             {table.getHeaderGroups().map((headerGroup) => (
-              <Table.Row key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <Table.HeaderCell
-                    key={header.id}
-                    sorted={
-                      { asc: 'ascending', desc: 'descending' }[
+              <React.Fragment key={headerGroup.id}>
+                <Table.Row key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <Table.HeaderCell
+                      key={header.id}
+                      sorted={
+                        { asc: 'ascending', desc: 'descending' }[
                         header.column.getIsSorted()
-                      ]
-                    }
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
+                        ]
+                      }
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                  </Table.HeaderCell>
-                ))}
-              </Table.Row>
+                    </Table.HeaderCell>
+                  ))}
+                </Table.Row>
+                <Table.Row>
+                  {headerGroup.headers.map((header) => (
+                    <Table.HeaderCell key={`${header.id}-filter`}>
+                      {header.column.getCanFilter() ? (
+                        <div className="dt-filter">
+                          <Input
+                            fluid
+                            size="mini"
+                            placeholder="Filter..."
+                            value={header.column.getFilterValue() ?? ''}
+                            onChange={(e) =>
+                              header.column.setFilterValue(e.target.value)
+                            }
+                          />
+                        </div>
+                      ) : null}
+                    </Table.HeaderCell>
+                  ))}
+                </Table.Row>
+              </React.Fragment>
             ))}
           </Table.Header>
           <Table.Body>
@@ -306,7 +332,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
                 table.getPageCount(),
               className:
                 table.getState().pagination.pageIndex + 1 ===
-                table.getPageCount()
+                  table.getPageCount()
                   ? 'disabled'
                   : null,
             }}
