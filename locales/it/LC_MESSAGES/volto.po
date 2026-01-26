@@ -303,6 +303,11 @@ msgstr "Form"
 msgid "formSubmitted"
 msgstr "Form inviato correttamente"
 
+#: components/DataTable
+# defaultMessage: All
+msgid "form_all"
+msgstr "Tutti"
+
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"

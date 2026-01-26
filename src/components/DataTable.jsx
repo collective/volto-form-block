@@ -59,6 +59,10 @@ const messages = defineMessages({
     id: 'form_filterColumn',
     defaultMessage: 'Filter...',
   },
+  all: {
+    id: 'form_all',
+    defaultMessage: 'All',
+  },
 });
 
 const DataTable = ({ ReactTable, properties, blockId }) => {
@@ -334,7 +338,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
 
                     const options = isChoiceField
                       ? [
-                        { key: 'all', text: 'All', value: '' },
+                        { key: 'all', text: intl.formatMessage(messages.all), value: '' },
                         ...Array.from(
                           new Set(
                             data
