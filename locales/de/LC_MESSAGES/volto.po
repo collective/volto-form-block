@@ -518,7 +518,7 @@ msgstr ""
 #: components/SidebarDataActions
 # defaultMessage: Items stored
 msgid "form_formDataCount"
-msgstr "{formDataCount} Element(e) gespeichert"
+msgstr "Eintrag gespeichert"
 
 #: components/DataTable
 # defaultMessage: Item stored
