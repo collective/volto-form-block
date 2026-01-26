@@ -348,6 +348,11 @@ msgstr "Senden"
 msgid "form_edit_exportCsv"
 msgstr "Daten exportieren"
 
+#: components/DataTable
+# defaultMessage: Export {filteredCount} filtered records out of {totalCount} as CSV
+msgid "form_edit_exportFilteredCsv"
+msgstr ""
+
 #: components/ValidateConfigForm
 # defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
@@ -387,6 +392,7 @@ msgstr "Validierung von BCC-E-Mails mit OTP-Verifizierung"
 # defaultMessage: Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.
 msgid "form_email_otp_verification_description"
 msgstr "Verhindern Sie Spam von Ihrer Website. Wenn Sie diese Option aktivieren, verhindern Sie, dass böswillige Benutzer über Ihre Website E-Mails an andere E-Mail-Adressen senden. Das OTP wird für alle E-Mail-Felder angefordert, für die die Option „Eine Kopie der E-Mail an diese Adresse senden“ aktiviert ist."
+
 #: components/FormView
 # defaultMessage: There are some errors in the form.
 msgid "form_errors_validation"
@@ -487,6 +493,11 @@ msgstr "Text"
 # defaultMessage: Textarea
 msgid "form_field_type_textarea"
 msgstr "Textfeld"
+
+#: components/DataTable
+# defaultMessage: Filter...
+msgid "form_filterColumn"
+msgstr ""
 
 #: components/DataTable
 # defaultMessage: Items stored

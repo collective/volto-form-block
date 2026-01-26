@@ -348,6 +348,11 @@ msgstr "Submit"
 msgid "form_edit_exportCsv"
 msgstr "Export in CSV"
 
+#: components/DataTable
+# defaultMessage: Export {filteredCount} filtered records out of {totalCount} as CSV
+msgid "form_edit_exportFilteredCsv"
+msgstr ""
+
 #: components/ValidateConfigForm
 # defaultMessage: Please, fill-in required configuration fields in sidebar. The form will be not displayed in view mode until required fields are filled-in.
 msgid "form_edit_fill_required_configuration_fields"
@@ -488,6 +493,11 @@ msgstr "Text"
 # defaultMessage: Textarea
 msgid "form_field_type_textarea"
 msgstr "Textarea"
+
+#: components/DataTable
+# defaultMessage: Filter...
+msgid "form_filterColumn"
+msgstr ""
 
 #: components/DataTable
 # defaultMessage: Items stored

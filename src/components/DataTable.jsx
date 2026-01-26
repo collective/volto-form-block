@@ -8,7 +8,7 @@ import paginationRightSVG from '@plone/volto/icons/right-key.svg';
 import React, { useEffect, useMemo, useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Confirm, Pagination, Table, Input } from 'semantic-ui-react';
+import { Button, Confirm, Pagination, Table, Input, Select } from 'semantic-ui-react';
 import {
   clearFormData,
   exportCsvFormData,
@@ -22,6 +22,10 @@ const messages = defineMessages({
   exportCsv: {
     id: 'form_edit_exportCsv',
     defaultMessage: 'Export data',
+  },
+  exportFilteredCsv: {
+    id: 'form_edit_exportFilteredCsv',
+    defaultMessage: 'Export {filteredCount} filtered records out of {totalCount} as CSV',
   },
   clearData: {
     id: 'form_clear_data',
@@ -50,6 +54,10 @@ const messages = defineMessages({
   formValueNo: {
     id: 'form_formValueNo',
     defaultMessage: 'No',
+  },
+  filterColumn: {
+    id: 'form_filterColumn',
+    defaultMessage: 'Filter...',
   },
 });
 
@@ -140,10 +148,16 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
                 return props.getValue()
                   ? intl.formatMessage(messages.formValueYes)
                   : intl.formatMessage(messages.formValueNo);
+              case 'multiple_choice':
+                return typeof props.getValue() === 'array' ? props.getValue().join(', ') : props.getValue();
               default:
                 return props.getValue() || '';
             }
           },
+          meta: {
+            field_type: value?.field_type,
+          },
+          filterFn: value?.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
         }));
       })
       .filter((item) => !excludeIds.includes(item.id))
@@ -183,6 +197,35 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     // debugTable: true,
   });
 
+  const downloadFilteredCsv = () => {
+    const rows = table.getFilteredRowModel().rows;
+    const headerRow = columns.map((col) => col.header).join(',');
+    const csvContent = [
+      headerRow,
+      ...rows.map((row) =>
+        columns
+          .map((col) => {
+            const val = row.original[col.id]?.value;
+            return `"${(val || '').toString().replace(/"/g, '""')}"`;
+          })
+          .join(','),
+      ),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute(
+      'download',
+      `export-filtered-${properties.id ?? 'form'}.csv`,
+    );
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="dt-wrapper">
       <div className="dt-wrapper-header">
@@ -214,6 +257,18 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
             <Icon name={downloadSVG} size="30px" />
             {intl.formatMessage(messages.exportCsv)}
           </Button>
+
+          {/* BUTTON EXPORT FILTERED */}
+          {columnFilters.length > 0 && (
+            <Button icon primary onClick={downloadFilteredCsv}>
+              <Icon name={downloadSVG} size="30px" />
+              {intl.formatMessage(messages.exportFilteredCsv, {
+                filteredCount: table.getFilteredRowModel().rows.length,
+                totalCount: data.length,
+              })}
+            </Button>
+          )}
+
           {/* BUTTON DELETE */}
           <Button icon negative onClick={() => setConfirmOpen(true)}>
             <Icon name={deleteSVG} size="30px" />
@@ -264,23 +319,66 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
                   ))}
                 </Table.Row>
                 <Table.Row>
-                  {headerGroup.headers.map((header) => (
-                    <Table.HeaderCell key={`${header.id}-filter`}>
-                      {header.column.getCanFilter() ? (
-                        <div className="dt-filter">
-                          <Input
-                            fluid
-                            size="mini"
-                            placeholder="Filter..."
-                            value={header.column.getFilterValue() ?? ''}
-                            onChange={(e) =>
-                              header.column.setFilterValue(e.target.value)
-                            }
-                          />
-                        </div>
-                      ) : null}
-                    </Table.HeaderCell>
-                  ))}
+                  {headerGroup.headers.map((header) => {
+                    const fieldType = header.column.columnDef.meta?.field_type;
+                    const isChoiceField = [
+                      'select',
+                      'single_choice',
+                      'multiple_choice',
+                    ].includes(fieldType);
+
+                    const options = isChoiceField
+                      ? [
+                        { key: 'all', text: 'All', value: '' },
+                        ...Array.from(
+                          new Set(
+                            data
+                              .flatMap((row) => {
+                                const val = row[header.column.id]?.value;
+                                return Array.isArray(val) ? val : [val];
+                              })
+                              .filter(Boolean),
+                          ),
+                        )
+                          .sort()
+                          .map((val) => ({
+                            key: val,
+                            text: val,
+                            value: val,
+                          })),
+                      ]
+                      : [];
+
+                    return (
+                      <Table.HeaderCell key={`${header.id}-filter`}>
+                        {header.column.getCanFilter() ? (
+                          <div className="dt-filter">
+                            {isChoiceField ? (
+                              <Select
+                                fluid
+                                size="mini"
+                                options={options}
+                                value={header.column.getFilterValue() ?? ''}
+                                onChange={(e, { value }) =>
+                                  header.column.setFilterValue(value)
+                                }
+                              />
+                            ) : (
+                              <Input
+                                fluid
+                                size="mini"
+                                placeholder={intl.formatMessage(messages.filterColumn)}
+                                value={header.column.getFilterValue() ?? ''}
+                                onChange={(e) =>
+                                  header.column.setFilterValue(e.target.value)
+                                }
+                              />
+                            )}
+                          </div>
+                        ) : null}
+                      </Table.HeaderCell>
+                    );
+                  })}
                 </Table.Row>
               </React.Fragment>
             ))}
