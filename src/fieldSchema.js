@@ -72,6 +72,10 @@ const messages = defineMessages({
     id: 'form_field_type_hidden',
     defaultMessage: 'Hidden',
   },
+  field_type_number: {
+    id: 'form_field_type_number',
+    defaultMessage: 'Number',
+  },
 });
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -80,6 +84,7 @@ export default (props) => {
   const baseFieldTypeChoices = [
     ['text', intl.formatMessage(messages.field_type_text)],
     ['textarea', intl.formatMessage(messages.field_type_textarea)],
+    ['number', intl.formatMessage(messages.field_type_number)],
     ['select', intl.formatMessage(messages.field_type_select)],
     ['single_choice', intl.formatMessage(messages.field_type_single_choice)],
     [
@@ -108,6 +113,9 @@ export default (props) => {
     ? schemaExtender(intl)
     : { properties: [], fields: [], required: [] };
 
+  const enableConditionalFields =
+    config.blocks.blocksConfig.form.enableConditionalFields;
+
   return {
     title: props?.label || '',
     fieldsets: [
@@ -119,8 +127,10 @@ export default (props) => {
           'description',
           'field_type',
           ...schemaExtenderValues.fields,
-          ...(props?.field_type === 'static_text' ? [] : ['required']),
-          'visibility_conditions',
+          ...(props?.field_type === 'static_text'
+            ? []
+            : [`required-${props?.field_id}`]),
+          ...(enableConditionalFields ? ['visibility_conditions'] : []),
         ],
       },
     ],
@@ -144,7 +154,7 @@ export default (props) => {
         ],
         ...attachmentDescription,
       },
-      required: {
+      [`required-${props?.field_id}`]: {
         title: intl.formatMessage(messages.field_required),
         type: 'boolean',
         default: false,

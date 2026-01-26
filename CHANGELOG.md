@@ -1,5 +1,89 @@
 
 
+### [3.17.1](https://github.com/collective/volto-form-block/compare/v3.17.0...v3.17.1) (2026-01-07)
+
+
+### Bug Fixes
+
+* conditions on number fields ([#146](https://github.com/collective/volto-form-block/issues/146)) ([b241d83](https://github.com/collective/volto-form-block/commit/b241d83e61bac552c76269c7da634baa2d890ba6))
+
+## [3.17.0](https://github.com/collective/volto-form-block/compare/v3.16.0...v3.17.0) (2025-12-30)
+
+
+### Features
+
+* pass block id in sidebar ([#144](https://github.com/collective/volto-form-block/issues/144)) ([c631e24](https://github.com/collective/volto-form-block/commit/c631e24af27e8d1b50da79075820c57159f1adc1))
+
+
+### Changes
+
+* **imports:** replace barrel imports with direct imports in Field.jsx ([#143](https://github.com/collective/volto-form-block/issues/143)) ([e7e4e31](https://github.com/collective/volto-form-block/commit/e7e4e3147f8f6335ab683f31b30da0f1ce966ea8))
+
+## [3.16.0](https://github.com/collective/volto-form-block/compare/v3.15.0...v3.16.0) (2025-12-22)
+
+
+### Features
+
+* added field type 'number' ([#141](https://github.com/collective/volto-form-block/issues/141)) ([0a99e6c](https://github.com/collective/volto-form-block/commit/0a99e6c86b42a8f3840c63b33711675154da961d))
+
+
+### Bug Fixes
+
+* typo in Italian translation for save warning ([08d065a](https://github.com/collective/volto-form-block/commit/08d065ad632f5843832614efbcdf071dececb328))
+
+## [3.15.0](https://github.com/collective/volto-form-block/compare/v3.14.0...v3.15.0) (2025-11-25)
+
+
+### Features
+
+* **i18n:** add pt_BR translations ([57026b2](https://github.com/collective/volto-form-block/commit/57026b2e578a0a8e03f80febf8dde4b09d6e911e))
+
+## [3.14.0](https://github.com/collective/volto-form-block/compare/v3.13.3...v3.14.0) (2025-11-11)
+
+
+### Features
+
+* opt out of the datatable and advanced visibility fields features ([#139](https://github.com/collective/volto-form-block/issues/139)) ([52a3f74](https://github.com/collective/volto-form-block/commit/52a3f7438ad261e1836f4e441073cff02322b4f6))
+
+### [3.13.3](https://github.com/collective/volto-form-block/compare/v3.13.2...v3.13.3) (2025-11-07)
+
+
+### Bug Fixes
+
+* values saved in volto form restored to 'required' and 'unique' key to avoid breaking existing forms ([#138](https://github.com/collective/volto-form-block/issues/138)) ([e1ca5b3](https://github.com/collective/volto-form-block/commit/e1ca5b3d1c5bcbd182bc9b017241496be2785936))
+
+### [3.13.2](https://github.com/collective/volto-form-block/compare/v3.13.1...v3.13.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* added unique field name to form block subfields ([#137](https://github.com/collective/volto-form-block/issues/137)) ([e7e5531](https://github.com/collective/volto-form-block/commit/e7e5531a5c9873ab9de7e06402932b132523e51d))
+* german translation for items stored ([44d8c77](https://github.com/collective/volto-form-block/commit/44d8c776e9efd2ea5108ceecb35624db4c3b40d3))
+
+
+### Maintenance
+
+* added release scripts ([c538491](https://github.com/collective/volto-form-block/commit/c53849140bccaf80e8bd15f1222af3a0f9aa66c4))
+
+### [3.13.1](https://github.com/collective/volto-form-block/compare/v3.13.0...v3.13.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* fields requirement edition fixed ([#133](https://github.com/collective/volto-form-block/issues/133)) ([1ee4584](https://github.com/collective/volto-form-block/commit/1ee45842a76715ec93991a8a82157f42615ba732))
+* fixed lack of item id ([#135](https://github.com/collective/volto-form-block/issues/135)) ([a968c18](https://github.com/collective/volto-form-block/commit/a968c18ab73d163af196ee936a969cf8c502434e))
+* issue [#111](https://github.com/collective/volto-form-block/issues/111) - prevent form submission when d&d on a required attachment field ([#112](https://github.com/collective/volto-form-block/issues/112)) ([c1098f8](https://github.com/collective/volto-form-block/commit/c1098f8e1f4b584aa9bdeb8494853694a3bb3b73)), closes [#73](https://github.com/collective/volto-form-block/issues/73)
+* translate tab items and add missing german translations ([#134](https://github.com/collective/volto-form-block/issues/134)) ([3ea2c9c](https://github.com/collective/volto-form-block/commit/3ea2c9cacb4cb93424b78c734b60d14fb9e5d90f))
+
+## [3.13.1] (Unreleased)
+
+### Maintenance
+
+* Updated README file. [@macagua](https://github.com/macagua/).
+
+* Added missing Spanish translations. [@macagua](https://github.com/macagua/).
+
+
 ## [3.13.0](https://github.com/collective/volto-form-block/compare/v3.12.0...v3.13.0) (2025-05-12)
 
 

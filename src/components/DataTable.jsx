@@ -78,7 +78,6 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
-  const [allFields, setAllFields] = useState([]);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -88,6 +87,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
         block_id: blockId,
       }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clearFormDataSelector.loaded]);
 
   // const data = useMemo(
@@ -109,6 +109,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
       );
     }
     setData(dataResults);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   // SORT
@@ -124,41 +125,45 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
     const arrayColumn = data
       .flatMap((obj) => {
-        return Object.entries(obj).map(([key, value]) => ({
-          id: key,
-          header: value?.label,
-          accessorFn: (row) => row[key]?.value,
-          cell: (props) => {
-            switch (value?.field_type) {
-              case 'attachment':
-                const value = props.getValue();
-                // TODO: unused fields:
-                // value.size -> size in bytes
-                // value.contentType -> mime type
-                return value ? (
-                  <a href={value.url} download>
-                    {value.filename}
-                  </a>
-                ) : (
-                  ''
-                );
-              case 'textarea':
-                return <pre>{props.getValue() || ''}</pre>;
-              case 'checkbox':
-                return props.getValue()
-                  ? intl.formatMessage(messages.formValueYes)
-                  : intl.formatMessage(messages.formValueNo);
-              case 'multiple_choice':
-                return typeof props.getValue() === 'array' ? props.getValue().join(', ') : props.getValue();
-              default:
-                return props.getValue() || '';
-            }
-          },
-          meta: {
-            field_type: value?.field_type,
-          },
-          filterFn: value?.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
-        }));
+        return Object.entries(obj)
+          .filter(([key, value]) => key)
+          .map(([key, value]) => {
+            return {
+              id: key,
+              header: value?.label,
+              accessorFn: (row) => row[key]?.value,
+              cell: (props) => {
+                switch (value?.field_type) {
+                  case 'attachment':
+                    const val = props.getValue();
+                    // TODO: unused fields:
+                    // val.size -> size in bytes
+                    // val.contentType -> mime type
+                    return val ? (
+                      <a href={val.url} download>
+                        {val.filename}
+                      </a>
+                    ) : (
+                      ''
+                    );
+                  case 'textarea':
+                    return <pre>{props.getValue() || ''}</pre>;
+                  case 'checkbox':
+                    return props.getValue()
+                      ? intl.formatMessage(messages.formValueYes)
+                      : intl.formatMessage(messages.formValueNo);
+                  case 'multiple_choice':
+                    return Array.isArray(props.getValue()) ? props.getValue().join(', ') : props.getValue();
+                  default:
+                    return props.getValue() || '';
+                }
+              },
+              meta: {
+                field_type: value?.field_type,
+              },
+              filterFn: value?.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
+            };
+          });
       })
       .filter((item) => !excludeIds.includes(item.id))
       .reduce((acc, current) => {
@@ -178,7 +183,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     }
 
     return filteredColumn;
-  }, [data]);
+  }, [data, intl]);
 
   const table = useReactTable({
     columns,

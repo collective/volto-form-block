@@ -55,6 +55,19 @@ export const checkTypeTextField = (item) => {
   );
 };
 
+// For type number field
+export const checkTypeNumberField = (item) => {
+  return (
+    item?.field?.field_type === 'number' &&
+    (item?.condition === 'is_equal_to' ||
+      item?.condition === 'is_not_equal_to' ||
+      item?.condition === 'greater_than' ||
+      item?.condition === 'less_than' ||
+      item?.condition === 'greater_or_equal' ||
+      item?.condition === 'less_or_equal')
+  );
+};
+
 // For multi selection field
 export const checkTypeSelectionField = (item) => {
   return (
@@ -91,6 +104,22 @@ export const checkTypeDateField = (item) => {
   );
 };
 
+const toNumber = (value) => {
+  if (typeof value === 'number') return value;
+
+  if (typeof value === 'string') {
+    try {
+      // rimuove spazi e converte la virgola in punto
+      const normalized = value.trim().replace(',', '.');
+      const num = Number(normalized);
+      return isNaN(num) ? null : num;
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+};
 export const createConditionFormula = (
   condition,
   value_field_id,
@@ -124,27 +153,31 @@ export const createConditionFormula = (
 
     case 'contains':
       if (value_field_id && value_field_id?.length > 0) {
-        return value_field_id.includes(value_condition);
+        return value_field_id
+          .toLowerCase()
+          .includes(value_condition.toLowerCase());
       }
       break;
 
     case 'not_contains':
       if (value_field_id && value_field_id?.length > 0) {
-        return !value_field_id?.includes(value_condition);
+        return !value_field_id
+          .toLowerCase()
+          ?.includes(value_condition.toLowerCase());
       }
       break;
 
     case 'greater_than':
-      return value_field_id > value_condition;
+      return toNumber(value_field_id) > toNumber(value_condition);
 
     case 'less_than':
-      return value_field_id < value_condition;
+      return toNumber(value_field_id) < toNumber(value_condition);
 
     case 'greater_or_equal':
-      return value_field_id >= value_condition;
+      return toNumber(value_field_id) >= toNumber(value_condition);
 
     case 'less_or_equal':
-      return value_field_id <= value_condition;
+      return toNumber(value_field_id) <= toNumber(value_condition);
 
     default:
       return true;

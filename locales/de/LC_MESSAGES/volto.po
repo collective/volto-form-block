@@ -17,6 +17,7 @@ msgid "Add field"
 msgstr "Feld Hinzufügen"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -35,6 +36,11 @@ msgstr "Datei auswählen"
 # defaultMessage: Close
 msgid "Close"
 msgstr "Schließen"
+
+#: components/Edit
+# defaultMessage: data
+msgid "Data"
+msgstr "Daten"
 
 #: components/Widget/DatetimeWidget
 # defaultMessage: Date
@@ -71,6 +77,7 @@ msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 msgid "Error"
 msgstr "Fehler"
 
+#: components/Edit
 #: components/Sidebar
 # defaultMessage: Form
 msgid "Form"
@@ -229,52 +236,52 @@ msgstr "Captcha-Anbieter"
 #: helpers/conditions-list
 # defaultMessage: Contains
 msgid "condition_contains"
-msgstr ""
+msgstr "Enthält"
 
 #: helpers/conditions-list
 # defaultMessage: Greater or equal
 msgid "condition_greater_or_equal"
-msgstr ""
+msgstr "Größer oder gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Greater than
 msgid "condition_greater_than"
-msgstr ""
+msgstr "Größer als"
 
 #: helpers/conditions-list
 # defaultMessage: Is empty
 msgid "condition_is_empty"
-msgstr ""
+msgstr "Ist leer"
 
 #: helpers/conditions-list
 # defaultMessage: Is equal to
 msgid "condition_is_equal_to"
-msgstr ""
+msgstr "Ist gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Is not empty
 msgid "condition_is_not_empty"
-msgstr ""
+msgstr "Ist nicht leer"
 
 #: helpers/conditions-list
 # defaultMessage: Is not equal to
 msgid "condition_is_not_equal_to"
-msgstr ""
+msgstr "Ist nicht gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Less or equal
 msgid "condition_less_or_equal"
-msgstr ""
+msgstr "Kleiner oder gleich"
 
 #: helpers/conditions-list
 # defaultMessage: Less than
 msgid "condition_less_than"
-msgstr ""
+msgstr "Kleiner als"
 
 #: helpers/conditions-list
 # defaultMessage: Not contains
 msgid "condition_not_contains"
-msgstr ""
+msgstr "Enthält nicht"
 
 #: formSchema
 # defaultMessage: Description
@@ -307,11 +314,13 @@ msgid "form_cancel_label"
 msgstr "Beschriftung der Schaltfläche Abbrechen"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Daten löschen"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Gespeicherte Elemente wirklich löschen?"
@@ -344,6 +353,7 @@ msgid "form_default_submit_label"
 msgstr "Senden"
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Daten exportieren"
@@ -427,7 +437,7 @@ msgstr "Erforderlich"
 #: fieldSchema
 # defaultMessage: If visibility conditions have been added to the field, it is advisable not to apply the requirement.
 msgid "form_field_required_info_text"
-msgstr ""
+msgstr "Nur auswählen, wenn dieses Feld immer sichtbar ist."
 
 #: fieldSchema
 # defaultMessage: Field type
@@ -470,6 +480,11 @@ msgid "form_field_type_multiple_choice"
 msgstr "Mehrfachauswahl"
 
 #: fieldSchema
+# defaultMessage: Number
+msgid "form_field_type_number"
+msgstr ""
+
+#: fieldSchema
 # defaultMessage: List
 msgid "form_field_type_select"
 msgstr "Liste"
@@ -500,6 +515,7 @@ msgid "form_filterColumn"
 msgstr ""
 
 #: components/DataTable
+#: components/SidebarDataActions
 # defaultMessage: Items stored
 msgid "form_formDataCount"
 msgstr "{formDataCount} Element(e) gespeichert"
@@ -507,17 +523,17 @@ msgstr "{formDataCount} Element(e) gespeichert"
 #: components/DataTable
 # defaultMessage: Item stored
 msgid "form_formDataCountSingle"
-msgstr ""
+msgstr "Eintrag gespeichert"
 
 #: components/DataTable
 # defaultMessage: No
 msgid "form_formValueNo"
-msgstr ""
+msgstr "Nein"
 
 #: components/DataTable
 # defaultMessage: Yes
 msgid "form_formValueYes"
-msgstr ""
+msgstr "Ja"
 
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
@@ -557,7 +573,7 @@ msgstr "Löschen"
 #: formSchema
 # defaultMessage: Store compiled data
 msgid "form_save_persistent_data"
-msgstr "Kompilierte Daten speichern"
+msgstr "Daten speichern"
 
 #: components/Field
 # defaultMessage: Select a value
@@ -660,16 +676,19 @@ msgid "mail_header_label"
 msgstr "Text am Anfang der E-Mail"
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: remove expired data
 msgid "remove_data_button"
 msgstr "Abgelaufene Daten löschen"
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 msgid "remove_data_cron_info"
 msgstr "Um die Löschung von Datensätzen, die die in der Konfiguration angegebene maximale Anzahl von Tagen überschritten haben, zu automatisieren, muss auf dem Server ein Cron-Job eingerichtet werden, wie in der Dokumentation beschrieben."
 
 #: components/Sidebar
+#: components/SidebarDataActions
 # defaultMessage: There are {record} record that have exceeded the maximum number of days.
 msgid "remove_data_warning"
 msgstr "{record} Einträge haben die maximale Anzahl von Tagen überschritten."
@@ -697,69 +716,69 @@ msgstr "Titel"
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Add condition
 msgid "visible_conditions_widget_add"
-msgstr ""
+msgstr "Bedingung hinzufügen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: and
 msgid "visible_conditions_widget_and"
-msgstr ""
+msgstr "und"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Apply
 msgid "visible_conditions_widget_apply"
-msgstr ""
+msgstr "Anwenden"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Cancel
 msgid "visible_conditions_widget_cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Delete condition
 msgid "visible_conditions_widget_delete"
-msgstr ""
+msgstr "Bedingung entfernen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Not checked
 msgid "visible_conditions_widget_false"
-msgstr ""
+msgstr "Nicht ausgewählt"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Select a field
 msgid "visible_conditions_widget_fields"
-msgstr ""
+msgstr "Feld auswählen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: If
 msgid "visible_conditions_widget_if"
-msgstr ""
+msgstr "Wenn"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: For this field it is not the best solution, we recommend changing the condition.
 msgid "visible_conditions_widget_not_satisfied"
-msgstr ""
+msgstr "Diese Bedingung lässt sich bei diesem Feld-Typen nicht anwenden."
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Select a condition
 msgid "visible_conditions_widget_options"
-msgstr ""
+msgstr "Bedingung auswählen"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Write text
 msgid "visible_conditions_widget_text"
-msgstr ""
+msgstr "Text schreiben"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Visible choices if
 msgid "visible_conditions_widget_title"
-msgstr ""
+msgstr "Nur sichtbar, wenn"
 
 #: components/Widget/VisibilityConditionsWidget
 # defaultMessage: Checked
 msgid "visible_conditions_widget_true"
-msgstr ""
+msgstr "Ausgewählt"
 
 #: components/Edit
 # defaultMessage: Select the "Save Data" option in the right sidebar to enable storage and display of submitted data.
 msgid "warning_enable_save"
-msgstr ""
+msgstr "Wählen Sie die Option 'Daten speichern' in der rechten Seitenleiste, um die Speicherung und Anzeige der übermittelten Daten zu aktivieren."
