@@ -83,6 +83,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [data, setData] = useState([]);
+  const blockData = properties?.blocks?.[blockId];
 
   useEffect(() => {
     dispatch(
@@ -121,73 +122,61 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   // https://tanstack.com/table/v8/docs/examples/react/sorting
 
   const columns = useMemo(() => {
-    if (data?.length === 0) {
+    if (blockData?.subblocks?.length === 0) {
       return [];
     }
-
-    // List of IDs to exclude
-    const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
-    const arrayColumn = data
-      .flatMap((obj) => {
-        return Object.entries(obj)
-          .filter(([key, value]) => key)
-          .map(([key, value]) => {
-            return {
-              id: key,
-              header: value?.label,
-              accessorFn: (row) => row[key]?.value,
-              cell: (props) => {
-                switch (value?.field_type) {
-                  case 'attachment':
-                    const val = props.getValue();
-                    // TODO: unused fields:
-                    // val.size -> size in bytes
-                    // val.contentType -> mime type
-                    return val ? (
-                      <a href={val.url} download>
-                        {val.filename}
-                      </a>
-                    ) : (
-                      ''
-                    );
-                  case 'textarea':
-                    return <pre>{props.getValue() || ''}</pre>;
-                  case 'checkbox':
-                    return props.getValue()
-                      ? intl.formatMessage(messages.formValueYes)
-                      : intl.formatMessage(messages.formValueNo);
-                  case 'multiple_choice':
-                    return Array.isArray(props.getValue()) ? props.getValue().join(', ') : props.getValue();
-                  default:
-                    return props.getValue() || '';
-                }
-              },
-              meta: {
-                field_type: value?.field_type,
-              },
-              filterFn: value?.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
-            };
-          });
+    return blockData.subblocks
+      .map((subblock) => {
+        return {
+          id: subblock.id,
+          header: subblock.label,
+          accessorFn: (row) => row[subblock.id]?.value,
+          cell: (props) => {
+            switch (subblock.field_type) {
+              case 'attachment':
+                const val = props.getValue();
+                // TODO: unused fields:
+                // val.size -> size in bytes
+                // val.contentType -> mime type
+                return val ? (
+                  <a href={val.url} download>
+                    {val.filename}
+                  </a>
+                ) : (
+                  ''
+                );
+              case 'textarea':
+                return <pre>{props.getValue() || ''}</pre>;
+              case 'checkbox':
+                return props.getValue()
+                  ? intl.formatMessage(messages.formValueYes)
+                  : intl.formatMessage(messages.formValueNo);
+              case 'multiple_choice':
+                const mcVal = props.getValue();
+                return Array.isArray(mcVal) ? mcVal.join(', ') : mcVal || '';
+              default:
+                return props.getValue() || '';
+            }
+          },
+          meta: {
+            field_type: subblock.field_type,
+          },
+          filterFn:
+            subblock.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
+        };
       })
-      .filter((item) => !excludeIds.includes(item.id))
-      .reduce((acc, current) => {
-        // Check if the id already exists
-        const existing = acc.find((item) => item.id === current.id);
-        if (!existing) {
-          acc.push(current); // If it doesn't exist, add object
-        }
-        return acc;
-      }, []);
-
-    const dateItem = arrayColumn.find((item) => item.id === 'date');
-    const filteredColumn = arrayColumn.filter((item) => item.id !== 'date');
-
-    if (dateItem) {
-      filteredColumn.push(dateItem); // Add field "date" at the end fo array
-    }
-
-    return filteredColumn;
-  }, [data, intl]);
+      .concat([
+        {
+          id: 'date',
+          header: 'date',
+          accessorFn: (row) => row.date.value,
+          meta: {
+            field_type: 'datetime',
+          },
+          filterFn: 'auto',
+        },
+      ]);
+  }, [blockData?.subblocks, intl]);
 
   const table = useReactTable({
     columns,
