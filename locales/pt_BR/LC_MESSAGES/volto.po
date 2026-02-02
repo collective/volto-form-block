@@ -537,6 +537,11 @@ msgid "form_formDataCountSingle"
 msgstr "Item armazenado"
 
 #: components/DataTable
+# defaultMessage: Date submitted
+msgid "form_formDateSubmit"
+msgstr ""
+
+#: components/DataTable
 # defaultMessage: No
 msgid "form_formValueNo"
 msgstr "Não"

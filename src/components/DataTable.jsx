@@ -39,6 +39,10 @@ const messages = defineMessages({
     id: 'form_formDataCount',
     defaultMessage: 'Items stored',
   },
+  formDateSubmit: {
+    id: 'form_formDateSubmit',
+    defaultMessage: 'Date submitted',
+  },
   confirmClearData: {
     id: 'form_confirmClearData',
     defaultMessage: 'Are you sure you want to delete all saved items?',
@@ -168,7 +172,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
       .concat([
         {
           id: 'date',
-          header: 'date',
+          header: intl.formatMessage(messages.formDateSubmit),
           accessorFn: (row) => row.date.value,
           meta: {
             field_type: 'datetime',
