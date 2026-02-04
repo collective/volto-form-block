@@ -102,6 +102,7 @@ const FormView = ({
               onSubmit={submit}
               autoComplete="off"
               method="post"
+              noValidate
             >
               <Grid columns={1} padded="vertically">
                 {data.static_fields?.map((field) => (
