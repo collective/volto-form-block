@@ -15,7 +15,7 @@ import Icon from '@plone/volto/components/theme/Icon/Icon';
 import loadable from '@loadable/component';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { defineMessages, useIntl } from 'react-intl';
-import { Button } from 'volto-form-block/components/Widget';
+import Button from 'volto-form-block/components/Widget/Button';
 
 const imageMimetypes = [
   'image/png',

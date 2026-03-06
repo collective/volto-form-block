@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useIntl, defineMessages } from 'react-intl';
 import { isValidEmail } from 'volto-form-block/helpers/validators';
 import Field from 'volto-form-block/components/Field';
-import { Button } from 'volto-form-block/components/Widget';
+import Button from 'volto-form-block/components/Widget/Button';
 import { sendOTP } from 'volto-form-block/actions';
 
 import 'volto-form-block/components/Widget/OTPWidget.css';
