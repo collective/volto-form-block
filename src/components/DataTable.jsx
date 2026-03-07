@@ -8,7 +8,7 @@ import paginationRightSVG from '@plone/volto/icons/right-key.svg';
 import React, { useEffect, useMemo, useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Confirm, Pagination, Table } from 'semantic-ui-react';
+import { Button, Confirm, Pagination, Table, Input, Select } from 'semantic-ui-react';
 import {
   clearFormData,
   exportCsvFormData,
@@ -23,6 +23,10 @@ const messages = defineMessages({
     id: 'form_edit_exportCsv',
     defaultMessage: 'Export data',
   },
+  exportFilteredCsv: {
+    id: 'form_edit_exportFilteredCsv',
+    defaultMessage: 'Export {filteredCount} filtered records out of {totalCount} as CSV',
+  },
   clearData: {
     id: 'form_clear_data',
     defaultMessage: 'Clear data',
@@ -34,6 +38,10 @@ const messages = defineMessages({
   formDataCount: {
     id: 'form_formDataCount',
     defaultMessage: 'Items stored',
+  },
+  formDateSubmit: {
+    id: 'form_formDateSubmit',
+    defaultMessage: 'Date submitted',
   },
   confirmClearData: {
     id: 'form_confirmClearData',
@@ -51,6 +59,14 @@ const messages = defineMessages({
     id: 'form_formValueNo',
     defaultMessage: 'No',
   },
+  filterColumn: {
+    id: 'form_filterColumn',
+    defaultMessage: 'Filter...',
+  },
+  all: {
+    id: 'form_all',
+    defaultMessage: 'All',
+  },
 });
 
 const DataTable = ({ ReactTable, properties, blockId }) => {
@@ -58,6 +74,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
     useReactTable,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
   } = ReactTable;
@@ -68,7 +85,9 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   const clearFormDataSelector = useSelector((state) => state.clearFormData);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
   const [data, setData] = useState([]);
+  const blockData = properties?.blocks?.[blockId];
 
   useEffect(() => {
     dispatch(
@@ -107,81 +126,107 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
   // https://tanstack.com/table/v8/docs/examples/react/sorting
 
   const columns = useMemo(() => {
-    let arrayColumn = [];
-    let filteredColumn = [];
-    // List of IDs to exclude
-    const excludeIds = ['__expired', 'block_id', 'id', 'field_type'];
-    if (data?.length > 0) {
-      arrayColumn = data
-        .flatMap((obj) => {
-          return Object.entries(obj)
-            .filter(([key, value]) => key)
-            .map(([key, value]) => {
-              return {
-                id: key,
-                header: value?.label,
-                accessorFn: (row) => row[key]?.value,
-                cell: (props) => {
-                  switch (value?.field_type) {
-                    case 'attachment':
-                      const val = props.getValue();
-                      // TODO: unused fields:
-                      // val.size -> size in bytes
-                      // val.contentType -> mime type
-                      return val ? (
-                        <a href={val.url} download>
-                          {val.filename}
-                        </a>
-                      ) : (
-                        ''
-                      );
-                    case 'textarea':
-                      return <pre>{props.getValue() || ''}</pre>;
-                    case 'checkbox':
-                      return props.getValue()
-                        ? intl.formatMessage(messages.formValueYes)
-                        : intl.formatMessage(messages.formValueNo);
-                    default:
-                      return props.getValue() || '';
-                  }
-                },
-              };
-            });
-        })
-        .filter((item) => !excludeIds.includes(item.id))
-        .reduce((acc, current) => {
-          // Check if the id already exists
-          const existing = acc.find((item) => item.id === current.id);
-          if (!existing) {
-            acc.push(current); // If it doesn't exist, add object
-          }
-          return acc;
-        }, []);
-
-      const dateItem = arrayColumn.find((item) => item.id === 'date');
-      filteredColumn = arrayColumn.filter((item) => item.id !== 'date');
-
-      if (dateItem) {
-        filteredColumn.push(dateItem); // Add field "date" at the end fo array
-      }
+    if (blockData?.subblocks?.length === 0) {
+      return [];
     }
-    return filteredColumn;
-  }, [data, intl]);
+    return blockData.subblocks
+      .map((subblock) => {
+        return {
+          id: subblock.id,
+          header: subblock.label,
+          accessorFn: (row) => row[subblock.id]?.value,
+          cell: (props) => {
+            switch (subblock.field_type) {
+              case 'attachment':
+                const val = props.getValue();
+                // TODO: unused fields:
+                // val.size -> size in bytes
+                // val.contentType -> mime type
+                return val ? (
+                  <a href={val.url} download>
+                    {val.filename}
+                  </a>
+                ) : (
+                  ''
+                );
+              case 'textarea':
+                return <pre>{props.getValue() || ''}</pre>;
+              case 'checkbox':
+                return props.getValue()
+                  ? intl.formatMessage(messages.formValueYes)
+                  : intl.formatMessage(messages.formValueNo);
+              case 'multiple_choice':
+                const mcVal = props.getValue();
+                return Array.isArray(mcVal) ? mcVal.join(', ') : mcVal || '';
+              default:
+                return props.getValue() || '';
+            }
+          },
+          meta: {
+            field_type: subblock.field_type,
+          },
+          filterFn:
+            subblock.field_type === 'multiple_choice' ? 'arrIncludes' : 'auto',
+        };
+      })
+      .concat([
+        {
+          id: 'date',
+          header: intl.formatMessage(messages.formDateSubmit),
+          accessorFn: (row) => row.date.value,
+          meta: {
+            field_type: 'datetime',
+          },
+          filterFn: 'auto',
+        },
+      ]);
+  }, [blockData?.subblocks, intl]);
 
   const table = useReactTable({
     columns,
     data,
     state: {
       sorting,
+      columnFilters,
     },
     columnResizeMode: 'onEnd',
     onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    // getFilteredRowModel: getFilteredRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     // debugTable: true,
   });
+
+  const downloadFilteredCsv = () => {
+    const rows = table.getFilteredRowModel().rows;
+    const headerRow = columns.map((col) => col.header).join(',');
+    const csvContent = [
+      headerRow,
+      ...rows.map((row) =>
+        columns
+          .map((col) => {
+            const val = row.original[col.id]?.value;
+            return `"${(val || '').toString().replace(/"/g, '""')}"`;
+          })
+          .join(','),
+      ),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute(
+      'download',
+      `export-filtered-${properties.id ?? 'form'}.csv`,
+    );
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="dt-wrapper">
@@ -214,6 +259,18 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
             <Icon name={downloadSVG} size="30px" />
             {intl.formatMessage(messages.exportCsv)}
           </Button>
+
+          {/* BUTTON EXPORT FILTERED */}
+          {columnFilters.length > 0 && (
+            <Button icon primary onClick={downloadFilteredCsv}>
+              <Icon name={downloadSVG} size="30px" />
+              {intl.formatMessage(messages.exportFilteredCsv, {
+                filteredCount: table.getFilteredRowModel().rows.length,
+                totalCount: data.length,
+              })}
+            </Button>
+          )}
+
           {/* BUTTON DELETE */}
           <Button icon negative onClick={() => setConfirmOpen(true)}>
             <Icon name={deleteSVG} size="30px" />
@@ -242,26 +299,90 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
         <Table celled sortable striped>
           <Table.Header>
             {table.getHeaderGroups().map((headerGroup) => (
-              <Table.Row key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <Table.HeaderCell
-                    key={header.id}
-                    sorted={
-                      { asc: 'ascending', desc: 'descending' }[
+              <React.Fragment key={headerGroup.id}>
+                <Table.Row key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <Table.HeaderCell
+                      key={header.id}
+                      sorted={
+                        { asc: 'ascending', desc: 'descending' }[
                         header.column.getIsSorted()
-                      ]
-                    }
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
+                        ]
+                      }
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                  </Table.HeaderCell>
-                ))}
-              </Table.Row>
+                    </Table.HeaderCell>
+                  ))}
+                </Table.Row>
+                <Table.Row>
+                  {headerGroup.headers.map((header) => {
+                    const fieldType = header.column.columnDef.meta?.field_type;
+                    const isChoiceField = [
+                      'select',
+                      'single_choice',
+                      'multiple_choice',
+                    ].includes(fieldType);
+
+                    const options = isChoiceField
+                      ? [
+                        { key: 'all', text: intl.formatMessage(messages.all), value: '' },
+                        ...Array.from(
+                          new Set(
+                            data
+                              .flatMap((row) => {
+                                const val = row[header.column.id]?.value;
+                                return Array.isArray(val) ? val : [val];
+                              })
+                              .filter(Boolean),
+                          ),
+                        )
+                          .sort()
+                          .map((val) => ({
+                            key: val,
+                            text: val,
+                            value: val,
+                          })),
+                      ]
+                      : [];
+
+                    return (
+                      <Table.HeaderCell key={`${header.id}-filter`}>
+                        {header.column.getCanFilter() ? (
+                          <div className="dt-filter">
+                            {isChoiceField ? (
+                              <Select
+                                fluid
+                                size="mini"
+                                options={options}
+                                value={header.column.getFilterValue() ?? ''}
+                                onChange={(e, { value }) =>
+                                  header.column.setFilterValue(value)
+                                }
+                              />
+                            ) : (
+                              <Input
+                                fluid
+                                size="mini"
+                                placeholder={intl.formatMessage(messages.filterColumn)}
+                                value={header.column.getFilterValue() ?? ''}
+                                onChange={(e) =>
+                                  header.column.setFilterValue(e.target.value)
+                                }
+                              />
+                            )}
+                          </div>
+                        ) : null}
+                      </Table.HeaderCell>
+                    );
+                  })}
+                </Table.Row>
+              </React.Fragment>
             ))}
           </Table.Header>
           <Table.Body>
@@ -311,7 +432,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
                 table.getPageCount(),
               className:
                 table.getState().pagination.pageIndex + 1 ===
-                table.getPageCount()
+                  table.getPageCount()
                   ? 'disabled'
                   : null,
             }}
