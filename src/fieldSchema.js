@@ -78,8 +78,7 @@ const messages = defineMessages({
   },
 });
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => {
+const FieldSchema = (props) => {
   var intl = useIntl();
   const baseFieldTypeChoices = [
     ['text', intl.formatMessage(messages.field_type_text)],
@@ -174,3 +173,5 @@ export default (props) => {
     ],
   };
 };
+
+export default FieldSchema;
