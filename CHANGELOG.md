@@ -1,5 +1,23 @@
 
 
+## [3.18.0](https://github.com/collective/volto-form-block/compare/v3.17.1...v3.18.0) (2026-05-05)
+
+
+### Features
+
+* display all required field errors after first submit ([#149](https://github.com/collective/volto-form-block/issues/149)) ([a8fe17c](https://github.com/collective/volto-form-block/commit/a8fe17caeb4e50a367e7c6ca21382d252750360a))
+
+
+### Bug Fixes
+
+* clear required field if is static text ([64811ee](https://github.com/collective/volto-form-block/commit/64811ee300c04ece316c5b56a22ec0c332d13597))
+* use named export in fieldSchema to avoid Babel plugin anonymous default export error ([d7f2ff1](https://github.com/collective/volto-form-block/commit/d7f2ff16d3c8ca3a2fe7f969cc9d2e4109ef4ab4))
+
+
+### Maintenance
+
+* replace barrel imports with direct imports ([#148](https://github.com/collective/volto-form-block/issues/148)) ([c71ffd0](https://github.com/collective/volto-form-block/commit/c71ffd03ab1d0ba4c5163bb0c9248faa7f1ad98e))
+
 ### [3.17.1](https://github.com/collective/volto-form-block/compare/v3.17.0...v3.17.1) (2026-01-07)
 
 
