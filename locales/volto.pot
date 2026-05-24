@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2025-12-19T14:07:32.087Z\n"
+"POT-Creation-Date: 2026-02-02T12:20:23.890Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -305,6 +305,11 @@ msgstr ""
 msgid "formSubmitted"
 msgstr ""
 
+#: components/DataTable
+# defaultMessage: All
+msgid "form_all"
+msgstr ""
+
 #: formSchema
 # defaultMessage: Attached file will be sent via email, but not stored
 msgid "form_attachment_send_email_info_text"
@@ -358,6 +363,11 @@ msgstr ""
 #: components/SidebarDataActions
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Export {filteredCount} filtered records out of {totalCount} as CSV
+msgid "form_edit_exportFilteredCsv"
 msgstr ""
 
 #: components/ValidateConfigForm
@@ -507,6 +517,11 @@ msgid "form_field_type_textarea"
 msgstr ""
 
 #: components/DataTable
+# defaultMessage: Filter...
+msgid "form_filterColumn"
+msgstr ""
+
+#: components/DataTable
 #: components/SidebarDataActions
 # defaultMessage: Items stored
 msgid "form_formDataCount"
@@ -515,6 +530,11 @@ msgstr ""
 #: components/DataTable
 # defaultMessage: Item stored
 msgid "form_formDataCountSingle"
+msgstr ""
+
+#: components/DataTable
+# defaultMessage: Date submitted
+msgid "form_formDateSubmit"
 msgstr ""
 
 #: components/DataTable
