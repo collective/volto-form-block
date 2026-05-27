@@ -11,3 +11,7 @@
 .block.form .ui.button.add-element:hover {
     color: white;
 }
+
+.block.form .label-file-widget-input {
+    color: #00537a;
+}

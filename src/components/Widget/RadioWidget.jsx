@@ -40,6 +40,7 @@ const RadioWidget = ({
       error={error}
       fieldSet={fieldSet}
       wrapped={wrapped}
+      noForInFieldLabel={true}
     >
       <div className="radio-widget">
         <fieldset className="radio-group">

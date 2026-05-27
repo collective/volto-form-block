@@ -116,6 +116,19 @@ class TextWidget extends Component {
       attributes['aria-invalid'] = true;
     }
 
+    let autoComplete = this.props.autoComplete;
+    if (!autoComplete) {
+      const lowerId = id.toLowerCase();
+      const lowerTitle = this.props.title?.toLowerCase() || '';
+      if (lowerId.includes('phone') || lowerId.includes('tel') || lowerTitle.includes('phone') || lowerTitle.includes('tel')) {
+        autoComplete = 'tel';
+      } else if (lowerId.includes('email') || lowerTitle.includes('email')) {
+        autoComplete = 'email';
+      } else if (lowerId.includes('name') || lowerTitle.includes('name')) {
+        autoComplete = 'name';
+      }
+    }
+
     return (
       <FormFieldWrapper {...this.props} className="text">
         <Input
@@ -125,6 +138,7 @@ class TextWidget extends Component {
           disabled={this.props.isDisabled}
           icon={icon || null}
           placeholder={placeholder}
+          autoComplete={autoComplete}
           onChange={({ target }) =>
             onChange(id, target.value === '' ? undefined : target.value)
           }

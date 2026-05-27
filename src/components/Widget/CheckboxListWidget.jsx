@@ -58,6 +58,7 @@ const CheckboxListWidget = ({
       error={error}
       fieldSet={fieldSet}
       wrapped={wrapped}
+      noForInFieldLabel={true}
     >
       <div className="checkbox-list-widget">
         <fieldset className="checkbox-group">

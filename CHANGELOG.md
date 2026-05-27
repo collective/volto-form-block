@@ -1,4 +1,16 @@
+## [3.18.1](https://github.com/collective/volto-form-block/compare/v3.18.0...v3.18.1) (2026-05-27)
 
+### Features
+
+* make captcha optional in form block configuration
+
+### Bug Fixes
+
+* **a11y:** fix text contrast for file widget placeholder
+* **a11y:** add autocomplete inference to text/email widgets for programmatic field purpose
+* **a11y:** fix valid label IDs for DatetimeWidget inputs
+* **a11y:** use visually-hidden instead of display:none for radio/checkbox groups to fix orphaned labels
+* **a11y:** prevent CheckboxWidget ID from changing on every re-render
 
 ## [3.18.0](https://github.com/collective/volto-form-block/compare/v3.17.1...v3.18.0) (2026-05-05)
 
