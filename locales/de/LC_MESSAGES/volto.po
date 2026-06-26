@@ -16,8 +16,8 @@ msgstr ""
 msgid "Add field"
 msgstr "Feld Hinzufügen"
 
-#: components/DataTable
 #: components/SidebarDataActions
+#: components/DataTable
 # defaultMessage: Cancel
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -52,6 +52,11 @@ msgstr "Datum"
 msgid "Default"
 msgstr "Standard"
 
+#: components/Widget/FileWidget
+# defaultMessage: Delete file
+msgid "Delete file"
+msgstr ""
+
 #: components/Widget/SelectWidget
 # defaultMessage: Description
 msgid "Description"
@@ -77,8 +82,8 @@ msgstr "Datei hier ablegen um die bestehende Datei zu ersetzen"
 msgid "Error"
 msgstr "Fehler"
 
-#: components/Edit
 #: components/Sidebar
+#: components/Edit
 # defaultMessage: Form
 msgid "Form"
 msgstr "Formular"
@@ -313,21 +318,21 @@ msgstr "Angeheftete Datei wird ohne zu speichern per E-mail versendet."
 msgid "form_cancel_label"
 msgstr "Beschriftung der Schaltfläche Abbrechen"
 
-#: components/DataTable
 #: components/SidebarDataActions
+#: components/DataTable
 # defaultMessage: Clear data
 msgid "form_clear_data"
 msgstr "Daten löschen"
 
-#: components/DataTable
 #: components/SidebarDataActions
+#: components/DataTable
 # defaultMessage: Are you sure you want to delete all saved items?
 msgid "form_confirmClearData"
 msgstr "Gespeicherte Elemente wirklich löschen?"
 
-#: components/Edit
 #: components/FormView
-# defaultMessage: Annulla
+#: components/Edit
+# defaultMessage: Cancel
 msgid "form_default_cancel_label"
 msgstr "Abbrechen"
 
@@ -346,14 +351,14 @@ msgstr "Betreff"
 msgid "form_default_subject_description"
 msgstr "Verwenden Sie die ${field_id}-Syntax, um dem E-Mail-Betreff einen Formularwert hinzuzufügen"
 
-#: components/Edit
 #: components/FormView
-# defaultMessage: Invia
+#: components/Edit
+# defaultMessage: Submit
 msgid "form_default_submit_label"
 msgstr "Senden"
 
-#: components/DataTable
 #: components/SidebarDataActions
+#: components/DataTable
 # defaultMessage: Export data
 msgid "form_edit_exportCsv"
 msgstr "Daten exportieren"
@@ -413,8 +418,8 @@ msgstr "Beschreibung"
 msgid "form_field_input_value"
 msgstr "Wert"
 
-#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 #: components/FieldTypeSchemaExtenders/SelectionSchemaExtender
+#: components/FieldTypeSchemaExtenders/FromSchemaExtender
 # defaultMessage: Possible values
 msgid "form_field_input_values"
 msgstr "Mögliche Werte"
@@ -504,11 +509,15 @@ msgstr "Text"
 msgid "form_field_type_textarea"
 msgstr "Textfeld"
 
-#: components/DataTable
 #: components/SidebarDataActions
-# defaultMessage: Items stored
+# defaultMessage: {formDataCount} item(s) stored
 msgid "form_formDataCount"
 msgstr "Einträge gespeichert"
+
+#: components/DataTable
+# defaultMessage: Items stored
+msgid "form_formDataCountPlural"
+msgstr ""
 
 #: components/DataTable
 # defaultMessage: Item stored
@@ -665,20 +674,20 @@ msgstr "Wenn das Feld nicht ausgefüllt ist, wird ein Standardtext verwendet."
 msgid "mail_header_label"
 msgstr "Text am Anfang der E-Mail"
 
-#: components/Sidebar
 #: components/SidebarDataActions
+#: components/Sidebar
 # defaultMessage: remove expired data
 msgid "remove_data_button"
 msgstr "Abgelaufene Daten löschen"
 
-#: components/Sidebar
 #: components/SidebarDataActions
+#: components/Sidebar
 # defaultMessage: To automate the removal of records that have exceeded the maximum number of days indicated in configuration, a cron must be set up on the server as indicated in the product documentation.
 msgid "remove_data_cron_info"
 msgstr "Um die Löschung von Datensätzen, die die in der Konfiguration angegebene maximale Anzahl von Tagen überschritten haben, zu automatisieren, muss auf dem Server ein Cron-Job eingerichtet werden, wie in der Dokumentation beschrieben."
 
-#: components/Sidebar
 #: components/SidebarDataActions
+#: components/Sidebar
 # defaultMessage: There are {record} record that have exceeded the maximum number of days.
 msgid "remove_data_warning"
 msgstr "{record} Einträge haben die maximale Anzahl von Tagen überschritten."

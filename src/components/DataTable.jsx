@@ -31,8 +31,8 @@ const messages = defineMessages({
     id: 'form_formDataCountSingle',
     defaultMessage: 'Item stored',
   },
-  formDataCount: {
-    id: 'form_formDataCount',
+  formDataCountPlural: {
+    id: 'form_formDataCountPlural',
     defaultMessage: 'Items stored',
   },
   confirmClearData: {
@@ -192,7 +192,7 @@ const DataTable = ({ ReactTable, properties, blockId }) => {
             <strong>{data.length} </strong>
             {data.length === 1
               ? intl.formatMessage(messages.formDataCountSingle)
-              : intl.formatMessage(messages.formDataCount)}
+              : intl.formatMessage(messages.formDataCountPlural)}
           </p>
         </div>
 

@@ -48,6 +48,10 @@ const messages = defineMessages({
     id: 'Choose a file',
     defaultMessage: 'Choose a file',
   },
+  deleteFile: {
+    id: 'Delete file',
+    defaultMessage: 'Delete file',
+  },
 });
 
 /**
@@ -206,7 +210,7 @@ const FileWidget = (props) => {
             icon
             basic
             className="delete-button"
-            aria-label="delete file"
+            aria-label={intl.formatMessage(messages.deleteFile)}
             onClick={() => {
               onChange(id, null);
               setFileType(false);

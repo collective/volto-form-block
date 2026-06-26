@@ -1,13 +1,23 @@
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 /**
  * Displays an `<input type="hidden" />`.
  */
 export const HiddenWidget = ({ id, title, value, isOnEdit }) => {
   const inputId = `field-${id}`;
+  const intl = useIntl();
   return (
     <>
-      {isOnEdit ? <label htmlFor={inputId}>Hidden: {title || id}</label> : null}
+      {isOnEdit ? (
+        <label htmlFor={inputId}>
+          {intl.formatMessage({
+            id: 'form_field_type_hidden',
+            defaultMessage: 'Hidden',
+          })}
+          : {title || id}
+        </label>
+      ) : null}
       <input type="hidden" id={inputId} name={id} value={value} />
     </>
   );
