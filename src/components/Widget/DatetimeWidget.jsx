@@ -227,7 +227,7 @@ export class DatetimeWidgetComponent extends Component {
               displayFormat={moment.localeData(intl.locale).longDateFormat('L')}
               navPrev={<PrevIcon />}
               navNext={<NextIcon />}
-              id={`${id}-date`}
+              id={`field-${id}`}
               placeholder={intl.formatMessage(messages.date)}
               {...attributes}
             />
@@ -246,7 +246,7 @@ export class DatetimeWidgetComponent extends Component {
                 allowEmpty={false}
                 showSecond={false}
                 use12Hours={intl.locale === 'en'}
-                id={`${id}-time`}
+                id={`field-${id}-time`}
                 format={moment.localeData(intl.locale).longDateFormat('LT')}
                 placeholder={intl.formatMessage(messages.time)}
                 focusOnOpen
