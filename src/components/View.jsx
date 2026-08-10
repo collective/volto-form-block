@@ -145,7 +145,7 @@ const View = ({ data, id, path }) => {
     setFormData({ field, value: { field_id, value, ...extras } });
   };
 
-  const isFieldVisible = (subblock) =>
+  const isConditionalFieldVisible = (subblock) =>
     !config.blocks.blocksConfig.form.enableConditionalFields ||
     evaluateAllConditions(subblock.visibility_conditions, formData);
 
@@ -159,7 +159,7 @@ const View = ({ data, id, path }) => {
   const isValidForm = () => {
     const v = [];
     data.subblocks.forEach((subblock, index) => {
-      if (!isFieldVisible(subblock)) {
+      if (!isConditionalFieldVisible(subblock)) {
         // A hidden conditional field must not be validated at all,
         // even if it's marked as required.
         return;
@@ -258,7 +258,7 @@ const View = ({ data, id, path }) => {
           const formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
             const name = getFieldName(subblock.label, subblock.id);
-            if (!isFieldVisible(subblock)) {
+            if (!isConditionalFieldVisible(subblock)) {
               // Never submit/export a value belonging to a currently
               // hidden conditional field.
               delete formattedFormData[name];
