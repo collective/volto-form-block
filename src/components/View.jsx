@@ -10,6 +10,7 @@ import { Captcha } from 'volto-form-block/components/Widget';
 import { isValidEmail } from 'volto-form-block/helpers/validators';
 import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
 import { OTP_FIELDNAME_EXTENDER } from 'volto-form-block/components/Widget';
+import { evaluateAllConditions } from 'volto-form-block/helpers/conditions-list';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -109,10 +110,27 @@ const View = ({ data, id, path }) => {
       return getInitialData(data);
     }
 
-    return {
+    const next = {
       ...state,
       [action.field]: action.value,
     };
+
+    // Clear the value of any conditional field as soon as it becomes
+    // hidden, so it doesn't linger and get sent/exported if it's shown
+    // again later, or if it stays hidden until submit.
+    if (config.blocks.blocksConfig.form.enableConditionalFields) {
+      data.subblocks.forEach((subblock) => {
+        const name = getFieldName(subblock.label, subblock.id);
+        if (
+          subblock.visibility_conditions?.length > 0 &&
+          !evaluateAllConditions(subblock.visibility_conditions, next)
+        ) {
+          delete next[name];
+        }
+      });
+    }
+
+    return next;
   }, getInitialData(data));
 
   const [formState, setFormState] = useReducer(formStateReducer, initialState);
@@ -127,6 +145,10 @@ const View = ({ data, id, path }) => {
     setFormData({ field, value: { field_id, value, ...extras } });
   };
 
+  const isFieldVisible = (subblock) =>
+    !config.blocks.blocksConfig.form.enableConditionalFields ||
+    evaluateAllConditions(subblock.visibility_conditions, formData);
+
   useEffect(() => {
     if (formErrors.length > 0) {
       isValidForm();
@@ -137,6 +159,12 @@ const View = ({ data, id, path }) => {
   const isValidForm = () => {
     const v = [];
     data.subblocks.forEach((subblock, index) => {
+      if (!isFieldVisible(subblock)) {
+        // A hidden conditional field must not be validated at all,
+        // even if it's marked as required.
+        return;
+      }
+
       const name = getFieldName(subblock.label, subblock.id);
       const fieldType = subblock.field_type;
       const isBCC = subblock.use_as_bcc;
@@ -230,6 +258,12 @@ const View = ({ data, id, path }) => {
           const formattedFormData = { ...formData };
           data.subblocks.forEach((subblock) => {
             const name = getFieldName(subblock.label, subblock.id);
+            if (!isFieldVisible(subblock)) {
+              // Never submit/export a value belonging to a currently
+              // hidden conditional field.
+              delete formattedFormData[name];
+              return;
+            }
             if (formattedFormData[name]?.value) {
               formattedFormData[name].field_id = subblock.field_id;
               const isAttachment =
