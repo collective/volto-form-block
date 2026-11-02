@@ -59,6 +59,17 @@ With HCaptcha integration, you also have an additional option in the sidebar in 
 
 In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
 
+### Form tokens
+
+Form tokens make bots wait, for every form and next to its captcha, without bothering visitors with a puzzle.
+When the backend has them enabled, the block data has `form_token`, and the browser gets a single-use token from the `@form-token` endpoint when the form is shown.
+The backend only accepts it once, and only when it is old enough (15 seconds by default): bots post at once, people need time to fill in a form.
+When someone submits sooner, the form waits until the token is old enough before it sends.
+After each submission, also a failed one, the form gets a new token.
+
+Form tokens need [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) with memcached configured: see "Form tokens" in its README.
+Without that, the block data has no `form_token`, and forms work as before.
+
 ### OTP email validation
 
 To prevent sending spam emails to users via the email address configured as sender, the 'email' fields type flagged as BCC will require the user to enter an OTP code received at the address entered in the field when user fills out the form.

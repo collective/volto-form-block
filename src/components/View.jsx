@@ -11,6 +11,7 @@ import { isValidEmail } from 'volto-form-block/helpers/validators';
 import ValidateConfigForm from 'volto-form-block/components/ValidateConfigForm';
 import { OTP_FIELDNAME_EXTENDER } from 'volto-form-block/components/Widget';
 import { evaluateAllConditions } from 'volto-form-block/helpers/conditions-list';
+import useFormToken from 'volto-form-block/helpers/useFormToken';
 
 const messages = defineMessages({
   formSubmitted: {
@@ -140,6 +141,7 @@ const View = ({ data, id, path }) => {
     (state) => state.submitForm?.subrequests?.[id],
   );
   const captchaToken = useRef();
+  const formToken = useFormToken(path, data.form_token);
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({ field, value: { field_id, value, ...extras } });
@@ -245,7 +247,16 @@ const View = ({ data, id, path }) => {
     captcha
       .verify()
       .then(() => {
-        if (isValidForm()) {
+        if (!isValidForm()) {
+          return false;
+        }
+        // The token of the form, if the backend wants one: the form waits
+        // until it is old enough.
+        setFormState({ type: FORM_STATES.loading });
+        return formToken.wait();
+      })
+      .then((form_token) => {
+        if (form_token !== false) {
           const attachments = {};
           const captcha = {
             provider: data.captcha,
@@ -291,9 +302,9 @@ const View = ({ data, id, path }) => {
               })),
               attachments,
               captcha,
+              form_token,
             ),
           );
-          setFormState({ type: FORM_STATES.loading });
         } else {
           setFormState({ type: FORM_STATES.error });
         }
@@ -337,6 +348,7 @@ const View = ({ data, id, path }) => {
         },
       });
       captcha.reset();
+      formToken.refresh();
       const formItem = document.getElementById(formid);
       if (formItem !== null) {
         const formItemPosition = formItem.getBoundingClientRect();
@@ -353,6 +365,8 @@ const View = ({ data, id, path }) => {
       }`;
 
       setFormState({ type: FORM_STATES.error, error: errorDescription });
+      // The backend uses up the token with a failed submission as well.
+      formToken.refresh();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitResults]);

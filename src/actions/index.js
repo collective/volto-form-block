@@ -12,9 +12,17 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
  * @param {string} path
  * @param {string} block_id
  * @param {Object} data
+ * @param {string} form_token Token from @form-token, if the backend wants one.
  * @returns {Object} attachments
  */
-export function submitForm(path = '', block_id, data, attachments, captcha) {
+export function submitForm(
+  path = '',
+  block_id,
+  data,
+  attachments,
+  captcha,
+  form_token,
+) {
   return {
     type: SUBMIT_FORM_ACTION,
     subrequest: block_id,
@@ -26,6 +34,7 @@ export function submitForm(path = '', block_id, data, attachments, captcha) {
         data,
         attachments,
         captcha,
+        ...(form_token && { form_token }),
       },
     },
   };
