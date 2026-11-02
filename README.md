@@ -59,6 +59,18 @@ With HCaptcha integration, you also have an additional option in the sidebar in 
 
 In some test scenarios it's found that the "Passing Threshold" of HCaptcha must be configured as "Auto" to get the best results. In some test cases if one sets the Threshold to "Moderate" HCaptcha starts to fail.
 
+### Honeypot field
+
+Enable "Add honeypot field" in the form settings to add a hidden `website` field to the form.
+Visitors don't see it and leave it empty, but bots that read the HTML fill it in: the backend then answers as if the form was sent, but doesn't send or store anything.
+It works next to any captcha provider, and needs [collective.volto.formsupport](https://github.com/collective/collective.volto.formsupport) with honeypot field support, but no other add-ons.
+
+The field is hidden with CSS, not in the HTML, and asks browsers and password managers not to fill it in.
+It uses the `honeypot` widget of Volto when there is one, and a similar input of its own on older Volto versions.
+
+`website` is a reserved name for this field.
+If your form needs a real website field, name it differently, for example "Company website" (`company_website`) or "Organisation website" (`organisation_website`).
+
 ### OTP email validation
 
 To prevent sending spam emails to users via the email address configured as sender, the 'email' fields type flagged as BCC will require the user to enter an OTP code received at the address entered in the field when user fills out the form.

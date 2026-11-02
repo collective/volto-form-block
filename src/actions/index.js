@@ -12,9 +12,17 @@ export const SUBMIT_FORM_ACTION = 'SUBMIT_FORM_ACTION';
  * @param {string} path
  * @param {string} block_id
  * @param {Object} data
+ * @param {string} website Value of the honeypot field, if the form has one.
  * @returns {Object} attachments
  */
-export function submitForm(path = '', block_id, data, attachments, captcha) {
+export function submitForm(
+  path = '',
+  block_id,
+  data,
+  attachments,
+  captcha,
+  website,
+) {
   return {
     type: SUBMIT_FORM_ACTION,
     subrequest: block_id,
@@ -26,6 +34,8 @@ export function submitForm(path = '', block_id, data, attachments, captcha) {
         data,
         attachments,
         captcha,
+        // Next to the form data, so it is never stored or sent.
+        ...(website !== undefined && { website }),
       },
     },
   };

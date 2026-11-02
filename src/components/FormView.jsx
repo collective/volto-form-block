@@ -7,6 +7,7 @@ import {
   OTPWidget,
   OTP_FIELDNAME_EXTENDER,
   Button,
+  HoneypotField,
 } from 'volto-form-block/components/Widget';
 import config from '@plone/volto/registry';
 import { FormResult } from 'volto-form-block/components';
@@ -44,6 +45,8 @@ const FormView = ({
   resetFormState,
   resetFormOnError,
   captcha,
+  honeypot,
+  onChangeHoneypot,
   id,
   getErrorMessage,
   path,
@@ -213,6 +216,9 @@ const FormView = ({
                   <></>
                 )}
 
+                {data.honeypot && (
+                  <HoneypotField value={honeypot} onChange={onChangeHoneypot} />
+                )}
                 {captcha.render()}
                 {formErrors.length > 0 && (
                   <Message error role="alert">

@@ -140,6 +140,9 @@ const View = ({ data, id, path }) => {
     (state) => state.submitForm?.subrequests?.[id],
   );
   const captchaToken = useRef();
+  // The hidden website field of the honeypot option, outside formData so it is
+  // never stored or sent with the form data.
+  const [honeypot, setHoneypot] = useState();
 
   const onChangeFormData = (field_id, field, value, extras) => {
     setFormData({ field, value: { field_id, value, ...extras } });
@@ -291,6 +294,7 @@ const View = ({ data, id, path }) => {
               })),
               attachments,
               captcha,
+              data.honeypot ? honeypot ?? '' : undefined,
             ),
           );
           setFormState({ type: FORM_STATES.loading });
@@ -305,6 +309,7 @@ const View = ({ data, id, path }) => {
 
   const resetFormState = () => {
     setFormData({ reset: true });
+    setHoneypot(undefined);
     setFormState({ type: FORM_STATES.normal });
   };
 
@@ -369,6 +374,8 @@ const View = ({ data, id, path }) => {
         formErrors={formErrors}
         formData={formData}
         captcha={captcha}
+        honeypot={honeypot}
+        onChangeHoneypot={setHoneypot}
         onChangeFormData={onChangeFormData}
         data={data}
         onSubmit={submit}

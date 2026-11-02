@@ -534,6 +534,16 @@ msgstr ""
 msgid "form_formValueYes"
 msgstr ""
 
+#: formSchema
+# defaultMessage: Add honeypot field
+msgid "form_honeypot"
+msgstr ""
+
+#: formSchema
+# defaultMessage: Add a hidden 'website' field that visitors leave empty, but bots fill in: the form then ignores them. It can be combined with a captcha provider. 'website' is a reserved name: name a real website field 'company_website' or 'organisation_website', for example.
+msgid "form_honeypot_description"
+msgstr ""
+
 #: components/Widget/OTPWidget
 # defaultMessage: Insert here the OTP code received at {email}
 msgid "form_insert_otp"

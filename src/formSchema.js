@@ -101,6 +101,15 @@ const messages = defineMessages({
     defaultMessage:
       "Prevent spam from your website. By enabling this option, you do not allow malicious users to send emails to other email addresses through your website. The OTP will be requested for all email-type fields for which the 'Send a copy of the email to this address' option is checked.",
   },
+  honeypot: {
+    id: 'form_honeypot',
+    defaultMessage: 'Add honeypot field',
+  },
+  honeypot_description: {
+    id: 'form_honeypot_description',
+    defaultMessage:
+      "Add a hidden 'website' field that visitors leave empty, but bots fill in: the form then ignores them. It can be combined with a captcha provider. 'website' is a reserved name: name a real website field 'company_website' or 'organisation_website', for example.",
+  },
 });
 
 const Schema = (data) => {
@@ -130,6 +139,7 @@ const Schema = (data) => {
           'mail_header',
           'mail_footer',
           'captcha',
+          'honeypot',
           'email_otp_verification',
         ],
       },
@@ -190,6 +200,12 @@ const Schema = (data) => {
         vocabulary: {
           '@id': 'collective.volto.formsupport.captcha.providers',
         },
+      },
+      honeypot: {
+        type: 'boolean',
+        title: intl.formatMessage(messages.honeypot),
+        description: intl.formatMessage(messages.honeypot_description),
+        default: false,
       },
       email_otp_verification: {
         type: 'boolean',

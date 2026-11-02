@@ -1,0 +1,5 @@
+/* The honeypot field is for bots only: hidden here, not in the HTML.
+   display: none also keeps it from screen readers and the tab order. */
+.form-block-honeypot {
+  display: none;
+}

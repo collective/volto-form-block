@@ -8,6 +8,10 @@ export { default as GoogleReCaptchaWidget } from 'volto-form-block/components/Wi
 export { default as HCaptchaWidget } from 'volto-form-block/components/Widget/HCaptchaWidget';
 export { HiddenWidget } from 'volto-form-block/components/Widget/HiddenWidget';
 export { default as HoneypotCaptchaWidget } from 'volto-form-block/components/Widget/HoneypotCaptchaWidget';
+export {
+  default as HoneypotField,
+  HONEYPOT_FIELD,
+} from 'volto-form-block/components/Widget/HoneypotField';
 export { default as NoRobotsCaptchaWidget } from 'volto-form-block/components/Widget/NoRobotsCaptchaWidget';
 export { default as RadioWidget } from 'volto-form-block/components/Widget/RadioWidget';
 export { default as SelectWidget } from 'volto-form-block/components/Widget/SelectWidget';
