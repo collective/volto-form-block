@@ -1,0 +1,14 @@
+{
+    "title": "Volto Form Block",
+    "frontend_addon_name": "volto-form-block",
+    "description": "Volto block to build a form",
+    "author": "collective",
+    "email": "plone@plone.com",
+    "github_organization": "collective",
+    "npm_package_name": "volto-form-block",
+    "use_prerelease_versions": "No",
+    "volto_version": "18.36.0",
+    "initialize_ci": true,
+    "initialize_documentation": false,
+    "__template__": "frontend_addon"
+}

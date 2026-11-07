@@ -1,0 +1,49 @@
+name: "Compute Config variables"
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: false
+        type: string
+        default: "22"
+    outputs:
+      base-tag:
+        description: "Base tag to be used when creating container images"
+        value: ${{ jobs.config.outputs.base-tag }}
+      node-version:
+        description: "Node version to be used"
+        value: ${{ inputs.node-version }}
+      storybook-deploy:
+        description: "Whether to deploy storybook or not"
+        value: ${{ jobs.config.outputs.storybook-deploy }}
+      path-frontend:
+        description: "Path to the frontend package"
+        value: ${{ jobs.config.outputs.path-frontend }}
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    outputs:
+      base-tag: ${{ steps.vars.outputs.base-tag }}
+      node-version: ${{ inputs.node-version }}
+      storybook-deploy: ${{ steps.vars.outputs.storybook-deploy }}
+      path-frontend: ${{ steps.vars.outputs.path-frontend }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Compute several vars needed for the CI
+        id: vars
+        run: |
+          echo "base-tag=sha-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "storybook-deploy=${{ github.event.repository.private == false }}" >> $GITHUB_OUTPUT
+          echo "path-frontend=packages/volto-form-block" >> $GITHUB_OUTPUT
+
+      - name: Test vars
+        run: |
+          echo "base-tag: ${{ steps.vars.outputs.base-tag }}"
+          echo 'node-version: ${{ inputs.node-version }}'
+          echo 'event-name: ${{ github.event_name }}'
+          echo 'storybook-deploy: ${{ steps.vars.outputs.storybook-deploy }}'
