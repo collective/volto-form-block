@@ -105,10 +105,15 @@ ci-test: ## Run unit tests in CI
 backend-docker-start:	## Starts a Docker-based backend for development
 	@echo "$(GREEN)==> Start Docker-based Plone Backend$(RESET)"
 	docker run -it --rm --name=backend -p 8080:8080 \
-		-e SITE=Plone \
-		-e ADDONS="collective.volto.formsupport" \
-		-e PROFILES="collective.volto.formsupport:default" \
-		$(DOCKER_IMAGE)
+		-e SITE_ID=Plone \
+		-e ADDONS="collective.volto.formsupport plone.formwidget.hcaptcha" \
+		-e PROFILES="collective.volto.formsupport:default,plone.formwidget.hcaptcha:default" \
+		-v "$(CURRENT_DIR)/scripts/configure-hcaptcha.py:/app/scripts/configure-hcaptcha.py:ro" \
+		$(DOCKER_IMAGE) bash -euc '\
+			unset ADDONS; \
+			/app/docker-entrypoint.sh create-site; \
+			/app/docker-entrypoint.sh run /app/scripts/configure-hcaptcha.py; \
+			exec /app/docker-entrypoint.sh start'
 
 ## Storybook
 .PHONY: storybook-start
