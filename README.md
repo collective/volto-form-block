@@ -305,7 +305,16 @@ Start the backend.
 make backend-docker-start
 ```
 
-The Docker-based backend already installs the `collective.volto.formsupport` add-on in the `Plone` site.
+The Docker-based backend creates the `Plone` site, installs the
+`collective.volto.formsupport` and `plone.formwidget.hcaptcha` profiles, and then
+configures the [official hCaptcha test keys](https://docs.hcaptcha.com/#integration-testing-test-keys)
+before starting the server:
+
+- Site key: `10000000-ffff-ffff-ffff-000000000001`
+- Secret key: `0x0000000000000000000000000000000000000000`
+
+These keys always pass verification without a challenge and provide **no anti-bot
+protection**. Use them only for local development and testing, never in production.
 
 In a separate terminal session, start the frontend.
 
