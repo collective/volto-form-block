@@ -20,6 +20,8 @@
     margin-bottom: 0;
 }
 
+/* Same horizontal padding as the grid columns of the other fields */
 .block.form .ui.form .field .static-text {
+    padding: 0 1rem;
     margin: 2rem 0;
 }
