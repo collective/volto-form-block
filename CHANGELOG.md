@@ -1,5 +1,12 @@
 
 
+### [3.19.1](https://github.com/collective/volto-form-block/compare/v3.19.0...v3.19.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* public form layout on mobile, radio and static text alignment ([#167](https://github.com/collective/volto-form-block/issues/167)) ([71a9b58](https://github.com/collective/volto-form-block/commit/71a9b58cfb67d0587e78532f11941b049dfca3e3))
+
 ## [3.19.0](https://github.com/collective/volto-form-block/compare/v3.17.1...v3.19.0) (2026-08-11)
 
 
