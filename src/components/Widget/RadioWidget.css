@@ -1,5 +1,15 @@
 .radio-widget .radio-button {
+    display: flex;
+    align-items: center;
     margin: 0.5rem 0;
+    gap: 0.5rem;
+}
+
+/* Native radios, sized like the Semantic checkboxes of the multiple choice field */
+.radio-widget .radio-button input[type='radio'] {
+    width: 17px;
+    height: 17px;
+    margin: 0;
 }
 
 .radio-widget .radio-button label {
