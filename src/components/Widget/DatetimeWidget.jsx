@@ -123,6 +123,12 @@ export class DatetimeWidgetComponent extends Component {
     return this.props.dateOnly || this.props.widget === 'date';
   }
 
+  formatDateTime(datetime) {
+    return this.props.localDateTime
+      ? datetime.format('YYYY-MM-DD HH:mm')
+      : datetime.toISOString();
+  }
+
   /**
    * Update date storage
    * @method onDateChange
@@ -141,7 +147,7 @@ export class DatetimeWidgetComponent extends Component {
       });
       const dateValue = isDateOnly
         ? base.format('YYYY-MM-DD')
-        : base.toISOString();
+        : this.formatDateTime(base);
       this.props.onChange(this.props.id, dateValue);
     }
     this.setState({ isDefault: false });
@@ -161,7 +167,7 @@ export class DatetimeWidgetComponent extends Component {
         minutes: time?.minutes() ?? 0,
         seconds: 0,
       });
-      const dateValue = base.toISOString();
+      const dateValue = this.formatDateTime(base);
       this.props.onChange(this.props.id, dateValue);
     }
   };
@@ -281,6 +287,7 @@ DatetimeWidgetComponent.propTypes = {
   required: PropTypes.bool,
   error: PropTypes.arrayOf(PropTypes.string),
   dateOnly: PropTypes.bool,
+  localDateTime: PropTypes.bool,
   noPastDates: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -298,6 +305,7 @@ DatetimeWidgetComponent.defaultProps = {
   required: false,
   error: [],
   dateOnly: false,
+  localDateTime: false,
   noPastDates: false,
   value: null,
   resettable: true,

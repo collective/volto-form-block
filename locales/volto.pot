@@ -467,6 +467,16 @@ msgid "form_field_type_date"
 msgstr ""
 
 #: fieldSchema
+# defaultMessage: Date and time
+msgid "form_field_type_datetime"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Time
+msgid "form_field_type_time"
+msgstr ""
+
+#: fieldSchema
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr ""
@@ -655,6 +665,7 @@ msgstr ""
 # defaultMessage: The email is incorrect
 msgid "formblock_invalidEmailMessage"
 msgstr ""
+
 
 #: components/View
 # defaultMessage: Fill-in this field

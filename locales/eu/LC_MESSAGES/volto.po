@@ -467,6 +467,16 @@ msgid "form_field_type_date"
 msgstr "Data"
 
 #: fieldSchema
+# defaultMessage: Date and time
+msgid "form_field_type_datetime"
+msgstr ""
+
+#: fieldSchema
+# defaultMessage: Time
+msgid "form_field_type_time"
+msgstr ""
+
+#: fieldSchema
 # defaultMessage: E-mail
 msgid "form_field_type_from"
 msgstr "Posta elektronikoa"
@@ -655,6 +665,7 @@ msgstr "Eposta bidez jaso den OTP kodea sartu"
 # defaultMessage: The email is incorrect
 msgid "formblock_invalidEmailMessage"
 msgstr "Posta elektronikoa okerra da"
+
 
 #: components/View
 # defaultMessage: Fill-in this field

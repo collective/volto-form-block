@@ -52,6 +52,14 @@ const messages = defineMessages({
     id: 'form_field_type_date',
     defaultMessage: 'Date',
   },
+  field_type_datetime: {
+    id: 'form_field_type_datetime',
+    defaultMessage: 'Date and time',
+  },
+  field_type_time: {
+    id: 'form_field_type_time',
+    defaultMessage: 'Time',
+  },
   field_type_attachment: {
     id: 'form_field_type_attachment',
     defaultMessage: 'Attachment',
@@ -92,6 +100,8 @@ const FieldSchema = (props) => {
     ],
     ['checkbox', intl.formatMessage(messages.field_type_checkbox)],
     ['date', intl.formatMessage(messages.field_type_date)],
+    ['datetime', intl.formatMessage(messages.field_type_datetime)],
+    ['time', intl.formatMessage(messages.field_type_time)],
     ['attachment', intl.formatMessage(messages.field_type_attachment)],
     ['from', intl.formatMessage(messages.field_type_from)],
     ['static_text', intl.formatMessage(messages.field_type_static_text)],
