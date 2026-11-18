@@ -1,5 +1,12 @@
 
 
+## [3.20.0](https://github.com/collective/volto-form-block/compare/v3.19.1...v3.20.0) (2026-11-18)
+
+
+### Features
+
+* added datetime and time widgets ([#168](https://github.com/collective/volto-form-block/issues/168)) ([9edf41d](https://github.com/collective/volto-form-block/commit/9edf41d77b7725fee9e33bed972f1475b512fe0c))
+
 ### [3.19.1](https://github.com/collective/volto-form-block/compare/v3.19.0...v3.19.1) (2026-11-17)
 
 
