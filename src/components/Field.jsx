@@ -5,6 +5,7 @@ import WysiwygWidget from '@plone/volto/components/manage/Widgets/WysiwygWidget'
 import EmailWidget from 'volto-form-block/components/Widget/EmailWidget';
 import FileWidget from 'volto-form-block/components/Widget/FileWidget';
 import DatetimeWidget from 'volto-form-block/components/Widget/DatetimeWidget';
+import TimeWidget from 'volto-form-block/components/Widget/TimeWidget';
 import CheckboxWidget from 'volto-form-block/components/Widget/CheckboxWidget';
 import SelectWidget from 'volto-form-block/components/Widget/SelectWidget';
 import TextWidget from 'volto-form-block/components/Widget/TextWidget';
@@ -183,6 +184,40 @@ const Field = ({
           dateOnly={true}
           noPastDates={false}
           resettable={false}
+          onChange={onChange}
+          value={value}
+          error={error}
+          isDisabled={disabled}
+          required={required}
+          invalid={isInvalid().toString()}
+          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+        />
+      )}
+      {field_type === 'datetime' && (
+        <DatetimeWidget
+          id={name}
+          name={name}
+          title={label}
+          description={description}
+          dateOnly={false}
+          localDateTime={true}
+          noPastDates={false}
+          resettable={false}
+          onChange={onChange}
+          value={value}
+          error={error}
+          isDisabled={disabled}
+          required={required}
+          invalid={isInvalid().toString()}
+          {...(isInvalid() ? { className: 'is-invalid' } : {})}
+        />
+      )}
+      {field_type === 'time' && (
+        <TimeWidget
+          id={name}
+          name={name}
+          title={label}
+          description={description}
           onChange={onChange}
           value={value}
           error={error}
